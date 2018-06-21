@@ -155,7 +155,7 @@
                <img src="images/app/iconv5.png" style="width: 50px;margin-top:12px;" />
                </a>-->
             <ul id="nav-mobile" class="ag hide-on-med-and-down">
-               <li class="active">
+               <!-- <li class="active">
                   <a class="dropdown-button" href="#!" data-activates="pages" data-constrainwidth="false" data-beloworigin="true">Pages<i class="material-icons ag">arrow_drop_down</i></a>
                   <ul id="pages" class="dropdown-content">
                      <li><a class="g" href="startup-horizontal-half.html">Horizontal Halves</a></li>
@@ -170,7 +170,7 @@
                </li>
                <li><a href="startup-blog.html">Blog</a></li>
                <li><a href="startup-team.html">Team</a></li>
-               <li><a href="http://themes.materializecss.com/cart/34339663873:1">Buy Now!</a></li>
+               <li><a href="http://themes.materializecss.com/cart/34339663873:1">Buy Now!</a></li> -->
             </ul>
             <a data-activates="slide-out" class="button-collapse ag"><i class="material-icons white-text" style="font-size: 30px;">menu</i></a>
             <a style="right: 0px;position: absolute;margin: -2px 18px;margin-top: 12px;" onclick="GohomePage()"><i class="fa fa-home"></i></a>
