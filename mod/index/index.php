@@ -577,7 +577,7 @@
          </td>
          
       </tr>
-      <tr style="display: nones;">
+      <tr style="display: none;">
          <td colspan="2" width="50%" align="center" class="">
             <a onclick="openOrderFromAndroid(126);">
             <button type="button" class="btn btn-default paddling-max" style="width:100%">
@@ -589,30 +589,8 @@
             </a>
          </td>
       </tr>
-       <tr style="display: nones;">
-         <td colspan="2" width="50%" align="center" class="">
-            <a onclick="openOrderFromAndroid(126);">
-            <button type="button" class="btn btn-default paddling-max" style="width:100%">
-               <center>
-                  <div  class="circle-menu" style="background: #CDDC39;"><i class="fa fa-map" style="font-size: 22px;margin-top: -2px; " ></i></div>
-                  <span style="padding-bottom:20px;" class="font-20 text-cap">test map</span>
-               </center>
-            </button>
-            </a>
-         </td>
-      </tr>
-       <tr style="display: nones;">
-         <td colspan="2" width="50%" align="center" class="">
-            <a onclick="openOrderFromAndroid(126);">
-            <button type="button" class="btn btn-default paddling-max" style="width:100%">
-               <center>
-                  <div  class="circle-menu" style="background: #CDDC39;"><i class="fa fa-map" style="font-size: 22px;margin-top: -2px; " ></i></div>
-                  <span style="padding-bottom:20px;" class="font-20 text-cap">test map</span>
-               </center>
-            </button>
-            </a>
-         </td>
-      </tr>
+     
+      
 	
    </tbody>
 </table>

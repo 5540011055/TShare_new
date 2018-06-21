@@ -143,6 +143,7 @@
       <script src="material/materialize.min.js?v=<?=time();?>"></script>
       <script src="material/startup-all-min.js?v=<?=time();?>" crossorigin="anonymous"></script>
       <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+      <script src="js/jquery.touchSwipe.min.js"></script>
       <script>
       	  $(window).load(function() {
 			 $("#load_material").fadeOut();
