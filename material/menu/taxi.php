@@ -98,7 +98,7 @@
       	var url_load= "load_page_mod_3.php?name=user&file=qrcode";
       	$('#load_mod_popup_3').load(url_load); 
 	}
-	function logOut(){
+	/*function logOut(){
 		swal({
 		  title: "<?=t_sign_out;?>",
 		  text: "<?=t_confirm_signout;?>",
@@ -117,5 +117,5 @@
       		 	window.location.href = "index.php";		}, 1000);
       		});
 		  }); 
-	}
+	}*/
 </script>      

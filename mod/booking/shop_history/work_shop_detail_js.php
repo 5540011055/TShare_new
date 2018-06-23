@@ -149,6 +149,12 @@ function checkTypePay($id){
 	}else{
 		$show_alert = "display:none;";
 	}
+	
+	if($_GET[ios]==1){
+		$display_back_btn = "display:none;";
+	}else{
+		$display_back_btn = "";
+	}
 ?>
 <style>
 	.onlyThisTable td,th{
@@ -159,7 +165,7 @@ function checkTypePay($id){
 	$('#date_trans').text(formatDate('<?=$arr[book][transfer_date];?>'));
 </script>
 <input type="hidden" value="<?=$_POST[id];?>" id="id_order" />
-<div class="font-22 back_main" onclick="backMain();" ><a ><i class="fa fa-chevron-left" aria-hidden="true"></i>&nbsp;<?=t_back_previous;?></a></div>
+<div class="font-22 back_main" onclick="backMain();" style="<?=$display_back_btn;?>" ><a ><i class="fa fa-chevron-left" aria-hidden="true"></i>&nbsp;<?=t_back_previous;?></a></div>
 <div class="assas_<?=$_POST[id];?>" style=" padding:10px 12px; margin-top: 20px;" >
 	<button class="btn waves-effect waves-light red lighten-3" align="center" onclick="cancelBook('<?=$_POST[id];?>');" id="btn_cancel_book_<?=$_POST[id];?>" style="
     position:  absolute;
@@ -378,8 +384,9 @@ function checkTypePay($id){
     padding: 4px 7px;
     z-index: 1;
     right: 45px;<?=$show_alert;?>"><strong>!</strong></span>
+    </button>
 	 		</td>
-	 		</button>
+	 		
 	 		
 	 	</tr>
 	 </table>
@@ -447,10 +454,7 @@ function checkTypePay($id){
 	}	
 
 	function openViewPrice(){
-			/*$('#main_load_mod_popup_clean').hide();
-	  	$('#main_load_mod_popup_2').show();
-		return;*/
-//		$( "#dialog_custom" ).show();
+
 		var class_user = '<?=$data_user_class;?>';
 		console.log(class_user);
 		if(class_user=="lab"){
@@ -537,6 +541,14 @@ function checkTypePay($id){
    });
     }
     
-
+ function backMain(){
+     	console.log('back');
+    $('#main_load_mod_popup_clean').hide(); 
+   	$('#show_main_tool_bottom').fadeIn(500); 
+//   	$('#main_component').addClass('w3-animate-left');
+   	$('#check_open_shop_id').val(0);
+   	$('#load_mod_popup_clean').html('');
+//   	filterMenu('manage')
+     }
 
 </script>

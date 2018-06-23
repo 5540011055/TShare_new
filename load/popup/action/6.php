@@ -1,5 +1,5 @@
  
- <div id="main_load_mod_popup_6" style="display: none;">
+<div id="main_load_mod_popup_6" style="display: none;">
   <div class="back-full-popup">  
  
     <table width="100%"  border="0" cellspacing="0" cellpadding="0" class="tb-pd-2">

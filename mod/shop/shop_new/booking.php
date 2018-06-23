@@ -73,6 +73,121 @@
             <input name="car_color" type="hidden"   class="form-control" id="car_color" style="padding:4px 2px;width:100%;"   value="<?=$arr[car][car_color]?>"   >
          </div>
          <div class="form-group">
+            <div style="margin-top: 15px; padding: 5px; border-radius: 15px;">
+
+<table width="100%" border="0" cellspacing="2" cellpadding="2">
+           <tr>
+            <td >
+                  <div    style="    margin-bottom: 25px;" onclick="selectnation(1);">
+                     <table width="100%" border="0" cellspacing="2" cellpadding="2" >
+                              
+                               <tr>
+                                    <td>
+                                       <table width="100%" cellpadding="1" cellspacing="2">
+                                        
+                                       
+                                             <tr>
+                                             <td width="10"> <img src="images/flag/China.png" width="25" height="25" alt=""></td>
+                                          <td width="100" align="left" style="color: #DADADA;
+                   padding: 5px; border-radius: 10px;"><font color="#333" class="font-20">แขกจีน<br>
+                                                </font>
+                                             </td>
+                                          </tr>
+                                       
+                                      </table>
+                                       
+                                    </td>
+                                    <td width="50" align="center">
+                                     <label class="container">
+                           <input type="checkbox" name="persion_china" id="persion_china" value="">
+                           <span class="checkmark" style="pointer-events: none"></span>
+                         </label>
+                                    </td>
+                                 </tr>
+                                 
+                             
+                         </table>
+                   </div>
+            </td>
+            <td >
+               <div  style="    margin-bottom: 25px;" onclick="selectnation2(0);">
+      <table width="100%" border="0" cellspacing="2" cellpadding="2" >
+               
+                  <tr>
+                     <td>
+                        <table width="100%" cellpadding="1" cellspacing="2">
+                         
+                           <tr>
+                              <td width="10"><img src="images/flag/Other.png" width="25" height="25" alt="" >
+                              </td>
+                           <td width="100" align="left" style="color: #DADADA;
+    padding: 5px; border-radius: 10px;">
+    <font color="#333" class="font-20">ต่างชาติ
+                                 </font>
+                              </td>
+                           </tr>
+                        
+                        </table>
+                        
+                     </td>
+                     <td width="50" align="center">
+                      <label class="container">
+            <input type="checkbox" name="persion_other" id="persion_other" value="">
+            <span class="checkmark" style="pointer-events: none"></span>
+          </label>
+                     </td>
+                  </tr>
+              
+           </table>
+    </div>
+            </td>
+         </tr>
+         <!-- <tr style="margin-top: 10px;">
+                                    <td colspan="2">
+                                       <div class="col-md-4 col-sm-6 col-xs-6"  >
+                                          <div id="box_china" style="display: none;">
+                                          <select name="num_china" id="num_china" class="form-control" style="border-radius: 25px;">
+
+                                          <?php 
+
+                                          for($i=0; $i<=30; $i++)
+                                          {
+
+                                              echo "<option value=".$i.">".$i."</option>";
+                                          }
+                                          ?> 
+                                          </select>
+                                          </div> 
+                                       </div>
+                                       <div class="col-md-4 col-sm-6 col-xs-6">
+                                          <div id="box_other" style="display: none;">
+                                          <select name="num_other" id="num_other" class="form-control" style="border-radius: 25px;">
+
+                                          <?php 
+
+                                          for($i=0; $i<=30; $i++)
+                                          {
+
+                                              echo "<option value=".$i.">".$i."</option>";
+                                          }
+                                          ?> 
+                                          </select>
+                                       </div>
+                                       </div>
+
+                                          
+                                    </td>
+                                    
+                                 </tr> -->
+         
+           
+         </table>
+     
+   </div>
+   
+            
+         </div>
+         <div class="form-group">
             <label class="font-24">จำนวนคน</label>
             <table width="100%" border="0" cellspacing="1" cellpadding="5" style="margin-top:-5px;"  >
                <tr>
@@ -527,9 +642,48 @@
    var product_id = $('#product_id').val();
    $('#submit_data_set').click(function(){      
       var url_load = "load_page_mod_3.php?name=booking/step&file=booking&driver=<?=$_GET[driver]?>&place=<?=$_GET[place];?>";
-     $('#load_mod_popup_3').html(load_main_mod);
-     $('#load_mod_popup_3').load(url_load); 
+       $.post( url_load, function( data ) {
+               $('#load_mod_popup_3').html(data);
+                  // console.log(data);
+               });
+     // $('#load_mod_popup_3').html(load_main_mod);
+     // $('#load_mod_popup_3').load(url_load); 
    });
+   var ch_china = false;
+   var ch_other = false;
+      function selectnation(x){
+         if (x == 1 && ch_china == false) {
+            $('#persion_china').prop('checked', true); // Checks it
+            ch_china = true;
+            $('#persion_china').val(x)
+            $('#box_china').show(500)
+         }
+         else {
+            $('#persion_china').prop('checked', false);
+            ch_china = false;
+            $('#persion_china').val('')
+
+             $('#box_china').hide(500)
+         }
+         
+      }
+      function selectnation2(x){
+        
+         if (x == 0 && ch_other == false) {
+            $('#persion_other').prop('checked', true); // Checks it
+            ch_other = true;
+            $('#persion_other').val(x)
+            $('#box_other').show(500)
+         }
+         else {
+            $('#persion_other').prop('checked', false);
+            ch_other = false;
+            $('#persion_other').val('')
+             $('#box_other').hide(500)
+         }
+         
+         
+      }
    function save_bookin_shop(){
    	var place_num = document.getElementById('car_plate').value;
     console.log($('#time_num').val());
@@ -580,13 +734,13 @@
       function () {
          $.post('go.php?name=shop/shop_new&file=save_data&action=add&type=driver&driver=<?=$user_id?>', $('#form_booking').serialize(), function (response) {
             console.log(response)
-            	$.post('send_messages/send_onesignal.php?key=new_shop', {
-               driver: "<?=$user_id?>",
-               nickname: "<?=$arr[driver][nickname]?>",
-               car_plate: place_num
-            }, function (data) {
-               console.log(data);
-            });
+            	$.post('send_messages/send_onesignal.php?key=new_shop&order_id='+response.last_id+'&vc='+response.invoice+'&m='+response.airout_m, {
+	               driver: "<?=$user_id?>",
+	               nickname: "<?=$arr[driver][nickname]?>",
+	               car_plate: place_num
+	            }, function (data) {
+	               console.log(data);
+	            });
             var url_mail = "mail.php";
              $.post(url_mail,$('#form_booking').serialize(),function(data){
                   console.log(data);
@@ -765,13 +919,14 @@
    cursor: pointer;
 }
 .checkmark {
-   border-radius: 20px;
-   position: absolute;
-   top: -4px;
-   left: 0;
-   height: 30px;
-   width: 30px;
-   background-color: #e4e4e4;
+   border-radius: 50%;
+    border: 1px solid #5d75a9;
+    position: absolute;
+    top: -4px;
+    left: 0;
+    height: 30px;
+    width: 30px;
+    background-color: #e4e4e4;
 }
 .container:hover input~.checkmark {
    background-color: #ccc;
@@ -812,4 +967,19 @@
    background-color: #fff;
    background-image: none;
 }
+.col-xs-6 {
+    width: 50%;
+}
+.col-xs-1, .col-xs-10, .col-xs-11, .col-xs-12, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9 {
+    float: left;
+}
+.col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-xs-1, .col-xs-10, .col-xs-11, .col-xs-12, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9 {
+    position: relative;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
 </style>
+<script>
+   
+   </script>

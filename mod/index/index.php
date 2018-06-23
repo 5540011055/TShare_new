@@ -1,15 +1,15 @@
 <!--<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />  -->
 <input type="hidden" value="0" id="check_open_shop_id" /> <!-- เช็คเมนูช้อปปิ้ง ว่ากำลังเปิด detail ของ id ไหน -->
 <style>
-	.box-shadow-only{
-		box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
-	}
-	.paddling-max{
-		padding : 17px 12px !important;
-		border-radius: 0px !important;
-		border : 0px !important;
-	}
-	.popup-open {
+   .box-shadow-only{
+   box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+   }
+   .paddling-max{
+   padding : 17px 12px !important;
+   border-radius: 0px !important;
+   border : 0px !important;
+   }
+   .popup-open {
    overflow: hidden;
    } 
    .css-small-popup {
@@ -102,7 +102,7 @@
    border-radius: 20px;
    box-shadow: 0px  0px 5px #DADADA;  border:none;
    }
-      .text-cap{
+   .text-cap{
    text-transform: capitalize !important;
    }
    .text-low{
@@ -137,17 +137,17 @@
    }
 </style>
 <style>
-	.back_main{
-		padding: 5px 0px;
-	    margin-top: 0px;
-	    padding-left: 10px;
-	    position: fixed;
-	    background-color: #fff;
-	    width: 100%;
-/*	    border-bottom: 1px solid #ddd;*/
-		box-shadow: 1px 1px 10px #ddd;
-	    z-index: 2;
-	}
+   .back_main{
+   padding: 5px 0px;
+   margin-top: 0px;
+   padding-left: 10px;
+   position: fixed;
+   background-color: #fff;
+   width: 100%;
+   /*	    border-bottom: 1px solid #ddd;*/
+   box-shadow: 1px 1px 10px #ddd;
+   z-index: 2;
+   }
    @media screen and (max-width: 320px) {
    .font-22{
    font-size : 14px;
@@ -420,31 +420,28 @@
                <!--	<span style="color: #fff;"><i class="fa fa-refresh" aria-hidden="true"></i></span>-->
             </td>
          </tr>
-
       </tbody>
    </table>
 </div>
-
 <script>
-	var array_data = [];
-	startTimeHome();
-   var clock_h ;
-   function startTimeHome() {
-       var today = new Date();
-       var h = today.getHours();
-       var m = today.getMinutes();
-       var s = today.getSeconds();
-       m = checkTimeHome(m);
-       s = checkTimeHome(s);
-       document.getElementById('load_data_time').innerHTML = h + ":" + m + ":" + s;
-       clock_h = setTimeout(startTimeHome, 1000);
-   }
-   function checkTimeHome(i) {
-       if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
-       return i;
-   }
+   var array_data = [];
+   startTimeHome();
+     var clock_h ;
+     function startTimeHome() {
+         var today = new Date();
+         var h = today.getHours();
+         var m = today.getMinutes();
+         var s = today.getSeconds();
+         m = checkTimeHome(m);
+         s = checkTimeHome(s);
+         document.getElementById('load_data_time').innerHTML = h + ":" + m + ":" + s;
+         clock_h = setTimeout(startTimeHome, 1000);
+     }
+     function checkTimeHome(i) {
+         if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+         return i;
+     }
 </script>
-
 <?
    if($data_user_class=='taxi'){
    	 $filter="drivername=".$user_id." ";
@@ -456,361 +453,335 @@
    	 $all_work = $db->num_rows('order_booking',"id","$filter");
    ?>
 <div  style="margin-top:0px; width:100%; padding-right:0px;padding: 0px 0px;">
-<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tb-pd-4">
-   <tbody>
-      <tr>
-         <td width="50%" align="center" class="">
-            <center>
-            <button type="button" class="btn btn-default paddling-max"  id="index_menu_shopping" style="width:100%;">
+   <table width="100%" border="0" cellspacing="0" cellpadding="0" class="tb-pd-4">
+      <tbody>
+         <tr>
+            <td width="50%" align="center" class="">
                <center>
-                  <div  class="circle-menu" style="background-color:#34A0E7"><i class="icon-new-uniF14D" style="font-size: 22px;"  ></i></div>
-                  <span style="padding-bottom:20px;" class="font-20 text-cap"><? echo t_send_to_customer?></span>
+                  <button type="button" class="btn btn-default paddling-max"  id="index_menu_shopping" style="width:100%;">
+                     <center>
+                        <div  class="circle-menu" style="background-color:#34A0E7"><i class="icon-new-uniF14D" style="font-size: 22px;"  ></i></div>
+                        <span style="padding-bottom:20px;" class="font-20 text-cap"><? echo t_send_to_customer?></span>
+                     </center>
+                  </button>
                </center>
-            </button>
-         </center>
-         </td>
-         
-         <td align="center" class="">
-          <input id="check_open_workshop" value="0" type="hidden"/>
-           
-            <center>
-            <button type="button" class="btn btn-default paddling-max"  id="index_menu_shopping_history" style="width:100%;">
-             <span id="number_shop" class="badge font-20" style="position: absolute;font-size: 14px;background-color: #F44336;padding: 4px 7px;margin: -5px 3px;">0</span>
+            </td>
+            <td align="center" class="">
+               <input id="check_open_workshop" value="0" type="hidden"/>
                <center>
-                  <div  class="circle-menu" style="background-color:#34A0E7"><i class="fa fa-history"style="font-size: 22px;margin-top: -2px;"  ></i></div>
-                  <span style="padding-bottom:20px;" class="font-20 text-cap"><?=t_customer_history;?></span>
+                  <button type="button" class="btn btn-default paddling-max"  id="index_menu_shopping_history" style="width:100%;">
+                     <span id="number_shop" class="badge font-20" style="position: absolute;font-size: 14px;background-color: #F44336;padding: 4px 7px;margin: -5px 3px;">0</span>
+                     <center>
+                        <div  class="circle-menu" style="background-color:#34A0E7"><i class="fa fa-history"style="font-size: 22px;margin-top: -2px;"  ></i></div>
+                        <span style="padding-bottom:20px;" class="font-20 text-cap"><?=t_customer_history;?></span>
+                     </center>
+                  </button>
                </center>
-            </button>
-            </center>
-            <script>    
-               $('#index_menu_shopping_history').click(function(){  
-	               $('#check_open_workshop').val(1);
-	               $( "#main_load_mod_popup" ).toggle();
-	               console.log(array_data);
-//	               return;
-	                var url_load = "load_page_mod.php?name=booking&file=all";
-	               $('#load_mod_popup').html(load_main_mod);
-	               $.post( url_load,{ book : array_data } ,function( data ) {
-	                $('#load_mod_popup').html(data);
-	               });
-                  socket.emit('getdatadriver', 'room'); //call getbookinglab
-	               /* $('#load_mod_popup').html(load_main_mod);
-	                $('#load_mod_popup').load(url_load); */
-               });
-            </script>
-         </td>
-      </tr>
-      <tr>
-         <td width="50%" align="center" class="">
-            
-            <center>
-            <button type="button" class="btn btn-default paddling-max"  id="index_menu_transfer"   style="width:100%" onclick="workTbooking();">
-            <span id="number_tbooking" class="badge font-20" style="position: absolute;font-size: 14px;background-color: #F44336;padding: 4px 7px;margin: -5px 3px;">0</span>
+               <script>    
+                  $('#index_menu_shopping_history').click(function(){  
+                   $('#check_open_workshop').val(1);
+                   $( "#main_load_mod_popup" ).toggle();
+                   console.log(array_data);
+                  //	               return;
+                    var url_load = "load_page_mod.php?name=booking&file=all";
+                   $('#load_mod_popup').html(load_main_mod);
+                   $.post( url_load,{ book : array_data } ,function( data ) {
+                    $('#load_mod_popup').html(data);
+                   });
+                     socket.emit('getdatadriver', 'room'); //call getbookinglab
+                   /* $('#load_mod_popup').html(load_main_mod);
+                    $('#load_mod_popup').load(url_load); */
+                  });
+               </script>
+            </td>
+         </tr>
+         <tr>
+            <td width="50%" align="center" class="">
                <center>
-               <div  class="circle-menu"  style="background-color: #F7941D ">
-                  <i class="icon-new-uniF10A-9" style="font-size:30px; margin-left:-7px;  "  ></i>
-               </div>
-               <span style="padding-bottom:20px;" class="font-20 text-cap"><? echo t_job_received?> </span>
+                  <button type="button" class="btn btn-default paddling-max"  id="index_menu_transfer"   style="width:100%" onclick="workTbooking();">
+                     <span id="number_tbooking" class="badge font-20" style="position: absolute;font-size: 14px;background-color: #F44336;padding: 4px 7px;margin: -5px 3px;">0</span>
+                     <center>
+                        <div  class="circle-menu"  style="background-color: #F7941D ">
+                           <i class="icon-new-uniF10A-9" style="font-size:30px; margin-left:-7px;  "  ></i>
+                        </div>
+                        <span style="padding-bottom:20px;" class="font-20 text-cap"><? echo t_job_received?> </span>
+                     </center>
+                  </button>
                </center>
-               
-            </button>
-            
-            </center>
-            
-         </td>
-         <td width="50%" align="center" class="">
-        
-            <span data-toggle="tooltip" class="badge"   style="position:absolute; margin-left:10px; border-radius: 20px; height:25px; width:25px; background-color:#ff0000; padding-top:3px;border: solid 2px #FFFFFF; display:NONE " id="number_bottom_chat"  ><span  class="font-20" >0</span> </span>
-            <center>
-            <button type="button" class="btn btn-default paddling-max"  id="index_menu_transfer_his"   style="width:100%" onclick="historyTransfer();">
+            </td>
+            <td width="50%" align="center" class="">
+               <span data-toggle="tooltip" class="badge"   style="position:absolute; margin-left:10px; border-radius: 20px; height:25px; width:25px; background-color:#ff0000; padding-top:3px;border: solid 2px #FFFFFF; display:NONE " id="number_bottom_chat"  ><span  class="font-20" >0</span> </span>
                <center>
-               <div  class="circle-menu"  style="background-color: #F7941D ">
-                  <center><i class="fa fa-history" style="font-size: 22px;margin-top: -2px; "  ></i>
-               </div>
-               <span style="padding-bottom:20px;" class="font-20 text-cap"><?=t_transfer_his;?> </span>
+               <button type="button" class="btn btn-default paddling-max"  id="index_menu_transfer_his"   style="width:100%" onclick="historyTransfer();">
+                  <center>
+                     <div  class="circle-menu"  style="background-color: #F7941D ">
+                        <center><i class="fa fa-history" style="font-size: 22px;margin-top: -2px; "  ></i>
+                     </div>
+                     <span style="padding-bottom:20px;" class="font-20 text-cap"><?=t_transfer_his;?> </span>
+                     </center>
+               </button>
                </center>
-            </button>
-            </center>
-         </td>
-      </tr>
-      <tr>
-         <td align="center" class="">
-            <center>
-            <button type="button" class="btn btn-default paddling-max"   onclick="revenue()"  id="index_menu_income"   style="width:100%">
+            </td>
+         </tr>
+         <tr>
+            <td align="center" class="">
                <center>
-                  <div  class="circle-menu"   > <i class="icon-new-uniF121-10" style="font-size: 22px;margin-top: -2px;margin-left:-2px; "></i></div>
-                  <span style="padding-bottom:20px;" class="font-20 text-cap"><? echo t_receipts?></span>
+                  <button type="button" class="btn btn-default paddling-max"   onclick="revenue()"  id="index_menu_income"   style="width:100%">
+                     <center>
+                        <div  class="circle-menu"   > <i class="icon-new-uniF121-10" style="font-size: 22px;margin-top: -2px;margin-left:-2px; "></i></div>
+                        <span style="padding-bottom:20px;" class="font-20 text-cap"><? echo t_receipts?></span>
+                     </center>
+                  </button>
                </center>
-            </button>
-            </center>
-         </td>
-        <td align="center" class="">
-           <button type="button" class="btn btn-default paddling-max"  id="index_menu_money" onclick="money_transfer()" style="width:100%">
+            </td>
+            <td align="center" class="">
+               <button type="button" class="btn btn-default paddling-max"  id="index_menu_money" onclick="money_transfer()" style="width:100%">
+                  <center>
+                     <div  class="circle-menu" style="background: #e91e63"><i class="fa fa fa-usd" style="font-size: 22px;margin-top: -2px; " ></i></div>
+                     <span style="padding-bottom:20px;" class="font-20 text-cap">กระเป๋าเงิน-ประวัติ</span>
+                  </center>
+               </button>
+            </td>
+         </tr>
+         <tr>
+            <td  width="50%" align="center" class="">
+               <span data-toggle="tooltip" class="badge"   style="position:absolute; margin-left:10px; border-radius: 20px; height:25px; width:25px; background-color:#ff0000; padding-top:3px;border: solid 2px #FFFFFF;  display:NONE " id="number_bottom_chat2"  ><span  class="font-20" > 0 </span></span>
                <center>
-                  <div  class="circle-menu" style="background: #e91e63"><i class="fa fa fa-usd" style="font-size: 22px;margin-top: -2px; " ></i></div>
-                  <span style="padding-bottom:20px;" class="font-20 text-cap">กระเป๋าเงิน-ประวัติ</span>
-               </center>
-            </button>
-         </td>
-	 </tr>
-	  <tr>
-         <td  width="50%" align="center" class="">
-            <span data-toggle="tooltip" class="badge"   style="position:absolute; margin-left:10px; border-radius: 20px; height:25px; width:25px; background-color:#ff0000; padding-top:3px;border: solid 2px #FFFFFF;  display:NONE " id="number_bottom_chat2"  ><span  class="font-20" > 0 </span></span>
-            <center>
-            <button type="button" class="btn btn-default paddling-max"   id="index_menu_tour"   style="width:100%">
-               <center>
-                  <div  class="circle-menu"  style="background-color:#8DC63F"><i class="fa fa-suitcase" style="font-size: 22px;margin-top: -2px; " ></i></div>
-                  <span style="padding-bottom:20px;" class="font-20 text-cap"><? echo t_tour_booking?> </span>
-               </center>
-            </button>
-            </button>
-         </td>
-         <td width="50%" align="center" class="">
-         	
-            <button type="button" class="btn btn-default paddling-max" style="width:100%" id="booking_open">
-               <center>
-                  <div  class="circle-menu" style="background: #1CC1A4;"><i class="fa fa-taxi" style="font-size: 22px;margin-top: -2px; " ></i></div>
-                  <span style="padding-bottom:20px;" class="font-20 text-cap"><? echo t_booking; ?></span>
-               </center>
-            </button>
-         
-         </td>
-         
-      </tr>
-      <tr style="display: none;">
-         <td colspan="2" width="50%" align="center" class="">
-            <a onclick="openOrderFromAndroid(126);">
-            <button type="button" class="btn btn-default paddling-max" style="width:100%">
-               <center>
-                  <div  class="circle-menu" style="background: #CDDC39;"><i class="fa fa-map" style="font-size: 22px;margin-top: -2px; " ></i></div>
-                  <span style="padding-bottom:20px;" class="font-20 text-cap">test map</span>
-               </center>
-            </button>
-            </a>
-         </td>
-      </tr>
-     
-      
-	
-   </tbody>
-</table>
-<script>
-   var ckeckhis = false;
-	$('#booking_open').click(function(){
-		swal("กำลังจะเปิดให้บริการ");
-		return;
-		window.location = "https://www.welovetaxi.com/app/booking2/";
-	});
-   function revenue2(){
-      ckeckhis = false;
-      $('#main_load_mod_popup').show();
-      var url_load= "load_page_mod.php?name=pay&file=pay_job";
-       console.log(url_load);
-       $('#load_mod_popup').html(load_main_mod);
-       $('#load_mod_popup').load(url_load); 
-   }
-   function revenue(){
-      $('#main_load_mod_popup').show();
-      var url_load= "load_page_mod.php?name=income&file=ic_main";
-       console.log(url_load);
-       $('#load_mod_popup').html(load_main_mod);
-       $('#load_mod_popup').load(url_load); 
-   }
-   function expenses(){
-      ckeckhis = false;
-     //alert('asasas')
-     // $( "#main_load_mod_popup" ).toggle();
-      $('#main_load_mod_popup').show();
-      var url_load= "load_page_mod.php?name=pay&file=pay_job_expenses"
-   //    var url_load= "load_page_mod.php?name=transfer_order&file=work_list&lat=<?=$arr[shop][lat]?>&lng=<?=$arr[shop][lng]?>";
-       console.log(url_load);
-       $('#load_mod_popup').html(load_main_mod);
-       $('#load_mod_popup').load(url_load); 
-   }
-   function money_transfer(){
-   	/*swal("กำลังจะเปิดให้บริการ");
-   	return;*/
-      ckeckhis = false;
-     //alert('asasas')
-     // $( "#main_load_mod_popup" ).toggle();
-      $('#main_load_mod_popup').show();
-      var url_load= "load_page_mod.php?name=pay&file=money_transfer"
-   //    var url_load= "load_page_mod.php?name=transfer_order&file=work_list&lat=<?=$arr[shop][lat]?>&lng=<?=$arr[shop][lng]?>";
-      
-       $('#load_mod_popup').load(url_load); 
-        $('#load_mod_popup').html(url_load);
-   }
-   function workTbooking(){
-   		/*swal("กำลังจะเปิดให้บริการ");
-   		return;*/
-     	ckeckhis = false;
-   		$('#main_load_mod_popup').show();
-   		var url_load = "load_page_mod.php?name=tbooking&file=all";
-   		$('#load_mod_popup').html(load_main_mod);
-        $('#load_mod_popup').load(url_load); 
-        $('#check_open_worktbooking').val(1);
-   }
-   function historyTransfer(){
-   		/*swal("กำลังจะเปิดให้บริการ");
-   		return;*/
-   		$('#main_load_mod_popup').show();
-   		var url_load= "load_page_mod.php?name=tbooking&file=his";
-   		$('#load_mod_popup').html(load_main_mod);
-        $('#load_mod_popup').load(url_load); 
-//        $('#check_open_worktbooking').val(1);
-   }
-</script>
-<table width="100%" border="0" cellspacing="2" cellpadding="2" style="padding:5px; display:none" >
-   <tbody>
-      <tr>
-         <td colspan="2"></td>
-      </tr>
-      <tr>
-         <td width="120" class="font-22"><strong>ชื่อ-นามสกุล</strong></td>
-         <td class="font-22"><?=$arr[web_user][name]?> (<?=$arr[web_user][nickname]?>)</td>
-      </tr>
-      <tr style="display:none">
-         <td width="120" class="font-22"><strong>ชื่อเล่น</strong></td>
-         <td class="font-22">s</td>
-      </tr>
-      <tr>
-         <td width="120" class="font-22"><strong>โทรศัพท์</strong></td>
-         <td class="font-22">
-            <a href="tel:<?=$arr[web_user][phone]?>">
-            <?=$arr[web_user][phone]?>
-            </a>
-         </td>
-      </tr>
-      <tr>
-         <td width="120" class="font-22"><strong>ชื่อเข้าระบบ</strong></td>
-         <td class="font-22"> 
-            <b><?=$arr[web_user][username]?>
-         </td>
-      </tr>
-      <tr>
-         <td class="font-22"><strong>รหัสผ่าน</strong></td>
-         <td class="font-22"> 
-            <?=$arr[web_user][password]?><b>
-         </td>
-      </tr>
-   </tbody>
-</table>
-<div class="background-smal-popup " id="load_mod_popup_select_pv" style="position: fixed; overflow: auto;display: none;">
-   <div class="css-full-popup2 ">
-      <div class="back-full-popup box-shadow-only" style="z-index: 1;">
-         <table width="100%" border="0" cellspacing="0" cellpadding="0">
-            <tbody>
-               <tr>
-                  <td width="40">
-                     <div class="close-small-popup"><i class="fa fa-close" style=" "></i></div>
-                  </td>
-                  <td>
-                     <div class="font-26" id="text_small_popup"  class="text-topic-action-mod-small-popup"><? echo t_province_you?> <span class="text-change-province"></span></div>
-                  </td>
-                  <td width="40" align="right">
-                     <div  onclick="GohomePage();"><i class="fa fa-home" ></i></div>
-                  </td>
-               </tr>
-            </tbody>
-         </table>
+               <button type="button" class="btn btn-default paddling-max"   id="index_menu_tour"   style="width:100%">
+                  <center>
+                     <div  class="circle-menu"  style="background-color:#8DC63F"><i class="fa fa-suitcase" style="font-size: 22px;margin-top: -2px; " ></i></div>
+                     <span style="padding-bottom:20px;" class="font-20 text-cap"><? echo t_tour_booking?> </span>
+                  </center>
+               </button>
+               </button>
+            </td>
+            <td width="50%" align="center" class="">
+               <button type="button" class="btn btn-default paddling-max" style="width:100%" id="booking_open">
+                  <center>
+                     <div  class="circle-menu" style="background: #1CC1A4;"><i class="fa fa-taxi" style="font-size: 22px;margin-top: -2px; " ></i></div>
+                     <span style="padding-bottom:20px;" class="font-20 text-cap"><? echo t_booking; ?></span>
+                  </center>
+               </button>
+            </td>
+         </tr>
+         <tr style="display: none;">
+            <td colspan="2" width="50%" align="center" class="">
+               <a href="https://www.welovetaxi.com/app/demo_new2/index.php?order_id=144">
+                  <button type="button" class="btn btn-default paddling-max" style="width:100%">
+                     <center>
+                        <div  class="circle-menu" style="background: #CDDC39;"><i class="fa fa-map" style="font-size: 22px;margin-top: -2px; " ></i></div>
+                        <span style="padding-bottom:20px;" class="font-20 text-cap">test map</span>
+                     </center>
+                  </button>
+               </a>
+            </td>
+         </tr>
+      </tbody>
+   </table>
+   <script>
+      var ckeckhis = false;
+      $('#booking_open').click(function(){
+      swal("กำลังจะเปิดให้บริการ");
+      return;
+      window.location = "https://www.welovetaxi.com/app/booking2/";
+      });
+      function revenue2(){
+         ckeckhis = false;
+         $('#main_load_mod_popup').show();
+         var url_load= "load_page_mod.php?name=pay&file=pay_job";
+          console.log(url_load);
+          $('#load_mod_popup').html(load_main_mod);
+          $('#load_mod_popup').load(url_load); 
+      }
+      function revenue(){
+         $('#main_load_mod_popup').show();
+         var url_load= "load_page_mod.php?name=income&file=ic_main";
+          console.log(url_load);
+          $('#load_mod_popup').html(load_main_mod);
+          $('#load_mod_popup').load(url_load); 
+      }
+      function expenses(){
+         ckeckhis = false;
+        //alert('asasas')
+        // $( "#main_load_mod_popup" ).toggle();
+         $('#main_load_mod_popup').show();
+         var url_load= "load_page_mod.php?name=pay&file=pay_job_expenses"
+      //    var url_load= "load_page_mod.php?name=transfer_order&file=work_list&lat=<?=$arr[shop][lat]?>&lng=<?=$arr[shop][lng]?>";
+          console.log(url_load);
+          $('#load_mod_popup').html(load_main_mod);
+          $('#load_mod_popup').load(url_load); 
+      }
+      function money_transfer(){
+      	/*swal("กำลังจะเปิดให้บริการ");
+      	return;*/
+         ckeckhis = false;
+        //alert('asasas')
+        // $( "#main_load_mod_popup" ).toggle();
+         $('#main_load_mod_popup').show();
+         var url_load= "load_page_mod.php?name=pay&file=money_transfer"
+      //    var url_load= "load_page_mod.php?name=transfer_order&file=work_list&lat=<?=$arr[shop][lat]?>&lng=<?=$arr[shop][lng]?>";
+          $('#load_mod_popup').load(url_load); 
+           $('#load_mod_popup').html(url_load);
+      }
+      function workTbooking(){
+      		/*swal("กำลังจะเปิดให้บริการ");
+      		return;*/
+        	ckeckhis = false;
+      		$('#main_load_mod_popup').show();
+      		var url_load = "load_page_mod.php?name=tbooking&file=all";
+      		$('#load_mod_popup').html(load_main_mod);
+           $('#load_mod_popup').load(url_load); 
+           $('#check_open_worktbooking').val(1);
+      }
+      function historyTransfer(){
+      		/*swal("กำลังจะเปิดให้บริการ");
+      		return;*/
+      		$('#main_load_mod_popup').show();
+      		var url_load= "load_page_mod.php?name=tbooking&file=his";
+      		$('#load_mod_popup').html(load_main_mod);
+           $('#load_mod_popup').load(url_load); 
+      //        $('#check_open_worktbooking').val(1);
+      }
+   </script>
+   <table width="100%" border="0" cellspacing="2" cellpadding="2" style="padding:5px; display:none" >
+      <tbody>
+         <tr>
+            <td colspan="2"></td>
+         </tr>
+         <tr>
+            <td width="120" class="font-22"><strong>ชื่อ-นามสกุล</strong></td>
+            <td class="font-22"><?=$arr[web_user][name]?> (<?=$arr[web_user][nickname]?>)</td>
+         </tr>
+         <tr style="display:none">
+            <td width="120" class="font-22"><strong>ชื่อเล่น</strong></td>
+            <td class="font-22">s</td>
+         </tr>
+         <tr>
+            <td width="120" class="font-22"><strong>โทรศัพท์</strong></td>
+            <td class="font-22">
+               <a href="tel:<?=$arr[web_user][phone]?>">
+               <?=$arr[web_user][phone]?>
+               </a>
+            </td>
+         </tr>
+         <tr>
+            <td width="120" class="font-22"><strong>ชื่อเข้าระบบ</strong></td>
+            <td class="font-22"> 
+               <b><?=$arr[web_user][username]?>
+            </td>
+         </tr>
+         <tr>
+            <td class="font-22"><strong>รหัสผ่าน</strong></td>
+            <td class="font-22"> 
+               <?=$arr[web_user][password]?><b>
+            </td>
+         </tr>
+      </tbody>
+   </table>
+   <div class="background-smal-popup " id="load_mod_popup_select_pv" style="position: fixed; overflow: auto;display: none;">
+      <div class="css-full-popup2 ">
+         <div class="back-full-popup box-shadow-only" style="z-index: 1;">
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+               <tbody>
+                  <tr>
+                     <td width="40">
+                        <div class="close-small-popup"><i class="fa fa-close" style=" "></i></div>
+                     </td>
+                     <td>
+                        <div class="font-26" id="text_small_popup"  class="text-topic-action-mod-small-popup"><? echo t_province_you?> <span class="text-change-province"></span></div>
+                     </td>
+                     <td width="40" align="right">
+                        <div  onclick="GohomePage();"><i class="fa fa-home" ></i></div>
+                     </td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <div id="body_load_select_pv" style="overflow: auto;margin-top:45px; " >
+         </div>
       </div>
-      <div id="body_load_select_pv" style="overflow: auto;margin-top:45px; " >
-      </div>
+      <input type="hidden" value="" id="txt_pv_fr"/>
+      <input type="hidden" value="" id="area"/>
+      <input type="hidden" value="" id="province_id"/>
+      <input type="hidden" value="0" id="lat"/>
+      <input type="hidden" value="0" id="lng"/>
    </div>
-   <input type="hidden" value="" id="txt_pv_fr"/>
-   <input type="hidden" value="" id="area"/>
-   <input type="hidden" value="" id="province_id"/>
-   <input type="hidden" value="0" id="lat"/>
-   <input type="hidden" value="0" id="lng"/>
+   <script>
+      $('#close_small_select').click(function(){
+      	$('#popup_small_select').hide();
+      });
+      /*$('#index_menu_transfer').click(function(){  
+      	  $("#main_load_mod_popup" ).toggle();
+      	  var url_load= "load_page_mod.php?name=transfer_order&file=work_list_test&lat="+$('#lat').val()+"&lng="+$('#lng').val()+"&transfer_work=true";
+      //	  var url_load= "load_page_mod.php?name=transfer_order&file=work_list&lat=<?=$arr[shop][lat]?>&lng=<?=$arr[shop][lng]?>";
+      	  console.log(url_load);
+      	  $('#load_mod_popup').html(load_main_mod);
+      	  $('#load_mod_popup').load(url_load); 
+       	});*/
+       function openMainShop(province,province_name){
+       	console.log(province+" : "+province_name);
+       	$("#main_load_mod_popup" ).toggle();
+       	  var url_load= "load_page_mod.php?name=shop&file=maintype&id=1&lat=<?=$arr[shop][lat]?>&lng=<?=$arr[shop][lng]?>&type=stop&province="+province+"&province_name="+province_name;
+      	  	$('#load_mod_popup').html(load_main_mod);
+      	  	$('#load_mod_popup').load(url_load);
+       }
+        $('.close-small-popup').click(function(){
+        		$('#load_mod_popup_select_pv').hide();
+        		$('.background-smal-popup').removeClass('zindex-small-popup');
+      //     		$('body').css('overflow','auto');
+        		$('#show_main_tool_bottom span').removeClass('bottom-popup-icon-new-active');
+        		$('#btn_home_bottom_menu').addClass('bottom-popup-icon-new-active');
+        });
+      /***************************** shopping old*******************************/
+      //  $('#index_menu_shopping').click(function(){  
+      //  var user_id = "<?=$_SESSION['data_user_id'];?>";
+      // $.post("mod/user/check_user.php?check=idcard_idrive&user_id="+user_id,function(res){
+      // 	console.log(res);
+      // 	if(res.idcard == ""){
+      // 		swal("คุณยังไม่ได้กรอกข้อมูลบัตรประชาชน");
+      // 		$( "#main_load_mod_popup" ).toggle();
+      //          	var url_load = "load_page_mod.php?name=user&file=job";
+      //         	$('#load_mod_popup').html(load_main_mod);
+      //          	$('#load_mod_popup').load(url_load); 
+      // 		return;
+      // 	}
+      // 	if(res.iddriving == ""){
+      // 		swal("คุณยังไม่ได้กรอกข้อมูลใบขับขี่");
+      // 		$( "#main_load_mod_popup" ).toggle();
+      //          	var url_load = "load_page_mod.php?name=user&file=job";
+      //         	$('#load_mod_popup').html(load_main_mod);
+      //          	$('#load_mod_popup').load(url_load); 
+      // 		return;
+      // 	}
+      // 	$("#load_mod_popup_select_pv" ).show();
+      //      var url_load= "empty_style.php?name=shop&file=select_province_new&id=1&lat=<?=$arr[shop][lat]?>&lng=<?=$arr[shop][lng]?>&type=stop";
+      //       $('#body_load_select_pv').html(load_main_mod);
+      //       $.post( url_load, function( data ) {
+      //       	   $('#body_load_select_pv').html(data);
+      //    	   var txt = $('#province_text').text();
+      //    		$('#txt_pv_fr').val(txt);
+      //    		$('.text-change-province').text(txt);
+      //    	});
+      // });
+      //   });
+      /***************************** shopping old*******************************/
+       ///// food
+       $('#index_menu_food').click(function(){  
+        $("#load_mod_popup" ).toggle();
+        var url_load= "load_page_mod.php?name=shop&file=main&id=2&lat=<?=$arr[shop][lat]?>&lng=<?=$arr[shop][lng]?>&type=stop";
+        $('#load_mod_popup').html(load_main_mod);
+        $('#load_mod_popup').load(url_load); 
+       	});
+         $('#index_menu_tour').click(function(){  
+        swal('กำลังจะเปิดให้บริการ');
+        return;
+         // $( "#main_load_mod_popup_4" ).toggle();
+         // var url_load= "load_page_mod_4.php?name=booking/popup&file=price&shop_id=1&lat=0&lng=0&type=stop";
+         // $('#load_mod_popup_4').html(load_main_mod);
+         // $('#load_mod_popup_4').load(url_load); 
+       	});
+   </script>  
 </div>
-<script>
-   
-   $('#close_small_select').click(function(){
-   	$('#popup_small_select').hide();
-   });
-   /*$('#index_menu_transfer').click(function(){  
-   	  $("#main_load_mod_popup" ).toggle();
-   	  var url_load= "load_page_mod.php?name=transfer_order&file=work_list_test&lat="+$('#lat').val()+"&lng="+$('#lng').val()+"&transfer_work=true";
-   //	  var url_load= "load_page_mod.php?name=transfer_order&file=work_list&lat=<?=$arr[shop][lat]?>&lng=<?=$arr[shop][lng]?>";
-   	  console.log(url_load);
-   	  $('#load_mod_popup').html(load_main_mod);
-   	  $('#load_mod_popup').load(url_load); 
-    	});*/
-    function openMainShop(province,province_name){
-    	console.log(province+" : "+province_name);
-
-	   	$("#main_load_mod_popup" ).toggle();
-
-    	  var url_load= "load_page_mod.php?name=shop&file=maintype&id=1&lat=<?=$arr[shop][lat]?>&lng=<?=$arr[shop][lng]?>&type=stop&province="+province+"&province_name="+province_name;
-   	  	$('#load_mod_popup').html(load_main_mod);
-   	  	$('#load_mod_popup').load(url_load);
-    }
-     $('.close-small-popup').click(function(){
-     		$('#load_mod_popup_select_pv').hide();
-     		$('.background-smal-popup').removeClass('zindex-small-popup');
-//     		$('body').css('overflow','auto');
-     		$('#show_main_tool_bottom span').removeClass('bottom-popup-icon-new-active');
-     		$('#btn_home_bottom_menu').addClass('bottom-popup-icon-new-active');
-     });
-
-/***************************** shopping old*******************************/
-  //  $('#index_menu_shopping').click(function(){  
-  //  var user_id = "<?=$_SESSION['data_user_id'];?>";
-		// $.post("mod/user/check_user.php?check=idcard_idrive&user_id="+user_id,function(res){
-		// 	console.log(res);
-		// 	if(res.idcard == ""){
-		// 		swal("คุณยังไม่ได้กรอกข้อมูลบัตรประชาชน");
-		// 		$( "#main_load_mod_popup" ).toggle();
-	 //          	var url_load = "load_page_mod.php?name=user&file=job";
-	 //         	$('#load_mod_popup').html(load_main_mod);
-	 //          	$('#load_mod_popup').load(url_load); 
-		// 		return;
-		// 	}
-		// 	if(res.iddriving == ""){
-		// 		swal("คุณยังไม่ได้กรอกข้อมูลใบขับขี่");
-		// 		$( "#main_load_mod_popup" ).toggle();
-	 //          	var url_load = "load_page_mod.php?name=user&file=job";
-	 //         	$('#load_mod_popup').html(load_main_mod);
-	 //          	$('#load_mod_popup').load(url_load); 
-		// 		return;
-		// 	}
-		// 	$("#load_mod_popup_select_pv" ).show();
-		//      var url_load= "empty_style.php?name=shop&file=select_province_new&id=1&lat=<?=$arr[shop][lat]?>&lng=<?=$arr[shop][lng]?>&type=stop";
-		//       $('#body_load_select_pv').html(load_main_mod);
-		//       $.post( url_load, function( data ) {
-		//       	   $('#body_load_select_pv').html(data);
-		//    	   var txt = $('#province_text').text();
-		//    		$('#txt_pv_fr').val(txt);
-		//    		$('.text-change-province').text(txt);
-		//    	});
-		// });
-  //   });
-/***************************** shopping old*******************************/
-
-    ///// food
-    $('#index_menu_food').click(function(){  
-     $("#load_mod_popup" ).toggle();
-     var url_load= "load_page_mod.php?name=shop&file=main&id=2&lat=<?=$arr[shop][lat]?>&lng=<?=$arr[shop][lng]?>&type=stop";
-     $('#load_mod_popup').html(load_main_mod);
-     $('#load_mod_popup').load(url_load); 
-    	});
-
-      $('#index_menu_tour').click(function(){  
-     swal('กำลังจะเปิดให้บริการ');
-     return;
-     
-      // $( "#main_load_mod_popup_4" ).toggle();
-      // var url_load= "load_page_mod_4.php?name=booking/popup&file=price&shop_id=1&lat=0&lng=0&type=stop";
-      // $('#load_mod_popup_4').html(load_main_mod);
-      // $('#load_mod_popup_4').load(url_load); 
-     
-    	});
-
-
-
-</script>  
-</div>
-
 <script>
    var locat = getCookie("geolocation");
    geolocatCall();
@@ -826,7 +797,6 @@
        }
    }
    function geolocatCallFrist(){
-
    	swal({
    	  title: "แสดงตำแหน่งปัจจุบัน",
    	  text: "เพื่อการเข้าถึงข้อมูลของสถานที่ส่งแขกใกล้เคียงได้สะดวกยิ่งขึ้นและสะดวกในการเดินทางไปรับแขกของคุณ",
@@ -892,7 +862,7 @@
    			var area = obj.area;
    			var url2 = "mod/shop/update_num_place.php?op=update_all&province="+province+'&area='+area;
    			 $.post( url2, function( data2 ) {
-//   			  	console.log(data2);
+   //   			  	console.log(data2);
    			}); 
    	});  
    }	
@@ -920,325 +890,291 @@
 </script>
 <input  name="now_province"  type="hidden" class="form-control"  id="now_province" value=""   />
 <script src="https://www.welovetaxi.com:3443/socket.io/socket.io.js?v=<?=time();?>"></script>
-    <!-- <script src="socket.io/socket.io.js"></script> -->
+<!-- <script src="socket.io/socket.io.js"></script> -->
 <!-- <script src="https://code.jquery.com/jquery-latest.min.js?v=<?=time();?>"></script> -->
 <script>
-	var res_socket ;
-	var socket = io.connect('https://www.welovetaxi.com:3443');
-        //on message received we print all the data inside the #container div
-        socket.on('notification', function (data) {
-        res_socket = data.transfer[0];
-        $('#number_tbooking').text(data.transfer[0].length);
-	        if($('#check_open_worktbooking').val()==1){
-	        console.log(data.transfer);
-	        
-	//        console.log('now open popup');
-			readDataBooking();
-			}
-    
-	});
-
-	var shop_frist_run = 0;
-	var user_class = "<?=$data_user_class;?>";
-	var frist_socket = true;
-		socket.on('getbookinglab', function (data) { 
- //console.log(data.booking)
-		 array_data = [];
-		 var done = [];       
-		 var none = [];       
-        $.each(data.booking,function(index,value){
-        	var current = formatDate(new Date());
-	        var db = formatDate(value.transfer_date);
-        	if(value.driver_complete == 0 ){
-        		if(user_class=="lab"){
-	        		
-					if(db == current){
-						done.push(value);
+   var res_socket ;
+   var socket = io.connect('https://www.welovetaxi.com:3443');
+          //on message received we print all the data inside the #container div
+          socket.on('notification', function (data) {
+          res_socket = data.transfer[0];
+          $('#number_tbooking').text(data.transfer[0].length);
+           if($('#check_open_worktbooking').val()==1){
+           console.log(data.transfer);
+   //        console.log('now open popup');
+   		readDataBooking();
+   		}
+   });
+   var shop_frist_run = 0;
+   var user_class = "<?=$data_user_class;?>";
+   var frist_socket = true;
+   	socket.on('getbookinglab', function (data) { 
+   //console.log(data.booking)
+   	 array_data = [];
+   	 var done = [];       
+   	 var none = [];       
+          $.each(data.booking,function(index,value){
+          	var current = formatDate(new Date());
+           var db = formatDate(value.transfer_date);
+          	if(value.driver_complete == 0 ){
+          		if(user_class=="lab"){
+   				if(db == current){
+   					done.push(value);
+   				}
+   			}
+   			else {
+   				if(db == current && value.drivername == "<?=$user_id;?>"){
+   					done.push(value);
+   				}
+   			}
+   		}
+   		/*else{
+   			if(user_class=="lab"){
+   				if(db == current){
+   					none.push(value);
+   				}
+   			}
+   			else {
+   				if(db == current && value.drivername == "<?=$user_id;?>"){
+   					none.push(value);
+   				}
+   			}
+   		}*/
+          });
+          array_data = {
+   		manage : done,
+   		history : none
+   	};
+   //        console.log(array_data);
+      	$('#number_shop').text(done.length);
+      	if($('#check_open_workshop').val()==1){
+      		if(shop_frist_run==0){
+   			shop_frist_run = done.length;
+   		}
+   		if(done.length!=shop_frist_run){
+   			filterMenu('manage');
+   			shop_frist_run = done.length;
+   		}
+   	}
+      	/* check open order id auto */
+      	if(frist_socket==true){
+   		var get_order_id = "<?=$_GET['order_id'];?>";
+   		if(get_order_id!=""){
+   			console.log("order id : "+get_order_id);
+   			console.log(array_data);
+   			 $.each(array_data.manage,function(index,value){
+   			 	if(value.id==get_order_id){
+   				$('#main_load_mod_popup_6').show();
+   		      	var url_load= "load_page_mod_6.php?name=booking/shop_history&file=work_shop_detail_js&user_id=<?=$user_id;?>";
+   		       	console.log(url_load);
+   		       	$('#text_mod_topic_action_6').html("เลขที่ "+value.invoice);
+   		       	$('#load_mod_popup_6').html(load_main_mod);
+   		       	$.post(url_load,value,function(data){
+   		      		 $('#load_mod_popup_6').html(data); 
+   					 $('#btn_cancel_book_'+value.id).css('top','60px');
+   					 $('.assas_'+value.id).css('margin-top','30px');
+   		      	});
+        				
+        		/*var url = "empty_style.php?name=booking/shop_history&file=work_shop_detail_js&user_id=<?=$user_id;?>&ios=<?=$_GET[ios];?>";
+        		console.log(url);
+   		      	$.post(url,value,function(data){
+   		      		$('#load_mod_popup_clean').html(data);
+   		      		$('#main_load_mod_popup_clean').show();
+   		      		if('<?=$_GET[ios];?>'=="1"){
+						$('#btn_cancel_book_'+value.id).css('top','unset');
+   					 	$('.assas_'+value.id).css('margin-top','0px');
+   					 	$("#load_material").fadeOut();
 					}
-				}
-				else {
-					if(db == current && value.drivername == "<?=$user_id;?>"){
-						done.push(value);
-					}
-				}
-				
-			}
-			
-			/*else{
-				if(user_class=="lab"){
-	        		
-					if(db == current){
-						none.push(value);
-					}
-				}
-				else {
-					if(db == current && value.drivername == "<?=$user_id;?>"){
-						none.push(value);
-					}
-				}
-			}*/
-			
+   		      	});*/
+   		      	
+   		      	/*var url = "empty_style.php?name=booking/shop_history&file=work_shop_detail_js&user_id=<?=$user_id;?>";
+        		console.log(url);
+   		      	$.post(url,value,function(data){
+   		      		$('#load_mod_popup_clean').html(data);
+   		      		$('#main_load_mod_popup_clean').show();
+   		      	});*/
+   		      	
+   				}
+   			 });
+   		}
+      	frist_socket = false;
+   	}
         });
-        array_data = {
-			manage : done,
-			history : none
-		};
-//        console.log(array_data);
-		
-    	$('#number_shop').text(done.length);
-    	if($('#check_open_workshop').val()==1){
-    		
-    		if(shop_frist_run==0){
-				shop_frist_run = done.length;
-			}
-			if(done.length!=shop_frist_run){
-				filterMenu('manage');
-				shop_frist_run = done.length;
-			}
-		}
-    	
-    	
-    	/* check open order id auto */
-    	if(frist_socket==true){
-			
-			var get_order_id = "<?=$_GET['order_id'];?>";
-			if(get_order_id!=""){
-				console.log("order id : "+get_order_id);
-				
-				console.log(array_data);
-				 $.each(array_data.manage,function(index,value){
-				 	if(value.id==get_order_id){
-				 		
-				$('#main_load_mod_popup').show();
-			      var url_load= "load_page_mod.php?name=booking/shop_history&file=work_shop_detail_js&user_id=<?=$user_id;?>";
-			       console.log(url_load);
-			       $('#text_mod_topic_action').html("เลขที่ "+value.invoice);
-			       $('#load_mod_popup').html(load_main_mod);
-			       $.post(url_load,value,function(data){
-			      		 $('#load_mod_popup').html(data); 
-						 $('#btn_cancel_book_'+value.id).css('top','60px');
-						 $('.assas_'+value.id).css('margin-top','30px');
-			      	});
-      
-					}
-				 });
-				
-				
-			}
-    	frist_socket = false;
-		}
-    	
-      });
-	
-var id = '<?=$user_id?>';
-   var dataorder={  
-    order : parseInt(id),  
-     
-    };
-    
-//socket.on('connect', function(){  
-    socket.emit('adduser', dataorder);
-    console.log(dataorder);
- // });
-
-var class_user = "<?=$_SESSION['data_user_class'];?>";
- 
-// if(class_user=="lab"){
-socket.on('datalab', function (username, data) {
-   console.log('***********************datalab***************************')
-console.log(username)
-console.log(data)
-//console.log(data[0].id);
-var check_open = $('#check_open_shop_id').val();
-
-if(check_open!=0){
-	
-	$.each(data, function( index, value ) {
-		
-		if(value.id==check_open){
-			console.log(value);
-			if(value.check_driver_topoint==1){
-		      console.log("driver_topoint");
-		      changeHtml("driver_topoint",value.id,value.driver_topoint_date)
-		   }
-		    if(value.check_guest_receive==1){
-		      console.log("guest_receive");
-		      changeHtml("guest_receive",value.id,value.guest_receive_date)
-		   }
-		   if(value.check_guest_register==1){
-		      console.log("guest_register");
-		      changeHtml("guest_register",value.id,value.guest_register_date)
-		   }
-		   if(value.check_driver_pay_report==1){
-		      console.log("driver_pay_report");
-		      changeHtml("driver_pay_report",value.id,value.driver_pay_report_date)
-		   }
-		   var check_open_incom = $('#check_id_income_lab').val();
-		   if (typeof check_open_incom != 'undefined'){
-		   		console.log(check_open_incom);
-		   		
-		   }
-		}
-	 	
-	});
-	
-}
-    
-
-   
+   var id = '<?=$user_id?>';
+     var dataorder={  
+      order : parseInt(id),  
+      };
+   //socket.on('connect', function(){  
+      socket.emit('adduser', dataorder);
+      console.log(dataorder);
+   // });
+   var class_user = "<?=$_SESSION['data_user_class'];?>";
+   // if(class_user=="lab"){
+   socket.on('datalab', function (username, data) {
+     console.log('***********************datalab***************************')
+   console.log(username)
+   console.log(data)
+   //console.log(data[0].id);
+   var check_open = $('#check_open_shop_id').val();
+   if(check_open!=0){
+   $.each(data, function( index, value ) {
+   	if(value.id==check_open){
+   		console.log(value);
+   		if(value.check_driver_topoint==1){
+   	      console.log("driver_topoint");
+   	      changeHtml("driver_topoint",value.id,value.driver_topoint_date)
+   	   }
+   	    if(value.check_guest_receive==1){
+   	      console.log("guest_receive");
+   	      changeHtml("guest_receive",value.id,value.guest_receive_date)
+   	   }
+   	   if(value.check_guest_register==1){
+   	      console.log("guest_register");
+   	      changeHtml("guest_register",value.id,value.guest_register_date)
+   	   }
+   	   if(value.check_driver_pay_report==1){
+   	      console.log("driver_pay_report");
+   	      changeHtml("driver_pay_report",value.id,value.driver_pay_report_date)
+   	   }
+   	   var check_open_incom = $('#check_id_income_lab').val();
+   	   if (typeof check_open_incom != 'undefined'){
+   	   		console.log(check_open_incom);
+   	   }
+   	}
    });
-// }
-// else{  
-socket.on('updatedriver', function (username, data) {
-   
-console.log("++++++++++++++++++++++datadriver++++++++++++++++++++++++++++++++")
-console.log(username)
-var check_open = $('#check_open_shop_id').val();
+   }
+     });
+   // }
+   // else{  
+   socket.on('updatedriver', function (username, data) {
+   console.log("++++++++++++++++++++++datadriver++++++++++++++++++++++++++++++++")
+   console.log(username)
+   var check_open = $('#check_open_shop_id').val();
+   	if(check_open!=0){
+   	if(data.id==check_open){
+   		console.log(data)
+   		console.log(data.id);
+   	   if(data.check_driver_topoint==1){
+   	      console.log("driver_topoint");
+   	      changeHtml("driver_topoint",data.id,data.driver_topoint_date)
+   	   }
+   	   if(data.check_guest_receive==1){
+   	      console.log("guest_receive");
+   	      changeHtml("guest_receive",data.id,data.guest_receive_date)
+   	      $('#step_guest_register').show();
+   	   }
+   	   if(data.check_guest_register==1){
+   	      console.log("guest_register");
+   	      changeHtml("guest_register",data.id,data.guest_register_date)
+   	       $('#step_driver_pay_report').show();
+   	   }
+   	   if(data.check_driver_pay_report==1){
+   	      console.log("driver_pay_report");
+   	      changeHtml("driver_pay_report",data.id,data.driver_pay_report_date)
+   	   }
+   			}
+   	}
+     });
+   // } 
+   /*socket.on('getbookinglabhis', function (data) {        
+          console.log(data.booking)
+        });	*/
+   function formatDate(date) {
+      var d = new Date(date),
+          month = '' + (d.getMonth() + 1),
+          day = '' + d.getDate(),
+          year = d.getFullYear();
+      if (month.length < 2) month = '0' + month;
+      if (day.length < 2) day = '0' + day;
+      return [year, month, day].join('-');
+   }
+   function formatTime(date) {
+      var d = new Date(date),
+          hour = '' + d.getHours(),
+          minutes = d.getMinutes();
+   	if(hour<10){
+   		hour = "0" + hour ;
+   	}
+   	if(minutes<10){
+   		minutes = "0" + minutes ;
+   	}
+      return [hour, minutes].join(':');
+   }
 
-		if(check_open!=0){
-		
-		if(data.id==check_open){
-			console.log(data)
-			console.log(data.id);
-		   if(data.check_driver_topoint==1){
-		      console.log("driver_topoint");
-		      changeHtml("driver_topoint",data.id,data.driver_topoint_date)
-		   }
-		   if(data.check_guest_receive==1){
-		      console.log("guest_receive");
-		      changeHtml("guest_receive",data.id,data.guest_receive_date)
-		      $('#step_guest_register').show();
-		   }
-		   if(data.check_guest_register==1){
-		      console.log("guest_register");
-		      changeHtml("guest_register",data.id,data.guest_register_date)
-		       $('#step_driver_pay_report').show();
-		   }
-		   if(data.check_driver_pay_report==1){
-		      console.log("driver_pay_report");
-		      changeHtml("driver_pay_report",data.id,data.driver_pay_report_date)
-		   }
-				}
-		}
-	
-
-   });
-	// } 
-/*socket.on('getbookinglabhis', function (data) {        
-        console.log(data.booking)
-        
-      });	*/
-function formatDate(date) {
-    var d = new Date(date),
-        month = '' + (d.getMonth() + 1),
-        day = '' + d.getDate(),
-        year = d.getFullYear();
-
-    if (month.length < 2) month = '0' + month;
-    if (day.length < 2) day = '0' + day;
-
-    return [year, month, day].join('-');
-}
-function formatTime(date) {
-    var d = new Date(date),
-        hour = '' + d.getHours(),
-        minutes = d.getMinutes();
-		
-		if(hour<10){
-			hour = "0" + hour ;
-		}
-		if(minutes<10){
-			minutes = "0" + minutes ;
-		}
-		
-    return [hour, minutes].join(':');
-}
-function openOrderFromAndroid(id){
-	
-	var check_open_shop_id = $('#check_open_shop_id').val();
-	alert('Param : '+id+" : "+check_open_shop_id);
-	if(check_open_shop_id<=0){
-	
-	$.each(array_data.manage,function(index,value){
-				 	if(value.id==id){
-				 		
-				$('#main_load_mod_popup').show();
-			      var url_load= "load_page_mod.php?name=booking/shop_history&file=work_shop_detail_js&user_id=<?=$user_id;?>";
-			       console.log(url_load);
-			       $('#text_mod_topic_action').html("เลขที่ "+value.invoice);
-			       $('#load_mod_popup').html(load_main_mod);
-			       $.post(url_load,value,function(data){
-			      		 $('#load_mod_popup').html(data); 
-						 $('#btn_cancel_book_'+value.id).css('top','60px');
-						 $('.assas_'+value.id).css('margin-top','30px');
-			      	});
-      
-					}
-				 });
-
-	}
-}
+   function openOrderFromAndroid(id){
+   var check_open_shop_id = $('#check_open_shop_id').val();
+   //	alert('Param : '+id+" : "+check_open_shop_id);
+   if(check_open_shop_id<=0){
+   $.each(array_data.manage,function(index,value){
+   			 	if(value.id==id){
+   			$('#main_load_mod_popup_6').show();
+   		      var url_load= "load_page_mod_6.php?name=booking/shop_history&file=work_shop_detail_js&user_id=<?=$user_id;?>";
+   		       console.log(url_load);
+   		       $('#text_mod_topic_action_6').html("เลขที่ "+value.invoice);
+   		       $('#load_mod_popup_6').html(load_main_mod);
+   		       $.post(url_load,value,function(data){
+   		      		 $('#load_mod_popup_6').html(data); 
+   					 $('#btn_cancel_book_'+value.id).css('top','60px');
+   					 $('.assas_'+value.id).css('margin-top','30px');
+   		      	});
+   				}
+   			 });
+   }
+   }
 </script>
-
 <script>
-         $('#index_menu_shopping').click(function(){
-            $(".text-topic-action-mod").text('ส่งแขก (ภูเก็ต)')
-               var url = "mod/shop/update_num_place.php?id=1&province=1&op=update";
-                $.post( url, function( data ) {
-                  // console.log(data);
-               });  
-          var num = 1;
-          if(num<=0){
-            alert('ไม่มีสินค้า');
-          }
-          else{
-            if(num==1){
-                var id_place_one = 1;
-                $("#main_load_mod_popup" ).toggle();
-               var url_load = "load_page_mod.php?name=shop/shop_new&file=shop&driver=<?=$user_id?>&type="+id_place_one+"&province=1&detail=1";
-               console.log(url_load);
-               $('#load_mod_popup').html(load_main_mod);
-//               return;
-               $('#load_mod_popup').load(url_load); 
-            }else{
-                console.log('1');
-                $("#main_load_mod_popup" ).show();
-                var url_load= "load_page_mod.php?name=shop/shop_new&file=main&id=11&type=stop&province=1";
-                 $('#load_mod_popup').html(load_main_mod);
-                 $('#load_mod_popup').load(url_load); 
-            }
-          }
+   $('#index_menu_shopping').click(function(){
+      $(".text-topic-action-mod").text('ส่งแขก (ภูเก็ต)')
+         var url = "mod/shop/update_num_place.php?id=1&province=1&op=update";
+          $.post( url, function( data ) {
+            // console.log(data);
+         });  
+    var num = 1;
+    if(num<=0){
+      alert('ไม่มีสินค้า');
+    }
+    else{
+      if(num==1){
+          var id_place_one = 1;
+          $("#main_load_mod_popup" ).toggle();
+         var url_load = "load_page_mod.php?name=shop/shop_new&file=shop&driver=<?=$user_id?>&type="+id_place_one+"&province=1&detail=1";
+         console.log(url_load);
+         $.post( url_load, function( data ) {
+         $('#load_mod_popup').html(data);
+            // console.log(data);
          });
-         
-         function checkSocket(){
-         	console.log('Click');
-		 	var message = "";
-				socket.emit('sendchat', message);
-		 }
-      </script>
-<script>
- var load_main_icon_big="<div class='overlay' style='background-color:#FFFFFF; padding:15px;border: solid 1px #DADADA '><center> <i class='fa fa-circle-o-notch fa-spin 4x' style='font-size:100px; color:<?= $main_color_sorf ?>; ' ></i> </center><br><font style='font-size:14px; color:#333333 ' ><center><?
-echo t_load_data;
-?></center></font></div>";
- </script>
-<script>
- var load_main_icon_big='<center><div class="inner-loading"><center><span  class="navload"><i class="fa fa-circle-o-notch fa-spin 4x" style="font-size:40px; color:<?= $main_color ?>; margin-top:20px " ></i></center></span><div style="font-size:14px; color:#333333; font-weight:normal;; margin-top:10px "><center> <?
-echo t_load_data;
-?></center></div></div>';
+         // $('#load_mod_popup').html(load_main_mod);
+   //               return;
+         // $('#load_mod_popup').load(url_load); 
+      }else{
+          console.log('1');
+          $("#main_load_mod_popup" ).show();
+          var url_load= "load_page_mod.php?name=shop/shop_new&file=main&id=11&type=stop&province=1";
+           $('#load_mod_popup').html(load_main_mod);
+           $('#load_mod_popup').load(url_load); 
+      }
+    }
+   });
+   function checkSocket(){
+   	console.log('Click');
+   var message = "";
+   socket.emit('sendchat', message);
+   }
 </script>
 <script>
- var load_main_icon_big='<center><div class="inner-loading"><center><span  class="navload"><i class="fa fa-circle-o-notch fa-spin 4x" style="font-size:40px; color:<?= $main_color ?>; margin-top:10px " ></i></center></span><div style="font-size:14px; color:#333333; font-weight:normal;; margin-top:10px "><center> <?
-echo t_load_data;
-?></center></div></div>';
+   var load_main_icon_big="<div class='overlay' style='background-color:#FFFFFF; padding:15px;border: solid 1px #DADADA '><center> <i class='fa fa-circle-o-notch fa-spin 4x' style='font-size:100px; color:<?= $main_color_sorf ?>; ' ></i> </center><br><font style='font-size:14px; color:#333333 ' ><center><?
+      echo t_load_data;
+      ?></center></font></div>";
+   var load_main_icon_big='<center><div class="inner-loading"><center><span  class="navload"><i class="fa fa-circle-o-notch fa-spin 4x" style="font-size:40px; color:<?= $main_color ?>; margin-top:20px " ></i></center></span><div style="font-size:14px; color:#333333; font-weight:normal;; margin-top:10px "><center> <?
+      echo t_load_data;
+      ?></center></div></div>';
+   var load_main_icon_big='<center><div class="inner-loading"><center><span  class="navload"><i class="fa fa-circle-o-notch fa-spin 4x" style="font-size:40px; color:<?= $main_color ?>; margin-top:10px " ></i></center></span><div style="font-size:14px; color:#333333; font-weight:normal;; margin-top:10px "><center> <?
+      echo t_load_data;
+      ?></center></div></div>';
+   var load_main_icon_mini="<div style='top:0; left:0'><table width='100%'  border='0' cellspacing='0' cellpadding='0'><tr><td style='width:24px; '><i class='fa fa-refresh fa-spin 2x' style='font-size:22px; color:<?= $main_color_sorf ?>; ' ></i> </td><td><font style='font-size:14px; color:#333333 ' ><?
+      echo t_load_data;
+      ?></center></font></td></tr></table></div> ";
+   var load_main_icon_mod="<div style='top:0; left:0'><br><br><table width='100%'  border='0' cellspacing='0' cellpadding='0'><tr><td align='center' style='width:24px; '><i class='fa fa-refresh fa-spin 2x' style='font-size:60px; color:<?= $main_color_sorf ?>; ' ></i> <br><font style='font-size:14px; color:#333333 ' ><?
+      echo t_load_data;
+      ?></center></font></td></tr></table></div> ";
 </script>
-<script>
- var load_main_icon_mini="<div style='top:0; left:0'><table width='100%'  border='0' cellspacing='0' cellpadding='0'><tr><td style='width:24px; '><i class='fa fa-refresh fa-spin 2x' style='font-size:22px; color:<?= $main_color_sorf ?>; ' ></i> </td><td><font style='font-size:14px; color:#333333 ' ><?
-echo t_load_data;
-?></center></font></td></tr></table></div> ";
- </script>
-<script>
- var load_main_icon_mod="<div style='top:0; left:0'><br><br><table width='100%'  border='0' cellspacing='0' cellpadding='0'><tr><td align='center' style='width:24px; '><i class='fa fa-refresh fa-spin 2x' style='font-size:60px; color:<?= $main_color_sorf ?>; ' ></i> <br><font style='font-size:14px; color:#333333 ' ><?
-echo t_load_data;
-?></center></font></td></tr></table></div> ";
- </script>
-

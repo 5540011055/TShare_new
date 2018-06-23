@@ -13,7 +13,7 @@ GETMODULE($_GET[name],$_GET[file]);
         //    $("#load_booking_data").load(url_load);
     });
 </script>
-<div style="top:0px; padding:10px; overflow: auto; width:100%; padding-bottom:50px;   ">
+<div style="top:0px; padding:0px; overflow: auto; width:100%; padding-bottom:0px;padding-top: 10px;   ">
     <? include ("".$MODPATHFILE.""); ?>
 </div>
 <?

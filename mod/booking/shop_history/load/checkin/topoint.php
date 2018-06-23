@@ -49,7 +49,7 @@
 				//file exists
 				console.log('success file');
 				 $('#photo_driver_topoint_yes').show();
-			   $('#photo_driver_topoint_no').hide();
+			     $('#photo_driver_topoint_no').hide();
 				/*$('#photo_driver_topoint').css('color','#3b5998');
 				$('#photo_driver_topoint').css('border','2px solid #3b5998');*/
 //				$('#photo_driver_topoint').attr('onclick','ViewPhoto("'+id+'","driver_topoint","<?=TIMESTAMP;?>");');

@@ -5,12 +5,11 @@
    require_once("mainfile.php");
    $PHP_SELF = "popup.php";
    GETMODULE($_GET[name], $_GET[file]);
-   //   require_once("css/maincss.php");
    $db->connectdb(DB_NAME_DATA, DB_USERNAME, DB_PASSWORD);
    ?>
 <?if ($_SESSION['data_user_id'] == '') {   ?> 
 <script>
-   window.location = "signin.php";
+//   window.location = "signin.php";
 </script> 
 <? }   ?>
 <script>
@@ -37,7 +36,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" class="ui-mobile landscape min-width-320px min-width-480px min-width-768px min-width-1024px">
    <head>
       <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-      <title>T-Share</title>
+      <title><?="เลขที่ ".$_GET[vc];?></title>
       <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
       <meta name="format-detection" content="telephone=no">
       <meta name="theme-color" content="<?= $main_color ?>" />
@@ -45,9 +44,7 @@
       <script src="js/sweet_origin/sweetalert.js"></script>
       <link rel="stylesheet" href="js/sweet_origin/sweetalert.css">
       <!-- materialize -->
-      <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">-->
       <link rel="stylesheet" href="material/materialize.min.css?v=<?=time();?>">
-      <!--<link rel="stylesheet" href="material/nav.css?v=<?=time();?>">-->
       <link rel="stylesheet" href="material/extra.css?v=<?=time();?>">
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
       <link rel="stylesheet" href="bootstrap/font_all/ultimate/flaticon.css?v=<?=time()?>">
@@ -150,74 +147,8 @@
       <script src="material/startup-all-min.js?v=<?=time();?>" crossorigin="anonymous"></script>
       <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
       <script src="js/jquery.touchSwipe.min.js"></script>
-      <script>
-//      if('<?=$_GET[ios];?>'!="1"){
-         $(window).load(function() {
-         	$("#load_material").fadeOut();
-         });
-//		}  
-      </script>
-      <div>
-         <nav class="n bi fj" style="background-color:<?=$main_color;?>">
-            <div class="nav-wrapper">
-               <!--<a class="brand-logo">
-                  <img src="images/app/iconv5.png" style="width: 50px;margin-top:12px;" />
-                  </a>-->
-               <ul id="nav-mobile" class="ag hide-on-med-and-down">
-                  <!-- <li class="active">
-                     <a class="dropdown-button" href="#!" data-activates="pages" data-constrainwidth="false" data-beloworigin="true">Pages<i class="material-icons ag">arrow_drop_down</i></a>
-                     <ul id="pages" class="dropdown-content">
-                        <li><a class="g" href="startup-horizontal-half.html">Horizontal Halves</a></li>
-                        <li><a href="startup-zoom-out.html">Zoom Out</a></li>
-                        <li><a href="startup-circle-reveal.html">Circle Reveal</a></li>
-                        <li><a href="startup-phone-wall.html">Phone Wall</a></li>
-                        <li><a href="startup-element-transitions.html">Element Transitions</a></li>
-                        <li><a href="startup-basic-elements.html">Basic Elements</a></li>
-                        <li><a href="startup-shuffle.html">Shuffle</a></li>
-                        <li><a href="startup-postcard.html">Postcards</a></li>
-                     </ul>
-                     </li>
-                     <li><a href="startup-blog.html">Blog</a></li>
-                     <li><a href="startup-team.html">Team</a></li>
-                     <li><a href="http://themes.materializecss.com/cart/34339663873:1">Buy Now!</a></li> -->
-               </ul>
-               <a data-activates="slide-out" class="button-collapse ag"><i class="material-icons white-text" style="font-size: 30px;">menu</i></a>
-               <a style="right: 0px;position: absolute;margin: -2px 18px;margin-top: 12px;" onclick="GohomePage()"><i class="fa fa-home"></i></a>
-               <!-- <i class="fa fa-home" style="font-size:30px; padding-left: 2px; color:#FFFFFF" id="btn_home_head_menu"></i>-->
-            </div>
-         </nav>
-         <?php 
-            if($data_user_class=="lab"){
-            	include("material/menu/lab.php");
-            }else if($data_user_class=="taxi"){
-            	include("material/menu/taxi.php");
-            }
-            ?>
-         <script>
-         	function logOut(){
-				swal({
-				  title: "<?=t_sign_out;?>",
-				  text: "<?=t_confirm_signout;?>",
-				  type: "warning",
-				  showCancelButton: true,
-				  confirmButtonClass: "btn-danger waves-effect waves-light",
-				  cancelButtonClass: "btn-cus waves-effect waves-light",
-				  confirmButtonText: "<?=t_yes;?>",
-				  cancelButtonText: "<?=t_no;?>",
-				  closeOnConfirm: false
-				},
-				function(){
-				   $.post('signout.php?type=logout',function(){
-		      		 swal("<?=t_sign_out_successfully;?>","", "success");
-		      		 	setTimeout(function(){ 		
-			      		 	deleteTagOs("Test Text");
-						    deleteTagIOS(class_user,username);
-						    window.location.href = "signin.php";
-		      		 	}, 1000);
-		      		});
-				  }); 
-			}
-         </script>   
+
+      <div> 
          <div style="width:100%;" id="myelement">
             <?  include ("".$MODPATHFILE."");?>  
          </div>
@@ -228,8 +159,7 @@
       <? include "load/popup/action/map_popup.php"; ?>
       <? include "load/popup/action/3.php"; ?>
       <? include "load/popup/action/4.php"; ?>
-      <? include "load/popup/action/5.php"; ?>
-      <? include "load/popup/action/6.php"; ?>
+
       <? include "load/popup/action/photo_popup.php"; ?>
       <? include "load/popup/action/clean_popup.php"; ?>
       <!-- End Content -->
@@ -245,14 +175,7 @@
             </div>
          </div>
       </div>
-      <!-- Modal Trigger -->
-      <a class="waves-effect waves-light btn modal-trigger" id="click" style="display: none;">Modal</a>
-      <script>
-         $('#click').click(function(){
-         	$('#material_dialog_lg').modal('open');
-         	console.log(1);
-         });
-      </script>
+
       <!-- Modal Structure 1 -->
       <div id="material_dialog" class="modal modal-fixed-footer">
          <div class="modal-content">
@@ -289,8 +212,7 @@
       <input type="hidden" name="" id="set_lng_cookies" value="<?=$_COOKIE[lng];?>">
    </body>
 </html>
-<? //include ("bootstrap/css/css.php"); ?> 
-<!--<script src="dist/js/app.js"></script>-->
+
 <script >
    function language(lng) {
        console.log(lng);
@@ -314,14 +236,6 @@
            x1 = x1.replace(rgx, '$1' + ',' + '$2');
        }
        return x1 + x2;
-   }
-   var check_new_user = '<?=$_GET[check_new_user];?>';
-   //                                                alert(check_new_user);
-   if(check_new_user!=""){
-   $( "#main_load_mod_popup" ).toggle();
-   var url_load = "load_page_mod.php?name=user&file=index&check_new_user="+check_new_user;
-   $('#load_mod_popup').html(load_main_mod);
-   $('#load_mod_popup').load(url_load); 
    }
 </script>
 <style>
@@ -454,21 +368,7 @@
    }
    /*****END*****/
 </style>
-<div class="container" style="display: none;">
-   <div class="row">
-      <div id="loader">
-         <div class="dot"></div>
-         <div class="dot"></div>
-         <div class="dot"></div>
-         <div class="dot"></div>
-         <div class="dot"></div>
-         <div class="dot"></div>
-         <div class="dot"></div>
-         <div class="dot"></div>
-         <div class="lading"></div>
-      </div>
-   </div>
-</div>
+
 <!-- Pricing Tables -->
 <div class="hiddendiv common"></div>
 <div class="drag-target" data-sidenav="slide-out" style="touch-action: pan-y; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); width: 10px; left: 0px;"></div>

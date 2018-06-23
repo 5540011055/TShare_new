@@ -78,8 +78,11 @@ if ($_GET[action] == 'add')
 		"update_date" => "" . TIMESTAMP . ""
 	);
 	$result = $db->add_db('order_booking',$array_data );
+	$last_id = mysql_insert_id();
+	$array_data[last_id] = $last_id;
+	$array_data[result] = $result;
 	$db->closedb();
-	echo $result."\n";
+	header('Content-Type: application/json');
 	echo json_encode($array_data);
 	} 
 ?>

@@ -195,6 +195,7 @@ if($_GET[action]=='approve_pay_driver_admin'){
 	
 	$return[his] = $data;
 	$return[book] = $data_ob;
+	header('Content-Type: application/json');
 	echo json_encode($return);
 	
 }
@@ -211,6 +212,7 @@ if($_GET[action]=='approve_pay_driver_taxi'){
 	
 	$res[his_pay] = $data;
 	$res[ob_pay] = $data_ob;
+	header('Content-Type: application/json');
 	echo json_encode($res);
 	
 }	

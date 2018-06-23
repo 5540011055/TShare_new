@@ -293,10 +293,11 @@
    		closeOnCancel: true
    	},
    	function(){
-   	 $.post( "empty_style.php?name=booking/shop_history&file=php_shop&action=approve_pay_driver_taxi",{ order_id : order_id},function( data ) 		{
+   	 $.post( "mod/booking/shop_history/php_shop.php?action=approve_pay_driver_taxi",{ order_id : order_id},function( data ) 		{
+   	 					console.log(data);
    			  			swal ( "<?=t_save_succeed;?>" ,  "" ,  "success" );
 						openViewPrice();
-						var url_noti = "send_messages/send_pay_driver.php?type=send_lab&iv="+invoice+"&order_id="+order_id;
+						var url_noti = "send_messages/send_pay_driver.php?type=send_lab&vc="+invoice+"&order_id="+order_id;
 						console.log(url_noti);
 						$.post( url_noti,function( re ){
 		   				 	console.log(re);

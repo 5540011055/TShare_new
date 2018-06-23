@@ -100,13 +100,13 @@ $_SESSION['data_user_class'] = $arr[admin][user_class] ;
 //                Android.showToast(txt,username);
         } */ 
 
- setTimeout(function(){ 
+// setTimeout(function(){ 
  
  var url = "index.php?check_new_user=<?=$_POST[check_new_user];?>";
 console.log(url);
  window.location.href = url; 
  
-  }, 1000);
+//  }, 1000);
  </script>
  <?
 }

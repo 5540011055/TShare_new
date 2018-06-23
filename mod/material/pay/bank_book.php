@@ -102,7 +102,7 @@
             <div class="input-field col s12">
 		          <i class="material-icons prefix">account_balance_wallet</i>
 		          <input type="text" class="validate" name="pay_bank_number" id="pay_bank_number"  required="true" value="<?=$arr[web_user][pay_bank_number];?>"  >
-		          <label for="icon_prefix" class="active font-24"><?=t_account_number;?></label>
+		          <label for="icon_prefix" class="active font-24"><?=t_bank_branch;?></label>
 		      </div>
               
             <div class="col-md-6">

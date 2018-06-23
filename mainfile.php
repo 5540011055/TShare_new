@@ -147,4 +147,6 @@ if ($_SESSION['data_user_password'] <> $arr[web_user][password]) {
 <?
 }
 include "css/color/" . $data_user_class . ".php";
+
+
 ?>

@@ -162,7 +162,7 @@ function selectCar(id,company,number){
   $('#bank_use_'+id).prop('checked', true); // Checks it
   $('#bankid').val(id);
   swal({
-     title: 'คุณเลือก'+company,
+     title: 'คุณเลือกธนาคาร'+company,
      text: 'เลขที่บัญชี '+number,
      type: "warning",
      confirmButtonClass: "btn-primary",

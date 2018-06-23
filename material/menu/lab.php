@@ -103,7 +103,7 @@
          $('#load_mod_popup').html(load_main_mod);
          $('#load_mod_popup').load(url_load); 
 	}
-	function logOut(){
+	/*function logOut(){
 		swal({
 		  title: "<?=t_sign_out;?>",
 		  text: "<?=t_confirm_signout;?>",
@@ -122,5 +122,5 @@
       		 	window.location.href = "index.php";		}, 1000);
       		});
 		  }); 
-	}
+	}*/
 </script>      

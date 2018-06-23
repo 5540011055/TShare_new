@@ -718,7 +718,7 @@ return $name_type;
                         // console.log('<?=$user_id?>');
                         $.post('go.php?name=shop/shop_new&file=save_data&action=add&type=driver&driver=<?=$user_id?>',$('#form_booking').serialize(),function(response){
                             console.log(response)
-               $.post('send_messages/send_onesignal.php?key=new_shop',{ driver : "<?=$user_id?>" ,nickname : "<?=$arr[driver][nickname]?>",car_plate : place_num },function(data){
+              $.post('send_messages/send_onesignal.php?key=new_shop&order_id='+response.last_id+'&vc='+response.invoice+'&m='+response.airout_m,{ driver : "<?=$user_id?>" ,nickname : "<?=$arr[driver][nickname]?>",car_plate : place_num },function(data){
                   console.log(data);
                });
                 $.post('mail.php?key=new_shop',{ driver : "<?=$user_id?>" ,nickname : "<?=$arr[driver][nickname]?>",car_plate : place_num },function(data){

@@ -421,7 +421,9 @@
    		closeOnCancel: true
    	},
    	function(){
-   	 $.post( "empty_style.php?name=booking/shop_history&file=php_shop&action=approve_pay_driver_admin",$('#form_save_pay').serialize(),function( data ) 			{
+//   		var url_save = "empty_style.php?name=booking/shop_history&file=php_shop&action=approve_pay_driver_admin";
+   		var url_save = "mod/booking/shop_history/php_shop.php?action=approve_pay_driver_admin";
+   	 $.post(url_save ,$('#form_save_pay').serialize(),function( data ) 			{
    				console.log(data);
    				swal ( "<?=t_save_succeed;?>" ,  "" ,  "success" );
    				$('.button-close-popup-mod-3').click();
@@ -429,7 +431,10 @@
 				socket.emit('sendchat', message);
    				
    				openViewPrice();
-   				 $.post( "send_messages/send_pay_driver.php?type=send_driver&iv="+invoice+'&driver='+driver,function( re ){
+   				var send_noti = "send_messages/send_pay_driver.php?type=send_driver&vc="+invoice+'&driver='+driver+'&order_id='+data.his.order_id;
+   				console.log(send_noti);
+//   				return;
+   				 $.post(send_noti ,function( re ){
    				 	console.log(re);
    				 });
    				 
