@@ -39,6 +39,12 @@ if ($_GET[action] == 'add')
 	if($_POST[time_num]<10){
 		$mm = "0".$_POST[time_num];
 	}
+	if($_POST[persion_china]<=0){
+		$_POST[persion_china] = 0;
+	}
+	if($_POST[persion_other]<=0){
+		$_POST[persion_other] = 0;
+	}
 	$array_data = array(
 		"invoice" => "S$member_in",
 		"code" => "$rand",
@@ -75,7 +81,9 @@ if ($_GET[action] == 'add')
 		"ondate_time" => "$_POST[ondate_time]",
 		"posted" => "$_SESSION[data_user_driver]",
 		"post_date" => "" . TIMESTAMP . "",
-		"update_date" => "" . TIMESTAMP . ""
+		"update_date" => "" . TIMESTAMP . "",
+		"num_ch" => $_POST[persion_china],
+		"num_other" => $_POST[persion_other]
 	);
 	$result = $db->add_db('order_booking',$array_data );
 	$last_id = mysql_insert_id();

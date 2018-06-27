@@ -132,7 +132,7 @@
       $rand = substr(str_shuffle('123456789012345678901234567890'),0,30);
       ?>
    <input class="form-control" type="hidden" name="check_code" id="check_code"      value="<?=$rand ?>" >
-   <div class="<?= $coldata?>" >
+   <div class="<?= $coldata?>" style="margin-top: 30px;" >
       <div class="take_photo" >
          <center>
          <i class="fa  fa-camera take-photo-icon"  id="icon_camera_id_driver" style="font-size:60px;color: #666666;"></i><br>

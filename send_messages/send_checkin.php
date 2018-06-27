@@ -15,6 +15,7 @@ function sendMessage() {
 	$res[dv] = $db->select_query("SELECT username FROM web_driver  WHERE id='".$arr[book][drivername]."' ");
 	$arr[dv] = $db->fetch($res[dv]);
 	$invoice = $arr[book][invoice];
+	$order_id = $_GET[id];
 	if($_GET[type]=='driver_topoint'){		
     	$type_txt = $arr[book][car_plate]." "."มาถึง ".$arr[place_shop][topic_th]." แล้ว";
     	$tag = array(

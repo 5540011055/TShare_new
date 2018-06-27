@@ -164,6 +164,20 @@ function checkTypePay($id){
 <script>
 	$('#date_trans').text(formatDate('<?=$arr[book][transfer_date];?>'));
 </script>
+<!--<div style="position: fixed;     bottom: 50px;
+    background-color: #fff;
+    border: 1px solid;">
+	<?php 
+            		$nation_json = str_replace("\\","",$arr[book][json_nation_price]);
+            		$nation_array = json_decode($nation_json);
+            		foreach($nation_array as $key=>$val){
+						echo $val->id."<br>";
+					}
+//					echo $nation_array[0]->id;
+					echo "<br/>";
+					echo $nation_json;
+            		?>
+</div>-->
 <input type="hidden" value="<?=$_POST[id];?>" id="id_order" />
 <div class="font-22 back_main" onclick="backMain();" style="<?=$display_back_btn;?>" ><a ><i class="fa fa-chevron-left" aria-hidden="true"></i>&nbsp;<?=t_back_previous;?></a></div>
 <div class="assas_<?=$_POST[id];?>" style=" padding:10px 12px; margin-top: 20px;" >
@@ -176,14 +190,14 @@ function checkTypePay($id){
     top: 40px;<?=$cancel_shop;?>">
 		<span class="font-24 text-cap"><?=t_cancel;?></span>
 	</button>
-	
+
 	<div id="status_booking_detail" class="font-30" style="margin-top: 10px;"><b><?=$status_txt;?></b></div>
 	<span class="font-28"><?=$arr[place_shop][$place_shopping];?></span>
 	
+		
 	<table width="100%" border="0" cellspacing="1" cellpadding="1">
    <tbody>
-      <tr>
-      </tr>
+      
       <tr>
          <td width="33%" align="left" style="padding: 0px;" >
             <div class="btn  btn-default" style=" width:100%; text-align:left; padding:2px; padding-left:5px; height:40px;border-radius: 0px;" data-toggle="dropdown" id="btn_div_dropdown_phone">
@@ -247,17 +261,52 @@ function checkTypePay($id){
       </tr>
       <tr>
          <td class="font-22 text-cap"><font color="#333333"><?=t_number;?></font></td>
-        <td class="font-22"><?
-            if($arr[book][adult]>0){ ?>
-            <?=t_adult;?> :
-            <?=$arr[book][adult];?>
-            &nbsp;
-            <? } ?>
-            <? if($arr[book][child]>0){ ?>
-            <?=t_child;?> :
-            <?=$arr[book][child];?>
-            <? } ?>
-            
+        <td class="font-22" style="padding: 0 !important;" >
+            <table width="100%">
+            	<tr>
+            		<td width="100%" colspan="2">
+            			<span class="font-22">
+            				<?
+				            if($arr[book][adult]>0){ ?>
+				            <?=t_adult;?> :
+				            <?=$arr[book][adult];?>
+				            &nbsp;
+				            <? } ?>
+				            <? if($arr[book][child]>0){ ?>
+				            <?=t_child;?> :
+				            <?=$arr[book][child];?>
+				            <? } ?>
+            			</span>
+            		</td>
+            		
+            	</tr>
+     	
+            	<tr>
+            	<?php 
+            		if($arr[book][num_ch]>0){ ?>
+						<td style="padding: 0 !important;">
+		            		<table>
+		            			<tr>
+		            				<td width="20"><span class="font-22">จีน</span></td>
+		            				<td width=""><img src="images/flag/China.png" width="25" height="25" alt=""></td>
+		            			</tr>
+		            		</table>
+	            		</td>
+				<? } ?>
+				<?php 
+            		if($arr[book][num_other]>0){ ?>
+						<td style="padding: 0 !important;">
+		            		<table>
+		            			<tr>
+		            				<td width="20"><span class="font-22">ต่างชาติ</span></td>
+		            				<td width=""><img src="images/flag/Other.png" width="25" height="25" alt=""></td>
+		            			</tr>
+		            		</table>
+	            		</td>
+				<? } ?>
+
+            	</tr>
+            </table>
          </td>
       </tr>
          </tbody>
@@ -426,7 +475,7 @@ function checkTypePay($id){
 	  console.log('lat '+$('#lat').val());
 	  console.log('lng '+$('#lng').val());
 	  $( "#main_load_mod_popup_map" ).toggle();
-	  $( "#main_load_mod_popup_clean" ).hide();
+//	  $( "#main_load_mod_popup_clean" ).hide();
 	  var url_load= "load_page_map.php?name=booking/popup&file=map&shop_id=<?=$arr[place_shop][id]?>";
 	  url_load=url_load+"&lat="+document.getElementById('lat').value;
  	  url_load=url_load+"&lng="+document.getElementById('lng').value;
@@ -435,9 +484,6 @@ function checkTypePay($id){
 
  	});
 
- 	$('#button-close-popup-map').click(function(){
- 		$( "#main_load_mod_popup_clean" ).show();
- 	});
 
 	function ViewPhoto(id,type,date,d){
 		console.log(id+" "+type+" "+date)

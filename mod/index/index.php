@@ -458,24 +458,24 @@
          <tr>
             <td width="50%" align="center" class="">
                <center>
-                  <button type="button" class="btn btn-default paddling-max"  id="index_menu_shopping" style="width:100%;">
+                  <a class="btn btn-default paddling-max"  id="index_menu_shopping" style="width:100%;">
                      <center>
                         <div  class="circle-menu" style="background-color:#34A0E7"><i class="icon-new-uniF14D" style="font-size: 22px;"  ></i></div>
                         <span style="padding-bottom:20px;" class="font-20 text-cap"><? echo t_send_to_customer?></span>
                      </center>
-                  </button>
+                  </a>
                </center>
             </td>
             <td align="center" class="">
                <input id="check_open_workshop" value="0" type="hidden"/>
                <center>
-                  <button type="button" class="btn btn-default paddling-max"  id="index_menu_shopping_history" style="width:100%;">
+                  <a class="btn btn-default paddling-max"  id="index_menu_shopping_history" style="width:100%;">
                      <span id="number_shop" class="badge font-20" style="position: absolute;font-size: 14px;background-color: #F44336;padding: 4px 7px;margin: -5px 3px;">0</span>
                      <center>
                         <div  class="circle-menu" style="background-color:#34A0E7"><i class="fa fa-history"style="font-size: 22px;margin-top: -2px;"  ></i></div>
                         <span style="padding-bottom:20px;" class="font-20 text-cap"><?=t_customer_history;?></span>
                      </center>
-                  </button>
+                  </a>
                </center>
                <script>    
                   $('#index_menu_shopping_history').click(function(){  
@@ -498,7 +498,7 @@
          <tr>
             <td width="50%" align="center" class="">
                <center>
-                  <button type="button" class="btn btn-default paddling-max"  id="index_menu_transfer"   style="width:100%" onclick="workTbooking();">
+                  <a class="btn btn-default paddling-max"  id="index_menu_transfer"   style="width:100%" onclick="workTbooking();">
                      <span id="number_tbooking" class="badge font-20" style="position: absolute;font-size: 14px;background-color: #F44336;padding: 4px 7px;margin: -5px 3px;">0</span>
                      <center>
                         <div  class="circle-menu"  style="background-color: #F7941D ">
@@ -506,73 +506,73 @@
                         </div>
                         <span style="padding-bottom:20px;" class="font-20 text-cap"><? echo t_job_received?> </span>
                      </center>
-                  </button>
+                  </a>
                </center>
             </td>
             <td width="50%" align="center" class="">
                <span data-toggle="tooltip" class="badge"   style="position:absolute; margin-left:10px; border-radius: 20px; height:25px; width:25px; background-color:#ff0000; padding-top:3px;border: solid 2px #FFFFFF; display:NONE " id="number_bottom_chat"  ><span  class="font-20" >0</span> </span>
                <center>
-               <button type="button" class="btn btn-default paddling-max"  id="index_menu_transfer_his"   style="width:100%" onclick="historyTransfer();">
+               <a class="btn btn-default paddling-max"  id="index_menu_transfer_his"   style="width:100%" onclick="historyTransfer();">
                   <center>
                      <div  class="circle-menu"  style="background-color: #F7941D ">
                         <center><i class="fa fa-history" style="font-size: 22px;margin-top: -2px; "  ></i>
                      </div>
                      <span style="padding-bottom:20px;" class="font-20 text-cap"><?=t_transfer_his;?> </span>
                      </center>
-               </button>
+               </a>
                </center>
             </td>
          </tr>
          <tr>
             <td align="center" class="">
                <center>
-                  <button type="button" class="btn btn-default paddling-max"   onclick="revenue()"  id="index_menu_income"   style="width:100%">
+                  <a class="btn btn-default paddling-max"   onclick="revenue()"  id="index_menu_income"   style="width:100%">
                      <center>
                         <div  class="circle-menu"   > <i class="icon-new-uniF121-10" style="font-size: 22px;margin-top: -2px;margin-left:-2px; "></i></div>
                         <span style="padding-bottom:20px;" class="font-20 text-cap"><? echo t_receipts?></span>
                      </center>
-                  </button>
+                  </a>
                </center>
             </td>
             <td align="center" class="">
-               <button type="button" class="btn btn-default paddling-max"  id="index_menu_money" onclick="money_transfer()" style="width:100%">
+               <a class="btn btn-default paddling-max"  id="index_menu_money" onclick="money_transfer()" style="width:100%">
                   <center>
                      <div  class="circle-menu" style="background: #e91e63"><i class="fa fa fa-usd" style="font-size: 22px;margin-top: -2px; " ></i></div>
                      <span style="padding-bottom:20px;" class="font-20 text-cap">กระเป๋าเงิน-ประวัติ</span>
                   </center>
-               </button>
+               </a>
             </td>
          </tr>
          <tr>
             <td  width="50%" align="center" class="">
                <span data-toggle="tooltip" class="badge"   style="position:absolute; margin-left:10px; border-radius: 20px; height:25px; width:25px; background-color:#ff0000; padding-top:3px;border: solid 2px #FFFFFF;  display:NONE " id="number_bottom_chat2"  ><span  class="font-20" > 0 </span></span>
-               <center>
-               <button type="button" class="btn btn-default paddling-max"   id="index_menu_tour"   style="width:100%">
+
+               <a class="btn btn-default paddling-max"   id="index_menu_tour"   style="width:100%">
                   <center>
                      <div  class="circle-menu"  style="background-color:#8DC63F"><i class="fa fa-suitcase" style="font-size: 22px;margin-top: -2px; " ></i></div>
                      <span style="padding-bottom:20px;" class="font-20 text-cap"><? echo t_tour_booking?> </span>
                   </center>
-               </button>
-               </button>
+               </a>
+
             </td>
             <td width="50%" align="center" class="">
-               <button type="button" class="btn btn-default paddling-max" style="width:100%" id="booking_open">
+               <a class="btn btn-default paddling-max" style="width:100%" id="booking_open">
                   <center>
                      <div  class="circle-menu" style="background: #1CC1A4;"><i class="fa fa-taxi" style="font-size: 22px;margin-top: -2px; " ></i></div>
                      <span style="padding-bottom:20px;" class="font-20 text-cap"><? echo t_booking; ?></span>
                   </center>
-               </button>
+               </a>
             </td>
          </tr>
          <tr style="display: none;">
             <td colspan="2" width="50%" align="center" class="">
                <a href="https://www.welovetaxi.com/app/demo_new2/index.php?order_id=144">
-                  <button type="button" class="btn btn-default paddling-max" style="width:100%">
+                  <a class="btn btn-default paddling-max" style="width:100%">
                      <center>
                         <div  class="circle-menu" style="background: #CDDC39;"><i class="fa fa-map" style="font-size: 22px;margin-top: -2px; " ></i></div>
                         <span style="padding-bottom:20px;" class="font-20 text-cap">test map</span>
                      </center>
-                  </button>
+                  </a>
                </a>
             </td>
          </tr>
@@ -964,7 +964,20 @@
    			console.log(array_data);
    			 $.each(array_data.manage,function(index,value){
    			 	if(value.id==get_order_id){
-   				$('#main_load_mod_popup_6').show();
+   			 	
+   			 	console.log(value.id+" : "+index);
+   		      	$('#check_open_num_detail').val(index)
+
+			   	var url = "empty_style.php?name=booking/shop_history&file=work_shop_detail_js&user_id=<?=$user_id;?>";
+			      	$.post(url,value,function(data){
+			      		$('#load_mod_popup_clean').html(data);
+			      		$('#main_load_mod_popup_clean').fadeIn();
+
+			      	});
+			      	
+			      	$('#check_open_shop_id').val(value.id);	
+   			 		
+   				/*$('#main_load_mod_popup_6').show();
    		      	var url_load= "load_page_mod_6.php?name=booking/shop_history&file=work_shop_detail_js&user_id=<?=$user_id;?>";
    		       	console.log(url_load);
    		       	$('#text_mod_topic_action_6').html("เลขที่ "+value.invoice);
@@ -973,7 +986,7 @@
    		      		 $('#load_mod_popup_6').html(data); 
    					 $('#btn_cancel_book_'+value.id).css('top','60px');
    					 $('.assas_'+value.id).css('margin-top','30px');
-   		      	});
+   		      	});*/
         				
         		/*var url = "empty_style.php?name=booking/shop_history&file=work_shop_detail_js&user_id=<?=$user_id;?>&ios=<?=$_GET[ios];?>";
         		console.log(url);
@@ -1107,7 +1120,7 @@
    if(check_open_shop_id<=0){
    $.each(array_data.manage,function(index,value){
    			 	if(value.id==id){
-   			$('#main_load_mod_popup_6').show();
+   			/*$('#main_load_mod_popup_6').show();
    		      var url_load= "load_page_mod_6.php?name=booking/shop_history&file=work_shop_detail_js&user_id=<?=$user_id;?>";
    		       console.log(url_load);
    		       $('#text_mod_topic_action_6').html("เลขที่ "+value.invoice);
@@ -1116,7 +1129,18 @@
    		      		 $('#load_mod_popup_6').html(data); 
    					 $('#btn_cancel_book_'+value.id).css('top','60px');
    					 $('.assas_'+value.id).css('margin-top','30px');
-   		      	});
+   		      	});*/
+   		      	console.log(value.id+" : "+index);
+   		      	$('#check_open_num_detail').val(index)
+
+			   	var url = "empty_style.php?name=booking/shop_history&file=work_shop_detail_js&user_id=<?=$user_id;?>";
+			      	$.post(url,value,function(data){
+			      		$('#load_mod_popup_clean').html(data);
+			      		$('#main_load_mod_popup_clean').show();
+
+			      	});
+			      	
+			      	$('#check_open_shop_id').val(value.id);
    				}
    			 });
    }

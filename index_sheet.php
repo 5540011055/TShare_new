@@ -7,11 +7,7 @@
    GETMODULE($_GET[name], $_GET[file]);
    $db->connectdb(DB_NAME_DATA, DB_USERNAME, DB_PASSWORD);
    ?>
-<?if ($_SESSION['data_user_id'] == '') {   ?> 
-<script>
-//   window.location = "signin.php";
-</script> 
-<? }   ?>
+
 <script>
    var detect_mb = "<?=$detectname;?>";
    var class_user = "<?=$data_user_class;?>";

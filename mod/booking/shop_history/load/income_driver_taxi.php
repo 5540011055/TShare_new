@@ -188,8 +188,12 @@
       		<tr>
 		      			 <td valign="middle"><span class="font-24">เปอร์เซ็น</span></td>
 			              <td align="right" valign="middle">
-			                <input type="hidden" value="6" id="commission" name="commission">
-			                <span class="font-24" id="txt_commission">6</span>&nbsp;%
+			              <?php 
+			               $res[cost] = $db->select_query("SELECT price_commision_driver FROM  product_price_list_all where  plan_setting=2 and country<>240 and status=1 and extra_country=1   ORDER BY  sort_country desc limit 1  ");
+                           $arr[cost] = $db->fetch($res[cost]);
+			              ?>
+			                <input type="hidden" value="<?=$arr[cost][price_commision_driver];?>" id="commission" name="commission">
+			                <span class="font-24" id="txt_commission"><?=$arr[cost][price_commision_driver];?></span>&nbsp;%
 			            </td>
 		      		</tr>
 		      		<tr>

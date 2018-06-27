@@ -48,7 +48,10 @@
    		m_txt = ' '+mnts_bc+' นาที';
    	}
    	final_txt = day_txt + h_txy + m_txt
-          old_txt = days + ' ' + hrs_d + ':' + mnts + ':' + secs;
+    old_txt = days + ' ' + hrs_d + ':' + mnts + ':' + secs;
+    if(days<=0 && hrs_d_bc<=0 && mnts_bc<=0){
+		return "ไม่กี่วินาทีที่ผ่านมา";
+	}
           return  final_txt+"ที่ผ่านมา";
       }
 	
@@ -63,7 +66,7 @@
     z-index: 1;
     right: 0px;
     background-color: #fff;
-    margin-top: -60px;
+    margin-top: -55px;
 }
 .edit-post-shop {
        margin-right: 10px;
