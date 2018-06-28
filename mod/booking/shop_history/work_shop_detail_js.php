@@ -263,7 +263,7 @@ function checkTypePay($id){
          <td class="font-22 text-cap"><font color="#333333"><?=t_number;?></font></td>
         <td class="font-22" style="padding: 0 !important;" >
             <table width="100%">
-            	<tr>
+            	<!-- <tr>
             		<td width="100%" colspan="2">
             			<span class="font-22">
             				<?
@@ -279,7 +279,56 @@ function checkTypePay($id){
             			</span>
             		</td>
             		
-            	</tr>
+            	</tr> -->
+            	<tr>
+        			<td>	
+        				<span id="isedit"><?
+            if($arr[book][adult]>0){ ?>
+            <?=t_adult;?> :
+            <!-- <?=$arr[book][adult];?> -->
+            &nbsp;
+            <? } ?>
+            <? if($arr[book][child]>0){ ?>
+            <?=t_child;?> :
+            <?=$arr[book][child];?>
+            <? } ?><span id="num_final_edit"></span></span>
+            <span id="text_edit_persion" style="display: none;"><?
+        			 if($arr[book][adult]>0){ ?>
+            <?=t_adult;?> :
+           
+            &nbsp;
+            <? } ?>
+            <? if($arr[book][child]>0){ ?>
+            <?=t_child;?> :
+            
+            <? } ?></span>
+        			
+        			<input type="number" name="" id="num_edit_persion" style="height: 30px;
+    width: 50px;
+    padding: 0px;
+    font-size: 16px;
+    margin: auto;
+    display: none;" value="<?=$arr[book][adult];?>" >
+        				
+        			</td>
+        			
+        			<td>
+        				<span  class="btn " align="center" onclick="editBook('<?=$arr[book][id];?>');"  style="    background: #3b5998;
+    color: #fff;
+    padding: 0px 10px;
+    font-size: 3px !important;
+    border-radius: 25px;display: inline-block;" id="btn_isedit">
+		<span class="font-24 text-cap">แก้ไข</span>
+	</span>
+	<span class="btn " align="center" onclick="saveeditBook('<?=$arr[book][id];?>');"  style="    background: #3b5998;
+    color: #fff;
+    padding: 0px 10px;
+    font-size: 3px !important;
+    border-radius: 25px;display: none;" id="btn_selectisedit">
+		<span class="font-24 text-cap">บันทึก</span>
+	</span>
+        			</td>
+        		</tr>
      	
             	<tr>
             	<?php 
@@ -444,7 +493,44 @@ function checkTypePay($id){
 
 </div>
 <input type="hidden" id="check_cause" value="0"/>
+<script>
 
+		var number_persion_new = '<?=$arr[book][adult];?>';
+		$('#num_final_edit').html(number_persion_new)
+		function editBook(x){
+			console.log(x)
+			$('#text_edit_persion').show()
+
+			$('#btn_selectisedit').show()
+			$('#num_edit_persion').show()
+			$('#btn_isedit').hide()
+			$('#isedit').hide()
+			$('#num_edit_persion').css('display','inline-block')
+
+
+		}
+		function saveeditBook(x){
+			var url_load= "go.php?name=booking/shop_history&file=saveeditBook&num="+$('#num_edit_persion').val()+"&id="+x;
+			console.log(url_load)
+			 $.post( url_load, function( data ) {
+               //$('#load_mod_popup').html(data);
+                  console.log(data);
+               });
+    
+      
+
+			$('#text_edit_persion').hide()
+			number_persion_new = $('#num_edit_persion').val()
+			$('#num_final_edit').html(number_persion_new)
+			console.log(x)
+			$('#btn_selectisedit').hide()
+			$('#num_edit_persion').hide()
+			$('#btn_isedit').show()
+			$('#isedit').show()
+
+
+		}
+	</script>
 <script>
 	var remark1 = '<?=t_customer_no_register;?>';
     var remark2 = '<?=t_customer_not_go;?>';
