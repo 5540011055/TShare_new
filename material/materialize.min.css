@@ -5777,9 +5777,15 @@ input[type=range]:focus::-ms-fill-upper{
     width:36px;
     height:36px
 }
-.preloader-wrapper.big{
+.preloader-wrapper.medium{
     width:64px;
     height:64px
+}
+.preloader-wrapper.big{
+/*    width:64px;*/
+/*    height:64px*/
+    width:84px;
+    height:84px
 }
 .preloader-wrapper.active{
     -webkit-animation:container-rotate 1568ms linear infinite;

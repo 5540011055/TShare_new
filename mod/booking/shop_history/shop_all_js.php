@@ -86,6 +86,15 @@
 }
 </style>
 <?php 
+	if(count($_POST[data])<=0){ 
+		if($_GET[type]=="his"){
+			echo '<div class="font-26" style="color: #ff0000;text-align: center;padding: 0px; margin-top: -10px;" id="no_work_div"><strong>ไม่มีงาน</strong></div>';
+		}else{
+			echo '<div class="font-26" style="color: #ff0000;text-align: center;padding: 15px;" id="no_work_div"><strong>ไม่มีงาน</strong></div>';
+		}
+		//exit();
+	}
+
 		foreach ($_POST[data] as $key=>$val){
 		
 		$db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);

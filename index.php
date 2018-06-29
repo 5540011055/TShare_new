@@ -63,7 +63,7 @@
       //      var load_main_mod='<div class="outer-loading-mod"   id="main_index_load_page_mod"><div class="inner-loading"><center><span  class="navload"><i class="fa fa-circle-o-notch fa-spin 4x" style="font-size:40px;   margin-top:10px " ></i></center></span><div style="font-size:14px; color:#333333; font-weight:normal;  margin-top:10px " ><center><span id="navload_topic"> โหลดข้อมูล</span></center></div></div></div>';
       	  var load_main_mod = '<div class="outer-loading-mod">'
       	  +'<div class="inner-loading">'
-      	  +'<div class="preloader-wrapper big active">'
+      	  +'<div class="preloader-wrapper medium active">'
           +'<div class="spinner-layer spinner-blue-only">'
             +'<div class="circle-clipper left">'
               +'<div class="circle"></div>'

@@ -9,7 +9,7 @@
    <script src="pickerdate/picker.js?v=<?=time();?>" type="text/javascript"></script>
    <script src="pickerdate/picker.date.js?v=<?=time();?>" type="text/javascript"></script>
    
-   <div style="padding: 8px 0px;">
+   <div style="padding: 0px 0px;">
      <!--<button onclick="test()">123</button>-->
       <table width="100%">
          <tr>
@@ -121,7 +121,10 @@
 <script>
 	var array_ma = [];
 	var array_his = [];
+	
    function filterMenu(type){
+	$('#load_booking_data').html(load_main_mod);
+//	return
    	console.log(type);
    $('.tocheck').removeClass('btn_filter_active');
    $('.tocheck').addClass('btn_filter');
@@ -147,7 +150,7 @@
    	 	$('#date_filter').hide();
    	 	array_ma = obj.manage;
    	 	    
-   	 	$('#load_booking_data').html(load_main_mod);
+   	 	
    	 	var pass = { data : array_ma};	
    	 	console.log(pass);
 			/*	var pass = { data : array_ma};
@@ -193,8 +196,6 @@
    			 array_his = res.data;
    			 var url = "go.php?name=booking/shop_history&file=shop_all_js&find=day&day="+date+"&status=completed&type=his";
    			 
-   		 
-   		 $('#load_booking_data').html(load_main_mod);	
 
 			  $.post(url,{ data : array_his },function(html){
 			  		$('#load_booking_data').html(html);

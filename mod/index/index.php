@@ -174,6 +174,7 @@
    color: #fff;
    box-shadow: 1px 1px 1px #333;
    cursor: pointer;
+   margin: 5px;
    }
    .btn_filter{
    padding: 8px; 
@@ -181,6 +182,7 @@
    border-radius: 25px;
    /*	width: 100px;*/
    cursor: pointer;
+   margin: 5px;
    }
    @media screen and (max-width: 320px) {
    .font-22{
