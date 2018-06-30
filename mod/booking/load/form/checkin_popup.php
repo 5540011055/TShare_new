@@ -149,7 +149,7 @@ $arr[project][id]=$_GET[id];
         <tbody>
           <tr>
             <td width="50%"><button  id="btn_close_checkin_popup"  type="button" class="btn  btn-info "  style="width:100%;text-align:left;padding:8px; background-color:#FF0000;  border-radius: 20px; border:none "><span class="font-30"><center><?echo t_yes?></button></td>
-            <td width="50%"><button  id="btn_checkin_popup_<?=$_GET[id]?>"  type="button" class="btn  btn-info "  style="width:100%;text-align:left;padding:8px; background-color:<?=$main_color?>;  border-radius: 20px; border:none "><span class="font-30"><center><?echo t_no?></button></td>
+            <td width="50%"><button  id="btn_checkin_popup_<?=$_GET[id]?>"  type="button" class="btn  btn-info "  style="width:100%;text-align:left;padding:8px; background-color:<?=$main_color?>;   border:none "><span class="font-30"><center><?echo t_no?></button></td>
           </tr>
         </tbody>
       </table></td>
