@@ -318,7 +318,7 @@
                               $('#load_mod_popup_4').load(url_load_1); 
                               });
                            </script>                    
-                           <div class=" " style="margin-left:-5px; border-bottom: dotted #999999 1px;padding: 10px 0px;" onclick="ClickPay(1)">
+                           <div class=" " style="margin-left:-5px; padding: 10px 0px;" onclick="ClickPay(1)">
                               <table width="100%" border="0" cellspacing="1" cellpadding="3" >
                                  <tbody>
                                     <tr>
@@ -364,33 +364,67 @@
                                              <tbody>
                                                 <tr>
                                                    <td width="75"> <img src="images/flag/China.png" width="25" height="25" alt="" style="margin-top:-5px;"/><span class="font-20">&nbsp;<?=t_china;?>  </td>
-                                                   <td>
-                                                      <span style="display:<?=$status_show_park?>"><?=t_parking_fee;?>  <b><?=$arr[cost][price_park_driver]?></b>&nbsp;</span>
+                                                      <td>
+                                                         <table  width="100%" border="0" cellspacing="1" cellpadding="1">
+                                                            <tr>
+                                                               <td>
+                                                                  -&nbsp;&nbsp;
+                                                                  <span style="display:<?=$status_show_park?>"><?=t_parking_fee;?>  <b><?=$arr[cost][price_park_driver]?></b>&nbsp;</span>
+                                                      
+                                                               </td>
+                                                             
+                                                            </tr>
+                                                            <tr>
+                                                                 <td>
+                                                      -&nbsp;&nbsp;
                                                       <span style="display:<?=$status_show_person?>"><?=t_person_fee;?>  <b><?=$arr[cost][price_person_driver]?></b>&nbsp;</span>
                                                       <span style="display:none<?=$status_show_commision;?>"><?=t_com_fee;?>  <b><?=$arr[cost][price_commision_driver]?> %</b>&nbsp;</span>
                                                       &nbsp;
                                                    </td>
+                                                            </tr>
+                                                         </table>
+                                                      </td>
+                                                   
                                                 </tr>
                                              </tbody>
                                           </table>
+                                          <!-- <div style="
+    border-bottom: dashed #3b5998 1px;
+    margin: 12px;
+"></div> -->
                                           <? } ?> 
                                           <? if($arr[open][price_all]==1){ 
                                              $res[cost] = $db->select_query("SELECT price_park_driver,price_commision_driver, price_person_driver FROM  product_price_list_all where  plan_setting=".$arr[open][id]." and country=240 and status=1    ORDER BY  sort_country desc limit 1  ");
                                               $arr[cost] = $db->fetch($res[cost]);     
                                                    ?>
-                                          <table width="100%" border="0" cellspacing="1" cellpadding="1" >
+                                          <!-- <table width="100%" border="0" cellspacing="1" cellpadding="1" >
                                              <tbody>
                                                 <tr>
                                                    <td width="80"><img src="images/flag/Other.png" width="25" height="25" alt="" style="margin-top:-5px;"/><span class="font-20">&nbsp;ต่างชาติ</td>
-                                                   <td>
-                                                      <span style="display:none<?=$status_show_park?>"><?=t_parking_fee;?>  <b><?=$arr[cost][price_park_driver]?></b>&nbsp;</span>
-                                                      <span style="display:none<?=$status_show_person?>"><?=t_person_fee;?>  <b><?=$arr[cost][price_person_driver]?></b>&nbsp;</span>
+                                                      <td>
+                                                         <table width="100%" border="0" cellspacing="1" cellpadding="1">
+                                                            <tr>
+                                                               <td>
+                                                                  -&nbsp;&nbsp;
+                                                                   <span style="display:none<?=$status_show_park?>"><?=t_parking_fee;?>  <b><?=$arr[cost][price_park_driver]?></b>&nbsp;</span>
+                                                      
+                                                               </td>
+
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                     -&nbsp;&nbsp;
+                                                     <span style="display:none<?=$status_show_person?>"><?=t_person_fee;?>  <b><?=$arr[cost][price_person_driver]?></b>&nbsp;</span>
                                                       <span style="display:none<?=$status_show_commision;?>"><?=t_com_fee;?>  <b><?=$arr[cost][price_commision_driver]?> %</b>&nbsp;</span>
                                                       &nbsp;
                                                    </td>
+                                                            </tr>
+                                                         </table>
+                                                      </td>
+                                                   
                                                 </tr>
                                              </tbody>
-                                          </table>
+                                          </table> -->
                                           <? } ?> 
                                        </td>
                                     </tr>
@@ -423,12 +457,12 @@
                               $('#load_mod_popup_4').load(url_load_1); 
                               });
                            </script>                    
-                           <div class=" " style="margin-left:-5px; border-bottom: dotted #999999 1px;padding: 10px 0px;" onclick="ClickPay(2);">
+                           <!-- <div class=" " style="margin-left:-5px; border-bottom: dotted #999999 1px;padding: 10px 0px;" onclick="ClickPay(2);">
                               <table width="100%" border="0" cellspacing="1" cellpadding="3" >
                                  <tbody>
                                     <tr>
                                        <td width="30" rowspan="2" align="center">
-                                          <!-- <input type="radio" name="price_plan" class="price_plan_select genaral" value="<?=$arr[open][plan_id];?>" id="price_plan_2" /></td> -->
+                                         
                                        <td class="font-22"><b> <?=checkTypePay($arr[category][id]);?></b> </td>
                                        <td width="35" rowspan="2"><a id="show_price_plan_2"><i class="fa fa-search" style=" color:#666666;font-size:18px;"  > </i></a></td>
                                     </tr>
@@ -502,7 +536,7 @@
                                     </tr>
                                  </tbody>
                               </table>
-                           </div>
+                           </div> -->
                            <?php
                               }
                               $db->closedb ();
@@ -577,17 +611,34 @@
                                                       <span class="font-20">&nbsp;<?=t_china;?> </span>
                                                    </td>
                                                    <td>
-                                                      <span style="display:none<?=$status_show_park?>"><?=t_parking_fee;?>  <b><?=$arr[cost][price_park_driver]?></b>&nbsp;</span>
+                                                      <table  width="100%" border="0" cellspacing="1" cellpadding="1">
+                                                         <tr>
+                                                            <td>-&nbsp;&nbsp;
+                                                            <span style="display:none<?=$status_show_park?>"><?=t_parking_fee;?>&nbsp;  <b><?=$arr[cost][price_park_driver]?></b>&nbsp;</span>
                                                       <span style="display:none<?=$status_show_person?>"><?=t_person_fee;?>  <b><?=$arr[cost][price_person_driver]?></b>&nbsp;</span>
-                                                      <span style="display:none<?=$status_show_commision;?>"><?=t_com_fee;?>  <b><?=$arr[cost][price_commision_driver]?> %</b>&nbsp;</span>
+                                                   </td>
+                                                         </tr>
+                                                         <tr>
+                                                            <td>
+                                                                -&nbsp;&nbsp;<span style="display:none<?=$status_show_commision;?>"><?=t_com_fee;?>  <b><?=$arr[cost][price_commision_driver]?> %</b>&nbsp;</span>
                                                       &nbsp;
+                                                            </td>
+                                                         </tr>
+                                                      </table>
+                                                     
+                                                     
                                                    </td>
                                                 </tr>
                                              </tbody>
                                           </table>
+                                          <div style="
+    border-bottom: dashed #3b5998 1px;
+    margin: 12px;
+"></div>
                                           <? } ?> 
-                                          <? if($arr[open][price_all]==1){ 
-                                             $res[cost] = $db->select_query("SELECT * FROM  product_price_list_all where  plan_setting=".$arr[open][id]." and country=240 and status=1    ORDER BY  sort_country desc limit 1  ");
+                                          <? if($arr[open][price_all]==0) { 
+
+                                             $res[cost] = $db->select_query("SELECT * FROM  product_price_list_all where  plan_setting =".$arr[open][id]." and country=240 and status=1    ORDER BY  sort_country desc limit 1  ");
                                               $arr[cost] = $db->fetch($res[cost]);     
                                                    ?>
                                           <table width="100%" border="0" cellspacing="1" cellpadding="1">
@@ -597,11 +648,23 @@
                                                       <img src="images/flag/Other.png" width="25" height="25" alt="" style="margin-top:-5px;"/><span class="font-20">&nbsp;ต่างชาติ</span>
                                                    </td>
                                                    <td>
-                                                      <span style="display:none<?=$status_show_park?>"><?=t_parking_fee;?><b><?=$arr[cost][price_park_driver]?></b>&nbsp;</span>
-                                                      <span style="display:none<?=$status_show_person?>"><?=t_person_fee;?><b><?=$arr[cost][price_person_driver]?></b>&nbsp;</span>
-                                                      <span style="display:none<?=$status_show_commision;?>"><?=com_fee;?><b><?=$arr[cost][price_commision_driver]?> %</b>&nbsp;</span>
+                                                      <table  width="100%" border="0" cellspacing="1" cellpadding="1">
+                                                         <tr>
+                                                            <td>
+                                                               -&nbsp;&nbsp;<span style="display:none<?=$status_show_park?>"><?=t_parking_fee;?>&nbsp;<b><?=$arr[cost][price_park_driver]?></b>&nbsp;</span>
+                                                      <span style="display:none<?=$status_show_person?>"><?=t_person_fee;?>&nbsp;<b><?=$arr[cost][price_person_driver]?></b>&nbsp;</span>
+                                                            </td>
+                                                         </tr>
+                                                         <tr>
+                                                            <td>-&nbsp;&nbsp;
+                                                      
+                                                      <span style="display:none<?=$status_show_commision;?>"><?=t_com_fee;?>&nbsp;<b><?=$arr[cost][price_commision_driver]?> %</b>&nbsp;</span>
                                                       &nbsp;
                                                    </td>
+                                                         </tr>
+                                                      </table>
+                                                   </td>
+                                                   
                                                 </tr>
                                              </tbody>
                                           </table>
