@@ -685,6 +685,7 @@
          
       }
    function save_bookin_shop(){
+
    	var place_num = document.getElementById('car_plate').value;
     console.log($('#time_num').val());
 //    return;
@@ -741,7 +742,7 @@
 	            }, function (data) {
 	               console.log(data);
 	            });
-            var url_mail = "mail.php";
+            var url_mail = "mail.php?key=new_shop";
              $.post(url_mail,$('#form_booking').serialize(),function(data){
                   console.log(data);
                });

@@ -18,7 +18,7 @@
    	font-size: 18px !important;
    }
 </style>
-<div style="left:0; margin-left:-0px;margin-top:15px; " >
+<div style="left:0; margin-left:-0px;margin-top:30px; " >
    <div class="box-body "  >
   
       <div class="<?= $coldata?>" style="padding:0px;">
@@ -133,7 +133,7 @@
       ?>
    <input class="form-control" type="hidden" name="check_code" id="check_code"      value="<?=$rand ?>" >
    <div class="<?= $coldata?>" style="margin-top: 30px;" >
-      <div class="take_photo" >
+      <div class="take_photo"  style=" padding-top: 20px; background-color: #dddddd42;">
          <center>
          <i class="fa  fa-camera take-photo-icon"  id="icon_camera_id_driver" style="font-size:60px;color: #666666;"></i><br>
          <span class="font-24"><?=t_take_photo;?></span>
@@ -157,12 +157,12 @@
    <div>
       <table width="100%"  border="0" cellspacing="0" cellpadding="0" style="padding-top:20px;">
          <tr>
-            <td  ><button id="submit_step_1" type="button" class="btn btn-repair waves-effect" style="width:100%; background-color:#3b5998; border-radius:25px;text-transform: capitalize; " ><span class="font-24"><?=t_save_data;?></span></button> </td>
+            <td id="tr_btn_change" align="center" ><button id="submit_step_1" type="button" class="btn btn-repair waves-effect" style="width:100%; background-color:#3b5998; border-radius:25px;text-transform: capitalize; " ><span class="font-24"><?=t_save_data;?></span></button> </td>
          </tr>
           
       </table>
       <br>
-
+	
    </div>
    <input class="form-control" type="hidden" name="check_photo_id_driver" id="check_photo_id_driver"      value="" >
    <input class="form-control" type="hidden" name="upload_pic_type" id="upload_pic_type"  required="true"    value="" >
@@ -174,7 +174,6 @@
        });
 
       $("#submit_step_1").click(function(){ 
-
 
       if(document.getElementById('name').value=="") {
 //      alert('กรุณากรอกชื่อ - นามสกุล (ภาษาไทย)'); 
@@ -210,7 +209,7 @@
       return false ;
       }
 
-    swal({
+    /*swal({
       	title: "คุณแน่ใจหรือไม่?",
       	text: "ว่าข้อมูลถูกต้อง",
       	type: "warning",
@@ -222,6 +221,7 @@
       },
       function(isConfirm){
          if (isConfirm){
+         	$('#tr_btn_change').html('<img src="images/loader.gif" />');	
 	       var url="go.php?name=register&file=savedata&type=user&action=add&id=<?=$_GET[id]?>";
 			console.log(url);
 	      $.post(url,$('#myform_regiter').serialize(),function(response){
@@ -235,7 +235,48 @@
    				});
 
          }
-      });
+      });*/
+      
+      swal({
+		  title: "คุณแน่ใจหรือไม่",
+		  text: "ว่าข้อมูลถูกต้อง",
+		  type: "info",
+		  showCancelButton: true,
+		  closeOnConfirm: false,
+		  confirmButtonText: 'ยืนยัน',
+      	  cancelButtonText: "ยกเลิก",
+		  showLoaderOnConfirm: true
+		}, function () {
+			
+			var url="go.php?name=register&file=savedata&type=user&action=add&id=<?=$_GET[id]?>";
+			
+			var url_new ="mod/register/savedata_edit.php?type=user&action=add";
+			console.log(url);
+	      $.post(url_new,$('#myform_regiter').serialize(),function(response){
+	      	console.log(response);
+//	      	return;
+	        $('#send_profile_data').html(response);
+//	        	swal('สำเร็จ','สมัครสมาชิกเสร็จสมบูรณ์ เลือกเมนูข้อมูลส่วนตัวเพื่อตรวจสอบข้อมูลของคุณ','success');
+	        	if(response.result==true){
+					swal('สำเร็จ','สมัครสมาชิกเสร็จสมบูรณ์ เลือกเมนูข้อมูลส่วนตัวเพื่อตรวจสอบข้อมูลของคุณ','success');
+					setTimeout(function () {
+		    			window.location.href = "signin.php?autologin=1&user="+response.username+"&pass="+response.password;
+		  			}, 1500);
+				}else{
+					swal('ไม่สำเร็จ','กรุณาตรวจสอบข้อมูลของท่านและสมัครใหม่อีกครั้ง','error');
+				}
+	       });
+	       
+	      /*  $.post('send_messages/send_onesignal.php?key=new_driver',function(data){
+   					console.log(data);
+   				});*/
+			
+		 /* setTimeout(function () {
+		    
+		  }, 2000);*/
+		});
+      
+      
       });
    </script>  
 </div>
