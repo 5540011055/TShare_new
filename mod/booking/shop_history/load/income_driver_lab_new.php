@@ -39,6 +39,9 @@
    					      	$res[price_person_other] = $db->select_query("SELECT country,id,price_person_driver,price_park_driver FROM  product_price_list_all where  plan_setting = 1 and country = 240 and status=1 ORDER BY sort_country desc limit 1");
    					      	$arr[price_person_other] = $db->fetch($res[price_person_other]);
    					      	
+   					      	$res[price_person_cn_pc] = $db->select_query("SELECT country,id,price_park_driver FROM  product_price_list_all where  plan_setting = 25 and country <> 240 and status=1 ORDER BY sort_country desc limit 1");
+   					      	$arr[price_person_cn_pc] = $db->fetch($res[price_person_cn_pc]);
+   					      	
 //   					      	 echo $arr[price_person_cn][price_person_driver];
    $db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
    					      	$res[price_person_oth] = $db->select_query("SELECT country,id,price_person_driver,price_park_driver FROM  product_price_list_all where  plan_setting = 1 and country=240   ORDER BY id  ");
@@ -78,6 +81,7 @@
      if($arr[project][price_park_total]<=0){
 	 	$park_price_default = $arr[price_person_cn][price_park_driver];
 	 }
+	 $park_price_default_pc = $arr[price_person_cn_pc][price_park_driver];
 	 $park_price_default_other = $arr[price_person_other][price_park_driver];
    ?>
 <style>
@@ -281,7 +285,7 @@
                         </td>
                      </tr>
                   </table>
-                  <table class="onlyThisTable" width="100%" style="padding: 5px;">                  
+                  <table class="onlyThisTable" width="100%" style="padding: 5px;" id="tb_other_park">                  
                      <tr>
                         <td valign="middle">
                         	<label class="container-rd font-24" style="font-weight: unset;">ต่างชาติ จำนวนเงิน
@@ -406,7 +410,7 @@
             </tr>
             <tr class="tb_pay"  id="check_com_tb" style="display: none;">
                <td colspan="2" >	 
-               <b><span class="font-24">ค่าคอม</span></b>
+               <b><span class="font-24">ค่าคอมมิชชั่น</span></b>
 				<table class="onlyThisTable" width="100%" style="padding: 5px;">
                      <tbody>
 	                     <tr>
@@ -530,6 +534,16 @@ function selectOption(p1,p2,type){
 	$('.tb_pay').hide();
 	$('#check_'+p1+'_tb').fadeIn(500);
 	$('#check_'+p2+'_tb').fadeIn(500);
+	
+	if(type=="pp"){
+		$('#tb_other_park').hide();
+		$('#park_price_cn').val('<?=$park_price_default;?>');
+		$('#txt_park_price_cn').text('<?=$park_price_default;?>');
+	}else if(type=="pc"){
+		$('#tb_other_park').show();
+		$('#park_price_cn').val('<?=$park_price_default_pc;?>');
+		$('#txt_park_price_cn').text('<?=$park_price_default_pc;?>');
+	}
 	
 	calculate();
 }
