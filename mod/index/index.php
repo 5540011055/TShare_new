@@ -1019,10 +1019,20 @@
      var dataorder={  
       order : parseInt(id),  
       };
-   //socket.on('connect', function(){  
+      socket.emit('sendchat', '');
+   socket.on('connect', function(){  
       socket.emit('adduser', dataorder);
-      console.log(dataorder);
-   // });
+      //console.log(dataorder);
+   });
+   socket.on('updaterooms', function(rooms, current_room) {
+    $('#rooms').empty();
+    console.log(rooms)
+    console.log(current_room)
+ });
+   // socket.on("disconnect", function(){
+   //    socket.disconnect();
+   //      console.log("client disconnected from server");
+   //  });
    var class_user = "<?=$_SESSION['data_user_class'];?>";
    // if(class_user=="lab"){
    socket.on('datalab', function (username, data) {

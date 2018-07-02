@@ -566,7 +566,8 @@
                                              echo  $status_show_commision='';   
                                               }
                                                ?>
-                                          <? if($arr[open][price_extra]==1){ 
+                                          <? if($arr[open][price_extra]==1){
+                                          //echo $arr[open][id]; 
                                              $res[cost] = $db->select_query("SELECT * FROM  product_price_list_all where  plan_setting=".$arr[open][id]." and country<>240 and status=1 and extra_country=1   ORDER BY  sort_country desc limit 1  ");
                                               $arr[cost] = $db->fetch($res[cost]);     
                                                   ?>
@@ -586,8 +587,11 @@
                                              </tbody>
                                           </table>
                                           <? } ?> 
-                                          <? if($arr[open][price_all]==1){ 
-                                             $res[cost] = $db->select_query("SELECT * FROM  product_price_list_all where  plan_setting=".$arr[open][id]." and country=240 and status=1    ORDER BY  sort_country desc limit 1  ");
+
+                                          <? if($arr[open][price_all]==0) { 
+
+                                             $res[cost] = $db->select_query("SELECT * FROM  product_price_list_all where  plan_setting =".$arr[open][id]." and country = 240 and status=1    ORDER BY  sort_country desc limit 1  ");
+
                                               $arr[cost] = $db->fetch($res[cost]);     
                                                    ?>
                                           <table width="100%" border="0" cellspacing="1" cellpadding="1">
