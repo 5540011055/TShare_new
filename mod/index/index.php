@@ -1020,10 +1020,10 @@
       order : parseInt(id),  
       };
       socket.emit('sendchat', '');
-   socket.on('connect', function(){  
+   // socket.on('connect', function(){  
       socket.emit('adduser', dataorder);
       //console.log(dataorder);
-   });
+   // });
    socket.on('updaterooms', function(rooms, current_room) {
     $('#rooms').empty();
     console.log(rooms)
@@ -1064,7 +1064,6 @@
    	   var check_open_incom = $('#check_id_income_lab').val();
    	   if (typeof check_open_incom != 'undefined'){
    	   		console.log(check_open_incom);
-   	   		openViewPrice();
    	   }
    	}
    });
