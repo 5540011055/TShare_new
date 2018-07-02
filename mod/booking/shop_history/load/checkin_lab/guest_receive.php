@@ -1,5 +1,5 @@
-<div>
-   <table width="100%" border="0" cellspacing="2" cellpadding="0" class="div-all-checkin border-alert" id="box_guest_receive">
+<div class="div-all-checkin">
+   <table width="100%" border="0" cellspacing="2" cellpadding="0" class=" " id="box_guest_receive">
       <tbody>
          <tr>
             <td width="60" rowspan="2" >

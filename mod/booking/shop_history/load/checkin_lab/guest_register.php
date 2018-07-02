@@ -1,5 +1,5 @@
 
-
+<div class="div-all-checkin">
 <table width="100%" border="0" cellspacing="2" cellpadding="0" class="div-all-checkin " id="box_guest_register">
    <tbody>
       <tr>
@@ -24,6 +24,7 @@
       </tr>
    </tbody>
 </table>
+</div>
 
 <!--<?php 
    if(file_exists("../data/fileupload/store/guest_register_".$arr[book][id].".jpg")==0){ ?>

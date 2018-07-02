@@ -688,11 +688,13 @@
 
    	var place_num = document.getElementById('car_plate').value;
     console.log($('#time_num').val());
-//    return;
-            /* $.post('send_mail/new.php',$('#form_booking').serialize(),function(data){
+	
+/*	 var url_mail = "mail.php?key=new_shop";
+             $.post(url_mail,$('#form_booking').serialize(),function(data){
                   console.log(data);
                });
-               return;*/
+      return;         */
+	
      console.log($('#car_type').val())
       if ($('#car_type').val() == 0) {
          swal("กรุณาเลือก !", "ประเภทรถ", "warning");

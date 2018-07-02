@@ -252,11 +252,11 @@
 					  <span class="checkmark"></span>
 					</label>-->
 					<label class="container-cb">ค่าจอด + ค่าหัว
-					  <input type="radio" name="radio" onclick="selectOption('park','person','pp');">
+					  <input type="radio" name="radio" onclick="selectOption('park','person','pp');" id="pp_radio">
 					  <span class="checkmark"></span>
 					</label>
 					<label class="container-cb">ค่าจอด + ค่าคอมมิชชั่น
-					  <input type="radio" name="radio" value="park"  onclick="selectOption('park','com','pc');">
+					  <input type="radio" name="radio" value="park"  onclick="selectOption('park','com','pc');" id="pc_radio">
 					  <span class="checkmark"></span>
 					</label>
 					<!--<label class="container-cb">ค่าจอด + ค่าคอมมิชชั่น
@@ -356,8 +356,8 @@
                      	<td align="center">
                      		<div>
                      		 	<span class="btn " onclick="minusNation('regis_cn_pax','cn');"><i class="fa fa-minus" aria-hidden="true"></i></span>
-                                <span class="font-24" id="regis_cn_pax"><?=$arr[project][pax]?></span>
-                                <input type="hidden" id="regis_cn_pax_input" value="<?=$arr[project][pax]?>" name="regis_cn_pax_input" />
+                                <span class="font-24" id="regis_cn_pax"><?=$arr[project][adult]?></span>
+                                <input type="hidden" id="regis_cn_pax_input" value="<?=$arr[project][adult]?>" name="regis_cn_pax_input" />
                                 <span  class="btn " onclick="pushNation('regis_cn_pax','cn');"><i class="fa fa-plus" aria-hidden="true"></i></span>
                             </div>
                      	</td>
@@ -500,10 +500,24 @@ $(document).ready(function(){
 	});   
 
 	var json = '<?=$json_price_plan;?>';
+	console.log(json);
 	if(json!=""){
-		/*var obj = JSON.parse(json);
+		var obj = JSON.parse(json);
 		console.log(obj);
-		$.each(obj, function( key, value ) {
+		console.log(obj.check_park);
+		console.log(obj.check_person);
+		console.log(obj.check_com);
+		
+		if(obj.check_park = 1 && obj.check_person == 1){
+			console.log('pp');
+			$('#pp_radio').click();
+		}
+		
+		if(obj.check_park = 1 && obj.check_com == 1){
+			console.log('pp');
+			$('#pc_radio').click();
+		}
+		/*$.each(obj, function( key, value ) {
 			if(value==1){
 				$('#'+key).click();
 				$('#'+key+'_tb').show();
@@ -562,8 +576,7 @@ function selectPay(id){
    		console.log($('#check_'+id).val());
    		calculate();
    }
-</script>
-<script>
+
    
    function check(id,num){
     console.log(id);	
@@ -594,7 +607,7 @@ function selectPay(id){
    		var url_save = "mod/booking/shop_history/php_shop.php?action=approve_pay_driver_admin";
    	 $.post(url_save ,$('#form_save_pay').serialize(),function( data ) 			{
    				console.log(data);
-   				/*swal ( "<?=t_save_succeed;?>" ,  "" ,  "success" );
+   				swal ( "<?=t_save_succeed;?>" ,  "" ,  "success" );
    				$('.button-close-popup-mod-3').click();
    				var message = "";
 				socket.emit('sendchat', message);
@@ -606,7 +619,7 @@ function selectPay(id){
    				 $.post(send_noti ,function( re ){
    				 	console.log(re);
    				 });
-   				 */
+   				 
    			});
    			
    	});

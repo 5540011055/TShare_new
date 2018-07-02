@@ -98,8 +98,8 @@ if ($_GET[action] == "add") {
         $data["wechat_id"] = $_POST[wechat_id];
         $data["whatsapp_id"] = $_POST[whatsapp_id];
         $data["line_id"] = $_POST[line_id];
-        $data["post_date"] = TIMESTAMP ;
-        $data["update_date"] = TIMESTAMP;
+        $data["post_date"] = time();
+        $data["update_date"] = time();
     $data[result] = $db->add_db('web_driver',$data);
     
     header('Content-Type: application/json');

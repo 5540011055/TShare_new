@@ -15,7 +15,8 @@
    	   $("#btn_guest_register").css('background-color','#666666');
 </script>
 <? } ?>-->
-<table width="100%" border="0" cellspacing="2" cellpadding="0" class="div-all-checkin" id="box_guest_register">
+<div class="div-all-checkin">
+<table width="100%" border="0" cellspacing="2" cellpadding="0" id="box_guest_register">
    <tbody>
       <tr>
          <td width="60" rowspan="2">
@@ -36,6 +37,7 @@
       </tr>
    </tbody>
 </table>
+</div>
 <!--<?php 
    if(file_exists("../data/fileupload/store/guest_register_".$arr[book][id].".jpg")==0){ ?>
 <script>

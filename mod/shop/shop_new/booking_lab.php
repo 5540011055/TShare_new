@@ -721,7 +721,8 @@ return $name_type;
               $.post('send_messages/send_onesignal.php?key=new_shop&order_id='+response.last_id+'&vc='+response.invoice+'&m='+response.airout_m,{ driver : "<?=$user_id?>" ,nickname : "<?=$arr[driver][nickname]?>",car_plate : place_num },function(data){
                   console.log(data);
                });
-                $.post('mail.php?key=new_shop',{ driver : "<?=$user_id?>" ,nickname : "<?=$arr[driver][nickname]?>",car_plate : place_num },function(data){
+                var url_mail = "mail.php?key=new_shop";
+             $.post(url_mail,$('#form_booking').serialize(),function(data){
                   console.log(data);
                });
                

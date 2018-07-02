@@ -1054,6 +1054,7 @@
    	   var check_open_incom = $('#check_id_income_lab').val();
    	   if (typeof check_open_incom != 'undefined'){
    	   		console.log(check_open_incom);
+   	   		openViewPrice();
    	   }
    	}
    });

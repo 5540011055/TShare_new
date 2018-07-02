@@ -4,7 +4,8 @@
    $('#status_driver_topoint').load(url);*/
 </script>
 
-<table width="100%" border="0" cellspacing="2" cellpadding="0" class="div-all-checkin border-alert" id="box_driver_topoint">
+<div class="div-all-checkin">
+<table width="100%" border="0" cellspacing="2" cellpadding="0" class=" border-alert" id="box_driver_topoint">
    <tbody>
       <tr>
          <td width="60" rowspan="2">
@@ -29,7 +30,7 @@
       </tr>
    </tbody>
 </table>
-
+</div>
 <script>
 //	var type = "driver_topoint";
 	$.ajax({

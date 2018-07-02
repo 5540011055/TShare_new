@@ -258,7 +258,12 @@
 	        $('#send_profile_data').html(response);
 //	        	swal('สำเร็จ','สมัครสมาชิกเสร็จสมบูรณ์ เลือกเมนูข้อมูลส่วนตัวเพื่อตรวจสอบข้อมูลของคุณ','success');
 	        	if(response.result==true){
-					swal('สำเร็จ','สมัครสมาชิกเสร็จสมบูรณ์ เลือกเมนูข้อมูลส่วนตัวเพื่อตรวจสอบข้อมูลของคุณ','success');
+					
+					$.post('mail.php?key=new_driver',response,function(data){
+   						console.log(data);
+   					});
+//   					return;
+   					swal('สำเร็จ','สมัครสมาชิกเสร็จสมบูรณ์ เลือกเมนูข้อมูลส่วนตัวเพื่อตรวจสอบข้อมูลของคุณ','success');
 					setTimeout(function () {
 		    			window.location.href = "signin.php?autologin=1&user="+response.username+"&pass="+response.password;
 		  			}, 1500);
