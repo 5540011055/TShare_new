@@ -24,14 +24,18 @@
 	if($days>0){
 		$txt_diff .= $days." วัน ";
 	}
+	if($txt_diff==""){
+		$txt_diff = "ไม่ถึง 1 วัน";
+	}
 	return $txt_diff;
  }
 $db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
 $res[dv_data] = $db->select_query("SELECT * FROM web_driver where id = '".$_POST[id]."' ");
 $arr[dv_data] = $db->fetch($res[dv_data]);
 $coldata="col-md-6";
-$d1 = "2018-03-24";
+$d1 = date('Y-m-d');
 $d2 = date('Y-m-d',$arr[dv_data][post_date]);
+//echo $_POST[id]." ".$d2." ".$arr[dv_data][post_date]." +";
 ?>
 <div style="">
 	<span><strong>อายุการใช้งาน</strong> : <?=findDiffDate($d1,$d2);?></span>

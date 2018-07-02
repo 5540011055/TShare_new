@@ -86,8 +86,8 @@
     font-size: 18px;
     border-radius: 25px;
     color: #fff;
-    padding: 8px 30px;
-    
+    padding: 5px 30px;
+    border: 2px solid #3b5998;
     margin-bottom: 8px;"><div><? echo t_send ?></div></td>
    </div>
  </td>

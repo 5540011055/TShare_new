@@ -590,7 +590,10 @@ function checkTypePay($id){
 		var class_user = '<?=$data_user_class;?>';
 		console.log(class_user);
 		if(class_user=="lab"){
-			var url_load= "empty_style.php?name=booking/shop_history/load&file=income_driver_lab&id=<?=$arr[book][id]?>";
+			
+//			var url_load= "empty_style.php?name=booking/shop_history/load&file=income_driver_lab&id=<?=$arr[book][id]?>";
+			var url_load= "empty_style.php?name=booking/shop_history/load&file=income_driver_lab_new&id=<?=$arr[book][id]?>";
+			
 		}else if(class_user=="taxi"){
 			var url_load= "empty_style.php?name=booking/shop_history/load&file=income_driver_taxi&id=<?=$arr[book][id]?>";
 		}

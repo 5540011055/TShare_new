@@ -159,14 +159,14 @@ if($_GET[action]=='approve_pay_driver_admin'){
 	if($_POST[check_com]==NULL){
 		$_POST[check_com] = 0;
 	}
-	$data_plan[check_park] = $_POST[check_park];
-	$data_plan[check_person] = $_POST[check_person];
-	$data_plan[check_com] = $_POST[check_com];
+	$data_plan[check_park] = $_POST[park];
+	$data_plan[check_person] = $_POST[person];
+	$data_plan[check_com] = $_POST[com];
 	
 	$data[income_driver] = json_encode($data_plan);
 	
 	$db->connectdb(DB_NAME_APP, DB_USERNAME, DB_PASSWORD);
-	$data[result] = $db->add_db("pay_history_driver_shopping",$data); 
+//	$data[result] = $db->add_db("pay_history_driver_shopping",$data); 
 	
 	$cn[id] =  $_POST[cn];
 	$cn[pax] =  $_POST[regis_cn_pax_input];
@@ -187,11 +187,13 @@ if($_GET[action]=='approve_pay_driver_admin'){
 	$data_ob[price_park_total] = $_POST[park_price];
 	$data_ob[price_person_unit] = $_POST[price_person_cn];
 	$data_ob[price_person_total] = $_POST[total_person];
+	$data_ob[commission_present] = $_POST[commission];
 	$data_ob[driver_payment_date] = time();
 	$data_ob[json_nation_price] = json_encode($json_nation_price);
 	$data_ob[check_lab_pay] = 1;
 	
-	$data_ob[result] = $db->update_db("order_booking",$data_ob,"id = '".$_POST[order_id]."' "); 
+	
+//	$data_ob[result] = $db->update_db("order_booking",$data_ob,"id = '".$_POST[order_id]."' "); 
 	
 	$return[his] = $data;
 	$return[book] = $data_ob;

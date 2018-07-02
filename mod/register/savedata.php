@@ -218,11 +218,12 @@ $newdriver .= "</newdriver>";
 ?>
 
     <script>
+    console.log("signin.php?autologin=1&user=<?=$provincecode?><?=$member_in?>&pass=<?=$password?>");
 	   setTimeout(function () {
 //  $("#login_logo").attr("src", "images/applogo.png");autologin
  ///window.location.href = "index.php?newlogin=1"; //will redirect to your blog page (an ex: blog.html)
  window.location.href = "signin.php?autologin=1&user=<?=$provincecode?><?=$member_in?>&pass=<?=$password?>"; //will redirect to your blog page (an ex: blog.html)
-}, 3000); //w
+}, 1000); //w
  
 	</script>
     
