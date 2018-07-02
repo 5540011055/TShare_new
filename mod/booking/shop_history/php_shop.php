@@ -170,10 +170,12 @@ if($_GET[action]=='approve_pay_driver_admin'){
 	
 	$cn[id] =  $_POST[cn];
 	$cn[adult] =  $_POST[regis_cn_pax_input];
+	$cn[register] =  $_POST[cn_pax_input];
 	$cn[price_unit] =  $_POST[price_person_cn];
 	
 	$oth[id] =  $_POST[oth];
-	$oth[adult] =  $_POST[regis_oth_pax_input];
+	$oth[adult] =  $_POST[oth_pax_input];
+	$oth[register] =  $_POST[regis_oth_pax_input];
 	$oth[price_unit] =  $_POST[price_person_oth];
 	
 	$json_nation_price[0] = $cn;
