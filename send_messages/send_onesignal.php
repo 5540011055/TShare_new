@@ -30,6 +30,8 @@ function sendMessage() {
 			'url' => "https://www.welovetaxi.com/app/demo_new2/index_sheet.php?name=index&file=open_order&order_id=".$order_id."&vc=".$invoice."&ios=1",
 			'contents' => $content,
 			'headings' => $heading,
+			'ios_badgeType' => 'Increase',
+			'ios_badgeCount' => '1',
 			'large_icon' => "https://www.welovetaxi.com/app/demo_new/images/app/ic_launcher.png"
 		);
 	}
@@ -48,6 +50,8 @@ function sendMessage() {
 								),
 			'contents' => $content,
 			'headings' => $heading,
+			'ios_badgeType' => 'Increase',
+			'ios_badgeCount' => '1',
 			'large_icon' => "https://www.welovetaxi.com/app/demo_new/images/app/ic_launcher.png"
 		);
 	}

@@ -297,7 +297,10 @@
    		closeOnCancel: true
    	},
    	function(){
+   					
    	 $.post( "mod/booking/shop_history/php_shop.php?action=approve_pay_driver_taxi",{ order_id : order_id},function( data ) 		{
+   	 					var message = "";
+   	 					socket.emit('sendchat', message);
    	 					console.log(data);
    			  			swal ( "<?=t_save_succeed;?>" ,  "" ,  "success" );
 						openViewPrice();
@@ -306,8 +309,8 @@
 						$.post( url_noti,function( re ){
 		   				 	console.log(re);
 		   				 });
-		   				 var message = "";
-						socket.emit('sendchat', message);
+		   				 
+						
 		   				navigator.geolocation.getCurrentPosition(showPosition); 
 		   				var url_completed = "mod/booking/shop_history/php_shop.php?action=check_driver_complete&order_id="+order_id+'&lat='+$('#lat').val()+'&lng='+$('#lng').val();
 						console.log(url_completed);
