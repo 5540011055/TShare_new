@@ -51,11 +51,13 @@ $.ajax({
 			}
 		});
    $("#btn_guest_receive").click(function(){ 
+   	
     if($('#guest_receive_check_click').val()==0){
+    		$('#body_dialog_custom_load').html(load_sub_mod);
     	$( "#dialog_custom" ).show();
 //   	 var url_load= "load_page_mod_3.php?name=booking/load/form&file=checkin_popup&id=<?=$arr[book][id]?>&type=guest_receive";
    	var url_load= "empty_style.php?name=booking/shop_history/load&file=checkin_popup&id=<?=$arr[book][id]?>&type=guest_receive";
-    	$('#body_dialog_custom_load').html("<br/><br/><br/><br/>");
+//    	$('#body_dialog_custom_load').html("<br/><br/><br/><br/>");
   		$('#body_dialog_custom_load').load(url_load); 
     }else{
     }

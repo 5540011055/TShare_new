@@ -123,21 +123,24 @@ function checkTypePay($id){
 
  if($arr[book][status]=='CANCEL'){
 			 if($arr[book][cancel_type]=='1'){
-				$status_txt = '<font color="#ff0000">'.t_customer_no_register.'</font>';
+				$status_txt = '<font color="#ff0000"> ยกเลิก '.t_customer_no_register.'</font>';
 			}
 			else if($arr[book][cancel_type]=='2'){
-				$status_txt = '<font color="#ff0000">'.t_customer_not_go.'</font>';
+				$status_txt = '<font color="#ff0000"> ยกเลิก '.t_customer_not_go.'</font>';
 			}
 			else if($arr[book][cancel_type]=='3'){
-				$status_txt = '<font color="#ff0000">'.t_wrong_selected_place.'</font>';
+				$status_txt = '<font color="#ff0000"> ยกเลิก '.t_wrong_selected_place.'</font>';
+			}else{
+				$status_txt = '<font color="#ff0000">ยกเลิก ไม่ระบุ</font>';
 			}
-		}
-		else if($arr[book][status]=='NEW'){
+}
+else if($arr[book][status]=='NEW'){
 			$status_txt = '<font color="#3b5998">'.t_new.'</font>';
 		}
-		else if($arr[book][status]=='CONFIRM'){
+else if($arr[book][status]=='CONFIRM'){
 			$status_txt = '<font color="#54c23d">'.t_success.'</font>';
 		}
+
 	if($arr[book][driver_complete]==1){
 		$cancel_shop = 'display:none;';
 	}
@@ -391,6 +394,7 @@ function checkTypePay($id){
 	
 	
 	<?php 
+	if($arr[book][status]!='CANCEL'){
 	if($data_user_class=='taxi'){	
 	$txt_btn_pay = 'ยืนการการรับเงิน';
 	
@@ -464,7 +468,6 @@ function checkTypePay($id){
 	</div>
 	<? }
 	?>
-
 	<div style="padding: 5px 0px;">
 	 <span class="text-cap font-26"><?=t_income;?></span>
 	 <table class="onlyThisTable" width="100%">
@@ -489,7 +492,7 @@ function checkTypePay($id){
 	 	</tr>
 	 </table>
 	</div>
-
+<? } ?>
 
 </div>
 <input type="hidden" id="check_cause" value="0"/>
@@ -571,7 +574,7 @@ function checkTypePay($id){
  	});
 
 
-	function ViewPhoto(id,type,date,d){
+	function ViewPhoto(id,type,date){
 		console.log(id+" "+type+" "+date)
 		if(type=="doc_pay"){
 			var url = 'load_page_photo.php?name=booking/load/form&file=iframe_photo&id='+id+'&type='+type+'&date='+date+'&plan='+d;
@@ -652,16 +655,19 @@ function checkTypePay($id){
    function(isConfirm){
      if (isConfirm){
      	 
+       if(! $('input[name="type"]').is(':checked')){
+	   		swal('กรุณาเลือกสาเหตุที่ยกเลิก','','error');
+	   }	 
+
        console.log($('#form_type_cancel' ).serialize());
-//	   var cause = $('#check_cause').val();
-//	   return;
+
 	   var url = "mod/booking/shop_history/php_shop.php?type=cancel&id="+id;
 	   
 	   console.log(url+" ");
 
 	   $.post( url,$('#form_type_cancel' ).serialize(), function( data ) {
 	   		console.log(data);
-//	   		if(data.reult == true && data.history.result == true){
+
 				$('#btn_cancel_book_'+id).hide();
 				var url_check_st = "mod/booking/shop_history/load/component_shop.php?request=check_status_shop&status="+data.status;
 				console.log(url_check_st);
@@ -669,7 +675,7 @@ function checkTypePay($id){
 					$('#status_booking_detail').html(com);
 					swal("<?=t_success;?>", "", "success");
 				});
-//			}
+
 	   });
 
      }

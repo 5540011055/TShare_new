@@ -123,7 +123,7 @@
 	var array_his = [];
 	
    function filterMenu(type){
-	$('#load_booking_data').html(load_main_mod);
+	$('#load_booking_data').html(load_sub_mod);
 //	return
    	console.log(type);
    $('.tocheck').removeClass('btn_filter_active');

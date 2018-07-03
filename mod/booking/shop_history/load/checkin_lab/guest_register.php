@@ -1,6 +1,6 @@
 
 <div class="div-all-checkin">
-<table width="100%" border="0" cellspacing="2" cellpadding="0" class="div-all-checkin " id="box_guest_register">
+<table width="100%" border="0" cellspacing="2" cellpadding="0" class="" id="box_guest_register">
    <tbody>
       <tr>
          <td width="60" rowspan="2">
@@ -57,6 +57,7 @@
 			}
 		});*/
    $("#btn_guest_register").click(function(){ 
+   	$('#body_dialog_custom_load').html(load_sub_mod);
      if($('#guest_register_check_click').val()==0){
    /*	$( "#main_load_mod_popup_3" ).toggle();
     var url_load= "load_page_mod_3.php?name=booking/load/form&file=checkin_popup&id=<?=$arr[book][id]?>&type=guest_register";
@@ -64,7 +65,7 @@
     $('#load_mod_popup_3').load(url_load); */
     $( "#dialog_custom" ).show();
    	var url_load= "empty_style.php?name=booking/shop_history/load&file=checkin_popup&id=<?=$arr[book][id]?>&type=guest_register";
-    	$('#body_dialog_custom_load').html("<br/><br/><br/><br/>");
+    	
   		$('#body_dialog_custom_load').load(url_load); 
     
    }else{
