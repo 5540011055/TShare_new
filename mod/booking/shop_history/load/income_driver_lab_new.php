@@ -85,19 +85,29 @@
 	 $park_price_default_other = $arr[price_person_other][price_park_driver];
 	 
 	 $array_nation_price = json_decode($arr[book][json_nation_price]);
-	 foreach ($array_nation_price as $val){ 
-	 	if($val->id=="239"){
-			$regis_cn_num = $val->register;
-			if($regis_cn_num<1){
-				$regis_cn_num = 0;
+	 if($arr[book][json_nation_price]!=""){
+	 	foreach ($array_nation_price as $val){ 
+		 	if($val->id=="239"){
+				
+				if($val->register>1){
+					$regis_cn_num = $val->register;
+				}else{
+					$regis_cn_num = 0;
+				}
+			}else{
+			
+				if($val->register>1){
+					$regis_oth_num = $val->register;
+				}else{
+					$regis_oth_num = 0;
+				}
 			}
-		}else{
-			$regis_oth_num = $val->register;
-			if($regis_oth_num<1){
-				$regis_oth_num = 0;
-			}
-		}
+		 }
+	 }else{
+	 	$regis_cn_num = 0;
+	 	$regis_oth_num = 0;
 	 }
+	 
    ?>
 <style>
 	

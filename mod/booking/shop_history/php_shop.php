@@ -189,7 +189,7 @@ if($_GET[action]=='approve_pay_driver_admin'){
 	$data_ob[price_park_total] = $_POST[park_price];
 	$data_ob[price_person_unit] = $_POST[price_person_cn];
 	$data_ob[price_person_total] = $_POST[total_person];
-	$data_ob[commission_present] = $_POST[commission];
+	$data_ob[commission_persent] = $_POST[commission];
 	$data_ob[driver_payment_date] = time();
 	$data_ob[json_nation_price] = json_encode($json_nation_price);
 	$data_ob[check_lab_pay] = 1;

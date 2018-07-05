@@ -152,9 +152,6 @@
 </style>
 <div style="/*padding: 5px 5px;*/ margin-top: 25px;">
    <div style="padding: 15px 5px;">
-   <?php 
-   	
-   ?>
       <form method="post" id="form_save_pay">
          <input type="hidden" name="order_id" value="<?=$arr[book][id];?>" />
          <input type="hidden" name="invoice" value="<?=$arr[book][invoice];?>" />
