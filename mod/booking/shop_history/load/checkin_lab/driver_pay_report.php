@@ -52,10 +52,10 @@
 		});
       $("#btn_driver_pay_report").click(function(){
       	if($('#driver_pay_report_check_click').val()==0){
-       		
+       			$('#body_dialog_custom_load').html(load_sub_mod);
           $( "#dialog_custom" ).show();
    	var url_load= "empty_style.php?name=booking/shop_history/load&file=checkin_popup&id=<?=$arr[book][id]?>&type=driver_pay_report";
-    	$('#body_dialog_custom_load').html("<br/><br/><br/><br/>");
+//    	$('#body_dialog_custom_load').html("<br/><br/><br/><br/>");
   		$('#body_dialog_custom_load').load(url_load); 
       }else{
       }

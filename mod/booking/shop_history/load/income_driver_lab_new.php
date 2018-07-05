@@ -83,6 +83,31 @@
 	 }
 	 $park_price_default_pc = $arr[price_person_cn_pc][price_park_driver];
 	 $park_price_default_other = $arr[price_person_other][price_park_driver];
+	 
+	 $array_nation_price = json_decode($arr[book][json_nation_price]);
+	 if($arr[book][json_nation_price]!=""){
+	 	foreach ($array_nation_price as $val){ 
+		 	if($val->id=="239"){
+				
+				if($val->register>1){
+					$regis_cn_num = $val->register;
+				}else{
+					$regis_cn_num = 0;
+				}
+			}else{
+			
+				if($val->register>1){
+					$regis_oth_num = $val->register;
+				}else{
+					$regis_oth_num = 0;
+				}
+			}
+		 }
+	 }else{
+	 	$regis_cn_num = 0;
+	 	$regis_oth_num = 0;
+	 }
+	 
    ?>
 <style>
 	
@@ -365,7 +390,7 @@
                      		<div>
                                 <span class="btn " onclick="minusNation('oth_pax','oth');" ><i class="fa fa-minus" aria-hidden="true"></i></span>
                             	<span class="font-24" id="oth_pax">0</span>
-                                <input type="hidden" id="oth_pax_input" value="0" name="regis_oth_pax_input" />
+                                <input type="hidden" id="oth_pax_input" value="0" name="oth_pax_input" />
                                 <span  class="btn " onclick="pushNation('oth_pax','oth');"><i class="fa fa-plus" aria-hidden="true"></i></span>
                             </div>
                      	</td>
@@ -374,17 +399,17 @@
                      	<td><span class="font-24">ลงทะเบียน</span></td>
                      	<td align="center">
                      		<div>
-                                <span class="btn " onclick="minusNation('cn_pax','oth');" ><i class="fa fa-minus" aria-hidden="true"></i></span>
-                            	<span class="font-24" id="cn_pax">0</span>
-                                <input type="hidden" id="cn_pax_input" value="0" name="regis_oth_pax_input" />
-                                <span  class="btn " onclick="pushNation('cn_pax','oth');"><i class="fa fa-plus" aria-hidden="true"></i></span>
+                                <span class="btn " onclick="minusNation('cn_pax','cn');" ><i class="fa fa-minus" aria-hidden="true"></i></span>
+                            	<span class="font-24" id="cn_pax"><?=$regis_cn_num;?></span>
+                                <input type="hidden" id="cn_pax_input" value="<?=$regis_cn_num;?>" name="cn_pax_input" />
+                                <span  class="btn " onclick="pushNation('cn_pax','cn');"><i class="fa fa-plus" aria-hidden="true"></i></span>
                             </div>
                      	</td>
                      	<td align="center">
                      		<div>
                                 <span class="btn " onclick="minusNation('regis_oth_pax','oth');" ><i class="fa fa-minus" aria-hidden="true"></i></span>
-                            	<span class="font-24" id="regis_oth_pax">0</span>
-                                <input type="hidden" id="regis_oth_pax_input" value="0" name="regis_oth_pax_input" />
+                            	<span class="font-24" id="regis_oth_pax"><?=$regis_oth_num;?></span>
+                                <input type="hidden" id="regis_oth_pax_input" value="<?=$regis_oth_num;?>" name="regis_oth_pax_input" />
                                 <span  class="btn " onclick="pushNation('regis_oth_pax','oth');"><i class="fa fa-plus" aria-hidden="true"></i></span>
                             </div>
                      	</td>

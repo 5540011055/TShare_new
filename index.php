@@ -76,6 +76,20 @@
         +'</div>'
         +'</div>'
         +'</div>';
+        
+    var load_sub_mod =  '<div class="sub-loader">'
+    +'<div class="preloader-wrapper active">'
+    +'<div class="spinner-layer spinner-blue-only">'
+      +'<div class="circle-clipper left">'
+       +'<div class="circle"></div>'
+      +'</div><div class="gap-patch">'
+        +'<div class="circle"></div>'
+      +'</div><div class="circle-clipper right">'
+        +'<div class="circle"></div>'
+      +'</div>'
+    +'</div>'
+  +'</div>';
+  +'</div>';
             var load_main_mod_table='<br><center><span  class="navload"><i class="fa fa-circle-o-notch fa-spin 4x" style="font-size:40px;   margin-top:10px " ></i></center></span><div style="font-size:14px; color:#333333; font-weight:normal;  margin-top:10px " ><center><span id="navload_topic"> โหลดข้อมูล</span></center></div';
    </script>
    <body >
@@ -325,6 +339,15 @@
    }
 </script>
 <style>
+ .btn-primary{
+     background-color: <?=$main_color;?> !important;
+     color: #fff !important;
+}
+	.sub-loader{
+		padding: 50px;
+    	width: 100%;
+    	text-align: center;
+	}
    .outer-loading-mod {
    position: fixed;
    margin-left: 0px;

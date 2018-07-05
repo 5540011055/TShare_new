@@ -21,6 +21,9 @@ if($_GET[key]=="new_shop"){
 		if($_POST[time_num]<10){
 			$mm = "0".$_POST[time_num];
 		}
+		if($_POST[adult]<1){
+			$_POST[adult] = 0;
+		}
    		
    		$txt_short2 = 'สถานที่ '. $arr[place_shop][topic_th].' ';
    		$txt_short2 .= 'ทำรายการเวลา '.$time_post.'  น. ';
@@ -109,6 +112,14 @@ $message .= $output;
 //        $address = "system.goldenbeachgroup@gmail.com"; ///// E-mail send to
         $address = "chokdee@welovetaxi.com"; ///// E-mail send to
         $mail->AddAddress($address, "E-mail");
+        echo $mail->Send();
+        
+        $address2 = "chokdee25222525@gmail.com"; ///// E-mail send to
+        $mail->AddAddress($address2, "E-mail");
+        echo $mail->Send();
+        
+        $address3 = "system.goldenbeachgroup@gmail.com"; ///// E-mail send to
+        $mail->AddAddress($address3, "E-mail");
         echo $mail->Send();
         
 ?>
