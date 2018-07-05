@@ -120,6 +120,7 @@ function checkTypePay($id){
  	$full_name_driver =  $arr[projectdriver][name_en];
 // 	$car_color = $arr[qr_car][color];
  }
+ $full_name_driver = $arr[projectdriver][name]." (".$arr[projectdriver][nickname].")";
 
  if($arr[book][status]=='CANCEL'){
 			 if($arr[book][cancel_type]=='1'){
