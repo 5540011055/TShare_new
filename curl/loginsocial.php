@@ -15,29 +15,36 @@ $db = New DB();
   $db->connectdb(DB_NAME_APP, DB_USERNAME, DB_PASSWORD);
   // $db = New DB();
  $db->connectdb('admin_app','da_admin','BrgNNrUNR3');
-     
+      $fname =  array();
 		 
       //echo $username;
+      $type_login = $_POST[type]; 
+      $username = $_POST[username];
+      $password = $_POST[password];
       if ($type_login == 'nomal') {
-          $type_login = $_POST[type];      
-          $username = $_POST[username];
-          $password = $_POST[password];
+              //  $fname['status'] =  "0";      
+              // $fname['username'] =  '';
+              //  $fname['case'] =  'add sssssssss';
+              // $rtn = array();
+              // array_push($rtn,$fname); 
+          
+          //echo json_encode($rtn);
      
         $res = $db->select_query("SELECT * FROM web_driver where username = '". $username ."'");
         
       }
-      else{
-         $type_login = $_POST[type];      
-        $username = $_POST[username];
-        $password = $_POST[password];
+      else if($type_login != 'nomal'){
+         // $type_login = $_POST[type];      
+        
         $name = $_POST[name];
         $email = $_POST[email];
-        $fname =  array();
+       
         $url = $_POST[img];
         $res = $db->select_query("SELECT * FROM web_driver where username_login = '". $username ."'");
       }
       
       $arr = $db->fetch($res);
+      //echo json_encode($username);
       if (!$arr) {
           $db = New DB();
           $db->connectdb(DB_NAME_APP, DB_USERNAME, DB_PASSWORD);
@@ -49,32 +56,44 @@ $db = New DB();
           $data[password] = $username;
           $data[user_class] = 'taxi';
           $data[post_date] = time();
-
-          $add = $db->add_db("web_driver",$data); 
+          if ($type_login == 'nomal') {
+             $fname['status'] =  "2";      
+              $fname['username'] =  '';
+               $fname['case'] =  'no user';
+              $rtn = array();
+              array_push($rtn,$fname);
+              echo json_encode($rtn);
+          }
+          if ($type_login != 'nomal') {
+             $add = $db->add_db("web_driver",$data);
+          }
+          
         
           if ($add === TRUE) {
-              $last_id = mysql_insert_id();
+              // $last_id = mysql_insert_id();
               
               $fname['status'] =  "1";      
               $fname['username'] =  $last_id;
+               $fname['case'] =  'add success';
               $rtn = array();
               array_push($rtn,$fname);                                          
                                         
-              $_SESSION['data_user_name'] = $username; 
-              $_SESSION['data_user_password'] = $username; 
-              $_SESSION['data_user_id'] = $last_id ; 
-              $_SESSION['data_user_class'] = 'taxi' ;
-              $img = 'data/pic/driver/small/'.$username.'.jpg';
-              file_put_contents($img, file_get_contents($url));
+              // $_SESSION['data_user_name'] = $username; 
+              // $_SESSION['data_user_password'] = $username; 
+              // $_SESSION['data_user_id'] = $last_id ; 
+              // $_SESSION['data_user_class'] = 'taxi' ;
+              // $img = 'data/pic/driver/small/'.$username.'.jpg';
+              // file_put_contents($img, file_get_contents($url));
               echo json_encode($rtn);     
                      
                       
           } else {
              $fname['status'] =  "0";      
               $fname['username'] =  '';
+              $fname['case'] =  'n';
               $rtn = array();
               array_push($rtn,$fname);
-              echo json_encode($rtn);
+              // echo json_encode($arr);
           }
         }
         else{
@@ -101,6 +120,7 @@ $db = New DB();
                  if ($arr[password_login] == $password) { // check id face compare field face_id
                     $fname['status'] =  "1";      
                     $fname['username'] =  $arr[id];
+                     $fname['case'] =  'google';
                     $rtn = array();
                     array_push($rtn,$fname); 
                     $_SESSION['data_user_name'] = $arr[username] ;
@@ -112,9 +132,11 @@ $db = New DB();
                 }
               }
               else{
+               // echo json_encode($arr);
                  if ($password == $arr[password]) {
                       $fname['status'] =  "1";      
                     $fname['username'] =  $arr[id];
+                     $fname['case'] =  'nomal';
                     $rtn = array();
                     array_push($rtn,$fname);
                      $_SESSION['data_user_name'] = $arr[username] ;
@@ -126,13 +148,16 @@ $db = New DB();
                        
                   }
                   else{
-                     $fname['status'] =  "0";      
+                     $fname['status'] =  "3";      
                     $fname['username'] =  '';
+                     $fname['case'] =  'nomal passwors ';
                     $rtn = array();
                     array_push($rtn,$fname);
                     echo json_encode($rtn);
                   }
               }
+            }
+              
 
 ?>
 

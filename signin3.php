@@ -1036,22 +1036,14 @@ $(document).ready(function(){
     })
         
     $('#login').on('click', function() {
-        var type_login = $('#by').val();
-      var param_data = $('#data').val();
-      var param_from = $('#from').val();
-      var param_to = $('#to').val();
-      var lat_f = $('#lat_f').val();
-      var lng_f = $('#lng_f').val();
-      var lat_t = $('#lat_t').val();
-      var lng_t = $('#lng_t').val();
-      var book = $('#book').val();
+        
 //      alert(type_login);
        console.log(password+username);
         $.ajax({
         type: 'POST',
         url: 'https://www.welovetaxi.com/app/demo_new2/curl/loginsocial.php',
-        data: {'username': password,'password':password,'type':'nomal'},
-        contentType: "application/json; application/x-www-form-urlencoded; charset=UTF-8",
+        data: {'username': username,'password':password,'type':'nomal'},
+        //contentType: "application/json; application/x-www-form-urlencoded; charset=UTF-8",
         dataType: 'json',
         success: function(res) { 
           console.log(res)
@@ -1062,9 +1054,13 @@ $(document).ready(function(){
                   window.location.href = url; 
                    
               }
-              else 
+              else if (res[0].status == 2) 
               {    
-                  $('#message').html('เข้าระบบไม่สำเร็จ').css('color', 'red');
+                  $('#message').html('เข้าระบบไม่สำเร็จ ไม่มีข้อมูลในระบบ').css('color', 'red');
+              }
+              else if (res[0].status == 3) 
+              {    
+                  $('#message').html('รหัสผิด').css('color', 'red');
               }
         }
     });
@@ -1215,7 +1211,7 @@ $(document).ready(function(){
         type: 'POST',
         url: 'https://www.welovetaxi.com/app/demo_new2/curl/loginsocial.php',
         data: {'username': profile.getId(),'name':profile.getName(),'password':profile.getId(),'type':'google','img':profile.getImageUrl(),'email':profile.getEmail()},
-        contentType: "application/json; application/x-www-form-urlencoded; charset=UTF-8",
+        //contentType: "application/json; application/x-www-form-urlencoded; charset=UTF-8",
         dataType: 'json',
         success: function(res) { 
           console.log(res)
