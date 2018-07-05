@@ -257,11 +257,11 @@
       </style>
    </head>
    <body >
-   	  <div align="right" style="margin-top: 5px; padding: 3px;"> 
+   	  <!-- <div align="right" style="margin-top: 5px; padding: 3px;"> 
    	  		<img src="images/icon_county/usa.ico" class="btn-lng" onclick="setCookie('lng', 'en', 1, 1);" >
    	  		<img src="images/icon_county/thai.ico" class="btn-lng" onclick="setCookie('lng', 'th', 1, 1);">
    	  		<img src="images/icon_county/china.ico" class="btn-lng" onclick="setCookie('lng', 'cn', 1, 1);">
-   	  </div>	
+   	  </div>	 -->
    	
       <table width="100%"  border="0" align="center" cellpadding="2" cellspacing="2" style="max-width:350px; " class="Absolute-Center">
          <tr>
