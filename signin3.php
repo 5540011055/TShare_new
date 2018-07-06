@@ -1297,7 +1297,7 @@ function btn_signup() {
           }
          
 
-        if (chID == true) {
+        if (chID == true && cpassword == cpassword2 && cuser != '') {
             $.ajax({
             type: 'POST',
             url: 'https://www.welovetaxi.com/app/demo_new2/curl/registeed.php',
