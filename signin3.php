@@ -256,6 +256,7 @@
                     <form>
                         <div class="row">
                             <!-- <div class="col-sm-8 " style="padding: 0" > -->
+                              <form name="form"  >
                                 <div class="">
                                     <div class="input-group">
                                         <span class="input-group-addon">
@@ -280,10 +281,11 @@
                                     <div id="message" style="text-align: center;"></div>
                                 </div>
                                 <div class="">
-                                    <div  type="submit" class=" btn-login " id="login" style="">
+                                    <button type="submit" class=" btn-login " id="login" style="width: 100% !important;">
                                         <span class="lng-login"> เข้าสู่ระบบ </span>
-                                    </div>
+                                    </button>
                                 </div>
+                              </form>
                                         
                                 <div class="col2">
                                     <div class="text-sign" >
@@ -1163,7 +1165,7 @@ $(document).ready(function(){
           console.log(res)
           if(res[0].status == 1)
               {
-                  var url = "https://www.welovetaxi.com/app/demo_new2/index.php?check_new_user="+res[0].username;
+                  var url = "https://www.welovetaxi.com/app/demo_new2/index.php?check_new_user="
                   console.log(url);
                   window.location.href = url; 
                    
@@ -1389,9 +1391,18 @@ function foget_password() {
           console.log(res)
           if(res[0].status == 1)
               {
-                  var url = "https://www.welovetaxi.com/app/demo_new2/index.php?check_new_user="+res[0].username;
+                var url = "https://www.welovetaxi.com/app/demo_new2/index.php?check_new_user="+res[0].username;
+                var url2 = "https://www.welovetaxi.com/app/demo_new2/index.php?check_new_user=";
                   console.log(url);
+                if (res[0].case == 'add success') {
+                  
+                 
                   window.location.href = url; 
+                }
+                else{
+                  window.location.href = url2;
+                }
+                  
                    
               }
               else 
@@ -1498,8 +1509,16 @@ function foget_password() {
           if(res[0].status == 1)
               {
                   var url = "https://www.welovetaxi.com/app/demo_new2/index.php?check_new_user="+res[0].username;
+                var url2 = "https://www.welovetaxi.com/app/demo_new2/index.php?check_new_user=";
                   console.log(url);
+                if (res[0].case == 'add success') {
+                  
+                 
                   window.location.href = url; 
+                }
+                else{
+                  window.location.href = url2;
+                }
                    
               }
               else 
