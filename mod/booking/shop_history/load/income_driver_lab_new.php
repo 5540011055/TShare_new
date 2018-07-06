@@ -297,7 +297,7 @@
                      <tr>
                         <td valign="middle">
                         	<label class="container-rd font-24" style="font-weight: unset;">จีน จำนวนเงิน
-							  <input type="radio" name="radio_park" checked="checked" role="cn"  onclick="setParkPrice('cn');">
+							  <input type="radio" name="radio_park" role="cn" checked="checked"  onclick="setParkPrice('cn');">
 							  <span class="checkmark-rd"></span>
 							</label>
                         </td>
@@ -578,10 +578,20 @@ function selectOption(p1,p2,type){
 		$('#tb_other_park').hide();
 		$('#park_price_cn').val('<?=$park_price_default;?>');
 		$('#txt_park_price_cn').text('<?=$park_price_default;?>');
+		$('#park_price').val('<?=$park_price_default;?>');
 	}else if(type=="pc"){
 		$('#tb_other_park').show();
 		$('#park_price_cn').val('<?=$park_price_default_pc;?>');
 		$('#txt_park_price_cn').text('<?=$park_price_default_pc;?>');
+		
+		
+		$($("input[name='radio_park']")).each (function() {
+		  	if($(this).prop('checked')==true){
+		  		var op = $(this).attr('role');
+		  		console.log(op);
+				$('#park_price').val($('#park_price_'+op).val());
+			}
+		});      
 	}
 	
 	calculate();
