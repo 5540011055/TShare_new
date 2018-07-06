@@ -292,20 +292,14 @@ else if($arr[book][status]=='CONFIRM'){
             <!-- <?=$arr[book][adult];?> -->
             &nbsp;
             <? } ?>
-            <? if($arr[book][child]>0){ ?>
-            <?=t_child;?> :
-            <?=$arr[book][child];?>
-            <? } ?><span id="num_final_edit"></span></span>
+            <span id="num_final_edit"></span></span>
             <span id="text_edit_persion" style="display: none;"><?
         			 if($arr[book][adult]>0){ ?>
             <?=t_adult;?> :
            
             &nbsp;
             <? } ?>
-            <? if($arr[book][child]>0){ ?>
-            <?=t_child;?> :
-            
-            <? } ?></span>
+           </span>
         			
         			<input type="number" name="" id="num_edit_persion" style="height: 30px;
     width: 50px;
@@ -331,6 +325,14 @@ else if($arr[book][status]=='CONFIRM'){
     border-radius: 25px;display: none;" id="btn_selectisedit">
 		<span class="font-24 text-cap">บันทึก</span>
 	</span>
+        			</td>
+        		</tr>
+        		<tr>
+        			<td>
+        				<? if($arr[book][child]>0){ ?>
+            <?=t_child;?> :
+            <?=$arr[book][child];?>
+            <? } ?>
         			</td>
         		</tr>
      	

@@ -82,6 +82,12 @@
                      <table width="100%" border="0" cellspacing="2" cellpadding="2" >
                               
                                <tr>
+                                <td width="50" align="center">
+                                     <label class="container">
+                           <input type="checkbox" name="persion_china" id="persion_china" value="">
+                           <span class="checkmark" style="pointer-events: none"></span>
+                         </label>
+                                    </td>
                                     <td>
                                        <table width="100%" cellpadding="1" cellspacing="2">
                                         
@@ -97,12 +103,7 @@
                                       </table>
                                        
                                     </td>
-                                    <td width="50" align="center">
-                                     <label class="container">
-                           <input type="checkbox" name="persion_china" id="persion_china" value="">
-                           <span class="checkmark" style="pointer-events: none"></span>
-                         </label>
-                                    </td>
+                                   
                                  </tr>
                                  
                              
@@ -114,6 +115,12 @@
       <table width="100%" border="0" cellspacing="2" cellpadding="2" >
                
                   <tr>
+                   <td width="50" align="center">
+                      <label class="container">
+            <input type="checkbox" name="persion_other" id="persion_other" value="">
+            <span class="checkmark" style="pointer-events: none"></span>
+          </label>
+                     </td>
                      <td>
                         <table width="100%" cellpadding="1" cellspacing="2">
                          
@@ -130,12 +137,7 @@
                         </table>
                         
                      </td>
-                     <td width="50" align="center">
-                      <label class="container">
-            <input type="checkbox" name="persion_other" id="persion_other" value="">
-            <span class="checkmark" style="pointer-events: none"></span>
-          </label>
-                     </td>
+                    
                   </tr>
               
            </table>

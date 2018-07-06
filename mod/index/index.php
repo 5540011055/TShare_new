@@ -567,12 +567,13 @@
             </td>
          </tr>
          <tr style="display: none;">
-            <td colspan="2" width="50%" align="center" class="">
-               <a href="https://www.welovetaxi.com/app/demo_new2/index.php?order_id=144">
+            <td colspan="2" width="50%" align="center" class="" onclick="shopTest()">
+               <a onclick="">
                   <a class="btn btn-default paddling-max" style="width:100%">
                      <center>
-                        <div  class="circle-menu" style="background: #CDDC39;"><i class="fa fa-map" style="font-size: 22px;margin-top: -2px; " ></i></div>
-                        <span style="padding-bottom:20px;" class="font-20 text-cap">test map</span>
+                        <div  class="circle-menu" style="background: #CDDC39;">
+                        <i class="fa fa-map" style="font-size: 22px;margin-top: -2px; " ></i></div>
+                        <span style="padding-bottom:20px;" class="font-20 text-cap">test Shop</span>
                      </center>
                   </a>
                </a>
@@ -1160,6 +1161,7 @@
 </script>
 <script>
    $('#index_menu_shopping').click(function(){
+   	console.log('Shop');
       $(".text-topic-action-mod").text('ส่งแขก (ภูเก็ต)')
          var url = "mod/shop/update_num_place.php?id=1&province=1&op=update";
           $.post( url, function( data ) {
@@ -1177,11 +1179,8 @@
          console.log(url_load);
          $.post( url_load, function( data ) {
          $('#load_mod_popup').html(data);
-            // console.log(data);
+           
          });
-         // $('#load_mod_popup').html(load_main_mod);
-   //               return;
-         // $('#load_mod_popup').load(url_load); 
       }else{
           console.log('1');
           $("#main_load_mod_popup" ).show();
@@ -1191,6 +1190,7 @@
       }
     }
    });
+   
    function checkSocket(){
    	console.log('Click');
    var message = "";

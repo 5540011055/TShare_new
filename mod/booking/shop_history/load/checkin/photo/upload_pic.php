@@ -1,4 +1,4 @@
-   <?
+<?
   if($_GET['action']=='upload'){
   	include("includes/class.resizepic.php");
   
