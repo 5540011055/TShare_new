@@ -4463,7 +4463,10 @@ button.btn-floating{
     height:calc(100% - 56px);
     max-height:100%;
     width:100%;
-    overflow-y:auto
+/*    overflow-y:auto*/
+ overflow-y: scroll; /* has to be scroll, not auto */
+  -webkit-overflow-scrolling: touch;
+    
 }
 .modal.modal-fixed-footer .modal-footer{
     border-top:1px solid rgba(0,0,0,0.1);

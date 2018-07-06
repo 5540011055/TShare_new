@@ -35,7 +35,7 @@
                      <ul>
                         <li><a class="g" onclick="openProfile();"><?=t_personal_information;?></a></li>
                         <li><a onclick="openFileData();"><?=t_important_data_file?></a></li>
-                        <li><a onclick="openProfilePic();"><?=t_change_profile_picture?></a></li>
+                        <!--<li><a onclick="openProfilePic();"><?=t_change_profile_picture?></a></li>-->
                      </ul>
                   </div>
                </li>

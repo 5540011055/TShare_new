@@ -138,7 +138,7 @@
          <i class="fa  fa-camera take-photo-icon"  id="icon_camera_id_driver" style="font-size:60px;color: #666666;"></i><br>
          <span class="font-24"><?=t_take_photo;?></span>
          <div style="padding:0px;  ">
-            <div class="progress" style="width:100%;border-radius:8px; margin-top: 10px; border:none; height:20px; " id="area_image_album_load_main">
+            <div class="progress" style="width:100%;border-radius:8px; margin-top: 10px; border:none; height:20px;opacity:0; " id="area_image_album_load_main">
                <div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar" aria-valuenow="40"
                   aria-valuemin="0" aria-valuemax="100" id="area_image_album_load_id_driver" style="width:0%;border-radius:5px;border:none; height:">
                </div>
@@ -149,6 +149,8 @@
             src="../data/fileupload/store/register/<?=$arr[web_driver_edit][code];?>_id_driver.jpg?v=<?=$arr[web_driver_edit][update_date];?>" 
             <? }  ?>
             name="image_id_driver" id="image_id_driver"  style="width:100%; padding:5px; margin-top:-20px;border-radius:15px; " />
+            
+            <input type='file' id="imgInp" style="opacity: 0;" />
       </div>
    </div>
 </div>
@@ -167,10 +169,30 @@
    <input class="form-control" type="hidden" name="check_photo_id_driver" id="check_photo_id_driver"      value="" >
    <input class="form-control" type="hidden" name="upload_pic_type" id="upload_pic_type"  required="true"    value="" >
    <script>
+	  $("#imgInp").change(function() {
+	  readURL(this);
+	});
+	
+	function readURL(input) {
+	  $('#pg_upload_bar').show();
+	  if (input.files && input.files[0]) {
+	    var reader = new FileReader();
 
+	    reader.onload = function(e) {
+	    	
+	      $('#image_id_driver').attr('src', e.target.result);
+	      /*$('#img_tag_new').show();
+	      $('#box_manage_pf').show();
+	      $('#img_tag').hide();*/
+	    }
+	    reader.readAsDataURL(input.files[0]);
+	  }
+	}
+	  
       $("#icon_camera_id_driver").click(function(){  
-        document.getElementById('upload_pic_type').value='id_driver';
-       $("#load_chat_camera").click(); 
+//        document.getElementById('upload_pic_type').value='id_driver';
+//       $("#load_chat_camera").click(); 
+			$('#imgInp').click();
        });
 
       $("#submit_step_1").click(function(){ 
@@ -203,9 +225,9 @@
 	  	 document.getElementById('driver_province').focus() ; 
 	  }
 
-      if(document.getElementById('check_photo_id_driver').value=="") {
+      if(document.getElementById('imgInp').value=="") {
       swal('กรุณาถ่ายภาพคุณ'); 
-      document.getElementById('check_photo_id_driver').focus() ; 
+      document.getElementById('imgInp').focus() ; 
       return false ;
       }
 
@@ -248,17 +270,35 @@
 		  showLoaderOnConfirm: true
 		}, function () {
 			
+			//upload
+
 			var url="go.php?name=register&file=savedata&type=user&action=add&id=<?=$_GET[id]?>";
 			
 			var url_new ="mod/register/savedata_edit.php?type=user&action=add";
 			console.log(url);
 	      $.post(url_new,$('#myform_regiter').serialize(),function(response){
 	      	console.log(response);
-//	      	return;
+
 	        $('#send_profile_data').html(response);
 //	        	swal('สำเร็จ','สมัครสมาชิกเสร็จสมบูรณ์ เลือกเมนูข้อมูลส่วนตัวเพื่อตรวจสอบข้อมูลของคุณ','success');
 	        	if(response.result==true){
-					
+					var upload = "mod/user/upload_img/upload.php?user="+response.username;
+			    console.log(upload);
+					data_form = $('#myform_regiter').serialize();    
+   				data = new FormData($('#myform_regiter')[0]);
+      			data.append('fileUpload', $('#imgInp')[0].files[0]);
+   				   $.ajax({
+   				                url: upload, // point to server-side PHP script 
+   				                dataType: 'text',  // what to expect back from the PHP script, if anything
+   				                cache: false,
+   				                contentType: false,
+   				                processData: false,
+   				                data: data,                         
+   				                type: 'post',
+   				                success: function(php_script_response){
+   				                   console.log(php_script_response);
+   				                }
+   				     });
 					$.post('mail.php?key=new_driver',response,function(data){
    						console.log(data);
    					});
@@ -272,13 +312,7 @@
 				}
 	       });
 	       
-	      /*  $.post('send_messages/send_onesignal.php?key=new_driver',function(data){
-   					console.log(data);
-   				});*/
-			
-		 /* setTimeout(function () {
-		    
-		  }, 2000);*/
+
 		});
       
       
