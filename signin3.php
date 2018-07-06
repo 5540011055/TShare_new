@@ -4,13 +4,53 @@
       <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <title>T Share</title>
- 
+ <?php 
+        include "css/color/taxi.php" ;  
+          //include "css/maincss.php" ; 
+          
+          $get_lng = explode(',', $_SERVER['HTTP_ACCEPT_LANGUAGE']);
+        $get_lng = $get_lng[0];
+      $check_lng_browser = explode('-', $get_lng);
+      $check_lng_browser = $check_lng_browser[0];
+
+        if($check_lng_browser == 'ch' or $check_lng_browser == 'zh' or $check_lng_browser == 'sh'){
+          $keep = 'cn';
+        }else if($check_lng_browser == 'th'){
+          $keep = 'th';
+        }else{
+          $keep = 'en';
+        }
+        $keep = "th";
+          switch ($_COOKIE['lng']){
+        case "th":
+            //echo "PAGE th";
+            include("includes/lang/th/t_share_2.php");//include check session DE
+            $google_map_api_lng = "th";
+            break;
+        case "cn":
+            //echo "PAGE cn";
+            include("includes/lang/cn/t_share_2.php");
+            $google_map_api_lng = 'zh-CN';
+            break;
+        case "en":
+            //echo "PAGE EN";
+            include("includes/lang/en/t_share_2.php");
+            $google_map_api_lng = "en";
+            break;        
+        default:
+            //echo "PAGE EN - Setting Default";
+            include("includes/lang/".$keep."/t_share_2.php");//include EN in all other cases of different lang detection
+            $google_map_api_lng = $keep;
+            break;
+    } 
+      ?>
       <!-- Tell the browser to be responsive to screen width -->
       <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
       <!-- Bootstrap 3.3.6 -->
+       <link rel="stylesheet" href="js/sweet_origin/sweetalert.css">
       <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
       <!-- Font Awesome -->
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
       <!-- Ionicons -->
       
       <!-- iCheck -->
@@ -26,6 +66,8 @@
       <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
       
       <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+      <script src="js/sweet_origin/sweetalert.js"></script>
+     
        <script src="https://apis.google.com/js/platform.js" async defer></script>
        <script src="https://apis.google.com/js/api:client.js"></script>
 	  <script>
@@ -72,7 +114,7 @@
       <table width="100%"  border="0" align="center" cellpadding="2" cellspacing="2" style="max-width:350px; " class="Absolute-Center">
          <tr>
             <td align="center" >
-               <div class="login-box" style="margin-top: 15px;">
+               <div class="login-box" style="margin-top: 30px;">
                   <div class="login-logo"  style="padding:0px; color:#FFFFCC;" >
                     
                      <img src="images/logo.png?v=6" class="img_logo"    style="padding-bottom:0px;margin-top:0px;width: 130px;"      />  
@@ -95,7 +137,8 @@
                 <div class="row">
                     <div class="col-sm-6 " style="padding:0;    margin-top: 20px;">
                         <div class="">
-                            <div class="input-group">
+                          <form name="form1"  >
+                          <div class="input-group"  style="    margin-bottom: 8px;">
                                 <span class="input-group-addon">
                                     <i class="fa fa-user"></i>
                                 </span>
@@ -107,11 +150,11 @@
                                         <span class="lng-email"></span> 
                                
                                     </label>
-                                    <input name="firstname" required="True" type="number" class="form-control" id="username-signup" placeholder="เลขบัตรประจำตัวประชาชน" style="border-radius: 0 25px 25px 0;">
+                                    <input name="username-signup-login" required="True" type="text" class="form-control" id="username-signup-login" placeholder="ชื่อผู้ใช้งาน" style="border-radius: 0 25px 25px 0;    padding: 18px 12px;">
                                     <span class="material-input"></span>
                                 </div>
                             </div>
-                            <div class="input-group">
+                            <div class="input-group" style="margin-bottom: 8px;">
                                 <span class="input-group-addon" style="padding-top: 0">
                                     <i class="fa fa-lock"></i>
                                 </span>
@@ -119,10 +162,64 @@
                                     <label class="control-label"><span class="lng-password"></span>
                                         <!-- <small>(required)</small> -->
                                     </label>
-                                    <input name="lastname" type="password" class="form-control" id="password-signup" placeholder="รหัสผ่าน" style="    border-radius: 0 25px 25px 0;">
+                                    <input name="password-signup" type="password" class="form-control" id="password-signup" placeholder="รหัสผ่าน" style="    border-radius: 0 25px 25px 0;    padding: 18px 12px;">
                                     <span class="material-input"></span>
                                 </div>
                             </div>
+                            <div class="input-group" style="margin-bottom: 8px;">
+                                <span class="input-group-addon" style="padding-top: 0">
+                                    <i class="fa fa-lock"></i>
+                                </span>
+                                <div class="form-group label-floating is-empty">
+                                    <label class="control-label"><span class="lng-password"></span>
+                                        <!-- <small>(required)</small> -->
+                                    </label>
+                                    <input name="password-signup-confirm" type="password" class="form-control" id="password-signup-confirm" placeholder="ยืนยันรหัสผ่าน" style="    border-radius: 0 25px 25px 0; padding: 18px 12px;">
+                                    <span class="material-input"></span>
+                                </div>
+                            </div>
+                            <div class="input-group"  style="margin-bottom: 8px;">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-envelope"></i>
+                                </span>
+                                <!-- <button class="btn btn-warning btn-sm" id="checkmail" style="position: absolute; right: 0; z-index: 100;  margin-top: 2px; padding: 5px 10px;border-radius: 15px;">
+                                    <span class="lng-check"></span>
+                                </button> -->
+                                <div class="form-group label-floating is-empty">
+                                    <label class="control-label"> 
+                                        <span class="lng-email"></span> 
+                               
+                                    </label>
+                                    <input name="username-signup-email" required="True" type="number" class="form-control" id="username-signup-email" placeholder="อีเมล" style="border-radius: 0 25px 25px 0;    padding: 18px 12px;">
+                                    <span class="material-input"></span>
+                                </div>
+                            </div>
+                            
+                            <div class="input-group"  style="margin-bottom: 8px;">
+                              
+                                <span class="input-group-addon">
+                                    <i class="fa fa-id-card"></i>
+                                </span>
+                                <!-- <button class="btn btn-warning btn-sm" id="checkmail" style="position: absolute; right: 0; z-index: 100;  margin-top: 2px; padding: 5px 10px;border-radius: 15px;">
+                                    <span class="lng-check"></span>
+                                </button> -->
+                                <div class="form-group label-floating is-empty">
+                                    <label class="control-label"> 
+                                        <span class="lng-email"></span> 
+                               
+                                    </label>
+                                    <input required="True" type="number" name="username_signup_idcard" class="form-control" id="username_signup_idcard" placeholder="เลขบัตรประจำตัวประชาชน" style=" padding: 18px 12px;">
+                                    <span class="material-input"></span>
+                                </div>
+                                <span class="input-group-addon" onclick="check_id_card()" style="border-radius: 0 25px 25px 0 !important;background: #FFC107; color: #fff;">
+                                  
+                                    
+                                
+                                    <span>ตรวจสอบ</span>
+                                </span>
+                              
+                            </div>
+                            </form>
                             <div class="lng_email_have" style="text-align: center;color:red;display: none;"></div>
                             <div class="lng_email_available"  style="text-align: center;color:#2c9930;display: none;"></div>
                             
@@ -131,7 +228,7 @@
                             </div>
                            
                             <div class="">
-                                <div class="btn-signup" style="" id="registered" ><span class="lng-sign-in">ลงชื่อเข้าใช้</span></div>
+                                <div class="btn-signup" style="" id="registered" onclick="btn_signup()"><span class="lng-sign-in">ลงชื่อเข้าใช้</span></div>
                             </div>
                             <div class="col2">
                                 <div class="col-sign">
@@ -168,7 +265,7 @@
                                             <label class="control-label"><span class="lng-email"> </span>
                                                 
                                             </label>
-                                            <input  required="True" type="email"  class="form-control" id="username" size="80" style="    border-radius: 0 25px 25px 0;">
+                                            <input placeholder="ชื่อผู้ใช้งาน"  required="True" type="text"  class="form-control" id="username" size="80" style="    border-radius: 0 25px 25px 0;    padding: 18px 12px;">
                                         </div>
                                     </div>                                       
                                     <div class="input-group">
@@ -177,7 +274,7 @@
                                         </span>
                                         <div class="form-group label-floating">
                                             <label class="control-label"><span class="lng-password"></span></label>
-                                            <input type="password" class="form-control" id="password" style="    border-radius: 0 25px 25px 0;">
+                                            <input type="password" class="form-control" id="password" placeholder="รหัสผ่าน" style="    border-radius: 0 25px 25px 0;    padding: 18px 12px;">
                                         </div>
                                     </div>
                                     <div id="message" style="text-align: center;"></div>
@@ -232,7 +329,7 @@
                                 </div>-->
                             </div>
                             <div style="margin-top: 30px;">
-                                <div class=" btn-foget-pass " id="foget-pass" style="">
+                                <div class=" btn-foget-pass " id="foget-pass " style="" onclick="foget_password()">
                                     <span class="lng-foget-pass">  ลืมรหัสผ่าน</span>
                                 </div>
                             </div>
@@ -261,7 +358,7 @@
                 <div style="padding: 12px;">
                    <div class="col-md-12" id="forget"> 
                        
-                        <div style="margin-top: 50px; font-size: 15px; color: #333333;margin-bottom: 10px;">
+                        <div style="margin-top: 50px; font-size: 15px; color: #333333;margin-bottom: 10px;" >
                             <span class="lng-please-input-email">Please input your email </span>
                         </div>
                         <div class="input-group">
@@ -314,6 +411,7 @@
 
       </table>
       <? //include "js/control.php" ;	?>
+      <?  include ("load/popup/login/alert_password.php");?>
 
    </body>
 
@@ -321,6 +419,21 @@
 
 
 <style>
+#submit_password{
+  padding: 12px !important; 
+}
+.back-full-popup {
+    background-color: #3b5998!important;
+    font-size: 22px;
+    padding: 10px;
+    width: 100%;
+    
+    border-top: 0px solid #000000;
+    margin-bottom: 0px;
+    top: 0;
+    position: fixed;
+    z-index: 99999;
+}
   .page-header .container {
     padding-top:0;
     color: #000;
@@ -559,11 +672,11 @@ textarea:-ms-input-placeholder {
 /*    display: none;*/
 }
 .social-column .social-inner {
-    display: table-cell;
+    /*display: table-cell;*/
     vertical-align: middle;
 }
 .social-column{
-    padding: 100px 120px;
+    padding: 30px 0;
 }
 .dropdown-menu.dropdown-with-icons li>a:hover {
     /*padding: 12px 20px 12px 12px;*/
@@ -785,7 +898,7 @@ textarea:-ms-input-placeholder {
                         color: #9E9E9E; 
                     }
 .btn-login{
-   margin-left: 40px;
+   /*margin-left: 40px;*/
     margin-top: 30px;
 }
 .btn-signup{
@@ -1011,6 +1124,7 @@ text-align: center;
 }
 </style>
 <script>
+  var chID = false;
 $(document).ready(function(){
   
     var username, password , username_signup ,password_signup,text_check,forget = '';
@@ -1064,6 +1178,7 @@ $(document).ready(function(){
               }
         }
     });
+        
 //    alert('<?php //echo base_url(); ?>login_control/process');
 //         $.ajax({
 //         type: 'POST',
@@ -1138,38 +1253,95 @@ $(document).ready(function(){
     
     });
     
-     $('#registered').on('click', function() {
-        console.log('in case signup')
-        console.log(text_check)
-        //if (text_check == 1) {
-            $.ajax({
-            type: 'POST',
-            url: 'login_control/signup',
-            data: {'username': username_signup,'password':password_signup},
-            //contentType: "application/json",
-            dataType: 'json',
-            success: function(res) { 
-                console.log(res)
-                if(res.status == 0){
-                    $.cookie("login",res.username);
-                    $('.lng_email_available').show()
-                    $('.lng_email_have').hide()
-                    window.location.href = "<?php //echo base_url(); ?>home";
-                }
-                else{
-                    $('.lng_email_available').hide()                    
-                    $('.lng_email_have').show()
-                }                
-            }
-        });
-    
-    });
+     
 });//END
 </script>
 <script >
 /**
 * Login with Google Account *
 */
+function btn_signup() {
+        console.log('in case signup')
+        
+        var cuser = $('#username-signup-login').val()
+        var cemail = $('#username-signup-email').val()
+        var cpassword = $('#password-signup').val()
+        var cpassword2 = $('#password-signup-confirm').val()
+        var ccard = $('#username_signup_idcard').val()
+        //if (text_check == 1) {
+          console.log(cuser)
+          console.log(cemail)
+          console.log(cpassword)
+          console.log(cpassword2)
+          console.log(ccard)
+          console.log(chID)
+          if (cuser == '') {
+            swal("กรุณาป้อน !", "ชื่อผู้ใช้งาน", "warning");
+            return false;
+          }
+          if (cpassword == '') {
+              swal("กรุณาป้อน !", "รหัสผ่าน", "warning");
+            return false;
+          }
+          if (cpassword2 == '') {
+              swal("กรุณายืนยัน !", "รหัสผ่าน", "warning");
+            return false;
+          }
+          if (cpassword != cpassword2) {
+              swal("คุณป้อน !", "รหัสผ่านไม่ตรงกัน", "warning");
+            return false;
+          }
+          if (chID == false) {
+               swal("รหัสประชาชน !", "ไม่ถูกต้อง", "warning");
+            return false;
+          }
+         
+
+        if (chID == true) {
+            $.ajax({
+            type: 'POST',
+            url: 'https://www.welovetaxi.com/app/demo_new2/curl/registeed.php',
+            data: {'username': cuser,'password':cpassword,'email':cemail,'type':'nomal','idcard':ccard},
+            //contentType: "application/json",
+            dataType: 'json',
+            success: function(res){ 
+                console.log(res)
+                if(res[0].status == 1)
+              {
+                  var url = "https://www.welovetaxi.com/app/demo_new2/index.php?check_new_user="+res[0].username;
+                  console.log(url);
+                  window.location.href = url; 
+                   
+              }
+              else 
+              {    
+                  $('#message').html('เข้าระบบไม่สำเร็จ').css('color', 'red');
+              }
+                // if(res.status == 0){
+                //     $.cookie("login",res.username);
+                //     $('.lng_email_available').show()
+                //     $('.lng_email_have').hide()
+                //     window.location.href = "<?php //echo base_url(); ?>home";
+                // }
+                // else{
+                //     $('.lng_email_available').hide()                    
+                //     $('.lng_email_have').show()
+                // }                
+            }
+        });
+          }
+    
+    }
+function foget_password() {
+                        //alert(0);
+                        $("#alert_show_popup_password").show(); 
+                        $("#btn_load_select_password").click();
+                         $("#load_form_main_password").show(); 
+                        $("#load_form_data_send_password").hide(); 
+                        ///window.location.href = "new_driver.php"; 
+                          setTimeout(function () {
+                        }, 500); //w
+                        }
   var googleUser = {};
   var startApp = function() {
     gapi.load('auth2', function(){
@@ -1344,8 +1516,94 @@ $(document).ready(function(){
     $('.box-signup').hide()
     $('.box-signin').show()
   }
+  function check_id_card(){
+    chID = false;
+    if(!checkID(document.form1.username_signup_idcard.value)){
+      swal("รหัสประชาชน !", "ไม่ถูกต้อง", "warning");
+    }
+
+else{ 
+  chID = true;
+console.log(document.form1.username_signup_idcard.value)
+$.ajax({
+            type: 'POST',
+            url: 'https://www.welovetaxi.com/app/demo_new2/curl/checkcard.php',
+            data: {'icard': document.form1.username_signup_idcard.value},
+            //contentType: "application/json",
+            dataType: 'json',
+            success: function(res){ 
+                console.log(res)
+                if(res[0].status == 1)
+              {
+                  swal("รหัสประชาชนนี้ !", "ลงทะเบียนแล้วกรุณาเข้าสูระบบ", "warning");
+                   
+              }
+              else 
+              {    
+                  swal("รหัสประชาชนนี้ !", "หมายเลขบัตรนี้ลงทะเบียนได้", "warning");
+              }
+                // if(res.status == 0){
+                //     $.cookie("login",res.username);
+                //     $('.lng_email_available').show()
+                //     $('.lng_email_have').hide()
+                //     window.location.href = "<?php //echo base_url(); ?>home";
+                // }
+                // else{
+                //     $('.lng_email_available').hide()                    
+                //     $('.lng_email_have').show()
+                // }                
+            }
+        });
+  
+  
+}
+
+}
+function checkID(id)
+{
+if(id.length != 13) return false;
+for(i=0, sum=0; i < 12; i++)
+sum += parseFloat(id.charAt(i))*(13-i); if((11-sum%11)%10!=parseFloat(id.charAt(12)))
+return false; return true;}
+  
   
 
 
                        
                      </script>
+                     <script type="text/javascript">
+    function autoTab2(obj,typeCheck){
+        /* กำหนดรูปแบบข้อความโดยให้ _ แทนค่าอะไรก็ได้ แล้วตามด้วยเครื่องหมาย
+        หรือสัญลักษณ์ที่ใช้แบ่ง เช่นกำหนดเป็น  รูปแบบเลขที่บัตรประชาชน
+        4-2215-54125-6-12 ก็สามารถกำหนดเป็น  _-____-_____-_-__
+        รูปแบบเบอร์โทรศัพท์ 08-4521-6521 กำหนดเป็น __-____-____
+        หรือกำหนดเวลาเช่น 12:45:30 กำหนดเป็น __:__:__
+        ตัวอย่างข้างล่างเป็นการกำหนดรูปแบบเลขบัตรประชาชน
+        */
+            if(typeCheck==1){
+                var pattern=new String("_-____-_____-__-_"); // กำหนดรูปแบบในนี้
+                var pattern_ex=new String("-"); // กำหนดสัญลักษณ์หรือเครื่องหมายที่ใช้แบ่งในนี้     
+            }else{
+                var pattern=new String("___-___-____"); // กำหนดรูปแบบในนี้
+                var pattern_ex=new String("-"); // กำหนดสัญลักษณ์หรือเครื่องหมายที่ใช้แบ่งในนี้                 
+            }
+            var returnText=new String("");
+            var obj_l=obj.value.length;
+            var obj_l2=obj_l-1;
+            for(i=0;i<pattern.length;i++){           
+                if(obj_l2==i && pattern.charAt(i+1)==pattern_ex){
+                    returnText+=obj.value+pattern_ex;
+                    obj.value=returnText;
+                }
+            }
+            if(obj_l>=pattern.length){
+                obj.value=obj.value.substr(0,pattern.length);           
+            }
+    }
+ 
+    function CheckNum(){
+            if (event.keyCode < 48 || event.keyCode > 57){
+                  event.returnValue = false;
+                }
+        }
+    </script>

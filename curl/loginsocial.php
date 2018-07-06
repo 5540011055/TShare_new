@@ -70,7 +70,7 @@ $db = New DB();
           
         
           if ($add === TRUE) {
-              // $last_id = mysql_insert_id();
+              $last_id = mysql_insert_id();
               
               $fname['status'] =  "1";      
               $fname['username'] =  $last_id;
@@ -78,12 +78,12 @@ $db = New DB();
               $rtn = array();
               array_push($rtn,$fname);                                          
                                         
-              // $_SESSION['data_user_name'] = $username; 
-              // $_SESSION['data_user_password'] = $username; 
-              // $_SESSION['data_user_id'] = $last_id ; 
-              // $_SESSION['data_user_class'] = 'taxi' ;
-              // $img = 'data/pic/driver/small/'.$username.'.jpg';
-              // file_put_contents($img, file_get_contents($url));
+              $_SESSION['data_user_name'] = $username; 
+              $_SESSION['data_user_password'] = $username; 
+              $_SESSION['data_user_id'] = $last_id ; 
+              $_SESSION['data_user_class'] = 'taxi' ;
+              $img = 'data/pic/driver/small/'.$username.'.jpg';
+              file_put_contents($img, file_get_contents($url));
               echo json_encode($rtn);     
                      
                       
@@ -93,7 +93,7 @@ $db = New DB();
               $fname['case'] =  'n';
               $rtn = array();
               array_push($rtn,$fname);
-              // echo json_encode($arr);
+              echo json_encode($rtn);
           }
         }
         else{
