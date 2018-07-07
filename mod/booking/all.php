@@ -113,7 +113,7 @@
    </script>
    	
    <div id="load_booking_data"  style="padding:0px; margin:0; ">
-   	
+   		
    </div>
 </div>
 

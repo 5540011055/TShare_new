@@ -902,14 +902,13 @@
           socket.on('notification', function (data) {
           console.log("Start Socket");
 			
-		  	 res_socket = data.transfer[0];
-	          $('#number_tbooking').text(data.transfer[0].length);
-	           if($('#check_open_worktbooking').val()==1){
-	           console.log(data.transfer);
-	   //        console.log('now open popup');
-	   		readDataBooking();
-
-         
+					 res_socket = data.transfer[0];
+		          $('#number_tbooking').text(data.transfer[0].length);
+		           if($('#check_open_worktbooking').val()==1){
+		           console.log(data.transfer);
+		   //        console.log('now open popup');
+		   		readDataBooking();
+			
    		}
    });
    var shop_frist_run = 0;
@@ -974,7 +973,7 @@
    			 	
    			 	console.log(value.id+" : "+index);
    		      	$('#check_open_num_detail').val(index)
-
+				$('#check_open_shop_id').val(value.id);
 			   	var url = "empty_style.php?name=booking/shop_history&file=work_shop_detail_js&user_id=<?=$user_id;?>";
 			      	$.post(url,value,function(data){
 			      		$('#load_mod_popup_clean').html(data);
@@ -982,7 +981,7 @@
 
 			      	});
 			      	
-			      	$('#check_open_shop_id').val(value.id);	
+//			      	$('#check_open_shop_id').val();	
    			 		
    				/*$('#main_load_mod_popup_6').show();
    		      	var url_load= "load_page_mod_6.php?name=booking/shop_history&file=work_shop_detail_js&user_id=<?=$user_id;?>";
@@ -1066,9 +1065,14 @@
    	      console.log("driver_pay_report");
    	      changeHtml("driver_pay_report",value.id,value.driver_pay_report_date)
    	   }
+   	   
    	   var check_open_incom = $('#check_id_income_lab').val();
    	   if (typeof check_open_incom != 'undefined'){
-   	   		console.log(check_open_incom);
+   	   		if(check_open_incom == check_open){
+				console.log("Refresh Incom = "+check_open_incom+" | "+check_open);
+   	   			openViewPrice()
+			}
+   	   		
    	   }
    	}
    });
@@ -1102,6 +1106,14 @@
    	      console.log("driver_pay_report");
    	      changeHtml("driver_pay_report",data.id,data.driver_pay_report_date)
    	   }
+   	    /*var check_open_incom = $('#check_id_income_lab').val(); 
+   	   if (typeof check_open_incom != 'undefined'){
+   	   		console.log(check_open_incom);
+//   	   		alert(check_open_incom);
+   	   		openViewPrice()
+   	   }*/
+   			
+   			
    			}
    	}
      });
