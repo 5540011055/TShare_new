@@ -154,11 +154,7 @@ else if($arr[book][status]=='CONFIRM'){
 		$show_alert = "display:none;";
 	}
 	
-	if($_GET[ios]==1){
-		$display_back_btn = "display:none;";
-	}else{
-		$display_back_btn = "";
-	}
+	
 ?>
 <style>
 	.onlyThisTable td,th{
@@ -167,6 +163,8 @@ else if($arr[book][status]=='CONFIRM'){
 </style>
 <script>
 	$('#date_trans').text(formatDate('<?=$arr[book][transfer_date];?>'));
+	$('#header_clean').text('<?=$_POST[invoice];?>');
+	console.log('IOS : <?=$_GET[ios];?>');
 </script>
 <!--<div style="position: fixed;     bottom: 50px;
     background-color: #fff;
@@ -183,15 +181,17 @@ else if($arr[book][status]=='CONFIRM'){
             		?>
 </div>-->
 <input type="hidden" value="<?=$_POST[id];?>" id="id_order" />
-<div class="font-22 back_main" onclick="backMain();" style="<?=$display_back_btn;?>" ><a ><i class="fa fa-chevron-left" aria-hidden="true"></i>&nbsp;<?=t_back_previous;?></a></div>
-<div class="assas_<?=$_POST[id];?>" style=" padding:10px 12px; margin-top: 20px;" >
+<!--<div class="font-22 back_main" onclick="backMain();" style="<?=$display_back_btn;?>" ><a ><i class="fa fa-chevron-left" aria-hidden="true"></i>&nbsp;<?=t_back_previous;?></a></div>
+-->
+
+<div class="assas_<?=$_POST[id];?>" style=" padding:10px 12px; margin-top: 30px;" >
 	<button class="btn waves-effect waves-light red lighten-3" align="center" onclick="cancelBook('<?=$_POST[id];?>');" id="btn_cancel_book_<?=$_POST[id];?>" style="
     position:  absolute;
     right: 10px;
     color: #fff;
     padding: 7px 20px;
     border-radius: 0;
-    top: 40px;<?=$cancel_shop;?>">
+    top: 50px;<?=$cancel_shop;?>">
 		<span class="font-24 text-cap"><?=t_cancel;?></span>
 	</button>
 
@@ -577,10 +577,10 @@ else if($arr[book][status]=='CONFIRM'){
  	});
 
 
-	function ViewPhoto(id,type,date){
-		console.log(id+" "+type+" "+date)
+	function ViewPhoto(id,type,date,plan){
+		console.log(id+" | "+type+" | "+date+" | "+plan)
 		if(type=="doc_pay"){
-			var url = 'load_page_photo.php?name=booking/load/form&file=iframe_photo&id='+id+'&type='+type+'&date='+date+'&plan='+d;
+			var url = 'load_page_photo.php?name=booking/load/form&file=iframe_photo&id='+id+'&type='+type+'&date='+date+'&plan='+plan;
 		}
 		else{
 			var url = 'load_page_photo.php?name=booking/load/form&file=iframe_photo&id='+id+'&type='+type+'&date='+date;
