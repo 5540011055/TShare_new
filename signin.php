@@ -1633,7 +1633,7 @@ return false; return true;}
 	/**
 	*  Script Connect Device
 	*/
-/*	var classname = '';
+	var classname = '';
 	var username = '';
 	var txt = '';
 	setTimeout(function(){ 
@@ -1653,5 +1653,5 @@ return false; return true;}
        		console.log(url_xcode);
             window.location = url_xcode;
 		}
-   	}*/
+   	}
 </script>
