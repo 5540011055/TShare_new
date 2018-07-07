@@ -123,13 +123,54 @@
          </table>
          
         </div>
-        <div class="form-group">
+        <!--<div class="form-group">
           <label class="font-24">เวลาถึงโดยประมาณ(นาที)</label>
           <input type="number" class="form_input" required="true" id="time_num" name="time_num">
-        </div>
+        </div>-->
         <div class="form-group">
+            <label class="font-24">เวลาถึงโดยประมาณ(นาที)</label>
+            <!--<input type="number" class="form_input" required="true" id="time_num" name="time_num">-->
+            <select id="time_select" name="time_select"  required="true" style="border-radius: 25px;">
+            	<option value="0">- เลือกนาที -</option>
+            	<?php 
+            		$mm = 5;
+            		for($i=5;$i<=60;$i+=5){
+						?>
+						<option value="<?=$i;?>"><?=$i." นาที";?></option>
+						<?
+//						$mm+=5;
+					}
+            	?>
+            	<option value="over">มากกว่า 60 นาที</option>
+            </select>
+            <div id="box_over_mm" style="display: none;"><span style="font-size: 13px;padding: 7px;">กรุณากรอก</span>
+            <input type="number" class="form_input" id="orver_mm">
+            </div>
+            <script>
+            	$('#time_select').change(function(){
+            		if($(this).val()=="over"){
+						$('#box_over_mm').show();
+						$( "#orver_mm" ).focus();
+						
+					}else{
+						$('#box_over_mm').hide();
+						$('#time_num').val($(this).val());
+					}
+					
+            	});
+            	
+            	$('#orver_mm').keyup(function(){
+            		if($('#time_select').val()=="over"){
+						$('#time_num').val($(this).val());
+					}
+            	});
+            </script>
+            <input type="hidden" class="form_input" id="time_num" name="time_num" value="0">
+         </div>
+       <div class="form-group">
             <label class="font-24">เบอร์โทรศัพท์</label>
-            <input type="number" class="form_input"  id="dri_phone" name="dri_phone">
+            <i class="material-icons res-input" onclick="$('#dri_phone').val('');$('#dri_phone_x').hide();" id="dri_phone_x" style="display: block;">close</i>
+            <input type="number" class="form_input"  id="dri_phone" name="dri_phone" value="<?=$arr[web_user][phone];?>" onkeyup="hideRes('dri_phone');">
          </div>
             
          
