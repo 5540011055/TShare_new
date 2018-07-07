@@ -137,7 +137,7 @@
                 <div class="row">
                     <div class="col-sm-6 " style="padding:0;    margin-top: 20px;">
                         <div class="">
-                          <form name="form1"  >
+                          <form name="form1">
                           <div class="input-group"  style="    margin-bottom: 8px;">
                                 <span class="input-group-addon">
                                     <i class="fa fa-user"></i>
@@ -193,8 +193,7 @@
                                     <input name="username-signup-email" required="True" type="number" class="form-control" id="username-signup-email" placeholder="อีเมล" style="border-radius: 0 25px 25px 0;    padding: 18px 12px;">
                                     <span class="material-input"></span>
                                 </div>
-                            </div>
-                            
+                            </div>               
                             <div class="input-group"  style="margin-bottom: 8px;">
                               
                                 <span class="input-group-addon">
@@ -256,7 +255,7 @@
                     <form>
                         <div class="row">
                             <!-- <div class="col-sm-8 " style="padding: 0" > -->
-                              <form name="form"  >
+                              <form name="form" id="form_submit" method="post" >
                                 <div class="">
                                     <div class="input-group">
                                         <span class="input-group-addon">
@@ -281,7 +280,7 @@
                                     <div id="message" style="text-align: center;"></div>
                                 </div>
                                 <div class="">
-                                    <button type="submit" class=" btn-login " id="login" style="width: 100% !important;">
+                                    <button type="button" class=" btn-login " id="login" style="width: 100% !important;">
                                         <span class="lng-login"> เข้าสู่ระบบ </span>
                                     </button>
                                 </div>
@@ -1145,18 +1144,18 @@ $(document).ready(function(){
     $('#username').on('change', function() {
         username = this.value ;
         console.log(username)
-    })
+    });
     $('#password').on('change', function() {
         password = this.value ;
         console.log(password)
-    })
-    $( "#login" ).submit(function( event ) {
-      
-   
-        
+    });
+    $( "#login" ).click(function() {
+     
 //      alert(type_login);
+       console.log('+++++++++++++++++++++++++++++++++++++++++');
        console.log(password+username);
-        $.ajax({
+      
+       $.ajax({
         type: 'POST',
         url: 'https://www.welovetaxi.com/app/demo_new2/curl/loginsocial.php',
         data: {'username': username,'password':password,'type':'nomal'},
@@ -1180,8 +1179,7 @@ $(document).ready(function(){
                   $('#message').html('รหัสผิด').css('color', 'red');
               }
         }
-    });
-        
+    }); 
 //    alert('<?php //echo base_url(); ?>login_control/process');
 //         $.ajax({
 //         type: 'POST',
@@ -1218,7 +1216,7 @@ $(document).ready(function(){
 //               }
 //         }
 //     });
-       //event.preventDefault();
+//       event.preventDefault();  
 });
     //alert( this.value );
   
@@ -1635,7 +1633,7 @@ return false; return true;}
 	/**
 	*  Script Connect Device
 	*/
-	var classname = '';
+/*	var classname = '';
 	var username = '';
 	var txt = '';
 	setTimeout(function(){ 
@@ -1655,5 +1653,5 @@ return false; return true;}
        		console.log(url_xcode);
             window.location = url_xcode;
 		}
-   	}
+   	}*/
 </script>
