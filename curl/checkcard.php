@@ -11,7 +11,7 @@ $db = New DB();
       $id_card = $_POST[icard];
       if ( $id_card != '') {
         
-      $res = $db->select_query("SELECT * FROM web_driver where id_card = '". $id_card ."'");
+      $res = $db->select_query("SELECT * FROM web_driver where idcard = '". $id_card ."'");
       $arr = $db->fetch($res);
       //echo json_encode($username);
       if (!$arr) {

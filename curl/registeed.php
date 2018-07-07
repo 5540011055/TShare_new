@@ -29,7 +29,7 @@ $db = New DB();
           $db->connectdb(DB_NAME_APP, DB_USERNAME, DB_PASSWORD);
           
           $data[email] =  $email;
-          $data[id_card] = $card;
+          $data[idcard] = $card;
           $data[username] = $username;
           $data[password] = $password;
           $data[user_class] = 'taxi';
