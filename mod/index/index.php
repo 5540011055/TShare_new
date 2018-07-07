@@ -1207,10 +1207,13 @@
     }
    });
    
-   function checkSocket(){
+   function sendSocket(id){
    	console.log('Click');
-   var message = "";
-   socket.emit('sendchat', message);
+//   var message = "";
+   var dataorder={  
+      order : parseInt(id),  
+      };
+   socket.emit('sendchat', dataorder);
    }
 </script>
 <script>

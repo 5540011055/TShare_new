@@ -13,7 +13,7 @@
    var class_user = "<?=$data_user_class;?>";
    var username = "<?=$_SESSION['data_user_name'];?>";
    console.log(detect_mb+" : "+class_user+" : "+username);
-   if(detect_mb == "Android"){
+ /*  if(detect_mb == "Android"){
    	 sendTagOs(class_user,username);
    }
    
@@ -26,7 +26,7 @@
    				if (typeof Android !== 'undefined') {
    				Android.deleteTag(txt);
    			}
-   } 
+   } */
 </script>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" class="ui-mobile landscape min-width-320px min-width-480px min-width-768px min-width-1024px">
@@ -69,6 +69,19 @@
         +'</div>'
         +'</div>'
         +'</div>';
+        
+        var load_sub_mod =  '<div class="sub-loader">'
+    +'<div class="preloader-wrapper active">'
+    +'<div class="spinner-layer spinner-blue-only">'
+      +'<div class="circle-clipper left">'
+       +'<div class="circle"></div>'
+      +'</div><div class="gap-patch">'
+        +'<div class="circle"></div>'
+      +'</div><div class="circle-clipper right">'
+        +'<div class="circle"></div>'
+      +'</div>'
+    +'</div>'
+  +'</div>';
             var load_main_mod_table='<br><center><span  class="navload"><i class="fa fa-circle-o-notch fa-spin 4x" style="font-size:40px;   margin-top:10px " ></i></center></span><div style="font-size:14px; color:#333333; font-weight:normal;  margin-top:10px " ><center><span id="navload_topic"> โหลดข้อมูล</span></center></div';
    </script>
    <body >
@@ -233,6 +246,27 @@
        }
        return x1 + x2;
    }
+    function formatDate(date) {
+      var d = new Date(date),
+          month = '' + (d.getMonth() + 1),
+          day = '' + d.getDate(),
+          year = d.getFullYear();
+      if (month.length < 2) month = '0' + month;
+      if (day.length < 2) day = '0' + day;
+      return [year, month, day].join('-');
+   }
+   function formatTime(date) {
+      var d = new Date(date),
+          hour = '' + d.getHours(),
+          minutes = d.getMinutes();
+   	if(hour<10){
+   		hour = "0" + hour ;
+   	}
+   	if(minutes<10){
+   		minutes = "0" + minutes ;
+   	}
+      return [hour, minutes].join(':');
+   }
 </script>
 <style>
    .outer-loading-mod {
@@ -372,7 +406,7 @@
 <script async defer
    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJa08ZMaSnJP5A6EsL9wxqdDderh7zU90&libraries=places&language=<?= $lng_map; ?>&v=<?= time(); ?>"></script>
 <script>
-   setTimeout(function(){ 
+  /* setTimeout(function(){ 
       	  sendTagIOS(class_user,username);
     }, 3000);	
     
@@ -392,5 +426,5 @@
        		console.log(url_xcode);
             window.location = url_xcode;
 		}
-   	}
+   	}*/
 </script>

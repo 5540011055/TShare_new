@@ -409,64 +409,13 @@
 
 
 <input  name="now_province"  type="hidden" class="form-control"  id="now_province" value=""   />
-<script src="https://www.welovetaxi.com:3443/socket.io/socket.io.js?v=<?=time();?>"></script>
-<!-- <script src="socket.io/socket.io.js"></script> -->
-<!-- <script src="https://code.jquery.com/jquery-latest.min.js?v=<?=time();?>"></script> -->
+
 <script>
-  
-   var res_socket ;
-   var socket = io.connect('https://www.welovetaxi.com:3443');
-          //on message received we print all the data inside the #container div
-
-   var shop_frist_run = 0;
-   var user_class = "<?=$data_user_class;?>";
-   var frist_socket = true;
-   	socket.on('getbookinglab', function (data) { 
-
-   	 array_data = [];
-   	 var done = [];       
-   	 var none = [];       
-          $.each(data.booking,function(index,value){
-          	var current = formatDate(new Date());
-           var db = formatDate(value.transfer_date);
-          	if(value.driver_complete == 0 ){
-          		if(user_class=="lab"){
-   				if(db == current){
-   					done.push(value);
-   				}
-   			}
-   			else {
-   				if(db == current && value.drivername == "<?=$user_id;?>"){
-   					done.push(value);
-   				}
-   			}
-   		}
-
-          });
-          array_data = {
-   		manage : done,
-   		history : none
-   	};
-
-      	if($('#check_open_workshop').val()==1){
-      		if(shop_frist_run==0){
-   			shop_frist_run = done.length;
-   		}
-   		if(done.length!=shop_frist_run){
-   			filterMenu('manage');
-   			shop_frist_run = done.length;
-   		}
-   	}
-      	/* check open order id auto */
-      	if(frist_socket==true){
-   		var get_order_id = "<?=$_GET['order_id'];?>";
-   		if(get_order_id!=""){
-   			console.log("order id : "+get_order_id);
-   			console.log(array_data);
-   			 $.each(array_data.manage,function(index,value){
-   			 	if(value.id==get_order_id){
-//				$('title').text("เลขที่ "+value.invoice);
-        		var url = "empty_style.php?name=booking/shop_history&file=work_shop_detail_js&user_id=<?=$user_id;?>&ios=<?=$_GET[ios];?>";
+	$.post("mod/booking/shop_history/php_shop.php?query=history_by_order&order_id=<?=$_GET[order_id];?>",function(data){
+		console.log(data);
+//		return;
+		var value = data.data[0];
+		var url = "empty_style.php?name=booking/shop_history&file=work_shop_detail_js&user_id=<?=$user_id;?>&ios=<?=$_GET[ios];?>";
         		console.log(url);
    		      	$.post(url,value,function(data){
    		      		$('#load_mod_popup_clean').html(data);
@@ -477,136 +426,9 @@
    					$("#load_material").fadeOut();
 
    		      	});
-   				}
-   			 });
-   		}
-      	frist_socket = false;
-   	}
-        });
-   var id = '<?=$user_id?>';
-   var dataorder={  
-      order : parseInt(id),  
-      };
-
-      socket.emit('adduser', dataorder);
-      console.log(dataorder);
-
-   var class_user = "<?=$_SESSION['data_user_class'];?>";
-
-   socket.on('datalab', function (username, data) {
-     console.log('***********************datalab***************************')
-   console.log(username)
-   console.log(data)
-   //console.log(data[0].id);
-   var check_open = $('#check_open_shop_id').val();
-   if(check_open!=0){
-   $.each(data, function( index, value ) {
-   	if(value.id==check_open){
-   		console.log(value);
-   		if(value.check_driver_topoint==1){
-   	      console.log("driver_topoint");
-   	      changeHtml("driver_topoint",value.id,value.driver_topoint_date)
-   	   }
-   	    if(value.check_guest_receive==1){
-   	      console.log("guest_receive");
-   	      changeHtml("guest_receive",value.id,value.guest_receive_date)
-   	   }
-   	   if(value.check_guest_register==1){
-   	      console.log("guest_register");
-   	      changeHtml("guest_register",value.id,value.guest_register_date)
-   	   }
-   	   if(value.check_driver_pay_report==1){
-   	      console.log("driver_pay_report");
-   	      changeHtml("driver_pay_report",value.id,value.driver_pay_report_date)
-   	   }
-   	   var check_open_incom = $('#check_id_income_lab').val();
-   	   if (typeof check_open_incom != 'undefined'){
-   	   		console.log(check_open_incom);
-   	   }
-   	}
-   });
-   }
-     });
-
-   socket.on('updatedriver', function (username, data) {
-   console.log("++++++++++++++++++++++datadriver++++++++++++++++++++++++++++++++")
-   console.log(username)
-   var check_open = $('#check_open_shop_id').val();
-   	if(check_open!=0){
-   	if(data.id==check_open){
-   		console.log(data)
-   		console.log(data.id);
-   	   if(data.check_driver_topoint==1){
-   	      console.log("driver_topoint");
-   	      changeHtml("driver_topoint",data.id,data.driver_topoint_date)
-   	   }
-   	   if(data.check_guest_receive==1){
-   	      console.log("guest_receive");
-   	      changeHtml("guest_receive",data.id,data.guest_receive_date)
-   	      $('#step_guest_register').show();
-   	   }
-   	   if(data.check_guest_register==1){
-   	      console.log("guest_register");
-   	      changeHtml("guest_register",data.id,data.guest_register_date)
-   	       $('#step_driver_pay_report').show();
-   	   }
-   	   if(data.check_driver_pay_report==1){
-   	      console.log("driver_pay_report");
-   	      changeHtml("driver_pay_report",data.id,data.driver_pay_report_date)
-   	   }
-   			}
-   	}
-     });
-
-   function formatDate(date) {
-      var d = new Date(date),
-          month = '' + (d.getMonth() + 1),
-          day = '' + d.getDate(),
-          year = d.getFullYear();
-      if (month.length < 2) month = '0' + month;
-      if (day.length < 2) day = '0' + day;
-      return [year, month, day].join('-');
-   }
-   function formatTime(date) {
-      var d = new Date(date),
-          hour = '' + d.getHours(),
-          minutes = d.getMinutes();
-   	if(hour<10){
-   		hour = "0" + hour ;
-   	}
-   	if(minutes<10){
-   		minutes = "0" + minutes ;
-   	}
-      return [hour, minutes].join(':');
-   }
-   function openOrderFromAndroid(id){
-   var check_open_shop_id = $('#check_open_shop_id').val();
-   //	alert('Param : '+id+" : "+check_open_shop_id);
-   if(check_open_shop_id<=0){
-   $.each(array_data.manage,function(index,value){
-   			 	if(value.id==id){
-   			$('#main_load_mod_popup').show();
-   		      var url_load= "load_page_mod.php?name=booking/shop_history&file=work_shop_detail_js&user_id=<?=$user_id;?>";
-   		       console.log(url_load);
-   		       $('#text_mod_topic_action').html("เลขที่ "+value.invoice);
-   		       $('#load_mod_popup').html(load_main_mod);
-   		       $.post(url_load,value,function(data){
-   		      		 $('#load_mod_popup').html(data); 
-   					 $('#btn_cancel_book_'+value.id).css('top','60px');
-   					 $('.assas_'+value.id).css('margin-top','30px');
-   		      	});
-   				}
-   			 });
-   }
-   }
-   function sendSocket(id){
-   	console.log('Click');
-//   var message = "";
-   var dataorder={  
-      order : parseInt(id),  
-      };
-   socket.emit('sendchat', dataorder);
-   }
+		
+	});
+	
 </script>
 
 <script>

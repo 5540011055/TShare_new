@@ -299,8 +299,9 @@
    	function(){
    					
    	 $.post( "mod/booking/shop_history/php_shop.php?action=approve_pay_driver_taxi",{ order_id : order_id},function( data ) 		{
-   	 					var message = "";
-   	 					socket.emit('sendchat', message);
+   	 					/*var message = "";
+   	 					socket.emit('sendchat', message);*/
+   	 					sendSocket(order_id);
    	 					console.log(data);
    			  			swal ( "<?=t_save_succeed;?>" ,  "" ,  "success" );
 						openViewPrice();

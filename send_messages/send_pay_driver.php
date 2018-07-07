@@ -51,7 +51,8 @@ function sendMessage() {
 								array("field" => "tag", "key" => "class", "relation" => "=", "value" => "lab")
 								),
 			'data' => array("order_id" => $_GET[order_id]),
-			'url' => "https://www.welovetaxi.com/app/demo_new2/index_sheet.php?name=index&file=open_order&order_id=".$order_id."&vc=".$invoice."&ios=1",
+//			'url' => "https://www.welovetaxi.com/app/demo_new2/index_sheet.php?name=index&file=open_order&order_id=".$order_id."&vc=".$invoice."&ios=1",
+			'url' => "https://www.welovetaxi.com/app/demo_new2/index_sheet.php?name=index&file=open_order_history&order_id=".$order_id."&vc=".$invoice."&ios=1",
 			'contents' => $content,
 			'headings' => $heading,
 			'ios_badgeType' => 'Increase',

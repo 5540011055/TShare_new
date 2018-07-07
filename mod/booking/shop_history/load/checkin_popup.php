@@ -150,8 +150,9 @@
 				 changeHtml("<?=$_GET[type]?>","<?=$arr[project][id]?>","<?=time();?>")
 				 console.log(array_data);
    				 $('#json_shop').val(JSON.stringify(array_data));
-				var message = "";
-				socket.emit('sendchat', message);
+				/*var message = "";
+				socket.emit('sendchat', message);*/
+				sendSocket('<?=$arr[project][id]?>');
 				$( "#close_dialog_custom" ).click();
 				
 		      	 $.post('send_messages/send_checkin.php?type=<?=$_GET[type]?>&id=<?=$arr[project][id]?>',function(data){

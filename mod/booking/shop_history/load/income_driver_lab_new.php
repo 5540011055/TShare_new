@@ -644,8 +644,9 @@ function selectPay(id){
    				console.log(data);
    				swal ( "<?=t_save_succeed;?>" ,  "" ,  "success" );
    				$('.button-close-popup-mod-3').click();
-   				var message = "";
-				socket.emit('sendchat', message);
+   				/*var message = "";
+				socket.emit('sendchat', message);*/
+   				sendSocket(data.his.order_id);
    				
    				openViewPrice();
    				var send_noti = "send_messages/send_pay_driver.php?type=send_driver&vc="+invoice+'&driver='+driver+'&order_id='+data.his.order_id;

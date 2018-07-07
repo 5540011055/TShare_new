@@ -287,4 +287,31 @@ if($_GET[update]=="update_time_toplace"){
 	header('Content-Type: application/json');
 	echo json_encode($data);
 }
+
+if($_GET[query]=='history_by_order'){
+	
+$url = "http://www.welovetaxi.com:3000/getOrderbyid";                              
+
+//create a new cURL resource
+$ch = curl_init($url);
+
+//setup request to send json via POST
+
+$curl_post_data2 = '{"order":"'.$_GET[order_id].'"}';
+
+//attach encoded JSON string to the POST fields
+curl_setopt($ch, CURLOPT_POSTFIELDS, $curl_post_data2);
+//set the content type to application/json
+curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
+//return response instead of outputting
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+//execute the POST request
+$result = curl_exec($ch);
+//close cURL resource
+curl_close($ch);
+$decode = 	json_decode($result);
+header('Content-Type: application/json');
+echo json_encode($decode);	
+	
+}
 ?>
