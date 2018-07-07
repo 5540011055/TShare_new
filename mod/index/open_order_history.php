@@ -409,7 +409,34 @@
 
 
 <input  name="now_province"  type="hidden" class="form-control"  id="now_province" value=""   />
-
+<div class="background-smal-popup " id="load_mod_popup_select_pv" style="position: fixed; overflow: auto;display: none;">
+      <div class="css-full-popup2 ">
+         <div class="back-full-popup box-shadow-only" style="z-index: 1;">
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+               <tbody>
+                  <tr>
+                     <td width="40">
+                        <div class="close-small-popup"><i class="fa fa-close" style=" "></i></div>
+                     </td>
+                     <td>
+                        <div class="font-26" id="text_small_popup"  class="text-topic-action-mod-small-popup"><? echo t_province_you?> <span class="text-change-province"></span></div>
+                     </td>
+                     <td width="40" align="right">
+                        <div  onclick="GohomePage();"><i class="fa fa-home" ></i></div>
+                     </td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <div id="body_load_select_pv" style="overflow: auto;margin-top:45px; " >
+         </div>
+      </div>
+      <input type="hidden" value="" id="txt_pv_fr"/>
+      <input type="hidden" value="" id="area"/>
+      <input type="hidden" value="" id="province_id"/>
+      <input type="hidden" value="0" id="lat"/>
+      <input type="hidden" value="0" id="lng"/>
+   </div>
 <script>
 	$.post("mod/booking/shop_history/php_shop.php?query=history_by_order&order_id=<?=$_GET[order_id];?>",function(data){
 		console.log(data);
@@ -447,4 +474,110 @@
    var load_main_icon_mod="<div style='top:0; left:0'><br><br><table width='100%'  border='0' cellspacing='0' cellpadding='0'><tr><td align='center' style='width:24px; '><i class='fa fa-refresh fa-spin 2x' style='font-size:60px; color:<?= $main_color_sorf ?>; ' ></i> <br><font style='font-size:14px; color:#333333 ' ><?
       echo t_load_data;
       ?></center></font></td></tr></table></div> ";
+</script>
+<script>
+   var locat = getCookie("geolocation");
+   geolocatCall();
+   var userLang = navigator.language || navigator.userLanguage; 
+   userLang = userLang.split('-');
+   var js_lng = userLang[0];
+   console.log('Js Browser lng : '+js_lng);
+   function geolocatCall(){
+   if (navigator.geolocation) {
+           navigator.geolocation.getCurrentPosition(showPosition);
+       } else { 
+          	console.log('ปิดตำแหน่ง');
+       }
+   }
+   function geolocatCallFrist(){
+   	swal({
+   	  title: "แสดงตำแหน่งปัจจุบัน",
+   	  text: "เพื่อการเข้าถึงข้อมูลของสถานที่ส่งแขกใกล้เคียงได้สะดวกยิ่งขึ้นและสะดวกในการเดินทางไปรับแขกของคุณ",
+   	  type: "warning",
+   	  showCancelButton: true,
+   	  confirmButtonClass: "btn-danger",
+   	  confirmButtonText: "ตกลง",
+   	  cancelButtonText: "ยกเลิก",
+   	  closeOnConfirm: true,
+   	  closeOnCancel: true
+   	},
+   	function(isConfirm) {
+   	  if (isConfirm) {
+   	    if (navigator.geolocation) {
+   		        navigator.geolocation.getCurrentPosition(showPosition);
+   		         setCookie("geolocation", '1', 1);
+   		    } else { 
+   		       	console.log('ปิดตำแหน่ง');
+   		    }
+   	  } 
+   	});
+   }	   
+   function showPosition(position) {
+   var cook_lng = getCookie("lng");
+   if (cook_lng == 'th') {
+         lng = "th";
+        }
+        else if (cook_lng == 'cn') {
+          lng = "zh-CN";
+        }
+         else if (cook_lng == 'en') {
+          lng = "en";
+        }else{
+     	lng = "<?=$keep;?>";
+     }
+        console.log('Php Browser lng : '+lng);
+    var url = 'https://maps.google.com/maps/api/geocode/json?latlng='+position.coords.latitude+','+position.coords.longitude+'&sensor=false&language='+lng+'&key=AIzaSyCx4SLk_yKsh0FUjd6BgmEo-9B0m6z_xxM';
+   //	 var url = 'https://maps.google.com/maps/api/geocode/json?latlng=9.13824,99.32175&sensor=false';
+      $('#lat').val(position.coords.latitude);
+      $('#lng').val(position.coords.longitude);
+      console.log(position.coords.latitude+" : "+position.coords.longitude);
+      $.post( url, function( data ) {
+   		console.log(data);
+   	if(data.status=="OVER_QUERY_LIMIT"){
+   		console.log('OVER_QUERY_LIMIT');
+   	}else{
+   		console.log(data.results);
+      	console.log(data.results.length-2);
+   		console.log(data.results[data.results.length-2].address_components[0].long_name);
+   		var province = data.results[data.results.length-2].address_components[0].long_name;
+   		 $('#province_text').text(province);
+   		$('#now_province').val(province);
+   		updatePlaceNum(province);
+   	}
+   });
+   }   
+   function updatePlaceNum(province){
+   var url = "mod/shop/select_province_new.php?op=get_id_province_only";
+   	 $.post( url,{txt_pv  :province} ,function( data ) {
+   	  	var obj = JSON.parse(data);
+   		  	console.log(obj);
+   		  	var province = obj.id;
+   			var area = obj.area;
+   			var url2 = "mod/shop/update_num_place.php?op=update_all&province="+province+'&area='+area;
+   			 $.post( url2, function( data2 ) {
+   //   			  	console.log(data2);
+   			}); 
+   	});  
+   }	
+   function setCookie(cname,cvalue,exdays) {
+      var d = new Date();
+      d.setTime(d.getTime() + (exdays*24*60*60*1000));
+      var expires = "expires=" + d.toGMTString();
+      document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+   }
+   function getCookie(cname) {
+      var name = cname + "=";
+      var decodedCookie = decodeURIComponent(document.cookie);
+      var ca = decodedCookie.split(';');
+      for(var i = 0; i < ca.length; i++) {
+          var c = ca[i];
+          while (c.charAt(0) == ' ') {
+              c = c.substring(1);
+          }
+          if (c.indexOf(name) == 0) {
+              return c.substring(name.length, c.length);
+          }
+      }
+      return "";
+   }
 </script>
