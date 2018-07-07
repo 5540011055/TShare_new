@@ -8,11 +8,6 @@
    //   require_once("css/maincss.php");
    $db->connectdb(DB_NAME_DATA, DB_USERNAME, DB_PASSWORD);
    ?>
-<?if ($_SESSION['data_user_id'] == '') {   ?> 
-<script>
-   window.location = "signin.php";
-</script> 
-<? }   ?>
 <script>
    var detect_mb = "<?=$detectname;?>";
    var class_user = "<?=$data_user_class;?>";
@@ -32,7 +27,13 @@
    				Android.deleteTag(txt);
    			}
    } 
+
 </script>
+<?if ($_SESSION['data_user_id'] == '') {   ?> 
+<script>
+ window.location = "signin.php";
+</script> 
+<? }   ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" class="ui-mobile landscape min-width-320px min-width-480px min-width-768px min-width-1024px">
    <head>
@@ -501,7 +502,7 @@
 <script>
    setTimeout(function(){ 
       	  sendTagIOS(class_user,username);
-    }, 3000);	
+    }, 1500);	
     
     function sendTagIOS(classname,username){
     	var iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;

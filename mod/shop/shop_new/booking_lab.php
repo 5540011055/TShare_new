@@ -727,6 +727,7 @@
              $.post(url_mail,$('#form_booking').serialize(),function(data){
                   console.log(data);
                });
+              setTimeout(function(){  openOrderFromAndroid(response.last_id);}, 1500);
                
           });
                         swal({
