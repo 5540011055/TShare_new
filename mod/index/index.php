@@ -900,6 +900,7 @@
    var socket = io.connect('https://www.welovetaxi.com:3443');
           //on message received we print all the data inside the #container div
           socket.on('notification', function (data) {
+          console.log(data);
           res_socket = data.transfer[0];
           $('#number_tbooking').text(data.transfer[0].length);
            if($('#check_open_worktbooking').val()==1){

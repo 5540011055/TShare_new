@@ -34,7 +34,7 @@
 <form method="post"  id="edit_form" name="edit_form">
    <div class="box box-default" style="padding-top:30px;">
       <!-- /.box-header -->
-      <div class="box-body" >
+      <div class="box-body" style="padding: 0px 10px;" >
          <div class="row">
             <div class="<?= $coldata?>">
                <?php  $pic_qr = file_exists("../data/pic/driver/small/".$arr[web_user][username].".jpg");  
@@ -60,8 +60,8 @@
 				<input type='file' id="imgInp" style="opacity: 0;" />
                <a onclick="ChangeProfile('<?=$arr[web_user][username];?>');">
                   <div align="center" style="margin-top:10px;" >
-                     <img src="<?=$path_file;?>" id="img_tag"  alt="Preview Image" style="border: 2px solid #ddd;    border-radius: 4px;    padding: 0px;    margin: 10px;   display: nones;max-width: 300px;min-width: 200px;"/>
-                     <img src="" id="img_tag_new"  alt="Preview Image" style="border: 2px solid #ddd;    border-radius: 4px;    padding: 0px;    margin: 10px;   display: none;max-width: 300px;min-width: 200px;"/>
+                     <img src="<?=$path_file;?>" id="img_tag"  alt="Preview Image" style="border: 2px solid #ddd;    border-radius: 4px;    padding: 0px;    margin: 10px;   display: nones;max-width: 250px;"/>
+                     <img src="" id="img_tag_new"  alt="Preview Image" style="border: 2px solid #ddd;    border-radius: 4px;    padding: 0px;    margin: 10px;   display: none;max-width: 250px;"/>
                      <!--<button class="btn btn-md" id="but_img_tag" type="button">อัพโหลดภาพ..</button>-->
                      <input type="file" id="imageUpload_profile" class="fileInput" name="imageUpload_profile" />
                   </div>
@@ -76,7 +76,7 @@
                </div>
                
                <div class="topicname-user"><?=t_username;?></div>
-               <input class="form-control" type="text" name="username" id="username" maxlength="50" required="true" style="width:100%" onkeypress="UserEnter(this,event)" value="<?=$arr[web_user][username];?>"  readonly="readonly">
+               <input class="form-control" type="text" name="username" id="username" maxlength="50" required="true" style="width:100%" onkeypress="UserEnter(this,event)" value="<?=$arr[web_user][username];?>"  >
             </div>
             <div class="<?= $coldata?>">
                <div class="topicname-user"><?=t_password;?></div>
