@@ -1083,6 +1083,7 @@
    socket.on('updatedriver', function (username, data) {
    console.log("++++++++++++++++++++++datadriver++++++++++++++++++++++++++++++++")
    console.log(username)
+   console.log(data)
    var check_open = $('#check_open_shop_id').val();
    	if(check_open!=0){
    	if(data.id==check_open){

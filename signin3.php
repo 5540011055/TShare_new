@@ -137,7 +137,8 @@
                 <div class="row">
                     <div class="col-sm-6 " style="padding:0;    margin-top: 20px;">
                         <div class="">
-                          <form name="form1"  >
+                          <form name="form1">
+
                           <div class="input-group"  style="    margin-bottom: 8px;">
                                 <span class="input-group-addon">
                                     <i class="fa fa-user"></i>
@@ -180,6 +181,38 @@
                             </div>
                             <div class="input-group"  style="margin-bottom: 8px;">
                                 <span class="input-group-addon">
+
+                                    <i class="fa fa-phone-square"></i>
+                                </span>
+                                <!-- <button class="btn btn-warning btn-sm" id="checkmail" style="position: absolute; right: 0; z-index: 100;  margin-top: 2px; padding: 5px 10px;border-radius: 15px;">
+                                    <span class="lng-check"></span>
+                                </button> -->
+                                <div class="form-group label-floating is-empty">
+                                    <label class="control-label"> 
+                                        <span class="lng-email"></span>                                
+                                    </label>
+                                    <input name="username-signup-name" required="True" type="number" class="form-control" id="username-signup-name" placeholder="ชื่อ - นามสกุล" style="border-radius: 0 25px 25px 0;    padding: 18px 12px;">
+                                    <span class="material-input"></span>
+                                </div>
+                            </div> 
+                            <div class="input-group"  style="margin-bottom: 8px;">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-phone-square"></i>
+                                </span>
+                                <!-- <button class="btn btn-warning btn-sm" id="checkmail" style="position: absolute; right: 0; z-index: 100;  margin-top: 2px; padding: 5px 10px;border-radius: 15px;">
+                                    <span class="lng-check"></span>
+                                </button> -->
+                                <div class="form-group label-floating is-empty">
+                                    <label class="control-label"> 
+                                        <span class="lng-email"></span>                                
+                                    </label>
+                                    <input name="username-signup-email" required="True" type="number" class="form-control" id="username-signup-phone" placeholder="เบอร์โทรศัพท์" style="border-radius: 0 25px 25px 0;    padding: 18px 12px;">
+                                    <span class="material-input"></span>
+                                </div>
+                            </div>  
+                            <div class="input-group"  style="margin-bottom: 8px;">
+                                <span class="input-group-addon">
+
                                     <i class="fa fa-envelope"></i>
                                 </span>
                                 <!-- <button class="btn btn-warning btn-sm" id="checkmail" style="position: absolute; right: 0; z-index: 100;  margin-top: 2px; padding: 5px 10px;border-radius: 15px;">
@@ -190,11 +223,12 @@
                                         <span class="lng-email"></span> 
                                
                                     </label>
-                                    <input name="username-signup-email" required="True" type="number" class="form-control" id="username-signup-email" placeholder="อีเมล" style="border-radius: 0 25px 25px 0;    padding: 18px 12px;">
+
+                                    <input name="username-signup-email" required="True" type="email" class="form-control" id="username-signup-email" placeholder="อีเมล" style="border-radius: 0 25px 25px 0;    padding: 18px 12px;">
                                     <span class="material-input"></span>
                                 </div>
-                            </div>
-                            
+                            </div>               
+
                             <div class="input-group"  style="margin-bottom: 8px;">
                               
                                 <span class="input-group-addon">
@@ -255,7 +289,9 @@
                     </div>
                     <form>
                         <div class="row">
-                            <!-- <div class="col-sm-8 " style="padding: 0" > -->
+
+                              <form name="form" id="form_submit" method="post" >
+
                                 <div class="">
                                     <div class="input-group">
                                         <span class="input-group-addon">
@@ -280,10 +316,12 @@
                                     <div id="message" style="text-align: center;"></div>
                                 </div>
                                 <div class="">
-                                    <div  type="submit" class=" btn-login " id="login" style="">
+                                    <button type="button" class=" btn-login " id="login" style="width: 100% !important;">
                                         <span class="lng-login"> เข้าสู่ระบบ </span>
-                                    </div>
+                                    </button>
                                 </div>
+                              </form>
+
                                         
                                 <div class="col2">
                                     <div class="text-sign" >
@@ -1143,17 +1181,20 @@ $(document).ready(function(){
     $('#username').on('change', function() {
         username = this.value ;
         console.log(username)
-    })
+
+    });
     $('#password').on('change', function() {
         password = this.value ;
         console.log(password)
-    })
-        
-    $('#login').on('click', function() {
-        
+    });
+    $( "#login" ).click(function() {
+     
 //      alert(type_login);
+       console.log('+++++++++++++++++++++++++++++++++++++++++');
        console.log(password+username);
-        $.ajax({
+      
+       $.ajax({
+
         type: 'POST',
         url: 'https://www.welovetaxi.com/app/demo_new2/curl/loginsocial.php',
         data: {'username': username,'password':password,'type':'nomal'},
@@ -1163,7 +1204,9 @@ $(document).ready(function(){
           console.log(res)
           if(res[0].status == 1)
               {
-                  var url = "https://www.welovetaxi.com/app/demo_new2/index.php?check_new_user="+res[0].username;
+
+                  var url = "https://www.welovetaxi.com/app/demo_new2/index.php?check_new_user="
+
                   console.log(url);
                   window.location.href = url; 
                    
@@ -1177,8 +1220,9 @@ $(document).ready(function(){
                   $('#message').html('รหัสผิด').css('color', 'red');
               }
         }
-    });
-        
+
+    }); 
+
 //    alert('<?php //echo base_url(); ?>login_control/process');
 //         $.ajax({
 //         type: 'POST',
@@ -1215,9 +1259,12 @@ $(document).ready(function(){
 //               }
 //         }
 //     });
-       
+
+//       event.preventDefault();  
+});
     //alert( this.value );
-    })
+  
+
     
     $('#username-signup').on('change', function() {
         username_signup = this.value ;
@@ -1389,9 +1436,20 @@ function foget_password() {
           console.log(res)
           if(res[0].status == 1)
               {
-                  var url = "https://www.welovetaxi.com/app/demo_new2/index.php?check_new_user="+res[0].username;
+
+                var url = "https://www.welovetaxi.com/app/demo_new2/index.php?check_new_user="+res[0].username;
+                var url2 = "https://www.welovetaxi.com/app/demo_new2/index.php?check_new_user=";
                   console.log(url);
+                if (res[0].case == 'add success') {
+                  
+                 
                   window.location.href = url; 
+                }
+                else{
+                  window.location.href = url2;
+                }
+                  
+
                    
               }
               else 
@@ -1498,8 +1556,18 @@ function foget_password() {
           if(res[0].status == 1)
               {
                   var url = "https://www.welovetaxi.com/app/demo_new2/index.php?check_new_user="+res[0].username;
+
+                var url2 = "https://www.welovetaxi.com/app/demo_new2/index.php?check_new_user=";
                   console.log(url);
+                if (res[0].case == 'add success') {
+                  
+                 
                   window.location.href = url; 
+                }
+                else{
+                  window.location.href = url2;
+                }
+
                    
               }
               else 
@@ -1609,5 +1677,30 @@ return false; return true;}
     </script>
 
 
-
+<script>
+	/**
+	*  Script Connect Device
+	*/
+	var classname = '';
+	var username = '';
+	var txt = '';
+	setTimeout(function(){ 
+		deleteTagAndroid(txt);
+		deleteTagIOS(classname,username);
+	 }, 1500);
+	function deleteTagAndroid(txt) {
+   				if (typeof Android !== 'undefined') {
+   				Android.deleteTag(txt);
+   			}
+   } 
+   
+   function deleteTagIOS(classname,username){
+   		var iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+   		if(iOS==true){
+       		var url_xcode = "delete://ios?class="+classname+"&username="+username+"&test=0";
+       		console.log(url_xcode);
+            window.location = url_xcode;
+		}
+   	}
+</script>
 
