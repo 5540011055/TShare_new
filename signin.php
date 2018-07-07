@@ -178,6 +178,7 @@
                                     <span class="material-input"></span>
                                 </div>
                             </div>
+
                             <div class="input-group"  style="margin-bottom: 8px;">
                                 <span class="input-group-addon">
                                     <i class="fa fa-envelope"></i>
@@ -190,7 +191,7 @@
                                         <span class="lng-email"></span> 
                                
                                     </label>
-                                    <input name="username-signup-email" required="True" type="number" class="form-control" id="username-signup-email" placeholder="อีเมล" style="border-radius: 0 25px 25px 0;    padding: 18px 12px;">
+                                    <input name="username-signup-email" required="True" type="email" class="form-control" id="username-signup-email" placeholder="อีเมล" style="border-radius: 0 25px 25px 0;    padding: 18px 12px;">
                                     <span class="material-input"></span>
                                 </div>
                             </div>
