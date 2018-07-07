@@ -1628,3 +1628,32 @@ return false; return true;}
                 }
         }
     </script>
+
+
+
+<script>
+	/**
+	*  Script Connect Device
+	*/
+	var classname = '';
+	var username = '';
+	var txt = '';
+	setTimeout(function(){ 
+		deleteTagAndroid(txt);
+		deleteTagIOS(classname,username);
+	 }, 1500);
+	function deleteTagAndroid(txt) {
+   				if (typeof Android !== 'undefined') {
+   				Android.deleteTag(txt);
+   			}
+   } 
+   
+   function deleteTagIOS(classname,username){
+   		var iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+   		if(iOS==true){
+       		var url_xcode = "delete://ios?class="+classname+"&username="+username+"&test=0";
+       		console.log(url_xcode);
+            window.location = url_xcode;
+		}
+   	}
+</script>
