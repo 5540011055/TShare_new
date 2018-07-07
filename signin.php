@@ -1218,7 +1218,7 @@ $(document).ready(function(){
 //               }
 //         }
 //     });
-       event.preventDefault();
+       //event.preventDefault();
 });
     //alert( this.value );
   
