@@ -37,7 +37,7 @@
    ?>-->
 <script>
 
-/*$.ajax({
+$.ajax({
 			url: '../data/fileupload/store/guest_register_<?=$arr[book][id];?>.jpg',
 			type:'HEAD',
 			error: function()
@@ -55,7 +55,7 @@
 			   $('#photo_guest_register_no').hide();
 			   $('#photo_guest_register_yes').show();
 			}
-		});*/
+		});
    $("#btn_guest_register").click(function(){ 
    	$('#body_dialog_custom_load').html(load_sub_mod);
      if($('#guest_register_check_click').val()==0){

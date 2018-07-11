@@ -27,7 +27,7 @@ function sendMessage() {
 			'filters' => array(
 								array("field" => "tag", "key" => "username", "relation" => "=", "value" => $arr[dv][username])
 								),
-			'data' => array("foo" => "bar"),
+			'data' => array("order_id" => $order_id),
 			'url' => "https://www.welovetaxi.com/app/demo_new2/index_sheet.php?name=index&file=open_order&order_id=".$order_id."&vc=".$invoice."&ios=1",
 			'contents' => $content,
 			'headings' => $heading,

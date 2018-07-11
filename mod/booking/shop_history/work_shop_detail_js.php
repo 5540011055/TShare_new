@@ -495,12 +495,71 @@ else if($arr[book][status]=='CONFIRM'){
 	 	</tr>
 	 </table>
 	</div>
+	
+	<div style="padding: 5px 0px;">
+		<span class="text-cap font-26"><?=โค้ดและเอกสาร;?></span>
+	<? if($data_user_class=='lab' and $arr[book][program]==1){ ?>
+		<table class="onlyThisTable" width="100%" border="0" cellpadding="1" cellspacing="5" id="table_code_doc">
+			<tr>
+				<td width="60" valign="middle"><span class="font-22">Code</span></td>
+				<td width="150">
+				<input type="text" class="form-control font-22" id="code_order" name="code_order" value="<?=$arr[book][code];?>" style="margin-bottom: 0px;height: 2.5rem;padding-left: 0px;"/></td>
+				<td><span class="btn" align="center" onclick="updateCode('<?=$arr[book][program];?>','<?=$arr[book][id];?>');" style="background: #3b5998;
+    color: #fff;
+    padding: 0px 10px;
+    font-size: 3px !important;
+    border-radius: 25px;">
+		<span class="font-24 text-cap">บันทึก</span>
+	</span></td>
+			</tr>
+			<tr>
+				<td width="60"><span class="font-22">อัพโหลด</span></td>
+				<td><a class="waves-effect waves-light btn" style="background-color: #009688;color: #fff;border-radius: 10px;" onclick="uploadCodeFile('<?=$arr[book][program];?>','<?=$arr[book][id];?>','lab');"><i class="material-icons left" style="font-size: 16px;margin-right: 7px;">cloud</i>อัพโหลด</a></td>
+			</tr>
+		</table>
+	<? }
+	else if($data_user_class=='taxi' and $arr[book][program]==1){ ?>
+	
+		<table class="onlyThisTable" width="100%" border="0" cellpadding="1" cellspacing="5" id="table_code_doc">
+			<tr>
+				<td width="60" valign="middle"><span class="font-22">Code</span></td>
+				<td width="150">
+				<input type="text" class="form-control font-22" readonly="readonly" value="<?=$arr[book][code];?>" style="margin-bottom: 0px;height: 2.5rem;padding-left: 0px;"/></td>
+			</tr>
+			<tr>
+				<td width="60">
+				<span class="font-22">อัพโหลด</span></td>
+				<td>
+				<a class="waves-effect waves-light btn" style="background-color: #3b5998;color: #fff;border-radius: 10px;" onclick="uploadCodeFile('<?=$arr[book][program];?>','<?=$arr[book][id];?>','taxi');"><i class="material-icons left" style="font-size: 16px;margin-right: 7px;">cloud</i>ตรวจสอบภาพ</a></td>
+			</tr>
+		</table>
+<?	} ?>
+	</div>
 <? } ?>
 
 </div>
 <input type="hidden" id="check_cause" value="0"/>
 <script>
-
+		function updateCode(place,order_id){
+			console.log(place+" "+order_id);
+			var code = $('#code_order').val();
+			$.post('mod/booking/shop_history/php_shop.php?action=update_code',{ place:place, order_id:order_id, code:code },function(data){
+				console.log(data);
+//				sendSocket(order_id);
+			});
+		}
+		function uploadCodeFile(place,order_id,class_user){
+			console.log('upload code file');
+			$( "#dialog_custom" ).show();
+			$('#body_dialog_custom_load').html(load_sub_mod);
+			var url = "empty_style.php?name=booking/shop_history/load&file=upload_bill_popup&place="+place+'&order_id='+order_id+'&class_user='+class_user;
+			console.log(place+" "+order_id);
+//			return;
+			$.post(url,function(res){
+				$('#body_dialog_custom_load').html(res); 
+			});
+			
+		}
 		var number_persion_new = '<?=$arr[book][adult];?>';
 		$('#num_final_edit').html(number_persion_new)
 		function editBook(x){
@@ -579,6 +638,9 @@ else if($arr[book][status]=='CONFIRM'){
 
 	function ViewPhoto(id,type,date,plan){
 		console.log(id+" | "+type+" | "+date+" | "+plan)
+		if(date==""){
+			date = '<?=time();?>';
+		}
 		if(type=="doc_pay"){
 			var url = 'load_page_photo.php?name=booking/load/form&file=iframe_photo&id='+id+'&type='+type+'&date='+date+'&plan='+plan;
 		}

@@ -659,140 +659,153 @@
    }
    $("#submit_data_update").click(function(){
 
-    if($('#car_type').val() == 0 ) {
-      swal("กรุณาเลือก !", "ประเภทรถ", "warning");
-   // alert('กรุณาเลือกประเภทรถ');
-   // $('#car_type').focus() ;
-    return false ;  
-   }
-   if($('#car_plate').val() =="" ) {
-      swal("กรุณาป้อน !", "ป้ายทะเบียนรถ", "warning");
+    if ($('#car_type').val() == 0) {
+        swal("กรุณาเลือก !", "ประเภทรถ", "warning");
+        // alert('กรุณาเลือกประเภทรถ');
+        // $('#car_type').focus() ;
+        return false;
+    }
+    if ($('#car_plate').val() == "") {
+        swal("กรุณาป้อน !", "ป้ายทะเบียนรถ", "warning");
 
-   
-   $('#car_plate').focus() ;
-    return false ;   
-   }
-    if($('#adult').val() =="" ) {
-      swal("กรุณาป้อน !", "จำนวนผู้ใหญ่", "warning");
 
-   
-   $('#adult').focus() ;
-    return false ;  
-   }
-   if($('#child').val() =="" ) {
-   //    swal("กรุณาป้อน !", "จำนวนเด็ก", "warning");
+        $('#car_plate').focus();
+        return false;
+    }
+    if ($('#adult').val() == "") {
+        swal("กรุณาป้อน !", "จำนวนผู้ใหญ่", "warning");
 
-    $('#child').val(0)
-   // $('#child').focus() ;
-   //  return false ;   
-   }
-      if($('#time_num').val() == '' ) {
-      swal("กรุณาป้อน !", "เวลาถึงโดยประมาณ", "warning");
 
-  
-    return false ;  
-   }
-    
-   //  if(document.getElementById('airout_h').value =="" ) {
-   // alert('กรุณาเลือกชั่วโมง');
-   // document.getElementById('airout_h').focus() ;
-   //  return false ;	
-   // }
-   //  if(document.getElementById('airout_m').value =="" ) {
-   //  alert('กรุณาเลือกนาที');
-   // document.getElementById('airout_h').focus() ;
-   //  return false ;	
-   // }
-   // 		if(document.getElementById('all_car').value < 1 ) {
-   // alert('กรุณาเลือกรถที่ใช้งาน');
-   //  return false ;	
-   // }
-   			// if(document.getElementById('adult').value=="0" && document.getElementById('child').value=="0" ) {
-   			// 	alert('กรุณาเลือกจำนวนผู้ใหญ่หรือเด็กอย่างน้อย 1 คน');
-   			// 	document.getElementById('adult').focus() ;
-   			// 	document.getElementById('child').focus() ;
-   			// 	return false ;
-   			// }
-   // if(document.getElementById('all_car').value < 1 ) {
-   // alert('กรุณาเลือกรถที่ใช้งาน');
-   //  return false ;	
-   // }
-   			// var price_plan = $('.price_plan').val();
-   //			if(document.getElementById('plan_setting').value==0 ) {
-   	// if(document.getElementById('plan_setting').value==0 ) {
-   	// 			alert('กรุณาเลือกประเภทค่าตอบแทน');
-   	// 		 document.getElementById('price_plan').focus() ;
-   	// 			return false ;
-   	// 		}
-   		// $( "#main_load_mod_popup_4" ).toggle();
+        $('#adult').focus();
+        return false;
+    }
+    if ($('#child').val() == "") {
+        //    swal("กรุณาป้อน !", "จำนวนเด็ก", "warning");
 
-   			// var url_load_finish= "load_page_mod_4.php?name=booking/step/load&file=finish&lat=<?=$arr[shop][lat]?>&lng=<?=$arr[shop][lng]?>&type=stop&place=<?=$_GET[place]?>";
-   			console.log("&adult="+document.getElementById('adult').value+
-   			"&child="+document.getElementById('child').value
-            +"&time="+document.getElementById('time_num').value
-            // +"&check_use_car_id="+document.getElementById('check_use_car_id').value          
-            +"&car_color="+document.getElementById('car_color').value
-            +"car_plate="+document.getElementById('car_plate').value
-            +"&plan="+document.getElementById('plan_setting').value
-           
-            // +"&namedriver="+document.getElementById('namedriver').value
-            // +"&guest_name="+document.getElementById('guest_name').value
-            +"&program="+document.getElementById('program').value)         
-            // +"&guest_name="+document.getElementById('guest_name').value)
-   			
-   			// $.post('go.php?name=booking&file=savedata&action=add&type=driver&driver=<?=$arr[web_user][id]?>',$('#edit_form').serialize(),function(response){
-   //					$('#send_booking_data').html(response);
-   					// console.log(response);
-                  var place_num = document.getElementById('car_plate').value;
-                  console.log(place_num)
-   						swal({
-   						  title: "ยืนยันข้อมูลส่งแขก ?",
-   						  text: "เวลาถึงประมาณ : "+$('#time_num').val()+" น.",
-   						  html:false, 
-   						  type: "warning",
-   						  showCancelButton: true,
-   						  confirmButtonClass: "btn-danger waves-effect waves-light",
-		  				  cancelButtonClass: "btn-cus waves-effect waves-light",
-   						  confirmButtonText: "ยืนยัน",
-   						  cancelButtonText: 'ยกเลิก',
-   						  closeOnConfirm: false
-   						},
-   						function(){
-                        // console.log('<?=$user_id?>');
-                        $.post('go.php?name=shop/shop_new&file=save_data&action=add&type=driver&driver=<?=$user_id?>',$('#form_booking').serialize(),function(response){
-                            console.log(response)
-              $.post('send_messages/send_onesignal.php?key=new_shop&order_id='+response.last_id+'&vc='+response.invoice+'&m='+response.airout_m,{ driver : "<?=$user_id?>" ,nickname : "<?=$arr[driver][nickname]?>",car_plate : place_num },function(data){
-                  console.log(data);
-               });
-                var url_mail = "mail.php?key=new_shop";
-             $.post(url_mail,$('#form_booking').serialize(),function(data){
-                  console.log(data);
-               });
-              setTimeout(function(){  openOrderFromAndroid(response.last_id);}, 1500);
-               
-          });
-                        swal({
-                       title: "ส่งข้อมูลสำเร็จ!",
-                       text: "",
-                       html:false, 
-                       type: "success"
-                       // closeOnConfirm: true;
-                      
-                     }
-                     ,
-                     function(){
-                        $('.close-small-popup').click();
-                        $('#index_menu_shopping_history').click();
-                     });
-   						  // swal("ส่งข้อมูลสำเร็จ !", "ขอบคุณที่ส่งแขก", "warning");
-   						 //  $('.button-close-popup-mod-3').click();
-   							// $('.button-close-popup-mod-2').click();
-   							// $('.button-close-popup-mod-1').click();
-   							// $('.button-close-popup-mod').click();
-   							
-   						});
-   				});
-   		// });
+        $('#child').val(0)
+        // $('#child').focus() ;
+        //  return false ;   
+    }
+    if ($('#time_num').val() == '') {
+        swal("กรุณาป้อน !", "เวลาถึงโดยประมาณ", "warning");
+
+
+        return false;
+    }
+
+    //  if(document.getElementById('airout_h').value =="" ) {
+    // alert('กรุณาเลือกชั่วโมง');
+    // document.getElementById('airout_h').focus() ;
+    //  return false ;	
+    // }
+    //  if(document.getElementById('airout_m').value =="" ) {
+    //  alert('กรุณาเลือกนาที');
+    // document.getElementById('airout_h').focus() ;
+    //  return false ;	
+    // }
+    // 		if(document.getElementById('all_car').value < 1 ) {
+    // alert('กรุณาเลือกรถที่ใช้งาน');
+    //  return false ;	
+    // }
+    // if(document.getElementById('adult').value=="0" && document.getElementById('child').value=="0" ) {
+    // 	alert('กรุณาเลือกจำนวนผู้ใหญ่หรือเด็กอย่างน้อย 1 คน');
+    // 	document.getElementById('adult').focus() ;
+    // 	document.getElementById('child').focus() ;
+    // 	return false ;
+    // }
+    // if(document.getElementById('all_car').value < 1 ) {
+    // alert('กรุณาเลือกรถที่ใช้งาน');
+    //  return false ;	
+    // }
+    // var price_plan = $('.price_plan').val();
+    //			if(document.getElementById('plan_setting').value==0 ) {
+    // if(document.getElementById('plan_setting').value==0 ) {
+    // 			alert('กรุณาเลือกประเภทค่าตอบแทน');
+    // 		 document.getElementById('price_plan').focus() ;
+    // 			return false ;
+    // 		}
+    // $( "#main_load_mod_popup_4" ).toggle();
+
+    // var url_load_finish= "load_page_mod_4.php?name=booking/step/load&file=finish&lat=<?=$arr[shop][lat]?>&lng=<?=$arr[shop][lng]?>&type=stop&place=<?=$_GET[place]?>";
+    console.log("&adult=" + document.getElementById('adult').value +
+        "&child=" + document.getElementById('child').value +
+        "&time=" + document.getElementById('time_num').value
+        // +"&check_use_car_id="+document.getElementById('check_use_car_id').value          
+        +
+        "&car_color=" + document.getElementById('car_color').value +
+        "car_plate=" + document.getElementById('car_plate').value +
+        "&plan=" + document.getElementById('plan_setting').value
+
+        // +"&namedriver="+document.getElementById('namedriver').value
+        // +"&guest_name="+document.getElementById('guest_name').value
+        +
+        "&program=" + document.getElementById('program').value)
+    // +"&guest_name="+document.getElementById('guest_name').value)
+
+    // $.post('go.php?name=booking&file=savedata&action=add&type=driver&driver=<?=$arr[web_user][id]?>',$('#edit_form').serialize(),function(response){
+    //					$('#send_booking_data').html(response);
+    // console.log(response);
+    var place_num = document.getElementById('car_plate').value;
+    console.log(place_num)
+    swal({
+        title: "ยืนยันข้อมูลส่งแขก ?",
+        text: "เวลาถึงประมาณ : " + $('#time_num').val() + " น.",
+        html: false,
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonClass: "btn-danger waves-effect waves-light",
+        cancelButtonClass: "btn-cus waves-effect waves-light",
+        confirmButtonText: "ยืนยัน",
+        cancelButtonText: 'ยกเลิก',
+        closeOnConfirm: false
+    },
+    function() {
+        // console.log('<?=$user_id?>');
+        $.post('go.php?name=shop/shop_new&file=save_data&action=add&type=driver&driver=<?=$user_id?>', $('#form_booking').serialize(), function(response) {
+            console.log(response)
+            if(response.result==true){
+				swal({
+	                title: "ทำรายการสำเร็จ!",
+	                text: "",
+	                html: false,
+	                type: "success"
+	                // closeOnConfirm: true;
+
+	            },
+	            function() {
+	                $('.close-small-popup').click();
+	                $('#index_menu_shopping_history').click();
+	            });
+	            
+	            $.post('send_messages/send_onesignal.php?key=new_shop&order_id=' + response.last_id + '&vc=' + response.invoice + '&m=' + response.airout_m, {
+	                driver: "<?=$user_id?>",
+	                nickname: "<?=$arr[driver][nickname]?>",
+	                car_plate: place_num
+	            }, function(data) {
+	                console.log(data);
+	            });
+	            var url_mail = "mail.php?key=new_shop";
+	            $.post(url_mail, $('#form_booking').serialize(), function(data) {
+	                console.log(data);
+	            });
+	            setTimeout(function() {
+	                openOrderFromAndroid(response.last_id);
+	            }, 1500);    
+			}else{
+				swal("ทำรายการไม่สำรเร็จ","กรุณาตรวจสอบอีกครั้งหรือติดต่อเจ้าหน้าที่","error");
+			}
+
+        });
+        
+        // swal("ส่งข้อมูลสำเร็จ !", "ขอบคุณที่ส่งแขก", "warning");
+        //  $('.button-close-popup-mod-3').click();
+        // $('.button-close-popup-mod-2').click();
+        // $('.button-close-popup-mod-1').click();
+        // $('.button-close-popup-mod').click();
+
+    });
+    });
+    // });
 </script>	
 <script>
    $(function () {
@@ -884,7 +897,7 @@
    // }
 </script>
 
- <script>
+<script>
       $(".text-topic-action-mod-3" ).html("<?=$arr[shop][$place_shopping]?>");
    </script>
 <style>

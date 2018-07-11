@@ -32,7 +32,7 @@ if ($_GET[action] == 'add')
 		{
 		$member_in = "0000$member_db";
 		}
-	$rand = substr(str_shuffle('123456789012345678901234567890') , 0, 30);
+//	$rand = substr(str_shuffle('123456789012345678901234567890') , 0, 30);
 
 	$db->connectdb(DB_NAME_APP, DB_USERNAME, DB_PASSWORD);
 	$mm = $_POST[time_num];
@@ -47,7 +47,7 @@ if ($_GET[action] == 'add')
 	}
 	$array_data = array(
 		"invoice" => "S$member_in",
-		"code" => "$rand",
+		"code" => "",
 		"plan_id" => "$_POST[price_plan]",
 		"plan_commission" => $arr[plan][plan_id],
 		"price_park_unit" => $price_park_driver,
@@ -79,7 +79,7 @@ if ($_GET[action] == 'add')
 		"drivername" => "$_GET[driver]",
 		"namedriver" => "$_POST[namedriver]",
 		"ondate_time" => "$_POST[ondate_time]",
-		"posted" => "$_SESSION[data_user_driver]",
+//		"posted" => "$_SESSION[data_user_driver]",
 		"post_date" => "" . TIMESTAMP . "",
 		"update_date" => "" . TIMESTAMP . "",
 		"num_ch" => $_POST[persion_china],

@@ -787,34 +787,38 @@ function hideRes(id){
       },
       function () {
          $.post('go.php?name=shop/shop_new&file=save_data&action=add&type=driver&driver=<?=$user_id?>', $('#form_booking').serialize(), function (response) {
-            console.log(response)
-            	$.post('send_messages/send_onesignal.php?key=new_shop&order_id='+response.last_id+'&vc='+response.invoice+'&m='+response.airout_m, {
-	               driver: "<?=$user_id?>",
-	               nickname: "<?=$arr[driver][nickname]?>",
-	               car_plate: place_num
-	            }, function (data) {
-	               console.log(data);
+         	if(response.result==true){
+				 swal({
+	               title: "ทำรายการสำเร็จ!",
+	               text: "",
+	               html: false,
+	               type: "success"
+	            },
+	            function () {
+	               $('.close-small-popup').click();
+	               $('#index_menu_shopping_history').click();
 	            });
-            var url_mail = "mail.php?key=new_shop";
-             $.post(url_mail,$('#form_booking').serialize(),function(data){
-                  console.log(data);
-               });
+	             console.log(response)
+	            	$.post('send_messages/send_onesignal.php?key=new_shop&order_id='+response.last_id+'&vc='+response.invoice+'&m='+response.airout_m, {
+		               driver: "<?=$user_id?>",
+		               nickname: "<?=$arr[driver][nickname]?>",
+		               car_plate: place_num
+		            }, function (data) {
+		               console.log(data);
+		            });
+	            var url_mail = "mail.php?key=new_shop";
+	             $.post(url_mail,$('#form_booking').serialize(),function(data){
+	                  console.log(data);
+	               });
                
                setTimeout(function(){  openOrderFromAndroid(response.last_id);}, 1500);
-              
-               
+			}else{
+				swal("ทำรายการไม่สำรเร็จ","กรุณาตรวจสอบอีกครั้งหรือติดต่อเจ้าหน้าที่","error");
+			}
+           
                
          });
-         swal({
-               title: "ส่งข้อมูลสำเร็จ!",
-               text: "",
-               html: false,
-               type: "success"
-            },
-            function () {
-               $('.close-small-popup').click();
-               $('#index_menu_shopping_history').click();
-            });
+        
       });
 }
 </script> 

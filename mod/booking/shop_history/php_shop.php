@@ -162,24 +162,34 @@ if($_GET[action]=='approve_pay_driver_admin'){
 	$data_plan[check_park] = $_POST[park];
 	$data_plan[check_person] = $_POST[person];
 	$data_plan[check_com] = $_POST[com];
-	
 	$data[income_driver] = json_encode($data_plan);
+	
+	if($_POST[guest_register_num]>0){
+		$data[register_number] = $_POST[guest_register_num];
+	}else{
+		
+		$cn[id] =  $_POST[cn];
+		$cn[adult] =  $_POST[regis_cn_pax_input];
+		$cn[register] =  $_POST[cn_pax_input];
+		$cn[price_unit] =  $_POST[price_person_cn];
+
+			$oth[id] =  $_POST[oth];
+			$oth[adult] =  $_POST[oth_pax_input];
+			$oth[register] =  $_POST[regis_oth_pax_input];
+			$oth[price_unit] =  $_POST[price_person_oth];
+			
+			if($_POST[check_have_other]>0){
+				$json_nation_price[1] = $oth;
+			}
+			if($_POST[check_have_cn]>0){
+				$json_nation_price[0] = $cn;
+			}
+		$data[json_nation_price] = json_encode($json_nation_price);
+	}
+	
 	
 	$db->connectdb(DB_NAME_APP, DB_USERNAME, DB_PASSWORD);
 	$data[result] = $db->add_db("pay_history_driver_shopping",$data); 
-	
-	$cn[id] =  $_POST[cn];
-	$cn[adult] =  $_POST[regis_cn_pax_input];
-	$cn[register] =  $_POST[cn_pax_input];
-	$cn[price_unit] =  $_POST[price_person_cn];
-	
-	$oth[id] =  $_POST[oth];
-	$oth[adult] =  $_POST[oth_pax_input];
-	$oth[register] =  $_POST[regis_oth_pax_input];
-	$oth[price_unit] =  $_POST[price_person_oth];
-	
-	$json_nation_price[0] = $cn;
-	$json_nation_price[1] = $oth;
 	
 	$data_ob[driver_payment] = 1;
 	$data_ob[adult] = intval($_POST[regis_cn_pax_input]) + intval($_POST[regis_oth_pax_input]);
@@ -191,7 +201,6 @@ if($_GET[action]=='approve_pay_driver_admin'){
 	$data_ob[price_person_total] = $_POST[total_person];
 	$data_ob[commission_persent] = $_POST[commission];
 	$data_ob[driver_payment_date] = time();
-	$data_ob[json_nation_price] = json_encode($json_nation_price);
 	$data_ob[check_lab_pay] = 1;
 	
 	
@@ -220,6 +229,17 @@ if($_GET[action]=='approve_pay_driver_taxi'){
 	echo json_encode($res);
 	
 }	
+
+if($_GET[action]=='update_code'){
+	
+	$data[code] = $_POST[code];
+//	$data[] = time();
+	$db->connectdb(DB_NAME_APP, DB_USERNAME, DB_PASSWORD);
+	$data[result] = $db->update_db("order_booking",$data,"id = '".$_POST[order_id]."' "); 
+	$data[order_id] = $_POST[order_id];
+	header('Content-Type: application/json');
+	echo json_encode($data);
+}
 
 if($_GET[query]=='history_driver'){
 	

@@ -37,15 +37,23 @@
    $db->connectdb(DB_NAME_APP, DB_USERNAME, DB_PASSWORD);
    $check_pay = $db->num_rows("pay_history_driver_shopping","id","order_id=".$arr[project][id]." and status = 1"); 
    if($check_pay>0){
-   			$txt_pay_park = '<span class="font-24">'.number_format($arr[project][price_park_total], 0 ).'</span>';
-     		$txt_pay_com = '<i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#f00000;"></i><strong style="padding-left: 5px;"><font color="#f00000">'.t_pending.'</font></strong>';
-     		$txt_pay_person = '<span class="font-24">'.number_format($arr[project][price_person_total], 0 ).'</span>';
-     		$txt_pay_all = '<span class="font-24" id="txt_all_total">'.number_format($arr[project][price_all_total], 0 ).'</span>';
+   			$txt_pay_park = '<span class="font-24">'.number_format($arr[project][price_park_total], 2 ).' บาท'.'</span>';
+     		
+     		$txt_pay_person = '<span class="font-24">'.number_format($arr[project][price_person_total], 2 ).'</span>';
+     		$txt_pay_all = '<span class="font-24" id="txt_all_total">'.number_format($arr[project][price_all_total], 2 ).' บาท'.'</span>';
      		
    			$hide_his_btn = "";
    			$color_status;
    			$res[pay_row] = $db->select_query("SELECT * FROM pay_history_driver_shopping where  order_id=".$arr[project][id]." and status = 1  ");
      		$arr[pay_row] = $db->fetch($res[pay_row]);
+     		
+     		if($arr[pay_row][price_pay_driver_com]!=0 or $arr[pay_row][price_pay_driver_com]!=""){
+				$txt_pay_com = '<span class="font-24">'.number_format($arr[pay_row][price_pay_driver_com],2)." บาท".'</span>';
+			}else{
+				$txt_pay_com = '<i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#f00000;"></i><strong style="padding-left: 5px;"><font color="#f00000">'.t_pending.'</font></strong>';
+			}
+     		
+     		
      		$json_price_plan = $arr[pay_row][income_driver];
      		if($arr[pay_row][driver_approve]>0){
 	  			$color_menu = 'background-color:#59AA47;';
@@ -200,7 +208,9 @@
 		      			 <td valign="middle"><span class="font-24">จำนวน</span></td>
 			              <td align="right" valign="middle">
 			               <div>
+			               
 			               <?=$txt_pay_com;?>
+			              
 			               </div>
 			            </td>
 		      		</tr>
@@ -218,7 +228,8 @@
 		</table>
       </div>
       
-      <div style="padding: 5px 20px;<?=$show_el;?>" id="box_status_dv">
+      <div style="padding: 10px 15px;">
+      <div style="padding: 5px 5px;<?=$show_el;?>" id="box_status_dv">
          <table class="onlyThisTable" width="100%" style="padding: 10px;box-shadow: 1px 1px 3px #9E9E9E;border: 1px solid #ddd;">
          	<tr>
          		<td>
@@ -257,6 +268,7 @@
             
          </tbody>
       </table>
+	  </div>	
    </div>
 </div>
 <input type="hidden" value="<?=$_GET[id];?>" id="check_id_income_lab" />
