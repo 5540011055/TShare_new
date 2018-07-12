@@ -1,11 +1,11 @@
 
 <ul id="slide-out" class="side-nav" style="transform: translateX(-310px);">
-		<li style="margin-top: 0px;"><a class="collapsible-header waves-effect waves-main font-26" onclick="openTaxiList();"><i class="fa fa-book icon_menu" style="margin-top: 1px !important;"></i><?=รายชื่อคนขับทั้งหมด;?></a></li>
+		<li style="margin-top: 0px;"><a class="collapsible-header waves-effect waves-light font-26" onclick="openTaxiList();"><i class="fa fa-book icon_menu" style="margin-top: 1px !important;"></i><?=รายชื่อคนขับทั้งหมด;?></a></li>
          <li class="padding-5" >
             <ul class="collapsible collapsible-accordion">
                <li class="bold active">
                  
-                  <a class="collapsible-header waves-effect waves-main font-26"> <i class="icon-new-uniF10A-9 icon_menu"></i><?=t_car_information;?></a>
+                  <a class="collapsible-header waves-effect waves-light font-26"> <i class="icon-new-uniF10A-9 icon_menu"></i><?=t_car_information;?></a>
                   <div class="collapsible-body" style="display: none;">
                      <ul>
                         <li><a class="g" onclick="openNewCar();" ><?=t_add_new_car;?></a></li>
@@ -18,7 +18,7 @@
          <li class="padding-5">
             <ul class="collapsible collapsible-accordion">
                <li class="bold active">
-                  <a class="collapsible-header waves-effect waves-main font-26"><i class="icon-new-uniF121-10 icon_menu"></i><?=t_income_details;?></a>
+                  <a class="collapsible-header waves-effect waves-light font-26"><i class="icon-new-uniF121-10 icon_menu"></i><?=t_income_details;?></a>
                   <div class="collapsible-body" style="display: none;">
                      <ul>
                         <li><a class="g" onclick="revenue();"><?=t_receipt_of_parking_fee;?></a></li>
@@ -31,7 +31,7 @@
          <li class="padding-5">
             <ul class="collapsible collapsible-accordion">
                <li class="bold ">
-                  <a class="collapsible-header waves-effect waves-main font-26"><i class="icon-new-uniF133-2 icon_menu"></i><?=t_user_information;?></a>
+                  <a class="collapsible-header waves-effect waves-light font-26"><i class="icon-new-uniF133-2 icon_menu"></i><?=t_user_information;?></a>
                   <div class="collapsible-body" style="display: none;">
                      <ul>
                         <li><a class="g" onclick="openProfile();"><?=t_personal_information;?></a></li>
@@ -42,9 +42,9 @@
                </li>
             </ul>
          </li>
-         <li class="padding-5"><a class="collapsible-header waves-effect waves-main font-26" onclick="openQrCode();"><i class="fa fa-qrcode icon_menu" style="margin-top: 1px !important;"></i><?=t_friends;?></a></li>
-        <!-- <li style="display: none;"><a class="waves-effect waves-main" href="startup-team.html" style="padding: 0px 16px;"><?=t_language;?></a></li>-->
-         <li class="padding-5"><a class="collapsible-header waves-effect waves-main font-26" onclick="logOut();"><i class="icon-new-uniF186 icon_menu"></i><?=t_sign_out;?></a></li>
+         <li class="padding-5"><a class="collapsible-header waves-effect waves-light font-26" onclick="openQrCode();"><i class="fa fa-qrcode icon_menu" style="margin-top: 1px !important;"></i><?=t_friends;?></a></li>
+        <!-- <li style="display: none;"><a class="waves-effect waves-light" href="startup-team.html" style="padding: 0px 16px;"><?=t_language;?></a></li>-->
+         <li class="padding-5"><a class="collapsible-header waves-effect waves-light font-26" onclick="logOut();"><i class="icon-new-uniF186 icon_menu"></i><?=t_sign_out;?></a></li>
       </ul>
       
 <script>

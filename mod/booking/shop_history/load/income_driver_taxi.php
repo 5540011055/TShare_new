@@ -47,7 +47,7 @@
    			$res[pay_row] = $db->select_query("SELECT * FROM pay_history_driver_shopping where  order_id=".$arr[project][id]." and status = 1  ");
      		$arr[pay_row] = $db->fetch($res[pay_row]);
      		
-     		if($arr[pay_row][price_pay_driver_com]!=0 or $arr[pay_row][price_pay_driver_com]!=""){
+     		if($arr[pay_row][price_pay_driver_com]>0){
 				$txt_pay_com = '<span class="font-24">'.number_format($arr[pay_row][price_pay_driver_com],2)." บาท".'</span>';
 			}else{
 				$txt_pay_com = '<i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#f00000;"></i><strong style="padding-left: 5px;"><font color="#f00000">'.t_pending.'</font></strong>';
@@ -163,7 +163,7 @@
       	<table class="onlyThisTable" id="check_park_tb" border="0" cellspacing="2" cellpadding="2" width="100%">
       		<tr>
       			<td><label class="container-cb" >ค่าจอด</label></td>
-      			<td></td>
+      			
       		</tr>
       		<tr>
 		      			 <td valign="middle"><span class="font-24">จำนวน</span></td>
@@ -177,7 +177,7 @@
       	<table class="onlyThisTable" id="check_person_tb" border="0" cellspacing="2" cellpadding="2" width="100%">
       		<tr>
       			<td><label class="container-cb" >ค่าหัว</label></td>
-      			<td></td>
+      			
       		</tr>
       		<tr>
 		      			 <td valign="middle"><span class="font-24">จำนวน</span></td>
@@ -191,7 +191,7 @@
       	<table class="onlyThisTable" id="check_com_tb" border="0" cellspacing="2" cellpadding="2" width="100%">
       		<tr>
       			<td><label class="container-cb" >ค่าคอม</label></td>
-      			<td></td>
+      			
       		</tr>
       		<tr>
 		      			 <td valign="middle"><span class="font-24">เปอร์เซ็น</span></td>
@@ -248,7 +248,7 @@
 	          	<button  id="btn_com_his_<?=$arr[project][id]?>"  type="button" class="btn btn-default"  
 	          	style="width:100%;text-align:left;padding: 7px;border-radius: 3px;border:none;background-color: #ecb304;color: #fff;" onclick="ApporvePayDriver('<?=$arr[pay_row][order_id]?>','<?=$arr[pay_row][invoice];?>');" ><center><strong class="font-22"><i class="fa fa-money" style="width: 24px; color:fff"  ></i><?=t_confirm_or_receipt;?></strong></center></button>
 	          	</td>
-	          	<td></td>
+	          	
           </tr>
             <tr id="show_person_his" style="<?=$hide_his_btn;?>">
                <td width="50%">

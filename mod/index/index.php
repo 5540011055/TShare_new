@@ -794,7 +794,7 @@
    console.log('Js Browser lng : '+js_lng);
    function geolocatCall(){
    if (navigator.geolocation) {
-           navigator.geolocation.getCurrentPosition(showPosition);
+            navigator.geolocation.getCurrentPosition(showPosition);
        } else { 
           	console.log('ปิดตำแหน่ง');
        }
@@ -812,14 +812,14 @@
    	  closeOnCancel: true
    	},
    	function(isConfirm) {
-   	  if (isConfirm) {
-   	    if (navigator.geolocation) {
-   		        navigator.geolocation.getCurrentPosition(showPosition);
-   		         setCookie("geolocation", '1', 1);
-   		    } else { 
-   		       	console.log('ปิดตำแหน่ง');
-   		    }
-   	  } 
+	   	  if (isConfirm) {
+	   	    	if (navigator.geolocation) {
+	   		        navigator.geolocation.getCurrentPosition(showPosition);
+	   		         setCookie("geolocation", '1', 1);
+	   		    } else { 
+	   		       	console.log('ปิดตำแหน่ง');
+	   		    }
+	   	  } 
    	});
    }	   
    function showPosition(position) {
@@ -965,10 +965,15 @@
       	/* check open order id auto */
       	if(frist_socket==true){
    		var get_order_id = "<?=$_GET['order_id'];?>";
+   		var status = "<?=$_GET['status'];?>";
    		if(get_order_id!=""){
-   			console.log("order id : "+get_order_id);
-   			console.log(array_data);
-   			 $.each(array_data.manage,function(index,value){
+   			if(status=="his"){
+				openOrderFromAndroidHistory(get_order_id);
+
+			}else{
+				console.log("order id : "+get_order_id);
+   				console.log(array_data);
+   				$.each(array_data.manage,function(index,value){
    			 	if(value.id==get_order_id){
    			 	
    			 	console.log(value.id+" : "+index);
@@ -1015,6 +1020,8 @@
    		      	
    				}
    			 });
+			}
+   			
    		}
       	frist_socket = false;
    	}
@@ -1144,36 +1151,63 @@
       return [hour, minutes].join(':');
    }
 
-   function openOrderFromAndroid(id){
-   var check_open_shop_id = $('#check_open_shop_id').val();
-   //	alert('Param : '+id+" : "+check_open_shop_id);
-   if(check_open_shop_id<=0){
-   $.each(array_data.manage,function(index,value){
-   			 	if(value.id==id){
-   			/*$('#main_load_mod_popup_6').show();
-   		      var url_load= "load_page_mod_6.php?name=booking/shop_history&file=work_shop_detail_js&user_id=<?=$user_id;?>";
-   		       console.log(url_load);
-   		       $('#text_mod_topic_action_6').html("เลขที่ "+value.invoice);
-   		       $('#load_mod_popup_6').html(load_main_mod);
-   		       $.post(url_load,value,function(data){
-   		      		 $('#load_mod_popup_6').html(data); 
-   					 $('#btn_cancel_book_'+value.id).css('top','60px');
-   					 $('.assas_'+value.id).css('margin-top','30px');
-   		      	});*/
-   		      	console.log(value.id+" : "+index);
-   		      	$('#check_open_num_detail').val(index)
+   function openOrderFromAndroid(id,status){
+//   	alert("id = " + id+" status = "+status);
+   	  if(status=="his"){
+	  	openOrderFromAndroidHistory(id)
+	  }else{
+	  	 var check_open_shop_id = $('#check_open_shop_id').val();
+	   //	alert('Param : '+id+" : "+check_open_shop_id);
+	   	 if(check_open_shop_id<=0){
+		   		$.each(array_data.manage,function(index,value){
+		   			 	if(value.id==id)																				{
+	   			/*$('#main_load_mod_popup_6').show();
+	   		      var url_load= "load_page_mod_6.php?name=booking/shop_history&file=work_shop_detail_js&user_id=<?=$user_id;?>";
+	   		       console.log(url_load);
+	   		       $('#text_mod_topic_action_6').html("เลขที่ "+value.invoice);
+	   		       $('#load_mod_popup_6').html(load_main_mod);
+	   		       $.post(url_load,value,function(data){
+	   		      		 $('#load_mod_popup_6').html(data); 
+	   					 $('#btn_cancel_book_'+value.id).css('top','60px');
+	   					 $('.assas_'+value.id).css('margin-top','30px');
+	   		      	});*/
+	   		      	console.log(value.id+" : "+index);
+	   		      	$('#check_open_num_detail').val(index)
 
-			   	var url = "empty_style.php?name=booking/shop_history&file=work_shop_detail_js&user_id=<?=$user_id;?>";
-			      	$.post(url,value,function(data){
-			      		$('#load_mod_popup_clean').html(data);
-			      		$('#main_load_mod_popup_clean').show();
+				   	var url = "empty_style.php?name=booking/shop_history&file=work_shop_detail_js&user_id=<?=$user_id;?>";
+				      	$.post(url,value,function(data){
+				      		$('#load_mod_popup_clean').html(data);
+				      		$('#main_load_mod_popup_clean').show();
 
-			      	});
-			      	
-			      	$('#check_open_shop_id').val(value.id);
-   				}
-   			 });
+				      	});
+				      	
+				      	$('#check_open_shop_id').val(value.id);
+	   				}
+		   		});
+		   }
+	  }
+	  
    }
+   
+   function openOrderFromAndroidHistory(id){
+//   	alert(id);
+   	$.post("mod/booking/shop_history/php_shop.php?query=history_by_order&order_id="+id,function(data){
+   		
+			console.log(data);
+			var value = data.data[0];
+			var url = "empty_style.php?name=booking/shop_history&file=work_shop_detail_js&user_id=<?=$user_id;?>";
+	        		console.log(url);
+	   		      	$.post(url,value,function(data){
+	   		      		$('#load_mod_popup_clean').html(data);
+	   		      		$('#main_load_mod_popup_clean').show();
+
+						$('#btn_cancel_book_'+value.id).css('top','unset');
+//	   					$('.assas_'+value.id).css('margin-top','0px');
+	   					$("#load_material").fadeOut();
+
+	   		      	});
+
+		});
    }
 </script>
 <script>
