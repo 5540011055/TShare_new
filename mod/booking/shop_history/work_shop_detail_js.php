@@ -652,6 +652,13 @@ else if($arr[book][status]=='CONFIRM'){
 		$('#load_mod_popup_photo').html(load_main_mod);
  	 	$('#load_mod_popup_photo').load(url); 
 	}	
+	function ViewSlip(id,date){
+		var url = 'load_page_photo.php?name=booking/load/form&file=iframe_photo&id='+id+'&type=slip&date='+date;
+		console.log(url);
+		$( "#load_mod_popup_photo" ).toggle();
+		$('#load_mod_popup_photo').html(load_main_mod);
+ 	 	$('#load_mod_popup_photo').load(url); 
+	}	
 
 	function openViewPrice(){
 

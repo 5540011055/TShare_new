@@ -516,6 +516,42 @@
             </tr>
          </tbody>
       </table>
+      
+      <?php 
+		if($arr[pay_row][pay_transfer]==1){
+		?>
+	  <div class="row" id="status_transfer_commission" style="display: none;">
+	    <div class="" style="padding: 5px;margin-top: 5px;">
+		     <span class="card-title font-24">หลักฐานการโอนเงิน</span>
+		     
+		     <table class="onlyThisTable" width="100%" border="0" cellspacing="2" cellpadding="2" >
+		     	<tr>
+		     		<td><span class="font-24">เวลาบันทึก</span></td>
+		     		<td align="right"><span class="font-24"><?=date('d/m/Y h:i')." น.";?></span></td>
+		     	</tr>
+		     	<tr>
+		     		<td><span class="font-24">เวลาโอน</span></td>
+		     		<td align="right"><span class="font-24"><?=$arr[pay_row][pay_transfer_date]." ".$arr[pay_row][pay_transfer_time]." น.";?></span></td>
+		     	</tr>
+		     	<tr>
+		     		<td><span class="font-24">จำนวนการโอน</span></td>
+		     		<td align="right"><span class="font-24"><?=number_format($arr[pay_row][price_pay_driver_com],2)." บาท";?></span></td>
+		     	</tr>
+		     	<tr>
+		     		<td colspan="2">
+		     			<button type="button" onclick="ViewSlip('<?=$arr[project][id];?>','<?=$arr[pay_row][last_update];?>');" class="btn btn-default" style="width:100%;text-align:left;padding:10px;  border-radius: 3px; 
+                 border: 1px solid #ddd; background-color:#FFF;">
+                     <center><span class="font-22">สลิปโอนเงิน</span>
+                     </center>
+                  </button>
+		     		</td>
+		     	</tr>
+		     </table>
+		    </div>
+		  </div>	
+	<?
+		}
+	 ?>
 	  </div>
    </div>
 </div>
@@ -546,6 +582,9 @@ $(document).ready(function(){
 		if(obj.check_park = 1 && obj.check_com == 1){
 			console.log('pp');
 			$('#pc_radio').click();
+		}
+		if(obj.check_com>0){
+			$('#status_transfer_commission').fadeIn(1000)
 		}
 		/*$.each(obj, function( key, value ) {
 			if(value==1){

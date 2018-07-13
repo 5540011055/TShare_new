@@ -966,9 +966,10 @@
       	if(frist_socket==true){
    		var get_order_id = "<?=$_GET['order_id'];?>";
    		var status = "<?=$_GET['status'];?>";
+   		var open_ic = "<?=$_GET['open_ic'];?>";
    		if(get_order_id!=""){
    			if(status=="his"){
-				openOrderFromAndroidHistory(get_order_id);
+				openOrderFromAndroidHistory(get_order_id,status,open_ic);
 
 			}else{
 				console.log("order id : "+get_order_id);
@@ -1151,13 +1152,13 @@
       return [hour, minutes].join(':');
    }
 
-   function openOrderFromAndroid(id,status){
-//   	alert("id = " + id+" status = "+status);
+   function openOrderFromAndroid(id,status,open_ic){
+//   	alert("id = " + id+" status = "+status+" open_ic = "+open_ic);
    	  if(status=="his"){
-	  	openOrderFromAndroidHistory(id)
+	  	openOrderFromAndroidHistory(id,status,open_ic)
 	  }else{
 	  	 var check_open_shop_id = $('#check_open_shop_id').val();
-	   //	alert('Param : '+id+" : "+check_open_shop_id);
+
 	   	 if(check_open_shop_id<=0){
 		   		$.each(array_data.manage,function(index,value){
 		   			 	if(value.id==id)																				{
@@ -1178,7 +1179,10 @@
 				      	$.post(url,value,function(data){
 				      		$('#load_mod_popup_clean').html(data);
 				      		$('#main_load_mod_popup_clean').show();
-
+							if(open_ic=='1'){
+								openViewPrice();
+								console.log('Open Income')
+							}
 				      	});
 				      	
 				      	$('#check_open_shop_id').val(value.id);
@@ -1189,7 +1193,7 @@
 	  
    }
    
-   function openOrderFromAndroidHistory(id){
+   function openOrderFromAndroidHistory(id,status,open_ic){
 //   	alert(id);
    	$.post("mod/booking/shop_history/php_shop.php?query=history_by_order&order_id="+id,function(data){
    		
@@ -1199,12 +1203,16 @@
 	        		console.log(url);
 	   		      	$.post(url,value,function(data){
 	   		      		$('#load_mod_popup_clean').html(data);
+	   		      		
 	   		      		$('#main_load_mod_popup_clean').show();
-
 						$('#btn_cancel_book_'+value.id).css('top','unset');
 //	   					$('.assas_'+value.id).css('margin-top','0px');
 	   					$("#load_material").fadeOut();
-
+						
+						if(open_ic=='1'){
+							openViewPrice();
+							console.log('Open Income')
+						}
 	   		      	});
 
 		});
