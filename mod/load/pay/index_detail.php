@@ -88,7 +88,7 @@ $bank = 'thbanks-bbl';
 
  } 
 ?>
-  <a id="car_<?=$arr[bank][id];?>" style="text-decoration:none; margin-top:30px;" onclick="selectCar('<?=$arr[bank][id];?>','<?=$arr[bank][bank_company];?>','<?=$arr[bank][bank_number];?>');">
+  <div id="car_<?=$arr[bank][id];?>" style="text-decoration:none;     margin-bottom: 8px;" onclick="selectCar('<?=$arr[bank][id];?>','<?=$arr[bank][bank_company];?>','<?=$arr[bank][bank_number];?>');">
       <table width="100%" border="0" cellspacing="2" cellpadding="2" id="div_car_<?=$arr[bank][id];?>">
                
                   <tr>
@@ -97,7 +97,7 @@ $bank = 'thbanks-bbl';
                          
                            <tr>
                            <td width="100" align="center" bgcolor="<?=$plate_color;?>" style="color: #DADADA;
-    padding: 5px; border-radius: 10px;"><i class="thbanks <?=$bank?>" aria-hidden="true"></i><font color="#FFFFFF" class="font-20"><?=$arr[bank][bank_company];?><br>
+    padding: 8px; border-radius: 25px;"><i class="thbanks <?=$bank?>" aria-hidden="true"></i><font color="#FFFFFF" class="font-20"><?=$arr[bank][bank_company];?><br>
                                  <font class="font-20"><?=$arr[bank][bank_number];?></font></font>
                               </td>
                            </tr>
@@ -114,7 +114,7 @@ $bank = 'thbanks-bbl';
                   </tr>
               
             </table>
-    </a>
+    </div>
 <? } ?>
 <input id="bankid" value="" type="hidden" />
 <input id="bank_company" value="" type="hidden" />
