@@ -813,7 +813,7 @@ function hideRes(id){
                
                setTimeout(function(){  openOrderFromAndroid(response.last_id);}, 1500);
 			}else{
-				swal("ทำรายการไม่สำรเร็จ","กรุณาตรวจสอบอีกครั้งหรือติดต่อเจ้าหน้าที่","error");
+				swal("ทำรายการไม่สำเร็จ","กรุณาตรวจสอบอีกครั้งหรือติดต่อเจ้าหน้าที่","error");
 			}
            
                

@@ -58,7 +58,7 @@ function sendMessage() {
     $fields = array(
 			'app_id' => "d99df0ae-f45c-4550-b71e-c9c793524da1",
 			'filters' => $tag,
-			'data' => array("order_id" => $_GET[id]),
+			'data' => array("order_id" => $_GET[id], "status" => "manage"),
 			'url' => "https://www.welovetaxi.com/app/demo_new2/index_sheet.php?name=index&file=open_order&order_id=".$order_id."&vc=".$invoice."&ios=1",
 			'contents' => $content,
 			'headings' => $heading,

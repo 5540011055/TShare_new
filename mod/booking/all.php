@@ -213,7 +213,6 @@
 			
    	}
    	 
-
    }
 
    function openDetailBooking(key,type){

@@ -166,11 +166,11 @@
       <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
       <script src="js/jquery.touchSwipe.min.js"></script>
       <script>
-//      if('<?=$_GET[ios];?>'!="1"){
+      if('<?=$_GET[status];?>'!="his"){ //เช็คว่าสเตตัสที่ส่งมาเป็น ประวัติ หรือ กำลังจัดการ
          $(window).load(function() {
          	$("#load_material").fadeOut();
          });
-//		}  
+		}  
       </script>
       <div>
          <nav class="n bi fj" style="background-color:<?=$main_color;?>">

@@ -27,7 +27,7 @@ function sendMessage() {
 			'filters' => array(
 								array("field" => "tag", "key" => "username", "relation" => "=", "value" => $arr[dv][username])
 								),
-			'data' => array("order_id" => $order_id),
+			'data' => array("order_id" => $order_id, "status" => "manage"),
 			'url' => "https://www.welovetaxi.com/app/demo_new2/index_sheet.php?name=index&file=open_order&order_id=".$order_id."&vc=".$invoice."&ios=1",
 			'contents' => $content,
 			'headings' => $heading,
@@ -50,7 +50,7 @@ function sendMessage() {
 			'filters' => array(
 								array("field" => "tag", "key" => "class", "relation" => "=", "value" => "lab")
 								),
-			'data' => array("order_id" => $_GET[order_id]),
+			'data' => array("order_id" => $_GET[order_id], "status" => "his"),
 //			'url' => "https://www.welovetaxi.com/app/demo_new2/index_sheet.php?name=index&file=open_order&order_id=".$order_id."&vc=".$invoice."&ios=1",
 			'url' => "https://www.welovetaxi.com/app/demo_new2/index_sheet.php?name=index&file=open_order_history&order_id=".$order_id."&vc=".$invoice."&ios=1",
 			'contents' => $content,
@@ -60,14 +60,14 @@ function sendMessage() {
 			'large_icon' => "https://www.welovetaxi.com/app/demo_new/images/app/ic_launcher.png"
 		);
 	}
-	echo $txt_short;
+//	echo $txt_short;
     
     $response["param"] = $fields;
     $fields = json_encode($fields);
 
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, "https://onesignal.com/api/v1/notifications");
-   curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json; charset=utf-8',
+    curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json; charset=utf-8',
 												   'Authorization: Basic N2ViZjFkZTAtN2Y1My00NDk0LWI3ZjgtOTYxYTVlNjI3OWI4'));
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
     curl_setopt($ch, CURLOPT_HEADER, FALSE);
