@@ -155,9 +155,29 @@ $bank = 'thbanks-bbl';
 $('#show_main_tool_bottom').fadeOut(500);
 
 function selectCar(id,company,number){
+  console.log(company)
+//   if(company=="ธนาคารไทยพาณิชย์"){
+//     $('input[type="checkbox"]').prop('checked', function(){
+      
+//     });
+
+// $('.container input:checked ~ .checkmark').css('background-color','rgb(75, 40, 133) ')
+// } 
+//  if(company=="ธนาคารกสิกรไทย"){
+ 
+// $('.container input:checked ~ .checkmark').css('background-color','rgb(0, 169, 80) ')
+
+// } 
+//  if(company=="ธนาคารกรุงเทพ"){
+ 
+//  $('.container input:checked ~ .checkmark').css('background-color','rgb(34, 61, 152) ')
+
+
+//  } 
     // swal('คุณเลือกธนาคาร'+company,'เลขที่บัญชี '+number,'','warning');
 //  $('#car_use_'+id).click();
 //  
+
   $('input[type="checkbox"]').prop('checked', false); // Unchecks it
   $('#bank_use_'+id).prop('checked', true); // Checks it
   $('#bankid').val(id);

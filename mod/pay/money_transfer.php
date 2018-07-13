@@ -49,7 +49,7 @@
        <td colspan="3" width="100%">
             <div style="    border-radius: 25px;
     padding: 14px 0;
-    box-shadow: 0 5px 7px 0 rgba(0, 0, 0, 0), 0 3px 1px -4px rgba(0,0,0,0.012), 0 3px 6px 0;margin-bottom: 18px;
+    box-shadow: 0 5px 7px 0 rgba(0, 0, 0, 0), 0 3px 1px -4px rgba(0,0,0,0.012), 0 3px 6px 0;margin-bottom: 18px;margin-top: 20px;
 
  " align="center">
 <span class="font-26 text-cap"><span class="font-22">ยอดเงินของคุณ  </span><span style="margin-left: 10px" id="balance_final" class="font-22"></span></div>
