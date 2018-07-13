@@ -12,6 +12,7 @@ function sendMessage() {
 //	echo $arr[dv][username];
 	$invoice = $_GET[vc];
 	$order_id = $_GET[order_id];
+	$open_ic = $_GET[open_ic];
 	$heading = array(
 		   "en" => "เลขที่งาน ".$invoice
 	 );
@@ -27,8 +28,8 @@ function sendMessage() {
 			'filters' => array(
 								array("field" => "tag", "key" => "username", "relation" => "=", "value" => $arr[dv][username])
 								),
-			'data' => array("order_id" => $order_id, "status" => "manage"),
-			'url' => "https://www.welovetaxi.com/app/demo_new2/index_sheet.php?name=index&file=open_order&order_id=".$order_id."&vc=".$invoice."&ios=1",
+			'data' => array("order_id" => $order_id, "status" => "manage", "open_ic" => $open_ic),
+			'url' => "https://www.welovetaxi.com/app/demo_new2/index_sheet.php?name=index&file=open_order&order_id=".$order_id."&vc=".$invoice."&ios=1&open_ic=1",
 			'contents' => $content,
 			'headings' => $heading,
 			'ios_badgeType' => 'Increase',
@@ -50,9 +51,9 @@ function sendMessage() {
 			'filters' => array(
 								array("field" => "tag", "key" => "class", "relation" => "=", "value" => "lab")
 								),
-			'data' => array("order_id" => $_GET[order_id], "status" => "his"),
+			'data' => array("order_id" => $_GET[order_id], "status" => "his", "open_ic" => $open_ic),
 //			'url' => "https://www.welovetaxi.com/app/demo_new2/index_sheet.php?name=index&file=open_order&order_id=".$order_id."&vc=".$invoice."&ios=1",
-			'url' => "https://www.welovetaxi.com/app/demo_new2/index_sheet.php?name=index&file=open_order_history&order_id=".$order_id."&vc=".$invoice."&ios=1",
+			'url' => "https://www.welovetaxi.com/app/demo_new2/index_sheet.php?name=index&file=open_order_history&order_id=".$order_id."&vc=".$invoice."&ios=1&open_ic=1",
 			'contents' => $content,
 			'headings' => $heading,
 			'ios_badgeType' => 'Increase',

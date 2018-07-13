@@ -228,11 +228,11 @@
 		</table>
       </div>
       
-      <div style="padding: 10px 15px;">
-      <div style="padding: 5px 5px;<?=$show_el;?>" id="box_status_dv">
-         <table class="onlyThisTable" width="100%" style="padding: 10px;box-shadow: 1px 1px 3px #9E9E9E;border: 1px solid #ddd;">
+      <div style="padding: 0px 15px;">
+      <div style="padding: 5px 0px;<?=$show_el;?>" id="box_status_dv">
+         <table class="onlyThisTable" width="100%">
          	<tr>
-         		<td>
+         		<td >
          			<span class="font-24">สถานะการจ่ายเงิน</span>
          			
          		</td>
@@ -243,24 +243,25 @@
       
       <table class="onlyThisTable" width="100%" border="0" cellspacing="2" cellpadding="2" style="padding: 0px 15px;">
          <tbody>
-         <tr  id="tr_btn_park_approve" style="<?=$btn_row_approve;?>">
+         	<tr  id="tr_btn_park_approve" style="<?=$btn_row_approve;?>">
 	          	<td colspan="2" >
 	          	<button  id="btn_com_his_<?=$arr[project][id]?>"  type="button" class="btn btn-default"  
 	          	style="width:100%;text-align:left;padding: 7px;border-radius: 3px;border:none;background-color: #ecb304;color: #fff;" onclick="ApporvePayDriver('<?=$arr[pay_row][order_id]?>','<?=$arr[pay_row][invoice];?>');" ><center><strong class="font-22"><i class="fa fa-money" style="width: 24px; color:fff"  ></i><?=t_confirm_or_receipt;?></strong></center></button>
+	          	
 	          	</td>
 	          	
           </tr>
             <tr id="show_person_his" style="<?=$hide_his_btn;?>">
                <td width="50%">
-                  <button type="button" onclick="ViewPhoto('<?=$arr[project][id]?>','doc_pay','<?=$arr[pay_row][last_update];?>',<?=$arr[project][plan_id]?>);" onclick=""  type="button" class="btn btn-default"  style="width:100%;text-align:left;padding:10px;  border-radius: 3px; 
-                 box-shadow: 1px 1px 3px #9E9E9E;border: 1px solid #ddd; background-color:#FFF;">
+                  <button type="button" onclick="ViewPhoto('<?=$arr[project][id]?>','doc_pay','<?=$arr[pay_row][last_update];?>',<?=$arr[project][plan_id]?>);"  type="button" class="btn btn-default"  style="width:100%;text-align:left;padding:10px;  border-radius: 3px; 
+                 border: 1px solid #ddd; background-color:#FFF;">
                      <center><span class="font-22"><?=t_documents;?> 
                         <img src="images/yes.png" align="absmiddle" id="iconchk_person" style="<?=$show_el;?>"></span>
                      </center>
                   </button>
                </td>
                <td width="50%">
-                  <button type="button" onclick="<?=$alert_history;?>"  id="btn_his"  type="button" class="btn btn-default"  style="width:100%;text-align:left;padding:10px; border-radius: 3px; box-shadow: 1px 1px 3px #9E9E9E;border: 1px solid #ddd;background-color:#FFF; ">
+                  <button type="button" onclick="<?=$alert_history;?>"  id="btn_his"  type="button" class="btn btn-default"  style="width:100%;text-align:left;padding:10px; border-radius: 3px;;border: 1px solid #ddd;background-color:#FFF; ">
                      <center><span class="font-22"><i class="fa fa-history" style="width: 24px;font-size:14px; color:<?=$color_status;?>"  ></i><?=t_history;?></span></center>
                   </button>
                </td>
@@ -268,6 +269,42 @@
             
          </tbody>
       </table>
+
+	<?php 
+		if($arr[pay_row][pay_transfer]==1){
+		?>
+	  <div class="row" id="status_transfer_commission" style="display: none;">
+	    <div class="" style="padding: 5px;margin-top: 5px;">
+		     <span class="card-title font-24">หลักฐานการโอนเงิน</span>
+		     
+		     <table class="onlyThisTable" width="100%" border="0" cellspacing="2" cellpadding="2" >
+		     	<tr>
+		     		<td><span class="font-24">เวลาบันทึก</span></td>
+		     		<td align="right"><span class="font-24"><?=date('d/m/Y h:i')." น.";?></span></td>
+		     	</tr>
+		     	<tr>
+		     		<td><span class="font-24">เวลาโอน</span></td>
+		     		<td align="right"><span class="font-24"><?=$arr[pay_row][pay_transfer_date]." ".$arr[pay_row][pay_transfer_time]." น.";?></span></td>
+		     	</tr>
+		     	<tr>
+		     		<td><span class="font-24">จำนวนการโอน</span></td>
+		     		<td align="right"><span class="font-24"><?=number_format($arr[pay_row][price_pay_driver_com],2)." บาท";?></span></td>
+		     	</tr>
+		     	<tr>
+		     		<td colspan="2">
+		     			<button type="button" onclick="ViewSlip('<?=$arr[project][id];?>','<?=$arr[pay_row][last_update];?>');" class="btn btn-default" style="width:100%;text-align:left;padding:10px;  border-radius: 3px; 
+                 border: 1px solid #ddd; background-color:#FFF;">
+                     <center><span class="font-22">สลิปโอนเงิน</span>
+                     </center>
+                  </button>
+		     		</td>
+		     	</tr>
+		     </table>
+		    </div>
+		  </div>	
+	<?
+		}
+	 ?>
 	  </div>	
    </div>
 </div>
@@ -283,10 +320,14 @@
 			}
 		  	
 		});
+		if(obj.check_com>0){
+			$('#status_transfer_commission').fadeIn(1000)
+		}
 	}
 	
 </script>
 <script>
+
    function check(id,num){
     console.log(id);	
     $('.cause_'+id).attr('checked', false);

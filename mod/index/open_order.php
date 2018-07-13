@@ -488,6 +488,7 @@
       	/* check open order id auto */
       	if(frist_socket==true){
    		var get_order_id = "<?=$_GET['order_id'];?>";
+   		var open_ic = "<?=$_GET['open_ic'];?>";
    		if(get_order_id!=""){
    			console.log("order id : "+get_order_id);
    			console.log(array_data);
@@ -502,6 +503,10 @@
 
 					$('#btn_cancel_book_'+value.id).css('top','unset');
    					$('.assas_'+value.id).css('margin-top','0px');
+   					if(open_ic=='1'){
+							openViewPrice();
+							console.log('Open Income')
+						}
    					$("#load_material").fadeOut();
 
    		      	});

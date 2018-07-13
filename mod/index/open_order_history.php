@@ -438,6 +438,7 @@
       <input type="hidden" value="0" id="lng"/>
    </div>
 <script>
+	var open_ic = "<?=$_GET['open_ic'];?>";
 	$.post("mod/booking/shop_history/php_shop.php?query=history_by_order&order_id=<?=$_GET[order_id];?>",function(data){
 		console.log(data);
 //		return;
@@ -450,8 +451,12 @@
 
 					$('#btn_cancel_book_'+value.id).css('top','unset');
    					$('.assas_'+value.id).css('margin-top','0px');
+   					if(open_ic=='1'){
+							openViewPrice();
+							console.log('Open Income')
+						}
    					$("#load_material").fadeOut();
-
+					
    		      	});
 		
 	});
