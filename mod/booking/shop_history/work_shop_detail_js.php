@@ -530,7 +530,7 @@ else if($arr[book][status]=='CONFIRM'){
 				<td width="60">
 				<span class="font-22">อัพโหลด</span></td>
 				<td>
-				<a class="waves-effect waves-light btn" style="background-color: #3b5998;color: #fff;border-radius: 10px;" onclick="uploadCodeFile('<?=$arr[book][program];?>','<?=$arr[book][id];?>','taxi');"><i class="material-icons left" style="font-size: 16px;margin-right: 7px;">cloud</i>ตรวจสอบภาพ</a></td>
+				<a class="waves-effect waves-light btn" style="background-color: #3b5998;color: #fff;border-radius: 25px;" onclick="uploadCodeFile('<?=$arr[book][program];?>','<?=$arr[book][id];?>','taxi');"><i class="material-icons left" style="font-size: 16px;margin-right: 7px;">cloud</i>ตรวจสอบภาพ</a></td>
 			</tr>
 		</table>
 <?	} ?>

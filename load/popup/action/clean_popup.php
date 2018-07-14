@@ -33,11 +33,12 @@ if($_GET[ios]==1){
     border-bottom: 1px solid #e8e6e6;
     <?=$display_back_btn;?>
     ">
-    <div style="width: 100%;padding: 4px 8px;position: absolute;left: 0; top: 0; width: 100%; height: 100%;-webkit-box-align: center;box-sizing: border-box;">
+    <div class="back-full-popup" style="">
 	  <div class="left" style="padding: 5px;position: fixed;z-index: 106;" >
         <a class="link back" onclick="backMain();">
-        	<i class="fa fa-angle-left" style="font-size:20px;color: #007aff;font-weight: 600;"></i>
-          	<span class="ios-only" style="margin-left: 5px;color: #007aff;font-size: 17px;"><!--Back-->กลับ</span>
+            <div class="" style="color: #333"><i class="fa fa-close" style="font-size:22px;"></i></div>
+        	<!-- <i class="fa fa-angle-left" style="font-size:20px;font-weight: 600;"></i>
+          	<span class="ios-only" style="margin-left: 5px;font-size: 17px;">กลับ</span> -->
         </a>
       </div>
       <div class="title font-24" style="margin-top: 8px;width: 100%;" align="center" ><b><span id="header_clean" ></span></b></div>
