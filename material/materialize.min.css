@@ -762,10 +762,10 @@
     color:#4db6ac !important
 }
 .teal.lighten-1{
-    background-color:#26a69a !important
+    background-color:#3b5998 !important
 }
 .teal-text.text-lighten-1{
-    color:#26a69a !important
+    color:#3b5998 !important
 }
 .teal.darken-1{
     background-color:#00897b !important
@@ -816,10 +816,10 @@
     color:#00bfa5 !important
 }
 .green{
-    background-color:#4CAF50 !important
+    background-color:#3b5998 !important
 }
 .green-text{
-    color:#4CAF50 !important
+    color:#3b5998 !important
 }
 .green.lighten-5{
     background-color:#E8F5E9 !important
@@ -1696,7 +1696,8 @@ button,select{
 }
 button,html input[type="button"],input[type="reset"],input[type="submit"]{
     -webkit-appearance:button;
-    cursor:pointer
+    cursor:pointer;
+    border-radius:25px !important;
 }
 button[disabled],html input[disabled]{
     cursor:default
@@ -2197,7 +2198,7 @@ td,th{
     border-bottom:none
 }
 .collection .collection-item.active{
-    background-color:#26a69a;
+    background-color:#3b5998;
     color:#eafaf9
 }
 .collection .collection-item.active .secondary-content{
@@ -2207,7 +2208,7 @@ td,th{
     display:block;
     -webkit-transition:.25s;
     transition:.25s;
-    color:#26a69a
+    color:#3b5998
 }
 .collection a.collection-item:not(.active):hover{
     background-color:#ddd
@@ -2225,7 +2226,7 @@ td,th{
 }
 .secondary-content{
     float:right;
-    color:#26a69a
+    color:#3b5998
 }
 .collapsible .collection{
     margin:0;
@@ -2259,12 +2260,12 @@ td,th{
     top:0;
     left:0;
     bottom:0;
-    background-color:#26a69a;
+    background-color:#3b5998;
     -webkit-transition:width .3s linear;
     transition:width .3s linear
 }
 .progress .indeterminate{
-    background-color:#26a69a
+    background-color:#3b5998
 }
 .progress .indeterminate:before{
     content:'';
@@ -2404,7 +2405,7 @@ span.badge.new{
     font-weight:300;
     font-size:0.8rem;
     color:#fff;
-    background-color:#26a69a;
+    background-color:#3b5998;
     border-radius:2px
 }
 span.badge.new:after{
@@ -4071,7 +4072,7 @@ small{
     height:40px;
     line-height:40px;
     padding:0;
-    background-color:#26a69a;
+    background-color:#3b5998;
     border-radius:50%;
     -webkit-transition:.3s;
     transition:.3s;
@@ -4079,7 +4080,7 @@ small{
     vertical-align:middle
 }
 .btn-floating:hover{
-    background-color:#26a69a
+    background-color:#3b5998
 }
 .btn-floating:before{
     border-radius:0
@@ -4207,7 +4208,7 @@ button.btn-floating{
     z-index:-1;
     width:40px;
     height:40px;
-    background-color:#26a69a;
+    background-color:#3b5998;
     border-radius:50%;
     -webkit-transform:scale(0);
     transform:scale(0)
@@ -4277,7 +4278,7 @@ button.btn-floating{
 }
 .dropdown-content li>a,.dropdown-content li>span{
     font-size:16px;
-    color:#26a69a;
+    color:#3b5998;
     display:block;
     line-height:22px;
     padding:14px 16px
@@ -4600,15 +4601,15 @@ button.btn-floating{
     transition:all .3s
 }
 .chips.focus{
-    border-bottom:1px solid #26a69a;
-    -webkit-box-shadow:0 1px 0 0 #26a69a;
-    box-shadow:0 1px 0 0 #26a69a
+    border-bottom:1px solid #3b5998;
+    -webkit-box-shadow:0 1px 0 0 #3b5998;
+    box-shadow:0 1px 0 0 #3b5998
 }
 .chips:hover{
     cursor:text
 }
 .chips .chip.selected{
-    background-color:#26a69a;
+    background-color:#3b5998;
     color:#fff
 }
 .chips .input{
@@ -4732,12 +4733,12 @@ input:not([type]):disabled+label,input:not([type])[readonly="readonly"]+label,in
     color:rgba(0,0,0,0.42)
 }
 input:not([type]):focus:not([readonly]),input[type=text]:not(.browser-default):focus:not([readonly]),input[type=password]:not(.browser-default):focus:not([readonly]),input[type=email]:not(.browser-default):focus:not([readonly]),input[type=url]:not(.browser-default):focus:not([readonly]),input[type=time]:not(.browser-default):focus:not([readonly]),input[type=date]:not(.browser-default):focus:not([readonly]),input[type=datetime]:not(.browser-default):focus:not([readonly]),input[type=datetime-local]:not(.browser-default):focus:not([readonly]),input[type=tel]:not(.browser-default):focus:not([readonly]),input[type=number]:not(.browser-default):focus:not([readonly]),input[type=search]:not(.browser-default):focus:not([readonly]),textarea.materialize-textarea:focus:not([readonly]){
-    border-bottom:1px solid #26a69a;
-    -webkit-box-shadow:0 1px 0 0 #26a69a;
-    box-shadow:0 1px 0 0 #26a69a
+    border-bottom:1px solid #3b5998;
+    /*-webkit-box-shadow:0 1px 0 0 #3b5998;*/
+    /*box-shadow:0 1px 0 0 #3b5998*/
 }
 input:not([type]):focus:not([readonly])+label,input[type=text]:not(.browser-default):focus:not([readonly])+label,input[type=password]:not(.browser-default):focus:not([readonly])+label,input[type=email]:not(.browser-default):focus:not([readonly])+label,input[type=url]:not(.browser-default):focus:not([readonly])+label,input[type=time]:not(.browser-default):focus:not([readonly])+label,input[type=date]:not(.browser-default):focus:not([readonly])+label,input[type=datetime]:not(.browser-default):focus:not([readonly])+label,input[type=datetime-local]:not(.browser-default):focus:not([readonly])+label,input[type=tel]:not(.browser-default):focus:not([readonly])+label,input[type=number]:not(.browser-default):focus:not([readonly])+label,input[type=search]:not(.browser-default):focus:not([readonly])+label,textarea.materialize-textarea:focus:not([readonly])+label{
-    color:#26a69a
+    color:#3b5998
 }
 input:not([type]).validate+label,input[type=text]:not(.browser-default).validate+label,input[type=password]:not(.browser-default).validate+label,input[type=email]:not(.browser-default).validate+label,input[type=url]:not(.browser-default).validate+label,input[type=time]:not(.browser-default).validate+label,input[type=date]:not(.browser-default).validate+label,input[type=datetime]:not(.browser-default).validate+label,input[type=datetime-local]:not(.browser-default).validate+label,input[type=tel]:not(.browser-default).validate+label,input[type=number]:not(.browser-default).validate+label,input[type=search]:not(.browser-default).validate+label,textarea.materialize-textarea.validate+label{
     width:100%
@@ -4748,10 +4749,35 @@ input:not([type]).invalid+label:after,input:not([type]).valid+label:after,input[
 input:not([type]).invalid+label.active:after,input:not([type]).valid+label.active:after,input[type=text]:not(.browser-default).invalid+label.active:after,input[type=text]:not(.browser-default).valid+label.active:after,input[type=password]:not(.browser-default).invalid+label.active:after,input[type=password]:not(.browser-default).valid+label.active:after,input[type=email]:not(.browser-default).invalid+label.active:after,input[type=email]:not(.browser-default).valid+label.active:after,input[type=url]:not(.browser-default).invalid+label.active:after,input[type=url]:not(.browser-default).valid+label.active:after,input[type=time]:not(.browser-default).invalid+label.active:after,input[type=time]:not(.browser-default).valid+label.active:after,input[type=date]:not(.browser-default).invalid+label.active:after,input[type=date]:not(.browser-default).valid+label.active:after,input[type=datetime]:not(.browser-default).invalid+label.active:after,input[type=datetime]:not(.browser-default).valid+label.active:after,input[type=datetime-local]:not(.browser-default).invalid+label.active:after,input[type=datetime-local]:not(.browser-default).valid+label.active:after,input[type=tel]:not(.browser-default).invalid+label.active:after,input[type=tel]:not(.browser-default).valid+label.active:after,input[type=number]:not(.browser-default).invalid+label.active:after,input[type=number]:not(.browser-default).valid+label.active:after,input[type=search]:not(.browser-default).invalid+label.active:after,input[type=search]:not(.browser-default).valid+label.active:after,textarea.materialize-textarea.invalid+label.active:after,textarea.materialize-textarea.valid+label.active:after{
     display:block
 }
+
 input.valid:not([type]),input.valid:not([type]):focus,input[type=text].valid:not(.browser-default),input[type=text].valid:not(.browser-default):focus,input[type=password].valid:not(.browser-default),input[type=password].valid:not(.browser-default):focus,input[type=email].valid:not(.browser-default),input[type=email].valid:not(.browser-default):focus,input[type=url].valid:not(.browser-default),input[type=url].valid:not(.browser-default):focus,input[type=time].valid:not(.browser-default),input[type=time].valid:not(.browser-default):focus,input[type=date].valid:not(.browser-default),input[type=date].valid:not(.browser-default):focus,input[type=datetime].valid:not(.browser-default),input[type=datetime].valid:not(.browser-default):focus,input[type=datetime-local].valid:not(.browser-default),input[type=datetime-local].valid:not(.browser-default):focus,input[type=tel].valid:not(.browser-default),input[type=tel].valid:not(.browser-default):focus,input[type=number].valid:not(.browser-default),input[type=number].valid:not(.browser-default):focus,input[type=search].valid:not(.browser-default),input[type=search].valid:not(.browser-default):focus,textarea.materialize-textarea.valid,textarea.materialize-textarea.valid:focus,.select-wrapper.valid>input.select-dropdown{
-    border-bottom:1px solid #4CAF50;
-    -webkit-box-shadow:0 1px 0 0 #4CAF50;
-    box-shadow:0 1px 0 0 #4CAF50
+    border-bottom:1px solid #3b5998;
+    /*-webkit-box-shadow:0 1px 0 0 #3b5998;*/
+    /*box-shadow:0 1px 0 0 #3b5998*/
+}
+input.invalid:not([type]),input.invalid:not([type]):focus,input[type=text].invalid:not(.browser-default),input[type=text].invalid:not(.browser-default):focus,input[type=password].invalid:not(.browser-default),input[type=password].invalid:not(.browser-default):focus,input[type=email].invalid:not(.browser-default),input[type=email].invalid:not(.browser-default):focus,input[type=url].invalid:not(.browser-default),input[type=url].invalid:not(.browser-default):focus,input[type=time].invalid:not(.browser-default),input[type=time].invalid:not(.browser-default):focus,input[type=date].invalid:not(.browser-default),input[type=date].invalid:not(.browser-default):focus,input[type=datetime].invalid:not(.browser-default),input[type=datetime].invalid:not(.browser-default):focus,input[type=datetime-local].invalid:not(.browser-default),input[type=datetime-local].invalid:not(.browser-default):focus,input[type=tel].invalid:not(.browser-default),input[type=tel].invalid:not(.browser-default):focus,input[type=number].invalid:not(.browser-default),input[type=number].invalid:not(.browser-default):focus,input[type=search].invalid:not(.browser-default),input[type=search].invalid:not(.browser-default):focus,textarea.materialize-textarea.invalid,textarea.materialize-textarea.invalid:focus,.select-wrapper.invalid>input.select-dropdown{
+    border-bottom:1px solid #3b5998;
+    /*-webkit-box-shadow:0 1px 0 0 #3b5998;*/
+    /*box-shadow:0 1px 0 0 #F44336*/
+}
+input:not([type]).valid+label:after,input:not([type]):focus.valid+label:after,input[type=text]:not(.browser-default).valid+label:after,input[type=text]:not(.browser-default):focus.valid+label:after,input[type=password]:not(.browser-default).valid+label:after,input[type=password]:not(.browser-default):focus.valid+label:after,input[type=email]:not(.browser-default).valid+label:after,input[type=email]:not(.browser-default):focus.valid+label:after,input[type=url]:not(.browser-default).valid+label:after,input[type=url]:not(.browser-default):focus.valid+label:after,input[type=time]:not(.browser-default).valid+label:after,input[type=time]:not(.browser-default):focus.valid+label:after,input[type=date]:not(.browser-default).valid+label:after,input[type=date]:not(.browser-default):focus.valid+label:after,input[type=datetime]:not(.browser-default).valid+label:after,input[type=datetime]:not(.browser-default):focus.valid+label:after,input[type=datetime-local]:not(.browser-default).valid+label:after,input[type=datetime-local]:not(.browser-default):focus.valid+label:after,input[type=tel]:not(.browser-default).valid+label:after,input[type=tel]:not(.browser-default):focus.valid+label:after,input[type=number]:not(.browser-default).valid+label:after,input[type=number]:not(.browser-default):focus.valid+label:after,input[type=search]:not(.browser-default).valid+label:after,input[type=search]:not(.browser-default):focus.valid+label:after,textarea.materialize-textarea.valid+label:after,textarea.materialize-textarea:focus.valid+label:after,.select-wrapper.valid+label:after{
+    content:attr(data-success);
+    color:#3b5998;
+    opacity:1;
+    -webkit-transform:translateY(9px);
+    transform:translateY(9px)
+}
+input:not([type]).invalid+label:after,input:not([type]):focus.invalid+label:after,input[type=text]:not(.browser-default).invalid+label:after,input[type=text]:not(.browser-default):focus.invalid+label:after,input[type=password]:not(.browser-default).invalid+label:after,input[type=password]:not(.browser-default):focus.invalid+label:after,input[type=email]:not(.browser-default).invalid+label:after,input[type=email]:not(.browser-default):focus.invalid+label:after,input[type=url]:not(.browser-default).invalid+label:after,input[type=url]:not(.browser-default):focus.invalid+label:after,input[type=time]:not(.browser-default).invalid+label:after,input[type=time]:not(.browser-default):focus.invalid+label:after,input[type=date]:not(.browser-default).invalid+label:after,input[type=date]:not(.browser-default):focus.invalid+label:after,input[type=datetime]:not(.browser-default).invalid+label:after,input[type=datetime]:not(.browser-default):focus.invalid+label:after,input[type=datetime-local]:not(.browser-default).invalid+label:after,input[type=datetime-local]:not(.browser-default):focus.invalid+label:after,input[type=tel]:not(.browser-default).invalid+label:after,input[type=tel]:not(.browser-default):focus.invalid+label:after,input[type=number]:not(.browser-default).invalid+label:after,input[type=number]:not(.browser-default):focus.invalid+label:after,input[type=search]:not(.browser-default).invalid+label:after,input[type=search]:not(.browser-default):focus.invalid+label:after,textarea.materialize-textarea.invalid+label:after,textarea.materialize-textarea:focus.invalid+label:after,.select-wrapper.invalid+label:after{
+    content:attr(data-error);
+    color:#3b5998;
+    opacity:1;
+    -webkit-transform:translateY(9px);
+    transform:translateY(9px)
+}
+/*input.valid:not([type]),input.valid:not([type]):focus,input[type=text].valid:not(.browser-default),input[type=text].valid:not(.browser-default):focus,input[type=password].valid:not(.browser-default),input[type=password].valid:not(.browser-default):focus,input[type=email].valid:not(.browser-default),input[type=email].valid:not(.browser-default):focus,input[type=url].valid:not(.browser-default),input[type=url].valid:not(.browser-default):focus,input[type=time].valid:not(.browser-default),input[type=time].valid:not(.browser-default):focus,input[type=date].valid:not(.browser-default),input[type=date].valid:not(.browser-default):focus,input[type=datetime].valid:not(.browser-default),input[type=datetime].valid:not(.browser-default):focus,input[type=datetime-local].valid:not(.browser-default),input[type=datetime-local].valid:not(.browser-default):focus,input[type=tel].valid:not(.browser-default),input[type=tel].valid:not(.browser-default):focus,input[type=number].valid:not(.browser-default),input[type=number].valid:not(.browser-default):focus,input[type=search].valid:not(.browser-default),input[type=search].valid:not(.browser-default):focus,textarea.materialize-textarea.valid,textarea.materialize-textarea.valid:focus,.select-wrapper.valid>input.select-dropdown{
+    border-bottom:1px solid #3b5998;
+    -webkit-box-shadow:0 1px 0 0 #3b5998;
+    box-shadow:0 1px 0 0 #3b5998
 }
 input.invalid:not([type]),input.invalid:not([type]):focus,input[type=text].invalid:not(.browser-default),input[type=text].invalid:not(.browser-default):focus,input[type=password].invalid:not(.browser-default),input[type=password].invalid:not(.browser-default):focus,input[type=email].invalid:not(.browser-default),input[type=email].invalid:not(.browser-default):focus,input[type=url].invalid:not(.browser-default),input[type=url].invalid:not(.browser-default):focus,input[type=time].invalid:not(.browser-default),input[type=time].invalid:not(.browser-default):focus,input[type=date].invalid:not(.browser-default),input[type=date].invalid:not(.browser-default):focus,input[type=datetime].invalid:not(.browser-default),input[type=datetime].invalid:not(.browser-default):focus,input[type=datetime-local].invalid:not(.browser-default),input[type=datetime-local].invalid:not(.browser-default):focus,input[type=tel].invalid:not(.browser-default),input[type=tel].invalid:not(.browser-default):focus,input[type=number].invalid:not(.browser-default),input[type=number].invalid:not(.browser-default):focus,input[type=search].invalid:not(.browser-default),input[type=search].invalid:not(.browser-default):focus,textarea.materialize-textarea.invalid,textarea.materialize-textarea.invalid:focus,.select-wrapper.invalid>input.select-dropdown{
     border-bottom:1px solid #F44336;
@@ -4760,7 +4786,7 @@ input.invalid:not([type]),input.invalid:not([type]):focus,input[type=text].inval
 }
 input:not([type]).valid+label:after,input:not([type]):focus.valid+label:after,input[type=text]:not(.browser-default).valid+label:after,input[type=text]:not(.browser-default):focus.valid+label:after,input[type=password]:not(.browser-default).valid+label:after,input[type=password]:not(.browser-default):focus.valid+label:after,input[type=email]:not(.browser-default).valid+label:after,input[type=email]:not(.browser-default):focus.valid+label:after,input[type=url]:not(.browser-default).valid+label:after,input[type=url]:not(.browser-default):focus.valid+label:after,input[type=time]:not(.browser-default).valid+label:after,input[type=time]:not(.browser-default):focus.valid+label:after,input[type=date]:not(.browser-default).valid+label:after,input[type=date]:not(.browser-default):focus.valid+label:after,input[type=datetime]:not(.browser-default).valid+label:after,input[type=datetime]:not(.browser-default):focus.valid+label:after,input[type=datetime-local]:not(.browser-default).valid+label:after,input[type=datetime-local]:not(.browser-default):focus.valid+label:after,input[type=tel]:not(.browser-default).valid+label:after,input[type=tel]:not(.browser-default):focus.valid+label:after,input[type=number]:not(.browser-default).valid+label:after,input[type=number]:not(.browser-default):focus.valid+label:after,input[type=search]:not(.browser-default).valid+label:after,input[type=search]:not(.browser-default):focus.valid+label:after,textarea.materialize-textarea.valid+label:after,textarea.materialize-textarea:focus.valid+label:after,.select-wrapper.valid+label:after{
     content:attr(data-success);
-    color:#4CAF50;
+    color:#3b5998;
     opacity:1;
     -webkit-transform:translateY(9px);
     transform:translateY(9px)
@@ -4771,7 +4797,7 @@ input:not([type]).invalid+label:after,input:not([type]):focus.invalid+label:afte
     opacity:1;
     -webkit-transform:translateY(9px);
     transform:translateY(9px)
-}
+}*/
 input:not([type])+label:after,input[type=text]:not(.browser-default)+label:after,input[type=password]:not(.browser-default)+label:after,input[type=email]:not(.browser-default)+label:after,input[type=url]:not(.browser-default)+label:after,input[type=time]:not(.browser-default)+label:after,input[type=date]:not(.browser-default)+label:after,input[type=datetime]:not(.browser-default)+label:after,input[type=datetime-local]:not(.browser-default)+label:after,input[type=tel]:not(.browser-default)+label:after,input[type=number]:not(.browser-default)+label:after,input[type=search]:not(.browser-default)+label:after,textarea.materialize-textarea+label:after,.select-wrapper+label:after{
     display:block;
     content:"";
@@ -4833,7 +4859,7 @@ input:not([type])+label:after,input[type=text]:not(.browser-default)+label:after
     transition:color .2s
 }
 .input-field .prefix.active{
-    color:#26a69a
+    color:#3b5998
 }
 .input-field .prefix ~ input,.input-field .prefix ~ textarea,.input-field .prefix ~ label,.input-field .prefix ~ .validate ~ label,.input-field .prefix ~ .autocomplete-content{
     margin-left:3rem;
@@ -4981,10 +5007,10 @@ textarea.materialize-textarea.validate+label:not(.label-icon).active{
     border:2px solid transparent
 }
 [type="radio"]:checked+label:after,[type="radio"].with-gap:checked+label:before,[type="radio"].with-gap:checked+label:after{
-    border:2px solid #26a69a
+    border:2px solid #3b5998
 }
 [type="radio"]:checked+label:after,[type="radio"].with-gap:checked+label:after{
-    background-color:#26a69a
+    background-color:#3b5998
 }
 [type="radio"]:checked+label:after{
     -webkit-transform:scale(1.02);
@@ -5083,8 +5109,8 @@ form p:last-child{
     height:22px;
     border-top:2px solid transparent;
     border-left:2px solid transparent;
-    border-right:2px solid #26a69a;
-    border-bottom:2px solid #26a69a;
+    border-right:2px solid #3b5998;
+    border-bottom:2px solid #3b5998;
     -webkit-transform:rotate(40deg);
     transform:rotate(40deg);
     -webkit-backface-visibility:hidden;
@@ -5103,7 +5129,7 @@ form p:last-child{
     height:22px;
     border-top:none;
     border-left:none;
-    border-right:2px solid #26a69a;
+    border-right:2px solid #3b5998;
     border-bottom:none;
     -webkit-transform:rotate(90deg);
     transform:rotate(90deg);
@@ -5164,8 +5190,8 @@ form p:last-child{
     top:0;
     width:20px;
     height:20px;
-    border:2px solid #26a69a;
-    background-color:#26a69a;
+    border:2px solid #3b5998;
+    background-color:#3b5998;
     z-index:0
 }
 [type="checkbox"].filled-in.tabbed:focus+label:after{
@@ -5175,8 +5201,8 @@ form p:last-child{
 }
 [type="checkbox"].filled-in.tabbed:checked:focus+label:after{
     border-radius:2px;
-    background-color:#26a69a;
-    border-color:#26a69a
+    background-color:#3b5998;
+    border-color:#3b5998
 }
 [type="checkbox"].filled-in:disabled:not(:checked)+label:before{
     background-color:transparent;
@@ -5215,7 +5241,7 @@ form p:last-child{
     left:18px
 }
 .switch label input[type=checkbox]:checked+.lever:after{
-    background-color:#26a69a
+    background-color:#3b5998
 }
 .switch label .lever{
     content:"";
@@ -5456,7 +5482,7 @@ input[type=range]+.thumb{
     height:0;
     width:0;
     border-radius:50%;
-    background-color:#26a69a;
+    background-color:#3b5998;
     margin-left:7px;
     -webkit-transform-origin:50% 50%;
     transform-origin:50% 50%;
@@ -5467,7 +5493,7 @@ input[type=range]+.thumb .value{
     display:block;
     width:30px;
     text-align:center;
-    color:#26a69a;
+    color:#3b5998;
     font-size:0;
     -webkit-transform:rotate(45deg);
     transform:rotate(45deg)
@@ -5495,7 +5521,7 @@ input[type=range]::-webkit-slider-thumb{
     height:14px;
     width:14px;
     border-radius:50%;
-    background-color:#26a69a;
+    background-color:#3b5998;
     -webkit-transform-origin:50% 50%;
     transform-origin:50% 50%;
     margin:-5px 0 0 0;
@@ -5518,7 +5544,7 @@ input[type=range]::-moz-range-thumb{
     height:14px;
     width:14px;
     border-radius:50%;
-    background:#26a69a;
+    background:#3b5998;
     margin-top:-5px
 }
 input[type=range]:-moz-focusring{
@@ -5546,7 +5572,7 @@ input[type=range]::-ms-thumb{
     height:14px;
     width:14px;
     border-radius:50%;
-    background:#26a69a
+    background:#3b5998
 }
 input[type=range]:focus::-ms-fill-lower{
     background:#888
@@ -5653,7 +5679,7 @@ input[type=range]:focus::-ms-fill-upper{
     background-color:#2bbbad
 }
 .side-nav li>a.btn-floating:hover{
-    background-color:#26a69a
+    background-color:#3b5998
 }
 .side-nav li>a>i,.side-nav li>a>[class^="mdi-"],.side-nav li>a li>a>[class*="mdi-"],.side-nav li>a>i.material-icons{
     float:left;
@@ -5810,7 +5836,7 @@ input[type=range]:focus::-ms-fill-upper{
     width:100%;
     height:100%;
     opacity:0;
-    border-color:#26a69a
+    border-color:#3b5998
 }
 .spinner-blue,.spinner-blue-only{
     border-color:#4285f4
@@ -6250,7 +6276,7 @@ input[type=range]:focus::-ms-fill-upper{
     border-radius:50%
 }
 .slider .indicators .indicator-item.active{
-    background-color:#4CAF50
+    background-color:#3b5998
 }
 .carousel{
     overflow:hidden;
@@ -6572,17 +6598,17 @@ input[type=range]:focus::-ms-fill-upper{
 }
 .clockpicker-canvas-bearing{
     stroke:none;
-    fill:#26a69a
+    fill:#3b5998
 }
 .clockpicker-canvas-bg{
     stroke:none;
-    fill:#26a69a
+    fill:#3b5998
 }
 .clockpicker-canvas-bg-trans{
-    fill:#26a69a
+    fill:#3b5998
 }
 .clockpicker-canvas line{
-    stroke:#26a69a;
+    stroke:#3b5998;
     stroke-width:4;
     stroke-linecap:round
 }

@@ -15,7 +15,7 @@
                       
  $arr[deposit] = $db->fetch($res[deposit]) ;
  if($arr[deposit] == ''){
-  echo 'sssssssssssssssssssss';
+//  echo 'sssssssssssssssssssss';
   $balance = 0;
 
  }
