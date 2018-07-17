@@ -272,7 +272,9 @@
       <div id="material_dialog" class="modal modal-fixed-footer">
          <div class="modal-content">
             <h4 id="dialoglLabel">Modal Header</h4>
-            <div id="load_modal_body"></div>
+            <div id="load_modal_body" style="-webkit-overflow-scrolling: touch;">
+            	
+            </div>
          </div>
          <div class="modal-footer">
             <!-- <a href="#!" class="modal-action modal-close waves-effect waves-red btn-flat ">Disagree</a>-->

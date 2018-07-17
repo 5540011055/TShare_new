@@ -61,19 +61,14 @@ $d2 = date('Y-m-d',$arr[dv_data][post_date]);
             <div class="<?= $coldata?>">
                <div class="topicname-user font-22"><?=t_identity_card_number;?></div>
                <input disabled class="form-control font-22" type="text" name="idcard" id="idcard"  style="background-color:#eee;"   value="<?=$arr[dv_data][idcard];?>" >
-               <img src="../data/pic/driver/id_card/<?=$arr[dv_data][id];?>_idcard.jpg" width="200px" />
-               <!--<button style="position: absolute;right: 15px;top: 38px;border-radius: 0px;" class="btn btn-info" onclick="viewDocument(<?=$arr[dv_data][id];?>,'idcard','<?=$arr[dv_data][idcard];?>');">
-               <?=t_files;?></button>-->
+               <div align="center"><img src="images/no-image-slide.png" width="150px" id="img_id_card" /></div>
             </div>
             <div class="<?= $coldata?>">
                <div class="topicname-user font-22"><?=t_driver_license_number;?></div>
                <input disabled class="form-control font-22" type="text" name="iddriving" id="iddriving"  style="background-color:#eee;"   value="<?=$arr[dv_data][iddriving];?>" >
-               
-              <!-- <button style="position: absolute;right: 15px;top: 38px;border-radius: 0px;" class="btn btn-info" onclick="viewDocument(<?=$arr[dv_data][id];?>,'iddriving','<?=$arr[dv_data][iddriving];?>');">
-               <?=t_files;?></button>-->
-               <img src="../data/pic/driver/id_driving/<?=$arr[dv_data][id];?>_iddriving.jpg" width="200px" />
+               <div align="center"><img src="images/no-image-slide.png" width="150px" id="img_id_driving" /></div>
             </div>
-            <div class="<?= $coldata?>">
+            <div class="<?=$coldata?>">
                <div class="topicname-user font-22"><?=t_address;?></div>
                <input disabled class="form-control font-22" type="text" name="address" id="address"  style="background-color:#eee;"   value="<?=$arr[dv_data][address];?>" >
             </div>
@@ -92,7 +87,7 @@ $d2 = date('Y-m-d',$arr[dv_data][post_date]);
 
 <script>
 	var url_img =  "../data/pic/driver/small/<?=$arr[dv_data][username];?>.jpg";
-   $.ajax({
+   	$.ajax({
                              url: url_img,
                              type: 'HEAD',
                              error: function() {
@@ -103,4 +98,31 @@ $d2 = date('Y-m-d',$arr[dv_data][post_date]);
                               	$('#img_tag').attr('src',url_img);
                              }
                          });
+      
+      var url_img_id_card =  "../data/pic/driver/id_card/<?=$arr[dv_data][id];?>_idcard.jpg";
+   	$.ajax({
+                             url: url_img_id_card,
+                             type: 'HEAD',
+                             error: function() {
+                                 console.log('Error file');
+                             },
+                             success: function() {
+                              	console.log('Success file');
+                              	$('#img_id_card').attr('src',url_img);
+                             }
+                         }); 
+                         
+       var url_img_id_driving =  "../data/pic/driver/id_driving/<?=$arr[dv_data][id];?>_iddriving.jpg";
+   	$.ajax({
+                             url: url_img_id_driving,
+                             type: 'HEAD',
+                             error: function() {
+                                 console.log('Error file');
+                             },
+                             success: function() {
+                              	console.log('Success file');
+                              	$('#img_id_driving').attr('src',url_img);
+                             }
+                         });                                      
+                         
 </script>

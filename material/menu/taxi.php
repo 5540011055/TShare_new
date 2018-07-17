@@ -44,6 +44,11 @@
          <li class="default-shadow padding-5 default-shadow">
          <a class="collapsible-header waves-effect waves-light font-26" onclick="openQrCode();"><i class="fa fa-qrcode icon_menu" style="margin-top: 1px !important;"></i><?=t_friends;?></a>
          </li>
+		 <li class="default-shadow padding-5 default-shadow">
+         <a class="collapsible-header waves-effect waves-light font-26" onclick="openContactUs();">
+         <!--<i class="fa fa-volume-control-phone icon_menu" style="margin-top: 1px !important;"></i>ติดต่อ</a>-->
+         <i class="material-icons icon_menu" style="color: #757575;    margin: 1px !important;" >contact_phone</i><span style="padding-left: 15px;">ติดต่อเรา</span></a>
+         </li>
         <!-- <li style="display: none;"><a class="waves-effect waves-light" href="startup-team.html" style="padding: 0px 16px;"><?=t_language;?></a></li>-->
          <li class="default-shadow padding-5 default-shadow">
          <a class="collapsible-header waves-effect waves-light font-26" onclick="logOut();"><i class="icon-new-uniF186 icon_menu"></i><?=t_sign_out;?></a>
@@ -97,6 +102,15 @@
       	$('#load_mod_popup_3').html(load_main_mod);
       	var url_load= "load_page_mod_3.php?name=user&file=qrcode";
       	$('#load_mod_popup_3').load(url_load); 
+	}
+	function openContactUs(){
+		$('#dialoglLabel').text('ติดต่อเรา');
+		$('#material_dialog').modal('open');
+		var url = "mod/user/contrac_us.php";
+		var url = "empty_style.php?name=user&file=contrac_us";
+		$.post(url,function(html){
+			$('#load_modal_body').html(html);
+		});
 	}
 	/*function logOut(){
 		swal({

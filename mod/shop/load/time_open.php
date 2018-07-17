@@ -70,7 +70,7 @@ $start_m_reduce = date("i", $test_timestamp);
 		<? 
 		}	
  } 
-	  else{ ?>
+	else{ ?>
    <script>
    
    $('#btn_open_<?=$_GET[id]?>').hide();
@@ -89,7 +89,8 @@ if($h_now<$start_h_reduce){
    $('#tr_time_open_<?=$_GET[id]?>').hide();
    $('#status_open_<?=$_GET[id]?>').html('<font style="color:#ff6666">'+'หมดเวลาให้บริการ'+'</font>');
    </script>
-<? }else{
+<? }
+else{
 	if($h_now==$start_h_reduce and $i_now<$start_m_reduce){ ?>
 		<script>
 			

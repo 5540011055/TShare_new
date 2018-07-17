@@ -24,7 +24,7 @@
    position : relative;
    width: 85%;
    height: auto%;
-   z-index: 9999;
+   z-index: 99;
    /* padding: 30px; */
    background-color: #fff;
    border: 2px solid #cccccc;
@@ -33,7 +33,7 @@
    .background-smal-popup{
    width: 100%;
    height: 100%;
-   z-index: 9990;
+   z-index: 99;
    background-color: rgba(0, 0, 0, 0.45);
    top: 0px;
    left: 0px;
@@ -566,9 +566,9 @@
                </a>
             </td>
          </tr>
-         <tr style="display: none;">
-            <td colspan="2" width="50%" align="center" class="" onclick="shopTest()">
-               <a onclick="">
+         <tr style="display: nones;">
+            <td colspan="2" width="50%" align="center" class="" onclick="shoppingTest()">
+               <a>
                   <a class="btn btn-default paddling-max" style="width:100%">
                      <center>
                         <div  class="circle-menu" style="background: #CDDC39;">
@@ -710,6 +710,7 @@
       <input type="hidden" value="0" id="lng"/>
    </div>
    <script>
+   		
       $('#close_small_select').click(function(){
       	$('#popup_small_select').hide();
       });
@@ -735,54 +736,57 @@
         		$('#show_main_tool_bottom span').removeClass('bottom-popup-icon-new-active');
         		$('#btn_home_bottom_menu').addClass('bottom-popup-icon-new-active');
         });
+        
       /***************************** shopping old*******************************/
-      //  $('#index_menu_shopping').click(function(){  
-      //  var user_id = "<?=$_SESSION['data_user_id'];?>";
-      // $.post("mod/user/check_user.php?check=idcard_idrive&user_id="+user_id,function(res){
-      // 	console.log(res);
-      // 	if(res.idcard == ""){
-      // 		swal("คุณยังไม่ได้กรอกข้อมูลบัตรประชาชน");
-      // 		$( "#main_load_mod_popup" ).toggle();
-      //          	var url_load = "load_page_mod.php?name=user&file=job";
-      //         	$('#load_mod_popup').html(load_main_mod);
-      //          	$('#load_mod_popup').load(url_load); 
-      // 		return;
-      // 	}
-      // 	if(res.iddriving == ""){
-      // 		swal("คุณยังไม่ได้กรอกข้อมูลใบขับขี่");
-      // 		$( "#main_load_mod_popup" ).toggle();
-      //          	var url_load = "load_page_mod.php?name=user&file=job";
-      //         	$('#load_mod_popup').html(load_main_mod);
-      //          	$('#load_mod_popup').load(url_load); 
-      // 		return;
-      // 	}
-      // 	$("#load_mod_popup_select_pv" ).show();
-      //      var url_load= "empty_style.php?name=shop&file=select_province_new&id=1&lat=<?=$arr[shop][lat]?>&lng=<?=$arr[shop][lng]?>&type=stop";
-      //       $('#body_load_select_pv').html(load_main_mod);
-      //       $.post( url_load, function( data ) {
-      //       	   $('#body_load_select_pv').html(data);
-      //    	   var txt = $('#province_text').text();
-      //    		$('#txt_pv_fr').val(txt);
-      //    		$('.text-change-province').text(txt);
-      //    	});
-      // });
-      //   });
+        function shoppingTest(){
+			
+        var user_id = "<?=$_SESSION['data_user_id'];?>";
+		       $.post("mod/user/check_user.php?check=idcard_idrive&user_id="+user_id,function(res){
+		       	console.log(res);
+		       /*	if(res.idcard == ""){
+		       		swal("คุณยังไม่ได้กรอกข้อมูลบัตรประชาชน");
+		       		$( "#main_load_mod_popup" ).toggle();
+		                	var url_load = "load_page_mod.php?name=user&file=job";
+		               	$('#load_mod_popup').html(load_main_mod);
+		                	$('#load_mod_popup').load(url_load); 
+		       		return;
+		       	}
+		       	if(res.iddriving == ""){
+		       		swal("คุณยังไม่ได้กรอกข้อมูลใบขับขี่");
+		       		$( "#main_load_mod_popup" ).toggle();
+		                	var url_load = "load_page_mod.php?name=user&file=job";
+		               	$('#load_mod_popup').html(load_main_mod);
+		                	$('#load_mod_popup').load(url_load); 
+		       		return;
+		       	}*/
+		       	$("#load_mod_popup_select_pv" ).show();
+		            var url_load= "empty_style.php?name=shop&file=select_province_new&id=1&lat=<?=$arr[shop][lat]?>&lng=<?=$arr[shop][lng]?>&type=stop";
+		             $('#body_load_select_pv').html(load_main_mod);
+		             $.post( url_load, function( data ) {
+		             	   $('#body_load_select_pv').html(data);
+		          	   var txt = $('#province_text').text();
+		          		$('#txt_pv_fr').val(txt);
+		          		$('.text-change-province').text(txt);
+		          	});
+		       });
+        }
+
       /***************************** shopping old*******************************/
        ///// food
-       $('#index_menu_food').click(function(){  
+       /*$('#index_menu_food').click(function(){  
         $("#load_mod_popup" ).toggle();
         var url_load= "load_page_mod.php?name=shop&file=main&id=2&lat=<?=$arr[shop][lat]?>&lng=<?=$arr[shop][lng]?>&type=stop";
         $('#load_mod_popup').html(load_main_mod);
         $('#load_mod_popup').load(url_load); 
        	});
-         $('#index_menu_tour').click(function(){  
+       $('#index_menu_tour').click(function(){  
         swal('กำลังจะเปิดให้บริการ');
         return;
          // $( "#main_load_mod_popup_4" ).toggle();
          // var url_load= "load_page_mod_4.php?name=booking/popup&file=price&shop_id=1&lat=0&lng=0&type=stop";
          // $('#load_mod_popup_4').html(load_main_mod);
          // $('#load_mod_popup_4').load(url_load); 
-       	});
+       	});*/
    </script>  
 </div>
 <script>
@@ -896,11 +900,12 @@
 <!-- <script src="socket.io/socket.io.js"></script> -->
 <!-- <script src="https://code.jquery.com/jquery-latest.min.js?v=<?=time();?>"></script> -->
 <script>
+   var array_rooms;
    var res_socket ;
    var socket = io.connect('https://www.welovetaxi.com:3443');
           //on message received we print all the data inside the #container div
           socket.on('notification', function (data) {
-          console.log("Start Socket");
+//          console.log("Start Socket");
 			
 					 res_socket = data.transfer[0];
 		          $('#number_tbooking').text(data.transfer[0].length);
@@ -1039,6 +1044,7 @@
    socket.on('updaterooms', function(rooms, current_room) {
     $('#rooms').empty();
     console.log(rooms)
+    array_rooms = rooms;
     console.log(current_room)
  });
    // socket.on("disconnect", function(){
@@ -1219,7 +1225,7 @@
    }
 </script>
 <script>
-   $('#index_menu_shopping').click(function(){
+  $('#index_menu_shopping').click(function(){
    	console.log('Shop');
       $(".text-topic-action-mod").text('ส่งแขก (ภูเก็ต)')
          var url = "mod/shop/update_num_place.php?id=1&province=1&op=update";
