@@ -1,22 +1,23 @@
 <!--<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />  -->
 <input type="hidden" value="0" id="check_open_shop_id" /> <!-- เช็คเมนูช้อปปิ้ง ว่ากำลังเปิด detail ของ id ไหน -->
 <style>
-   .box-shadow-only{
+.box-shadow-only{
    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
-   }
-   .paddling-max{
+}
+.paddling-max{
    padding : 17px 12px !important;
    border-radius: 0px !important;
    border : 0px !important;
-   }
-   .popup-open {
+}
+.popup-open {
    overflow: hidden;
-   } 
-   .css-small-popup {
+}
+.css-small-popup {
    /* left: 0px; */
    /* right: 0px; */
    /* bottom: 0px; */
    top: 50px;
+
    /* margin-top: 95px;
    margin-left: 30px;*/
    /*    margin: 40px;*/
@@ -31,6 +32,7 @@
    border-radius: 10px;
    }
    .background-smal-popup{
+
    width: 100%;
    height: 100%;
    z-index: 99;
@@ -39,76 +41,76 @@
    left: 0px;
    right: 0px;
    bottom: 0px;
-   }
-   .close-small-popup{
-   /*	position : relative;*/
-   /*	right : 50px;
-   top : 95px;*/
-   z-index : 10000;
-   color : #000000;
-   width: 100%;
-   /*margin-left: -10px;
-   margin-top: 5px;*/
-   }
-   .css-full-popup2{
+}
+.close-small-popup{
+   /* position : relative;*/
+/* right : 50px;
+top : 95px;*/
+z-index : 10000;
+color : #000000;
+width: 100%;
+/*margin-left: -10px;
+margin-top: 5px;*/
+}
+.css-full-popup2{
    position: fixed;
    width: 100%;
    z-index: 9999;
    background-color: #ffff;
    height: 100%;
-   /*	margin-top: 48px;*/
-   }
-   .btn_select{
-   width: 100%; 
-   border: 1px solid #ddd; 
-   padding: 13px; 
-   margin-top: 0px; 
+   /* margin-top: 48px;*/
+}
+.btn_select{
+   width: 100%;
+   border: 1px solid #ddd;
+   padding: 13px;
+   margin-top: 0px;
    border-radius: 20px;
    background-color: #fff;
    box-shadow: 1px 1px 5px #ddd;
    background-color: #3b5998;
    color: #ffff;
-   }
-   .icon { padding-top: 20px; } 
-   p {
+}
+.icon { padding-top: 20px; }
+p {
    font-family: Arial, Helvetica, sans-serif; font-size:18px;
-   }
-   body,td,th {
+}
+body,td,th {
    font-family: Arial, Helvetica, sans-serif;
-   }
-   .tool-icon-chat {
-   width:100%;border-radius: 20px; 
-   }
-   .tool-icon-text {
+}
+.tool-icon-chat {
+   width:100%;border-radius: 20px;
+}
+.tool-icon-text {
    padding:5px; width:100%;border-radius: 15px; height:60px; background-color:#FFFFFF; font-size:32px; color: <?=$maincolor?>;
-   }
-   .tool-icon-text:hover{  
+}
+.tool-icon-text:hover{
    padding:5px; width:100%;border-radius: 15px; height:60px; border:2px solid <?=$maincolor?>;background-color:#FFFFFF; box-shadow: 0px 0px 10px #999999; color:<?=$maincolor?>;
-   }
-   .tool-td-chat {
+}
+.tool-td-chat {
    padding:5px;border-radius: 15px; padding-bottom:10px;
-   }
-   .circle-menu{
-   border-radius: 50%; background-color:<?=$main_color?>; display: block;  
-   padding: 10px; 
+}
+.circle-menu{
+   border-radius: 50%; background-color:<?=$main_color?>; display: block;
+   padding: 10px;
    width: 50px;
-   height: 50px; 
-   color:#FFFFFF;  font-size:24px;  
+   height: 50px;
+   color:#FFFFFF;  font-size:24px;
    border: solid 2px #FFFFFF;
    text-align: center;
-   vertical-align: middle; 
-   }
-   .btn-default{
+   vertical-align: middle;
+}
+.btn-default{
    border-radius: 20px;
    box-shadow: 0px  0px 5px #DADADA;  border:none;
-   }
-   .text-cap{
+}
+.text-cap{
    text-transform: capitalize !important;
-   }
-   .text-low{
+}
+.text-low{
    text-transform: lowercase !important;
-   }
-   .btn-repair{
+}
+.btn-repair{
    padding: .84rem 2.14rem;
    font-size: .81rem;
    -webkit-transition: all .2s ease-in-out;
@@ -123,8 +125,8 @@
    color: #000000;
    background-color: #ffffff;
    box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);
-   }
-   .waves-effect {
+}
+.waves-effect {
    position: relative;
    cursor: pointer;
    overflow: hidden;
@@ -134,127 +136,127 @@
    user-select: none;
    -webkit-tap-highlight-color: transparent;
    z-index: 1;
-   }
+}
 </style>
 <style>
-   .back_main{
+.back_main{
    padding: 5px 0px;
    margin-top: 0px;
    padding-left: 10px;
    position: fixed;
    background-color: #fff;
    width: 100%;
-   /*	    border-bottom: 1px solid #ddd;*/
+   /*     border-bottom: 1px solid #ddd;*/
    box-shadow: 1px 1px 10px #ddd;
    z-index: 2;
-   }
-   @media screen and (max-width: 320px) {
+}
+@media screen and (max-width: 320px) {
    .font-22{
-   font-size : 14px;
-   font-family: 'Arial', sans-serif;
+      font-size : 14px;
+      font-family: 'Arial', sans-serif;
    }
    .line-center{
-   /*   		height: 59px;*/
-   height: 50px;
+      /*       height: 59px;*/
+      height: 50px;
    }
    #date_transfer_work{
-   height: 35px !important;
-   font-size: 20px !important;
+      height: 35px !important;
+      font-size: 20px !important;
    }
    .icon_calendar{
-   font-size: 20px !important;
+      font-size: 20px !important;
    }
-   }
-   .btn_filter_active{
-   padding: 8px; 
+}
+.btn_filter_active{
+   padding: 8px;
    border: 1px solid <?=$main_color;?>;
    border-radius: 25px;
-   /*	width: 100px;*/
+   /* width: 100px;*/
    background-color: <?=$main_color;?>;
    color: #fff;
    box-shadow: 1px 1px 1px #333;
    cursor: pointer;
    margin: 5px;
-   }
-   .btn_filter{
-   padding: 8px; 
-   border: 1px solid <?=$main_color;?>; 
+}
+.btn_filter{
+   padding: 8px;
+   border: 1px solid <?=$main_color;?>;
    border-radius: 25px;
-   /*	width: 100px;*/
+   /* width: 100px;*/
    cursor: pointer;
    margin: 5px;
-   }
-   @media screen and (max-width: 320px) {
+}
+@media screen and (max-width: 320px) {
    .font-22{
-   font-size : 14px !important;
-   font-family: 'Arial', sans-serif;
+      font-size : 14px !important;
+      font-family: 'Arial', sans-serif;
    }
    .font-24{
-   font-size : 16px !important;
-   font-family: 'Arial', sans-serif;
+      font-size : 16px !important;
+      font-family: 'Arial', sans-serif;
    }
    .font-26{
-   font-size : 18px !important;
-   font-family: 'Arial', sans-serif;
+      font-size : 18px !important;
+      font-family: 'Arial', sans-serif;
    }
    .font-28{
-   font-size : 20px !important;
-   font-family: 'Arial', sans-serif;
+      font-size : 20px !important;
+      font-family: 'Arial', sans-serif;
    }
    #date_report{
-   font-size : 20px !important ; 
-   height: 35px !important;
+      font-size : 20px !important ;
+      height: 35px !important;
    }
    #icon_calendar{
-   font-size : 20px !important ; 
+      font-size : 20px !important ;
    }
-   /*.form-group{
-   margin-bottom: 0px !important;
-   }*/
-   }
-   .payment-menu{
-   border-radius: 50%; background-color:#59AA47; display: block;  
-   padding: 12px; 
+/*.form-group{
+margin-bottom: 0px !important;
+}*/
+}
+.payment-menu{
+   border-radius: 50%; background-color:#59AA47; display: block;
+   padding: 12px;
    width: 50px;
-   height: 50px; 
-   color:#FFFFFF;  font-size:10px;  
+   height: 50px;
+   color:#FFFFFF;  font-size:10px;
    border: solid 2px #FFFFFF;
    text-align: center;
-   vertical-align: middle;  box-shadow: 0px  0px 10px #DADADA  ; margin-left: -5px;  
-   }
-   .div-all-price{
-   /* padding:3px;   
-   border-radius: 8px; 
-   border:  1px solid #ddd;*/
-   background-color:#FFFFFF;  
-   /*margin-bottom: 10px; */
-   margin-top:0px; 
-   /*	 box-shadow: 0px  0px 0px #DADADA  ;*/
-   }
-   .div-all-zello{
+   vertical-align: middle;  box-shadow: 0px  0px 10px #DADADA  ; margin-left: -5px;
+}
+.div-all-price{
+/* padding:3px;
+border-radius: 8px;
+border:  1px solid #ddd;*/
+background-color:#FFFFFF;
+/*margin-bottom: 10px; */
+margin-top:0px;
+/*  box-shadow: 0px  0px 0px #DADADA  ;*/
+}
+.div-all-zello{
    padding:5px;
    border-radius: 0px;
    border: 1px solid #ddd;
    background-color:#FFF;
    margin-bottom: 5px;
    box-shadow: 0px 0px 0px #DADADA ;
-   }
-   .list-container{
+}
+.list-container{
    font-size: 16px;
    padding: 5px 0px;
    transform: 0.3s;
    /*   padding: 0px;*/
-   }
-   .w3-ul li{
+}
+.w3-ul li{
    padding: 0px 5px;
    border-bottom: 1px solid #ddd;
-   }
-   .ico-pos{
+}
+.ico-pos{
    position: absolute;
    right: 0px;
    margin: 20px 10px;
-   }
-   .cancel-work-shop{
+}
+.cancel-work-shop{
    box-shadow: 1px 2px 2px #35353575;
    width: 90px;
    border: 1px solid #a9a9a9;
@@ -266,8 +268,8 @@
    /*     margin: 50px 15px;*/
    text-align: center;
    border-radius: 10px;
-   }
-   .div-all-checkin{
+}
+.div-all-checkin{
    padding:5px;
    border-radius: 15px;
    border: 1px solid #ddd;
@@ -275,14 +277,14 @@
    margin-bottom: 5px;
    margin-top:5px;
    box-shadow: 0px 0px 10px #DADADA ;
-   }
-   .disabledbutton-checkin {
+}
+.disabledbutton-checkin {
    pointer-events: none;
    background-color:#FFF;
    color:#FFF;
    border: 1px solid #88B34D;
-   }
-   .step-booking-small {
+}
+.step-booking-small {
    border-radius: 50%;
    background-color: #FF9933;
    padding: 5px;
@@ -297,8 +299,8 @@
    border: solid 4px #FFFFFF;
    background: #f39c12 !important;
    color: #fff;
-   }
-   .step-booking-small-no {
+}
+.step-booking-small-no {
    border-radius: 50%;
    background-color: #FF9933;
    padding: 5px;
@@ -313,8 +315,8 @@
    border: solid 4px #FFFFFF;
    background: #999999 !important;
    color: #fff;
-   }
-   .step-booking {
+}
+.step-booking {
    border-radius: 50%;
    background-color: #FF9933;
    padding: 10px;
@@ -330,8 +332,8 @@
    box-shadow: 0 0 10px 3px #E8E6E6;
    background: #FF0000 !important;
    color: #fff;
-   }
-   .step-booking-active {
+}
+.step-booking-active {
    border-radius: 50%;
    padding: 10px;
    width: 60px;
@@ -346,18 +348,18 @@
    box-shadow: 0 0 10px 3px #E8E6E6;
    background: #59AA47 !important;
    color: #fff;
-   }
-   .form-group { background:none;
-   }
-   .box_his,.box_book{
+}
+.form-group { background:none;
+}
+.box_his,.box_book{
    padding: 5px 0px;
    border: 1px solid #3b5998;
    margin-bottom: 10px;
    border-radius: 25px;
    box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12), 0 3px 1px -2px rgba(0,0,0,.2);
-   }
-   .mof{
-   width: 100%;	
+}
+.mof{
+   width: 100%;
    position: relative;
    border: none;
    outline:none;
@@ -367,44 +369,44 @@
    padding: 13px;
    border-radius: 2px;
    font-size: 22px;
-   }
-   .fab{
+}
+.fab{
    border-radius: 50%;
    margin:0;
    padding: 20px;
-   }
-   .material{
+}
+.material{
    position:relative;
    color:white;
    margin: 20px auto;
    height:400px;
    width:500px;
    background:#f45673;
-   }
-   .ripple{
+}
+.ripple{
    overflow:hidden;
-   }
-   .ripple-effect{
+}
+.ripple-effect{
    position: absolute;
    border-radius: 50%;
    width: 50px;
    height: 50px;
    background: white;
    animation: ripple-animation 2s;
-   }
-   @keyframes ripple-animation {
+}
+@keyframes ripple-animation {
    from {
-   transform: scale(1);
-   opacity: 0.4;
+      transform: scale(1);
+      opacity: 0.4;
    }
    to {
-   transform: scale(100);
-   opacity: 0;
+      transform: scale(100);
+      opacity: 0;
    }
-   }
-   .text-white{
+}
+.text-white{
    color: #ffffff;
-   }
+}
 </style>
 <input id="check_open_worktbooking" value="0" type="hidden"/>
 <div style="background-color:<?=$main_color;?>; height:120px; width:100%;margin-left:0px; margin-top:0px;display: none;" >
@@ -419,7 +421,7 @@
          <tr>
             <td align="center" class="font-24">
                <font color="#FFFFFF"><?=t_login_province;?> (<span id="province_text" style="text-transform: capitalize;"></span>)</font>
-               <!--	<span style="color: #fff;"><i class="fa fa-refresh" aria-hidden="true"></i></span>-->
+               <!--  <span style="color: #fff;"><i class="fa fa-refresh" aria-hidden="true"></i></span>-->
             </td>
          </tr>
       </tbody>
@@ -428,32 +430,32 @@
 <script>
    var array_data = [];
    startTimeHome();
-     var clock_h ;
-     function startTimeHome() {
-         var today = new Date();
-         var h = today.getHours();
-         var m = today.getMinutes();
-         var s = today.getSeconds();
-         m = checkTimeHome(m);
-         s = checkTimeHome(s);
-         document.getElementById('load_data_time').innerHTML = h + ":" + m + ":" + s;
-         clock_h = setTimeout(startTimeHome, 1000);
-     }
-     function checkTimeHome(i) {
-         if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
-         return i;
-     }
+   var clock_h ;
+   function startTimeHome() {
+      var today = new Date();
+      var h = today.getHours();
+      var m = today.getMinutes();
+      var s = today.getSeconds();
+      m = checkTimeHome(m);
+      s = checkTimeHome(s);
+      document.getElementById('load_data_time').innerHTML = h + ":" + m + ":" + s;
+      clock_h = setTimeout(startTimeHome, 1000);
+   }
+   function checkTimeHome(i) {
+if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+return i;
+}
 </script>
 <?
-   if($data_user_class=='taxi'){
-   	 $filter="drivername=".$user_id." ";
-    } else { 
-   	 $filter=""; 
-    }
-   /// $_GET[day]='2017-07-20';
-   $db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
-   	 $all_work = $db->num_rows('order_booking',"id","$filter");
-   ?>
+if($data_user_class=='taxi'){
+   $filter="drivername=".$user_id." ";
+} else {
+   $filter="";
+}
+/// $_GET[day]='2017-07-20';
+$db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
+$all_work = $db->num_rows('order_booking',"id","$filter");
+?>
 <div  style="margin-top:0px; width:100%; padding-right:0px;padding: 0px 0px;">
    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="tb-pd-4">
       <tbody>
@@ -479,86 +481,95 @@
                      </center>
                   </a>
                </center>
-               <script>    
-                  $('#index_menu_shopping_history').click(function(){  
-                   $('#check_open_workshop').val(1);
-                   $( "#main_load_mod_popup" ).toggle();
-                   console.log(array_data);
-                  //	               return;
-                    var url_load = "load_page_mod.php?name=booking&file=all";
-                   $('#load_mod_popup').html(load_main_mod);
-                   $.post( url_load,{ book : array_data } ,function( data ) {
-                    $('#load_mod_popup').html(data);
-                   });
-                     socket.emit('getdatadriver', 'room'); //call getbookinglab
-                   /* $('#load_mod_popup').html(load_main_mod);
-                    $('#load_mod_popup').load(url_load); */
-                  });
-               </script>
-            </td>
-         </tr>
-         <tr>
-            <td width="50%" align="center" class="">
+               <script>
+                  $('#index_menu_shopping_history').click(function(){
+                     $('#check_open_workshop').val(1);
+                     $( "#main_load_mod_popup" ).toggle();
+                     console.log(array_data);
+               //                return;
+               var url_load = "load_page_mod.php?name=booking&file=all";
+               $('#load_mod_popup').html(load_main_mod);
+               $.post( url_load,{ book : array_data } ,function( data ) {
+                  $('#load_mod_popup').html(data);
+               });
+               socket.emit('getdatadriver', 'room'); //call getbookinglab
+               /* $('#load_mod_popup').html(load_main_mod);
+               $('#load_mod_popup').load(url_load); */
+            });
+         </script>
+      </td>
+   </tr>
+   <tr>
+      <td width="50%" align="center" class="">
+         <center>
+            <a class="btn btn-default paddling-max"  id="index_menu_transfer"   style="width:100%" onclick="workTbooking();">
+               <span id="number_tbooking" class="badge font-20" style="position: absolute;font-size: 14px;background-color: #F44336;padding: 4px 7px;margin: -5px 3px;">0</span>
                <center>
-                  <a class="btn btn-default paddling-max"  id="index_menu_transfer"   style="width:100%" onclick="workTbooking();">
-                     <span id="number_tbooking" class="badge font-20" style="position: absolute;font-size: 14px;background-color: #F44336;padding: 4px 7px;margin: -5px 3px;">0</span>
-                     <center>
-                        <div  class="circle-menu"  style="background-color: #F7941D ">
-                           <i class="icon-new-uniF10A-9" style="font-size:30px; margin-left:-7px;  "  ></i>
-                        </div>
-                        <span style="padding-bottom:20px;" class="font-20 text-cap"><? echo t_job_received?> </span>
-                     </center>
-                  </a>
+                  <div  class="circle-menu"  style="background-color: #F7941D ">
+                     <i class="icon-new-uniF10A-9" style="font-size:30px; margin-left:-7px;  "  ></i>
+                  </div>
+                  <span style="padding-bottom:20px;" class="font-20 text-cap"><? echo t_job_received?> </span>
                </center>
-            </td>
-            <td width="50%" align="center" class="">
-               <span data-toggle="tooltip" class="badge"   style="position:absolute; margin-left:10px; border-radius: 20px; height:25px; width:25px; background-color:#ff0000; padding-top:3px;border: solid 2px #FFFFFF; display:NONE " id="number_bottom_chat"  ><span  class="font-20" >0</span> </span>
+            </a>
+         </center>
+      </td>
+      <td width="50%" align="center" class="">
+         <span data-toggle="tooltip" class="badge"   style="position:absolute; margin-left:10px; border-radius: 20px; height:25px; width:25px; background-color:#ff0000; padding-top:3px;border: solid 2px #FFFFFF; display:NONE " id="number_bottom_chat"  ><span  class="font-20" >0</span> </span>
+         <center>
+            <a class="btn btn-default paddling-max"  id="index_menu_transfer_his"   style="width:100%" onclick="historyTransfer();">
                <center>
-               <a class="btn btn-default paddling-max"  id="index_menu_transfer_his"   style="width:100%" onclick="historyTransfer();">
-                  <center>
-                     <div  class="circle-menu"  style="background-color: #F7941D ">
-                        <center><i class="fa fa-history" style="font-size: 22px;margin-top: -2px; "  ></i>
+                  <div  class="circle-menu"  style="background-color: #F7941D ">
+                     <center><i class="fa fa-history" style="font-size: 22px;margin-top: -2px; "  ></i>
                      </div>
                      <span style="padding-bottom:20px;" class="font-20 text-cap"><?=t_transfer_his;?> </span>
-                     </center>
+                  </center>
                </a>
-               </center>
-            </td>
-         </tr>
-         <tr>
-            <td align="center" class="">
+            </center>
+         </td>
+      </tr>
+      <tr>
+         <td align="center" class="">
+            <center>
+               <a class="btn btn-default paddling-max"   onclick="revenue()"  id="index_menu_income"   style="width:100%">
+                  <center>
+                     <div  class="circle-menu"   > <i class="icon-new-uniF121-10" style="font-size: 22px;margin-top: -2px;margin-left:-2px; "></i></div>
+                     <span style="padding-bottom:20px;" class="font-20 text-cap"><? echo t_receipts?></span>
+                  </center>
+               </a>
+            </center>
+         </td>
+         <td align="center" class="">
+            <a class="btn btn-default paddling-max"  id="index_menu_money" onclick="money_transfer()" style="width:100%">
                <center>
-                  <a class="btn btn-default paddling-max"   onclick="revenue()"  id="index_menu_income"   style="width:100%">
-                     <center>
-                        <div  class="circle-menu"   > <i class="icon-new-uniF121-10" style="font-size: 22px;margin-top: -2px;margin-left:-2px; "></i></div>
-                        <span style="padding-bottom:20px;" class="font-20 text-cap"><? echo t_receipts?></span>
-                     </center>
-                  </a>
+                  <div  class="circle-menu" style="background: #e91e63"><i class="fa fa fa-usd" style="font-size: 22px;margin-top: -2px; " ></i></div>
+                  <span style="padding-bottom:20px;" class="font-20 text-cap">กระเป๋าเงิน-ประวัติ</span>
                </center>
-            </td>
-            <td align="center" class="">
-               <a class="btn btn-default paddling-max"  id="index_menu_money" onclick="money_transfer()" style="width:100%">
-                  <center>
-                     <div  class="circle-menu" style="background: #e91e63"><i class="fa fa fa-usd" style="font-size: 22px;margin-top: -2px; " ></i></div>
-                     <span style="padding-bottom:20px;" class="font-20 text-cap">กระเป๋าเงิน-ประวัติ</span>
-                  </center>
-               </a>
-            </td>
-         </tr>
-         <tr>
-            <td  width="50%" align="center" class="">
-               <span data-toggle="tooltip" class="badge"   style="position:absolute; margin-left:10px; border-radius: 20px; height:25px; width:25px; background-color:#ff0000; padding-top:3px;border: solid 2px #FFFFFF;  display:NONE " id="number_bottom_chat2"  ><span  class="font-20" > 0 </span></span>
-
-               <a class="btn btn-default paddling-max"   id="index_menu_tour"   style="width:100%">
-                  <center>
-                     <div  class="circle-menu"  style="background-color:#8DC63F"><i class="fa fa-suitcase" style="font-size: 22px;margin-top: -2px; " ></i></div>
-                     <span style="padding-bottom:20px;" class="font-20 text-cap"><? echo t_tour_booking?> </span>
-                  </center>
-               </a>
-
-            </td>
-            <td width="50%" align="center" class="">
-               <a class="btn btn-default paddling-max" style="width:100%" id="booking_open">
+            </a>
+         </td>
+      </tr>
+      <tr>
+         <td  width="50%" align="center" class="">
+            <span data-toggle="tooltip" class="badge"   style="position:absolute; margin-left:10px; border-radius: 20px; height:25px; width:25px; background-color:#ff0000; padding-top:3px;border: solid 2px #FFFFFF;  display:NONE " id="number_bottom_chat2"  ><span  class="font-20" > 0 </span></span>
+            <a class="btn btn-default paddling-max"   id="index_menu_tour"   style="width:100%">
+               <center>
+                  <div  class="circle-menu"  style="background-color:#8DC63F"><i class="fa fa-suitcase" style="font-size: 22px;margin-top: -2px; " ></i></div>
+                  <span style="padding-bottom:20px;" class="font-20 text-cap"><? echo t_tour_booking?> </span>
+               </center>
+            </a>
+         </td>
+         <td width="50%" align="center" class="">
+            <a class="btn btn-default paddling-max" style="width:100%" id="booking_open">
+               <center>
+                  <div  class="circle-menu" style="background: #1CC1A4;"><i class="fa fa-taxi" style="font-size: 22px;margin-top: -2px; " ></i></div>
+                  <span style="padding-bottom:20px;" class="font-20 text-cap"><? echo t_booking; ?></span>
+               </center>
+            </a>
+         </td>
+      </tr>
+      <tr style="display: none;">
+         <td colspan="2" width="50%" align="center" class="" onclick="shopTest()">
+            <a onclick="">
+               <a class="btn btn-default paddling-max" style="width:100%">
                   <center>
                      <div  class="circle-menu" style="background: #1CC1A4;"><i class="fa fa-taxi" style="font-size: 22px;margin-top: -2px; " ></i></div>
                      <span style="padding-bottom:20px;" class="font-20 text-cap"><? echo t_booking; ?></span>
@@ -584,99 +595,99 @@
    <script>
       var ckeckhis = false;
       $('#booking_open').click(function(){
-      swal("กำลังจะเปิดให้บริการ");
-      return;
-      window.location = "https://www.welovetaxi.com/app/booking2/";
+         swal("กำลังจะเปิดให้บริการ");
+         return;
+         window.location = "https://www.welovetaxi.com/app/booking2/";
       });
       function revenue2(){
          ckeckhis = false;
          $('#main_load_mod_popup').show();
          var url_load= "load_page_mod.php?name=pay&file=pay_job";
-          console.log(url_load);
-          $('#load_mod_popup').html(load_main_mod);
-          $('#load_mod_popup').load(url_load); 
+         console.log(url_load);
+         $('#load_mod_popup').html(load_main_mod);
+         $('#load_mod_popup').load(url_load);
       }
       function revenue(){
          $('#main_load_mod_popup').show();
          var url_load= "load_page_mod.php?name=income&file=ic_main";
-          console.log(url_load);
-          $('#load_mod_popup').html(load_main_mod);
-          $('#load_mod_popup').load(url_load); 
+         console.log(url_load);
+         $('#load_mod_popup').html(load_main_mod);
+         $('#load_mod_popup').load(url_load);
       }
       function expenses(){
          ckeckhis = false;
-        //alert('asasas')
-        // $( "#main_load_mod_popup" ).toggle();
-         $('#main_load_mod_popup').show();
-         var url_load= "load_page_mod.php?name=pay&file=pay_job_expenses"
-      //    var url_load= "load_page_mod.php?name=transfer_order&file=work_list&lat=<?=$arr[shop][lat]?>&lng=<?=$arr[shop][lng]?>";
-          console.log(url_load);
-          $('#load_mod_popup').html(load_main_mod);
-          $('#load_mod_popup').load(url_load); 
-      }
-      function money_transfer(){
-      	/*swal("กำลังจะเปิดให้บริการ");
-      	return;*/
-         ckeckhis = false;
-        //alert('asasas')
-        // $( "#main_load_mod_popup" ).toggle();
-         $('#main_load_mod_popup').show();
-         var url_load= "load_page_mod.php?name=pay&file=money_transfer"
-      //    var url_load= "load_page_mod.php?name=transfer_order&file=work_list&lat=<?=$arr[shop][lat]?>&lng=<?=$arr[shop][lng]?>";
-          $('#load_mod_popup').load(url_load); 
-           $('#load_mod_popup').html(url_load);
-      }
-      function workTbooking(){
-      		/*swal("กำลังจะเปิดให้บริการ");
-      		return;*/
-        	ckeckhis = false;
-      		$('#main_load_mod_popup').show();
-      		var url_load = "load_page_mod.php?name=tbooking&file=all";
-      		$('#load_mod_popup').html(load_main_mod);
-           $('#load_mod_popup').load(url_load); 
-           $('#check_open_worktbooking').val(1);
-      }
-      function historyTransfer(){
-      		/*swal("กำลังจะเปิดให้บริการ");
-      		return;*/
-      		$('#main_load_mod_popup').show();
-      		var url_load= "load_page_mod.php?name=tbooking&file=his";
-      		$('#load_mod_popup').html(load_main_mod);
-           $('#load_mod_popup').load(url_load); 
-      //        $('#check_open_worktbooking').val(1);
-      }
-   </script>
-   <table width="100%" border="0" cellspacing="2" cellpadding="2" style="padding:5px; display:none" >
-      <tbody>
-         <tr>
-            <td colspan="2"></td>
-         </tr>
-         <tr>
-            <td width="120" class="font-22"><strong>ชื่อ-นามสกุล</strong></td>
-            <td class="font-22"><?=$arr[web_user][name]?> (<?=$arr[web_user][nickname]?>)</td>
-         </tr>
-         <tr style="display:none">
-            <td width="120" class="font-22"><strong>ชื่อเล่น</strong></td>
-            <td class="font-22">s</td>
-         </tr>
-         <tr>
-            <td width="120" class="font-22"><strong>โทรศัพท์</strong></td>
-            <td class="font-22">
-               <a href="tel:<?=$arr[web_user][phone]?>">
+   //alert('asasas')
+   // $( "#main_load_mod_popup" ).toggle();
+   $('#main_load_mod_popup').show();
+   var url_load= "load_page_mod.php?name=pay&file=pay_job_expenses"
+   //    var url_load= "load_page_mod.php?name=transfer_order&file=work_list&lat=<?=$arr[shop][lat]?>&lng=<?=$arr[shop][lng]?>";
+   console.log(url_load);
+   $('#load_mod_popup').html(load_main_mod);
+   $('#load_mod_popup').load(url_load);
+}
+function money_transfer(){
+   /*swal("กำลังจะเปิดให้บริการ");
+   return;*/
+   ckeckhis = false;
+   //alert('asasas')
+   // $( "#main_load_mod_popup" ).toggle();
+   $('#main_load_mod_popup').show();
+   var url_load= "load_page_mod.php?name=pay&file=money_transfer"
+   //    var url_load= "load_page_mod.php?name=transfer_order&file=work_list&lat=<?=$arr[shop][lat]?>&lng=<?=$arr[shop][lng]?>";
+   $('#load_mod_popup').load(url_load);
+   $('#load_mod_popup').html(url_load);
+}
+function workTbooking(){
+   /*swal("กำลังจะเปิดให้บริการ");
+   return;*/
+   ckeckhis = false;
+   $('#main_load_mod_popup').show();
+   var url_load = "load_page_mod.php?name=tbooking&file=all";
+   $('#load_mod_popup').html(load_main_mod);
+   $('#load_mod_popup').load(url_load);
+   $('#check_open_worktbooking').val(1);
+}
+function historyTransfer(){
+   /*swal("กำลังจะเปิดให้บริการ");
+   return;*/
+   $('#main_load_mod_popup').show();
+   var url_load= "load_page_mod.php?name=tbooking&file=his";
+   $('#load_mod_popup').html(load_main_mod);
+   $('#load_mod_popup').load(url_load);
+   //        $('#check_open_worktbooking').val(1);
+}
+</script>
+<table width="100%" border="0" cellspacing="2" cellpadding="2" style="padding:5px; display:none" >
+   <tbody>
+      <tr>
+         <td colspan="2"></td>
+      </tr>
+      <tr>
+         <td width="120" class="font-22"><strong>ชื่อ-นามสกุล</strong></td>
+         <td class="font-22"><?=$arr[web_user][name]?> (<?=$arr[web_user][nickname]?>)</td>
+      </tr>
+      <tr style="display:none">
+         <td width="120" class="font-22"><strong>ชื่อเล่น</strong></td>
+         <td class="font-22">s</td>
+      </tr>
+      <tr>
+         <td width="120" class="font-22"><strong>โทรศัพท์</strong></td>
+         <td class="font-22">
+            <a href="tel:<?=$arr[web_user][phone]?>">
                <?=$arr[web_user][phone]?>
-               </a>
-            </td>
-         </tr>
-         <tr>
-            <td width="120" class="font-22"><strong>ชื่อเข้าระบบ</strong></td>
-            <td class="font-22"> 
-               <b><?=$arr[web_user][username]?>
-            </td>
-         </tr>
-         <tr>
-            <td class="font-22"><strong>รหัสผ่าน</strong></td>
-            <td class="font-22"> 
-               <?=$arr[web_user][password]?><b>
+            </a>
+         </td>
+      </tr>
+      <tr>
+         <td width="120" class="font-22"><strong>ชื่อเข้าระบบ</strong></td>
+         <td class="font-22">
+            <b><?=$arr[web_user][username]?>
+         </td>
+      </tr>
+      <tr>
+         <td class="font-22"><strong>รหัสผ่าน</strong></td>
+         <td class="font-22">
+            <?=$arr[web_user][password]?><b>
             </td>
          </tr>
       </tbody>
@@ -712,8 +723,9 @@
    <script>
    		
       $('#close_small_select').click(function(){
-      	$('#popup_small_select').hide();
+         $('#popup_small_select').hide();
       });
+
       /*$('#index_menu_transfer').click(function(){  
       	  $("#main_load_mod_popup" ).toggle();
       	  var url_load= "load_page_mod.php?name=transfer_order&file=work_list_test&lat="+$('#lat').val()+"&lng="+$('#lng').val()+"&transfer_work=true";
@@ -788,112 +800,113 @@
          // $('#load_mod_popup_4').load(url_load); 
        	});*/
    </script>  
+
 </div>
 <script>
    var locat = getCookie("geolocation");
    geolocatCall();
-   var userLang = navigator.language || navigator.userLanguage; 
+   var userLang = navigator.language || navigator.userLanguage;
    userLang = userLang.split('-');
    var js_lng = userLang[0];
    console.log('Js Browser lng : '+js_lng);
    function geolocatCall(){
-   if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(showPosition);
-       } else { 
-          	console.log('ปิดตำแหน่ง');
-       }
+      if (navigator.geolocation) {
+         navigator.geolocation.getCurrentPosition(showPosition);
+      } else {
+         console.log('ปิดตำแหน่ง');
+      }
    }
    function geolocatCallFrist(){
-   	swal({
-   	  title: "แสดงตำแหน่งปัจจุบัน",
-   	  text: "เพื่อการเข้าถึงข้อมูลของสถานที่ส่งแขกใกล้เคียงได้สะดวกยิ่งขึ้นและสะดวกในการเดินทางไปรับแขกของคุณ",
-   	  type: "warning",
-   	  showCancelButton: true,
-   	  confirmButtonClass: "btn-danger",
-   	  confirmButtonText: "ตกลง",
-   	  cancelButtonText: "ยกเลิก",
-   	  closeOnConfirm: true,
-   	  closeOnCancel: true
-   	},
-   	function(isConfirm) {
-	   	  if (isConfirm) {
-	   	    	if (navigator.geolocation) {
-	   		        navigator.geolocation.getCurrentPosition(showPosition);
-	   		         setCookie("geolocation", '1', 1);
-	   		    } else { 
-	   		       	console.log('ปิดตำแหน่ง');
-	   		    }
-	   	  } 
-   	});
-   }	   
+      swal({
+         title: "แสดงตำแหน่งปัจจุบัน",
+         text: "เพื่อการเข้าถึงข้อมูลของสถานที่ส่งแขกใกล้เคียงได้สะดวกยิ่งขึ้นและสะดวกในการเดินทางไปรับแขกของคุณ",
+         type: "warning",
+         showCancelButton: true,
+         confirmButtonClass: "btn-danger",
+         confirmButtonText: "ตกลง",
+         cancelButtonText: "ยกเลิก",
+         closeOnConfirm: true,
+         closeOnCancel: true
+      },
+      function(isConfirm) {
+         if (isConfirm) {
+            if (navigator.geolocation) {
+               navigator.geolocation.getCurrentPosition(showPosition);
+               setCookie("geolocation", '1', 1);
+            } else {
+               console.log('ปิดตำแหน่ง');
+            }
+         }
+      });
+   }
    function showPosition(position) {
-   var cook_lng = getCookie("lng");
-   if (cook_lng == 'th') {
+      var cook_lng = getCookie("lng");
+      if (cook_lng == 'th') {
          lng = "th";
-        }
-        else if (cook_lng == 'cn') {
-          lng = "zh-CN";
-        }
-         else if (cook_lng == 'en') {
-          lng = "en";
-        }else{
-     	lng = "<?=$keep;?>";
-     }
-        console.log('Php Browser lng : '+lng);
-    var url = 'https://maps.google.com/maps/api/geocode/json?latlng='+position.coords.latitude+','+position.coords.longitude+'&sensor=false&language='+lng+'&key=AIzaSyCx4SLk_yKsh0FUjd6BgmEo-9B0m6z_xxM';
-   //	 var url = 'https://maps.google.com/maps/api/geocode/json?latlng=9.13824,99.32175&sensor=false';
-      $('#lat').val(position.coords.latitude);
-      $('#lng').val(position.coords.longitude);
-      console.log(position.coords.latitude+" : "+position.coords.longitude);
-      $.post( url, function( data ) {
-   		console.log(data);
-   	if(data.status=="OVER_QUERY_LIMIT"){
-   		console.log('OVER_QUERY_LIMIT');
-   	}else{
-   		console.log(data.results);
-      	console.log(data.results.length-2);
-   		console.log(data.results[data.results.length-2].address_components[0].long_name);
-   		var province = data.results[data.results.length-2].address_components[0].long_name;
-   		 $('#province_text').text(province);
-   		$('#now_province').val(province);
-   		updatePlaceNum(province);
-   	}
-   });
-   }   
-   function updatePlaceNum(province){
-   var url = "mod/shop/select_province_new.php?op=get_id_province_only";
-   	 $.post( url,{txt_pv  :province} ,function( data ) {
-   	  	var obj = JSON.parse(data);
-   		  	console.log(obj);
-   		  	var province = obj.id;
-   			var area = obj.area;
-   			var url2 = "mod/shop/update_num_place.php?op=update_all&province="+province+'&area='+area;
-   			 $.post( url2, function( data2 ) {
-   //   			  	console.log(data2);
-   			}); 
-   	});  
-   }	
-   function setCookie(cname,cvalue,exdays) {
-      var d = new Date();
-      d.setTime(d.getTime() + (exdays*24*60*60*1000));
-      var expires = "expires=" + d.toGMTString();
-      document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
-   }
-   function getCookie(cname) {
-      var name = cname + "=";
-      var decodedCookie = decodeURIComponent(document.cookie);
-      var ca = decodedCookie.split(';');
-      for(var i = 0; i < ca.length; i++) {
-          var c = ca[i];
-          while (c.charAt(0) == ' ') {
-              c = c.substring(1);
-          }
-          if (c.indexOf(name) == 0) {
-              return c.substring(name.length, c.length);
-          }
       }
-      return "";
+      else if (cook_lng == 'cn') {
+         lng = "zh-CN";
+      }
+      else if (cook_lng == 'en') {
+         lng = "en";
+      }else{
+         lng = "<?=$keep;?>";
+      }
+      console.log('Php Browser lng : '+lng);
+      var url = 'https://maps.google.com/maps/api/geocode/json?latlng='+position.coords.latitude+','+position.coords.longitude+'&sensor=false&language='+lng+'&key=AIzaSyCx4SLk_yKsh0FUjd6BgmEo-9B0m6z_xxM';
+//  var url = 'https://maps.google.com/maps/api/geocode/json?latlng=9.13824,99.32175&sensor=false';
+$('#lat').val(position.coords.latitude);
+$('#lng').val(position.coords.longitude);
+console.log(position.coords.latitude+" : "+position.coords.longitude);
+$.post( url, function( data ) {
+   console.log(data);
+   if(data.status=="OVER_QUERY_LIMIT"){
+      console.log('OVER_QUERY_LIMIT');
+   }else{
+      console.log(data.results);
+      console.log(data.results.length-2);
+      console.log(data.results[data.results.length-2].address_components[0].long_name);
+      var province = data.results[data.results.length-2].address_components[0].long_name;
+      $('#province_text').text(province);
+      $('#now_province').val(province);
+      updatePlaceNum(province);
    }
+});
+}
+function updatePlaceNum(province){
+   var url = "mod/shop/select_province_new.php?op=get_id_province_only";
+   $.post( url,{txt_pv  :province} ,function( data ) {
+      var obj = JSON.parse(data);
+      console.log(obj);
+      var province = obj.id;
+      var area = obj.area;
+      var url2 = "mod/shop/update_num_place.php?op=update_all&province="+province+'&area='+area;
+      $.post( url2, function( data2 ) {
+//             console.log(data2);
+});
+   });
+}
+function setCookie(cname,cvalue,exdays) {
+   var d = new Date();
+   d.setTime(d.getTime() + (exdays*24*60*60*1000));
+   var expires = "expires=" + d.toGMTString();
+   document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+function getCookie(cname) {
+   var name = cname + "=";
+   var decodedCookie = decodeURIComponent(document.cookie);
+   var ca = decodedCookie.split(';');
+   for(var i = 0; i < ca.length; i++) {
+      var c = ca[i];
+      while (c.charAt(0) == ' ') {
+         c = c.substring(1);
+      }
+      if (c.indexOf(name) == 0) {
+         return c.substring(name.length, c.length);
+      }
+   }
+   return "";
+}
 </script>
 <input  name="now_province"  type="hidden" class="form-control"  id="now_province" value=""   />
 <script src="https://www.welovetaxi.com:3443/socket.io/socket.io.js?v=<?=time();?>"></script>
@@ -903,6 +916,7 @@
    var array_rooms;
    var res_socket ;
    var socket = io.connect('https://www.welovetaxi.com:3443');
+
           //on message received we print all the data inside the #container div
           socket.on('notification', function (data) {
 //          console.log("Start Socket");
@@ -1053,232 +1067,219 @@
    //  });
    var class_user = "<?=$_SESSION['data_user_class'];?>";
    // if(class_user=="lab"){
+
    socket.on('datalab', function (username, data) {
-     console.log('***********************datalab***************************')
-   console.log(username)
-   console.log(data)
-   //console.log(data[0].id);
-   var check_open = $('#check_open_shop_id').val();
-   if(check_open!=0){
+      console.log('***********************datalab***************************')
+      console.log(username)
+      console.log(data)
+//console.log(data[0].id);
+var check_open = $('#check_open_shop_id').val();
+if(check_open!=0){
    $.each(data, function( index, value ) {
-   	if(value.id==check_open){
-   		console.log(value);
-   		if(value.check_driver_topoint==1){
-   	      console.log("driver_topoint");
-   	      changeHtml("driver_topoint",value.id,value.driver_topoint_date)
-   	   }
-   	    if(value.check_guest_receive==1){
-   	      console.log("guest_receive");
-   	      changeHtml("guest_receive",value.id,value.guest_receive_date)
-   	   }
-   	   if(value.check_guest_register==1){
-   	      console.log("guest_register");
-   	      changeHtml("guest_register",value.id,value.guest_register_date)
-   	   }
-   	   if(value.check_driver_pay_report==1){
-   	      console.log("driver_pay_report");
-   	      changeHtml("driver_pay_report",value.id,value.driver_pay_report_date)
-   	   }
-   	   
-   	   var check_open_incom = $('#check_id_income_lab').val();
-   	   if (typeof check_open_incom != 'undefined'){
-   	   		if(check_open_incom == check_open){
-				console.log("Refresh Incom = "+check_open_incom+" | "+check_open);
-   	   			openViewPrice()
-			}
-   	   		
-   	   }
-   	}
+      if(value.id==check_open){
+         console.log(value);
+         if(value.check_driver_topoint==1){
+            console.log("driver_topoint");
+            changeHtml("driver_topoint",value.id,value.driver_topoint_date)
+         }
+         if(value.check_guest_receive==1){
+            console.log("guest_receive");
+            changeHtml("guest_receive",value.id,value.guest_receive_date)
+         }
+         if(value.check_guest_register==1){
+            console.log("guest_register");
+            changeHtml("guest_register",value.id,value.guest_register_date)
+         }
+         if(value.check_driver_pay_report==1){
+            console.log("driver_pay_report");
+            changeHtml("driver_pay_report",value.id,value.driver_pay_report_date)
+         }
+         var check_open_incom = $('#check_id_income_lab').val();
+         if (typeof check_open_incom != 'undefined'){
+            if(check_open_incom == check_open){
+               console.log("Refresh Incom = "+check_open_incom+" | "+check_open);
+               openViewPrice()
+            }
+         }
+      }
    });
-   }
-     });
-   // }
-   // else{  
+}
+});
+// }
+// else{
    socket.on('updatedriver', function (username, data) {
-   console.log("++++++++++++++++++++++datadriver++++++++++++++++++++++++++++++++")
-   console.log(username)
-   console.log(data)
-   var check_open = $('#check_open_shop_id').val();
-   	if(check_open!=0){
-   	if(data.id==check_open){
-   		console.log(data)
-   		console.log(data.id);
-   	   if(data.check_driver_topoint==1){
-   	      console.log("driver_topoint");
-   	      changeHtml("driver_topoint",data.id,data.driver_topoint_date)
-   	   }
-   	   if(data.check_guest_receive==1){
-   	      console.log("guest_receive");
-   	      changeHtml("guest_receive",data.id,data.guest_receive_date)
-   	      $('#step_guest_register').show();
-   	   }
-   	   if(data.check_guest_register==1){
-   	      console.log("guest_register");
-   	      changeHtml("guest_register",data.id,data.guest_register_date)
-   	       $('#step_driver_pay_report').show();
-   	   }
-   	   if(data.check_driver_pay_report==1){
-   	      console.log("driver_pay_report");
-   	      changeHtml("driver_pay_report",data.id,data.driver_pay_report_date)
-   	   }
-   	    /*var check_open_incom = $('#check_id_income_lab').val(); 
-   	   if (typeof check_open_incom != 'undefined'){
-   	   		console.log(check_open_incom);
-//   	   		alert(check_open_incom);
-   	   		openViewPrice()
-   	   }*/
-   			
-   			
-   			}
-   	}
-     });
-   // } 
-   /*socket.on('getbookinglabhis', function (data) {        
-          console.log(data.booking)
-        });	*/
-   function formatDate(date) {
-      var d = new Date(date),
-          month = '' + (d.getMonth() + 1),
-          day = '' + d.getDate(),
-          year = d.getFullYear();
-      if (month.length < 2) month = '0' + month;
-      if (day.length < 2) day = '0' + day;
-      return [year, month, day].join('-');
+      console.log("++++++++++++++++++++++datadriver++++++++++++++++++++++++++++++++")
+      console.log(username)
+      console.log(data)
+      var check_open = $('#check_open_shop_id').val();
+      if(check_open!=0){
+         if(data.id==check_open){
+            console.log(data)
+            console.log(data.id);
+            if(data.check_driver_topoint==1){
+               console.log("driver_topoint");
+               changeHtml("driver_topoint",data.id,data.driver_topoint_date)
+            }
+            if(data.check_guest_receive==1){
+               console.log("guest_receive");
+               changeHtml("guest_receive",data.id,data.guest_receive_date)
+               $('#step_guest_register').show();
+            }
+            if(data.check_guest_register==1){
+               console.log("guest_register");
+               changeHtml("guest_register",data.id,data.guest_register_date)
+               $('#step_driver_pay_report').show();
+            }
+            if(data.check_driver_pay_report==1){
+               console.log("driver_pay_report");
+               changeHtml("driver_pay_report",data.id,data.driver_pay_report_date)
+            }
+/*var check_open_incom = $('#check_id_income_lab').val();
+if (typeof check_open_incom != 'undefined'){
+console.log(check_open_incom);
+//             alert(check_open_incom);
+openViewPrice()
+}*/
+}
+}
+});
+// }
+/*socket.on('getbookinglabhis', function (data) {
+console.log(data.booking)
+});  */
+function formatDate(date) {
+   var d = new Date(date),
+   month = '' + (d.getMonth() + 1),
+   day = '' + d.getDate(),
+   year = d.getFullYear();
+   if (month.length < 2) month = '0' + month;
+   if (day.length < 2) day = '0' + day;
+   return [year, month, day].join('-');
+}
+function formatTime(date) {
+   var d = new Date(date),
+   hour = '' + d.getHours(),
+   minutes = d.getMinutes();
+   if(hour<10){
+      hour = "0" + hour ;
    }
-   function formatTime(date) {
-      var d = new Date(date),
-          hour = '' + d.getHours(),
-          minutes = d.getMinutes();
-   	if(hour<10){
-   		hour = "0" + hour ;
-   	}
-   	if(minutes<10){
-   		minutes = "0" + minutes ;
-   	}
-      return [hour, minutes].join(':');
+   if(minutes<10){
+      minutes = "0" + minutes ;
    }
-
-   function openOrderFromAndroid(id,status,open_ic){
-//   	alert("id = " + id+" status = "+status+" open_ic = "+open_ic);
-   	  if(status=="his"){
-	  	openOrderFromAndroidHistory(id,status,open_ic)
-	  }else{
-	  	 var check_open_shop_id = $('#check_open_shop_id').val();
-
-	   	 if(check_open_shop_id<=0){
-		   		$.each(array_data.manage,function(index,value){
-		   			 	if(value.id==id)																				{
-	   			/*$('#main_load_mod_popup_6').show();
-	   		      var url_load= "load_page_mod_6.php?name=booking/shop_history&file=work_shop_detail_js&user_id=<?=$user_id;?>";
-	   		       console.log(url_load);
-	   		       $('#text_mod_topic_action_6').html("เลขที่ "+value.invoice);
-	   		       $('#load_mod_popup_6').html(load_main_mod);
-	   		       $.post(url_load,value,function(data){
-	   		      		 $('#load_mod_popup_6').html(data); 
-	   					 $('#btn_cancel_book_'+value.id).css('top','60px');
-	   					 $('.assas_'+value.id).css('margin-top','30px');
-	   		      	});*/
-	   		      	console.log(value.id+" : "+index);
-	   		      	$('#check_open_num_detail').val(index)
-
-				   	var url = "empty_style.php?name=booking/shop_history&file=work_shop_detail_js&user_id=<?=$user_id;?>";
-				      	$.post(url,value,function(data){
-				      		$('#load_mod_popup_clean').html(data);
-				      		$('#main_load_mod_popup_clean').show();
-							if(open_ic=='1'){
-								openViewPrice();
-								console.log('Open Income')
-							}
-				      	});
-				      	
-				      	$('#check_open_shop_id').val(value.id);
-	   				}
-		   		});
-		   }
-	  }
-	  
+   return [hour, minutes].join(':');
+}
+function openOrderFromAndroid(id,status,open_ic){
+//    alert("id = " + id+" status = "+status+" open_ic = "+open_ic);
+if(status=="his"){
+   openOrderFromAndroidHistory(id,status,open_ic)
+}else{
+   var check_open_shop_id = $('#check_open_shop_id').val();
+   if(check_open_shop_id<=0){
+      $.each(array_data.manage,function(index,value){
+         if(value.id==id)                                                          {
+/*$('#main_load_mod_popup_6').show();
+var url_load= "load_page_mod_6.php?name=booking/shop_history&file=work_shop_detail_js&user_id=<?=$user_id;?>";
+console.log(url_load);
+$('#text_mod_topic_action_6').html("เลขที่ "+value.invoice);
+$('#load_mod_popup_6').html(load_main_mod);
+$.post(url_load,value,function(data){
+$('#load_mod_popup_6').html(data);
+$('#btn_cancel_book_'+value.id).css('top','60px');
+$('.assas_'+value.id).css('margin-top','30px');
+});*/
+console.log(value.id+" : "+index);
+$('#check_open_num_detail').val(index)
+var url = "empty_style.php?name=booking/shop_history&file=work_shop_detail_js&user_id=<?=$user_id;?>";
+$.post(url,value,function(data){
+   $('#load_mod_popup_clean').html(data);
+   $('#main_load_mod_popup_clean').show();
+   if(open_ic=='1'){
+      openViewPrice();
+      console.log('Open Income')
    }
-   
-   function openOrderFromAndroidHistory(id,status,open_ic){
-//   	alert(id);
-   	$.post("mod/booking/shop_history/php_shop.php?query=history_by_order&order_id="+id,function(data){
-   		
-			console.log(data);
-			var value = data.data[0];
-			var url = "empty_style.php?name=booking/shop_history&file=work_shop_detail_js&user_id=<?=$user_id;?>";
-	        		console.log(url);
-	   		      	$.post(url,value,function(data){
-	   		      		$('#load_mod_popup_clean').html(data);
-	   		      		
-	   		      		$('#main_load_mod_popup_clean').show();
-						$('#btn_cancel_book_'+value.id).css('top','unset');
-//	   					$('.assas_'+value.id).css('margin-top','0px');
-	   					$("#load_material").fadeOut();
-						
-						if(open_ic=='1'){
-							openViewPrice();
-							console.log('Open Income')
-						}
-	   		      	});
-
-		});
+});
+$('#check_open_shop_id').val(value.id);
+}
+});
    }
+}
+}
+function openOrderFromAndroidHistory(id,status,open_ic){
+//    alert(id);
+$.post("mod/booking/shop_history/php_shop.php?query=history_by_order&order_id="+id,function(data){
+   console.log(data);
+   var value = data.data[0];
+   var url = "empty_style.php?name=booking/shop_history&file=work_shop_detail_js&user_id=<?=$user_id;?>";
+   console.log(url);
+   $.post(url,value,function(data){
+      $('#load_mod_popup_clean').html(data);
+      $('#main_load_mod_popup_clean').show();
+      $('#btn_cancel_book_'+value.id).css('top','unset');
+//                   $('.assas_'+value.id).css('margin-top','0px');
+$("#load_material").fadeOut();
+if(open_ic=='1'){
+   openViewPrice();
+   console.log('Open Income')
+}
+});
+});
+}
 </script>
 <script>
+
   $('#index_menu_shopping').click(function(){
    	console.log('Shop');
+
       $(".text-topic-action-mod").text('ส่งแขก (ภูเก็ต)')
-         var url = "mod/shop/update_num_place.php?id=1&province=1&op=update";
-          $.post( url, function( data ) {
-            // console.log(data);
-         });  
-    var num = 1;
-    if(num<=0){
-      alert('ไม่มีสินค้า');
-    }
-    else{
-      if(num==1){
-          var id_place_one = 1;
-          $("#main_load_mod_popup" ).toggle();
-         var url_load = "load_page_mod.php?name=shop/shop_new&file=shop&driver=<?=$user_id?>&type="+id_place_one+"&province=1&detail=1";
-         console.log(url_load);
-         $.post( url_load, function( data ) {
-         $('#load_mod_popup').html(data);
-           
-         });
-      }else{
-          console.log('1');
-          $("#main_load_mod_popup" ).show();
-          var url_load= "load_page_mod.php?name=shop/shop_new&file=main&id=11&type=stop&province=1";
-           $('#load_mod_popup').html(load_main_mod);
-           $('#load_mod_popup').load(url_load); 
+      var url = "mod/shop/update_num_place.php?id=1&province=1&op=update";
+      $.post( url, function( data ) {
+// console.log(data);
+});
+      var num = 1;
+      if(num<=0){
+         alert('ไม่มีสินค้า');
       }
-    }
+      else{
+         if(num==1){
+            var id_place_one = 1;
+            $("#main_load_mod_popup" ).toggle();
+            var url_load = "load_page_mod.php?name=shop/shop_new&file=shop&driver=<?=$user_id?>&type="+id_place_one+"&province=1&detail=1";
+            console.log(url_load);
+            $.post( url_load, function( data ) {
+               $('#load_mod_popup').html(data);
+            });
+         }else{
+            console.log('1');
+            $("#main_load_mod_popup" ).show();
+            var url_load= "load_page_mod.php?name=shop/shop_new&file=main&id=11&type=stop&province=1";
+            $('#load_mod_popup').html(load_main_mod);
+            $('#load_mod_popup').load(url_load);
+         }
+      }
    });
-   
    function sendSocket(id){
-   	console.log('Click');
+      console.log('Click');
 //   var message = "";
-   var dataorder={  
-      order : parseInt(id),  
-      };
-   socket.emit('sendchat', dataorder);
-   }
+var dataorder={
+   order : parseInt(id),
+};
+socket.emit('sendchat', dataorder);
+}
 </script>
 <script>
    var load_main_icon_big="<div class='overlay' style='background-color:#FFFFFF; padding:15px;border: solid 1px #DADADA '><center> <i class='fa fa-circle-o-notch fa-spin 4x' style='font-size:100px; color:<?= $main_color_sorf ?>; ' ></i> </center><br><font style='font-size:14px; color:#333333 ' ><center><?
-      echo t_load_data;
-      ?></center></font></div>";
+   echo t_load_data;
+   ?></center></font></div>";
    var load_main_icon_big='<center><div class="inner-loading"><center><span  class="navload"><i class="fa fa-circle-o-notch fa-spin 4x" style="font-size:40px; color:<?= $main_color ?>; margin-top:20px " ></i></center></span><div style="font-size:14px; color:#333333; font-weight:normal;; margin-top:10px "><center> <?
-      echo t_load_data;
-      ?></center></div></div>';
+   echo t_load_data;
+   ?></center></div></div>';
    var load_main_icon_big='<center><div class="inner-loading"><center><span  class="navload"><i class="fa fa-circle-o-notch fa-spin 4x" style="font-size:40px; color:<?= $main_color ?>; margin-top:10px " ></i></center></span><div style="font-size:14px; color:#333333; font-weight:normal;; margin-top:10px "><center> <?
-      echo t_load_data;
-      ?></center></div></div>';
+   echo t_load_data;
+   ?></center></div></div>';
    var load_main_icon_mini="<div style='top:0; left:0'><table width='100%'  border='0' cellspacing='0' cellpadding='0'><tr><td style='width:24px; '><i class='fa fa-refresh fa-spin 2x' style='font-size:22px; color:<?= $main_color_sorf ?>; ' ></i> </td><td><font style='font-size:14px; color:#333333 ' ><?
-      echo t_load_data;
-      ?></center></font></td></tr></table></div> ";
+   echo t_load_data;
+   ?></center></font></td></tr></table></div> ";
    var load_main_icon_mod="<div style='top:0; left:0'><br><br><table width='100%'  border='0' cellspacing='0' cellpadding='0'><tr><td align='center' style='width:24px; '><i class='fa fa-refresh fa-spin 2x' style='font-size:60px; color:<?= $main_color_sorf ?>; ' ></i> <br><font style='font-size:14px; color:#333333 ' ><?
-      echo t_load_data;
-      ?></center></font></td></tr></table></div> ";
+   echo t_load_data;
+   ?></center></font></td></tr></table></div> ";
 </script>

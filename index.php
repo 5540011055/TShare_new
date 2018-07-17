@@ -333,10 +333,20 @@
        return x1 + x2;
    }
    var check_new_user = '<?=$_GET[check_new_user];?>';
+   var regis_linenoti = '<?=$_GET[regis];?>';
+   
+   console.log(regis_linenoti)
+   console.log('++++++++++++++++++++++++++++++++++++++++++++++++++++++++++')
    //                                                alert(check_new_user);
    if(check_new_user!=""){
    $( "#main_load_mod_popup" ).toggle();
    var url_load = "load_page_mod.php?name=user&file=index&check_new_user="+check_new_user;
+   $('#load_mod_popup').html(load_main_mod);
+   $('#load_mod_popup').load(url_load); 
+   }
+   if(regis_linenoti!=""){
+   $( "#main_load_mod_popup" ).toggle();
+   var url_load = "load_page_mod.php?name=user&file=notiline&regis=linenoti&state=one";
    $('#load_mod_popup').html(load_main_mod);
    $('#load_mod_popup').load(url_load); 
    }
