@@ -547,6 +547,7 @@ $all_work = $db->num_rows('order_booking',"id","$filter");
             </a>
          </td>
       </tr>
+      
       <tr>
          <td  width="50%" align="center" class="">
             <span data-toggle="tooltip" class="badge"   style="position:absolute; margin-left:10px; border-radius: 20px; height:25px; width:25px; background-color:#ff0000; padding-top:3px;border: solid 2px #FFFFFF;  display:NONE " id="number_bottom_chat2"  ><span  class="font-20" > 0 </span></span>
@@ -566,17 +567,10 @@ $all_work = $db->num_rows('order_booking',"id","$filter");
             </a>
          </td>
       </tr>
-      <tr style="display: none;">
-         <td colspan="2" width="50%" align="center" class="" onclick="shopTest()">
-            <a onclick="">
-               <a class="btn btn-default paddling-max" style="width:100%">
-                  <center>
-                     <div  class="circle-menu" style="background: #1CC1A4;"><i class="fa fa-taxi" style="font-size: 22px;margin-top: -2px; " ></i></div>
-                     <span style="padding-bottom:20px;" class="font-20 text-cap"><? echo t_booking; ?></span>
-                  </center>
-               </a>
-            </td>
-         </tr>
+
+	<?php 
+		if($user_id=='153'){
+	?>
          <tr style="display: nones;">
             <td colspan="2" width="50%" align="center" class="" onclick="shoppingTest()">
                <a>
@@ -590,6 +584,7 @@ $all_work = $db->num_rows('order_booking',"id","$filter");
                </a>
             </td>
          </tr>
+	<? } ?>
       </tbody>
    </table>
    <script>

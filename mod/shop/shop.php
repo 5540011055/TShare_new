@@ -493,75 +493,18 @@
          </tbody>
       </table>
    </div>
-   <div id="broModal" class="modal" style="font-size: 0px!important; color: #000000 !important;">
-      <span class="close" style="position: fixed;
-         color: #f4f4f4;
-         right: 15px;
-         font-size: 40px; display: none;
-         " id="closeModal" >&times;</span>
-      <i class="fa fa-times" aria-hidden="true" style="position: fixed;
-         color: #f4f4f4;
-         right: 15px;
-         font-size: 40px;
-         z-index: 9000;
-         margin-top : 10px;
-         " id="close_modal" onclick="closeModal();"></i>
-      <style>
-         	.swiper-container {
-      width: 100%;
-      height: 100%;
-    }
-    .swiper-slide {
-      text-align: center;
-      font-size: 18px;
-      background: #fff;
-
-      /* Center slide text vertically */
-      display: -webkit-box;
-      display: -ms-flexbox;
-      display: -webkit-flex;
-      display: flex;
-      -webkit-box-pack: center;
-      -ms-flex-pack: center;
-      -webkit-justify-content: center;
-      justify-content: center;
-      -webkit-box-align: center;
-      -ms-flex-align: center;
-      -webkit-align-items: center;
-      align-items: center;
-    }
-         </style>
-      <div class="modal-content" id="img01"> 
-      <!--<img src="https://www.welovetaxi.com/app/data/pic/place/1_book.jpg" width="100%" />-->
-      </div>
-   </div>
    <script>
-      var modal = document.getElementById('broModal');
-      var img = document.getElementById('shop_alert_menu_index_load_<?=$arr[project][id]?>');
-      var captionText = document.getElementById("caption");
+
       function openPopUpBrochure(id,pic1,pic2,pic3){
-          modal.style.display = "block";
-//      	$('#img01').load('load/popup/pic_place.php?id='+id+'&pic1='+pic1+'&pic2='+pic2+'&pic3='+pic3);  
-      	$('#img01').load('load/popup/pic_place_swiper.php?id='+id+'&pic1='+pic1+'&pic2='+pic2+'&pic3='+pic3);  
+		 $( "#main_load_mod_popup_6" ).toggle();
+		 var url_pic = 'load/popup/pic_place_swiper.php?id='+id+'&pic1='+pic1+'&pic2='+pic2+'&pic3='+pic3;
+      	  $('#load_mod_popup_6').html(load_main_mod);
+      	 $('#load_mod_popup_6').load(url_pic); 
+      	 $('#text_mod_topic_action_6').text('โบว์ชัว'); 
+      	 
+      }
+   
 
-      	$('.back-full-popup').hide();
-      	$('.bottom_popup').hide();
-      }
-      // Get the <span> element that closes the modal
-      var span = document.getElementsByClassName("close")[0];
-      // When the user clicks on <span> (x), close the modal
-      span.onclick = function() { 
-          modal.style.display = "none";
-      }
-      function closeModal(){
-      //	alert(123);
-      	 $('#broModal').hide();
-      	 $('#closeModal').click();
-      	 $('.back-full-popup').show();
-      	 $('.bottom_popup').show();
-      }
-   </script>
-   <script>
       ///
       $('#shop_alert_menu_price_<?=$arr[project][id]?>').click(function(){  
       $( "#main_load_mod_popup_4" ).toggle();
@@ -592,10 +535,17 @@
 	  function openShoppingNew(id){
 	      $( "#alert_show_shopping_place" ).hide();
 	      $("#main_load_mod_popup_3" ).toggle();
-	         var url_load = "load_page_mod_3.php?name=shop/shop_new&file=shop&driver=<?=$user_id?>&type="+id+"&province=<?=$_GET[province];?>";
+//	         var url_load = "load_page_mod_3.php?name=shop/shop_new&file=shop&driver=<?=$user_id?>&type="+id+"&province=<?=$_GET[province];?>";
+			if (user_class == 'lab') {
+		      	 var url_load = "load_page_mod_3.php?name=shop/shop_new&file=booking_lab&driver=<?=$user_id?>&place="+id;
+		      }
+		      else{
+		         var url_load = "load_page_mod_3.php?name=shop/shop_new&file=booking&driver=<?=$user_id?>&place="+id;
+		      }
 	         console.log(url_load);
 	         $.post( url_load, function( data ) {
 	         $('#load_mod_popup_3').html(data);
+	         
           });
 	  }
 	  

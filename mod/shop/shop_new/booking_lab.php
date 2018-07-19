@@ -1,5 +1,5 @@
 
-<div style="padding-bottom:30px;" >
+<div style="padding-bottom:30px;margin-top: 55px;" >
 <form method="post"  id="form_booking" name="form_booking">
 
    <?
@@ -615,9 +615,9 @@
             </tr>
          </tbody>
       </table>
-      
+      </form>
    </div>
-</form>
+
 <input type="hidden" value="0" id="check_t_h" />						
 <input type="hidden" value="0" id="check_t_m" />						
 <input type="hidden" value="0" id="check_adult" />							

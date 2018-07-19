@@ -237,18 +237,19 @@
             <?  include ("".$MODPATHFILE."");?>  
          </div>
       </div>
-      <? include "load/popup/action/all.php"; ?>
-      <? include "load/popup/action/1.php"; ?>
-      <? include "load/popup/action/2.php"; ?>
-      <? include "load/popup/action/map_popup.php"; ?>
-      <? include "load/popup/action/3.php"; ?>
-      <? include "load/popup/action/4.php"; ?>
-      <? include "load/popup/action/5.php"; ?>
-      <? include "load/popup/action/6.php"; ?>
-      <? include "load/popup/action/photo_popup.php"; ?>
-      <? include "load/popup/action/clean_popup.php"; ?>
+      <?PHP include "load/popup/action/all.php";
+      include "load/popup/action/1.php"; 
+      include "load/popup/action/2.php"; 
+      include "load/popup/action/map_popup.php"; 
+      include "load/popup/action/3.php"; 
+      include "load/popup/action/4.php"; 
+      include "load/popup/action/5.php"; 
+      include "load/popup/action/6.php"; 
+      include "load/popup/action/photo_popup.php"; 
+      include "load/popup/action/clean_popup.php"; ?>
       <!-- End Content -->
-      <div style="width: 100%;height: 100%;position: fixed;top: 0px; display: none; background-color: #0000008f;z-index: 99999;opacity: 1;padding: 15px 10px;overflow-y: auto;" id="dialog_custom">
+      <div style="width: 100%;height: 100%;position: fixed;top: 0px; display: none; background-color: #0000008f;z-index: 99999;opacity: 1;padding: 15px 10px; overflow-y: scroll; /* has to be scroll, not auto */
+  -webkit-overflow-scrolling: touch;" id="dialog_custom">
          <div class="w3-animate-bottom" style="background-color: #fff;margin-top: 10px;border-radius: 10px;box-shadow: 1px 1px 7px #3a3939;">
             <i class="fa fa-times" aria-hidden="true" style="position: absolute;
                color: #5a5858;

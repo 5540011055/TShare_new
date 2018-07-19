@@ -514,7 +514,7 @@ else if($arr[book][status]=='CONFIRM'){
 			</tr>
 			<tr>
 				<td width="60"><span class="font-22">อัพโหลด</span></td>
-				<td><a class="waves-effect waves-light btn" style="background-color: #009688;color: #fff;border-radius: 10px;" onclick="uploadCodeFile('<?=$arr[book][program];?>','<?=$arr[book][id];?>','lab');"><i class="material-icons left" style="font-size: 16px;margin-right: 7px;">cloud</i>อัพโหลด</a></td>
+				<td><a class="waves-effect waves-light btn" style="background-color: #009688;color: #fff !important;border-radius: 10px;" onclick="uploadCodeFile('<?=$arr[book][program];?>','<?=$arr[book][id];?>','lab');"><i class="material-icons left" style="font-size: 16px;margin-right: 7px;">cloud</i>อัพโหลด</a></td>
 			</tr>
 		</table>
 	<? }
@@ -530,7 +530,7 @@ else if($arr[book][status]=='CONFIRM'){
 				<td width="60">
 				<span class="font-22">อัพโหลด</span></td>
 				<td>
-				<a class="waves-effect waves-light btn" style="background-color: #3b5998;color: #fff;border-radius: 25px;" onclick="uploadCodeFile('<?=$arr[book][program];?>','<?=$arr[book][id];?>','taxi');"><i class="material-icons left" style="font-size: 16px;margin-right: 7px;">cloud</i>ตรวจสอบภาพ</a></td>
+				<a class="waves-effect waves-light btn" style="background-color: #3b5998;color: #fff !important;border-radius: 25px;" onclick="uploadCodeFile('<?=$arr[book][program];?>','<?=$arr[book][id];?>','taxi');"><i class="material-icons left" style="font-size: 16px;margin-right: 7px;">cloud</i>ตรวจสอบภาพ</a></td>
 			</tr>
 		</table>
 <?	} ?>
@@ -539,6 +539,7 @@ else if($arr[book][status]=='CONFIRM'){
 
 </div>
 <input type="hidden" id="check_cause" value="0"/>
+
 <script>
 		function updateCode(place,order_id){
 			console.log(place+" "+order_id);
@@ -665,8 +666,6 @@ else if($arr[book][status]=='CONFIRM'){
 		var class_user = '<?=$data_user_class;?>';
 		console.log(class_user);
 		if(class_user=="lab"){
-			
-//			var url_load= "empty_style.php?name=booking/shop_history/load&file=income_driver_lab&id=<?=$arr[book][id]?>";
 			var url_load= "empty_style.php?name=booking/shop_history/load&file=income_driver_lab_new&id=<?=$arr[book][id]?>";
 			
 		}else if(class_user=="taxi"){
@@ -674,25 +673,26 @@ else if($arr[book][status]=='CONFIRM'){
 		}
 	   	
 	   	console.log(url_load);
-	   	/*$('#body_dialog_custom_load').html("<br/><br/><br/><br/>");
-	  	$('#body_dialog_custom_load').load(url_load); */
-	  	$('#main_load_mod_popup_clean').hide();
+	   	$( "#dialog_custom" ).show();
+		$('#body_dialog_custom_load').html(load_sub_mod);
+$.post(url_load,function(res){
+				$('#body_dialog_custom_load').html(res); 
+			});
+	  	/*$('#main_load_mod_popup_clean').hide();
 	  	$('#main_load_mod_popup_2').show();
 	  	$('#text_mod_topic_action_2').html('รายได้');
 	  	$('#load_mod_popup_2').html(load_main_mod);
-	  	$('#load_mod_popup_2').load(url_load);
-	  	/*$.post(url_load,function(res){
-	  			$('#load_mod_popup_2').html(res);
-	  	});*/
+	  	$('#load_mod_popup_2').load(url_load);*/
+
 	  	
 	}
-	$('.button-close-popup-mod-2').click(function(){
+/*	$('.button-close-popup-mod-2').click(function(){
 		$('#main_load_mod_popup_clean').show();
 		$('#main_load_mod_popup_clean').show();
 		$('#main_load_mod_popup_2').hide();
 		$('#load_mod_popup_2').html('');
 	});
-
+*/
 	function cancelBook(id){
 	
      swal({

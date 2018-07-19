@@ -1,4 +1,4 @@
-<div style="padding-bottom:30px;" >
+<div style="padding-bottom:30px;    margin-top: 55px;" >
    <form method="post"  id="form_booking" name="form_booking">
       <?
          $db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
@@ -22,6 +22,10 @@
          $res[projectcarall] = $db->select_query("SELECT * FROM   web_carall  where drivername = '".$user_id."' and status=1 order by status_usecar desc  ")
          ?>
       <input name="program" type="hidden"  required="true" class="form-control" id="program" value="<?=$arr[shop][id]?>" >
+      <script>
+//      	alert('<?=$arr[shop][topic_th];?>');
+      	$(".text-topic-action-mod-3" ).html('<?=$arr[shop][topic_th];?>');
+      </script>
       <div style="border-radius: 10px;
          border: 1px solid rgb(221, 221, 221);
          background-color: rgb(255, 255, 255);
@@ -675,8 +679,9 @@
             </tr>
          </tbody>
       </table>
+      </form>
 </div>
-</form>
+
 <input type="hidden" value="<?=$_GET[place];?>" id="product_id" />   
 
 <div  id="send_booking_data"></div>
@@ -823,7 +828,6 @@ function hideRes(id){
 }
 </script> 
 
-</div>
 <style>
    .btn-repair {
    /* padding: .84rem 2.14rem;*/
@@ -862,75 +866,6 @@ function hideRes(id){
    text-align: center;
 }
 
-.step-booking {
-   border-radius: 50%;
-   background-color: #FF9933;
-   padding: 10px;
-   width: 60px;
-   height: 60px;
-   text-align: justify;
-   color: #FFFFFF;
-   font-size: 30px;
-   font-weight: bold;
-   margin-top: -10px;
-   text-align: center;
-   border: solid 4px #FFFFFF;
-   box-shadow: 0 0 0px 0px #E8E6E6;
-   position: absolute;
-   background: #f39c12 !important;
-   color: #fff;
-}
-
-.step-booking-small {
-   border-radius: 50%;
-   background-color: <?=$main_color?>;
-   padding: 5px;
-   width: 40px;
-   height: 40px;
-   text-align: justify;
-   color: #FFFFFF;
-   font-size: 20px;
-   font-weight: bold;
-   text-align: center;
-   vertical-align: middle;
-   border: solid 4px #FFFFFF;
-   background: <?=$main_color?> !important;
-   color: #fff;
-}
-
-.step-booking-small-no {
-   border-radius: 50%;
-   background-color: #FF9933;
-   padding: 5px;
-   width: 40px;
-   height: 40px;
-   text-align: justify;
-   color: #FFFFFF;
-   font-size: 20px;
-   font-weight: bold;
-   text-align: center;
-   border: solid 4px #FFFFFF;
-   background: #999999 !important;
-   color: #fff;
-}
-
-.step-booking-active {
-   text-align: justify;
-   color: #FFFFFF;
-   border: solid 1px <?=$main_color?>;
-   background-color: #F6F6F6;
-   color: #fff;
-   border-radius: 10px;
-   margin-bottom: 10xp;
-}
-
-.step-booking-active-no {
-   text-align: justify;
-   color: #FFFFFF;
-   border: solid 1px #dadada;
-   color: #fff;
-   border-radius: 10px;
-}
 
 .label_price_plan {
    vertical-align: top;
