@@ -402,6 +402,7 @@ function thai_date($time){
    var txt_pay_cash = '';
    var txt_pay_trans = '';
     function openDetailBooking(index,s_pay,cost){
+    	$('#header_clean').text('text');
     	var dv_cost = $('#balance').val();
    console.log(dv_cost+" : "+cost);
    if(s_pay==0){
@@ -433,6 +434,7 @@ function thai_date($time){
    	var post = historyObj[index];
    }
     		setTimeout(function(){ 
+//    		$('#header_clean').text('test')
     			var url = "empty_style.php?name=tbooking&file=sheet_handle";
      	$.post(url,post,function(data){
      		$('#load_mod_popup_clean').html(data);
@@ -441,14 +443,14 @@ function thai_date($time){
      	});
      	 }, 0);
     }
-    function backMain(){
+  /*  function backMain(){
      	console.log('back');
      	$('#main_load_mod_popup .back-full-popup').fadeIn(500);
      	$('#show_main_tool_bottom').fadeIn(500);
       $('#sub_component').hide();
       $('#main_component').addClass('w3-animate-left');
       $('#main_component').show();
-    }
+    }*/
     function readDataBooking(){
    	var num = 0;
    //	 	$('#load_booking_data .box_book').remove();

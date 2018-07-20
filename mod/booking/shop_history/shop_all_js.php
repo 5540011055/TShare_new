@@ -118,6 +118,7 @@
 		else if($val[status]=='COMPLETED'){
 			$status_txt = '<strong><font color="#54c23d">'.t_success.'</font></strong>';
 		}
+		
 	?>
 	<div style="padding: 5px 0px;margin: 25px 0px;">
 	<div class="box-shop">
@@ -167,6 +168,10 @@
       			
       		</tr>
       	</table>
+      	<?php 
+      	if($val[driver_complete]==0){
+			
+      	?>
       	<a class="btn waves-effect waves-light red lighten-3" align="center" onclick="cancelBookAll('<?=$val[id];?>','<?=$val[invoice];?>');" id="cancel_book_<?=$val[id];?>" style="
     color: #fff;
     padding: 5px 20px;
@@ -174,6 +179,7 @@
     margin-top: 10px;">
 		<span class="font-22 text-cap"><?=t_cancel;?></span>
 	</a>
+	<? } ?>
 	</div>
 	</div>
 	

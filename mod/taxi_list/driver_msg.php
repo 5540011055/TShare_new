@@ -79,6 +79,7 @@ $('#text_mod_topic_action').text('ส่งข้อความแจ้งเ�
 			var url = 'send_messages/send_msg.php';
 			$.post(url,$( this ).serialize() ,function(res){
 				console.log(res);
+				swal('ส่งการแจ้งเตือนสำเร็จ','','success');
 			});
 		  event.preventDefault();
 		});

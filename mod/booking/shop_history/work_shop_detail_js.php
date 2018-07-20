@@ -754,14 +754,6 @@ $.post(url_load,function(res){
    });
     }
     
- function backMain(){
-     	console.log('back');
-    $('#main_load_mod_popup_clean').hide(); 
-   	$('#show_main_tool_bottom').fadeIn(500); 
-//   	$('#main_component').addClass('w3-animate-left');
-   	$('#check_open_shop_id').val(0);
-   	$('#load_mod_popup_clean').html('');
-//   	filterMenu('manage')
-     }
+
 
 </script>

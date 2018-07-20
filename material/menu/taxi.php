@@ -44,13 +44,13 @@
          <li class="default-shadow padding-5 default-shadow">
          <a class="collapsible-header waves-effect waves-light font-26" onclick="openQrCode();"><i class="fa fa-qrcode icon_menu" style="margin-top: 1px !important;"></i><?=t_friends;?></a>
          </li>
-		 <li class="default-shadow padding-5 default-shadow">
-         <a class="collapsible-header waves-effect waves-light font-26" onclick="openContactUs();">
-          <li class="default-shadow padding-5 default-shadow">
+         <li class="default-shadow padding-5 default-shadow">
          <a class="collapsible-header waves-effect waves-light font-26" onclick="openNotifyline();">
          <!--<i class="fa fa-volume-control-phone icon_menu" style="margin-top: 1px !important;"></i>ติดต่อ</a>-->
          <i class="fa fa-link icon_menu" style="color: #757575;    margin: 1px !important;" ></i><span style="padding-left: 15px;">สมัครแจ้งเตือนผ่านไลน์</span></a>
          </li>
+		 <li class="default-shadow padding-5 default-shadow">
+         <a class="collapsible-header waves-effect waves-light font-26" onclick="openContactUs();">
          <!--<i class="fa fa-volume-control-phone icon_menu" style="margin-top: 1px !important;"></i>ติดต่อ</a>-->
          <i class="material-icons icon_menu" style="color: #757575;    margin: 1px !important;" >contact_phone</i><span style="padding-left: 15px;">ติดต่อเรา</span></a>
          </li>
@@ -117,7 +117,7 @@
 			$('#load_modal_body').html(html);
 		});
 	}
-	function openNotifyline(){
+  function openNotifyline(){
     location.href="https://www.welovetaxi.com/app/demo_new2/index.php?regis=linenoti&scope=notify&state=one"
   }
 	/*function logOut(){

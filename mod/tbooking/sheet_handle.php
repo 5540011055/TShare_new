@@ -118,9 +118,9 @@ td{
 	$arr[com] = $db->fetch($res[com]);
 ?>
 <!--<div class="font-22" style="padding: 5px 0px;margin-top: 0px;padding-left: 10px;" onclick="hideDetail();" ><a ><i class="fa fa-chevron-left" aria-hidden="true"></i>&nbsp;<?=t_back_previous;?></a></div>-->
-<div style="padding: 5px 0px;margin-top: 0px;padding-left: 10px;">
+<!--<div style="padding: 5px 0px;margin-top: 0px;padding-left: 10px;">
 <a  onclick="hideDetail();"  style="position:  absolute; right: 15px;" ><i class="fa fa-times font_close_icon" aria-hidden="true"></i></a>
-</div>
+</div>-->
 <div style="margin-top: 0px;padding: 5px;">
 <span style="font-size: 16px;"></span>
    <div style="margin-left:0px;  margin-right: 0px; margin-top:0px;/*box-shadow: 0px -5px 5px #f6f6f6;*/ padding:5px;">
