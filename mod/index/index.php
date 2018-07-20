@@ -36,7 +36,9 @@
    width: 100%;
    height: 100%;
    z-index: 99;
-   background-color: rgba(0, 0, 0, 0.45);
+/*   background-color: rgba(0, 0, 0, 0.45);*/
+/*   background-color: rgb(160, 160, 160);*/
+   background-color: rgb(183, 183, 183);
    top: 0px;
    left: 0px;
    right: 0px;
@@ -573,15 +575,15 @@ $all_work = $db->num_rows('order_booking',"id","$filter");
 	?>
          <tr style="display: nones;">
             <td colspan="2" width="50%" align="center" class="" onclick="shoppingTest()">
-               <a>
-                  <a class="btn btn-default paddling-max" style="width:100%">
+ 
+                  <a class="btn btn-default paddling-max" style="width:100%" >
                      <center>
                         <div  class="circle-menu" style="background: #CDDC39;">
                         <i class="fa fa-map" style="font-size: 22px;margin-top: -2px; " ></i></div>
                         <span style="padding-bottom:20px;" class="font-20 text-cap">test Shop</span>
                      </center>
                   </a>
-               </a>
+
             </td>
          </tr>
 	<? } ?>
@@ -652,69 +654,19 @@ function historyTransfer(){
    //        $('#check_open_worktbooking').val(1);
 }
 </script>
-<table width="100%" border="0" cellspacing="2" cellpadding="2" style="padding:5px; display:none" >
-   <tbody>
-      <tr>
-         <td colspan="2"></td>
-      </tr>
-      <tr>
-         <td width="120" class="font-22"><strong>ชื่อ-นามสกุล</strong></td>
-         <td class="font-22"><?=$arr[web_user][name]?> (<?=$arr[web_user][nickname]?>)</td>
-      </tr>
-      <tr style="display:none">
-         <td width="120" class="font-22"><strong>ชื่อเล่น</strong></td>
-         <td class="font-22">s</td>
-      </tr>
-      <tr>
-         <td width="120" class="font-22"><strong>โทรศัพท์</strong></td>
-         <td class="font-22">
-            <a href="tel:<?=$arr[web_user][phone]?>">
-               <?=$arr[web_user][phone]?>
-            </a>
-         </td>
-      </tr>
-      <tr>
-         <td width="120" class="font-22"><strong>ชื่อเข้าระบบ</strong></td>
-         <td class="font-22">
-            <b><?=$arr[web_user][username]?>
-         </td>
-      </tr>
-      <tr>
-         <td class="font-22"><strong>รหัสผ่าน</strong></td>
-         <td class="font-22">
-            <?=$arr[web_user][password]?><b>
-            </td>
-         </tr>
-      </tbody>
-   </table>
-   <div class="background-smal-popup " id="load_mod_popup_select_pv" style="position: fixed; overflow: auto;display: none;">
-      <div class="css-full-popup2 ">
-         <div class="back-full-popup box-shadow-only" style="z-index: 1;">
-            <table width="100%" border="0" cellspacing="0" cellpadding="0">
-               <tbody>
-                  <tr>
-                     <td width="40">
-                        <div class="close-small-popup"><i class="fa fa-close" style=" "></i></div>
-                     </td>
-                     <td>
-                        <div class="font-26" id="text_small_popup"  class="text-topic-action-mod-small-popup"><? echo t_province_you?> <span class="text-change-province"></span></div>
-                     </td>
-                     <td width="40" align="right">
-                        <div  onclick="GohomePage();"><i class="fa fa-home" ></i></div>
-                     </td>
-                  </tr>
-               </tbody>
-            </table>
+    
+   <div class="background-smal-popup " id="load_mod_popup_select_pv" style="position: fixed;  overflow-y: scroll; -webkit-overflow-scrolling: touch;display: none;">
+   	   <a style="color: #fff;" onclick="$('#load_mod_popup_select_pv').fadeOut(700);">
+   	   <i class="material-icons" style="font-size: 36px;right: 15px; position: absolute; top: 15px;font-weight: bold;">close</i>
+   	   </a>
+       <div id="body_load_select_pv" style="overflow: auto;margin-top:45px; " >
          </div>
-         <div id="body_load_select_pv" style="overflow: auto;margin-top:45px; " >
-         </div>
-      </div>
-      <input type="hidden" value="" id="txt_pv_fr"/>
+   </div>
+   <input type="hidden" value="" id="txt_pv_fr"/>
       <input type="hidden" value="" id="area"/>
       <input type="hidden" value="" id="province_id"/>
       <input type="hidden" value="0" id="lat"/>
       <input type="hidden" value="0" id="lng"/>
-   </div>
    <script>
    		
       $('#close_small_select').click(function(){
@@ -766,14 +718,14 @@ function historyTransfer(){
 		                	$('#load_mod_popup').load(url_load); 
 		       		return;
 		       	}*/
-		       	$("#load_mod_popup_select_pv" ).show();
-		            var url_load= "empty_style.php?name=shop&file=select_province_new&id=1&lat=<?=$arr[shop][lat]?>&lng=<?=$arr[shop][lng]?>&type=stop";
+		       		$("#load_mod_popup_select_pv" ).fadeIn();
+		            var url_load= "empty_style.php?name=shop&file=select_province&id=1&lat=<?=$arr[shop][lat]?>&lng=<?=$arr[shop][lng]?>&type=stop";
 		             $('#body_load_select_pv').html(load_main_mod);
 		             $.post( url_load, function( data ) {
 		             	   $('#body_load_select_pv').html(data);
-		          	   var txt = $('#province_text').text();
-		          		$('#txt_pv_fr').val(txt);
-		          		$('.text-change-province').text(txt);
+		          	   	   var txt = $('#province_text').text();
+		          		   $('#txt_pv_fr').val(txt);
+		          		   $('.text-change-province').text(txt);
 		          	});
 		       });
         }
@@ -1278,3 +1230,4 @@ socket.emit('sendchat', dataorder);
    echo t_load_data;
    ?></center></font></td></tr></table></div> ";
 </script>
+  
