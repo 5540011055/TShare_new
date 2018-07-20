@@ -26,20 +26,7 @@ $db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
  
  $username_cut=substr($_POST[loginusername], 0, 3);  // abcd
 
-if($username_cut=='lab' or $username_cut=='LAB' or $username_cut=='Lab' or $username_cut=='aff' or $username_cut=='AFF' or $username_cut=='Aff'){
-	
-$tb_admin_chk = "web_user";	
-	
-}
-
- 
-
-
-
- else {
 $tb_admin_chk = "web_driver";
- 
-}
 /*
 
 
@@ -114,7 +101,7 @@ console.log(url);
 
 else{ ?>
  <div style="padding:5px; background-color:#FF0000 ; margin-top:10px;border-radius: 5px; "><font color="#FFFFFF"> 
-    ชื่อผู้ใช้งานหรือรหัสผ่านไม่ถูกต้อง</font> </div>
+    ชื่อผู้ใช้งานหรือรหัสผ่านไม่ถูกต้อง <?=$username_full." ".$_POST[loginpassword];?></font> </div>
  
 
 	
