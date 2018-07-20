@@ -5,7 +5,7 @@
    ?>
 <? 
    require_once("js/control.php");
-   $coldata = "col-md-6 col-fix";
+//   $coldata = "col-md-6 col-fix";
    ?>
 <style>
    .topicname { font-size:20px; font-weight:bold;
@@ -272,17 +272,17 @@
 			
 			//upload
 
-			var url="go.php?name=register&file=savedata&type=user&action=add&id=<?=$_GET[id]?>";
+//			var url="go.php?name=register&file=savedata&type=user&action=add&id=<?=$_GET[id]?>";
 			
-			var url_new ="mod/register/savedata_edit.php?type=user&action=add";
-			console.log(url);
+			var url_new ="mod/register/savedata_edit.php?type=user&action=add2";
+//			console.log(url);
 	      $.post(url_new,$('#myform_regiter').serialize(),function(response){
 	      	console.log(response);
-
+//			return
 	        $('#send_profile_data').html(response);
 //	        	swal('สำเร็จ','สมัครสมาชิกเสร็จสมบูรณ์ เลือกเมนูข้อมูลส่วนตัวเพื่อตรวจสอบข้อมูลของคุณ','success');
 	        	if(response.result==true){
-					var upload = "mod/user/upload_img/upload.php?user="+response.username;
+					var upload = "mod/user/upload_img/upload.php?user="+response.update.username;
 			    console.log(upload);
 					data_form = $('#myform_regiter').serialize();    
    				data = new FormData($('#myform_regiter')[0]);
@@ -297,6 +297,7 @@
    				                type: 'post',
    				                success: function(php_script_response){
    				                   console.log(php_script_response);
+   				                   return
    				                }
    				     });
 					$.post('mail.php?key=new_driver',response,function(data){
@@ -305,9 +306,10 @@
 //   					return;
    					swal('สำเร็จ','สมัครสมาชิกเสร็จสมบูรณ์ เลือกเมนูข้อมูลส่วนตัวเพื่อตรวจสอบข้อมูลของคุณ','success');
 					setTimeout(function () {
-		    			window.location.href = "signin.php?autologin=1&user="+response.username+"&pass="+response.password;
+		    			window.location.href = "signin.php?autologin=1&user="+response.update.username+"&pass="+response.password;
 		  			}, 1500);
-				}else{
+				}
+				else{
 					swal('ไม่สำเร็จ','กรุณาตรวจสอบข้อมูลของท่านและสมัครใหม่อีกครั้ง','error');
 				}
 	       });

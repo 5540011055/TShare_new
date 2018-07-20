@@ -66,7 +66,7 @@ function sendMessage() {
 			'ios_badgeCount' => '1',
 			'large_icon' => "https://www.welovetaxi.com/app/demo_new/images/app/ic_launcher.png"
 		);
-//	echo print_r($fields);	
+
     $response["param"] = $fields;
     $fields = json_encode($fields);
 
@@ -88,7 +88,66 @@ function sendMessage() {
     return $response;
 }
 
-$response = sendMessage();
+function canelShopMessage() {
+	
+	$order_id = $_GET[order_id];
+	
+	$db = New DB();
+	define("DB_NAME_APP","admin_app");
+	define("DB_USERNAME","admin_MANbooking");
+	define("DB_PASSWORD","252631MANbooking");
+	$db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
+	$res[book] = $db->select_query("SELECT invoice,program,drivername,invoice,car_plate FROM  order_booking  where id = '".$order_id."'  ");
+	$arr[book] = $db->fetch($res[book]);
+	$invoice = $arr[book][invoice];
+	$type_txt = $arr[book][car_plate]." ทำการยกเลิกรายการนี้แล้ว กรุณาตรวจสอบ";
+    	$tag = array(
+								array("field" => "tag", "key" => "class", "relation" => "=", "value" => "lab")
+								);
+		$content  = array(
+        "en" => "ทะเบียน ".$type_txt
+   		 );				
+	$heading = array(
+		   "en" => "เลขที่งาน ".$invoice
+	 );	
+    $fields = array(
+			'app_id' => "d99df0ae-f45c-4550-b71e-c9c793524da1",
+			'filters' => $tag,
+			'data' => array("order_id" => $_GET[order_id], "status" => "his", "open_ic" => 0),
+			'url' => "https://www.welovetaxi.com/app/demo_new2/index_sheet.php?name=index&file=open_order_history&order_id=".$order_id."&vc=".$invoice."&ios=1&open_ic=0",
+			'contents' => $content,
+			'headings' => $heading,
+			'ios_badgeType' => 'Increase',
+			'ios_badgeCount' => '1',
+			'large_icon' => "https://www.welovetaxi.com/app/demo_new/images/app/ic_launcher.png"
+		);
+
+    $response["param"] = $fields;
+    $fields = json_encode($fields);
+
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, "https://onesignal.com/api/v1/notifications");
+   curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json; charset=utf-8',
+												   'Authorization: Basic N2ViZjFkZTAtN2Y1My00NDk0LWI3ZjgtOTYxYTVlNjI3OWI4'));
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+    curl_setopt($ch, CURLOPT_HEADER, FALSE);
+    curl_setopt($ch, CURLOPT_POST, TRUE);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $fields);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+    
+    $res = curl_exec($ch);
+    $response["allresponses"] = json_decode($res);
+    
+    curl_close($ch);
+    
+    return $response;
+}
+
+if($_GET[action]=='cancel'){
+	$response = canelShopMessage();
+}else{
+	$response = sendMessage();
+}
 $return = json_encode($response);
 
 //$data = json_decode($response, true);

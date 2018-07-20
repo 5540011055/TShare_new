@@ -1,35 +1,24 @@
 <?PHP
-//require_once("../includes/class.mysql.php");
 function sendMessage() {
 	
-	/*$db = New DB();
-	define("DB_NAME_APP","admin_app");
-	define("DB_USERNAME","admin_MANbooking");
-	define("DB_PASSWORD","252631MANbooking");
-	$db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
-	$res[dv] = $db->select_query("SELECT username FROM web_driver  WHERE id='".$_GET[driver]."' ");
-	$arr[dv] = $db->fetch($res[dv]);*/
-//	echo $arr[dv][username];
-//	$invoice = $_GET[vc];
-//	$order_id = $_GET[order_id];
 	$heading = array(
-		   "en" => "TEst"
+		   "en" => $_POST[topic]
 	 );
 	
 	 $content  = array(
-        "en" => 'TESTTTTTTTT'
+        "en" => $_POST[content]
    		 );
+   	if($_POST[type]==1){
+		$tag = array(array("field" => "tag", "key" => "class", "relation" => "=", "value" => "lab"));
+	}else if($_POST[type]==2){
+		$tag = array(array("field" => "tag", "key" => "class", "relation" => "=", "value" => "taxi"));
+	}else{
+		$tag = array();
+	}	 
    		 $fields = array(
 			'app_id' => "d99df0ae-f45c-4550-b71e-c9c793524da1",
-			'filters' => array(
-								array("field" => "tag", "key" => "username", "relation" => "=", "value" => "HKT0153")
-
-//								array("field" => "tag", "key" => "class", "relation" => "=", "value" => "lab")
-								),
-			'data' => array("order_id" => $order_id),
-			'url' => "https://www.welovetaxi.com/app/demo_new2/index_sheet.php?name=index&file=open_order&order_id=".$order_id."&vc=".$invoice."&ios=1",
+			'filters' => $tag,
 			'contents' => $content,
-//			'buttons' => $hashes_array,
 			'ios_badgeType' => 'Increase',
 			'ios_badgeCount' => '1',
 			'large_icon' => "https://www.welovetaxi.com/app/demo_new/images/app/ic_launcher.png"
@@ -59,9 +48,7 @@ function sendMessage() {
 
 $response = sendMessage();
 $return = json_encode($response);
-
 //$data = json_decode($response, true);
 header('Content-Type: application/json');
 echo $return;
-
 ?>

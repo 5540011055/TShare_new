@@ -191,7 +191,7 @@ else if($arr[book][status]=='CONFIRM'){
     color: #fff;
     padding: 7px 20px;
     border-radius: 0;
-    top: 50px;<?=$cancel_shop;?>">
+    top: 60px;<?=$cancel_shop;?>">
 		<span class="font-24 text-cap"><?=t_cancel;?></span>
 	</button>
 

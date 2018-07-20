@@ -56,7 +56,6 @@ function sendMessage() {
 		);
 	}
 	
-    
     $response["param"] = $fields;
     $fields = json_encode($fields);
 

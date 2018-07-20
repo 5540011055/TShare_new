@@ -404,7 +404,7 @@ $("#imgInp").change(function() {
    <?  include ("load/popup/login/alert_login.php");?>
    <?  include ("load/popup/login/alert_password.php");?>
    <?  // include ("load/popup/login/alert_password_send.php");?>
-   <?  include ("load/popup/login/alert_register.php");?>
+   <?  include ("mod/register/register.php");?>
    <?  //include ("google/gps/check.php");?>
    <?
       if($_GET['autologin']) {

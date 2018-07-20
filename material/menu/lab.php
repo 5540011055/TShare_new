@@ -43,6 +43,7 @@
             </ul>
          </li>
          <li class="padding-5"><a class="collapsible-header waves-effect waves-light font-26" onclick="openQrCode();"><i class="fa fa-qrcode icon_menu" style="margin-top: 1px !important;"></i><?=t_friends;?></a></li>
+         <li class="padding-5"><a class="collapsible-header waves-effect waves-light font-26" onclick="sendMessage();"><i class="fa fa-paper-plane icon_menu" style="margin-top: 1px !important;"></i><?=ส่งข้อความ;?></a></li>
         <!-- <li style="display: none;"><a class="waves-effect waves-light" href="startup-team.html" style="padding: 0px 16px;"><?=t_language;?></a></li>-->
          <li class="padding-5"><a class="collapsible-header waves-effect waves-light font-26" onclick="logOut();"><i class="icon-new-uniF186 icon_menu"></i><?=t_sign_out;?></a></li>
       </ul>
@@ -102,6 +103,12 @@
          var url_load = "load_page_mod.php?name=taxi_list&file=driver_list";
          $('#load_mod_popup').html(load_main_mod);
          $('#load_mod_popup').load(url_load); 
+	}
+	function sendMessage(){
+		$( "#main_load_mod_popup" ).show();
+        var url_load = "load_page_mod.php?name=taxi_list&file=driver_msg";
+        $('#load_mod_popup').html(load_main_mod);
+        $('#load_mod_popup').load(url_load);
 	}
 	/*function logOut(){
 		swal({

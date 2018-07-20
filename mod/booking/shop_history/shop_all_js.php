@@ -167,6 +167,13 @@
       			
       		</tr>
       	</table>
+      	<a class="btn waves-effect waves-light red lighten-3" align="center" onclick="cancelBookAll('<?=$val[id];?>','<?=$val[invoice];?>');" id="cancel_book_<?=$val[id];?>" style="
+    color: #fff;
+    padding: 5px 20px;
+    border-radius: 25px;
+    margin-top: 10px;">
+		<span class="font-22 text-cap"><?=t_cancel;?></span>
+	</a>
 	</div>
 	</div>
 	

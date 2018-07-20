@@ -252,4 +252,72 @@
 		});
 	}
 
+function cancelBookAll(id,vc){
+	var remark1 = '<?=t_customer_no_register;?>';
+    var remark2 = '<?=t_customer_not_go;?>';
+    var remark3 = '<?=t_wrong_selected_place;?>';
+     swal({
+   title: "<font style='font-size:28px'><b><? echo t_are_you_sure?> </b></font>",
+   text: "<font style='font-size:22px'><? echo t_need_cancel_transfer?></font>"+
+//   "<table class="onlyThisTable" width='100%' style='margin:15px;'><tr><td width='40'><input id='remark1' onclick='check("+id+",1);' class='cause_"+id+"'  type='checkbox' value='1' style='display:block;height:25px;' /></td><td><label style='margin-top:8px;' for='remark1'>"+remark1+"</label></td></tr><tr><td width='40'><input id='remark2' onclick='check("+id+",2);' class='cause_"+id+"'  type='checkbox' value='2' style='display:block;height:25px;' /></td><td><label for='remark2' style='margin-top:8px;'>"+remark2+"</label></td></tr><tr><td width='40'><input id='remark3' onclick='check("+id+",3);' class='cause_"+id+"'  type='checkbox' value='3' style='display:block;height:25px;' /></td><td><label for='remark3' style='margin-top:8px;'>"+remark3+"</label></td></tr></table>",
+	'<form action="#" style="margin-left: 25px;" id="form_type_cancel">'
+    +'<p class="checkradio">'
+      +'<input  class="with-gap" name="type" type="radio" id="test1" value="1" />'
+      +'<label for="test1">'+remark1+'</label>'
+    +'</p>' +'<input type="hidden" value="'+remark1+'" name="typname_1" />'
+    +'<p class="checkradio">'
+      +'<input  class="with-gap" name="type" type="radio" id="test2" value="2" />'
+      +'<label for="test2">'+remark2+'</label>'
+    +'</p>' +'<input type="hidden" value="'+remark2+'" name="typname_2" />'
+    +'<p class="checkradio">'
+      +'<input class="with-gap" name="type" type="radio" id="test3" value="3"  />'
+       
+      +'<label for="test3">'+remark3+'</label>'
+    +'</p>'+'<input type="hidden" value="'+remark3+'" name="typname_3" />'
+  +'</form>',
+   type: "warning",
+   showCancelButton: true,
+   confirmButtonClass: "btn-danger waves-effect waves-light",
+	cancelButtonClass: "btn-cus waves-effect waves-light",
+   confirmButtonText: '<?echo t_yes?>',
+   cancelButtonText: "<?echo t_no?>",
+   closeOnConfirm: false,
+   closeOnCancel: true,
+   html: true
+   },
+   function(isConfirm){
+     if (isConfirm){
+     	 
+       if(! $('input[name="type"]').is(':checked')){
+	   		swal('กรุณาเลือกสาเหตุที่ยกเลิก','','error');
+	   }	 
+
+       console.log($('#form_type_cancel' ).serialize());
+
+	   var url = "mod/booking/shop_history/php_shop.php?type=cancel&id="+id;
+	   
+	   console.log(url+" ");
+
+	   $.post( url,$('#form_type_cancel' ).serialize(), function( data ) {
+	   		console.log(data);
+
+				$('#btn_cancel_book_'+id).hide();
+				var url_check_st = "mod/booking/shop_history/load/component_shop.php?request=check_status_shop&status="+data.status;
+				console.log(url_check_st);
+				
+				$.post( url_check_st,$('#form_type_cancel' ).serialize(), function( com ) {
+					$('#status_booking_detail').html(com);
+					swal("<?=t_success;?>", "", "success");
+				});
+				
+				var url_messages = "send_messages/send_checkin.php?action=cancel&order_id="+id;
+				$.post( url_messages, function( res ) {
+					console.log(res)
+				});
+
+	   });
+
+     }
+   });
+    }
 </script>
