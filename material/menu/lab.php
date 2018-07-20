@@ -42,7 +42,13 @@
                </li>
             </ul>
          </li>
+         
          <li class="padding-5"><a class="collapsible-header waves-effect waves-light font-26" onclick="openQrCode();"><i class="fa fa-qrcode icon_menu" style="margin-top: 1px !important;"></i><?=t_friends;?></a></li>
+          <li class="default-shadow padding-5 default-shadow">
+         <a class="collapsible-header waves-effect waves-light font-26" onclick="openNotifyline();">
+         <!--<i class="fa fa-volume-control-phone icon_menu" style="margin-top: 1px !important;"></i>ติดต่อ</a>-->
+         <i class="fa fa-link icon_menu" style="color: #757575;    margin: 1px !important;" ></i><span style="padding-left: 15px;">สมัครแจ้งเตือนผ่านไลน์</span></a>
+         </li>
          <li class="padding-5"><a class="collapsible-header waves-effect waves-light font-26" onclick="sendMessage();"><i class="fa fa-paper-plane icon_menu" style="margin-top: 1px !important;"></i><?=ส่งข้อความ;?></a></li>
         <!-- <li style="display: none;"><a class="waves-effect waves-light" href="startup-team.html" style="padding: 0px 16px;"><?=t_language;?></a></li>-->
          <li class="padding-5"><a class="collapsible-header waves-effect waves-light font-26" onclick="logOut();"><i class="icon-new-uniF186 icon_menu"></i><?=t_sign_out;?></a></li>
@@ -110,6 +116,9 @@
         $('#load_mod_popup').html(load_main_mod);
         $('#load_mod_popup').load(url_load);
 	}
+	function openNotifyline(){
+    location.href="https://www.welovetaxi.com/app/demo_new2/index.php?regis=linenoti&scope=notify&state=one"
+  }
 	/*function logOut(){
 		swal({
 		  title: "<?=t_sign_out;?>",
