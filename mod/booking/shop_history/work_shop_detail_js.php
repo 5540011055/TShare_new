@@ -1,7 +1,6 @@
 <script>
 function changeHtml(type,id,status_time){
-//	   		var url_status = "popup.php?name=booking/load/form&file=checkin_status&id="+id+"&type=check_"+type+"&time="+status_time+"&status=1";
-			 var url_status = "mod/booking/shop_history/load/component_shop.php?request=check_status_checkin&status=1&time="+status_time;
+	   		var url_status = "popup.php?name=booking/load/form&file=checkin_status&id="+id+"&type=check_"+type+"&time="+status_time+"&status=1";
 			$('#status_'+type).html('<b><i class="fa  fa-refresh fa-spin 2x" style="color:#000000"></i> โหลดข้อมูล');
 			$('#status_'+type).load(url_status); 
 			$('#iconchk_'+type).attr("src", "images/yes.png");  
@@ -120,28 +119,24 @@ function checkTypePay($id){
  	$full_name_driver =  $arr[projectdriver][name_en];
 // 	$car_color = $arr[qr_car][color];
  }
- $full_name_driver = $arr[projectdriver][name]." (".$arr[projectdriver][nickname].")";
 
  if($arr[book][status]=='CANCEL'){
 			 if($arr[book][cancel_type]=='1'){
-				$status_txt = '<font color="#ff0000"> ยกเลิก '.t_customer_no_register.'</font>';
+				$status_txt = '<font color="#ff0000">'.t_customer_no_register.'</font>';
 			}
 			else if($arr[book][cancel_type]=='2'){
-				$status_txt = '<font color="#ff0000"> ยกเลิก '.t_customer_not_go.'</font>';
+				$status_txt = '<font color="#ff0000">'.t_customer_not_go.'</font>';
 			}
 			else if($arr[book][cancel_type]=='3'){
-				$status_txt = '<font color="#ff0000"> ยกเลิก '.t_wrong_selected_place.'</font>';
-			}else{
-				$status_txt = '<font color="#ff0000">ยกเลิก ไม่ระบุ</font>';
+				$status_txt = '<font color="#ff0000">'.t_wrong_selected_place.'</font>';
 			}
-}
-else if($arr[book][status]=='NEW'){
+		}
+		else if($arr[book][status]=='NEW'){
 			$status_txt = '<font color="#3b5998">'.t_new.'</font>';
 		}
-else if($arr[book][status]=='CONFIRM'){
+		else if($arr[book][status]=='CONFIRM'){
 			$status_txt = '<font color="#54c23d">'.t_success.'</font>';
 		}
-
 	if($arr[book][driver_complete]==1){
 		$cancel_shop = 'display:none;';
 	}
@@ -153,75 +148,47 @@ else if($arr[book][status]=='CONFIRM'){
 	}else{
 		$show_alert = "display:none;";
 	}
-	
-	
 ?>
-<style>
-	.onlyThisTable td,th{
-    padding:5px 5px !important;
-}
-</style>
 <script>
 	$('#date_trans').text(formatDate('<?=$arr[book][transfer_date];?>'));
-	$('#header_clean').text('<?=$_POST[invoice];?>');
-	console.log('IOS : <?=$_GET[ios];?>');
 </script>
-<!--<div style="position: fixed;     bottom: 50px;
-    background-color: #fff;
-    border: 1px solid;">
-	<?php 
-            		$nation_json = str_replace("\\","",$arr[book][json_nation_price]);
-            		$nation_array = json_decode($nation_json);
-            		foreach($nation_array as $key=>$val){
-						echo $val->id."<br>";
-					}
-//					echo $nation_array[0]->id;
-					echo "<br/>";
-					echo $nation_json;
-            		?>
-</div>-->
 <input type="hidden" value="<?=$_POST[id];?>" id="id_order" />
-<!--<div class="font-22 back_main" onclick="backMain();" style="<?=$display_back_btn;?>" ><a ><i class="fa fa-chevron-left" aria-hidden="true"></i>&nbsp;<?=t_back_previous;?></a></div>
--->
-
-<div class="assas_<?=$_POST[id];?>" style=" padding:10px 12px; margin-top: 30px;" >
-	<button class="btn waves-effect waves-light red lighten-3" align="center" onclick="cancelBook('<?=$_POST[id];?>');" id="btn_cancel_book_<?=$_POST[id];?>" style="
+<div class="font-22 back_main" onclick="backMain();" ><a ><i class="fa fa-chevron-left" aria-hidden="true"></i>&nbsp;<?=t_back_previous;?></a></div>
+<div class="assas_<?=$_POST[id];?>" style=" padding:10px 12px; margin-top: 20px;" >
+	<button class="btn btn-repair waves-effect btn-other btn-danger" align="center" onclick="cancelBook('<?=$_POST[id];?>');" id="btn_cancel_book_<?=$_POST[id];?>" style="
     position:  absolute;
     right: 10px;
-    color: #fff;
-    padding: 7px 20px;
-    border-radius: 0;
-    top: 60px;<?=$cancel_shop;?>">
+    top: 40px;<?=$cancel_shop;?>">
 		<span class="font-24 text-cap"><?=t_cancel;?></span>
 	</button>
-
+	
 	<div id="status_booking_detail" class="font-30" style="margin-top: 10px;"><b><?=$status_txt;?></b></div>
 	<span class="font-28"><?=$arr[place_shop][$place_shopping];?></span>
 	
-		
 	<table width="100%" border="0" cellspacing="1" cellpadding="1">
    <tbody>
-      
       <tr>
-         <td width="33%" align="left" style="padding: 0px;" >
-            <div class="btn  btn-default" style=" width:100%; text-align:left; padding:2px; padding-left:5px; height:40px;border-radius: 0px;" data-toggle="dropdown" id="btn_div_dropdown_phone">
+      </tr>
+      <tr>
+         <td width="33%" align="left" >
+            <div class="btn  btn-default" style=" width:100%; text-align:left; padding:2px; padding-left:5px; height:40px;" data-toggle="dropdown" id="btn_div_dropdown_phone">
                <table width="100%" border="0" cellspacing="1" cellpadding="1">
                   <tbody>
                      <tr>
-                        <td align="center" width="30"><i class="fa fa-phone-square" style="font-size:32px; color: #8DC63F; border:none;"></i></td>
-                        <td align="center" class="font-24"><b><?=t_call;?></b></td>
+                        <td width="30"><i class="fa fa-phone-square" style="font-size:32px; color: #8DC63F; border:none;"></i></td>
+                        <td  class="font-24"><b><?=t_call;?></b></td>
                      </tr>
                   </tbody>
                </table>
             </div>
          </td>
-         <td width="33%" align="left" style="padding: 0px;" >
-            <div class="btn  btn-default" style=" width:100%; text-align:left;  padding:2px;height:40px;border-radius: 0px;" data-toggle="dropdown" id="btn_div_dropdown_zello">
+         <td width="33%" align="left" >
+            <div class="btn  btn-default" style=" width:100%; text-align:left;  padding:2px;height:40px;" data-toggle="dropdown" id="btn_div_dropdown_zello">
                <table width="100%" border="0" cellspacing="1" cellpadding="1">
                   <tbody>
                      <tr>
-                        <td align="center" width="30"><img src="images/icon/top/zello.png" width="30" height="30" alt=""/> </td>
-                        <td align="center" class="font-24">
+                        <td width="30"><img src="images/icon/top/zello.png" width="30" height="30" alt=""/> </td>
+                        <td class="font-24">
                            <b>Zello</b>
                         </td>
                      </tr>
@@ -229,13 +196,13 @@ else if($arr[book][status]=='CONFIRM'){
                </table>
             </div>
          </td>
-         <td width="33%" align="left"  style="padding: 0px;"  >
-            <div class="btn  btn-default" style=" width:100%; text-align:left;  padding:2px;height:40px;border-radius: 0px;" data-toggle="dropdown" id="shop_sub_menu_map">
+         <td width="33%" align="left"    >
+            <div class="btn  btn-default" style=" width:100%; text-align:left;  padding:2px;height:40px;" data-toggle="dropdown" id="shop_sub_menu_map">
                <table width="100%" border="0" cellspacing="1" cellpadding="1">
                   <tbody>
                      <tr>
-                        <td align="center" width="30"><img src="images/icon/top/map.png" width="30" height="30" alt=""/></td>
-                        <td align="center" class="font-24"><b><?=t_maps;?></b></td>
+                        <td width="30"><img src="images/icon/top/map.png" width="30" height="30" alt=""/></td>
+                        <td class="font-24"><b><?=t_maps;?></b></td>
                      </tr>
                   </tbody>
                </table>
@@ -243,11 +210,11 @@ else if($arr[book][status]=='CONFIRM'){
          </td>
       </tr>
    </tbody>
-	</table>
+</table>
 	
 	<div style="padding: 5px 0px;">
 		<span class="text-cap font-26"><?=t_reservation_information;?></span>
-		<table class="onlyThisTable" width="100%" border="0" cellpadding="1" cellspacing="5" style="display:nones" id="table_show_hide_data">
+		<table width="100%" border="0" cellpadding="1" cellspacing="5" style="display:nones" id="table_show_hide_data">
    		<tbody>
    		<tr>
 	      <td width="100" class="font-22 text-cap"><font color="#333333"><?=t_booking_no;?></font></td>
@@ -265,103 +232,17 @@ else if($arr[book][status]=='CONFIRM'){
       </tr>
       <tr>
          <td class="font-22 text-cap"><font color="#333333"><?=t_number;?></font></td>
-        <td class="font-22" style="padding: 0 !important;" >
-            <table width="100%">
-            	<!-- <tr>
-            		<td width="100%" colspan="2">
-            			<span class="font-22">
-            				<?
-				            if($arr[book][adult]>0){ ?>
-				            <?=t_adult;?> :
-				            <?=$arr[book][adult];?>
-				            &nbsp;
-				            <? } ?>
-				            <? if($arr[book][child]>0){ ?>
-				            <?=t_child;?> :
-				            <?=$arr[book][child];?>
-				            <? } ?>
-            			</span>
-            		</td>
-            		
-            	</tr> -->
-            	<tr>
-        			<td>	
-        				<span id="isedit"><?
+        <td class="font-22"><?
             if($arr[book][adult]>0){ ?>
             <?=t_adult;?> :
-            <!-- <?=$arr[book][adult];?> -->
+            <?=$arr[book][adult];?>
             &nbsp;
             <? } ?>
-            <span id="num_final_edit"></span></span>
-            <span id="text_edit_persion" style="display: none;"><?
-        			 if($arr[book][adult]>0){ ?>
-            <?=t_adult;?> :
-           
-            &nbsp;
-            <? } ?>
-           </span>
-        			
-        			<input type="number" name="" id="num_edit_persion" style="height: 30px;
-    width: 50px;
-    padding: 0px;
-    font-size: 16px;
-    margin: auto;
-    display: none;" value="<?=$arr[book][adult];?>" >
-        				
-        			</td>
-        			
-        			<td>
-        				<span  class="btn " align="center" onclick="editBook('<?=$arr[book][id];?>');"  style="    background: #3b5998;
-    color: #fff;
-    padding: 0px 10px;
-    font-size: 3px !important;
-    border-radius: 25px;display: inline-block;" id="btn_isedit">
-		<span class="font-24 text-cap">แก้ไข</span>
-	</span>
-	<span class="btn " align="center" onclick="saveeditBook('<?=$arr[book][id];?>');"  style="    background: #3b5998;
-    color: #fff;
-    padding: 0px 10px;
-    font-size: 3px !important;
-    border-radius: 25px;display: none;" id="btn_selectisedit">
-		<span class="font-24 text-cap">บันทึก</span>
-	</span>
-        			</td>
-        		</tr>
-        		<tr>
-        			<td>
-        				<? if($arr[book][child]>0){ ?>
+            <? if($arr[book][child]>0){ ?>
             <?=t_child;?> :
             <?=$arr[book][child];?>
             <? } ?>
-        			</td>
-        		</tr>
-     	
-            	<tr>
-            	<?php 
-            		if($arr[book][num_ch]>0){ ?>
-						<td style="padding: 0 !important;">
-		            		<table>
-		            			<tr>
-		            				<td width="20"><span class="font-22">จีน</span></td>
-		            				<td width=""><img src="images/flag/China.png" width="25" height="25" alt=""></td>
-		            			</tr>
-		            		</table>
-	            		</td>
-				<? } ?>
-				<?php 
-            		if($arr[book][num_other]>0){ ?>
-						<td style="padding: 0 !important;">
-		            		<table>
-		            			<tr>
-		            				<td width="20"><span class="font-22">ต่างชาติ</span></td>
-		            				<td width=""><img src="images/flag/Other.png" width="25" height="25" alt=""></td>
-		            			</tr>
-		            		</table>
-	            		</td>
-				<? } ?>
-
-            	</tr>
-            </table>
+            
          </td>
       </tr>
          </tbody>
@@ -370,7 +251,7 @@ else if($arr[book][status]=='CONFIRM'){
 
 	<div style="padding: 5px 0px;">
 		<span class="text-cap font-26"><?=t_car_driver_information;?></span>
-		<table class="onlyThisTable" width="100%" border="0" cellpadding="1" cellspacing="5" id="table_show_hide_driver">
+		<table width="100%" border="0" cellpadding="1" cellspacing="5" id="table_show_hide_driver">
 		  <tr>
 		    <td width="100"  class="font-22"><font color="#333333"></font><?=t_dv_name;?></td>
 		    <td colspan="3" class="font-22">
@@ -397,25 +278,29 @@ else if($arr[book][status]=='CONFIRM'){
 	
 	
 	<?php 
-	if($arr[book][status]!='CANCEL'){
 	if($data_user_class=='taxi'){	
 	$txt_btn_pay = 'ยืนการการรับเงิน';
 	
 	?>
 	<div style="padding: 5px 0px;">
 	<span class="text-cap font-26"><?=t_check_in_information." คนขับ";?></span>
-	<table class="onlyThisTable" width="100%" border="0" cellpadding="1" cellspacing="1" id="table_show_hide_checkin_<?=$arr[book][invoice];?>">
+	<table width="100%" border="0" cellpadding="1" cellspacing="1" id="table_show_hide_checkin_<?=$arr[book][invoice];?>">
 		   <tr id="step_driver_topoint">
 		      <td class="font-22">
 		         <?  include ("mod/booking/shop_history/load/checkin/topoint.php");?>
 		      </td>
 		   </tr>
+			<!--<tr id="step_driver_pay_report" style="display:nones">
+		      <td class="font-22">
+		         <?  include ("mod/booking/shop_history/load/checkin/driver_pay_report.php");?>
+		      </td>
+		   </tr>-->
 		</table>
 	</div>
 	<div style="width: 100%;height: 5px;background-color: #ddd ;margin: 10px 0px;" ></div>
 	<div style="padding: 5px 0px;">
 		<span class="text-cap font-26"><?=t_check_in_information." พนักงาน";?></span>
-		<table class="onlyThisTable" width="100%" border="0" cellpadding="1" cellspacing="1" id="table_show_hide_checkin_<?=$arr[book][invoice];?>">
+		<table width="100%" border="0" cellpadding="1" cellspacing="1" id="table_show_hide_checkin_<?=$arr[book][invoice];?>">
 		  <tr id="step_guest_receive" style="display:nones">
 		      <td class="font-22">
 		         <?  include ("mod/booking/shop_history/load/checkin/guest_receive.php");?>
@@ -439,7 +324,7 @@ else if($arr[book][status]=='CONFIRM'){
 	?>
 	<div style="padding: 5px 0px;">
 	<span class="text-cap font-26"><?=t_check_in_information." คนขับ";?></span>
-	<table class="onlyThisTable" width="100%" border="0" cellpadding="1" cellspacing="1" id="table_show_hide_checkin_<?=$arr[book][invoice];?>">
+	<table width="100%" border="0" cellpadding="1" cellspacing="1" id="table_show_hide_checkin_<?=$arr[book][invoice];?>">
 		   <tr id="step_driver_topoint">
 		      <td class="font-22">
 		         <?  include ("mod/booking/shop_history/load/checkin/topoint.php");?>
@@ -451,7 +336,7 @@ else if($arr[book][status]=='CONFIRM'){
 	<div style="width: 100%;height: 5px;background-color: #ddd ;margin: 10px 0px;" ></div>
 	<div style="padding: 5px 0px;">
 		<span class="text-cap font-26"><?=t_check_in_information." พนักงาน";?></span>
-		<table class="onlyThisTable" width="100%" border="0" cellpadding="1" cellspacing="1" id="table_show_hide_checkin_<?=$arr[book][invoice];?>">
+		<table width="100%" border="0" cellpadding="1" cellspacing="1" id="table_show_hide_checkin_<?=$arr[book][invoice];?>">
 		  <tr id="step_guest_receive" style="display:nones">
 		      <td class="font-22">
 		         <?  include ("mod/booking/shop_history/load/checkin_lab/guest_receive.php");?>
@@ -471,155 +356,59 @@ else if($arr[book][status]=='CONFIRM'){
 	</div>
 	<? }
 	?>
+
 	<div style="padding: 5px 0px;">
 	 <span class="text-cap font-26"><?=t_income;?></span>
-	 <table class="onlyThisTable" width="100%">
+	 <table width="100%">
 	 	<tr>
 	 		<td align="center">
 	 		<button class="btn btn-repair waves-effect" onclick="openViewPrice();" style="text-transform: unset;
     background-color: #ffffff;
     color: #3b5998;
-    width: 100%;
+    width: 80%;
     border: 1px solid #3b5998;">
-	 		<i class="icon-new-uniF121-10" aria-hidden="true"></i>&nbsp;<span class="font-22"><?=$txt_btn_pay;?></span> 
-	 		<span id="alert_pay_driver" class="badge font-20" style="    position: absolute;
-    font-size: 14px;
-    background-color: #F44336;
-    padding: 4px 7px;
-    z-index: 1;
-    right: 45px;<?=$show_alert;?>"><strong>!</strong></span>
-    </button>
+	 		<i class="icon-new-uniF121-10" aria-hidden="true"></i>&nbsp;<?=$txt_btn_pay;?> </button>
+	 		<span id="alert_pay_driver" class="badge font-20" style="position: absolute;font-size: 14px;background-color: #F44336;padding: 4px 7px;margin-left: -35px;z-index: 1;margin-top: 12;<?=$show_alert;?>"><strong>!</strong></span>
 	 		</td>
-	 		
-	 		
 	 	</tr>
 	 </table>
 	</div>
-	
-	<div style="padding: 5px 0px;">
-		<span class="text-cap font-26"><?=โค้ดและเอกสาร;?></span>
-	<? if($data_user_class=='lab' and $arr[book][program]==1){ ?>
-		<table class="onlyThisTable" width="100%" border="0" cellpadding="1" cellspacing="5" id="table_code_doc">
-			<tr>
-				<td width="60" valign="middle"><span class="font-22">Code</span></td>
-				<td width="150">
-				<input type="text" class="form-control font-22" id="code_order" name="code_order" value="<?=$arr[book][code];?>" style="margin-bottom: 0px;height: 2.5rem;padding-left: 0px;"/></td>
-				<td><span class="btn" align="center" onclick="updateCode('<?=$arr[book][program];?>','<?=$arr[book][id];?>');" style="background: #3b5998;
-    color: #fff;
-    padding: 0px 10px;
-    font-size: 3px !important;
-    border-radius: 25px;">
-		<span class="font-24 text-cap">บันทึก</span>
-	</span></td>
-			</tr>
-			<tr>
-				<td width="60"><span class="font-22">อัพโหลด</span></td>
-				<td><a class="waves-effect waves-light btn" style="background-color: #009688;color: #fff !important;border-radius: 10px;" onclick="uploadCodeFile('<?=$arr[book][program];?>','<?=$arr[book][id];?>','lab');"><i class="material-icons left" style="font-size: 16px;margin-right: 7px;">cloud</i>อัพโหลด</a></td>
-			</tr>
-		</table>
-	<? }
-	else if($data_user_class=='taxi' and $arr[book][program]==1){ ?>
-	
-		<table class="onlyThisTable" width="100%" border="0" cellpadding="1" cellspacing="5" id="table_code_doc">
-			<tr>
-				<td width="60" valign="middle"><span class="font-22">Code</span></td>
-				<td width="150">
-				<input type="text" class="form-control font-22" readonly="readonly" value="<?=$arr[book][code];?>" style="margin-bottom: 0px;height: 2.5rem;padding-left: 0px;"/></td>
-			</tr>
-			<tr>
-				<td width="60">
-				<span class="font-22">อัพโหลด</span></td>
-				<td>
-				<a class="waves-effect waves-light btn" style="background-color: #3b5998;color: #fff !important;border-radius: 25px;" onclick="uploadCodeFile('<?=$arr[book][program];?>','<?=$arr[book][id];?>','taxi');"><i class="material-icons left" style="font-size: 16px;margin-right: 7px;">cloud</i>ตรวจสอบภาพ</a></td>
-			</tr>
-		</table>
-<?	} ?>
-	</div>
-<? } ?>
+
 
 </div>
 <input type="hidden" id="check_cause" value="0"/>
 
-<script>
-		function updateCode(place,order_id){
-			console.log(place+" "+order_id);
-			var code = $('#code_order').val();
-			$.post('mod/booking/shop_history/php_shop.php?action=update_code',{ place:place, order_id:order_id, code:code },function(data){
-				console.log(data);
-//				sendSocket(order_id);
-			});
-		}
-		function uploadCodeFile(place,order_id,class_user){
-			console.log('upload code file');
-			$( "#dialog_custom" ).show();
-			$('#body_dialog_custom_load').html(load_sub_mod);
-			var url = "empty_style.php?name=booking/shop_history/load&file=upload_bill_popup&place="+place+'&order_id='+order_id+'&class_user='+class_user;
-			console.log(place+" "+order_id);
-//			return;
-			$.post(url,function(res){
-				$('#body_dialog_custom_load').html(res); 
-			});
-			
-		}
-		var number_persion_new = '<?=$arr[book][adult];?>';
-		$('#num_final_edit').html(number_persion_new)
-		function editBook(x){
-			console.log(x)
-			$('#text_edit_persion').show()
-
-			$('#btn_selectisedit').show()
-			$('#num_edit_persion').show()
-			$('#btn_isedit').hide()
-			$('#isedit').hide()
-			$('#num_edit_persion').css('display','inline-block')
-
-
-		}
-		function saveeditBook(x){
-			var url_load= "go.php?name=booking/shop_history&file=saveeditBook&num="+$('#num_edit_persion').val()+"&id="+x;
-			console.log(url_load)
-			 $.post( url_load, function( data ) {
-               //$('#load_mod_popup').html(data);
-                  console.log(data);
-               });
-    
-      
-
-			$('#text_edit_persion').hide()
-			number_persion_new = $('#num_edit_persion').val()
-			$('#num_final_edit').html(number_persion_new)
-			console.log(x)
-			$('#btn_selectisedit').hide()
-			$('#num_edit_persion').hide()
-			$('#btn_isedit').show()
-			$('#isedit').show()
-
-
-		}
-	</script>
 <script>
 	var remark1 = '<?=t_customer_no_register;?>';
     var remark2 = '<?=t_customer_not_go;?>';
     var remark3 = '<?=t_wrong_selected_place;?>';
     
 	$('#btn_div_dropdown_phone').click(function(e) {
-
-	    $('#material_dialog_lg').modal('open');
-	    $( "#dialoglLabel_lg" ).text('เบอร์โทรศัพท์');
+	    /*$("#main_load_mod_popup_4").toggle();
+	    var url_load = "load_page_mod_4.php?name=booking/shop_history/load&file=social&type=phone&shop_id=<?=$arr[place_shop][id];?>";
+	    $('#load_mod_popup_4').html(load_main_mod);
+	    console.log(url_load);
+	    $('#load_mod_popup_4').load(url_load);*/
+	    $( "#material_dialog" ).show();
+	    $( "#dialoglLabel" ).text('เบอร์โทรศัพท์');
 	   	var url_load= "empty_style.php?name=booking/shop_history/load&file=social&type=phone&shop_id=<?=$arr[place_shop][id];?>";
 	   	console.log(url_load);
-	   	$('#load_modal_body_lg').html(load_main_mod);
-	  	$('#load_modal_body_lg').load(url_load); 
+	   	$('#load_modal_body').html("<br/><br/><br/><br/>");
+	  	$('#load_modal_body').load(url_load); 
 	});
 	
 	$('#btn_div_dropdown_zello').click(function(e) {
-
-	    $('#material_dialog_lg').modal('open');
-	    $( "#dialoglLabel_lg" ).text('Zello');
+	  /*  $("#main_load_mod_popup_4").toggle();
+	    var url_load = "load_page_mod_4.php?name=booking/shop_history/load&file=social&type=zello&shop_id=<?=$arr[place_shop][id];?>";
+	    $('#load_mod_popup_4').html(load_main_mod);
+	    console.log(url_load);
+	    $('#load_mod_popup_4').load(url_load);*/
+	     $( "#material_dialog" ).show();
+	    $( "#dialoglLabel" ).text('Zello');
 	   	var url_load= "empty_style.php?name=booking/shop_history/load&file=social&type=zello&shop_id=<?=$arr[place_shop][id];?>";
 	   	console.log(url_load);
-	   	$('#load_modal_body_lg').html(load_main_mod);
-	  	$('#load_modal_body_lg').load(url_load); 
+	   	$('#load_modal_body').html("<br/><br/><br/><br/>");
+	  	$('#load_modal_body').load(url_load); 
 	});
 	
 	$('#shop_sub_menu_map').click(function(){  
@@ -627,7 +416,7 @@ else if($arr[book][status]=='CONFIRM'){
 	  console.log('lat '+$('#lat').val());
 	  console.log('lng '+$('#lng').val());
 	  $( "#main_load_mod_popup_map" ).toggle();
-//	  $( "#main_load_mod_popup_clean" ).hide();
+	  $( "#main_load_mod_popup_clean" ).hide();
 	  var url_load= "load_page_map.php?name=booking/popup&file=map&shop_id=<?=$arr[place_shop][id]?>";
 	  url_load=url_load+"&lat="+document.getElementById('lat').value;
  	  url_load=url_load+"&lng="+document.getElementById('lng').value;
@@ -636,14 +425,14 @@ else if($arr[book][status]=='CONFIRM'){
 
  	});
 
+ 	$('#button-close-popup-map').click(function(){
+ 		$( "#main_load_mod_popup_clean" ).show();
+ 	});
 
-	function ViewPhoto(id,type,date,plan){
-		console.log(id+" | "+type+" | "+date+" | "+plan)
-		if(date==""){
-			date = '<?=time();?>';
-		}
+	function ViewPhoto(id,type,date,d){
+		console.log(id+" "+type+" "+date)
 		if(type=="doc_pay"){
-			var url = 'load_page_photo.php?name=booking/load/form&file=iframe_photo&id='+id+'&type='+type+'&date='+date+'&plan='+plan;
+			var url = 'load_page_photo.php?name=booking/load/form&file=iframe_photo&id='+id+'&type='+type+'&date='+date+'&plan='+d;
 		}
 		else{
 			var url = 'load_page_photo.php?name=booking/load/form&file=iframe_photo&id='+id+'&type='+type+'&date='+date;
@@ -653,71 +442,44 @@ else if($arr[book][status]=='CONFIRM'){
 		$('#load_mod_popup_photo').html(load_main_mod);
  	 	$('#load_mod_popup_photo').load(url); 
 	}	
-	function ViewSlip(id,date){
-		var url = 'load_page_photo.php?name=booking/load/form&file=iframe_photo&id='+id+'&type=slip&date='+date;
-		console.log(url);
-		$( "#load_mod_popup_photo" ).toggle();
-		$('#load_mod_popup_photo').html(load_main_mod);
- 	 	$('#load_mod_popup_photo').load(url); 
-	}	
 
 	function openViewPrice(){
-
+//		$( "#dialog_custom" ).show();
 		var class_user = '<?=$data_user_class;?>';
 		console.log(class_user);
 		if(class_user=="lab"){
-			var url_load= "empty_style.php?name=booking/shop_history/load&file=income_driver_lab_new&id=<?=$arr[book][id]?>";
-			
+			var url_load= "empty_style.php?name=booking/shop_history/load&file=income_driver_lab&id=<?=$arr[book][id]?>";
 		}else if(class_user=="taxi"){
 			var url_load= "empty_style.php?name=booking/shop_history/load&file=income_driver_taxi&id=<?=$arr[book][id]?>";
 		}
 	   	
 	   	console.log(url_load);
-	   	$( "#dialog_custom" ).show();
-		$('#body_dialog_custom_load').html(load_sub_mod);
-$.post(url_load,function(res){
-				$('#body_dialog_custom_load').html(res); 
-			});
-	  	/*$('#main_load_mod_popup_clean').hide();
+	   	/*$('#body_dialog_custom_load').html("<br/><br/><br/><br/>");
+	  	$('#body_dialog_custom_load').load(url_load); */
+	  	$('#main_load_mod_popup_clean').hide();
 	  	$('#main_load_mod_popup_2').show();
 	  	$('#text_mod_topic_action_2').html('รายได้');
 	  	$('#load_mod_popup_2').html(load_main_mod);
-	  	$('#load_mod_popup_2').load(url_load);*/
-
+	  	$.post(url_load,function(res){
+	  			$('#load_mod_popup_2').html(res);
+	  	});
 	  	
 	}
-/*	$('.button-close-popup-mod-2').click(function(){
+	$('.button-close-popup-mod-2').click(function(){
 		$('#main_load_mod_popup_clean').show();
 		$('#main_load_mod_popup_clean').show();
 		$('#main_load_mod_popup_2').hide();
 		$('#load_mod_popup_2').html('');
 	});
-*/
+
 	function cancelBook(id){
 	
      swal({
    title: "<font style='font-size:28px'><b><? echo t_are_you_sure?> </b></font>",
-   text: "<font style='font-size:22px'><? echo t_need_cancel_transfer?></font>"+
-//   "<table class="onlyThisTable" width='100%' style='margin:15px;'><tr><td width='40'><input id='remark1' onclick='check("+id+",1);' class='cause_"+id+"'  type='checkbox' value='1' style='display:block;height:25px;' /></td><td><label style='margin-top:8px;' for='remark1'>"+remark1+"</label></td></tr><tr><td width='40'><input id='remark2' onclick='check("+id+",2);' class='cause_"+id+"'  type='checkbox' value='2' style='display:block;height:25px;' /></td><td><label for='remark2' style='margin-top:8px;'>"+remark2+"</label></td></tr><tr><td width='40'><input id='remark3' onclick='check("+id+",3);' class='cause_"+id+"'  type='checkbox' value='3' style='display:block;height:25px;' /></td><td><label for='remark3' style='margin-top:8px;'>"+remark3+"</label></td></tr></table>",
-	'<form action="#" style="margin-left: 25px;" id="form_type_cancel">'
-    +'<p class="checkradio">'
-      +'<input  class="with-gap" name="type" type="radio" id="test1" value="1" />'
-      +'<label for="test1">'+remark1+'</label>'
-    +'</p>' +'<input type="hidden" value="'+remark1+'" name="typname_1" />'
-    +'<p class="checkradio">'
-      +'<input  class="with-gap" name="type" type="radio" id="test2" value="2" />'
-      +'<label for="test2">'+remark2+'</label>'
-    +'</p>' +'<input type="hidden" value="'+remark2+'" name="typname_2" />'
-    +'<p class="checkradio">'
-      +'<input class="with-gap" name="type" type="radio" id="test3" value="3"  />'
-       
-      +'<label for="test3">'+remark3+'</label>'
-    +'</p>'+'<input type="hidden" value="'+remark3+'" name="typname_3" />'
-  +'</form>',
+   text: "<font style='font-size:22px'><? echo t_need_cancel_transfer?></font>"+"<table width='100%' style='margin:15px;'><tr><td width='40'><input id='remark1' onclick='check("+id+",1);' class='cause_"+id+"'  type='checkbox' value='1' style='display:block;height:25px;' /></td><td><label style='margin-top:8px;' for='remark1'>"+remark1+"</label></td></tr><tr><td width='40'><input id='remark2' onclick='check("+id+",2);' class='cause_"+id+"'  type='checkbox' value='2' style='display:block;height:25px;' /></td><td><label for='remark2' style='margin-top:8px;'>"+remark2+"</label></td></tr><tr><td width='40'><input id='remark3' onclick='check("+id+",3);' class='cause_"+id+"'  type='checkbox' value='3' style='display:block;height:25px;' /></td><td><label for='remark3' style='margin-top:8px;'>"+remark3+"</label></td></tr></table>",
    type: "warning",
    showCancelButton: true,
-   confirmButtonClass: "btn-danger waves-effect waves-light",
-	cancelButtonClass: "btn-cus waves-effect waves-light",
+   confirmButtonColor: '#3b5998',
    confirmButtonText: '<?echo t_yes?>',
    cancelButtonText: "<?echo t_no?>",
    closeOnConfirm: false,
@@ -726,34 +488,36 @@ $.post(url_load,function(res){
    },
    function(isConfirm){
      if (isConfirm){
-     	 
-       if(! $('input[name="type"]').is(':checked')){
-	   		swal('กรุณาเลือกสาเหตุที่ยกเลิก','','error');
-	   }	 
-
-       console.log($('#form_type_cancel' ).serialize());
-
-	   var url = "mod/booking/shop_history/php_shop.php?type=cancel&id="+id;
+	   var cause = $('#check_cause').val();
 	   
-	   console.log(url+" ");
+	   var url = "mod/booking/shop_history/php_shop.php?type=cancel&id="+id+"&cancel_type="+cause;
+	   
+	   console.log(url+" "+cause);
 
-	   $.post( url,$('#form_type_cancel' ).serialize(), function( data ) {
+	   $.post( url, function( data ) {
 	   		console.log(data);
-
+//	   		if(data.reult == true && data.history.result == true){
 				$('#btn_cancel_book_'+id).hide();
-				var url_check_st = "mod/booking/shop_history/load/component_shop.php?request=check_status_shop&status="+data.status;
+				
+				var url_check_st = "mod/booking/shop_history/load/component_shop.php?request=check_status_shop&status="+data.status+"&type="+cause;
 				console.log(url_check_st);
-				$.post( url_check_st,$('#form_type_cancel' ).serialize(), function( com ) {
+				$.post( url_check_st, function( com ) {
 					$('#status_booking_detail').html(com);
 					swal("<?=t_success;?>", "", "success");
 				});
-
+//			}
 	   });
 
      }
    });
     }
     
+   	function check(id,num){
+    console.log(id+" "+num);	
+    $('.cause_'+id).attr('checked', false);
+    $('#remark'+num).attr('checked', true);
+    $('#check_cause').val(num);
+   }
 
 
 </script>

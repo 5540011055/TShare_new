@@ -322,7 +322,9 @@ function thai_date($time){
 </style>
 
 <div id="main_component" >
-
+   <link rel="stylesheet" type="text/css" href="calendar/css/smoothness/main.css">
+   <script src="js/jquery-main.js"></script> 
+   <script   src="calendar/js/th.js"></script>
    <link rel="stylesheet" type="text/css" href="pickerdate/classic.css?v=<?=time();?>" />
    <link rel="stylesheet" type="text/css" href="pickerdate/classic.date.css?v=<?=time();?>" />
    <script src="pickerdate/picker.js?v=<?=time();?>" type="text/javascript"></script>
@@ -386,7 +388,7 @@ function thai_date($time){
        }, 500);
    </script>
    <div id="load_booking_data"  style="padding:0px; margin-top:0px;display: nones;" align="center">
-      
+      <div style=" margin: 50px;"><img src="images/loader.gif" /></div>
    </div>
 
    <table>
@@ -397,21 +399,19 @@ function thai_date($time){
 </div>
 <input type="hidden" value="<?=date();?>" id="current_datetime" />
 <script>
-	$('#load_booking_data').append(load_main_mod);
    var dataHistoryA;
    var txt_pay_cash = '';
    var txt_pay_trans = '';
     function openDetailBooking(index,s_pay,cost){
-    	$('#header_clean').text('text');
     	var dv_cost = $('#balance').val();
    console.log(dv_cost+" : "+cost);
    if(s_pay==0){
    	txt_pay_cash = 'งานนี้เป็นงานที่ลูกค้าจ่ายเงินสด จำเป็นต้องหักเงินจากบัญชีในระบบ จำนวน '+addCommas(cost)+' บาท';
    	txt_pay_trans = '';
    	if(dv_cost<cost){
-   		$('#material_alert').modal('open');
-   		$('#alertLabel').text('ข้อความ !');
-   		$('#load_modal_body_alert').html('<h4>ไม่สามารถรับงานนี้ได้</h4><div class="font-22" style="padding:5px;">ยอดเงินคงเหลือในระบบของคุณไม่สามารถรับงานนี้ได้ กรุณาเติมเงินเข้าระบบหรือติดต่อเจ้าหน้าที่ ขอบคุณค่ะ</div>');
+   		$('#material_dialog').show();
+   		$('#dialoglLabel').text('ข้อความ');
+   		$('#load_modal_body').html('<h4>ไม่สามารถรับงานนี้ได้</h4><div class="font-22" style="padding:5px;">ยอดเงินคงเหลือในระบบของคุณไม่สามารถรับงานนี้ได้ กรุณาเติมเงินเข้าระบบหรือติดต่อเจ้าหน้าที่ ขอบคุณค่ะ</div>');
    //				swal('ไม่สามารถรับงานนี้ได้','ยอดเงินคงเหลือในระบบของคุณไม่สามารถรับงานนี้ได้ กรุณาเติมเงินหรือติดต่อเจ้าหน้าที่ ขอบคุณค่ะ','error');
    		return;
    	}
@@ -434,7 +434,6 @@ function thai_date($time){
    	var post = historyObj[index];
    }
     		setTimeout(function(){ 
-//    		$('#header_clean').text('test')
     			var url = "empty_style.php?name=tbooking&file=sheet_handle";
      	$.post(url,post,function(data){
      		$('#load_mod_popup_clean').html(data);
@@ -443,14 +442,14 @@ function thai_date($time){
      	});
      	 }, 0);
     }
-  /*  function backMain(){
+    function backMain(){
      	console.log('back');
      	$('#main_load_mod_popup .back-full-popup').fadeIn(500);
      	$('#show_main_tool_bottom').fadeIn(500);
       $('#sub_component').hide();
       $('#main_component').addClass('w3-animate-left');
       $('#main_component').show();
-    }*/
+    }
     function readDataBooking(){
    	var num = 0;
    //	 	$('#load_booking_data .box_book').remove();
@@ -461,6 +460,7 @@ function thai_date($time){
    	return;
    }
    	$.each(res_socket,function(index,res){
+//   		console.log(res_socket);
    		var d_db = Unix_timestamp(res.post_date);
    		var d_cr = js_yyyy_mm_dd_hh_mm_ss();
    //	 		console.log(d_db+" || "+d_cr);

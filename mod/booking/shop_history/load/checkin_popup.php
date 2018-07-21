@@ -1,4 +1,4 @@
-<?  //include ("mod/booking/shop_history/load/checkin/photo/upload_checkin_pic.php");
+<?  include ("mod/booking/shop_history/load/checkin/photo/upload_checkin_pic.php");
 
    $arr[project][id]=$_GET[id];
     if($_GET[type]=='driver_topoint'){		
@@ -27,28 +27,26 @@
     }
     
    	?>
-<form action="" method="post" id="photo_form" enctype="multipart/form-data">   	
-<input type='file' id="imgInp" style="opacity: 0;" />
-</form>
-<table class="onlyThisTable" width="300" border="0" align="center" cellpadding="3" cellspacing="5" style="margin-top: 0px;" >
+
+<table width="300" border="0" align="center" cellpadding="3" cellspacing="5" style="margin-top: -15px;" >
    <tbody>
       <tr>
-         <td align="center" class="font-30" style="text-align: center;"><i class="<?=$icon;?>" style=" font-size:80px; color: #3b5998;"  ></i></td>
+         <td align="center" class="font-30"><i class="<?=$icon;?>" style=" font-size:80px; color: #3b5998;"  ></i></td>
       </tr>
       <tr>
-         <td align="center" class="font-30"  style="text-align: center;"><b><?=t_are_you_sure;?></b></td>
+         <td align="center" class="font-30"><b><?=t_are_you_sure;?></b></td>
       </tr>
       <tr>
-         <td align="center" class="font-26"  style="text-align: center;"><?=$type?></td>
+         <td align="center" class="font-26"><?=$type?></td>
       </tr>
       <tr>
-         <td align="center" class="font-26"  style="text-align: center;">
+         <td align="center" class="font-26">
             <div class="<?= $coldata?>">
                <div style="background-color: #f3f3f3;padding: 10px 5px;border: 1px solid #ddd;" ><!--take_photo-->
                   <center>
                  
                   <div style="padding: 5px 10px;"><?=$txt_photo;?></div>
-                  <table class="onlyThisTable" width="100%" border="0" cellspacing="2" cellpadding="2" >
+                  <table width="100%" border="0" cellspacing="2" cellpadding="2" >
                      <tbody>
                         <tr>
                            
@@ -72,15 +70,14 @@
                         </tr>
                      </tbody>
                   </table>
-                  
-                  <div style="padding:5px;display: none;" id="pg_upload_bar">
-                     <div class="progress">
-					      <div class="indeterminate"></div>
-					  </div>
+                  <div style="padding:5px;">
+                     <div class="progress" style="width:100%;;border-radius:8px; margin-top: 10px; border:none " id="area_image_album_load_main">
+                        <div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar" aria-valuenow="40"
+                           aria-valuemin="0" aria-valuemax="100" id="area_image_album_load_<?=$_GET[type]?>" style="width:0%;border-radius:5px;border:none">
+                        </div>
+                     </div>
                   </div>
-                  
-                  <img id="image_<?=$_GET[type]?>" name="image_<?=$_GET[type]?>"  style="width:100%; padding:5px; margin-top:0px;border-radius:15px;display: none;" />
-                  
+                  <img id="image_<?=$_GET[type]?>" name="image_<?=$_GET[type]?>"  style="width:100%; padding:5px; margin-top:-20px;border-radius:15px; " />
                   </center>
                </div>
             </div>
@@ -88,12 +85,11 @@
       </tr>
       <tr>
          <td align="center">
-            <table class="onlyThisTable" width="100%" border="0" cellspacing="2" cellpadding="2">
+            <table width="100%" border="0" cellspacing="2" cellpadding="2">
                <tbody>
                   <tr>
                      <td width="50%">
-                        <button  id="btn_close_checkin_popup"  type="button" class="btn waves-effect waves-light lighten-2 " 
-                         style="width:100%;background-color:#9E9E9E;  border-radius: 0px;color: #fff;">
+                        <button  id="btn_close_checkin_popup"  type="button" class="btn  btn-info "  style="width:100%;text-align:left;padding:5px; background-color:#9E9E9E;  border-radius: 20px; border:none;">
                            <span class="font-26">
                            <center>
                            <? echo t_no; ?>
@@ -102,7 +98,7 @@
                         </button>
                      </td>
                      <td width="50%">
-                        <button  id="btn_checkin_popup_<?=$_GET[id]?>"  type="button" class="btn waves-effect waves-light lighten-2 "  style="width:100%;background-color:#3b5998;  border-radius: 0px;color: #fff;">
+                        <button  id="btn_checkin_popup_<?=$_GET[id]?>"  type="button" class="btn  btn-info "  style="width:100%;text-align:left;padding:5px; background-color:#3b5998;  border-radius: 20px; border:none ">
                            <span class="font-26">
                            <center>
                            <? echo t_yes; ?>
@@ -120,7 +116,7 @@
       </tr>
    </tbody>
 </table>
-<input class="form-control" type="hidden" name="upload_pic_type" id="upload_pic_type"  required="true" value="<?=$_GET[type]?>" />
+<input class="form-control" type="hidden" name="upload_pic_type" id="upload_pic_type"  required="true" onkeypress="PasswordEnter(this,event)"   value="" />
 <script>
    $(".text-topic-action-mod-3").html('<?=$type?>');
 
@@ -150,9 +146,8 @@
 				 changeHtml("<?=$_GET[type]?>","<?=$arr[project][id]?>","<?=time();?>")
 				 console.log(array_data);
    				 $('#json_shop').val(JSON.stringify(array_data));
-				/*var message = "";
-				socket.emit('sendchat', message);*/
-				sendSocket('<?=$arr[project][id]?>');
+				var message = "";
+				socket.emit('sendchat', message);
 				$( "#close_dialog_custom" ).click();
 				
 		      	 $.post('send_messages/send_checkin.php?type=<?=$_GET[type]?>&id=<?=$arr[project][id]?>',function(data){
@@ -204,75 +199,15 @@
 	
 	}	
 </script>
-
 <script>
- 
+   /////////  id driving
    $("#icon_camera_checkin").click(function(){  
-//   document.getElementById('upload_pic_type').value='<?=$_GET[type]?>';
-   $("#imgInp").click(); 
+   document.getElementById('upload_pic_type').value='<?=$_GET[type]?>';
+   $("#load_chat_camera").click(); 
    });
-   function readURL(input) {
-	  $('#pg_upload_bar').show();
-	  if (input.files && input.files[0]) {
-	    var reader = new FileReader();
-
-	    reader.onload = function(e) {
-	      $('#image_<?=$_GET[type]?>').attr('src', e.target.result);
-	    }
-		
-	    reader.readAsDataURL(input.files[0]);
-	    
-	    var url = "mod/booking/shop_history/load/upload_img/upload.php" + "?type=" + document.getElementById('upload_pic_type').value+"&code=" + document.getElementById('check_code').value;
-   				data_form = $('#photo_form').serialize();    
-   				data = new FormData($('#photo_form')[0]);
-      			data.append('fileUpload', $('#imgInp')[0].files[0]);
-   				   $.ajax({
-   				                url: url, // point to server-side PHP script 
-   				                dataType: 'text',  // what to expect back from the PHP script, if anything
-   				                cache: false,
-   				                contentType: false,
-   				                processData: false,
-   				                data: data,                         
-   				                type: 'post',
-   				                success: function(php_script_response){
-   				                   console.log(php_script_response);
-   				                   setTimeout(function() {
-				                                $.ajax({
-							                            url: '../data/fileupload/store/' + document.getElementById('upload_pic_type').value + '_<?=$_GET[id];?>.jpg',
-							                            type: 'HEAD',
-							                            error: function() {
-							                                console.log('Error file');
-							                            },
-							                            success: function() {
-							                                //file exists
-							                                console.log('success file');
-							                                $('#url_photo').val('มีภาพถ่ายแล้ว');
-							                                $('#icon_camera_checkin').removeClass('btn-primary');
-							                                $('#icon_camera_checkin').addClass('green white-text');
-							                                $('#del_photo').removeClass('btn-default');
-							                                $('#del_photo').addClass('btn-danger');
-
-//									                        $("#image_" + pictype).fadeIn(3000);
-									                        $('#pg_upload_bar').hide();
-									                        $('#image_<?=$_GET[type]?>').show();
-							                            }
-							                        });
-                            }, 1500); 
-   				                   
-   				                }
-   				     });
-	    
-	  }
-	  
-	}
-
-	$("#imgInp").change(function() {
-	  readURL(this);
-	});
-	
+   
    $('#del_photo').click(function(){
-   	var url_del = "mod/booking/shop_history/load/upload_img/del_img.php";
-   	$.post( url_del+"?code=<?=$_GET[id]?>&type=<?=$_GET[type]?>", function( data ) {
+   	$.post( "go.php?name=booking/load/form/checkin/photo&file=upload_pic&action=del&code=<?=$_GET[id]?>&type=<?=$_GET[type]?>", function( data ) {
     		$('#image_<?=$_GET[type]?>').attr('src','');
     		$('#image_<?=$_GET[type]?>').hide();
     		$('#area_image_album_load_driver_topoint').css('width','0%');

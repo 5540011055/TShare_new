@@ -1,6 +1,5 @@
 
-<div class="div-all-checkin">
-<table width="100%" border="0" cellspacing="2" cellpadding="0" class="" id="box_driver_topoint">
+<table width="100%" border="0" cellspacing="2" cellpadding="0" class="div-all-checkin" id="box_driver_topoint">
    <tbody>
       <tr>
          <td width="60" rowspan="2">
@@ -24,7 +23,7 @@
    </tbody>
    
 </table>
-</div>
+
 <script>
 	$.ajax({
 			url: '../data/fileupload/store/driver_topoint_'+id+'.jpg',

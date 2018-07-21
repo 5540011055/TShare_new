@@ -405,7 +405,7 @@
    }
 </style>
 <input id="check_open_worktbooking" value="0" type="hidden"/>
-<div style="background-color:<?=$main_color;?>; height:120px; width:100%;margin-left:0px; margin-top:0px;" >
+<div style="background-color:<?=$main_color;?>; height:120px; width:100%;margin-left:0px; margin-top:40px;display: none;" >
    <table width="100%" border="0" cellspacing="2" cellpadding="2" style="margin-left:0px;position: absolute; margin-top: 10px;">
       <tbody>
          <tr style="display: none;">
@@ -577,7 +577,7 @@
       </tr>
       <tr style="display: nones;">
          <td colspan="2" width="50%" align="center" class="">
-            <a href="https://www.welovetaxi.com/app/demo_new2/">
+            <a href="http://192.168.0.118/app/demo_new2/signin.php">
             <button type="button" class="btn btn-default paddling-max" style="width:100%">
                <center>
                   <div  class="circle-menu" style="background: #CDDC39;"><i class="fa fa-map" ></i></div>

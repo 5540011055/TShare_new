@@ -16,7 +16,7 @@ var defaultParams = {
   showCancelButton: false,
   closeOnConfirm: true,
   closeOnCancel: true,
-  confirmButtonText: 'ปิด',
+  confirmButtonText: 'OK',
   confirmButtonClass: 'btn-primary',
   cancelButtonText: 'Cancel',
   cancelButtonClass: 'btn-default',

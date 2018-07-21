@@ -276,13 +276,10 @@
    				console.log(data);
    				swal ( "<?=t_save_succeed;?>" ,  "" ,  "success" );
    				$('.button-close-popup-mod-3').click();
-   				/*$.post('send_messages/send_pay_driver.php?type=send_driver&order_id='+response.last_id+'&vc='+response.invoice+'&m='+response.airout_m, {
-	               driver: "<?=$user_id?>",
-	               nickname: "<?=$arr[driver][nickname]?>",
-	               car_plate: place_num
-	            }, function (data) {
-	               console.log(data);
-	            });*/
+   				/*
+   				$('#html_work_action').html(data);
+   			  	swal ( "<?=t_save_succeed;?>" ,  "" ,  "success" );
+   			  	filterMenu("manage");*/
    			});
    	});
    }

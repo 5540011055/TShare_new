@@ -152,20 +152,23 @@
 </style>
 <div style="/*padding: 5px 5px;*/ margin-top: 25px;">
    <div style="padding: 15px 5px;">
+   <?php 
+   	
+   ?>
       <form method="post" id="form_save_pay">
          <input type="hidden" name="order_id" value="<?=$arr[book][id];?>" />
          <input type="hidden" name="invoice" value="<?=$arr[book][invoice];?>" />
          <input type="hidden" name="plan" value="<?=$arr[book][plan_id];?>" />
          <input type="hidden" name="cn" value="<?=$arr[price_person_cn][id];?>" />
          <input type="hidden" name="oth" value="<?=$arr[price_person_oth][id];?>" />
-         <table class="onlyThisTable" width="100%" border="0" cellspacing="2" cellpadding="2">
+         <table width="100%" border="0" cellspacing="2" cellpadding="2">
             <tr <?=$show_park_tr;?> >
                <td colspan="2">
                <label class="container-cb" >ค่าจอด
 				  <input type="checkbox" value="0" name="check_park" id="check_park" onclick="selectPay('park');">
 				  <span class="checkmark"></span>
 				</label>
-                  <table class="onlyThisTable" width="100%" style="padding: 5px;display: none;" id="check_park_tb">
+                  <table width="100%" style="padding: 5px;display: none;" id="check_park_tb">
                      
                      <tr>
                         <td valign="middle"><span class="font-24">จำนวนเงิน</span></td>
@@ -186,10 +189,10 @@
 				  <input type="checkbox"  value="0" name="check_person" id="check_person" onclick="selectPay('person');" >
 				  <span class="checkmark"></span>
 				</label>
-                  <table class="onlyThisTable" width="100%" style="padding: 5px;display: none;" id="check_person_tb" cellspacing="2" cellpadding="2">
+                  <table width="100%" style="padding: 5px;display: none;" id="check_person_tb" cellspacing="2" cellpadding="2">
                      <tr>
                      	<td colspan="3">
-                     		<table class="onlyThisTable" width="100%" cellpadding="5">
+                     		<table width="100%" cellpadding="5">
                      			<tr>
                                  <td width="100">
                                     <img src="images/flag/China.png" width="25" height="" alt="" style="margin-top:-5px;margin-left: 0px;">
@@ -269,7 +272,7 @@
                      </tr>
 					 <tr>
                         <td colspan="3">
-                        	<table class="onlyThisTable" width="100%">
+                        	<table width="100%">
                         		<tr>
 			                        <td valign="middle"><span class="font-24">จำนวนเงิน</span></td>
 			                        <td align="right"  valign="middle" >
@@ -292,7 +295,7 @@
 				  <input type="checkbox"  value="0" name="check_com" id="check_com" onclick="selectPay('com');" >
 				  <span class="checkmark"></span>
 				</label>
-				<table class="onlyThisTable" width="100%" id="check_com_tb" style="display: none;padding: 5px;">
+				<table width="100%" id="check_com_tb" style="display: none;padding: 5px;">
                      <tbody>
 	                     <tr>
 	                        <td valign="middle"><span class="font-24">เปอร์เซ็น</span></td>
@@ -310,7 +313,7 @@
             </tr>
             <tr>
                <td colspan="2">
-                  <table class="onlyThisTable" width="100%" style="padding: 5px;">
+                  <table width="100%" style="padding: 5px;">
                      <tr>
                         <td>
                            <span class="font-24">รวม</span>
@@ -330,7 +333,7 @@
       </form>
       
       <div style="padding: 5px 20px;<?=$show_el;?>" id="box_status_dv">
-         <table class="onlyThisTable" width="100%" style="padding: 10px;box-shadow: 1px 1px 3px #9E9E9E;border: 1px solid #ddd;">
+         <table width="100%" style="padding: 10px;box-shadow: 1px 1px 3px #9E9E9E;border: 1px solid #ddd;">
          	<tr>
          		<td>
          			<span class="font-24">สถานะคนขับ</span>
@@ -341,7 +344,7 @@
          </table>
       </div>
       
-      <table class="onlyThisTable" width="100%" border="0" cellspacing="2" cellpadding="2" style="padding: 0px 15px;">
+      <table width="100%" border="0" cellspacing="2" cellpadding="2" style="padding: 0px 15px;">
          <tbody>
             <tr id="show_person_his_<?=$arr[project][id]?>">
                <td width="50%">
@@ -354,7 +357,7 @@
                </td>
                <td width="50%">
                   <button type="button" onclick="<?=$alert_history;?>"  id="btn_his"  type="button" class="btn btn-default"  style="width:100%;text-align:left;padding:10px; border-radius: 3px; border:1px solid <?=$color_status;?>;background-color:#FFF; ">
-                     <center><span class="font-22"><i class="fa fa-history" style="width: 24px;font-size: 14px; color:<?=$color_status;?>"  ></i><?=t_history;?></span></center>
+                     <center><span class="font-22"><i class="fa fa-history" style="width: 24px; color:<?=$color_status;?>"  ></i><?=t_history;?></span></center>
                   </button>
                </td>
             </tr>
@@ -410,29 +413,21 @@
    		text: "<?=t_want_confirm_payment;?>",
    		type: "warning",
    		showCancelButton: true,
-   		 confirmButtonClass: "btn-danger waves-effect waves-light",
-		  cancelButtonClass: "btn-cus waves-effect waves-light",
    		confirmButtonText: '<?=t_yes;?>',
    		cancelButtonText: "<?=t_no;?>",
    		closeOnConfirm: false,
    		closeOnCancel: true
    	},
    	function(){
-//   		var url_save = "empty_style.php?name=booking/shop_history&file=php_shop&action=approve_pay_driver_admin";
-   		var url_save = "mod/booking/shop_history/php_shop.php?action=approve_pay_driver_admin";
-   	 $.post(url_save ,$('#form_save_pay').serialize(),function( data ) 			{
+   	 $.post( "empty_style.php?name=booking/shop_history&file=php_shop&action=approve_pay_driver_admin",$('#form_save_pay').serialize(),function( data ) 			{
    				console.log(data);
    				swal ( "<?=t_save_succeed;?>" ,  "" ,  "success" );
    				$('.button-close-popup-mod-3').click();
-   				/*var message = "";
-				socket.emit('sendchat', message);*/
-   				sendSocket(data.his.order_id);
+   				var message = "";
+				socket.emit('sendchat', message);
    				
    				openViewPrice();
-   				var send_noti = "send_messages/send_pay_driver.php?type=send_driver&vc="+invoice+'&driver='+driver+'&order_id='+data.his.order_id;
-   				console.log(send_noti);
-//   				return;
-   				 $.post(send_noti ,function( re ){
+   				 $.post( "send_messages/send_pay_driver.php?type=send_driver&iv="+invoice+'&driver='+driver,function( re ){
    				 	console.log(re);
    				 });
    				 
