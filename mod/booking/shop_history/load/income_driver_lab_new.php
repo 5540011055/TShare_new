@@ -581,7 +581,7 @@ $(document).ready(function(){
 		
 		if(obj.check_park = 1 && obj.check_com == 1){
 			console.log('pp');
-			$('#pc_radio').click();
+			// $('#pc_radio').click();
 		}
 		if(obj.check_com>0){
 			$('#status_transfer_commission').fadeIn(1000)

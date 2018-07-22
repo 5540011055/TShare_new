@@ -185,21 +185,21 @@
       			<td><label class="container-cb" >ค่าคอม</label></td>
       			<td></td>
       		</tr>
-      		<tr>
+      		<!-- <tr>
 		      			 <td valign="middle"><span class="font-24">เปอร์เซ็น</span></td>
 			              <td align="right" valign="middle">
 			                <input type="hidden" value="6" id="commission" name="commission">
 			                <span class="font-24" id="txt_commission">6</span>&nbsp;%
 			            </td>
-		      		</tr>
-		      		<tr>
+		      		</tr> -->
+		      	<!-- 	<tr>
 		      			 <td valign="middle"><span class="font-24">จำนวน</span></td>
 			              <td align="right" valign="middle">
 			               <div class="font-22">
 			               <?=$txt_pay_com;?>
 			               </div>
 			            </td>
-		      		</tr>
+		      		</tr> -->
       	</table>
 
 		<table width="100%" cellspacing="2" cellpadding="2" style="margin-top: 10px;">
