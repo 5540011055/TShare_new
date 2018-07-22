@@ -322,7 +322,9 @@ function thai_date($time){
 </style>
 
 <div id="main_component" >
-
+   <link rel="stylesheet" type="text/css" href="calendar/css/smoothness/main.css">
+   <script src="js/jquery-main.js"></script> 
+   <script   src="calendar/js/th.js"></script>
    <link rel="stylesheet" type="text/css" href="pickerdate/classic.css?v=<?=time();?>" />
    <link rel="stylesheet" type="text/css" href="pickerdate/classic.date.css?v=<?=time();?>" />
    <script src="pickerdate/picker.js?v=<?=time();?>" type="text/javascript"></script>
@@ -386,7 +388,7 @@ function thai_date($time){
        }, 500);
    </script>
    <div id="load_booking_data"  style="padding:0px; margin-top:0px;display: nones;" align="center">
-      
+      <div style=" margin: 50px;"><img src="images/loader.gif" /></div>
    </div>
 
    <table>
@@ -397,7 +399,6 @@ function thai_date($time){
 </div>
 <input type="hidden" value="<?=date();?>" id="current_datetime" />
 <script>
-	$('#load_booking_data').append(load_main_mod);
    var dataHistoryA;
    var txt_pay_cash = '';
    var txt_pay_trans = '';
@@ -408,9 +409,9 @@ function thai_date($time){
    	txt_pay_cash = 'งานนี้เป็นงานที่ลูกค้าจ่ายเงินสด จำเป็นต้องหักเงินจากบัญชีในระบบ จำนวน '+addCommas(cost)+' บาท';
    	txt_pay_trans = '';
    	if(dv_cost<cost){
-   		$('#material_alert').modal('open');
-   		$('#alertLabel').text('ข้อความ !');
-   		$('#load_modal_body_alert').html('<h4>ไม่สามารถรับงานนี้ได้</h4><div class="font-22" style="padding:5px;">ยอดเงินคงเหลือในระบบของคุณไม่สามารถรับงานนี้ได้ กรุณาเติมเงินเข้าระบบหรือติดต่อเจ้าหน้าที่ ขอบคุณค่ะ</div>');
+   		$('#material_dialog').show();
+   		$('#dialoglLabel').text('ข้อความ');
+   		$('#load_modal_body').html('<h4>ไม่สามารถรับงานนี้ได้</h4><div class="font-22" style="padding:5px;">ยอดเงินคงเหลือในระบบของคุณไม่สามารถรับงานนี้ได้ กรุณาเติมเงินเข้าระบบหรือติดต่อเจ้าหน้าที่ ขอบคุณค่ะ</div>');
    //				swal('ไม่สามารถรับงานนี้ได้','ยอดเงินคงเหลือในระบบของคุณไม่สามารถรับงานนี้ได้ กรุณาเติมเงินหรือติดต่อเจ้าหน้าที่ ขอบคุณค่ะ','error');
    		return;
    	}
@@ -459,6 +460,7 @@ function thai_date($time){
    	return;
    }
    	$.each(res_socket,function(index,res){
+//   		console.log(res_socket);
    		var d_db = Unix_timestamp(res.post_date);
    		var d_cr = js_yyyy_mm_dd_hh_mm_ss();
    //	 		console.log(d_db+" || "+d_cr);

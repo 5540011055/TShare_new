@@ -15,7 +15,7 @@
           <td colspan="2">
             <div class="form-group" style="margin-bottom:5px;">
       <div class="input-group date" style="padding:0px;">
-         <input type="text" class="form-control pull-right" value="<?=date('Y-m-d');?>"  name="date_report" id="date_report_logs"  readonly="true" style="background-color:#FFFFFF; height:40px; font-size:24px;z-index: 0;width: 85%;"  >               
+         <input type="text" class="form-control pull-right" value="<?=date('Y-m-d');?>"  name="date_report" id="date_report_logs"  readonly="true" style="background-color:#FFFFFF; height:40px; font-size:24px;z-index: 0;"  >               
          <div class="input-group-addon"  id="btn_calendar_logs" style="cursor:pointer ">
             <i class="fa fa-calendar" style="font-size:26px; " id="icon_calendar"></i> 
          </div>

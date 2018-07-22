@@ -2,8 +2,8 @@
  
 <div id="main_load_mod_popup_1" style="display: none;">
 
-<div class="back-full-popup"> 
-    <table width="100%"  border="0" cellspacing="0" cellpadding="0" class="tb-pd-2">
+<div class="back-full-popup" style="z-index: 99999;"> 
+    <table width="100%"  border="0" cellspacing="0" cellpadding="0">
   <tr>
     <td width="40"   ><div class="button-close-popup-mod-1" ><?=$popup_icon_left_arow;?></div></td>
   <td   ><span class="font-28"><div  id="text_mod_topic_action_1" class="text-topic-action-mod-1" ></div></span></td>

@@ -193,7 +193,6 @@
                            });
                            })
                         </script>
-						
                      </td>
                      <td width="50%">
                         <div class="topicname"><span class="font-24"><?=t_car_brand;?></span></div>
@@ -546,7 +545,6 @@
          $('#reset_form_addcar').click(function(){
           $(this).closest('form').find("input[type=text], textarea").val("");
          });
-
          $("#submit_step_3").click(function(){ 
          if(document.getElementById('car_brand').value=="") {
 //         alert('กรุณาเลือกยี่ห้อรถ'); 

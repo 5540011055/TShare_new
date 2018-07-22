@@ -4,9 +4,6 @@
    $province_name = $db->fetch($province_name);
     ?> 
 <style>
-	.tb_pad td{
-		 	padding: 7px 2px;
-	}
    .shop-main-icon {
    border-radius: 80px;
    background-color: <?=$main_color_sorf?>;
@@ -29,7 +26,7 @@
    */
 </style>
 <div style="margin-top:45px;">
-   <div align="center" class="font-28 box-show-pv" style="display: none;"><strong><span><?=$province_name[$province];?></span></strong></div>
+   <div align="center" class="font-28 box-show-pv"><strong><span><?=$province_name[$province];?></span></strong></div>
    <?
       $db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
       $res[project] = $db->select_query("SELECT topic_th,logo_code,id FROM shopping_product_main where id='".$_GET[id]."'  ORDER BY  id  ASC  ");
@@ -52,7 +49,7 @@
       opacity:0.4;   pointer-events: none;   
       <? } ?>
       ">
-      <table width="100%" border="0" cellspacing="2" cellpadding="2" class="tb_pad">
+      <table width="100%" border="0" cellspacing="2" cellpadding="2">
          <tbody>
             <tr  style="display:none">
                <td width="80" valign="top">

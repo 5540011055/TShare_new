@@ -3,44 +3,60 @@
 //error_reporting(E_ALL);
 
 //error_reporting(E_STRICT);
-
-
+ 
 require_once('phpmail/class.phpmailer.php');
 
-$mail             = new PHPMailer();
+$mail   = new PHPMailer();
  
 //////////////// ส่งเมล์
  // $_POST[name]="โชคดี";
  
-	
  
 $body = "<style type=text/css>
 body,td,th {
-	font-size: 14px;
+	font-size: 18px;
 }
 </style>
-
  
-
+ 
+ 
  
 <table width=100% border=0 cellspacing=5 cellpadding=5>
   <tbody>
     <tr>
-      <td width=80><strong>ชื่อ</strong></td>
-      <td>$_POST[name]</td>
+      <td width=160><strong>หมายเลขจอง</strong></td>
+      <td>S$member_in</td>
     </tr>
     <tr>
-      <td><strong>โทรศัพท์</strong></td>
-      <td><a href=tel:$_POST[phone]>$_POST[phone]</a></td>
+      <td><strong>วันที่</strong></td>
+      <td>$_POST[transfer_date_new]</td>
     </tr>
     <tr>
-      <td><strong>ชื่อเข้าระบบ</strong></td>
-      <td>$provincecode$member_in</td>
+      <td><strong>เวลาถึง</strong></td>
+      <td>$_POST[airout_h]:$_POST[airout_m]</td>
     </tr>
+	
+	
     <tr>
-      <td><strong>รหัสผ่าน</strong></td>
-      <td>$password</td>
+      <td><strong>จำนวนแขก</strong></td>
+      <td>ผู้ใหญ่ $_POST[adult] เด็ก $_POST[child]</td>
     </tr>
+	
+
+	
+     <tr>
+      <td><strong>ชื่อเจ้าของรถ</strong></td>
+      <td>$_POST[namedriver]</td>
+    </tr>
+	
+	     <tr>
+      <td><strong>ข้อมูลรถ</strong></td>
+      <td>รถ $_POST[car_type] สี$_POST[car_color]  ทะเบียน $_POST[car_plate]</td>
+    </tr>
+	
+	
+ 
+	
   </tbody>
 </table>";
 
@@ -77,39 +93,31 @@ $mail->SetFrom("system@welovetaxi.com", 'T Share : ทีแชร์');
 $mail->AddReplyTo("system@welovetaxi.com", 'T Share : ทีแชร์');
 
 
-$mail->Subject    = "คุณ $_POST[name] สมัครเข้ามาใหม่ กรุณาตรวจสอบ";
+$mail->Subject    = "มีงานใหม่เข้ามา กรุณาตรวจสอบ";
  
-$mail->AltBody    = "คุณ $_POST[name] สมัครเข้ามาใหม่ กรุณาตรวจสอบ"; // optional, comment out and test
+$mail->AltBody    = "มีงานใหม่เข้ามา กรุณาตรวจสอบ"; // optional, comment out and test
 
 //copy ("".$emailurl."/empty_style.php?name=admin/voucheremail/send&file=file_send_vc&no=".$_POST[vcno]."&order=".$_POST[order]."&code=".$_POST[code]."&invoice=".$_POST[invoice]."&type=".$_POST[type]."&airport=".$_POST[airport]."&detail=".$_POST[detail]."" ,"data/html/vc/".$_POST[refno]."_new.html" );
 
 $mail->MsgHTML($body);
  
-//$mail->MsgHTML(file_get_contents("data/html/vc/".$_POST[refno]."_new.html"));
+// $mail->MsgHTML(file_get_contents("data/html/vc/".$_POST[refno]."_new.html"));
 
 
 
-
-
-
-$address = "chokdee@welovetaxi.com";
-
-$address2 = "chokdee.welovetaxi@gmail.com";
  
- $address3 = "tudtoojung@gmail.com";
+
+ // $address2 = "chokdee.welovetaxi@gmail.com";
+
+  //$address2 = "tudtoojung@gmail.com";
+ 
+///$address = "chokdee@welovetaxi.com";
+
+$address = "tudtoojung@gmail.com";
+
 
 $mail->AddAddress($address, "T Share : ทีแชร์");
-$mail->AddAddress($address2, "T Share : ทีแชร์");
-$mail->AddAddress($address3, "T Share : ทีแชร์");
-
-
-
-
-$filetoattac="../data/pic/driver/small/".$arr[web_driver_edit][username].jpg."";
- 
-
-$mail->AddAttachment( $filetoattach , 'driver.jpg' );
-
+ // $mail->AddAddress($address2, "welovetaxi.com");
  
               
 if(!$mail->Send()) {
@@ -123,7 +131,6 @@ echo " <center><center>" ;
 
 // echo "<meta http-equiv=refresh content=2;URL=.?name=admin&amp;file=booking&amp;op=bookagent_edit&amp;view=view&amp;id=".$_POST[order].">";
  
-
 }
 
  
@@ -134,10 +141,7 @@ echo " <center><center>" ;
 
 
 
-
-
-
-
+ 
 
 
 

@@ -29,11 +29,7 @@
         <table>
           <tr>
             <td width="120" class="font_16" style="height:30px;font-size: 18px;  padding-left:5px;"><? echo t_amount?></td>
-            <td width=""   class="font_16" style=" font-size: 14px;"> <input class="form-control" placeholder="3xxx" type="text" name="amount" id="amount_w"  style="    width: 80%;
-    border-radius: 25px;
-    padding: 0 15px;
-    margin-top: 8px;
-    border: 1px solid #9e9e9e;">
+            <td width=""   class="font_16" style=" color:#FF0000;font-size: 14px;"> <input class="form-control" placeholder="3xxx" type="text" name="amount" id="amount_w"  style="border-radius: 25px;padding: 0 15px;margin-top: 8px;">
             </td>
            
             
@@ -80,17 +76,18 @@
           <ul style="    padding-left: 25px;" class="recheck">
             <li>  ทุกการเบิกเงินจะดำเนินการภายใน 24 ชม</li>
             <li> ยอดเงินเข้าบัญชีไม่เกิน 6 โมงเย็น</li>
-            <li> การทำรายการถอนเงินในวันหยุด เงินจะเข้าบัญชี ในวันที่ธนาคารเปิดทำการ</li>
+            <li> การทำรายการถอนเงินในวันหยุด เงินจะเข้าบัญชี ในวันที่ธนานนาคารเปิดทำการ</li>
           </ul>
   </td>
         </tr>
         <tr>
-          <td colspan="2" width="100%" onclick="sendwithdraw()" style="text-align: center;
+          <td colspan="2" width="100%" onclick="sendwithdraw()" style="    text-align: center;
     background: #3b5998;
     font-size: 18px;
     border-radius: 25px;
     color: #fff;
-    padding: 10px 30px;
+    padding: 5px 30px;
+    border: 2px solid #3b5998;
     margin-bottom: 8px;"><div><? echo t_send ?></div></td>
    </div>
  </td>

@@ -40,7 +40,7 @@ if($arr[web_user][iddriving]==""){
 }
 ?>
 <form method="post" action="" id="edit_form" name="edit_form"  enctype="multipart/form-data" >
-   <div class="box box-default" style="margin-top:50px;">
+   <div class="box box-default" style="margin-top:30px;">
       <div class="box-body" >
          <div class="row">
             <div class="col-md-12">
@@ -56,8 +56,8 @@ if($arr[web_user][iddriving]==""){
                      <tr>
                         <td colspan="2" style="padding-right:5px; padding-top:10px; ">
                            <div class="input-group date" style="position:unset;">
-                              <input id="idcard_finish"   class="datepicker"  name="idcard_finish" type="text" value="<?=$arr[web_user][idcard_finish];?>" style="font-size: 20px;  border: 1px solid #eeeeee;width:80%;margin-top: -7px;" /> 
-                              <div class="input-group-addon pull-left"  id="btn_idcard_finish" style="cursor:pointer ; width:40px; margin-right:5px;">
+                              <input id="idcard_finish"   class="datepicker"  name="idcard_finish" type="text" value="<?=$arr[web_user][idcard_finish];?>" style="padding: 8px; height: 35px;  font-size: 24px;  border: 1px solid #eeeeee;width:100%;" /> 
+                              <div class="input-group-addon"  id="btn_idcard_finish" style="cursor:pointer ; width:40px; margin-right:5px;">
                                  <i class="fa fa-calendar" style="font-size:24px; height:20px;"></i> 
                               </div>
                            </div>
@@ -82,8 +82,8 @@ if($arr[web_user][iddriving]==""){
                         <td colspan="2" style="padding-right:5px; padding-top:10px; ">
                            <div class="input-group date" style="position:unset">
                               <!--  <input type="text" class="form-control pull-right" value="<?=$arr[web_user][iddriving_finish];?>"  name="iddriving_finish" id="iddriving_finish"  readonly="true" style="background-color:#FFFFFF; height:35px; font-size:24px; ">             --> 
-                              <input id="iddriving_finish"   class="datepicker"  name="iddriving_finish" type="text" value="<?=$arr[web_user][iddriving_finish];?>" style=" font-size: 20px;   border: 1px solid #eeeeee;width:80%;margin-top: -7px;" />  
-                              <div class="input-group-addon pull-left"  id="btn_iddriving_finish" style="cursor:pointer ; width:40px; margin-right:5px;">
+                              <input id="iddriving_finish"   class="datepicker"  name="iddriving_finish" type="text" value="<?=$arr[web_user][iddriving_finish];?>" style="padding: 8px; height: 35px;  font-size: 24px;   border: 1px solid #eeeeee;width:100%;" />  
+                              <div class="input-group-addon"  id="btn_iddriving_finish" style="cursor:pointer ; width:40px; margin-right:5px;">
                                  <i class="fa fa-calendar" style="font-size:24px; height:20px;"></i> 
                               </div>
                            </div>
@@ -105,7 +105,7 @@ if($arr[web_user][iddriving]==""){
             <table width="100%"  border="0" cellspacing="2" cellpadding="2" >
                <tr> 
                   <td width="100%">
-                  <button id="submit_user_network" type="button" class="btn btn-block btn-primary" style="width:100%;padding: 8px;background-color:#3b5998;margin: 15px 0px;font-size: 18px;"><?=t_save_data;?></button>
+                  <button id="submit_user_network" type="button" class="btn btn-block btn-primary" style="width:100%;padding: 8px;background-color:#3b5998;margin: 15px 0px;"><?=t_save_data;?></button>
                   </td>
                </tr>
             </table>

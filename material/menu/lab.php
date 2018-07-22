@@ -110,9 +110,6 @@
         $('#load_mod_popup').html(load_main_mod);
         $('#load_mod_popup').load(url_load);
 	}
-  function openNotifyline(){
-    location.href="https://www.welovetaxi.com/app/demo_new2/index.php?regis=linenoti&scope=notify&state=one"
-  }
 	/*function logOut(){
 		swal({
 		  title: "<?=t_sign_out;?>",

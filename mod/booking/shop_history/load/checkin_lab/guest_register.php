@@ -1,13 +1,13 @@
 
-<div class="div-all-checkin">
-<table width="100%" border="0" cellspacing="2" cellpadding="0" class="" id="box_guest_register">
+
+<table width="100%" border="0" cellspacing="2" cellpadding="0" class="div-all-checkin " id="box_guest_register">
    <tbody>
       <tr>
          <td width="60" rowspan="2">
             <div class="step-booking"  id="number_guest_register">3</div>
             <div  style="position:absolute; margin-top:-40px; margin-left: -5px;"><img src="images/no.png"  align="absmiddle" id="iconchk_guest_register"    /></div>
          </td>
-         <td colspan="2"><button  id="btn_guest_register"  type="button" class="btns  btn-info "  style="width:100%;text-align:left;padding:5px; background-color:<?=$main_color;?>;  border-radius: 20px; border:none;color: #fff; "><span class="font-26 text-cap"><i class="icon-new-uniF116-6" style="width:10px;"  ></i><?=t_guest_registration;?></span></button></td>
+         <td colspan="2"><button  id="btn_guest_register"  type="button" class="btns  btn-info "  style="width:100%;text-align:left;padding:5px; background-color:<?=$main_color;?>;  border-radius: 20px; border:none "><span class="font-26 text-cap"><i class="icon-new-uniF116-6" style="width:10px;"  ></i><?=t_guest_registration;?></span></button></td>
       </tr>
       <tr>
          <td style="height:30px;">
@@ -24,7 +24,6 @@
       </tr>
    </tbody>
 </table>
-</div>
 
 <!--<?php 
    if(file_exists("../data/fileupload/store/guest_register_".$arr[book][id].".jpg")==0){ ?>
@@ -37,7 +36,7 @@
    ?>-->
 <script>
 
-$.ajax({
+/*$.ajax({
 			url: '../data/fileupload/store/guest_register_<?=$arr[book][id];?>.jpg',
 			type:'HEAD',
 			error: function()
@@ -55,9 +54,8 @@ $.ajax({
 			   $('#photo_guest_register_no').hide();
 			   $('#photo_guest_register_yes').show();
 			}
-		});
+		});*/
    $("#btn_guest_register").click(function(){ 
-   	$('#body_dialog_custom_load').html(load_sub_mod);
      if($('#guest_register_check_click').val()==0){
    /*	$( "#main_load_mod_popup_3" ).toggle();
     var url_load= "load_page_mod_3.php?name=booking/load/form&file=checkin_popup&id=<?=$arr[book][id]?>&type=guest_register";
@@ -65,7 +63,7 @@ $.ajax({
     $('#load_mod_popup_3').load(url_load); */
     $( "#dialog_custom" ).show();
    	var url_load= "empty_style.php?name=booking/shop_history/load&file=checkin_popup&id=<?=$arr[book][id]?>&type=guest_register";
-    	
+    	$('#body_dialog_custom_load').html("<br/><br/><br/><br/>");
   		$('#body_dialog_custom_load').load(url_load); 
     
    }else{

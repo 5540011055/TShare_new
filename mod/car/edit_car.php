@@ -349,7 +349,7 @@
                         <td width="50%">
                            <?php 
                               $db->connectdb(DB_NAME,DB_USERNAME,DB_PASSWORD);
-                              $res[pro] = $db->select_query("SELECT area FROM  web_province where name_th like '%".$arr[web_car][province]."%' ");
+                               $res[pro] = $db->select_query("SELECT area FROM  web_province where name_th like '%".$arr[web_car][province]."%' ");
                               $arr[pro] = $db->fetch($res[pro]);
                               ?>   
                            <div class="topicname"><span class="font-24"><?=t_region;?></span></div>

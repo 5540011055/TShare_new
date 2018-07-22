@@ -48,10 +48,7 @@
    		m_txt = ' '+mnts_bc+' นาที';
    	}
    	final_txt = day_txt + h_txy + m_txt
-    old_txt = days + ' ' + hrs_d + ':' + mnts + ':' + secs;
-    if(days<=0 && hrs_d_bc<=0 && mnts_bc<=0){
-		return "ไม่กี่วินาทีที่ผ่านมา";
-	}
+          old_txt = days + ' ' + hrs_d + ':' + mnts + ':' + secs;
           return  final_txt+"ที่ผ่านมา";
       }
 	
@@ -66,7 +63,7 @@
     z-index: 1;
     right: 0px;
     background-color: #fff;
-    margin-top: -55px;
+    margin-top: -60px;
 }
 .edit-post-shop {
        margin-right: 10px;
@@ -86,22 +83,13 @@
 }
 </style>
 <?php 
-	if(count($_POST[data])<=0){ 
-		if($_GET[type]=="his"){
-			echo '<div class="font-26" style="color: #ff0000;text-align: center;padding: 0px; margin-top: -10px;" id="no_work_div"><strong>ไม่มีงาน</strong></div>';
-		}else{
-			echo '<div class="font-26" style="color: #ff0000;text-align: center;padding: 15px;" id="no_work_div"><strong>ไม่มีงาน</strong></div>';
-		}
-		//exit();
-	}
-
 		foreach ($_POST[data] as $key=>$val){
 		
 		$db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
 		$res[shop] = $db->select_query("SELECT $place_shopping FROM shopping_product  WHERE id='".$val[program]."' ");
 		$arr[shop] = $db->fetch($res[shop]);
 		if($val[status]=='CANCEL'){
-			 /*if($val[cancel_type]=='1'){
+			 if($val[cancel_type]=='1'){
 				$status_txt = '<strong><font color="#ff0000">'.t_customer_no_register.'</font></strong>';
 			}
 			else if($val[cancel_type]=='2'){
@@ -109,8 +97,7 @@
 			}
 			else if($val[cancel_type]=='3'){
 				$status_txt = '<strong><font color="#ff0000">'.t_wrong_selected_place.'</font></strong>';
-			}*/
-			$status_txt = '<strong><font color="#ff0000">ยกเลิก</font></strong>';
+			}
 		}
 		else if($val[status]=='NEW'){
 			$status_txt = '<strong><font color="#3b5998">'.t_new.'</font></strong>';
@@ -125,13 +112,7 @@
       		<tr>
       			<td width="80%" ><span class="font-24"><?=$arr[shop][$place_shopping];?></span></td>
       			<td width="20%" align="center" rowspan="2">
-      			<div class="font-22" id="status_book_<?=$val[id];?>" style="margin-top: -20px;
-    margin-left: -85px;
-    position: absolute;
-    max-width: 150px;
-    width: 100%;" align="center">
-      			<?=$status_txt;?></div>
-      			</td>
+      			<span class="font-22" id="status_book_<?=$val[id];?>" style=" margin-top: -20px; margin-left: -15px;position: absolute;"><?=$status_txt;?></span></td>
       		</tr>
       		<tr>
       			<td colspan="2">
@@ -143,8 +124,8 @@
 //				echo $minutes_to_add." ++";
 				$time_c = date('H:i',$val[update_date]); //ดึงเวลา อัพเดทเวลา ล่าสุด
 				$time = new DateTime($time_c);
-				$time->add(new DateInterval('PT' . $minutes_to_add . 'M'));
-//				echo $time_c;
+				$time->add(new DateInterval('PT' . 20 . 'M'));
+
 				$stamp = $time->format('H:i');
 				$current_time = date('H:i');
 				
@@ -158,7 +139,7 @@
 				}
 //				echo $data_user_class." +";
 				?>
-				<font color="#ff0000;"  style="position: absolute;right: 15px;" id="time_toplace_<?=$val[id];?>"><?="ถึงโดยประมาณ ".$stamp." น.";?></font>
+				<font color="#ff0000;"  style="position: absolute;right: 25px;" id="time_toplace_<?=$val[id];?>"><?="ถึงโดยประมาณ ".$stamp." น.";?></font>
       			</span>
       			<button class="btn btn-xs edit-post-shop" id="btn_edit_time_<?=$val[id];?>" onclick="editTimeToPlace('<?=$val[id];?>');" style="<?=$display_time_none;?>">แก้ไขเวลา</button>
       			<span class="font-20 time-post-shop" id="txt_date_diff_<?=$val[id];?>">-</span>
@@ -167,13 +148,6 @@
       			
       		</tr>
       	</table>
-      	<a class="btn waves-effect waves-light red lighten-3" align="center" onclick="cancelBookAll('<?=$val[id];?>','<?=$val[invoice];?>');" id="cancel_book_<?=$val[id];?>" style="
-    color: #fff;
-    padding: 5px 20px;
-    border-radius: 25px;
-    margin-top: 10px;">
-		<span class="font-22 text-cap"><?=t_cancel;?></span>
-	</a>
 	</div>
 	</div>
 	

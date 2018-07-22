@@ -83,9 +83,9 @@ require_once("includes/config.in.php");
 require_once("includes/class.mysql.php");
 require_once("includes/function.in.php");
 $_SESSION['lang'] = "th";
-/*include("includes/lang/" . $_SESSION['lang'] . "/menu.php");
+include("includes/lang/" . $_SESSION['lang'] . "/menu.php");
 include("includes/lang/" . $_SESSION['lang'] . "/profile.php");
-include("includes/lang/" . $_SESSION['lang'] . "/web.php");*/
+include("includes/lang/" . $_SESSION['lang'] . "/web.php");
 /*
 $folder_xml="../data/xml";
 //$folder_xml="/home/admin/domains/goldenbeachgroup.com/private_html/app/data_xml";
@@ -99,11 +99,16 @@ $db = New DB();
 <?
 $data_user_class = $_SESSION['data_user_class'];
 //////// lab
-
+if ($data_user_class == 'taxi') {
     $db->connectdb(DB_NAME_APP, DB_USERNAME, DB_PASSWORD);
     $res[web_user] = $db->select_query("SELECT * FROM web_driver WHERE username='" . $_SESSION['data_user_name'] . "'    ");
     $arr[web_user] = $db->fetch($res[web_user]);
-
+}
+else {
+    $db->connectdb(DB_NAME_APP, DB_USERNAME, DB_PASSWORD);
+    $res[web_user] = $db->select_query("SELECT * FROM web_user WHERE username='" . $_SESSION['data_user_name'] . "'    ");
+    $arr[web_user] = $db->fetch($res[web_user]);
+}
 $user_id = $arr[web_user][id];
 //$carnumber    = $arr[web_user][car_num];
 $user_name_th = $arr[web_user][name];
@@ -141,7 +146,11 @@ if ($_SESSION['data_user_password'] <> $arr[web_user][password]) {
   </script>
 <?
 }
-include "css/color/" . $data_user_class . ".php";
-
-
 ?>
+ <?
+include "css/color/" . $data_user_class . ".php";
+?>
+ 
+<?
+//require_once("css/maincss.php");
+?>  

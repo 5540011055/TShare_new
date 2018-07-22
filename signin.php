@@ -20,7 +20,7 @@
 				}else{
 				 	$keep = 'en';
 				}
-			  $keep = "th";
+			
 		      switch ($_COOKIE['lng']){
 		    case "th":
 		        //echo "PAGE th";
@@ -65,7 +65,16 @@
 	  $(document).ready(function(){
 	  		console.log('check_browser : <?=$check_lng_browser;?> : <?=$keep;?>');
 	  		var check_cook = '<?=$_COOKIE["lng"];?>';
-
+	  		/*console.log("cookie_lng : "+check_cook);
+	  		if(check_cook=='th'){
+				setCookie('lng', 'th', 1, 0);
+			}else if(check_cook=='en'){
+				setCookie('lng', 'en', 1, 0);
+			}else if(check_cook=='cn'){
+				setCookie('lng', 'cn', 1, 0);
+			}else{
+				setCookie('lng', 'en', 1, 0);
+			}*/
 		});	
 	  </script>
 	  
@@ -257,25 +266,29 @@
       </style>
    </head>
    <body >
-   	  <!-- <div align="right" style="margin-top: 5px; padding: 3px;"> 
+   	  <div align="right" style="margin-top: 5px; padding: 3px;"> 
    	  		<img src="images/icon_county/usa.ico" class="btn-lng" onclick="setCookie('lng', 'en', 1, 1);" >
    	  		<img src="images/icon_county/thai.ico" class="btn-lng" onclick="setCookie('lng', 'th', 1, 1);">
    	  		<img src="images/icon_county/china.ico" class="btn-lng" onclick="setCookie('lng', 'cn', 1, 1);">
-   	  </div>	 -->
+   	  </div>	
    	
       <table width="100%"  border="0" align="center" cellpadding="2" cellspacing="2" style="max-width:350px; " class="Absolute-Center">
          <tr>
-            <td align="center" >
-               <div class="login-box" style="margin-top: 15px;">
+            <td align="center">
+               <div class="login-box">
                   <div class="login-logo"  style="padding:0px; color:#FFFFCC;" >
                     
                      <img src="images/logo.png?v=6" class="img_logo"    style="padding-bottom:0px;margin-top:0px;"      />   
-                     <div style="margin-top: 10px; z-index:1;">
+                     <div style="margin-top: 1px; z-index:1;">
                         <button   class="btn btn-repair waves-effect btn-other" style="background-color:#F7941D; color:#FFFFFF;text-transform: capitalize;"   id="btn_login_register"><i class="fa  fa-user-plus" style="padding-right: 5px;"  ></i><span >&nbsp;<?=t_register_member;?></span></button>
                         <button   class="btn btn-repair waves-effect btn-other" style="background-color:#5a78b5; color:#FFFFFF;margin-top:10px;text-transform: capitalize;"   id="btn_login_login">
                         <i class="fa fa-sign-in" style="padding-right:10px;" ></i><span >&nbsp;<?=t_log_in;?></span></button>
                         <button   class="btn btn-repair waves-effect btn-other " style="background-color:#666666; color:#FFFFFF;margin-top:10px;text-transform: capitalize;"   id="btn_login_password"><i class="fa  fa-unlock-alt" style="padding-right:10px;padding-left:2px;" ></i><span ">&nbsp;<?=t_forgot_password;?></span></button>
-
+                        <!--<a href="tel://0935248406">0935248406 +++</a>
+                        <br/>
+                        <a href="zello://?add_channel">++++++++++++++++++++++++++++ZELLO</a>
+                        <br/>
+                        <a href="https://goldenbeachgroup.com/app/driver_master/index.php" target="_blank">Visit W3Schools</a>-->
                         <div style="display: none;">
                          <input type='file' id="imgInp"  />
   <img id="blah" src="#" alt="your image" width="100px" />
@@ -349,7 +362,6 @@ $("#imgInp").change(function() {
                   <!-- /.login-logo -->
                   <!-- /.login-box-body -->
                </div>
-               
                <!-- /.login-box -->
                <!-- iCheck -->
                <script>
@@ -366,7 +378,6 @@ $("#imgInp").change(function() {
                </script>
             </td>
          </tr>
-
       </table>
       <? include "js/control.php" ;	?>
 

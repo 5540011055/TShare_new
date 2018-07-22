@@ -1,12 +1,10 @@
  
-<div id="main_load_mod_popup_6" style="display: none;">
-  <div class="back-full-popup">  
+ <div id="main_load_mod_popup_6" style="display: none;">
+  <div class="back-full-popup" style="z-index: 99999;">  
  
-    <table width="100%"  border="0" cellspacing="0" cellpadding="0" class="tb-pd-2">
+    <table width="100%"  border="0" cellspacing="0" cellpadding="0">
   <tr>
-    <td width="40"   >
-    <div class="button-close-popup-mod-6" onclick="$('#main_load_mod_popup_6').fadeOut(500);$('#load_mod_popup_6').html('');" ><?=$popup_icon_left_arow;?></div>
-    </td>
+    <td width="40"   ><div class="button-close-popup-mod-6" ><?=$popup_icon_left_arow;?></div></td>
   <td   ><span class="font-28"><div id="text_mod_topic_action_6" class="text-topic-action-mod-6 text-resize" ></div></span></td>
 <td width="40" align="right"   >
     <div onclick="GohomePage();">
