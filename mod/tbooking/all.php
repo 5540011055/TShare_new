@@ -419,6 +419,7 @@ function thai_date($time){
    	txt_pay_cash = '';
    	txt_pay_trans = '';
    }
+   $('#header_clean').text('งานรถรับ-ส่ง')
     			var url = "empty_style.php?name=tbooking&file=book_detail";
    	var post = res_socket[index];
      	$.post(url,post,function(data){
@@ -442,14 +443,14 @@ function thai_date($time){
      	});
      	 }, 0);
     }
-    function backMain(){
-     	console.log('back');
-     	$('#main_load_mod_popup .back-full-popup').fadeIn(500);
-     	$('#show_main_tool_bottom').fadeIn(500);
-      $('#sub_component').hide();
-      $('#main_component').addClass('w3-animate-left');
-      $('#main_component').show();
-    }
+    // function backMain(){
+    //  	console.log('back');
+    //  	$('#main_load_mod_popup .back-full-popup').fadeIn(500);
+    //  	$('#show_main_tool_bottom').fadeIn(500);
+    //   $('#sub_component').hide();
+    //   $('#main_component').addClass('w3-animate-left');
+    //   $('#main_component').show();
+    // }
     function readDataBooking(){
    	var num = 0;
    //	 	$('#load_booking_data .box_book').remove();
@@ -487,6 +488,7 @@ function thai_date($time){
      var s_pay = res.s_status_pay;
      var cost = res.s_cost;
      var pax = res.pax;
+     var remark = res.remark;
      var car_type;
      if(getCookie("lng")=='en'){
 	 	var car_type = res.car_type.topic_en;
@@ -541,6 +543,9 @@ function thai_date($time){
    			            +'<tr>'
    			               +'<td><span class="font-20 ">จำนวนแขก&nbsp;&nbsp;'+pax+' คน</span></td>'					              
    			            +'</tr>'
+                     +'<tr>'
+                       +'<td><span class="font-20 " style="color:red">Remark&nbsp;&nbsp;'+remark+'</span></td>'                       
+                    +'</tr>'
             			+'</table>'
             		+'</td>'
             	+'</tr>'
