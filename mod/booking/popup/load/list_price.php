@@ -9,6 +9,7 @@
 </style>
 <?
    $_GET[type]=$_GET[plan_type];
+  // echo $_GET[plan_type].'----'.$_GET[shop_id];
    $db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
    $res[open] = $db->select_query("SELECT * FROM plan_product_price_setting WHERE id='".$_GET[plan_setting]."' ");
    $arr[open] = $db->fetch($res[open]);
@@ -16,6 +17,7 @@
    ?>
 <? if(0==0){ ?>
 <script>
+   cheorter = false;
    $('.check_load_park_counter').hide();
    $('.check_load_person_counter').hide();
    $('.check_load_commision_counter').hide();
@@ -48,8 +50,14 @@
     if($show_park==0){	  
    $status_show_park='hide';	  	  
     }
-    if($show_person==1){	  
-   $status_show_person='show';	   	  
+    if($show_person==1 && $_GET[plan_type] != 'all'){	  
+      $status_show_person='show';
+      //echo 'incase';
+    }
+    else if ($_GET[plan_type]) {
+       # code...
+    
+      $status_show_person='hide';
     }
    if($show_person==0){	  
    $status_show_person='hide';	    	  
@@ -62,13 +70,26 @@
     }
     //echo $arr[place][price_plan];
     $tb_w='300';
+    // $all =  $_GET[plan_type];
     ?>
 <script>
+  
+   
    $('#main_td_park').<?=$status_show_park?>();
-   $('#main_td_person').<?=$status_show_person?>();
+   
    $('#main_td_commision').<?=$status_show_commision?>();
-   $('.main_td_park').<?=$status_show_park?>();
-   $('.main_td_person').<?=$status_show_person?>();
+   
+      console.log('<?=$status_show_person?>')
+      if ('<?=$_GET[plan_type];?>' == 'all') {
+          $('.main_td_person').hide()
+      }
+      else {
+         $('.main_td_person').<?=$status_show_person?>()
+      }
+     
+  
+  $('.main_td_park').<?=$status_show_park?>();
+  
    $('.main_td_commision').<?=$status_show_commision?>();
      
 </script>
@@ -241,6 +262,7 @@
    if($arr[extra_commision_all][id]) {
    $price_commision_all=$arr[extra_commision_all][price_main];  
    }  
+   // $price_commision_driver 
    /////
    $all_price_commision_company=$price_commision_company;
    $all_price_commision_driver=$price_commision_driver ;
@@ -327,7 +349,7 @@
                         </tbody>
                      </table>
                   </td>
-                  <td bgcolor="#FFF" class="main_td_person"  align="center">
+                  <td bgcolor="#FFF" class="main_td_person"  align="center" >
                      <? if($park==1){?>
                      <div class="font-22">
                         <center>

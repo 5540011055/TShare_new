@@ -576,7 +576,7 @@ $(document).ready(function(){
 		
 		if(obj.check_park = 1 && obj.check_person == 1){
 			console.log('pp');
-			$('#pp_radio').click();
+			// $('#pp_radio').click();
 		}
 		
 		if(obj.check_park = 1 && obj.check_com == 1){

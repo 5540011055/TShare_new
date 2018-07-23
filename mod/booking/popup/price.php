@@ -138,7 +138,7 @@
                                       while($arr[category] = $db->fetch($res[category])) {
                $res[open] = $db->select_query("SELECT * FROM plan_product_price_setting WHERE product_id='".$arr[shop][id]."' and plan_master=2 ");
                $arr[open] = $db->fetch($res[open]);  ?>
-            <tr onclick="clickPlan('<?=$arr[open][id];?>');">
+            <!-- <tr onclick="clickPlan('<?=$arr[open][id];?>');">
                <td width="15%">
                   <div class="iradio_square-green" aria-checked="false" aria-disabled="false" style="position: relative;" id="price_plan_<?=$arr[open][id];?>">
                      <input type="radio" name="price_plan" class="price_plan_select" value="1"  style="position: absolute; visibility: hidden;" >
@@ -148,7 +148,7 @@
                <td>
                   <span class="font-24 txt-cap"><strong><?=checkTypePay($arr[category][id]);?></strong></span>
                </td>
-            </tr>
+            </tr> -->
             <? }
                $db->closedb ();	} ?>
             <? if($arr[shop][price_plan_3]>0)	{
