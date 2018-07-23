@@ -1,3 +1,19 @@
+<style>
+   .search-box-shop{
+   width: 100%;
+   padding: 15px;
+   font-size: 19px;
+   border: 1px solid #ddd;
+   box-shadow: 1px 1px 2px #ddd;
+   border-radius: 10px;
+   }
+   ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+   color:    #c9c9c9;
+   }
+   	.table_place td{
+		 	padding: 5px 5px;
+	}
+</style>
 <?
    //echo $_GET[type];
     $db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
@@ -20,58 +36,26 @@
    $ArrDayName[Sat] = t_saturday;
     $day_now =  date('D');
     ?>
-<style>
-   .search-box-shop{
-   width: 100%;
-   padding: 15px;
-   font-size: 19px;
-   border: 1px solid #ddd;
-   box-shadow: 1px 1px 2px #ddd;
-   border-radius: 10px;
-   }
-   ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
-   color:    #c9c9c9;
-   }
-</style>
+
 <script>
    console.log('<? echo $place_shopping;?>');
    $(".text-topic-action-mod-2" ).html("<? echo $arr[projecttype][name];?>");
 </script> 
-<div style="padding:5px; margin-top:45px;">
+<div style="padding:10px 15px; margin-top:45px;">
    <table width="100%">
       <tr>
-         <td>
-            <input class="search-box-shop font-22" id="search_shop" value="" onkeyup="searchPlace();" placeholder="<?=t_search_by_name;?>"  style=" border-radius: 20px; width:100%"/>
+         <td align="center">
+            <input class="form_input font-22" id="search_shop" value="" onkeyup="searchPlace();" placeholder="<?=t_search_by_name;?>" style="width: 100%" />
          </td>
       </tr>
    </table>
-   <script>
-      function searchPlace(){
-      	var char_search = $('#search_shop').val().toUpperCase();
-      	console.log(char_search);
-      	$('.element_to_find').find('input').each (function() {
-      		var txt = $(this).val();
-      		var id = this.id;
-      	  	if (txt.toUpperCase().indexOf(char_search) > -1) {
-      	  		$('#row_place_'+id).show();
-      	      } else {
-      	        $('#row_place_'+id).hide();
-      	      }	
-      	}); 
-      }
-   </script>
    <?
       $db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
       $res[project] = $db->select_query("SELECT id,status,pic_logo,pic_book,pic_book_2,pic_book_3,".$place_shopping." as name FROM shopping_product   WHERE sub=".$_GET[type]." and status=1 and province = '".$_GET[province]."'  ");
       while($arr[project] = $db->fetch($res[project])){
       ?>
-   <div style="padding-bottom:10px; padding-top:10px;   <? if( $arr[project][status]==0){?>
-      opacity:0.4;   pointer-events: none;   
-      <? } ?>
-      ">
-      <? if( $province==1){ 
-         $provincename='ภูเก็ต';
-         }  
+   <div style="padding-bottom:10px; padding-top:0px;">
+      <? 
          if($_GET[detail]!=""){
          //	 	 $display_none = '';
          $display_none2 = '';
@@ -86,7 +70,7 @@
          }
          $class_tr = 'class="to_show_'.$arr[project][id].'" '; 
          ?>  
-      <table width="100%" border="0" cellspacing="4" cellpadding="4" style="border-bottom : 2px solid #DADADA;" id="row_place_<?=$arr[project][id];?>" >
+      <table width="100%" border="0" cellspacing="4" cellpadding="4" id="row_place_<?=$arr[project][id];?>" class="table_place" >
          <tbody>
             <tr>
                <td colspan="2"  >
@@ -421,23 +405,20 @@
          <?
             $db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
             $market = $db->num_rows('shopping_contact',"id","product_id=".$arr[project][id]." and type='phone'  and usertype=9 and admintype=1");	  
+            if($market>0){
             $res[sale] = $db->select_query("SELECT phone,name FROM  shopping_contact where product_id=".$arr[project][id]." and type='phone'  and usertype=9 and admintype=1   ORDER BY id  ");
             while($arr[sale] = $db->fetch($res[sale])){  
             ?>
-         <a href="tel:<?=$arr[sale][phone]?>"  id="booking_edit_<?=$arr[project][id]?>"  style="color:#333333"  >                
-         <table id="shop_alert_menu_call_<?=$arr[project][id]?>" >
-         <tr >
-         <td width="150"><span class="font-22"> <?=t_marketing;?> (<?=$arr[sale][name]?>)</span></td>
-         <td width="20" align="right"> <span > <i class="fa fa-phone" style="font-size:18px; color:<?=$main_color?>; width:20px;"></i>  </b></span></td>
-         </tr>
-         </table>  
-         </a>
-         <? } ?>
-         <? if($market==0){ ?>
-         <script>
-            $('#contact_<?=$arr[project][id]?>').hide();
-         </script>
-         <? }?>
+	         <a href="tel:<?=$arr[sale][phone]?>"  id="booking_edit_<?=$arr[project][id]?>"  style="color:#333333"  >                
+	         <table id="shop_alert_menu_call_<?=$arr[project][id]?>" >
+	         <tr >
+	         <td width="150"><span class="font-22"> <?=t_marketing;?> (<?=$arr[sale][name]?>)</span></td>
+	         <td width="20" align="right"> <span > <i class="fa fa-phone" style="font-size:18px; color:<?=$main_color?>; width:20px;"></i>  </b></span></td>
+	         </tr>
+	         </table>  
+	         </a>
+	         <? }        
+			}?>
          </td>
          </tr>
          <tr <?=$display_none;?> <?=$class_tr;?>>
@@ -450,7 +431,7 @@
          <table width="100%" border="0" cellspacing="0" cellpadding="1">
          <tbody>
          <tr>
-         <td width="110" class="font-26" id="time_open_s<? echo $arr[project][id];?>" style="color:#FF000">&nbsp;</td>
+         <td width="110" class="font-26" id="time_open_<? echo $arr[project][id];?>" style="color:#FF000">&nbsp;</td>
          </tr>
          </tbody>
          </table>
@@ -459,15 +440,29 @@
          <tr <?=$display_none;?> <?=$class_tr;?>>
          <td colspan="2" class="tab_alert "  style="font-size:26px">
          <script>
-            var url_check_data_time_<? echo $arr[project][id];?> = "go.php?name=shop/load&file=time_open&id=<? echo $arr[project][id];?>";
-            $('#time_open_<? echo $arr[project][id];?>').load(url_check_data_time_<? echo $arr[project][id];?>);
-            setInterval(function() {
-            var url_check_data_time_<? echo $arr[project][id];?> = "go.php?name=shop/load&file=time_open&id=<? echo $arr[project][id];?>";
-            $('#time_open_<? echo $arr[project][id];?>').load(url_check_data_time_<? echo $arr[project][id];?>);
-            }, 60000); // 60000 milliseconds = one minute
+         
+         	 var url_check_data_time = "go.php?name=shop/load&file=time_open&id=<? echo $arr[project][id];?>";
+         	 $.post(url_check_data_time,function(data){
+//         	 	console.log(data);
+         	 	$('#time_open_<? echo $arr[project][id];?>').html(data);
+         	 });
+
          </script>
          <div id="btn_open_<? echo $arr[project][id];?>">
-         <button id="menu_add_new_booking_text_<? echo $arr[project][id];?>" type="button tab_alert" class="btn  btn-info "  style="width:100%;text-align:center;padding:5px; background-color:<?=$main_color?>;  border-radius: 20px; " ><span class="font-30"><i class="fa  fa-shopping-cart" style="width:20px;"  ></i><b>&nbsp; <?=t_send_to_shopping;?></b></span></button>
+         <!--<button id="menu_add_new_booking_text_<? echo $arr[project][id];?>" type="button tab_alert" class="btn  btn-info "  style="width:100%;text-align:center;padding:5px; background-color:<?=$main_color?>;  border-radius: 20px; " ><span class="font-30"><i class="fa  fa-shopping-cart" style="width:20px;"  ></i><b>&nbsp; <?=t_send_to_shopping;?></b></span></button>-->
+         <button class="btn btn-repair waves-effect" onclick="openShoppingNew('<?=$arr[project][id];?>')" style="text-transform: unset;
+    background-color: #ffffff;
+    color: #3b5998;
+    width: 100%;
+    border: 1px solid #3b5998;">
+	 		<i class="fa  fa-shopping-cart" aria-hidden="true"></i>&nbsp;<span class="font-22"><?=t_send_to_shopping;?></span> 
+	 		<span id="alert_pay_driver" class="badge font-20" style="    position: absolute;
+    font-size: 14px;
+    background-color: #F44336;
+    padding: 4px 7px;
+    z-index: 1;
+    right: 45px;display:none;"><strong>!</strong></span>
+    </button>
          </div>
          <div id="btn_close_<? echo $arr[project][id];?>" style=" display:none">
          <?php
@@ -486,7 +481,7 @@
             $time1 = $arr[shop][start_h].':'.$arr[shop][start_m].':00';
             $time2 = $finish_h.':'.$finish_m.':00';
             ?>      
-         <button id="menu_close_new_booking_text_<? echo $arr[project][id];?>" type="button" class="btn  btn-info "  style="width:100%;text-align:center;padding:5px; background-color:#666666; border:none; display:nones;"><span class="font-30"><b><?=t_open_now;?></b></span><br/>
+         <button id="menu_close_new_booking_text_<? echo $arr[project][id];?>" type="button" class="btn  btn-info "  style="width:100%;text-align:center;padding:5px; background-color:#666666; border:none; display:nones;color: #fff;"><span class="font-30"><b><?=t_open_now;?></b></span><br/>
          เวลา  <? echo $time_of_open; ?></button>
          </div>
          </td>
@@ -498,75 +493,18 @@
          </tbody>
       </table>
    </div>
-   <div id="broModal" class="modal" style="font-size: 0px!important; color: #000000 !important;">
-      <span class="close" style="position: fixed;
-         color: #f4f4f4;
-         right: 15px;
-         font-size: 40px; display: none;
-         " id="closeModal" >&times;</span>
-      <i class="fa fa-times" aria-hidden="true" style="position: fixed;
-         color: #f4f4f4;
-         right: 15px;
-         font-size: 40px;
-         z-index: 9000;
-         margin-top : 10px;
-         " id="close_modal" onclick="closeModal();"></i>
-         <style>
-         	.swiper-container {
-      width: 100%;
-      height: 100%;
-    }
-    .swiper-slide {
-      text-align: center;
-      font-size: 18px;
-      background: #fff;
-
-      /* Center slide text vertically */
-      display: -webkit-box;
-      display: -ms-flexbox;
-      display: -webkit-flex;
-      display: flex;
-      -webkit-box-pack: center;
-      -ms-flex-pack: center;
-      -webkit-justify-content: center;
-      justify-content: center;
-      -webkit-box-align: center;
-      -ms-flex-align: center;
-      -webkit-align-items: center;
-      align-items: center;
-    }
-         </style>
-      <div class="modal-content" id="img01"> 
-      <!--<img src="https://www.welovetaxi.com/app/data/pic/place/1_book.jpg" width="100%" />-->
-      </div>
-   </div>
    <script>
-      var modal = document.getElementById('broModal');
-      var img = document.getElementById('shop_alert_menu_index_load_<?=$arr[project][id]?>');
-      var captionText = document.getElementById("caption");
+
       function openPopUpBrochure(id,pic1,pic2,pic3){
-          modal.style.display = "block";
-//      	$('#img01').load('load/popup/pic_place.php?id='+id+'&pic1='+pic1+'&pic2='+pic2+'&pic3='+pic3);  
-      	$('#img01').load('load/popup/pic_place_swiper.php?id='+id+'&pic1='+pic1+'&pic2='+pic2+'&pic3='+pic3);  
+		 $( "#main_load_mod_popup_6" ).toggle();
+		 var url_pic = 'load/popup/pic_place_swiper.php?id='+id+'&pic1='+pic1+'&pic2='+pic2+'&pic3='+pic3;
+      	  $('#load_mod_popup_6').html(load_main_mod);
+      	 $('#load_mod_popup_6').load(url_pic); 
+      	 $('#text_mod_topic_action_6').text('โบว์ชัว'); 
+      	 
+      }
+   
 
-      	$('.back-full-popup').hide();
-      	$('.bottom_popup').hide();
-      }
-      // Get the <span> element that closes the modal
-      var span = document.getElementsByClassName("close")[0];
-      // When the user clicks on <span> (x), close the modal
-      span.onclick = function() { 
-          modal.style.display = "none";
-      }
-      function closeModal(){
-      //	alert(123);
-      	 $('#broModal').hide();
-      	 $('#closeModal').click();
-      	 $('.back-full-popup').show();
-      	 $('.bottom_popup').show();
-      }
-   </script>
-   <script>
       ///
       $('#shop_alert_menu_price_<?=$arr[project][id]?>').click(function(){  
       $( "#main_load_mod_popup_4" ).toggle();
@@ -581,17 +519,36 @@
       $('#load_mod_popup').html(load_main_mod);
       $('#load_mod_popup').load(url_load); 
       });
-      $('#menu_add_new_booking_text_<? echo $arr[project][id];?>').click(function(){  
+      /*$('#menu_add_new_booking_text_<? echo $arr[project][id];?>').click(function(){  
       $( "#alert_show_shopping_place" ).hide();
       $( "#main_load_mod_popup_3" ).toggle();
       var url_load = "load_page_mod_3.php?name=booking/step&file=booking&driver=<?=$user_id?>&place=<? echo $arr[project][id];?>";
       $('#load_mod_popup_3').html(load_main_mod);
       ///  $( "#main_index_load_page" ).toggle();
       $('#load_mod_popup_3').load(url_load); 
-      });
+      });*/
    </script>
    <? } ?>
    <script>
+	  
+	  
+	  function openShoppingNew(id){
+	      $( "#alert_show_shopping_place" ).hide();
+	      $("#main_load_mod_popup_3" ).toggle();
+//	         var url_load = "load_page_mod_3.php?name=shop/shop_new&file=shop&driver=<?=$user_id?>&type="+id+"&province=<?=$_GET[province];?>";
+			if (user_class == 'lab') {
+		      	 var url_load = "load_page_mod_3.php?name=shop/shop_new&file=booking_lab&driver=<?=$user_id?>&place="+id;
+		      }
+		      else{
+		         var url_load = "load_page_mod_3.php?name=shop/shop_new&file=booking&driver=<?=$user_id?>&place="+id;
+		      }
+	         console.log(url_load);
+	         $.post( url_load, function( data ) {
+	         $('#load_mod_popup_3').html(data);
+	         
+          });
+	  }
+	  
       function showTr(id){
       	var check = $('#check_click_'+id).val();
       	if(check==0){
@@ -623,7 +580,18 @@
    </script>
 </div>
 <script>
-   $(".button-close-popup-mod-0").click(function(){   
-    $( "#alert_show_shopping_place" ).hide();
-   });
-</script>  <?// include ("load/popup/pic_place.php");?>
+
+   function searchPlace(){
+      	var char_search = $('#search_shop').val().toUpperCase();
+      	console.log(char_search);
+      	$('.element_to_find').find('input').each (function() {
+      		var txt = $(this).val();
+      		var id = this.id;
+      	  	if (txt.toUpperCase().indexOf(char_search) > -1) {
+      	  		$('#row_place_'+id).show();
+      	      } else {
+      	        $('#row_place_'+id).hide();
+      	      }	
+      	}); 
+      }
+</script>  

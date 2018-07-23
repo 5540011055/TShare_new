@@ -1,112 +1,8 @@
 <? if($_GET[op]==""){ ?>
-<script src="js/craftpip/demo/libs/jquery.min.js?v=<?=time();?>"></script>
-<script src="js/craftpip/demo/libs/bootstrap.min.js?v=<?=time();?>"></script>
-<script src="js/craftpip/demo/libs/pretty.js?v=<?=time();?>"></script>
-<!-- BOOTSTRAP-FULLSCREEN-SELECT files -->
-<link rel="stylesheet" type="text/css" href="js/craftpip/css/bootstrap-fullscreen-select.css?v=<?=time();?>" />
-<script type="text/javascript" src="js/craftpip/js/bootstrap-fullscreen-select.js?v=<?=time();?>"></script>
-<script type="text/javascript" src="js/craftpip/demo/demo.min.js?v=<?=time();?>"></script> 
-<!--END BOOTSTRAP-FULLSCREEN-SELECT files-->
-<style>
-   .my-padding{
-   /* margin-top: 55px; */
-   /* padding: 17px; */
-   padding-left: 15px;
-   padding-top: 15px;
-   padding-right: 15px;
-   padding-bottom: 20px;
-   }
-   .hide-box{
-   display: none;
-   }
-   .con{
-   margin-top: 10px;width: 100%;
-   padding-left: 10px;
-   padding-right: 10px;
-   }
-   .btn-select{
-   width: 100%; border: 1px solid #ddd; padding: 7px; margin-top: 0px; border-radius: 25px;
-   }
-   .mobileSelect-control{
-   font-size: 16px !important;
-   text-transform: capitalize;
-   }
-   .btn-mobileSelect-gen{
-   height: 45px !important;
-   font-size: 18px !important;
-   font-weight: 500 !important;
-   width: 100% !important;
-   display: none !important;
-   }
-   .mobileSelect-title{
-   font-size: 20px !important;
-   }
-   .mobileSelect-cancelbtn{
-   font-size: 20px !important;
-   }
-   .mobileSelect-savebtn{
-   font-size: 20px !important;
-   }
-   .mobileSelect-container.white .list-container .mobileSelect-control.selected{
-   background-color: #3b5998!important;
-   color: #ffffff !important;
-   }
-   a{
-   color: #3b5998!important;
-   }
-   .div-padding10{
-   padding: 10px 0px;
-   display: none;
-   }
-   .main-box-col{
-   border: 1px solid #f0f0f0;
-   display: table;
-   width: 100%;
-   /*box-shadow: 2px 4px 7px #ddd;*/
-   border-radius :10px;
-   }
-   .main-box-icon{
-   height: 100%;
-   float: left;
-   width: 20%;
-   padding: 17px;
-   /*		font-size: 20px;*/
-   border-right: 1px solid #f0f0f0;
-   text-align: center;
-   box-shadow: 1px 1px 4px #ddd;
-   /*		box-shadow: 1px 1px 0px #ddd;*/
-   }
-   .sub-box-txt{
-   float: left;
-   width: 80%;
-   padding: 15px 10px;
-   }
-   .card-1 {
-   box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-   transition: all 0.3s cubic-bezier(.25,.8,.25,1);
-   }
-   .card-1:hover {
-   box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
-   }
-   .card-2 {
-   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
-   }
-   .card-3 {
-   box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
-   }
-   .card-4 {
-   box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
-   }
-   .card-5 {
-   box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
-   }
 
-</style>
-<script>
-   /*setTimeout(function(){ $('#fade_in1').fadeIn( "slow" ); }, 0);
-   setTimeout(function(){ $('#fade_in2').fadeIn( "slow" ); }, 400);
-   setTimeout(function(){ $('#fade_in3').fadeIn( "slow" ); }, 800);*/
-</script>
+<!--END BOOTSTRAP-FULLSCREEN-SELECT files-->
+
+
 <div class="my-padding" style="margin-top:  0px;overflow-x: hidden;">
    <div id="tag_your_area" style="margin-top: 15px;">
       <!--<div class="div-padding10" id="fade_in1">
@@ -129,13 +25,13 @@
          </div>-->
       <table width="100%">
          <tr>
-            <td style="padding: 10px;"><button class="btn-repair waves-effect" id="open_map" style="border: 2px solid #3b5998;width: 100%;    border-radius: 10px;"><span class="text-cap font-24"><?=t_open." ".t_maps;?></span></button></td>
+            <td style="padding: 10px;"><a class="btn-repair waves-effect" id="open_map" style="border: 2px solid #3b5998;width: 100%;    border-radius: 10px;"><span class="text-cap font-24"><?=t_open." ".t_maps;?></span></a></td>
          </tr>
          <tr>
-            <td style="padding: 10px;"><button class="btn-repair waves-effect" id="submit_this_pv"  style="border: 2px solid #3b5998;width: 100%;border-radius: 10px;"><span class="text-cap font-24"><?=t_login_province;?>&nbsp;(<span class="text-change-province"></span>)</span></button></td>
+            <td style="padding: 10px;"><a class="btn-repair waves-effect" id="submit_this_pv"  style="border: 2px solid #3b5998;width: 100%;border-radius: 10px;"><span class="text-cap font-24"><?=t_login_province;?>&nbsp;(<span class="text-change-province"></span>)</span></a></td>
          </tr>
          <tr>
-            <td  style="padding: 10px;"><button class="btn-repair waves-effect" id="show_section" style="border: 2px solid #3b5998;width: 100%;border-radius: 10px;"><span class="text-cap font-24"><?=t_login_another_province;?></span><i class="fa fa-chevron-right" aria-hidden="true" style="padding-left: 10px;font-size: 20px;color: #3b5998;position: absolute;"></i></button></td>
+            <td  style="padding: 10px;"><a class="btn-repair waves-effect" id="show_section" style="border: 2px solid #3b5998;width: 100%;border-radius: 10px;"><span class="text-cap font-24"><?=t_login_another_province;?></span><i class="fa fa-chevron-right" aria-hidden="true" style="padding-left: 10px;font-size: 20px;color: #3b5998;position: absolute;"></i></a></td>
          </tr>
       </table>
    </div>
@@ -224,7 +120,7 @@
 </div>
 <script type="text/javascript">
    $(function () {
-   $('#select_regoin').mobileSelect({
+/*   $('#select_regoin').mobileSelect({
    onClose: function(){        
    var txt = $('#select_regoin option[value="'+$(this).val()+'"]').text();
    var value = $(this).val();
@@ -244,7 +140,7 @@
    },
 	   buttonSave: '<?=t_confirm;?>',
 	   buttonCancel: '<?=t_cancelled;?>'
-   });
+   });*/
    });
 </script>
 

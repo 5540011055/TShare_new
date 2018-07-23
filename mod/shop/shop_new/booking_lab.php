@@ -1,5 +1,5 @@
 
-<div style="padding-bottom:30px;" >
+<div style="padding-bottom:30px;margin-top: 55px;" >
 <form method="post"  id="form_booking" name="form_booking">
 
    <?
@@ -37,8 +37,7 @@
     padding: 15px;
     margin-top: 8px;" id="selected_taxi">
     <div class="form-group">
-          <label>ประเภทรถ</label>
-          <label>ประเภทรถ</label>
+          <label class="font-24">ประเภทรถ</label>
             <?
             if (!$arr[car_type]) {
                ?>
@@ -99,7 +98,7 @@
           <!-- <input type="text" class="form_input" required="true" id="car_type" name="car_type" value="<?= $arr[car_type][topic_th];?>"> -->
         </div>
          <div class="form-group">
-            <label>ป้ายทะเบียนรถ</label>
+            <label class="font-24">ป้ายทะเบียนรถ</label>
           
               <input name="car_plate" type="text"   required="true" class="form_input" id="car_plate"  value="">
         
@@ -110,7 +109,7 @@
         
          
            <div class="form-group">
-          <label>จำนวนคน</label>
+          <label class="font-24">จำนวนคน</label>
            <table width="100%" border="0" cellspacing="1" cellpadding="5" style="margin-top:-5px;"  >
             <tr>
                <td>
@@ -124,13 +123,54 @@
          </table>
          
         </div>
-        <div class="form-group">
-          <label>เวลาถึงโดยประมาณ(นาที)</label>
+        <!--<div class="form-group">
+          <label class="font-24">เวลาถึงโดยประมาณ(นาที)</label>
           <input type="number" class="form_input" required="true" id="time_num" name="time_num">
-        </div>
+        </div>-->
         <div class="form-group">
-            <label>เบอร์โทรศัพท์</label>
-            <input type="number" class="form_input"  id="dri_phone" name="dri_phone">
+            <label class="font-24">เวลาถึงโดยประมาณ(นาที)</label>
+            <!--<input type="number" class="form_input" required="true" id="time_num" name="time_num">-->
+            <select id="time_select" name="time_select"  required="true" style="border-radius: 25px;">
+            	<option value="0">- เลือกนาที -</option>
+            	<?php 
+            		$mm = 5;
+            		for($i=5;$i<=60;$i+=5){
+						?>
+						<option value="<?=$i;?>"><?=$i." นาที";?></option>
+						<?
+//						$mm+=5;
+					}
+            	?>
+            	<option value="over">มากกว่า 60 นาที</option>
+            </select>
+            <div id="box_over_mm" style="display: none;"><span style="font-size: 13px;padding: 7px;">กรุณากรอก</span>
+            <input type="number" class="form_input" id="orver_mm">
+            </div>
+            <script>
+            	$('#time_select').change(function(){
+            		if($(this).val()=="over"){
+						$('#box_over_mm').show();
+						$( "#orver_mm" ).focus();
+						
+					}else{
+						$('#box_over_mm').hide();
+						$('#time_num').val($(this).val());
+					}
+					
+            	});
+            	
+            	$('#orver_mm').keyup(function(){
+            		if($('#time_select').val()=="over"){
+						$('#time_num').val($(this).val());
+					}
+            	});
+            </script>
+            <input type="hidden" class="form_input" id="time_num" name="time_num" value="0">
+         </div>
+       <div class="form-group">
+            <label class="font-24">เบอร์โทรศัพท์</label>
+            <i class="material-icons res-input" onclick="$('#dri_phone').val('');$('#dri_phone_x').hide();" id="dri_phone_x" style="display: block;">close</i>
+            <input type="number" class="form_input"  id="dri_phone" name="dri_phone" value="<?=$arr[web_user][phone];?>" onkeyup="hideRes('dri_phone');">
          </div>
             
          
@@ -183,55 +223,55 @@
                   </tr>
                </tbody>
             </table>
-            <div >
-               <table width="100%" border="0" cellspacing="1" cellpadding="5" style="margin-top:-5px;">
+           <div >
+               <table width="100%" border="0" cellspacing="1" cellpadding="5" style="">
                   <tbody>
                      <tr>
                         <?php 
-                        /*    
-1 : ค่าจอด + ค่าหัว
-2 : ค่าจอด + ค่าคอมมิชชั่น
-3 : ค่าหัว + ค่าคอมมิชชั่น
-4 : ค่าจอด + ค่าหัว + ค่าคอมมิชชั่น
-5 : ค่าจอด
-6 : ค่าหัว
-7 : ค่าคอมมิชชั่น*/
+                           /*    
+                           1 : ค่าจอด + ค่าหัว
+                           2 : ค่าจอด + ค่าคอมมิชชั่น
+                           3 : ค่าหัว + ค่าคอมมิชชั่น
+                           4 : ค่าจอด + ค่าหัว + ค่าคอมมิชชั่น
+                           5 : ค่าจอด
+                           6 : ค่าหัว
+                           7 : ค่าคอมมิชชั่น*/
+                              $type_name_qr = "topic_cn";
+                           if($_COOKIE['lng']=="th"){
+                           $type_name_qr = "topic_th";
+                           $query_topic = "topic_th"; 
+                           }else if($_COOKIE['lng']=="en"){
+                           $type_name_qr = "topic_en";
+                           }else if($_COOKIE['lng']=="cn"){
                            $type_name_qr = "topic_cn";
-if($_COOKIE['lng']=="th"){
-$type_name_qr = "topic_th";
-$query_topic = "topic_th"; 
-}else if($_COOKIE['lng']=="en"){
-$type_name_qr = "topic_en";
-}else if($_COOKIE['lng']=="cn"){
-$type_name_qr = "topic_cn";
-}
-$type_name_qr = "topic_th";
-
-function checkTypePay($id){
-if($id==1){
-$name_type = t_parking_fee." + ".t_person_fee;
-}
-else if($id==2){
-$name_type = t_parking_fee." + ".t_com_fee;
-}
-else if($id==3){
-$name_type = t_person_fee." + ".t_com_fee;
-} 
-else if($id==4){
-$name_type = t_parking_fee." + ".t_person_fee."+".t_com_fee;
-}
-else if($id==5){
-$name_type = t_parking_fee;
-}
-else if($id==6){
-$name_type = t_person_fee;
-}
-else if($id==7){
-$name_type = t_com_fee;
-}
-return $name_type;
-}
-                        ?>
+                           }
+                           $type_name_qr = "topic_th";
+                           
+                           function checkTypePay($id){
+                           if($id==1){
+                           $name_type = t_parking_fee." + ".t_person_fee;
+                           }
+                           else if($id==2){
+                           $name_type = t_parking_fee." + ".t_com_fee;
+                           }
+                           else if($id==3){
+                           $name_type = t_person_fee." + ".t_com_fee;
+                           } 
+                           else if($id==4){
+                           $name_type = t_parking_fee." + ".t_person_fee."+".t_com_fee;
+                           }
+                           else if($id==5){
+                           $name_type = t_parking_fee;
+                           }
+                           else if($id==6){
+                           $name_type = t_person_fee;
+                           }
+                           else if($id==7){
+                           $name_type = t_com_fee;
+                           }
+                           return $name_type;
+                           }
+                           ?>
                         <td width="100%">
                            <input  name="plan_setting"  type="hidden" class="form-control"  id="plan_setting" value="0"   />
                            <?
@@ -251,7 +291,7 @@ return $name_type;
                               $('#load_mod_popup_4').load(url_load_1); 
                               });
                            </script>                    
-                           <div class=" " style="margin-left:-5px; border-bottom: dotted #999999 1px;" onclick="ClickPay(1)">
+                           <div class=" " style="margin-left:-5px; border-bottom: dotted #999999 1px;padding: 10px 0px;" onclick="ClickPay(1)">
                               <table width="100%" border="0" cellspacing="1" cellpadding="3" >
                                  <tbody>
                                     <tr>
@@ -289,9 +329,6 @@ return $name_type;
                                                $status_show_commision='';    
                                               }
                                                ?>
-                                               
-                                               
-                                               
                                           <? if($arr[open][price_extra]==1){ 
                                              $res[cost] = $db->select_query("SELECT * FROM  product_price_list_all where  plan_setting=".$arr[open][id]." and country<>240 and status=1 and extra_country=1   ORDER BY  sort_country desc limit 1  ");
                                               $arr[cost] = $db->fetch($res[cost]);     
@@ -314,10 +351,10 @@ return $name_type;
                                              $res[cost] = $db->select_query("SELECT price_park_driver,price_commision_driver, price_person_driver FROM  product_price_list_all where  plan_setting=".$arr[open][id]." and country=240 and status=1    ORDER BY  sort_country desc limit 1  ");
                                               $arr[cost] = $db->fetch($res[cost]);     
                                                    ?>
-                                         <table width="100%" border="0" cellspacing="1" cellpadding="1" >
+                                          <!-- <table width="100%" border="0" cellspacing="1" cellpadding="1" >
                                              <tbody>
                                                 <tr>
-                                                   <td width="80"><img src="images/flag/Other.png" width="25" height="25" alt="" style="margin-top:-5px;"/><span class="font-20">&nbsp;ต่างชาติ</span></td>
+                                                   <td width="80"><img src="images/flag/Other.png" width="25" height="25" alt="" style="margin-top:-5px;"/><span class="font-20">&nbsp;ต่างชาติ</td>
                                                    <td>
                                                       <span style="display:none<?=$status_show_park?>"><?=t_parking_fee;?>  <b><?=$arr[cost][price_park_driver]?></b>&nbsp;</span>
                                                       <span style="display:none<?=$status_show_person?>"><?=t_person_fee;?>  <b><?=$arr[cost][price_person_driver]?></b>&nbsp;</span>
@@ -326,7 +363,7 @@ return $name_type;
                                                    </td>
                                                 </tr>
                                              </tbody>
-                                          </table>
+                                          </table> -->
                                           <? } ?> 
                                        </td>
                                     </tr>
@@ -359,12 +396,12 @@ return $name_type;
                               $('#load_mod_popup_4').load(url_load_1); 
                               });
                            </script>                    
-                           <div class=" " style="margin-left:-5px; border-bottom: dotted #999999 1px;" onclick="ClickPay(2);">
+                          <!--  <div class=" " style="margin-left:-5px; border-bottom: dotted #999999 1px;padding: 10px 0px;" onclick="ClickPay(2);">
                               <table width="100%" border="0" cellspacing="1" cellpadding="3" >
                                  <tbody>
                                     <tr>
                                        <td width="30" rowspan="2" align="center">
-                                          <!-- <input type="radio" name="price_plan" class="price_plan_select genaral" value="<?=$arr[open][plan_id];?>" id="price_plan_2" /></td> -->
+                                         
                                        <td class="font-22"><b> <?=checkTypePay($arr[category][id]);?></b> </td>
                                        <td width="35" rowspan="2"><a id="show_price_plan_2"><i class="fa fa-search" style=" color:#666666;font-size:18px;"  > </i></a></td>
                                     </tr>
@@ -404,7 +441,7 @@ return $name_type;
                                              <tbody>
                                                 <tr>
                                                    <td width="75"> 
-                                                   <img src="images/flag/China.png" width="25" height="25" alt="" style="margin-top:-5px;"/><span class="font-20">&nbsp;<?=t_china;?>  
+                                                      <img src="images/flag/China.png" width="25" height="25" alt="" style="margin-top:-5px;"/><span class="font-20">&nbsp;<?=t_china;?>  
                                                    </td>
                                                    <td>
                                                       <span style="display:none<?=$status_show_park?>"><?=t_parking_fee;?>  <b><?=$arr[cost][price_park_driver]?></b>&nbsp;</span><span style="display:none<?=$status_show_person?>"><?=t_person_fee;?>  <b><?=$arr[cost][price_person_driver]?></b>&nbsp;</span><span style="display:none<?=$status_show_commision;?>">ค่าคอม  <b><?=$arr[cost][price_commision_driver]?> %</b>&nbsp;</span>
@@ -422,7 +459,8 @@ return $name_type;
                                              <tbody>
                                                 <tr>
                                                    <td width="80"><img src="images/flag/Other.png" width="25" height="25" alt="" style="margin-top:-5px;"/>
-                                                   <span class="font-20">&nbsp;ต่างชาติ</span></td>
+                                                      <span class="font-20">ต่างชาติ</span>
+                                                   </td>
                                                    <td>
                                                       <span style="display:none<?=$status_show_park?>"><?=t_parking_fee;?>  <b><?=$arr[cost][price_park_driver]?></b>&nbsp;</span>
                                                       <span style="display:none<?=$status_show_person?>"><?=t_person_fee;?>   <b><?=$arr[cost][price_person_driver]?></b>&nbsp;</span>
@@ -437,7 +475,7 @@ return $name_type;
                                     </tr>
                                  </tbody>
                               </table>
-                           </div>
+                           </div> -->
                            <?php
                               }
                               $db->closedb ();
@@ -464,7 +502,7 @@ return $name_type;
                               $('#load_mod_popup_4').load(url_load_1); 
                               });
                            </script>                    
-                           <div class=" " style="margin-left:-5px; border-bottom: dotted #999999 0px;" onclick="ClickPay(3);">
+                           <div class=" " style="margin-left:-5px; border-bottom: dotted #999999 0px;padding: 10px 0px;" onclick="ClickPay(3);">
                               <table width="100%" border="0" cellspacing="1" cellpadding="3"  >
                                  <tbody>
                                     <tr>
@@ -501,7 +539,8 @@ return $name_type;
                                              echo  $status_show_commision='';   
                                               }
                                                ?>
-                                          <? if($arr[open][price_extra]==1){ 
+                                          <? if($arr[open][price_extra]==1){
+                                          //echo $arr[open][id]; 
                                              $res[cost] = $db->select_query("SELECT * FROM  product_price_list_all where  plan_setting=".$arr[open][id]." and country<>240 and status=1 and extra_country=1   ORDER BY  sort_country desc limit 1  ");
                                               $arr[cost] = $db->fetch($res[cost]);     
                                                   ?>
@@ -509,7 +548,8 @@ return $name_type;
                                              <tbody>
                                                 <tr>
                                                    <td width="75"> <img src="images/flag/China.png" width="25" height="25" alt="" style="margin-top:-5px;"/>
-                                                   <span class="font-20">&nbsp;<?=t_china;?> </span></td>
+                                                      <span class="font-20">&nbsp;<?=t_china;?> </span>
+                                                   </td>
                                                    <td>
                                                       <span style="display:none<?=$status_show_park?>"><?=t_parking_fee;?>  <b><?=$arr[cost][price_park_driver]?></b>&nbsp;</span>
                                                       <span style="display:none<?=$status_show_person?>"><?=t_person_fee;?>  <b><?=$arr[cost][price_person_driver]?></b>&nbsp;</span>
@@ -520,20 +560,23 @@ return $name_type;
                                              </tbody>
                                           </table>
                                           <? } ?> 
-                                          <? if($arr[open][price_all]==1){ 
-                                             $res[cost] = $db->select_query("SELECT * FROM  product_price_list_all where  plan_setting=".$arr[open][id]." and country=240 and status=1    ORDER BY  sort_country desc limit 1  ");
+
+                                          <? if($arr[open][price_all]==0) { 
+
+                                             $res[cost] = $db->select_query("SELECT * FROM  product_price_list_all where  plan_setting =".$arr[open][id]." and country = 240 and status=1    ORDER BY  sort_country desc limit 1  ");
+
                                               $arr[cost] = $db->fetch($res[cost]);     
                                                    ?>
                                           <table width="100%" border="0" cellspacing="1" cellpadding="1">
                                              <tbody>
                                                 <tr>
                                                    <td width="80">
-                                                   <img src="images/flag/Other.png" width="25" height="25" alt="" style="margin-top:-5px;"/><span class="font-20">ต่างชาติ</span>
+                                                      <img src="images/flag/Other.png" width="25" height="25" alt="" style="margin-top:-5px;"/><span class="font-20">&nbsp;ต่างชาติ</span>
                                                    </td>
                                                    <td>
                                                       <span style="display:none<?=$status_show_park?>"><?=t_parking_fee;?><b><?=$arr[cost][price_park_driver]?></b>&nbsp;</span>
                                                       <span style="display:none<?=$status_show_person?>"><?=t_person_fee;?><b><?=$arr[cost][price_person_driver]?></b>&nbsp;</span>
-                                                      <span style="display:none<?=$status_show_commision;?>"><?=com_fee;?><b><?=$arr[cost][price_commision_driver]?> %</b>&nbsp;</span>
+                                                      <span style="display:none<?=$status_show_commision;?>"><?=t_com_fee;?><b><?=$arr[cost][price_commision_driver]?> %</b>&nbsp;</span>
                                                       &nbsp;
                                                    </td>
                                                 </tr>
@@ -550,7 +593,6 @@ return $name_type;
                               $db->closedb ();
                               }
                               ?>
-                          
                            <!--</select>-->
                         </td>
                      </tr>
@@ -573,9 +615,9 @@ return $name_type;
             </tr>
          </tbody>
       </table>
-      
+      </form>
    </div>
-</form>
+
 <input type="hidden" value="0" id="check_t_h" />						
 <input type="hidden" value="0" id="check_t_m" />						
 <input type="hidden" value="0" id="check_adult" />							
@@ -617,137 +659,121 @@ return $name_type;
    }
    $("#submit_data_update").click(function(){
 
-    if($('#car_type').val() == 0 ) {
-      swal("กรุณาเลือก !", "ประเภทรถ", "warning");
-   // alert('กรุณาเลือกประเภทรถ');
-   // $('#car_type').focus() ;
-    return false ;  
-   }
-   if($('#car_plate').val() =="" ) {
-      swal("กรุณาป้อน !", "ป้ายทะเบียนรถ", "warning");
+    if ($('#car_type').val() == 0) {
+        swal("กรุณาเลือก !", "ประเภทรถ", "warning");
+        // alert('กรุณาเลือกประเภทรถ');
+        // $('#car_type').focus() ;
+        return false;
+    }
+    if ($('#car_plate').val() == "") {
+        swal("กรุณาป้อน !", "ป้ายทะเบียนรถ", "warning");
 
-   
-   $('#car_plate').focus() ;
-    return false ;   
-   }
-    if($('#adult').val() =="" ) {
-      swal("กรุณาป้อน !", "จำนวนผู้ใหญ่", "warning");
 
-   
-   $('#adult').focus() ;
-    return false ;  
-   }
-   if($('#child').val() =="" ) {
-   //    swal("กรุณาป้อน !", "จำนวนเด็ก", "warning");
+        $('#car_plate').focus();
+        return false;
+    }
+    if ($('#adult').val() == "") {
+        swal("กรุณาป้อน !", "จำนวนผู้ใหญ่", "warning");
 
-    $('#child').val(0)
-   // $('#child').focus() ;
-   //  return false ;   
-   }
-      if($('#time_num').val() == '' ) {
-      swal("กรุณาป้อน !", "เวลาถึงโดยประมาณ", "warning");
 
-  
-    return false ;  
-   }
+        $('#adult').focus();
+        return false;
+    }
+    if ($('#child').val() == "") {
+        //    swal("กรุณาป้อน !", "จำนวนเด็ก", "warning");
+
+        $('#child').val(0)
+        // $('#child').focus() ;
+        //  return false ;   
+    }
+    if ($('#time_num').val() == '') {
+        swal("กรุณาป้อน !", "เวลาถึงโดยประมาณ", "warning");
+
+
+        return false;
+    }
+
+    console.log("&adult=" + document.getElementById('adult').value +
+        "&child=" + document.getElementById('child').value +
+        "&time=" + document.getElementById('time_num').value  
+        +
+        "&car_color=" + document.getElementById('car_color').value +
+        "car_plate=" + document.getElementById('car_plate').value +
+        "&plan=" + document.getElementById('plan_setting').value
+        +
+        "&program=" + document.getElementById('program').value)
+
+    var place_num = document.getElementById('car_plate').value;
+    console.log(place_num)
     
-   //  if(document.getElementById('airout_h').value =="" ) {
-   // alert('กรุณาเลือกชั่วโมง');
-   // document.getElementById('airout_h').focus() ;
-   //  return false ;	
-   // }
-   //  if(document.getElementById('airout_m').value =="" ) {
-   //  alert('กรุณาเลือกนาที');
-   // document.getElementById('airout_h').focus() ;
-   //  return false ;	
-   // }
-   // 		if(document.getElementById('all_car').value < 1 ) {
-   // alert('กรุณาเลือกรถที่ใช้งาน');
-   //  return false ;	
-   // }
-   			// if(document.getElementById('adult').value=="0" && document.getElementById('child').value=="0" ) {
-   			// 	alert('กรุณาเลือกจำนวนผู้ใหญ่หรือเด็กอย่างน้อย 1 คน');
-   			// 	document.getElementById('adult').focus() ;
-   			// 	document.getElementById('child').focus() ;
-   			// 	return false ;
-   			// }
-   // if(document.getElementById('all_car').value < 1 ) {
-   // alert('กรุณาเลือกรถที่ใช้งาน');
-   //  return false ;	
-   // }
-   			// var price_plan = $('.price_plan').val();
-   //			if(document.getElementById('plan_setting').value==0 ) {
-   	// if(document.getElementById('plan_setting').value==0 ) {
-   	// 			alert('กรุณาเลือกประเภทค่าตอบแทน');
-   	// 		 document.getElementById('price_plan').focus() ;
-   	// 			return false ;
-   	// 		}
-   		// $( "#main_load_mod_popup_4" ).toggle();
+    swal({
+	    title: "ยืนยันข้อมูลส่งแขก ?",
+	    text: "เวลาถึงประมาณ : " + $('#time_num').val() + " น.",
+	    type: "warning",
+	    confirmButtonClass: "btn-danger waves-effect waves-light",
+        cancelButtonClass: "btn-cus waves-effect waves-light",
+        confirmButtonText: "ยืนยัน",
+        cancelButtonText: 'ยกเลิก',
+	    showCancelButton: !0,
+	    closeOnConfirm: false
+	  },
+		function(isConfirm) {
+		  if (isConfirm) {
+		    
+		$.ajax({
+	        type: 'POST',
+	        data : $('#form_booking').serialize(),
+	        url: 'go.php?name=shop/shop_new&file=save_data&action=add&type=driver&driver=<?=$user_id?>',
+	        beforeSend: function () {
+	        },
+	        success: function (response) {
+	         	
+	         	if(response.result==true){
+					swal({
+		                title: "ทำรายการสำเร็จ!",
+		                text: "",
+		                html: false,
+		                type: "success"
+		                // closeOnConfirm: true;
 
-   			// var url_load_finish= "load_page_mod_4.php?name=booking/step/load&file=finish&lat=<?=$arr[shop][lat]?>&lng=<?=$arr[shop][lng]?>&type=stop&place=<?=$_GET[place]?>";
-   			console.log("&adult="+document.getElementById('adult').value+
-   			"&child="+document.getElementById('child').value
-            +"&time="+document.getElementById('time_num').value
-            // +"&check_use_car_id="+document.getElementById('check_use_car_id').value          
-            +"&car_color="+document.getElementById('car_color').value
-            +"car_plate="+document.getElementById('car_plate').value
-            +"&plan="+document.getElementById('plan_setting').value
-           
-            // +"&namedriver="+document.getElementById('namedriver').value
-            // +"&guest_name="+document.getElementById('guest_name').value
-            +"&program="+document.getElementById('program').value)         
-            // +"&guest_name="+document.getElementById('guest_name').value)
-   			
-   			// $.post('go.php?name=booking&file=savedata&action=add&type=driver&driver=<?=$arr[web_user][id]?>',$('#edit_form').serialize(),function(response){
-   //					$('#send_booking_data').html(response);
-   					// console.log(response);
-                  var place_num = document.getElementById('car_plate').value;
-                  console.log(place_num)
-   						swal({
-   						  title: "ยืนยันข้อมูลส่งแขก ?",
-   						  text: "เวลาถึงประมาณ : "+$('#time_num').val()+" น.",
-   						  html:false, 
-   						  type: "warning",
-   						  showCancelButton: true,
-   						  confirmButtonClass: "btn-danger",
-   						  confirmButtonText: "ยืนยัน",
-   						  cancelButtonText: 'ยกเลิก',
-   						  closeOnConfirm: false
-   						},
-   						function(){
-                        // console.log('<?=$user_id?>');
-                        $.post('go.php?name=shop/shop_new&file=save_data&action=add&type=driver&driver=<?=$user_id?>',$('#form_booking').serialize(),function(response){
-                            console.log(response)
-               $.post('go.php?name=send_messages/send_onesignal.php?key=new_shop',{ driver : "<?=$user_id?>" ,nickname : "<?=$arr[driver][nickname]?>",car_plate : place_num },function(data){
-                  console.log(data);
-               });
-                $.post('mail.php?key=new_shop',{ driver : "<?=$user_id?>" ,nickname : "<?=$arr[driver][nickname]?>",car_plate : place_num },function(data){
-                  console.log(data);
-               });
-               
-          });
-                        swal({
-                       title: "ส่งข้อมูลสำเร็จ!",
-                       text: "",
-                       html:false, 
-                       type: "success"
-                       // closeOnConfirm: true;
-                      
-                     }
-                     ,
-                     function(){
-                        $('.close-small-popup').click();
-                        $('#index_menu_shopping_history').click();
-                     });
-   						  // swal("ส่งข้อมูลสำเร็จ !", "ขอบคุณที่ส่งแขก", "warning");
-   						 //  $('.button-close-popup-mod-3').click();
-   							// $('.button-close-popup-mod-2').click();
-   							// $('.button-close-popup-mod-1').click();
-   							// $('.button-close-popup-mod').click();
-   							
-   						});
-   				});
-   		// });
+		            },
+		            function() {
+		                $('.close-small-popup').click();
+		                $('#index_menu_shopping_history').click();
+		            });
+		            
+		            $.post('send_messages/send_onesignal.php?key=new_shop&order_id=' + response.last_id + '&vc=' + response.invoice + '&m=' + response.airout_m, {
+		                driver: "<?=$user_id?>",
+		                nickname: "<?=$arr[driver][nickname]?>",
+		                car_plate: place_num
+		            }, function(data) {
+		                console.log(data);
+		            });
+		            var url_mail = "mail.php?key=new_shop";
+		            $.post(url_mail, $('#form_booking').serialize(), function(data) {
+		                console.log(data);
+		            });
+		            setTimeout(function() {
+		                openOrderFromAndroid(response.last_id);
+		            }, 1500);    
+				}
+				else{
+					swal("ทำรายการไม่สำเร็จ","กรุณาตรวจสอบอีกครั้งหรือติดต่อเจ้าหน้าที่","error");
+				}
+	        },
+	        error: function (data) {
+	        	swal("กรุณาตรวจสอบข้อมูลของท่าน");
+	        }
+	      });
+		    
+		    
+		  } 
+		});
+
+
+
+    });
+
 </script>	
 <script>
    $(function () {
@@ -839,10 +865,9 @@ return $name_type;
    // }
 </script>
 
- <script>
+<script>
       $(".text-topic-action-mod-3" ).html("<?=$arr[shop][$place_shopping]?>");
    </script>
-</div>
 <style>
  .btn-repair{
          /* padding: .84rem 2.14rem;*/
@@ -1053,6 +1078,3 @@ return $name_type;
     background-image: none;
 }
 </style>
-<script>
-    
-</script>
