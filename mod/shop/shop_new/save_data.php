@@ -32,12 +32,22 @@ if ($_GET[action] == 'add')
 		{
 		$member_in = "0000$member_db";
 		}
-	$rand = substr(str_shuffle('123456789012345678901234567890') , 0, 30);
+//	$rand = substr(str_shuffle('123456789012345678901234567890') , 0, 30);
 
 	$db->connectdb(DB_NAME_APP, DB_USERNAME, DB_PASSWORD);
-	$result = $db->add_db('order_booking', array(
+	$mm = $_POST[time_num];
+	if($_POST[time_num]<10){
+		$mm = "0".$_POST[time_num];
+	}
+	if($_POST[persion_china]<=0){
+		$_POST[persion_china] = 0;
+	}
+	if($_POST[persion_other]<=0){
+		$_POST[persion_other] = 0;
+	}
+	$array_data = array(
 		"invoice" => "S$member_in",
-		"code" => "$rand",
+		"code" => "",
 		"plan_id" => "$_POST[price_plan]",
 		"plan_commission" => $arr[plan][plan_id],
 		"price_park_unit" => $price_park_driver,
@@ -54,8 +64,8 @@ if ($_GET[action] == 'add')
 		"ondate" => "$_POST[transfer_date_new]",
 		"outdate" => "$_POST[transfer_date_new]",
 		"airout_h" => "00",
-		"airout_m" => "$_POST[time_num]",
-		"airout_time" => "00".":"."$_POST[time_num]",
+		"airout_m" => "$mm",
+		"airout_time" => "00".":"."$mm",
 		"car_color" => "$_POST[car_color]",
 		"car_type" => "$_POST[car_type]",
 		"car_plate" => "$_POST[car_plate]",
@@ -69,12 +79,19 @@ if ($_GET[action] == 'add')
 		"drivername" => "$_GET[driver]",
 		"namedriver" => "$_POST[namedriver]",
 		"ondate_time" => "$_POST[ondate_time]",
-		"posted" => "$_SESSION[data_user_driver]",
+//		"posted" => "$_SESSION[data_user_driver]",
 		"post_date" => "" . TIMESTAMP . "",
-		"update_date" => "" . TIMESTAMP . ""
-	));
+		"update_date" => "" . TIMESTAMP . "",
+		"num_ch" => $_POST[persion_china],
+		"num_other" => $_POST[persion_other]
+	);
+	$result = $db->add_db('order_booking',$array_data );
+	$last_id = mysql_insert_id();
+	$array_data[last_id] = $last_id;
+	$array_data[result] = $result;
 	$db->closedb();
-	echo json_encode($result);
+	header('Content-Type: application/json');
+	echo json_encode($array_data);
 	} 
 ?>
 
