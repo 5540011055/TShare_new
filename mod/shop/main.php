@@ -42,7 +42,7 @@
       $arr[pd_main] = $db->fetch($res[pd_main]);
 
       ?>
- <ul class="collection with-header">
+ <ul class="collection with-header" style="border-bottom: none;">
         <li class="collection-header"><h4>ประเภทย่อยของสถานที่</h4></li>
         <?php 
         $res[row] = $db->select_query("SELECT id,sub,num_place  FROM shopping_place_num  where main='".$arr[pd_main][id]."' and province = '".$_GET[province]."' ORDER BY  num_place  DESC");

@@ -34,7 +34,7 @@
 <form method="post"  id="edit_form" name="edit_form">
    <div class="box box-default" style="padding-top:30px;">
       <!-- /.box-header -->
-      <div class="box-body" >
+      <div class="box-body" style="padding: 0px 10px;" >
          <div class="row">
             <div class="<?= $coldata?>">
                <?php  $pic_qr = file_exists("../data/pic/driver/small/".$arr[web_user][username].".jpg");  
@@ -57,15 +57,26 @@
                   filter: alpha(opacity=0);
                   }
                </style>
-               <a href="mod/user/croppic_master/test.php?user=<?=$arr[web_user][username];?>">
+				<input type='file' id="imgInp" style="opacity: 0;" />
+               <a onclick="ChangeProfile('<?=$arr[web_user][username];?>');">
                   <div align="center" style="margin-top:10px;" >
-                     <img src="<?=$path_file;?>" id="img_tag"  alt="Preview Image" width="200px" style="border: 2px solid #ddd;    border-radius: 4px;    padding: 0px;    margin: 10px;   display: nones;"/>
+                     <img src="<?=$path_file;?>" id="img_tag"  alt="Preview Image" style="border: 2px solid #ddd;    border-radius: 4px;    padding: 0px;    margin: 10px;   display: nones;max-width: 250px;"/>
+                     <img src="" id="img_tag_new"  alt="Preview Image" style="border: 2px solid #ddd;    border-radius: 4px;    padding: 0px;    margin: 10px;   display: none;max-width: 250px;"/>
                      <!--<button class="btn btn-md" id="but_img_tag" type="button">อัพโหลดภาพ..</button>-->
                      <input type="file" id="imageUpload_profile" class="fileInput" name="imageUpload_profile" />
                   </div>
                </a>
+               
+               <div id="box_manage_pf" style="width: 100%;display:none;" align="center">
+               <div class="progress" style="width: 80%;display: none;">
+					      <div class="indeterminate"></div>
+					  </div>
+               <button type="button" id="upload_profile" class="btn waves-effect waves-light lighten-2 " style="width:80%;background-color:#3b5998;  border-radius: 0px;color: #fff;display: nones;"><span class="font-22">อัพโหลดภาพประจำตัว</span></button>
+               <button  type="button"id="cancel_profile" class="btn waves-effect waves-light lighten-2 red" style="width:80%;  border-radius: 0px;color: #fff;display: nones;margin-top:10px;"><span class="font-22">ยกเลิก</span></button>
+               </div>
+               
                <div class="topicname-user"><?=t_username;?></div>
-               <input class="form-control" type="text" name="username" id="username" maxlength="50" required="true" style="width:100%" onkeypress="UserEnter(this,event)" value="<?=$arr[web_user][username];?>"  readonly="readonly">
+               <input class="form-control" type="text" name="username" id="username" maxlength="50" required="true" style="width:100%" onkeypress="UserEnter(this,event)" value="<?=$arr[web_user][username];?>"  >
             </div>
             <div class="<?= $coldata?>">
                <div class="topicname-user"><?=t_password;?></div>
@@ -121,8 +132,8 @@
                <div class="topicname-user">
                   <table width="100%"  border="0" cellspacing="2" cellpadding="2">
                      <tr>
-                        <td width="50%"><button type="reset" class="btn btn-block btn-default"  style="width:100%;padding:10px; "><?=t_reset;?></button></td>
-                        <td width="50%"><button id="submit_user_data" type="button" class="btn btn-block btn-primary" style="width:100%;padding:10px;background-color:#3b5998; "><?=t_save_data;?></button></td>
+                        <td width="50%"><button type="reset"  class="btn waves-effect waves-light lighten-2 " style="width:90%;background-color:#9E9E9E;  border-radius: 0px;color: #fff;"><span class="font-20"><?=t_reset;?></span></button></td>
+                        <td width="50%"><button id="submit_user_data" type="button" class="btn waves-effect waves-light lighten-2 " style="width:90%;background-color:#3b5998;  border-radius: 0px;color: #fff;"><span class="font-20"><?=t_save_data;?></span></button></td>
                      </tr>
                   </table>
                </div>
@@ -132,6 +143,12 @@
    </div>
 </form>
 <script>
+
+	function ChangeProfile(username){
+		console.log(username);
+		$('#imgInp').click();
+	}
+
 	var check_new_user = '<?=$_GET[check_new_user];?>';
     if(check_new_user!=""){
     	 document.getElementById('password').focus() ;
@@ -246,4 +263,67 @@
    				                }
    				     });
    });
+</script>
+
+<script>
+	function readURL(input) {
+	  $('#pg_upload_bar').show();
+	  if (input.files && input.files[0]) {
+	    var reader = new FileReader();
+
+	    reader.onload = function(e) {
+	    	
+	      $('#img_tag_new').attr('src', e.target.result);
+	      $('#img_tag_new').show();
+	      $('#box_manage_pf').show();
+	      $('#img_tag').hide();
+	    }
+		
+	    reader.readAsDataURL(input.files[0]);
+	  
+	
+	  }
+	  
+	}
+
+	$("#imgInp").change(function() {
+	  readURL(this);
+	});
+	
+	$("#upload_profile").click(function() {
+		 var url = "mod/user/upload_img/upload.php?user=<?=$arr[web_user][username];?>";
+	    console.log(url);
+		$('.progress').show();
+   				data_form = $('#edit_form').serialize();    
+   				data = new FormData($('#edit_form')[0]);
+      			data.append('fileUpload', $('#imgInp')[0].files[0]);
+   				   $.ajax({
+   				                url: url, // point to server-side PHP script 
+   				                dataType: 'text',  // what to expect back from the PHP script, if anything
+   				                cache: false,
+   				                contentType: false,
+   				                processData: false,
+   				                data: data,                         
+   				                type: 'post',
+   				                success: function(php_script_response){
+   				                   console.log(php_script_response);
+   				                   if(php_script_response=="true"){
+								   	 $('#box_manage_pf').hide();
+   				                   	 $('.progress').hide();
+   				                   	 swal("อัพโหลดสำเร็จ","","success");
+								   }
+   				                   
+   				                   
+   				                }
+   				     });
+	});
+	
+	$("#cancel_profile").click(function() {
+		$('#imgInp').val('');
+	 	$('#box_manage_pf').hide();
+	 	$('#img_tag_new').hide();
+	 	$('#img_tag').show();
+	});
+	
+	
 </script>

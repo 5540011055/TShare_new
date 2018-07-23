@@ -1,7 +1,13 @@
+<style>
+.img-car{
+	height: 70px;
+    width: auto;
+}
+</style>
 <div  style="padding-top:40px;" >
 	<div align="center" style="padding: 5px 10px; width:100%; margin-top: 20px;" >
-		<div class="btn waves-effect waves-light" style=" border: 1px solid #3b5998;width: 100%;" id="add_car" >
-	      <span class="font-28"><strong><?=t_add_car;?> <i class="fa fa-plus-circle" aria-hidden="true"></i></strong></span>
+		<div class="btn waves-effect waves-light" style=" border: 1px solid #3b5998;width: 100%;border-radius: 25px;" id="add_car" >
+	      <span class="font-26"><strong><?=t_add_car;?> <i class="fa fa-plus-circle" aria-hidden="true"></i></strong></span>
 	   </div>
    </div>
    <script>
@@ -177,9 +183,9 @@
             <table width="100%" border="0" cellspacing="1" cellpadding="5" style="margin-top:-15px;">
                <tbody>
                   <tr style="display:nones">
-                     <td width="33%"><img src="../data/pic/car/<?=$arr[project][id];?>_1.jpg?v=<?=$arr[project][update_date];?>"  width="100%"   border="0"      style="margin-top:15px;border-radius:5px;" /></td>
-                     <td width="33%"><img src="../data/pic/car/<?=$arr[project][id];?>_2.jpg?v=<?=$arr[project][update_date];?>"  width="100%"   border="0"      style="margin-top:15px;border-radius:5px;" /></td>
-                     <td width="33%"><img src="../data/pic/car/<?=$arr[project][id];?>_3.jpg?v=<?=$arr[project][update_date];?>"  width="100%"   border="0"      style="margin-top:15px;border-radius:5px;" /></td>
+                     <td width="33%" align="center"><img src="../data/pic/car/<?=$arr[project][id];?>_1.jpg?v=<?=$arr[project][update_date];?>"  class="img-car"   border="0"      style="margin-top:15px;border-radius:5px;" /></td>
+                     <td width="33%" align="center"><img src="../data/pic/car/<?=$arr[project][id];?>_2.jpg?v=<?=$arr[project][update_date];?>"  class="img-car"   border="0"      style="margin-top:15px;border-radius:5px;" /></td>
+                     <td width="33%" align="center"><img src="../data/pic/car/<?=$arr[project][id];?>_3.jpg?v=<?=$arr[project][update_date];?>"  class="img-car"   border="0"      style="margin-top:15px;border-radius:5px;" /></td>
                   </tr>
                </tbody>
             </table>
@@ -194,8 +200,8 @@
    			text: "<?=ต้องการใช้งานรถคันนี้;?>",
             type: "success",
             showCancelButton: true,
-            confirmButtonColor: '<?=$main_color?>',
-            confirmButtonClass: "btn-danger",
+            confirmButtonClass: "btn-danger waves-effect waves-light",
+            cancelButtonClass: "btn-cus waves-effect waves-light",
             confirmButtonText: '<?=t_yes;?>',
    			cancelButtonText: "<?=t_no;?>",
             closeOnConfirm: true,
@@ -203,11 +209,13 @@
             html: true
             },
             function(isConfirm){
-              if (isConfirm){
-            //swal("ยืนยัน", "success");
-            ////
-            var url = "popup.php?name=car&file=savedata&action=confirm&type=driver&id="+id+"&open=2";
-            $('#show_car_detail').load(url); 
+               if (isConfirm){
+               	var url = 'mod/material/car/php_car.php?action=change_status_car&status=1&id='+id;
+               	console.log(url);
+	            $.post(url,function(res){
+	            	console.log(res)
+	            	 openAllCar()
+	            }); 
               } 
             });
 	}
@@ -217,8 +225,8 @@
    			text: "<?=ต้องการยกเลิกการใช้งานรถคันนี้;?>",
             type: "warning",
             showCancelButton: true,
-            confirmButtonColor: '#FF0000',
-            confirmButtonClass: "btn-danger",
+            confirmButtonClass: "btn-danger waves-effect waves-light",
+            cancelButtonClass: "btn-cus waves-effect waves-light",
             confirmButtonText: '<?=t_yes;?>',
    			cancelButtonText: "<?=t_no;?>",
             closeOnConfirm: true,
@@ -227,18 +235,22 @@
             },
             function(isConfirm){
               if (isConfirm){
-            //swal("ยืนยัน", "success");
-            ////
-             var url = "popup.php?name=car&file=savedata&action=confirm&type=driver&id="+id+"&close=2";
-            $('#show_car_detail').load(url); 
+              	var url = 'mod/material/car/php_car.php?action=change_status_car&status=0&id='+id;
+              	console.log(url);
+	            $.post(url,function(res){
+	            	console.log(res)
+	            	 openAllCar()
+	            }); 
               } 
             });
 	}
       function use_often(id,type,driver){
       	if(type=="open"){
       		var text_use = "<font style='font-size:22px'><?=t_want_to_use_regularly;?>";
+      		var url = "mod/material/car/php_car.php?action=use_often&id="+id+'&driver='+driver+'&status=1';
 //      		var type_alert = "success";
       	}else if(type=="close"){
+      		var url = "mod/material/car/php_car.php?action=use_often&id="+id+'&driver='+driver+'&status=0';
       		var text_use = "<font style='font-size:22px'><?=t_cancel_often_used;?>";
       		
       	}
@@ -248,8 +260,8 @@
       			text: text_use,
       			type: type_alert,
       			showCancelButton: true,
-      			confirmButtonColor: '<?=$main_color?>',
-      			confirmButtonClass: "btn-danger",
+      			confirmButtonClass: "btn-danger waves-effect waves-light",
+            	cancelButtonClass: "btn-cus waves-effect waves-light",
       			confirmButtonText: '<?=t_yes;?>',
    				cancelButtonText: "<?=t_no;?>",
       			closeOnConfirm: true,
@@ -258,14 +270,11 @@
       		},
       		function(isConfirm){
       	    if (isConfirm){
-      	  var url = "popup.php?name=car&file=savedata&use_often="+type+"&id="+id+'&driver='+driver;
-      //		 alert(url);
-      //		 $('#show_car_detail').load(url_<?=$arr[project][id]?>); 
-      	$.post(url, function(data) {
-      //alert(data);
-      			$("#show_car_detail").html(data);
-      			 window.location.href = "index.php?name=car&file=all";
-      	});
+      	  		
+		      	$.post(url, function(data) {
+		      		console.log(data);
+					openAllCar()
+		      	});
       	    } 
       		});
       }

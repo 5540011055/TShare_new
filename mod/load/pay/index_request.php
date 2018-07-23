@@ -66,7 +66,7 @@ $row_data[] = $arr[bank]; ?>
         <tr>
           <td width="80" class="font_18 " style="height:30px;font-size: 14px;  padding-left:5px;"><? echo t_account_name?></td>
           <td width=""   class="font_16 " style="color:#333;font-size: 14px;">
-            <input class="form-control"  name="bank" id="b_acount" style="font-size: 14px;border-radius: 25px;padding: 0 15px;margin-top: 8px;" disabled>             
+            <input class="form-control"  name="bank" id="b_acount"  disabled>             
                
                  
         </td>
@@ -75,8 +75,8 @@ $row_data[] = $arr[bank]; ?>
         <tr>
           <td width="80" class="font_18 " style="height:30px; font-size: 14px; padding-left:5px;"><? echo t_account_number?></td>
           <td width=""   class="font_16 " style="color:#333;font-size: 14px;">
-            <input class="form-control"  name="bank" id="b_number" style="font-size: 14px;border-radius: 25px;padding: 0 15px;margin-top: 8px;" disabled> 
-            <input type="hidden" class="form-control"  name="bank" id="b_bank" style="font-size: 14px;border-radius: 25px;padding: 0 15px;margin-top: 8px;" disabled> 
+            <input class="form-control"  name="bank" id="b_number" disabled> 
+            <input type="hidden" class="form-control"  name="bank" id="b_bank"  disabled> 
 
                
                  
@@ -88,7 +88,7 @@ $row_data[] = $arr[bank]; ?>
           <td>
     
        <div class="input-group date" style="padding:0px;width: 100%">
-          <input type="text" class="form-control pull-right" value="<?=date('Y-m-d');?>"  name="date_request" id="date_request"  readonly="true" style="background-color:#FFFFFF; height:40px; font-size:14px;z-index: 0;padding:10px;width: 100%;border-radius: 25px;margin-top: 8px;"  >               
+          <input type="text" class="form-control pull-right" value="<?=date('Y-m-d');?>"  name="date_request" id="date_request"  readonly="true"  >               
           <!-- <div class="input-group-addon"  id="btn_calendar2" style="cursor:pointer "> -->
              <i class="fa fa-calendar icon_calendar" style="pointer-events: none;
     position: absolute;
@@ -103,13 +103,13 @@ $row_data[] = $arr[bank]; ?>
         </tr>
         <tr>
           <td width="80" class="font_18" style="height:30px; font-size: 14px; padding-left:5px;"><? echo t_minutes?></td>
-          <td width=""   class="font_16" style="color:#FF0000;font-size: 14px;"> <input type="text" placeholder="xx:xx" class="form-control" name="time" id="time" style="border-radius: 25px;font-size: 14px;padding: 0 15px;margin-top: 8px;">
+          <td width=""   class="font_16" style="color:#FF0000;font-size: 14px;"> <input type="text" placeholder="xx:xx" class="form-control" name="time" id="time" >
           </td>
           
         </tr>
         <tr>
             <td width="80" class="font_18" style="height:30px; font-size: 14px; padding-left:5px;"><? echo t_amount?></td>
-            <td width=""   class="font_16" style=" color:#FF0000;font-size: 14px;"> <input class="form-control" placeholder="3xxx" type="text" name="amount" id="amount"  style="border-radius: 25px;font-size: 14px;padding: 0 15px;margin-top: 8px;">
+            <td width=""   class="font_16" style=" color:#FF0000;font-size: 14px;"> <input class="form-control" placeholder="3xxx" type="text" name="amount" id="amount"  >
             </td>
         </tr>
         <tr>

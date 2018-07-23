@@ -1,5 +1,5 @@
-<div>
-   <table width="100%" border="0" cellspacing="2" cellpadding="0" class="div-all-checkin border-alert" id="box_guest_receive">
+<div class="div-all-checkin">
+   <table width="100%" border="0" cellspacing="2" cellpadding="0" class=" " id="box_guest_receive">
       <tbody>
          <tr>
             <td width="60" rowspan="2" >
@@ -7,7 +7,7 @@
                <div  style="position:absolute; margin-top:-40px; margin-left: -5px;"><img src="images/no.png"  align="absmiddle" id="iconchk_guest_receive" /></div>
             </td>
             <td colspan="2">
-               <button  id="btn_guest_receive"  type="button" class="btn  btn-info "  style="width:100%;text-align:left;padding:5px; background-color:<?=$main_color;?>;  border-radius: 20px; border:none "><span class="font-26 text-cap"><i class="icon-new-uniF159-5" style="width:10px;"  ></i> <?=t_reception;?></span></button>
+               <button  id="btn_guest_receive"  type="button" class="btn  btn-info "  style="width:100%;text-align:left;padding:5px; background-color:<?=$main_color;?>;  border-radius: 20px; border:none;color: #fff; "><span class="font-26 text-cap"><i class="icon-new-uniF159-5" style="width:10px;"  ></i> <?=t_reception;?></span></button>
                <input type="hidden" value="<?=$arr[book][check_guest_receive];?>" id="guest_receive_check_click"/>
             </td>
          </tr>
@@ -51,11 +51,13 @@ $.ajax({
 			}
 		});
    $("#btn_guest_receive").click(function(){ 
+   	
     if($('#guest_receive_check_click').val()==0){
+    		$('#body_dialog_custom_load').html(load_sub_mod);
     	$( "#dialog_custom" ).show();
 //   	 var url_load= "load_page_mod_3.php?name=booking/load/form&file=checkin_popup&id=<?=$arr[book][id]?>&type=guest_receive";
    	var url_load= "empty_style.php?name=booking/shop_history/load&file=checkin_popup&id=<?=$arr[book][id]?>&type=guest_receive";
-    	$('#body_dialog_custom_load').html("<br/><br/><br/><br/>");
+//    	$('#body_dialog_custom_load').html("<br/><br/><br/><br/>");
   		$('#body_dialog_custom_load').load(url_load); 
     }else{
     }

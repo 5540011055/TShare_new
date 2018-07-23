@@ -6,7 +6,7 @@
 <div style="margin: 0px 0px;">
 	
 	<div>
-	<table  class="centered onlyThisTable striped" >
+	<table  class="centered onlyThisTable striped" style="display: nones;" >
 			<?
             $db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
             $res[sale] = $db->select_query("SELECT t1.phone, t1.name, t1.product_id, t2.topic_th FROM  shopping_contact as t1

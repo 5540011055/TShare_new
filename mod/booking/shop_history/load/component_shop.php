@@ -46,13 +46,13 @@ switch ($_COOKIE['lng']) {
 if ($_GET[request] == "check_status_shop") {
     
     if ($_GET[status] == 'CANCEL') {
-        if ($_GET[type] == '1') {
+        if ($_POST[type] == '1') {
             echo '<font class="font-30" style="color:#ff0000"><b>' . t_customer_no_register . '</b></font>';
         }
-        if ($_GET[type] == '2') {
+        if ($_POST[type] == '2') {
             echo '<font class="font-30" style="color:#ff0000"><b>' . t_customer_not_go . '</b></font>';
         }
-        if ($_GET[type] == '3') {
+        if ($_POST[type] == '3') {
             echo '<font class="font-30" style="color:#ff0000"><b>' . t_wrong_selected_place . '</b></font>';
         }
     } else if ($_GET[status] == 'NEW') {

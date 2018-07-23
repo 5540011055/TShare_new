@@ -88,7 +88,7 @@ $bank = 'thbanks-bbl';
 
  } 
 ?>
-  <a id="car_<?=$arr[bank][id];?>" style="text-decoration:none; margin-top:30px;" onclick="selectCar('<?=$arr[bank][id];?>','<?=$arr[bank][bank_company];?>','<?=$arr[bank][bank_number];?>');">
+  <div id="car_<?=$arr[bank][id];?>" style="text-decoration:none;     margin-bottom: 8px;" onclick="selectCar('<?=$arr[bank][id];?>','<?=$arr[bank][bank_company];?>','<?=$arr[bank][bank_number];?>');">
       <table width="100%" border="0" cellspacing="2" cellpadding="2" id="div_car_<?=$arr[bank][id];?>">
                
                   <tr>
@@ -97,7 +97,7 @@ $bank = 'thbanks-bbl';
                          
                            <tr>
                            <td width="100" align="center" bgcolor="<?=$plate_color;?>" style="color: #DADADA;
-    padding: 5px; border-radius: 10px;"><i class="thbanks <?=$bank?>" aria-hidden="true"></i><font color="#FFFFFF" class="font-20"><?=$arr[bank][bank_company];?><br>
+    padding: 8px; border-radius: 25px;"><i class="thbanks <?=$bank?>" aria-hidden="true"></i><font color="#FFFFFF" class="font-20"><?=$arr[bank][bank_company];?><br>
                                  <font class="font-20"><?=$arr[bank][bank_number];?></font></font>
                               </td>
                            </tr>
@@ -114,7 +114,7 @@ $bank = 'thbanks-bbl';
                   </tr>
               
             </table>
-    </a>
+    </div>
 <? } ?>
 <input id="bankid" value="" type="hidden" />
 <input id="bank_company" value="" type="hidden" />
@@ -155,9 +155,29 @@ $bank = 'thbanks-bbl';
 $('#show_main_tool_bottom').fadeOut(500);
 
 function selectCar(id,company,number){
+  console.log(company)
+//   if(company=="ธนาคารไทยพาณิชย์"){
+//     $('input[type="checkbox"]').prop('checked', function(){
+      
+//     });
+
+// $('.container input:checked ~ .checkmark').css('background-color','rgb(75, 40, 133) ')
+// } 
+//  if(company=="ธนาคารกสิกรไทย"){
+ 
+// $('.container input:checked ~ .checkmark').css('background-color','rgb(0, 169, 80) ')
+
+// } 
+//  if(company=="ธนาคารกรุงเทพ"){
+ 
+//  $('.container input:checked ~ .checkmark').css('background-color','rgb(34, 61, 152) ')
+
+
+//  } 
     // swal('คุณเลือกธนาคาร'+company,'เลขที่บัญชี '+number,'','warning');
 //  $('#car_use_'+id).click();
 //  
+
   $('input[type="checkbox"]').prop('checked', false); // Unchecks it
   $('#bank_use_'+id).prop('checked', true); // Checks it
   $('#bankid').val(id);

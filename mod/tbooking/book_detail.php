@@ -28,6 +28,9 @@ td{
 </style>
 <style>
 /* The container */
+.pd-this-page td{
+	padding : 5px;
+}
 .container {
     display: block;
     position: relative;
@@ -130,7 +133,7 @@ td{
 <div style="margin-top: 0px;padding: 5px;" >
 <span style="font-size: 16px;"></span>
    <div style="margin-left:0px;  margin-right: 0px; margin-top:0px;/*box-shadow: 0px -5px 5px #f6f6f6;*/ padding:5px;">
-   <table width="100%" border="0" cellspacing="2" cellpadding="2">
+   <table width="100%" border="0" cellspacing="2" cellpadding="2" >
       <tbody>
          <tr>
             <td width="60" style="background-color:#F6F6F6 ">
@@ -213,7 +216,7 @@ td{
                      </div>
       	</div>
 		</div>
-         <table width="100%" border="0" cellspacing="0" cellpadding="0">
+         <table width="100%" border="0" cellspacing="0" cellpadding="0" class="pd-this-page">
             <tbody>
                
 			   <tr>

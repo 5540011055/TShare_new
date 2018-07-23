@@ -15,7 +15,7 @@
                       
  $arr[deposit] = $db->fetch($res[deposit]) ;
  if($arr[deposit] == ''){
-  echo 'sssssssssssssssssssss';
+//  echo 'sssssssssssssssssssss';
   $balance = 0;
 
  }
@@ -42,9 +42,19 @@
 
 <div  id="load_money" style="display: nones;" >
 
-  <div  style="padding-top:0px; padding:5px;margin-top: 50px; ">
+  <div  style="padding-top:0px; padding:5px;margin-top: 30px; ">
 <div>
 <table width="100%"  border="0" cellspacing="0" cellpadding="0"  >
+  <tr align="center">
+       <td colspan="3" width="100%">
+            <div style="    border-radius: 25px;
+    padding: 14px 0;
+    box-shadow: 0 5px 7px 0 rgba(0, 0, 0, 0), 0 3px 1px -4px rgba(0,0,0,0.012), 0 3px 6px 0;margin-bottom: 18px;margin-top: 20px;
+
+ " align="center">
+<span class="font-26 text-cap"><span class="font-22">ยอดเงินของคุณ  </span><span style="margin-left: 10px" id="balance_final" class="font-22"></span></div>
+            </td>
+    </tr>
   <tr align="center">
     <td width="49%">
       <div id="transfer_money" onclick="transfer_money()" class="btn_no_active btn_active"><span class="font-22">เติมเงิน</span></div>
@@ -61,16 +71,7 @@
     <td width="49%" ><div id="history_money" onclick="history_money()" class="btn_no_active"><span class="font-22"><? echo t_history?></span></div></td>
    
   </tr>
-   <tr align="center">
-       <td colspan="3" width="100%">
-            <div style="    border-radius: 9px;
-    padding: 8px 0;
-    box-shadow: 0 5px 7px 0 rgba(0, 0, 0, 0), 0 3px 1px -4px rgba(0,0,0,0.012), 0 3px 6px 0;
-
- " align="center">
-<span class="font-26 text-cap"><span class="font-22">ยอดเงินของคุณ  </span><span style="margin-left: 10px" id="balance_final" class="font-22"></span></div>
-            </td>
-    </tr>
+   
 </table>
 </div>
             
@@ -228,7 +229,7 @@ $('#main_load_mod_popup').show();
     font-size: 18px;
     border-radius: 25px;
     
-    padding: 5px 30px;
+    padding: 10px 30px;
     border: 1px solid #3b5998;
     margin-bottom: 8px;
   }

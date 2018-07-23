@@ -322,13 +322,7 @@ function thai_date($time){
 </style>
 
 <div id="main_component" >
-   <link rel="stylesheet" type="text/css" href="calendar/css/smoothness/main.css">
-   <script src="js/jquery-main.js"></script> 
-   <script   src="calendar/js/th.js"></script>
-   <link rel="stylesheet" type="text/css" href="pickerdate/classic.css?v=<?=time();?>" />
-   <link rel="stylesheet" type="text/css" href="pickerdate/classic.date.css?v=<?=time();?>" />
-   <script src="pickerdate/picker.js?v=<?=time();?>" type="text/javascript"></script>
-   <script src="pickerdate/picker.date.js?v=<?=time();?>" type="text/javascript"></script>
+
    <?
       if($data_user_class=='taxi'){
       $filter="and drivername=".$user_id." ";
@@ -409,7 +403,8 @@ function thai_date($time){
    	txt_pay_cash = 'งานนี้เป็นงานที่ลูกค้าจ่ายเงินสด จำเป็นต้องหักเงินจากบัญชีในระบบ จำนวน '+addCommas(cost)+' บาท';
    	txt_pay_trans = '';
    	if(dv_cost<cost){
-   		$('#material_dialog').show();
+//   		$('#material_dialog').show();
+   		$('#material_dialog').modal('open');
    		$('#dialoglLabel').text('ข้อความ');
    		$('#load_modal_body').html('<h4>ไม่สามารถรับงานนี้ได้</h4><div class="font-22" style="padding:5px;">ยอดเงินคงเหลือในระบบของคุณไม่สามารถรับงานนี้ได้ กรุณาเติมเงินเข้าระบบหรือติดต่อเจ้าหน้าที่ ขอบคุณค่ะ</div>');
    //				swal('ไม่สามารถรับงานนี้ได้','ยอดเงินคงเหลือในระบบของคุณไม่สามารถรับงานนี้ได้ กรุณาเติมเงินหรือติดต่อเจ้าหน้าที่ ขอบคุณค่ะ','error');
@@ -508,7 +503,7 @@ function thai_date($time){
         var component2 = 
          '<div class="box_book">'
          +'<span class="font-20 time-post">'+time_post+'</span>'
-         +'<button class="mof ripple" id="id_list_'+num+'" onclick="openDetailBooking('+num+','+s_pay+','+cost+');rippleClick(\'' + id + '\');" style="padding: 0px;background:#fbfbfb;">'
+         +'<button class="mof ripple" id="id_list_'+num+'" onclick="openDetailBooking('+num+','+s_pay+','+cost+');" style="padding: 0px;background:#fbfbfb;">'
     			  +'<div class="w3-bar-item">'
          +'<table width="100%">'
             +'<tbody>'
@@ -664,28 +659,7 @@ function thai_date($time){
    $('#show_main_tool_bottom').fadeIn(500); 
    //		$('#main_component').addClass('w3-animate-left');
    }
-   function rippleClick(id){
-   console.log('ripple : '+id)
-       var $div = $('<div/>'),
-           btnOffset = $('#'+id).offset(),
-       		xPos = event.pageX - btnOffset.left,
-       		yPos = event.pageY - btnOffset.top;
-       $div.addClass('ripple-effect');
-       var $ripple = $(".ripple-effect");
-       $ripple.css("height", $('#'+id).height());
-       $ripple.css("width", $('#'+id).height());
-       $div
-         .css({
-           top: yPos - ($ripple.height()/2),
-           left: xPos - ($ripple.width()/2),
-           background: $('#'+id).data("ripple-color")
-         }) 
-         .appendTo($('#'+id));
-       window.setTimeout(function(){
-         $div.remove();
-       }, 2000);
-   //       event.preventDefault();
-   }
+
    function ViewPhoto(id,type,date){
    var url = 'load_page_photo.php?name=tbooking/load&file=iframe_photo&id='+id+'&type='+type+'&date='+date;
    console.log(url);

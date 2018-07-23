@@ -134,7 +134,7 @@ $arr[project][id]=$_GET[id];
           <!--<input type="text" class="form-control" name="icon_camera_<?=$i?>" id="icon_camera_<?=$i?>"   style="display: none;"/>-->
         </span></label></td>
       <td><span class="input-group" style="margin-top:5px;">
-        <input type="text"  value="<?echo t_no_photo_available?>" class="photo-no-active" readonly  style="padding-left:5px; margin-top:-5px; padding-right:0px; width:100%; height:35px;" id="url_photo">
+        <input type="text"  value="<?echo t_no_photo_available?>" class="photo-no-active" readonly  style="padding-left:5px; margin:0px; padding-right:0px; width:100%; height:35px;" id="url_photo">
       </span></td>
       <td width="30">        
       

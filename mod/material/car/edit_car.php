@@ -340,17 +340,15 @@
 		   },
 		   function(isConfirm){
 		      if (isConfirm){
-		    var url="go.php?name=car&file=savedata&action=edit&id=<?=$_GET[id]?>&type=<?=$_GET[type]?>"
-		   //	url=url+"&iddriver_finish="+document.getElementById('iddriver_finish').value;
-		   $.post(url,$('#myform_data').serialize(),function(response){
-		   //   $('#send_form_data').html(response);
-		   //   alert(response);
-		   swal("<?=t_save_succeed;?>", "<?=t_press_button_close;?>!", "success");
-		   setTimeout(function(){ 
-		   		openAllCar();
-		   	 }, 700);
-		    });
-		   //  alert('dd');
+		      	var url = "mod/material/car/php_car.php?action=edit&id=<?=$_GET[id];?>";
+		    	$.post(url,$('#myform_data').serialize(),function(response){
+		    		console.log(response);
+		    		if(response.result==true){
+						swal('แก้ไขสำเร็จ','','success');
+						$('#main_load_mod_popup_1').hide();
+						openAllCar();
+					}
+		    	});
 		      } 
 		   });
    });
@@ -366,6 +364,7 @@
    });
    function readURL(input,id) {
      $('#pg_upload_bar_'+id).show();
+     $('#image_'+id).hide();
      if (input.files && input.files[0]) {
        var reader = new FileReader();
    
@@ -375,8 +374,9 @@
    	
        reader.readAsDataURL(input.files[0]);
 //       $('#image_'+id).show();
-       var url = "mod/material/car/upload_pic.php?code="+$('#check_code').val()+'&type='+id ;
-       
+       var url = "mod/material/car/upload_pic.php?type=edit&id=<?=$_GET[id];?>&point="+id ;
+       console.log(url);
+//       return;
      				data_form = $('#photo_form').serialize();    
      				data = new FormData($('#photo_form')[0]);
         			data.append('fileUpload', $('#imgInp_'+id)[0].files[0]);
@@ -392,7 +392,7 @@
      				                   console.log(php_script_response);
      				                   setTimeout(function() {
    			                                $.ajax({
-   						                            url: '../data/fileupload/store/car/' + document.getElementById('check_code').value + '_'+id+'.jpg',
+   						                            url: '../data/pic/car/<?=$_GET[id];?>_'+id+'.jpg',
    						                            type: 'HEAD',
    						                            error: function() {
    						                                console.log('Error file');

@@ -66,9 +66,9 @@
          </td>
       </tr>
       
-      <!--<tr>
-         <td align="center"><a onclick="$('#btn_close_checkin_popup').click();" class="waves-effect waves-light btn red text-white" style="width: 80%;margin: 10px;display: none;" id="close_btn"><span class="font-24">ปิด</span></a></td>
-      </tr>-->
+      <tr>
+         <td align="center"><a class="waves-effect waves-light btn red text-white" style="width: 80%;margin: 10px;display: none;" id="close_btn"><span class="font-24">ปิด</span></a></td>
+      </tr>
    </tbody>
 </table>
 
@@ -156,7 +156,6 @@
 //									                        $("#image_" + pictype).fadeIn(3000);
 									                        $('#pg_upload_bar').hide();
 									                        $('#image_bill').show();
-									                        
 							                            }
 							                        });
                             }, 1500); 

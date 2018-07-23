@@ -67,4 +67,88 @@ if($_GET[ele]=="select_province"){
 		$('#province').material_select();
 	</script>
 <? }
+
+if($_GET[action]=="add"){
+
+  $db->connectdb(DB_NAME_APP, DB_USERNAME, DB_PASSWORD);
+   
+   $data[drivername] = $_POST[drivername];
+   $data[province] = $_POST[province];
+   $data[car_type] = $_POST[car_type];
+   $data[car_brand] = $_POST[car_brand];
+   $data[car_sub_brand] = $_POST[car_sub_brand];
+   $data[car_color] = $_POST[car_color];
+   $data[car_num] = $_POST[car_num];
+   $data[plate_num] = $_POST[plate_num];
+   $data[plate_color] = $_POST[plate_color];
+   $data[post_date] = time();
+   $data[update_date] = time();
+   $data[result] = $db->add_db('web_carall',$data);
+   $last_id = mysql_insert_id();
+   $data[last_id] = $last_id;
+   $db->closedb();
+		
+   header('Content-Type: application/json');
+	echo json_encode($data);
+
+@copy ("../data/fileupload/store/car/".$_POST[check_code]."_id_car_1.jpg", "../data/pic/car/".$last_id."_1.jpg" );   
+@copy ("../data/fileupload/store/car/".$_POST[check_code]."_id_car_2.jpg", "../data/pic/car/".$last_id."_2.jpg" );    
+@copy ("../data/fileupload/store/car/".$_POST[check_code]."_id_car_3.jpg", "../data/pic/car/".$last_id."_3.jpg" );  
+	
+ 
+@unlink ("../data/fileupload/store/car/".$_POST[check_code]."_id_car_1.jpg" ); 
+@unlink ("../data/fileupload/store/car/".$_POST[check_code]."_id_car_2.jpg" ); 
+@unlink ("../data/fileupload/store/car/".$_POST[check_code]."_id_car_3.jpg" ); 
+ 
+ } 
+
+if($_GET[action]=="edit"){
+
+  $db->connectdb(DB_NAME_APP, DB_USERNAME, DB_PASSWORD);
+   
+//   $data[drivername] = $_POST[drivername];
+   $data[province] = $_POST[province];
+   $data[car_type] = $_POST[car_type];
+   $data[car_brand] = $_POST[car_brand];
+   $data[car_sub_brand] = $_POST[car_sub_brand];
+   $data[car_color] = $_POST[car_color];
+   $data[car_num] = $_POST[car_num];
+   $data[plate_num] = $_POST[plate_num];
+   $data[plate_color] = $_POST[plate_color];
+   $data[update_date] = time();
+   $data[result] = $db->update_db('web_carall',$data,'id = "'.$_GET[id].'" ');
+
+   $db->closedb();
+		
+   header('Content-Type: application/json');
+	echo json_encode($data);
+
+ } 
+
+if($_GET[action]=="change_status_car"){
+	
+	$data[status] = $_GET[status];
+	$data[update_date] = time();
+	$db->connectdb(DB_NAME_APP, DB_USERNAME, DB_PASSWORD);
+    $data[result] = $db->update_db('web_carall', $data," id='".$_GET[id]."' ");
+	$db->closedb ();
+	$data[id] = $_GET[id];
+	header('Content-Type: application/json');
+	echo json_encode($data);
+}
+
+if($_GET[action]=="use_often"){
+	
+	$data[status_usecar] = $_GET[status];
+	$data[update_date] = time();
+	$data[drivername] = $_GET[driver];
+	
+	 $db->connectdb(DB_NAME_APP, DB_USERNAME, DB_PASSWORD);
+	$data[result] = $db->update_db('web_carall', $data," drivername='".$_GET[driver]."' ");
+
+	header('Content-Type: application/json');
+	echo json_encode($data);
+}
+
+
 ?>

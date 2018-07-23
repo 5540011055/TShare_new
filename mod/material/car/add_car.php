@@ -87,6 +87,7 @@
    ?>
 <div style="margin-top: 40px;padding:10px;">
    <form name="myform_data" id="myform_data"   enctype="multipart/form-data" >
+   	<input type="hidden" value="<?=$user_id;?>" name="drivername" id="drivername" />
       <table class="tb-pd-5" width="100%">
          <tr>
             <td colspan="2">
@@ -283,153 +284,150 @@
    </table>
 </div>
 <script>
-   $(document).ready(function() {
-//   		alert('<?=$_GET[openby];?>');
-       $('select').material_select();
-       if('<?=$_GET[openby];?>'=='all'){
-	   	$('#text_mod_topic_action_1').html('เพิ่มรถใหม่');
-	   }else{
-	   	 $('#text_mod_topic_action').html('เพิ่มรถใหม่');
-	   }
-      
-       
-       
-       $('#region').change(function(){
-       	var region = $(this).val();
-       	console.log(region);
-       	var query_url = "mod/material/car/php_car.php?ele=select_province";
-       	$.post(query_url,{ region:region },function(data){
-   //    		console.log(data);
-       		$('#element_pv').html(data);
-   
-       	});
-       	
-       });
-       
-       $("#save_data_car").click(function(){ 
-            if(document.getElementById('car_brand').value=="") {
-   //         alert('กรุณาเลือกยี่ห้อรถ'); 
-   		 swal('<?=t_select_car_brand;?>');
-            document.getElementById('car_brand').focus() ; 
-            return false ;
-            }
-            if(document.getElementById('plate_num').value=="") {
-   //         alert('<?=t_please_enter_car_registration_number;?>'); 
-   		swal('<?=t_please_enter_car_registration_number;?>');
-            document.getElementById('plate_num').focus() ; 
-            return false ;
-            }
-            if(document.getElementById('imgInp_1').value=="") {
-   //         alert('กรุณาถ่ายภาพด้านหน้ารถ'); 
-   		swal('<?=t_please_take_pictures_front_car;?>');
-            document.getElementById('imgInp_1').focus() ; 
-            return false ;
-            }
-            if(document.getElementById('imgInp_2').value=="") {
-   //         alert('กรุณาถ่ายภาพด้านข้างรถ'); 
-            swal('<?=t_please_take_pictures_car_side;?>');
-            document.getElementById('imgInp_2').focus() ; 
-            return false ;
-            }
-            if(document.getElementById('imgInp_3').value=="") {
-   //         alert('กรุณาถ่ายภาพข้างในรถ'); 
-            swal('<?=t_please_take_picture_inside_car;?>');
-            document.getElementById('imgInp_3').focus() ; 
-            return false ;
-            }
-               swal({
-            	title: "<font style='font-size:28px'><b> <?=t_are_you_sure;?>",
-      			text: "<font style='font-size:22px'><?=t_correct_information;?>",
-            	type: "warning",
-            	showCancelButton: true,
-            	confirmButtonColor: '<?=$main_color?>',
-            	confirmButtonText: '<?=t_yes;?>',
-      			cancelButtonText: "<?=t_no;?>",
-            	closeOnConfirm: false,
-            	closeOnCancel: true,
-            	html: true
-            },
-            function(isConfirm){
-               if (isConfirm){
-             var url="go.php?name=car&file=savedata&type=add&action=add&id=<?=$_GET[id]?>&type=<?=$_GET[type]?>";
-            //	url=url+"&iddriver_finish="+document.getElementById('iddriver_finish').value;
-            $.post(url,$('#myform_data').serialize(),function(response){
-            	console.log('save');
-            	swal("<?=t_save_succeed;?>", "<?=t_press_button_close;?>", "success");
-            	setTimeout(function(){ 
-            		$('.button-close-popup-mod-1').click();
-            		autoclickAllcar();
-            	 }, 700);
-             });
-               } 
-            });
-            });
-       
-   });
+    $(document).ready(function() {
+                //   		alert('<?=$_GET[openby];?>');
+                $('select').material_select();
+                if ('<?=$_GET[openby];?>' == 'all') {
+                    $('#text_mod_topic_action_1').html('เพิ่มรถใหม่');
+                } else {
+                    $('#text_mod_topic_action').html('เพิ่มรถใหม่');
+                }
+
+
+
+                $('#region').change(function() {
+                    var region = $(this).val();
+                    console.log(region);
+                    var query_url = "mod/material/car/php_car.php?ele=select_province";
+                    $.post(query_url, {
+                        region: region
+                    }, function(data) {
+                        //    		console.log(data);
+                        $('#element_pv').html(data);
+
+                    });
+
+                });
+
+                $("#save_data_car").click(function() {
+                        if (document.getElementById('car_brand').value == "") {
+                            //         alert('กรุณาเลือกยี่ห้อรถ'); 
+                            swal('<?=t_select_car_brand;?>');
+                            document.getElementById('car_brand').focus();
+                            return false;
+                        }
+                        if (document.getElementById('plate_num').value == "") {
+                            //         alert('<?=t_please_enter_car_registration_number;?>'); 
+                            swal('<?=t_please_enter_car_registration_number;?>');
+                            document.getElementById('plate_num').focus();
+                            return false;
+                        }
+                        if (document.getElementById('imgInp_1').value == "") {
+                            //         alert('กรุณาถ่ายภาพด้านหน้ารถ'); 
+                            swal('<?=t_please_take_pictures_front_car;?>');
+                            document.getElementById('imgInp_1').focus();
+                            return false;
+                        }
+                        if (document.getElementById('imgInp_2').value == "") {
+                            //         alert('กรุณาถ่ายภาพด้านข้างรถ'); 
+                            swal('<?=t_please_take_pictures_car_side;?>');
+                            document.getElementById('imgInp_2').focus();
+                            return false;
+                        }
+                        if (document.getElementById('imgInp_3').value == "") {
+                            //         alert('กรุณาถ่ายภาพข้างในรถ'); 
+                            swal('<?=t_please_take_picture_inside_car;?>');
+                            document.getElementById('imgInp_3').focus();
+                            return false;
+                        }
+                        swal({
+                                title: "<font style='font-size:28px'><b> <?=t_are_you_sure;?>",
+                                text: "<font style='font-size:22px'><?=t_correct_information;?>",
+                                type: "warning",
+                                showCancelButton: true,
+                                confirmButtonClass: "btn-danger waves-effect waves-light",
+                                cancelButtonClass: "btn-cus waves-effect waves-light",
+                                confirmButtonText: '<?=t_yes;?>',
+                                cancelButtonText: "<?=t_no;?>",
+                                closeOnConfirm: false,
+                                closeOnCancel: true,
+                                html: true
+                            },
+                            function(isConfirm) {
+                                if (isConfirm) {
+
+                                    var url = "mod/material/car/php_car.php?action=add";
+                                    console.log(url);
+                                    $.post(url, $('#myform_data').serialize(), function(response) 
+                                        {
+                                            console.log(response);
+                                            swal("<?=t_save_succeed;?>", "<?=t_press_button_close;?>", "success");
+                                            var url = "mod/material/car/upload_pic.php?type=add&id=" + response.last_id;
+                                            if (response.result == true) {
+                                                swal("เพิ่มรถสำเร็จ");
+                                                data_form = $('#photo_form').serialize();
+		                                            data = new FormData($('#photo_form')[0]);
+		                                            data.append('fileUpload1', $('#imgInp_1')[0].files[0]);
+		                                            data.append('fileUpload2', $('#imgInp_2')[0].files[0]);
+		                                            data.append('fileUpload3', $('#imgInp_3')[0].files[0]);
+		                                            $.ajax({
+		                                                url: url, // point to server-side PHP script 
+		                                                dataType: 'text', // what to expect back from the PHP script, if anything
+		                                                cache: false,
+		                                                contentType: false,
+		                                                processData: false,
+		                                                data: data,
+		                                                type: 'post',
+		                                                success: function(php_script_response) {
+		                                                    console.log(php_script_response)
+		                                                }
+		                                            });
+		                                            setTimeout(function(){ openAllCar(); }, 700);
+                                                
+                                            }else{
+												swal("ไม่สามารถเพิ่มรถได้","","error");
+											}
+                                            
+
+                                        });
+                                    }
+                                });
+                        });
+
+                });
 </script>
 <script>
-   $('.take_photo').click(function(){
-   	var number = $(this).attr('role');
-   	console.log(number);
-//   	return;
-   	$("#imgInp_"+number).click();
-   });
-   function readURL(input,id) {
-     $('#pg_upload_bar_'+id).show();
-     if (input.files && input.files[0]) {
-       var reader = new FileReader();
-   
-       reader.onload = function(e) {
-         $('#image_'+id).attr('src', e.target.result);
-       }
-   	
-       reader.readAsDataURL(input.files[0]);
-//       $('#image_'+id).show();
-       var url = "mod/material/car/upload_pic.php?code="+$('#check_code').val()+'&type='+id ;
-       
-     				data_form = $('#photo_form').serialize();    
-     				data = new FormData($('#photo_form')[0]);
-        			data.append('fileUpload', $('#imgInp_'+id)[0].files[0]);
-     				   $.ajax({
-     				                url: url, // point to server-side PHP script 
-     				                dataType: 'text',  // what to expect back from the PHP script, if anything
-     				                cache: false,
-     				                contentType: false,
-     				                processData: false,
-     				                data: data,                         
-     				                type: 'post',
-     				                success: function(php_script_response){
-     				                   console.log(php_script_response);
-     				                   setTimeout(function() {
-   			                                $.ajax({
-   						                            url: '../data/fileupload/store/car/' + document.getElementById('check_code').value + '_'+id+'.jpg',
-   						                            type: 'HEAD',
-   						                            error: function() {
-   						                                console.log('Error file');
-   						                            },
-   						                            success: function() {
-   						                                //file exists
-   						                                console.log('success file');
-   						                               $('#pg_upload_bar_'+id).hide();
-   						                               $('#image_'+id).show();
-   						                            }
-   						                        });
-                              }, 1500); 
-     				                   
-     				                }
-     				     });
-       
-     }
-     
-   }
-   
-   $("#imgInp_1").change(function() {
-     readURL(this,1);
-   });
-   $("#imgInp_2").change(function() {
-     readURL(this,2);
-   });
-   $("#imgInp_3").change(function() {
-     readURL(this,3);
-   });
+    $('.take_photo').click(function() {
+        var number = $(this).attr('role');
+        console.log(number);
+        //   	return;
+        $("#imgInp_" + number).click();
+    });
+
+    function readURL(input, id) {
+        $('#pg_upload_bar_' + id).show();
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function(e) {
+                $('#image_' + id).attr('src', e.target.result);
+                $('#pg_upload_bar_' + id).hide();
+                $('#image_' + id).show();
+            }
+
+            reader.readAsDataURL(input.files[0]);
+
+        }
+
+    }
+
+    $("#imgInp_1").change(function() {
+        readURL(this, 1);
+    });
+    $("#imgInp_2").change(function() {
+        readURL(this, 2);
+    });
+    $("#imgInp_3").change(function() {
+        readURL(this, 3);
+    });
 </script>

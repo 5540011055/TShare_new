@@ -193,6 +193,7 @@
                            });
                            })
                         </script>
+						
                      </td>
                      <td width="50%">
                         <div class="topicname"><span class="font-24"><?=t_car_brand;?></span></div>

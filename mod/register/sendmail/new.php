@@ -5,7 +5,8 @@
 //error_reporting(E_STRICT);
 
 
-require_once('phpmail/class.phpmailer.php');
+require_once('../../../phpmail/class.phpmailer.php');
+
 
 $mail             = new PHPMailer();
  
@@ -43,7 +44,7 @@ body,td,th {
     </tr>
   </tbody>
 </table>";
-
+$body = "ทดสอบ";
 //<img src=$emailurl/data/img/vc/$vc.jpg  />
 /////
 /*
@@ -67,6 +68,7 @@ $mail->CharSet = "utf-8";
 $mail->IsSMTP();                           // 启用SMTP
 $mail->SMTPAuth    = true;                  // 启用SMTP认证
 $mail->SMTPSecure = "ssl";                 // sets the prefix to the servier
+$mail->Host        = "mail.welovetaxi.com"; // SMTP server
 $mail->Host        = "mail.welovetaxi.com"; // SMTP server
 $mail->Port        = 465;                 // set the SMTP port for the GMAIL server
 $mail->Username    = "system@welovetaxi.com";     // SMTP server username
@@ -96,7 +98,7 @@ $address = "chokdee@welovetaxi.com";
 
 $address2 = "chokdee.welovetaxi@gmail.com";
  
- $address3 = "tudtoojung@gmail.com";
+ $address3 = "system.goldenbeachgroup@gmail.com";
 
 $mail->AddAddress($address, "T Share : ทีแชร์");
 $mail->AddAddress($address2, "T Share : ทีแชร์");
@@ -119,28 +121,15 @@ if(!$mail->Send()) {
 } else {
 	
 
-echo " <center><center>" ;	
+echo " <center>OK<center>" ;	
 
 // echo "<meta http-equiv=refresh content=2;URL=.?name=admin&amp;file=booking&amp;op=bookagent_edit&amp;view=view&amp;id=".$_POST[order].">";
  
 
 }
-
- 
-
-
- 
-///////////////////
-
-
-
-
-
-
-
-
-
-
+echo "+";
+echo "<br/>";
+echo $body; 
 
 ?>
 
