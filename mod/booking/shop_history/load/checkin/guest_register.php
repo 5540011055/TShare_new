@@ -1,20 +1,3 @@
-<script>
-/*   var url_guest_register = "mod/booking/shop_history/load/component_shop.php?id=<? echo $arr[book][id];?>&request=check_status_checkin&type=check_guest_register&time=<?=$arr[book][guest_register_date]?>&status=<?=$arr[book][check_guest_register]?>";
-   $('#status_guest_register').html('<b><i class="fa  fa-refresh fa-spin 2x" style="color:#000000"></i> <?=t_load_data;?>');
-   console.log(url_guest_register);
-   $('#status_guest_register').load(url_guest_register);*/
-</script>
-<!--<? 
-   if($arr[book][check_guest_register]==1 ){ ?>
-<script> 
-//   $("#step_driver_pay_report").show();
-      $('#iconchk_guest_register').attr("src", "images/yes.png");  
-     $("#number_guest_register").removeClass('step-booking');
-      $("#number_guest_register").addClass('step-booking-active');
-      $("#box_guest_register").removeClass('border-alert');
-   	   $("#btn_guest_register").css('background-color','#666666');
-</script>
-<? } ?>-->
 <div class="div-all-checkin">
 <table width="100%" border="0" cellspacing="2" cellpadding="0" id="box_guest_register">
    <tbody>
@@ -31,22 +14,27 @@
             <input type="hidden" value="<?=$arr[book][check_guest_register];?>" id="guest_register_check_click"/>
          </td>
          <td  width="30">
-             <i id="photo_guest_register_no" class="fa fa-camera" style="color:#3b59987a; font-size:16px; border-radius: 50%; padding:5px; border: 1px solid #3b59987a;display: none;" ></i>
-             <i id="photo_guest_register_yes" class="fa fa-camera" style="color:<?=$main_color?>; font-size:16px; border-radius: 50%; padding:5px;display: nones; border: solid 2px <?=$main_color?>  " onclick="ViewPhoto('<?=$arr[book][id];?>','guest_register','<?=$arr[book][guest_register_date]?>');"></i>
+         	<table width="100%">
+         		<tr>
+         			<td>
+         				<i id="guest_register_locat_off"  class="material-icons" style="color: #3b59987a;font-size: 22px; border-radius: 50%; padding: 2px; border: solid 1px #3b59987a;display: nones;" >location_on</i>
+         				<i id="guest_register_locat_on" onclick="openPointMaps();" class="material-icons location" style="color: #3b5998;font-size: 22px; border-radius: 50%; padding: 2px; border: solid 2px #3b5998;display: none;" >location_on</i>
+         			</td>
+         			<td>
+         				<i id="photo_guest_register_no" class="material-icons" style="color:#3b59987a; font-size:22px; border-radius: 50%; padding:2px; border: 1px solid #3b59987a;display: none;"  >photo_camera</i>
+            <i id="photo_guest_register_yes" class="material-icons" style="color: #3b5998;font-size: 22px; border-radius: 50%; padding: 2px; border: solid 2px #3b5998;display: none;"  onclick="ViewPhoto('<?=$arr[book][id];?>','guest_register','<?=$arr[book][guest_register_date]?>');" >photo_camera</i>
+         			</td>
+         		</tr>
+         	</table>
+            <!-- <i id="photo_guest_register_no" class="fa fa-camera" style="color:#3b59987a; font-size:16px; border-radius: 50%; padding:5px; border: 1px solid #3b59987a;display: none;" ></i>
+             <i id="photo_guest_register_yes" class="fa fa-camera" style="color:<?=$main_color?>; font-size:16px; border-radius: 50%; padding:5px;display: nones; border: solid 2px <?=$main_color?>  " onclick="ViewPhoto('<?=$arr[book][id];?>','guest_register','<?=$arr[book][guest_register_date]?>');"></i>-->
+             
          </td>
       </tr>
    </tbody>
 </table>
 </div>
-<!--<?php 
-   if(file_exists("../data/fileupload/store/guest_register_".$arr[book][id].".jpg")==0){ ?>
-<script>
-   $('#photo_guest_register').css('color','#3b59987a');
-   $('#photo_guest_register').css('border','1px solid #3b59987a');
-   $('#photo_guest_register').attr('onclick',' ');
-</script>
-<? }
-   ?>-->
+
 <script>
 $.ajax({
 			url: '../data/fileupload/store/guest_register_<?=$arr[book][id];?>.jpg',
@@ -57,7 +45,9 @@ $.ajax({
 		
 			   $('#photo_guest_register_no').show();
 			   $('#photo_guest_register_yes').hide();
-//			   alert(type)
+
+				 $('#guest_register_locat_off').show();
+			     $('#guest_register_locat_on').hide();
 			},
 			success: function()
 			{
@@ -65,6 +55,9 @@ $.ajax({
 
 			   $('#photo_guest_register_no').hide();
 			   $('#photo_guest_register_yes').show();
+
+			   $('#guest_register_locat_off').hide();
+			 	$('#guest_register_locat_on').show();
 			}
 		});
    function btn_guest_register(){ 

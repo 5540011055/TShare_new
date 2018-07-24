@@ -28,7 +28,9 @@ function changeHtml(type,id,status_time){
 			  
 			   $('#photo_'+type+'_yes').hide();
 			   $('#photo_'+type+'_no').show();
-//			   alert()
+
+			   $('#'+type+'_locat_off').show();
+			   $('#'+type+'_locat_on').hide();
 			},
 			success: function()
 			{
@@ -37,6 +39,9 @@ function changeHtml(type,id,status_time){
 				
 				$('#photo_'+type+'_yes').show();
 			   $('#photo_'+type+'_no').hide();
+			   
+			   $('#'+type+'_locat_off').hide();
+			     $('#'+type+'_locat_on').show();
 			}
 		});
 		
@@ -46,11 +51,11 @@ function changeHtml(type,id,status_time){
 
 			var obj = JSON.parse('<?=json_encode($_POST);?>');
 			console.log(obj);
-			if(obj.check_driver_topoint==1){
+		   if(obj.check_driver_topoint==1){
 		      console.log("driver_topoint");
 		      changeHtml("driver_topoint",obj.id,obj.driver_topoint_date)
 		   }
-		    if(obj.check_guest_receive==1){
+		   if(obj.check_guest_receive==1){
 		      console.log("guest_receive");
 		      changeHtml("guest_receive",obj.id,obj.guest_receive_date)
 

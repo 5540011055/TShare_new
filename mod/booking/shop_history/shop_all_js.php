@@ -57,7 +57,27 @@
   
 </script>
 <style>
-  .time-post-shop {
+  .lab-active-shop {
+    position: absolute;
+    z-index: 1;
+/*    right: 30px;*/
+/*    margin-top: 90px;*/
+    margin-top: -28px;
+    margin-left: 5px;
+    background-color: #fff;
+    color: #4CAF50;
+}
+.lab-none-active-shop {
+    position: absolute;
+    z-index: 1;
+/*    right: 15px;*/
+/*    margin-top: 90px;*/
+   	margin-top: -28px;
+    margin-left: 5px;
+    background-color: #fff;
+    color: #fb0006;
+}
+.time-post-shop {
     border-radius: 25px;
     margin-right: 10px;
     border: 1px solid #333;
@@ -120,10 +140,15 @@
     else if($val[status]=='COMPLETED'){
       $status_txt = '<strong><font color="#54c23d">'.t_success.'</font></strong>';
     }
-    
+    if($val[lab_approve_job]==1){
+		$txt_lab_ap = '<span class="font-20 lab-active-shop" >พนักงานรับทราบแล้ว</span>';
+	}else{
+		$txt_lab_ap = '<span class="font-20 lab-none-active-shop" >พนักงานยังไม่รับทราบงานนี้</span>';
+	}
   ?>
   <div style="padding: 5px 0px;margin: 25px 0px;">
   <div class="box-shop">
+  	<?=$txt_lab_ap;?>
     <table width="100%"  onclick="openDetailBooking('<?=$key;?>','<?=$_GET[type];?>');">
           <tr>
             <td width="80%" ><span class="font-24"><?=$arr[shop][$place_shopping];?></span></td>
@@ -184,13 +209,25 @@
       
         ?>
         <a class="btn waves-effect waves-light red lighten-3" align="center" onclick="cancelBookAll('<?=$val[id];?>','<?=$val[invoice];?>');" id="cancel_book_<?=$val[id];?>" style="
-    color: #fff;
+    color: #fff;margin-right: 15px;
     padding: 5px 20px;
     border-radius: 25px;
+    background-color: #F44336 ;
     margin-top: 10px;">
     <span class="font-22 text-cap"><?=t_cancel;?></span>
   </a>
+  	   <?php if($val[lab_approve_job]==0 and $data_user_class == "lab"){ ?>
+	   <a class="btn waves-effect waves-light green lighten-3" align="center" onclick="approveBook('<?=$val[id];?>','<?=$val[invoice];?>','<?=$val[drivername];?>');" id="apporve_book_<?=$val[id];?>" style="
+	    color: #fff;
+	    padding: 5px 20px;
+	    border-radius: 25px;
+	    background-color: #4CAF50 !important;
+	    margin-top: 10px;">
+	    <span class="font-22 text-cap"><?=ยืนยัน;?></span>
+	  </a>
+	  <? } ?>
   <? } ?>
+ 
   </div>
   </div>
   
