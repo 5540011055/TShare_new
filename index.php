@@ -50,6 +50,9 @@
       <link rel="stylesheet" href="material/materialize.min.css?v=<?=time();?>">
       <!--<link rel="stylesheet" href="material/nav.css?v=<?=time();?>">-->
       <link rel="stylesheet" href="material/extra.css?v=<?=time();?>">
+      
+    
+   
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
       <link rel="stylesheet" href="bootstrap/font_all/ultimate/flaticon.css?v=<?=time()?>">
       <link rel="stylesheet" href="bootstrap/font_all/airport/flaticon.css?v=<?=time()?>">
@@ -97,6 +100,17 @@
       '<div class="indeterminate"></div>'+
   '</div>';
    </script>
+	<!-- Scripts -->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+      <script src="material/materialize.min.js?v=<?=time();?>"></script>
+      <script src="material/startup-all-min.js?v=<?=time();?>" crossorigin="anonymous"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+      <script src="js/jquery.touchSwipe.min.js"></script>
+      
+       <link rel="stylesheet" type="text/css" href="pickerdate/classic.css?v=<?=time();?>" />
+   	   <link rel="stylesheet" type="text/css" href="pickerdate/classic.date.css?v=<?=time();?>" />
+       <script src="pickerdate/picker.js?v=<?=time();?>" type="text/javascript"></script>
+       <script src="pickerdate/picker.date.js?v=<?=time();?>" type="text/javascript"></script> 
    <body >
       <div style="
          display: block; 
@@ -163,12 +177,8 @@
             </div>
          </div>
       </div>
-      <!-- Scripts -->
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-      <script src="material/materialize.min.js?v=<?=time();?>"></script>
-      <script src="material/startup-all-min.js?v=<?=time();?>" crossorigin="anonymous"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
-      <script src="js/jquery.touchSwipe.min.js"></script>
+      
+       
       <script>
       if('<?=$_GET[status];?>'!="his"){ //เช็คว่าสเตตัสที่ส่งมาเป็น ประวัติ หรือ กำลังจัดการ
          $(window).load(function() {

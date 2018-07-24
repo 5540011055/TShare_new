@@ -4,7 +4,7 @@
 
 
 <div  style="margin-top:50px;" id="main_component">
-  <!--  <link rel="stylesheet" type="text/css" href="pickerdate/classic.css?v=<?=time();?>" />
+    <!--<link rel="stylesheet" type="text/css" href="pickerdate/classic.css?v=<?=time();?>" />
    <link rel="stylesheet" type="text/css" href="pickerdate/classic.date.css?v=<?=time();?>" />
    <script src="pickerdate/picker.js?v=<?=time();?>" type="text/javascript"></script>
    <script src="pickerdate/picker.date.js?v=<?=time();?>" type="text/javascript"></script> -->
