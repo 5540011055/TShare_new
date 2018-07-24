@@ -46,11 +46,11 @@ function changeHtml(type,id,status_time){
 
 			var obj = JSON.parse('<?=json_encode($_POST);?>');
 			console.log(obj);
-			if(obj.check_driver_topoint==1){
+		   if(obj.check_driver_topoint==1){
 		      console.log("driver_topoint");
 		      changeHtml("driver_topoint",obj.id,obj.driver_topoint_date)
 		   }
-		    if(obj.check_guest_receive==1){
+		   if(obj.check_guest_receive==1){
 		      console.log("guest_receive");
 		      changeHtml("guest_receive",obj.id,obj.guest_receive_date)
 

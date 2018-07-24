@@ -124,7 +124,7 @@
 	
    function filterMenu(type){
 	$('#load_booking_data').html(load_sub_mod);
-//	return
+
    	console.log(type);
    $('.tocheck').removeClass('btn_filter_active');
    $('.tocheck').addClass('btn_filter');
@@ -132,20 +132,10 @@
    $('#btn_'+type).addClass('btn_filter_active');
    
    var date = $('#date_report').val();
-//   console.log($('#json_shop').val());
-//   var obj = JSON.parse($('#json_shop').val());
-/*  if(array_data.length==0){
-  	
-  	setTimeout(function(){ 
-  		filterMenu(type)
-  		return;
-  	 }, 2000);
 
-  }*/
     var obj = array_data;
 
    	if(type=='manage'){
-//   	 	var url = "go.php?name=booking/shop_history&file=shop_all_js&find=day&day="+date+"&status=new&type=manage";
    	 	var url = "go.php?name=booking/shop_history&file=shop_all_js&find=day&day="+date+"&status=new&type=manage";
    	 	$('#date_filter').hide();
    	 	array_ma = obj.manage;
@@ -153,13 +143,7 @@
    	 	
    	 	var pass = { data : array_ma};	
    	 	console.log(pass);
-			/*	var pass = { data : array_ma};
-			  $.post(url,pass,function(html){
-			  	console.log(pass);
-//			  		console.log(html)
-//			  		$('#load_booking_data').html(html);
-			  });*/
-			  
+
 			$.ajax({
 			  url: url,
 			  data: pass,
@@ -189,28 +173,24 @@
 				date : date_rp
 			}
 		}
-
+		console.log(url_his);
    		$.post(url_his,data,function(res){
    			 console.log(res);
 //   			 array_filter = res.data;
-   			 array_his = res.data;
-   			 var url = "go.php?name=booking/shop_history&file=shop_all_js&find=day&day="+date+"&status=completed&type=his";
+			 if(res.data){
+			 	array_his = res.data;
+   			 	var url = "go.php?name=booking/shop_history&file=shop_all_js&find=day&day="+date+"&status=completed&type=his";
+				  $.post(url,{ data : array_his },function(html){
+				  		$('#load_booking_data').html(html);
+				  });
+			 }else{
+			 		$('#load_booking_data').html('<strong><font color="#ff0000">ยกเลิก</font></strong>');
+			 }
    			 
-
-			  $.post(url,{ data : array_his },function(html){
-			  		$('#load_booking_data').html(html);
-			  });
    		});
    		
    		 
-//   		 console.log(obj.history)
-   		/* $.each(obj.history, function( index, value ) {
-		 	
-		 	var td = formatDate(value.transfer_date);
-		 	console.log(td);
-		});*/
-//   		 array_filter = obj.history;
-			
+
    	}
    	 
    }
@@ -294,7 +274,7 @@ function cancelBookAll(id,vc){
 
        console.log($('#form_type_cancel' ).serialize());
 
-	   var url = "mod/booking/shop_history/php_shop.php?type=cancel&id="+id;
+	   var url = "mod/booking/shop_history/php_shop.php?type=cancel&id="+id+"&username=<?=$arr[web_user][username];?>";
 	   
 	   console.log(url+" ");
 
@@ -320,4 +300,46 @@ function cancelBookAll(id,vc){
      }
    });
     }
+
+function approveBook(id,vc,driver){
+	swal({
+	   title: "รับทราบงานนี้",
+	   text: "ยันยันเพื่อส่งการแจ้งเตือนไปยังคนขับว่ารับทราบงานของเขาแล้ว",
+	   type: "warning",
+	   showCancelButton: true,
+	   confirmButtonClass: "btn-danger waves-effect waves-light",
+		cancelButtonClass: "btn-cus waves-effect waves-light",
+	   confirmButtonText: '<?echo t_yes?>',
+	   cancelButtonText: "<?echo t_no?>",
+	   closeOnConfirm: false,
+	   closeOnCancel: true,
+	   html: true
+	   },
+	   function(isConfirm){
+	     if (isConfirm){
+	     	 var url = "mod/booking/shop_history/php_shop.php?action=lab_acknowledge";
+	     	 $.post( url,{ id:id , vc:vc , posted:"<?=$arr[web_user][username];?>"}, function( data ) {
+	     	 	console.log(data);
+	     	 	if(data.result==true){
+					swal("<?=t_success;?>", "แจ้งเตือนการรับทราบงานของคุณไปยังคนขับแล้ว", "success");
+					$('#apporve_book_'+id).hide();
+					var url_messages = "send_messages/send_checkin.php?action=acknowledge&order_id="+id+"&driver="+driver+"&vc="+vc;
+					$.post( url_messages, function( res ) {
+						console.log(res)
+					});
+				}
+	     	 	
+	      	 });
+	     }
+   });
+}
+
+function openPointMaps(){
+	console.log('view dv point');
+   $( "#main_load_mod_popup_map" ).show();
+   $('#load_mod_popup_map').html(load_main_mod);
+
+//   var url_load = "load_page_map.php?name=map_api&file=map_main&province="+province+"&user_id=<?=$user_id?>";
+//   $('#load_mod_popup_map').load(url_load); 
+}
 </script>

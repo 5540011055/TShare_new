@@ -51,7 +51,7 @@
 
    var url_load = "load_page_map.php?name=map_api&file=map_main&province="+province+"&user_id=<?=$user_id?>";
    $('#load_mod_popup_map').load(url_load); 
-   $('#show_main_tool_bottom').hide();
+
    });
 
    $('#submit_select_pv').click(function(){

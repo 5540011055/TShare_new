@@ -17,10 +17,10 @@ if($_GET[type]=="cancel"){
 
 	$typname = "typname_".$_POST[type];
 	$data_his[order_id] = $_GET[id];
-	$data_his[type_name] = $_POST[$typname];
+	$data_his[type] = $_POST[$typname];
 	$data_his[status] = "CANCEL";
-	$data_his[cancel_type] = $_POST[type];
-	$data_his[posted] = "";
+	$data_his[type] = $_POST[type];
+	$data_his[posted] = $_GET[username];
 	$data_his[post_date] = time();
 	$data_his[update_date] = time();
 	$data_his[result] = $db->add_db('history_del_order_booking', $data_his);
@@ -29,6 +29,19 @@ if($_GET[type]=="cancel"){
     $db->closedb();
     header('Content-Type: application/json');
     echo json_encode($data);
+}
+
+if($_GET[action]=="lab_acknowledge"){
+	
+	$db->connectdb(DB_NAME_APP, DB_USERNAME, DB_PASSWORD);
+	
+	$data[lab_approve_job] = 1;
+	$data[lab_approve_job_date] = time();
+	$data[lab_approve_job_post] = $_POST[posted];
+ 	$data[result] = $db->update_db('order_booking',$data," id='".$_POST[id]."' ");
+ 	header('Content-Type: application/json');
+    echo json_encode($data);
+    
 }
 
 if($_GET[action]=="check_driver_topoint"){  

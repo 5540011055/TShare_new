@@ -139,8 +139,7 @@ body,td,th {
    -webkit-tap-highlight-color: transparent;
    z-index: 1;
 }
-</style>
-<style>
+
 .back_main{
    padding: 5px 0px;
    margin-top: 0px;
@@ -1218,6 +1217,7 @@ if(open_ic=='1'){
             $("#main_load_mod_popup" ).toggle();
             var url_load = "load_page_mod.php?name=shop/shop_new&file=shop&driver=<?=$user_id?>&type="+id_place_one+"&province=1&detail=1";
             console.log(url_load);
+            $('#load_mod_popup').html(load_main_mod);
             $.post( url_load, function( data ) {
                $('#load_mod_popup').html(data);
             });

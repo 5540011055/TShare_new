@@ -1,9 +1,3 @@
-<script>
-  /* var url = "mod/booking/shop_history/load/component_shop.php?request=check_status_checkin&status=<?=$arr[book][check_driver_topoint]?>&time=<?=$arr[book][driver_topoint_date];?>";
-   $('#status_driver_topoint').html('<b><i class="fa  fa-refresh fa-spin 2x" style="color:#000000"></i> <?echo t_load_data?>');
-   $('#status_driver_topoint').load(url);*/
-</script>
-
 <div class="div-all-checkin">
 <table width="100%" border="0" cellspacing="2" cellpadding="0" class=" border-alert" id="box_driver_topoint">
    <tbody>
@@ -15,7 +9,7 @@
             </div>
          </td>
          <td colspan="2">
-         <button  id="btn_driver_topoint" onclick="btn_driver_topoint()" type="button" class="btn  btn-info "  style="width:100%;text-align:left;padding:5px; background-color:<?=$main_color?>;  border-radius: 20px; border:none;color: #fff; "><span class="font-26 text-cap" ><i class="icon-new-uniF12D-1" style="width:10px;"  ></i> <?=t_place_of_delivery;?></span></button></td>
+         <button  id="btn_driver_topoint" onclick="btn_driver_topoint()" type="button" class="btn  btn-info "  style="width:100%;text-align:left;padding:5px; background-color:#3b5998;  border-radius: 20px; border:none;color: #fff; "><span class="font-26 text-cap" ><i class="icon-new-uniF12D-1" style="width:10px;"  ></i> <?=t_place_of_delivery;?></span></button></td>
       </tr>
       <tr>
          <td style="height:30px;">
@@ -23,14 +17,31 @@
             <i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#FF0000"></i> <strong><font color="#FF0000"><?=t_pending;?></font></strong></div></div>
          </td>
          <td width="30">
-            <input type="hidden" value="<?=$arr[book][check_driver_topoint];?>" id="driver_topoint_check_click"/>
-            <i id="photo_driver_topoint_no" class="fa fa-camera" style="color:#3b59987a; font-size:16px; border-radius: 50%; padding:5px; border: 1px solid #3b59987a;display: none;" ></i>
-             <i id="photo_driver_topoint_yes" class="fa fa-camera" style="color:<?=$main_color?>; font-size:16px; border-radius: 50%; padding:5px;display: none; border: solid 2px <?=$main_color?>  " onclick="ViewPhoto('<?=$arr[book][id];?>','driver_topoint','<?=$arr[book][driver_topoint_date]?>');"></i>
-            <input type="hidden" id="check_code" value="<?=$arr[book][id];?>" />
+         	<table width="100%">
+         		<tr>
+         			<td>
+         			<i id="driver_topoint_locat_off"  class="material-icons" 
+         			style="color: #3b59987a;font-size: 22px; border-radius: 50%; padding: 2px; border: solid 1px #3b59987a;display: none;" >location_on</i>
+         			
+         				<i id="driver_topoint_locat_on" onclick="openPointMaps();" class="material-icons" 
+         				style="color: #3b5998;font-size: 22px; border-radius: 50%; padding: 2px; border: solid 2px #3b5998;display: nones;" >location_on</i>
+         			
+         			</td>
+         			<td>
+         				<!--<i id="photo_driver_topoint_no" class="fa fa-camera" style="color:#3b59987a; font-size:16px; border-radius: 50%; padding:5px; border: 1px solid #3b59987a;display: none;" ></i>-->
+            <!-- <i id="photo_driver_topoint_yes" class="fa fa-camera" style="color:#3b5998; font-size:16px; border-radius: 50%; padding:5px;display: none; border: solid 2px #3b5998 ; " onclick="ViewPhoto('<?=$arr[book][id];?>','driver_topoint','<?=$arr[book][driver_topoint_date]?>');"></i>-->
+            <i id="photo_driver_topoint_no" class="material-icons" style="color:#3b59987a; font-size:22px; border-radius: 50%; padding:2px; border: 1px solid #3b59987a;display: none;" >photo_camera</i>
+            <i id="photo_driver_topoint_yes" class="material-icons" style="color: #3b5998;font-size: 22px; border-radius: 50%; padding: 2px; border: solid 2px #3b5998;display: none;"  onclick="ViewPhoto('<?=$arr[book][id];?>','driver_topoint','<?=$arr[book][driver_topoint_date]?>');" >photo_camera</i>
+         			</td>
+         		</tr>
+         	</table>
+            
          </td>
       </tr>
    </tbody>
 </table>
+<input type="hidden" value="<?=$arr[book][check_driver_topoint];?>" id="driver_topoint_check_click"/>
+<input type="hidden" id="check_code" value="<?=$arr[book][id];?>" />
 </div>
 <script>
 //	var type = "driver_topoint";
@@ -45,6 +56,9 @@
 			   $('#photo_driver_topoint').attr('onclick',' ');*/
 			   $('#photo_driver_topoint_yes').hide();
 			   $('#photo_driver_topoint_no').show();
+			   
+			   $('#driver_topoint_locat_off').show();
+			   $('#driver_topoint_locat_on').hide();
 			},
 			success: function()
 			{
@@ -52,6 +66,9 @@
 				console.log('success file');
 				 $('#photo_driver_topoint_yes').show();
 			     $('#photo_driver_topoint_no').hide();
+			     
+			     $('#driver_topoint_locat_off').hide();
+			     $('#driver_topoint_locat_on').show();
 				/*$('#photo_driver_topoint').css('color','#3b5998');
 				$('#photo_driver_topoint').css('border','2px solid #3b5998');*/
 //				$('#photo_driver_topoint').attr('onclick','ViewPhoto("'+id+'","driver_topoint","<?=TIMESTAMP;?>");');
