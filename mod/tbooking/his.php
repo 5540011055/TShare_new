@@ -333,14 +333,14 @@
 	   	 }, 0);
    }
 
-   function backMain(){
+  /* function backMain(){
    	console.log('back');
    	$('#main_load_mod_popup .back-full-popup').fadeIn(500);
    	$('#show_main_tool_bottom').fadeIn(500);
      		$('#sub_component').hide();
      		$('#main_component').addClass('w3-animate-left');
      		$('#main_component').show();
-   }
+   }*/
 	
 	function mapsSelector(lat,lng) {
 	  if /* if we're on iOS, open in Apple Maps */

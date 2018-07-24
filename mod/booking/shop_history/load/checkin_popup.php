@@ -144,6 +144,7 @@
     var lng = $('#lng').val();
     var url = "mod/booking/shop_history/php_shop.php?action=<?=$action;?>&type=<?=$_GET[type]?>&id=<?=$arr[project][id]?>&lat="+lat+"&lng="+lng;
     console.log(url);
+//    return
 		$.post(url,function(res){
 			console.log(res);
 			if(res.result==true){

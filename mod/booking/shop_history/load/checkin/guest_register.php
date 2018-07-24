@@ -18,7 +18,7 @@
          		<tr>
          			<td>
          				<i id="guest_register_locat_off"  class="material-icons" style="color: #3b59987a;font-size: 22px; border-radius: 50%; padding: 2px; border: solid 1px #3b59987a;display: nones;" >location_on</i>
-         				<i id="guest_register_locat_on" onclick="openPointMaps();" class="material-icons location" style="color: #3b5998;font-size: 22px; border-radius: 50%; padding: 2px; border: solid 2px #3b5998;display: none;" >location_on</i>
+         				<i id="guest_register_locat_on" onclick="openPointMaps('<?=$arr[book][driver_register_lat]?>','<?=$arr[book][driver_register_lng]?>');" class="material-icons location" style="color: #3b5998;font-size: 22px; border-radius: 50%; padding: 2px; border: solid 2px #3b5998;display: none;" >location_on</i>
          			</td>
          			<td>
          				<i id="photo_guest_register_no" class="material-icons" style="color:#3b59987a; font-size:22px; border-radius: 50%; padding:2px; border: 1px solid #3b59987a;display: none;"  >photo_camera</i>

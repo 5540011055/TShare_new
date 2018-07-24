@@ -4,12 +4,7 @@
     <title>Geolocation</title>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
-    <?php if(0==1){ ?>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
-<? } ?>
+    <!--<script src="https://cdn.rawgit.com/googlemaps/js-rich-marker/gh-pages/src/richmarker.js"></script>-->
     <style>
 	  .gmnoprint{
 	  	display: none !important;
@@ -172,41 +167,25 @@
   </head>
   <body >
     <div id="map" ></div>
-	
-	<input type="hidden" value="<?=$_GET[province];?>" id="select_pv"/>
-	<input type="hidden" value="<?=$_GET[lat_cen];?>" id="lat_center"/>
-	<input type="hidden" value="<?=$_GET[lng_cen];?>" id="lng_center"/>
-	<input type="hidden" value="<?=$_GET[user_id];?>" id="user_id"/>
-	
+	<input id="lat_map_point" value="<?=$_GET[lat];?>" type="hidden" />
+	<input id="lng_map_point" value="<?=$_GET[lng];?>" type="hidden" />
 	<div style="position: fixed;bottom: 15px;right: 0px;width:  auto;">
 	<div id="current_location" display="hidden" class="marker" style="display: none;">
 	  <div class="pin"></div>
 	  <div class="pin-effect"></div>
 	</div>
-	<div id="btn_CurrentLocation" style="z-index: 0; position: absolute; right: 20px; bottom: 190px; color: rgb(35, 35, 35);">
+	<!--<div id="btn_CurrentLocation" style="z-index: 0; position: absolute; right: 20px; bottom: 190px; color: rgb(35, 35, 35);">
 		<button title="Your Location" class="but_map-menu">
 		<i class="material-icons" style="margin: 5px;font-weight: 800;"><i class="fa fa-map-marker" style="font-size: 25px;"></i></i>
 		</button>
+	</div>-->
 	</div>
-	<div id="btn_popup_filter" style="z-index: 0; position: absolute; right: 20px; bottom: 130px; color: rgb(35, 35, 35);">
-		<button class="but_map-menu">
-		<i class="material-icons" style="margin: 5px;font-weight: 800;"><i class="fa fa-search" style="font-size:20px;"></i></i>
-		</button>
-	</div>
-	<div id="btn_popup_setting" style="z-index: 0; position: absolute; right: 20px; bottom: 70px; color: rgb(35, 35, 35);">
-		<button class="but_map-menu">
-		<i class="material-icons" style="margin: 5px;font-weight: 800;"><i class="fa fa-picture-o" style="font-size:20px;"></i></i>
-		</button>
-	</div>
-	<div id="btn_popup_name_marker" style="z-index: 0; position: absolute; right: 20px; bottom: 70px; color: rgb(35, 35, 35);display: none;">
-		<button class="but_map-menu">
-		<i class="material-icons" style="margin: 5px;font-weight: 800;"><i class="fa fa-cog" style="font-size:20px;"></i></i>
-		</button>
-	</div>
-	</div>
-		<script>
-			$('#btn_popup_setting').click();
-		</script>
+
+<!--<div id="marker" display="hidden" class="marker">
+  <div class="pin"></div>
+  <div class="pin-effect"></div>
+</div>-->
+
 <script>
    		
        var map, infoWindow;
@@ -221,9 +200,9 @@
       initMap();
       
       function initMap() {
-      	definePopupClass();
-      	var lat_center = $('#lat_center').val();
-      	var lng_center = $('#lng_center').val();
+      	
+      	var lat_center = $('#lat_map_point').val();
+      	var lng_center = $('#lng_map_point').val();
         map = new google.maps.Map(document.getElementById('map'), {
         center: { lat: parseInt(lat_center), lng: parseInt(lng_center) },
         zoom: 12,
@@ -282,35 +261,26 @@
     });   
          
           
-		setMarker();
 		
-        if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition(function(position) {
-            var pos = {
-              lat: position.coords.latitude,
-              lng: position.coords.longitude
+		
+		var ip_lat = $('#lat_map_point').val();
+		var ip_lng = $('#lng_map_point').val();
+		var pos = {
+              lat: parseFloat(ip_lat),
+              lng: parseFloat(ip_lng)
             };
-			markerCircle.setPosition(pos);
+            console.log(pos)
+            setMarker();
+            marker.setPosition(pos);
+//			markerCircle.setPosition(pos);
+			
+			
             map.setCenter(pos);
-          });
-        } else {
-          // Browser doesn't support Geolocation
-          handleLocationError(false, infoWindow, map.getCenter());
-        }
-        
-        
-      }
-		
-      function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-        infoWindow.setPosition(pos);
-        infoWindow.setContent(browserHasGeolocation ?
-                              'Error: The Geolocation service failed.' :
-                              'Error: Your browser doesn\'t support geolocation.');
-        infoWindow.open(map);
-      }
+			smoothZoom(map, 18, map.getZoom());
+	}
       
       function setMarker(){
-		markerCircle = new google.maps.Marker({
+		/*markerCircle = new google.maps.Marker({
 	        position: map.getCenter(),
 	        icon: {
 	            path: google.maps.SymbolPath.CIRCLE,
@@ -332,8 +302,12 @@
 	        map: map,
 	        radius: Math.sqrt(1) * 30
 	    });
-	    circle.bindTo('center', markerCircle, 'position');
-
+	    circle.bindTo('center', markerCircle, 'position');*/
+		
+		  marker = new google.maps.Marker({
+          map: map,
+          title: 'Hello World!'
+        });
 
 	  }
 	
@@ -383,173 +357,10 @@
 		        setTimeout(function() { map.setZoom(cnt) }, 150); // 80ms is what I found to work well on my system -- it might not work well on all systems
 		    }
 		}
-
-
-
-		/** Defines the Popup class. */
-		function definePopupClass() {
-  /**
-   * A customized popup on the map.
-   * @param {!google.maps.LatLng} position
-   * @param {!Element} content
-   * @constructor
-   * @extends {google.maps.OverlayView}
-   */
-  Popup = function(position, content) {
-    this.position = position;
-
-    content.classList.add('popup-bubble-content');
-
-    var pixelOffset = document.createElement('div');
-    pixelOffset.classList.add('popup-bubble-anchor');
-    pixelOffset.appendChild(content);
-
-    this.anchor = document.createElement('div');
-    this.anchor.classList.add('popup-tip-anchor');
-    this.anchor.appendChild(pixelOffset);
-
-    // Optionally stop clicks, etc., from bubbling up to the map.
-    this.stopEventPropagation();
-  };
-  // NOTE: google.maps.OverlayView is only defined once the Maps API has
-  // loaded. That is why Popup is defined inside initMap().
-  Popup.prototype = Object.create(google.maps.OverlayView.prototype);
-
-  /** Called when the popup is added to the map. */
-  Popup.prototype.onAdd = function() {
-    this.getPanes().floatPane.appendChild(this.anchor);
-  };
-
-  /** Called when the popup is removed from the map. */
-  Popup.prototype.onRemove = function() {
-    if (this.anchor.parentElement) {
-      this.anchor.parentElement.removeChild(this.anchor);
-    }
-  };
-
-  /** Called when the popup needs to draw itself. */
-  Popup.prototype.draw = function() {
-    var divPosition = this.getProjection().fromLatLngToDivPixel(this.position);
-    // Hide the popup when it is far out of view.
-    var display =
-        Math.abs(divPosition.x) < 4000 && Math.abs(divPosition.y) < 4000 ?
-        'block' :
-        'none';
-
-    if (display === 'block') {
-      this.anchor.style.left = divPosition.x + 'px';
-      this.anchor.style.top = divPosition.y + 'px';
-    }
-    if (this.anchor.style.display !== display) {
-      this.anchor.style.display = display;
-    }
-  };
-
-  /** Stops clicks/drags from bubbling up to the map. */
-  Popup.prototype.stopEventPropagation = function() {
-    var anchor = this.anchor;
-    anchor.style.cursor = 'auto';
-
-    ['click', 'dblclick', 'contextmenu', 'wheel', 'mousedown', 'touchstart',
-     'pointerdown']
-        .forEach(function(event) {
-          anchor.addEventListener(event, function(e) {
-          	
-			if(event=='touchstart'){
-				console.log(e);
-				console.log(e.target.id);
-				var id = e.target.id;
-				var res = id.split('_');
-				console.log(res[1]);
-				CheckDetail(res[1]);
-			}
-			
-            e.stopPropagation();
-          });
-        });
-  };
-}
 		
 		
 </script>
-    
-<div id="broModal" class="modal" style="font-size: 0px!important; color: #000000 !important;height: 100%">
-  <span class="close" style="position: fixed;
-    color: #f4f4f4;
-    right: 15px;
-    font-size: 40px; display: none;
-   " id="closeModal" >&times;</span>
-   <i class="fa fa-times" aria-hidden="true" style="position: fixed;
-    color: #f4f4f4;
-    right: 15px;
-    font-size: 40px;
-    z-index: 9000;
-   " id="close_modal" onclick="closeModal();"></i>
-  <div class="modal-content" id="img01"> </div>
- 
-</div>
 
-<style>
-	.map-search-modal{
-	  font-size: 0px; 
-	  color: #000000;
-	  transition:0.27s;
-	  height:0px;
-	  display: block;
-	  position: fixed;
-	  top: 50px;
-	  right: 0;
-	  bottom: 0;
-	  left: 0;
-	  z-index: 0;
-	  overflow: hidden;
-	  -webkit-overflow-scrolling: touch;
-	  outline: 0;
-	  background-color : #fff;
-	  box-shadow: 1px 2px 10px #666;
-	}
-	.box-show-place{
-		border: 1px solid #ddd;  
-		padding: 2px;  
-		box-shadow: 1px 1px 3px #ddd;
-		border-radius: 15px;
-		margin-bottom:5px;
-		width: 100%;
-	}
-</style>
-
-<input type="hidden" value="0" id="check_broM"/>
-<input type="hidden" value="0" id="check_switch_mod_show"/>
-
-<div id="mapModal" class="map-search-modal">
-		<div style="width: 100%;padding-left: 10px;padding-right: 10px;padding-top: 5px;padding-bottom:  5px;">
-			<table width="100%">
-  				<tr>
-  					<td>
-  				<input class="search-box-shop" id="search_shop" onkeyup="SearchPlace();" value="" placeholder="<?=t_search_by_place;?>" style=" border-radius: 15px; width:100%;padding:10px;height:35px;">
-  				<i class="fa fa-search" aria-hidden="true" style="position:  absolute;right: 30px;top: 15px;font-size: 20px;" ></i>
-  					</td>
-  				</tr>
-  				</table>
-		</div>
-	<div style="padding: 5px 15px;height: 210px;overflow:  scroll;display: nones;" id="box_result_search">
-
-	</div>
-</div>
-
-<div id="infowindow_event" class="map-search-modal" style="background-color:#3333338f;display:none;
-padding-bottom:65px;overflow: scroll;top:0px;padding-top:65px;height: 100%;padding-left:15;padding-right: 15px;" >
-
-	<div style="padding: 10px;margin-top: 0px;padding: 15px;background-color:#fff;box-shadow:1px 2px 3px #999;
-	border-bottom-left-radius : 28px;
-	border-bottom-right-radius : 28px;
-	border-top-left-radius : 28px;">
-		<span class="close" style="position: absolute;color: #110000;right: 30px;top:65px;font-size: 45px; display: nones;" id="closeInfowindow" >&times;</span>
-		<div id="body_show_infowindow">
-			
-		</div>
-	</div>
-</div>
-       <script src="https://cdn.rawgit.com/googlemaps/js-rich-marker/gh-pages/src/richmarker.js?v=<?=time();?>"></script>
+       
   </body>
 </html>
