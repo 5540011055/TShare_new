@@ -23,7 +23,7 @@
          			<i id="driver_topoint_locat_off"  class="material-icons" 
          			style="color: #3b59987a;font-size: 22px; border-radius: 50%; padding: 2px; border: solid 1px #3b59987a;display: none;" >location_on</i>
          			
-         				<i id="driver_topoint_locat_on" onclick="openPointMaps();" class="material-icons" 
+         				<i id="driver_topoint_locat_on" onclick="openPointMaps('<?=$arr[book][driver_topoint_lat]?>','<?=$arr[book][driver_topoint_lng]?>');" class="material-icons" 
          				style="color: #3b5998;font-size: 22px; border-radius: 50%; padding: 2px; border: solid 2px #3b5998;display: nones;" >location_on</i>
          			
          			</td>

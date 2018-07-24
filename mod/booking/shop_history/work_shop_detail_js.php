@@ -28,7 +28,9 @@ function changeHtml(type,id,status_time){
 			  
 			   $('#photo_'+type+'_yes').hide();
 			   $('#photo_'+type+'_no').show();
-//			   alert()
+
+			   $('#'+type+'_locat_off').show();
+			   $('#'+type+'_locat_on').hide();
 			},
 			success: function()
 			{
@@ -37,6 +39,9 @@ function changeHtml(type,id,status_time){
 				
 				$('#photo_'+type+'_yes').show();
 			   $('#photo_'+type+'_no').hide();
+			   
+			   $('#'+type+'_locat_off').hide();
+			     $('#'+type+'_locat_on').show();
 			}
 		});
 		

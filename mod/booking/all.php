@@ -334,12 +334,12 @@ function approveBook(id,vc,driver){
    });
 }
 
-function openPointMaps(){
-	console.log('view dv point');
+function openPointMaps(lat,lng){
+	console.log('view dv point lat='+lat+',lng='+lng);
    $( "#main_load_mod_popup_map" ).show();
    $('#load_mod_popup_map').html(load_main_mod);
 
-//   var url_load = "load_page_map.php?name=map_api&file=map_main&province="+province+"&user_id=<?=$user_id?>";
-//   $('#load_mod_popup_map').load(url_load); 
+   var url_load = "load_page_map.php?name=map_api&file=map_main&province="+province+"&user_id=<?=$user_id?>";
+   $('#load_mod_popup_map').load(url_load); 
 }
 </script>

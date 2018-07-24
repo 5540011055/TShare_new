@@ -63,6 +63,7 @@ $.ajax({
 				$('#photo_guest_receive').attr('onclick','ViewPhoto("'+id+'","photo_guest_receive","<?=TIMESTAMP;?>");');*/
 				$('#photo_guest_receive_no').hide();
 			   $('#photo_guest_receive_yes').show();
+			   
 			   $('#guest_receive_locat_on').show();
 			   $('#guest_receive_locat_off').hide();
 			}
