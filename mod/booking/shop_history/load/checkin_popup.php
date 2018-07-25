@@ -147,6 +147,7 @@
 //    return
 		$.post(url,function(res){
 			console.log(res);
+			
 			if(res.result==true){
 				 changeHtml("<?=$_GET[type]?>","<?=$arr[project][id]?>","<?=time();?>")
 				 console.log(array_data);

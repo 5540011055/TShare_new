@@ -334,11 +334,11 @@ function approveBook(id,vc,driver){
    });
 }
 
-function openPointMaps(lat,lng){
+function openPointMaps(type,order_id){
 //	console.log('view dv point lat='+lat+',lng='+lng);
    $("#main_load_mod_popup_map" ).show();
    $('#load_mod_popup_map').html(load_main_mod);
-   var url_load = "load_page_map.php?name=map_api&file=map_point&user_id=<?=$user_id?>&lat="+lat+"&lng="+lng;
+   var url_load = "load_page_map.php?name=map_api&file=map_point&user_id=<?=$user_id?>&type="+type+"&order_id="+order_id;
    console.log(url_load);
    $('#load_mod_popup_map').load(url_load); 
 }

@@ -25,8 +25,8 @@
          		<tr>
          			<td>
          				<!--<i id="driver_pay_report_locat" onclick="openPointMaps();" class="material-icons" style="color: #3b5998;font-size: 22px; border-radius: 50%; padding: 2px; border: solid 2px #3b5998;display: none;" >location_on</i>-->
-         				<i id="driver_pay_report_locat_off"  class="material-icons" style="color: #3b59987a;font-size: 22px; border-radius: 50%; padding: 2px; border: solid 1px #3b59987a;display: nones;" >location_on</i>
-         				<i id="driver_pay_report_locat_on" onclick="openPointMaps();" class="material-icons" style="color: #3b5998;font-size: 22px; border-radius: 50%; padding: 2px; border: solid 2px #3b5998;display: none;" >location_on</i>
+         				<!--<i id="driver_pay_report_locat_off"  class="material-icons" style="color: #3b59987a;font-size: 22px; border-radius: 50%; padding: 2px; border: solid 1px #3b59987a;display: nones;" >location_on</i>
+         				<i id="driver_pay_report_locat_on" onclick="openPointMaps();" class="material-icons" style="color: #3b5998;font-size: 22px; border-radius: 50%; padding: 2px; border: solid 2px #3b5998;display: none;" >location_on</i>-->
          			</td>
          			<td>
          				<i id="photo_driver_pay_report_no" class="material-icons" style="color:#3b59987a; font-size:22px; border-radius: 50%; padding:2px; border: 1px solid #3b59987a;display: none;"  >photo_camera</i>
@@ -53,8 +53,8 @@
 			    $('#photo_driver_pay_report_no').show();
 			   $('#photo_driver_pay_report_yes').hide();
 			   
-			   $('#driver_pay_report_locat_on').hide();
-			   $('#driver_pay_report_locat_off').show();
+			   /*$('#driver_pay_report_locat_on').hide();
+			   $('#driver_pay_report_locat_off').show();*/
 			},
 			success: function()
 			{
@@ -67,8 +67,8 @@
 				$('#photo_driver_pay_report_no').hide();
 			   $('#photo_driver_pay_report_yes').show();
 			   
-			    $('#driver_pay_report_locat_on').show();
-			   $('#driver_pay_report_locat_off').hide();
+			    /*$('#driver_pay_report_locat_on').show();
+			   $('#driver_pay_report_locat_off').hide();*/
 			}
 		});
      function btn_driver_pay_report(){

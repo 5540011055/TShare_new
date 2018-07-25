@@ -18,7 +18,7 @@
          		<tr>
          			<td>
          				<i id="guest_register_locat_off"  class="material-icons" style="color: #3b59987a;font-size: 22px; border-radius: 50%; padding: 2px; border: solid 1px #3b59987a;display: nones;" >location_on</i>
-         				<i id="guest_register_locat_on" onclick="openPointMaps('<?=$arr[book][driver_register_lat]?>','<?=$arr[book][driver_register_lng]?>');" class="material-icons location" style="color: #3b5998;font-size: 22px; border-radius: 50%; padding: 2px; border: solid 2px #3b5998;display: none;" >location_on</i>
+         				<i id="guest_register_locat_on" onclick="openPointMaps('guest_register','<?=$arr[book][id]?>');" class="material-icons location" style="color: #3b5998;font-size: 22px; border-radius: 50%; padding: 2px; border: solid 2px #3b5998;display: none;" >location_on</i>
          			</td>
          			<td>
          				<i id="photo_guest_register_no" class="material-icons" style="color:#3b59987a; font-size:22px; border-radius: 50%; padding:2px; border: 1px solid #3b59987a;display: none;"  >photo_camera</i>
@@ -36,6 +36,14 @@
 </div>
 
 <script>
+if($('#guest_register_check_click').val()==1){
+		 	$('#guest_register_locat_off').hide();
+		 	$('#guest_register_locat_on').show();
+		 
+		}else{
+			 $('#guest_register_locat_off').show();
+			 $('#guest_register_locat_on').hide();
+		}
 $.ajax({
 			url: '../data/fileupload/store/guest_register_<?=$arr[book][id];?>.jpg',
 			type:'HEAD',
@@ -46,8 +54,8 @@ $.ajax({
 			   $('#photo_guest_register_no').show();
 			   $('#photo_guest_register_yes').hide();
 
-				 $('#guest_register_locat_off').show();
-			     $('#guest_register_locat_on').hide();
+//				 $('#guest_register_locat_off').show();
+//			     $('#guest_register_locat_on').hide();
 			},
 			success: function()
 			{
@@ -56,8 +64,8 @@ $.ajax({
 			   $('#photo_guest_register_no').hide();
 			   $('#photo_guest_register_yes').show();
 
-			   $('#guest_register_locat_off').hide();
-			 	$('#guest_register_locat_on').show();
+//			   $('#guest_register_locat_off').hide();
+//			 	$('#guest_register_locat_on').show();
 			}
 		});
    function btn_guest_register(){ 

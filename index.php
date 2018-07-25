@@ -50,7 +50,7 @@
       <link rel="stylesheet" href="material/materialize.min.css?v=<?=time();?>">
       <!--<link rel="stylesheet" href="material/nav.css?v=<?=time();?>">-->
       <link rel="stylesheet" href="material/extra.css?v=<?=time();?>">
-      
+      <link rel="stylesheet" href="material/material.indigo-pink.min.css">
     
    
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -111,7 +111,7 @@
    	   <link rel="stylesheet" type="text/css" href="pickerdate/classic.date.css?v=<?=time();?>" />
        <script src="pickerdate/picker.js?v=<?=time();?>" type="text/javascript"></script>
        <script src="pickerdate/picker.date.js?v=<?=time();?>" type="text/javascript"></script> 
-   <body >
+   <body style="background: url('pic/b1.jpg');" >
       <div style="
          display: block; 
          position: fixed;

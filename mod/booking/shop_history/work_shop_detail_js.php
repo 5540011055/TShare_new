@@ -1,4 +1,5 @@
 <script>
+
 function changeHtml(type,id,status_time){
 //	   		var url_status = "popup.php?name=booking/load/form&file=checkin_status&id="+id+"&type=check_"+type+"&time="+status_time+"&status=1";
 			 var url_status = "mod/booking/shop_history/load/component_shop.php?request=check_status_checkin&status=1&time="+status_time;
@@ -19,6 +20,8 @@ function changeHtml(type,id,status_time){
 			}else if(type=="driver_pay_report"){
 				
 			}
+			$('#'+type+'_locat_off').hide();
+			$('#'+type+'_locat_on').show();
 		$.ajax({
 			url: '../data/fileupload/store/'+type+'_'+id+'.jpg',
 			type:'HEAD',
@@ -29,8 +32,8 @@ function changeHtml(type,id,status_time){
 			   $('#photo_'+type+'_yes').hide();
 			   $('#photo_'+type+'_no').show();
 
-			   $('#'+type+'_locat_off').show();
-			   $('#'+type+'_locat_on').hide();
+//			   $('#'+type+'_locat_off').show();
+//			   $('#'+type+'_locat_on').hide();
 			},
 			success: function()
 			{
@@ -40,8 +43,8 @@ function changeHtml(type,id,status_time){
 				$('#photo_'+type+'_yes').show();
 			   $('#photo_'+type+'_no').hide();
 			   
-			   $('#'+type+'_locat_off').hide();
-			     $('#'+type+'_locat_on').show();
+//			   $('#'+type+'_locat_off').hide();
+//			     $('#'+type+'_locat_on').show();
 			}
 		});
 		
@@ -402,7 +405,7 @@ else if($arr[book][status]=='CONFIRM'){
 	
 	
 	<?php 
-	if($arr[book][status]!='CANCEL'){
+	if($arr[book][status]!='CANCELs'){
 	if($data_user_class=='taxi'){	
 	$txt_btn_pay = 'ยืนการการรับเงิน';
 	

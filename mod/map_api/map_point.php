@@ -166,9 +166,37 @@
 </script>
   </head>
   <body >
+  	<?php 
+ if($_GET[type]=='driver_topoint'){		
+     	$lat_col = "driver_topoint_lat";
+     	$lng_col = "driver_topoint_lng";
+     	$date = "driver_topoint_date";
+    }
+    else if($_GET[type]=='guest_receive'){		
+      	$lat_col = "driver_pickup_lat";
+     	$lng_col = "driver_pickup_lng";
+     	$date = "guest_receive_date";
+    } 
+    else if($_GET[type]=='guest_register'){		
+      	$lat_col = "driver_register_lat";
+     	$lng_col = "driver_register_lng";
+     	$date = "driver_register_date";
+    } 
+   /* else if($_GET[type]=='driver_pay_report'){		
+     	$lat_col = "driver_register_lat";
+     	$lng_col = "driver_register_lng";
+    }*/
+ $db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
+ $res[book] = $db->select_query("SELECT ".$lat_col.",".$lng_col.",".$date.",drivername FROM  order_booking  where id = '".$_GET[order_id]."'  ");
+ $arr[book] = $db->fetch($res[book]);
+
+$res[projectdriver] = $db->select_query("SELECT name,nickname,phone,name_en,username FROM web_driver WHERE id='".$arr[book][drivername]."'    "); 
+ $arr[projectdriver] = $db->fetch($res[projectdriver]);
+  	?>
     <div id="map" ></div>
-	<input id="lat_map_point" value="<?=$_GET[lat];?>" type="hidden" />
-	<input id="lng_map_point" value="<?=$_GET[lng];?>" type="hidden" />
+	<input type="hidden" id="lat_map_point" value="<?=$arr[book][$lat_col];?>" />
+	<input type="hidden" id="lng_map_point" value="<?=$arr[book][$lng_col];?>" />
+	<input type="hidden" id="tttt" value="<?="SELECT ".$lat_col.",".$lng_col." FROM  order_booking  where id = '".$_GET[order_id]."'  "?>" />
 	<div style="position: fixed;bottom: 15px;right: 0px;width:  auto;">
 	<div id="current_location" display="hidden" class="marker" style="display: none;">
 	  <div class="pin"></div>
@@ -185,6 +213,19 @@
   <div class="pin"></div>
   <div class="pin-effect"></div>
 </div>-->
+<div class="row" style="position: fixed; bottom: 0px;right: 0px;margin-bottom: 0px;" id="box_show_detail">
+    <div class="col s12 m6">
+      <div class="card blue-grey darken-2">
+        <div class="card-content white-text" style="padding: 10px;">
+          <span class="card-title font-22" style="margin-bottom: 0px;">รายละเอียด</span>
+          <p class="font-20"><?php echo $arr[projectdriver][name]." (".$arr[projectdriver][username].")"; ?><br>
+          <?php echo "เวลา ".date("Y:m:d H:i:s",$arr[book][$date])." น"; ?>
+          </p>
+        </div>
+       
+      </div>
+    </div>
+  </div>
 
 <script>
    		

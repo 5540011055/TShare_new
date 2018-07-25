@@ -1,10 +1,16 @@
-<!--<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />  -->
+
 <input type="hidden" value="0" id="check_open_shop_id" /> <!-- เช็คเมนูช้อปปิ้ง ว่ากำลังเปิด detail ของ id ไหน -->
 <style>
+.background-airy{
+/*	background-color: #ffffff40 !important; */
+	background-color: unset !important;
+	box-shadow: none !important;
+	border: none !important;
+}
 .box-shadow-only{
    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
 }
-.paddling-max{
+.paddling-max background-airy{
    padding : 17px 12px !important;
    border-radius: 0px !important;
    border : 0px !important;
@@ -98,7 +104,7 @@ body,td,th {
    width: 50px;
    height: 50px;
    color:#FFFFFF;  font-size:24px;
-   border: solid 2px #FFFFFF;
+   border: solid 1px #FFFFFF;
    text-align: center;
    vertical-align: middle;
 }
@@ -457,13 +463,13 @@ if($data_user_class=='taxi'){
 $db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
 $all_work = $db->num_rows('order_booking',"id","$filter");
 ?>
-<div  style="margin-top:0px; width:100%; padding-right:0px;padding: 0px 0px;">
+<div  style="margin-top:10px; width:100%; padding-right:0px;padding: 0px 0px;">
    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="tb-pd-4">
       <tbody>
          <tr>
             <td width="50%" align="center" class="">
                <center>
-                  <a class="btn btn-default paddling-max"  id="index_menu_shopping" style="width:100%;">
+                  <a class="btn btn-default paddling-max background-airy"  id="index_menu_shopping" style="width:100%;">
                      <center>
                         <div  class="circle-menu" style="background-color:#34A0E7"><i class="icon-new-uniF14D" style="font-size: 22px;"  ></i></div>
                         <span style="padding-bottom:20px;" class="font-20 text-cap"><? echo t_send_to_customer?></span>
@@ -474,7 +480,7 @@ $all_work = $db->num_rows('order_booking',"id","$filter");
             <td align="center" class="">
                <input id="check_open_workshop" value="0" type="hidden"/>
                <center>
-                  <a class="btn btn-default paddling-max"  id="index_menu_shopping_history" style="width:100%;">
+                  <a class="btn btn-default paddling-max background-airy"  id="index_menu_shopping_history" style="width:100%;">
                      <span id="number_shop" class="badge font-20" style="position: absolute;font-size: 14px;background-color: #F44336;padding: 4px 7px;margin: -5px 3px;">0</span>
                      <center>
                         <div  class="circle-menu" style="background-color:#34A0E7"><i class="fa fa-history"style="font-size: 22px;margin-top: -2px;"  ></i></div>
@@ -503,7 +509,7 @@ $all_work = $db->num_rows('order_booking',"id","$filter");
    <tr>
       <td width="50%" align="center" class="">
          <center>
-            <a class="btn btn-default paddling-max"  id="index_menu_transfer"   style="width:100%" onclick="workTbooking();">
+            <a class="btn btn-default paddling-max background-airy"  id="index_menu_transfer"   style="width:100%" onclick="workTbooking();">
                <span id="number_tbooking" class="badge font-20" style="position: absolute;font-size: 14px;background-color: #F44336;padding: 4px 7px;margin: -5px 3px;">0</span>
                <center>
                   <div  class="circle-menu"  style="background-color: #F7941D ">
@@ -517,7 +523,7 @@ $all_work = $db->num_rows('order_booking',"id","$filter");
       <td width="50%" align="center" class="">
          <span data-toggle="tooltip" class="badge"   style="position:absolute; margin-left:10px; border-radius: 20px; height:25px; width:25px; background-color:#ff0000; padding-top:3px;border: solid 2px #FFFFFF; display:NONE " id="number_bottom_chat"  ><span  class="font-20" >0</span> </span>
          <center>
-            <a class="btn btn-default paddling-max"  id="index_menu_transfer_his"   style="width:100%" onclick="historyTransfer();">
+            <a class="btn btn-default paddling-max background-airy"  id="index_menu_transfer_his"   style="width:100%" onclick="historyTransfer();">
                <center>
                   <div  class="circle-menu"  style="background-color: #F7941D ">
                      <center><i class="fa fa-history" style="font-size: 22px;margin-top: -2px; "  ></i>
@@ -531,7 +537,7 @@ $all_work = $db->num_rows('order_booking',"id","$filter");
       <tr>
          <td align="center" class="">
             <center>
-               <a class="btn btn-default paddling-max"   onclick="revenue()"  id="index_menu_income"   style="width:100%">
+               <a class="btn btn-default paddling-max background-airy"   onclick="revenue()"  id="index_menu_income"   style="width:100%">
                   <center>
                      <div  class="circle-menu"   > <i class="icon-new-uniF121-10" style="font-size: 22px;margin-top: -2px;margin-left:-2px; "></i></div>
                      <span style="padding-bottom:20px;" class="font-20 text-cap"><? echo t_receipts?></span>
@@ -540,7 +546,7 @@ $all_work = $db->num_rows('order_booking',"id","$filter");
             </center>
          </td>
          <td align="center" class="">
-            <a class="btn btn-default paddling-max"  id="index_menu_money" onclick="money_transfer()" style="width:100%">
+            <a class="btn btn-default paddling-max background-airy"  id="index_menu_money" onclick="money_transfer()" style="width:100%">
                <center>
                   <div  class="circle-menu" style="background: #e91e63"><i class="fa fa fa-usd" style="font-size: 22px;margin-top: -2px; " ></i></div>
                   <span style="padding-bottom:20px;" class="font-20 text-cap">กระเป๋าเงิน-ประวัติ</span>
@@ -552,7 +558,7 @@ $all_work = $db->num_rows('order_booking',"id","$filter");
       <tr>
          <td  width="50%" align="center" class="">
             <span data-toggle="tooltip" class="badge"   style="position:absolute; margin-left:10px; border-radius: 20px; height:25px; width:25px; background-color:#ff0000; padding-top:3px;border: solid 2px #FFFFFF;  display:NONE " id="number_bottom_chat2"  ><span  class="font-20" > 0 </span></span>
-            <a class="btn btn-default paddling-max"   id="index_menu_tour"   style="width:100%">
+            <a class="btn btn-default paddling-max background-airy"   id="index_menu_tour"   style="width:100%">
                <center>
                   <div  class="circle-menu"  style="background-color:#8DC63F"><i class="fa fa-suitcase" style="font-size: 22px;margin-top: -2px; " ></i></div>
                   <span style="padding-bottom:20px;" class="font-20 text-cap"><? echo t_tour_booking?> </span>
@@ -560,7 +566,7 @@ $all_work = $db->num_rows('order_booking',"id","$filter");
             </a>
          </td>
          <td width="50%" align="center" class="">
-            <a class="btn btn-default paddling-max" style="width:100%" id="booking_open">
+            <a class="btn btn-default paddling-max background-airy" style="width:100%" id="booking_open">
                <center>
                   <div  class="circle-menu" style="background: #1CC1A4;"><i class="fa fa-taxi" style="font-size: 22px;margin-top: -2px; " ></i></div>
                   <span style="padding-bottom:20px;" class="font-20 text-cap"><? echo t_booking; ?></span>
@@ -575,7 +581,7 @@ $all_work = $db->num_rows('order_booking',"id","$filter");
          <tr style="display: nones;">
             <td colspan="2" width="50%" align="center" class="" onclick="shoppingTest()">
  
-                  <a class="btn btn-default paddling-max" style="width:100%" >
+                  <a class="btn btn-default paddling-max background-airy" style="width:100%" >
                      <center>
                         <div  class="circle-menu" style="background: #CDDC39;">
                         <i class="fa fa-map" style="font-size: 22px;margin-top: -2px; " ></i></div>

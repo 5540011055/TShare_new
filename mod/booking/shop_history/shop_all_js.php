@@ -140,10 +140,12 @@
     else if($val[status]=='COMPLETED'){
       $status_txt = '<strong><font color="#54c23d">'.t_success.'</font></strong>';
     }
-    if($val[lab_approve_job]==1){
-		$txt_lab_ap = '<span class="font-20 lab-active-shop" >พนักงานรับทราบแล้ว</span>';
-	}else{
-		$txt_lab_ap = '<span class="font-20 lab-none-active-shop" >พนักงานยังไม่รับทราบงานนี้</span>';
+    if($data_user_class == "taxi"){
+	    if($val[lab_approve_job]==1){
+			$txt_lab_ap = '<span class="font-20 lab-active-shop" >พนักงานรับทราบแล้ว</span>';
+		}else{
+			$txt_lab_ap = '<span class="font-20 lab-none-active-shop" >พนักงานยังไม่รับทราบงานนี้</span>';
+		}
 	}
   ?>
   <div style="padding: 5px 0px;margin: 25px 0px;">

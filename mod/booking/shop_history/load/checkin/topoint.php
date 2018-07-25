@@ -20,18 +20,18 @@
          	<table width="100%">
          		<tr>
          			<td>
-         			<i id="driver_topoint_locat_off"  class="material-icons" 
-         			style="color: #3b59987a;font-size: 22px; border-radius: 50%; padding: 2px; border: solid 1px #3b59987a;display: none;" >location_on</i>
+	         			<i id="driver_topoint_locat_off"  class="material-icons" 
+	         			style="color: #3b59987a;font-size: 22px; border-radius: 50%; padding: 2px; border: solid 1px #3b59987a;display: none;" >location_on</i>
          			
-         				<i id="driver_topoint_locat_on" onclick="openPointMaps('<?=$arr[book][driver_topoint_lat]?>','<?=$arr[book][driver_topoint_lng]?>');" class="material-icons" 
+         				<i id="driver_topoint_locat_on" onclick="openPointMaps('driver_topoint','<?=$arr[book][id]?>');" class="material-icons" 
          				style="color: #3b5998;font-size: 22px; border-radius: 50%; padding: 2px; border: solid 2px #3b5998;display: nones;" >location_on</i>
          			
          			</td>
          			<td>
          				<!--<i id="photo_driver_topoint_no" class="fa fa-camera" style="color:#3b59987a; font-size:16px; border-radius: 50%; padding:5px; border: 1px solid #3b59987a;display: none;" ></i>-->
             <!-- <i id="photo_driver_topoint_yes" class="fa fa-camera" style="color:#3b5998; font-size:16px; border-radius: 50%; padding:5px;display: none; border: solid 2px #3b5998 ; " onclick="ViewPhoto('<?=$arr[book][id];?>','driver_topoint','<?=$arr[book][driver_topoint_date]?>');"></i>-->
-            <i id="photo_driver_topoint_no" class="material-icons" style="color:#3b59987a; font-size:22px; border-radius: 50%; padding:2px; border: 1px solid #3b59987a;display: none;" >photo_camera</i>
-            <i id="photo_driver_topoint_yes" class="material-icons" style="color: #3b5998;font-size: 22px; border-radius: 50%; padding: 2px; border: solid 2px #3b5998;display: none;"  onclick="ViewPhoto('<?=$arr[book][id];?>','driver_topoint','<?=$arr[book][driver_topoint_date]?>');" >photo_camera</i>
+	            <i id="photo_driver_topoint_no" class="material-icons" style="color:#3b59987a; font-size:22px; border-radius: 50%; padding:2px; border: 1px solid #3b59987a;display: none;" >photo_camera</i>
+	            <i id="photo_driver_topoint_yes" class="material-icons" style="color: #3b5998;font-size: 22px; border-radius: 50%; padding: 2px; border: solid 2px #3b5998;display: none;"  onclick="ViewPhoto('<?=$arr[book][id];?>','driver_topoint','<?=$arr[book][driver_topoint_date]?>');" >photo_camera</i>
          			</td>
          		</tr>
          	</table>
@@ -44,21 +44,28 @@
 <input type="hidden" id="check_code" value="<?=$arr[book][id];?>" />
 </div>
 <script>
-//	var type = "driver_topoint";
+	
+	if($('#driver_topoint_check_click').val()==1){
+		 $('#driver_topoint_locat_off').hide();
+		 $('#driver_topoint_locat_on').show();
+		 console.log($('#driver_topoint_check_click').val());
+	}else{
+		 $('#driver_topoint_locat_off').show();
+		 $('#driver_topoint_locat_on').hide();
+	}
+	
 	$.ajax({
 			url: '../data/fileupload/store/driver_topoint_<?=$arr[book][id];?>.jpg',
 			type:'HEAD',
 			error: function()
 			{
-			console.log('Error file');
-			   /*$('#photo_driver_topoint').css('color','#3b59987a');
-			   $('#photo_driver_topoint').css('border','1px solid #3b59987a');
-			   $('#photo_driver_topoint').attr('onclick',' ');*/
+				console.log('Error file');
+
 			   $('#photo_driver_topoint_yes').hide();
 			   $('#photo_driver_topoint_no').show();
 			   
-			   $('#driver_topoint_locat_off').show();
-			   $('#driver_topoint_locat_on').hide();
+//			   $('#driver_topoint_locat_off').show();
+//			   $('#driver_topoint_locat_on').hide();
 			},
 			success: function()
 			{
@@ -67,11 +74,9 @@
 				 $('#photo_driver_topoint_yes').show();
 			     $('#photo_driver_topoint_no').hide();
 			     
-			     $('#driver_topoint_locat_off').hide();
-			     $('#driver_topoint_locat_on').show();
-				/*$('#photo_driver_topoint').css('color','#3b5998');
-				$('#photo_driver_topoint').css('border','2px solid #3b5998');*/
-//				$('#photo_driver_topoint').attr('onclick','ViewPhoto("'+id+'","driver_topoint","<?=TIMESTAMP;?>");');
+//			     $('#driver_topoint_locat_off').hide();
+//			     $('#driver_topoint_locat_on').show();
+				
 			}
 		});
 

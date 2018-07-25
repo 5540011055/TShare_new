@@ -10,19 +10,18 @@
    $db->connectdb(DB_NAME,DB_USERNAME,DB_PASSWORD);
    $res[timeline] = $db->select_query("SELECT * FROM date_loop  where dayall like '%" . $no . "%'   and  dayall   < '".$date_finish_plus."' order by  id  asc  limit 31");
    //echo $no;
+      $db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
+   $res[sum_all] = $db->select_query("SELECT sum(price_all_total) as total FROM order_booking where transfer_date like '%".$no."%' and drivername = '".$arr[web_user][id]."' and check_driver_pay = 1 ");
+   $arr[sum_all] = $db->fetch($res[sum_all]);
    ?>
-<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+
 <style>
    .mdl-data-table th {
    padding: 0 11px 12px 18px;
    text-align: center;
    }
 </style>
-<?php 
-   $db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
-   $res[sum_all] = $db->select_query("SELECT sum(price_all_total) as total FROM order_booking where transfer_date like '%".$no."%' and drivername = '".$arr[web_user][id]."' and check_driver_pay = 1 ");
-   $arr[sum_all] = $db->fetch($res[sum_all]);
-   ?>
+
 <div style="display: none;"><?="SELECT sum(price_all_total) as total FROM order_booking where transfer_date like '%".$no."%' and drivername = '".$arr[web_user][id]."' ";?></div>
 <h3>ยอดรวม <?=number_format($arr[sum_all][total]);?></h3>
 <div style="padding: 0px;">
