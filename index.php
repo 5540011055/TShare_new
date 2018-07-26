@@ -111,7 +111,12 @@
    	   <link rel="stylesheet" type="text/css" href="pickerdate/classic.date.css?v=<?=time();?>" />
        <script src="pickerdate/picker.js?v=<?=time();?>" type="text/javascript"></script>
        <script src="pickerdate/picker.date.js?v=<?=time();?>" type="text/javascript"></script> 
-   <body style="background: url('pic/b1.jpg');" >
+   <body style="    background-position: 0% 100%;
+    background-image: linear-gradient(to right,rgb(59, 89, 152) 0%,#ff98003d 100%),url(pic/b1.jpg);
+    background-blend-mode: screen;
+    background-repeat-x: no-repeat;
+    background-repeat-y: no-repeat;
+    background-size: cover;" >
       <div style="
          display: block; 
          position: fixed;
@@ -187,7 +192,8 @@
 		}  
       </script>
       <div>
-         <nav class="n bi fj" style="background-color:<?=$main_color;?>">
+        <!-- style="background-color:<?=$main_color;?> -->
+         <nav class="n bi fj" >
             <div class="nav-wrapper">
                <!--<a class="brand-logo">
                   <img src="images/app/iconv5.png" style="width: 50px;margin-top:12px;" />

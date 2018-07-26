@@ -155,7 +155,8 @@
           	var time = value.airout_time;
    			var id = "btn_"+index;
    			var s_pay = value.s_status_pay;
-		  	var cost = value.s_cost;
+		  	var cost = value.cost;
+		  	var s_cost = value.s_cost;
 		  	if(s_pay==0){
 		  		var type_pay = '<?=t_get_cash;?>';
 		  	}else{
@@ -184,7 +185,7 @@
 					               +'<td width="100%"><span class="font-24" colspan="2">'+to_place+'</span></td>'
 					            +'</tr>'
 					             +'<tr>'
-					               +'<td><strong><span class="font-22 ">'+type_pay+'</span>&nbsp;&nbsp;<span class="font-22" style="position: absolute;right: 15px;">'+addCommas(cost)+' <?=t_THB;?></span></strong></td>'
+					               +'<td><strong><span class="font-22 ">'+type_pay+'</span>&nbsp;&nbsp;<span class="font-22" style="position: absolute;right: 15px;">'+addCommas(cost)+'<?=t_THB;?>'+'</span></strong></td>'
 					               
 					            +'</tr>'
 					            +'<tr>'
@@ -313,7 +314,7 @@
    }
    
    function openSheetHandle(index,type){
-		
+		$('#header_clean').text('จัดการงาน')
 		if(type==1){
 			var post = manageObj[index];
 		}else if(type==2){

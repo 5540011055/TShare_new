@@ -24,6 +24,7 @@
 }
 
 td{
+  padding: 5px 0px;
 	font-size: 14px;
 }
 /* The container */
@@ -121,7 +122,7 @@ td{
 <!--<div style="padding: 5px 0px;margin-top: 0px;padding-left: 10px;">
 <a  onclick="hideDetail();"  style="position:  absolute; right: 15px;" ><i class="fa fa-times font_close_icon" aria-hidden="true"></i></a>
 </div>-->
-<div style="margin-top: 0px;padding: 5px;">
+<div style="margin-top: 50px;padding: 5px;">
 <span style="font-size: 16px;"></span>
    <div style="margin-left:0px;  margin-right: 0px; margin-top:0px;/*box-shadow: 0px -5px 5px #f6f6f6;*/ padding:5px;">
    <table width="100%" border="0" cellspacing="2" cellpadding="2">
@@ -282,11 +283,11 @@ td{
                               <td width="120" valign="top" class="td-text"><b><?=t_flight;?></b></td>
                               <td valign="top" class="td-text"><span class="font-22"><?=$_POST[air];?> </span></td>
                            </tr>
-                           <tr>
+                         <!--   <tr>
                               <td valign="top"><i class="icon-new-uniF137" style="color:#666666; font-size:18px;"></i></td>
                               <td width="120" valign="top" class="td-text text-cap"><b><?=t_agents;?></b></td>
                               <td valign="top" class="td-text"><span class="font-22"><?=$_POST[agent_q][username];?></span></td>
-                           </tr>
+                           </tr> -->
                            <tr>
                               <td valign="top"><i class="icon-new-uniF12B-3" style="color:#666666; font-size:18px"></i></td>
                               <td valign="top" class="td-text text-cap"><b><?=t_number_customers;?></b></td>
@@ -301,7 +302,7 @@ td{
                            <tr style="<?=$phone_none;?>">
                               <td valign="top"><i class="icon-new-uniF152-4" style="color:#666666; font-size:18px"></i></td>
                               <td valign="top" class="td-text text-cap"><b><?=t_phone;?></b></td>
-                              <td valign="top" class="td-text"><a href="tel:<?=$_POST[agent_q][phone];?>"><span class="font-22"><?=$_POST[agent_q][phone];?></span></a></td>
+                              <td valign="top" class="td-text"><a href="tel:<?=$_POST[bookagent][phone];?>"><span class="font-22"><?=$_POST[bookagent][phone];?></span></a></td>
                            </tr>
                            <tr>
                               <td valign="top"><i class="icon-app-uniF111" style="color:#666666; font-size:18px"></i></td>

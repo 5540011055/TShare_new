@@ -284,7 +284,7 @@ td{
                               <td valign="top"><i class="icon-new-uniF121-10" style="color:#666666; font-size:18px"></i></td>
                               <td valign="top" class="td-text text-cap"><b><?=t_work_remuneration;?></b></td>
                               <td valign="top" class="td-text">
-                              <span class="span-detail1"> <font class="font-22" ><?=$_POST[s_cost]." ".t_THB;?></font></span>
+                              <span class="span-detail1"> <font class="font-22" ><?=$_POST[cost];?>(-<?=$_POST[s_cost];?>) <?=t_THB;?></font></span>
                               </td>
                            </tr>
                            <tr style="display: nones;">
@@ -415,7 +415,7 @@ $plate_color="FFCC00"; }
 
 
 <div style="padding-bottom: 20px;padding-left: 20px;padding-right: 20px;padding-top:0px;">
-<button onclick="selectjob('<?=$_POST[orderid];?>','<?=$_POST[id];?>','<?=$_POST[invoice];?>','<?=$_POST[code];?>','<?=$_POST[program][id];?>','<?=$_POST[pickup_place][id];?>','<?=$_POST[to_place][id];?>','<?=$_POST[agent];?>','<?=$_POST[airout_time];?>','<?=$_POST[airin_time];?>','<?=$_POST[s_cost];?>','<?=$_POST[outdate];?>','<?=$_POST[ondate];?>','<?=$_POST[s_status_pay];?>')" style="margin-top:10px;background-color: #fff;border: 1px solid #3b5998;width: 100%;border-radius: 25px;padding: 8px;color: #3b5998; "><span class="font-24"><strong><?=t_accept_order?></strong></span> </button>
+<button onclick="selectjob('<?=$_POST[orderid];?>','<?=$_POST[id];?>','<?=$_POST[invoice];?>','<?=$_POST[code];?>','<?=$_POST[program][id];?>','<?=$_POST[pickup_place][id];?>','<?=$_POST[to_place][id];?>','<?=$_POST[agent];?>','<?=$_POST[airout_time];?>','<?=$_POST[airin_time];?>','<?=$_POST[cost];?>','<?=$_POST[s_cost];?>','<?=$_POST[outdate];?>','<?=$_POST[ondate];?>','<?=$_POST[s_status_pay];?>')" style="margin-top:10px;background-color: #fff;border: 1px solid #3b5998;width: 100%;border-radius: 25px;padding: 8px;color: #3b5998; "><span class="font-24"><strong><?=t_accept_order?></strong></span> </button>
 </div>
 
 
