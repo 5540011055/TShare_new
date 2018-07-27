@@ -412,14 +412,7 @@ $('#load_modal_body').html('<h4>ไม่สามารถรับงานน
    return;
  }
  else{
-
-}
-}
-else{
-  txt_pay_cash = '';
-  txt_pay_trans = '';
-}
-$('#header_clean').text('งานรถรับ-ส่ง')
+    $('#header_clean').text('งานรถรับ-ส่ง')
   var url = "empty_style.php?name=tbooking&file=book_detail";
   var post = res_socket[index];
   $.post(url,post,function(data){
@@ -427,6 +420,36 @@ $('#header_clean').text('งานรถรับ-ส่ง')
    $('#main_load_mod_popup_clean').show();
    $('#main_component').removeClass('w3-animate-left');
  });
+}
+}
+else{
+  var finalcost =parseInt(cost)-parseInt(s_cost); 
+   txt_pay_cash = '';
+  txt_pay_trans = '';
+  console.log(finalcost)
+   swal({
+             title: "งานนี้แขกจ่ายเงินเข้าในระบบแล้ว",
+             text: "ยอดเงินทั้งหมดจะทำการโอนเงินทั้งหมดเข้าในกระเป๋าเงินของคุณ"+finalcost+" "+"บาท",
+             type: "warning",
+             showCancelButton: true,
+             confirmButtonClass: "btn-danger",
+             confirmButtonText: "<?=t_confirm;?>",
+             cancelButtonText: "<?=t_cancelled;?>",
+             closeOnConfirm: true
+            },
+            function(){
+              $('#header_clean').text('งานรถรับ-ส่ง')
+  var url = "empty_style.php?name=tbooking&file=book_detail";
+  var post = res_socket[index];
+  $.post(url,post,function(data){
+   $('#load_mod_popup_clean').html(data);
+   $('#main_load_mod_popup_clean').show();
+   $('#main_component').removeClass('w3-animate-left');
+ });
+            });
+ 
+}
+
 
 }
 
@@ -542,7 +565,7 @@ var time_post = CheckTime(d_cr,d_db);
                +'<td width="100%"><span class="font-24" colspan="2">'+to_place+'</span></td>'
                +'</tr>'
                +'<tr>'
-               +'<td><strong><span class="font-22 ">'+type_pay+'</span>&nbsp;&nbsp;<span class="font-22" style="position: absolute;right: 15px;">'+addCommas(cost)+' <?=t_THB;?></span></strong></td>'
+               +'<td><strong><span class="font-22 ">'+type_pay+'</span>&nbsp;&nbsp;<span class="font-22" style="position: absolute;right: 15px;">'+addCommas(cost)+'(-'+s_cost+')'+ '<?=t_THB;?></span></strong></td>'
                +'</tr>'
                +'<tr>'
                +'<td><span class="font-20 ">'+outdate+'&nbsp;&nbsp;'+time+'</span></td>'					              
@@ -642,10 +665,15 @@ function(){
    					historyTransfer();
    					console.log(logdata);
    				});
-   			}else{ // Pay Transfer bank
+   			}else{
+
+         // Pay Transfer bank
+                     
+            
    				hideDetail();
    				historyTransfer();
    				swal("<?=t_success;?>!", "<?=t_press_button_close;?>", "success");
+          //});
    			}
    		}else{
    			swal("<?=t_error;?>!", "<?=t_press_button_close;?>", "error");
