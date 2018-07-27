@@ -37,10 +37,10 @@
    $db->connectdb(DB_NAME_APP, DB_USERNAME, DB_PASSWORD);
    $check_pay = $db->num_rows("pay_history_driver_shopping","id","order_id=".$arr[project][id]." and status = 1"); 
    if($check_pay>0){
-   			$txt_pay_park = '<span class="font-24">'.number_format($arr[project][price_park_total], 0 ).'</span>';
+   			$txt_pay_park = '<span class="font-24">'.number_format($arr[project][price_park_total], 0 ).' บาท</span>';
      		$txt_pay_com = '<i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#f00000;"></i><strong style="padding-left: 5px;"><font color="#f00000">'.t_pending.'</font></strong>';
-     		$txt_pay_person = '<span class="font-24">'.number_format($arr[project][price_person_total], 0 ).'</span>';
-     		$txt_pay_all = '<span class="font-24" id="txt_all_total">'.number_format($arr[project][price_all_total], 0 ).'</span>';
+     		$txt_pay_person = '<span class="font-24">'.number_format($arr[project][price_person_total], 0 ).' บาท</span>';
+     		$txt_pay_all = '<span class="font-24" id="txt_all_total">'.number_format($arr[project][price_all_total], 0 ).' บาท</span>';
      		
    			$hide_his_btn = "";
    			$color_status;
@@ -59,6 +59,9 @@
 	  			$status_icon = '<div class="font-22"><i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#ecb304"></i> <strong><font color="#ecb304">'.t_please_check.'</font></strong></div>';
 	  			$btn_row_approve = '';
 	  			$alert_history = "swal('".t_no_history."','','error')";
+			}
+			if($arr[pay_row][pay_transfer]>0){
+				$txt_pay_com = '<span class="font-24">'.number_format($arr[pay_row][price_pay_driver_com], 0 ).' บาท</span>';
 			}
      }	else{
      		$hide_his_btn = "display:none;";
@@ -149,7 +152,7 @@
     transform: rotate(45deg);
 }
 </style>
-<div style="/*padding: 5px 5px;*/ margin-top: 40px;">
+<div style="margin-top: 40px;">
    <div style="padding: 15px 5px;">
       <div style="padding: 5px 15px">
       	<table id="check_park_tb" border="0" cellspacing="2" cellpadding="2" width="100%">
@@ -185,21 +188,14 @@
       			<td><label class="container-cb" >ค่าคอม</label></td>
       			<td></td>
       		</tr>
-      		<!-- <tr>
-		      			 <td valign="middle"><span class="font-24">เปอร์เซ็น</span></td>
-			              <td align="right" valign="middle">
-			                <input type="hidden" value="6" id="commission" name="commission">
-			                <span class="font-24" id="txt_commission">6</span>&nbsp;%
-			            </td>
-		      		</tr> -->
-		      	<!-- 	<tr>
-		      			 <td valign="middle"><span class="font-24">จำนวน</span></td>
-			              <td align="right" valign="middle">
-			               <div class="font-22">
-			               <?=$txt_pay_com;?>
-			               </div>
-			            </td>
-		      		</tr> -->
+      		<tr>
+      			<td valign="middle"><span class="font-24">เปอร์เซ็น</span></td>
+      			<td align="right"><span class="font-24"><?=$arr[project][commission_persent];?> %</span></td>
+      		</tr>
+      		<tr>
+      			<td valign="middle"><span class="font-24">จำนวน</span></td>
+      			<td align="right"><?=$txt_pay_com;?></td>
+      		</tr>
       	</table>
 
 		<table width="100%" cellspacing="2" cellpadding="2" style="margin-top: 10px;">
@@ -214,24 +210,15 @@
 		</table>
       </div>
       
-      <div style="padding: 5px 20px;<?=$show_el;?>" id="box_status_dv">
-         <table width="100%" style="padding: 10px;box-shadow: 1px 1px 3px #9E9E9E;border: 1px solid #ddd;">
-         	<tr>
-         		<td>
-         			<span class="font-24">สถานะการจ่ายเงิน</span>
-         			
-         		</td>
-         		<td align="right"><span class="font-24"><?=$txt_pay;?></span></td>
-         	</tr>
-         </table>
-      </div>
-      
+      <div style="padding: 5px 10px;<?=$show_el;?>" id="box_status_dv">
+      	<div align="center"><span class="font-24">สถานะการจ่ายเงิน</span><span class="font-24" style="margin: 10px;"><?=$txt_pay;?></span></div>
       <table width="100%" border="0" cellspacing="2" cellpadding="2" style="padding: 0px 15px;">
          <tbody>
          <tr  id="tr_btn_park_approve" style="<?=$btn_row_approve;?>">
 	          	<td colspan="2" >
 	          	<button  id="btn_com_his_<?=$arr[project][id]?>"  type="button" class="btn btn-default"  
-	          	style="width:100%;text-align:left;padding: 7px;border-radius: 3px;border:none;background-color: #ecb304;color: #fff;" onclick="ApporvePayDriver('<?=$arr[pay_row][order_id]?>','<?=$arr[pay_row][invoice];?>');" ><center><strong class="font-22"><i class="fa fa-money" style="width: 24px; color:fff"  ></i><?=t_confirm_or_receipt;?></strong></center></button>
+	          	style="margin: 10px 0px;width:100%;text-align:left;padding: 7px;border-radius: 3px;border:none;background-color: #ecb304;color: #fff;" 
+	          	onclick="ApporvePayDriver2('<?=$arr[pay_row][order_id]?>','<?=$arr[pay_row][invoice];?>','<?=$arr[project][drivername];?>');" ><center><strong class="font-22"><i class="fa fa-money" style="width: 24px; color:fff"  ></i><?=t_confirm_or_receipt;?></strong></center></button>
 	          	</td>
 	          	<td></td>
           </tr>
@@ -253,6 +240,7 @@
             
          </tbody>
       </table>
+	</div>
    </div>
 </div>
 <input type="hidden" value="<?=$_GET[id];?>" id="check_id_income_lab" />
@@ -277,13 +265,51 @@
     $('#remark'+num).attr('checked', true);
     $('#check_cause_'+id).val(num);
    }
+   function ApporvePayDriver2(order_id,invoice,driver){
+   	console.log(order_id);
+   	swal({
+	  title: "<?=t_are_you_sure;?>",
+   	  text: "<?=t_already_received;?>",
+	  type: "info",
+	  confirmButtonClass: "btn-danger waves-effect waves-light",
+	  cancelButtonClass: "btn-cus waves-effect waves-light",
+	  showCancelButton: true,
+	  closeOnConfirm: false,
+	  confirmButtonText: '<?=t_yes;?>',
+   	  cancelButtonText: "<?=t_no;?>",
+	  showLoaderOnConfirm: true
+	}, function () {
+		  	$.post( "mod/booking/shop_history/php_shop.php?action=approve_pay_driver_taxi",{ order_id : order_id},function( data ) 		{
+	   		console.log(data);
+	   		swal ( "<?=t_save_succeed;?>" ,  "" ,  "success" );
+							openViewPrice();
+							var url_noti = "send_messages/send_pay_driver.php?type=send_lab&vc="+invoice+"&order_id="+order_id+"&driver="+driver;
+							console.log(url_noti);
+							$.post( url_noti,function( re ){
+			   				 	console.log(re);
+			   				 });
+			   				 var message = "";
+							socket.emit('sendchat', message);
+			   				navigator.geolocation.getCurrentPosition(showPosition); 
+			   				var url_completed = "mod/booking/shop_history/php_shop.php?action=check_driver_complete&order_id="+order_id+'&lat='+$('#lat').val()+'&lng='+$('#lng').val();
+							console.log(url_completed);
+							$.post( url_completed,function( re ){
+			   				 	console.log(re);
+	//		   				 	console.log(array_data)
+			   				 }); 
+	   	});
+	});
    
+   }
    function ApporvePayDriver(order_id,invoice){
    console.log(id);
+   
    	swal({
    		title: "<?=t_are_you_sure;?>",
    		text: "<?=t_already_received;?>",
    		type: "warning",
+   		confirmButtonClass: "btn-danger waves-effect waves-light",
+		cancelButtonClass: "btn-cus waves-effect waves-light",
    		showCancelButton: true,
    		confirmButtonText: '<?=t_yes;?>',
    		cancelButtonText: "<?=t_no;?>",
@@ -291,8 +317,9 @@
    		closeOnCancel: true
    	},
    	function(){
-   	 $.post( "empty_style.php?name=booking/shop_history&file=php_shop&action=approve_pay_driver_taxi",{ order_id : order_id},function( data ) 		{
-   			  			swal ( "<?=t_save_succeed;?>" ,  "" ,  "success" );
+   	 	$.post( "empty_style.php?name=booking/shop_history&file=php_shop&action=approve_pay_driver_taxi",{ order_id : order_id},function( data ) 		{
+   	 					console.log(data);
+   			  			/*swal ( "<?=t_save_succeed;?>" ,  "" ,  "success" );
 						openViewPrice();
 						var url_noti = "send_messages/send_pay_driver.php?type=send_lab&iv="+invoice+"&order_id="+order_id;
 						console.log(url_noti);
@@ -307,7 +334,7 @@
 						$.post( url_completed,function( re ){
 		   				 	console.log(re);
 //		   				 	console.log(array_data)
-		   				 }); 
+		   				 }); */
    			});
    				
    			

@@ -180,7 +180,7 @@
     else if($_GET[type]=='guest_register'){		
       	$lat_col = "driver_register_lat";
      	$lng_col = "driver_register_lng";
-     	$date = "driver_register_date";
+     	$date = "guest_register_date";
     } 
    /* else if($_GET[type]=='driver_pay_report'){		
      	$lat_col = "driver_register_lat";
