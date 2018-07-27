@@ -5,7 +5,7 @@
 define("DB_HOST", "localhost");
 define("DB_USER", "admin_MANbooking");			//fill with value
 define("DB_PASSWORD", "252631MANbooking");		//fill with value
-define("DB_DATABASE", "admin_app");		//fill with value
+define("DB_DATABASE", "admin_apptshare");		//fill with value
 
 /*
  * Google API Key

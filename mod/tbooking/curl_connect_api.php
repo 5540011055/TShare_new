@@ -2,7 +2,7 @@
 define("DB_HOST","localhost");
 define("DB_USERNAME","admin_MANbooking");
 define("DB_PASSWORD","252631MANbooking");
-define("DB_NAME_APP","admin_app");
+define("DB_NAME_APP","admin_apptshare");
 if($_GET[type]=="getjob_booking"){
 				//API URL
 $url = "http://www.welovetaxi.com:3000/updateDriverlogs";                              

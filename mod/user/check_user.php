@@ -7,7 +7,7 @@ $db = New DB();
 
 if($_GET[check]=="idcard_idrive"){
 	
-	$db->connectdb('admin_app','admin_MANbooking','252631MANbooking');
+	$db->connectdb('admin_apptshare','admin_MANbooking','252631MANbooking');
 	$res[driver_doc] = $db->select_query("SELECT idcard,iddriving,idcard_finish,iddriving_finish FROM web_driver WHERE id='" . $_GET[user_id] . "' ");
     $arr[driver_doc] = $db->fetch($res[driver_doc]);
     
@@ -18,7 +18,7 @@ if($_GET[check]=="idcard_idrive"){
 
 if($_GET[check]=="car_driver"){
 	$user_id = $_GET[user_id];
-	$db->connectdb('admin_app','admin_MANbooking','252631MANbooking');
+	$db->connectdb('admin_apptshare','admin_MANbooking','252631MANbooking');
 	$num = $db->num_rows('web_carall','id','drivername="'.$user_id.'" ');
     $result[num] = $num;
     

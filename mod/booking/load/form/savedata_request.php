@@ -3,7 +3,7 @@
 
 	
 	$db = New DB();
-	$db->connectdb('admin_app','admin_MANbooking','252631MANbooking');
+	$db->connectdb('admin_apptshare','admin_MANbooking','252631MANbooking');
 	
 	mysql_query("SET NAMES utf8"); 
 	mysql_query("SET character_set_results=utf-8");
@@ -16,7 +16,7 @@ if($_POST[action]=="money_request"){
 	
 	// $db = New DB();
 	$date = new DateTime();
-	// $db->connectdb('admin_app','admin_MANbooking','252631MANbooking');
+	// $db->connectdb('admin_apptshare','admin_MANbooking','252631MANbooking');
 	$db->connectdb(DB_NAME_APP, DB_USERNAME, DB_PASSWORD);
 	$data[driver] = $arr[project][id];
 	$data[username] = $_POST[driver];

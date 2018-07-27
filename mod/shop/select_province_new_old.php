@@ -378,7 +378,7 @@ font-size: 20px !important;
 if($_GET[op]=="get_id_province"){
 include('../../includes/class.mysql.php');
 $db = New DB();
-$db->connectdb('admin_app','admin_MANbooking','252631MANbooking');
+$db->connectdb('admin_apptshare','admin_MANbooking','252631MANbooking');
 $str = $_POST[txt_pv]; //กรุงเทพมหานคร
 if(strlen($str)>7){
 	$txt = mb_substr($str,0,7, "utf-8");
@@ -418,7 +418,7 @@ echo json_encode($data);
 if($_GET[op]=="get_select_province"){
 include('../../includes/class.mysql.php');
 $db = New DB();
-$db->connectdb('admin_app','admin_MANbooking','252631MANbooking');
+$db->connectdb('admin_apptshare','admin_MANbooking','252631MANbooking');
 	 ?>
 				<select class="mobileSelect" id="select_province" data-animation="zoom" data-title="เลือกจังหวัด" data-theme="white">
                              <option value="" >- <? echo t_select?> -</option>              
@@ -448,7 +448,7 @@ $db->connectdb('admin_app','admin_MANbooking','252631MANbooking');
 if($_GET[op]=="get_id_province_only"){
 include('../../includes/class.mysql.php');
 $db = New DB();
-$db->connectdb('admin_app','admin_MANbooking','252631MANbooking');
+$db->connectdb('admin_apptshare','admin_MANbooking','252631MANbooking');
 $str = $_POST[txt_pv]; //กรุงเทพมหานคร
 if(strlen($str)>7){
 	$txt = mb_substr($str,0,7, "utf-8");

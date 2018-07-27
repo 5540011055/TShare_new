@@ -8,7 +8,7 @@ header('Content-Type: application/json; charset=utf-8');
 $table = 'app_language';
 $username = 'admin_MANbooking';
 $pass = '252631MANbooking';
-$db_name = 'admin_app';
+$db_name = 'admin_apptshare';
 $input = filter_input_array(INPUT_POST);
 
 //$mysqli = new mysqli('localhost', 'root', '123', 'admin_dddtrip');

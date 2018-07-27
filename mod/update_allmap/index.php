@@ -1,7 +1,7 @@
 <?
  
  $db->connectdb(DB_NAME_DATA,DB_USERNAME,DB_PASSWORD);
-		mysql_query("SET NAMES UFT8"); 
+		mysql_query("SET NAMES UTF8"); 
 		mysql_query("SET character_set_results=utf-8"); 
 $res[project] = $db->select_query("SELECT * FROM ".TB_transfer_report_all."   ");
 

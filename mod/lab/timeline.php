@@ -123,7 +123,7 @@ $row_yes = $db->num_rows('transfer_report_all',"id"," id > 0  $findpart  and pic
 
 ///echo $row_all = $db->num_rows('transfer_report_all',"id","id > 0  $findpart  and admin_company =1  and transfer_date='". $daywork."' and   status = 'CONFIRM'  and airout_time <>''  and carno >0 and drivername > 0  $findwork  group by invoice order by  airout_time ASC");
 
-		//mysql_query("SET NAMES UFT8"); 
+		//mysql_query("SET NAMES UTF8"); 
 		//mysql_query("SET character_set_results=utf-8"); 
 //$res[project] = $db->select_query("SELECT * FROM ".TB_transfer_report_all."  where id > 0  $findpart  and admin_company =1  and transfer_date='". $daywork."'  and status = 'CONFIRM'  and airout_time <>''  and carno >0 and drivername > 0  $findwork  group by invoice order by  airout_time ASC  LIMIT ".$_GET[start].",".$_GET[finish]."  ");
 

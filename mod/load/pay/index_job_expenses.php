@@ -54,7 +54,7 @@ $data_sale = "where dayall like '%" . $no . "%'   $saleuser";
 	   
 
  $db = New DB();
-  $db->connectdb('admin_app','admin_MANbooking','252631MANbooking');
+  $db->connectdb('admin_apptshare','admin_MANbooking','252631MANbooking');
  
  
  $res[deposit] = $db->select_query("SELECT  * FROM  deposit WHERE username = '".$_GET[driver]."' ");

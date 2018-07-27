@@ -203,9 +203,9 @@
 	}
 	$('#check_open_num_detail').val(key)
 	console.log(type+" : "+key);
-  /* 	console.log(array_filter[id]);
-   	array_data.manage[id]*/
-
+   	console.log(detailObj);
+   	/*array_data.manage[id]*/
+//return;
    	var url = "empty_style.php?name=booking/shop_history&file=work_shop_detail_js&user_id=<?=$user_id;?>";
       	$.post(url,detailObj,function(data){
       		$('#load_mod_popup_clean').html(data);

@@ -45,7 +45,7 @@ $select_order="id,invoice,program,orderid,pickup_place,to_place,carno,cartype,dr
 
 
 $db->connectdb(DB_NAME_DATA,DB_USERNAME,DB_PASSWORD);
-		mysql_query("SET NAMES UFT8"); 
+		mysql_query("SET NAMES UTF8"); 
 		mysql_query("SET character_set_results=utf-8"); 
 $res[project] = $db->select_query("SELECT * FROM ".TB_transfer_report_all."  where drivername='".$user_id."' and transfer_date='". $daywork."'  and status = 'CONFIRM'  and airout_time <>'' group by invoice order by  airout_time ASC ");
 //  $res[project] = $db->select_query("SELECT * FROM ".TB_transfer_report_all."  where drivername='".$user_id."' and transfer_date='". $daywork."'   order by  airout_time ASC  ");

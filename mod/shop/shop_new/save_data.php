@@ -67,7 +67,7 @@ if ($_GET[action] == 'add')
 		"airout_m" => "$mm",
 		"airout_time" => "00".":"."$mm",
 		"car_color" => "$_POST[car_color]",
-		"car_type" => "$_POST[car_type]",
+		"car_type" => trim($_POST[car_type]),
 		"car_plate" => "$_POST[car_plate]",
 		"check_use_car_id" => "$_POST[check_use_car_id]",
 		"adult" => "$_POST[adult]",

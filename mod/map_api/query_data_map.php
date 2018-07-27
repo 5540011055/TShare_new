@@ -1,7 +1,7 @@
 <?php
 	include('../../includes/class.mysql.php');
 define("DB_HOST","localhost");
-define("DB_NAME_APP","admin_app");
+define("DB_NAME_APP","admin_apptshare");
 define("DB_NAME","admin_web");
 define("DB_USERNAME","admin_MANbooking");
 define("DB_PASSWORD","252631MANbooking");
