@@ -122,6 +122,14 @@
 </table>
 <input class="form-control" type="hidden" name="upload_pic_type" id="upload_pic_type"  required="true" value="<?=$_GET[type]?>" />
 <script>
+	var lat = $('#lat').val();
+    var lng = $('#lng').val();
+    
+    if(lat<=0 || lng<=0){
+		geolocatCall();
+	}
+	
+
    $(".text-topic-action-mod-3").html('<?=$type?>');
 
    $('#btn_close_checkin_popup').click(function(){   
@@ -131,17 +139,7 @@
 
    ///
    $('#btn_checkin_popup_<?=$_GET[id]?>').click(function(){   
-   /*var message = "";
- socket.emit('sendchat', message);
-   console.log('Test Click');*/
-   /* $.post('send_messages/send_checkin.php?type=<?=$_GET[type]?>&id=<?=$arr[project][id]?>',function(data){
-   					console.log(data);
-   				});
-  return;*/
 
-
-    var lat = $('#lat').val();
-    var lng = $('#lng').val();
     var url = "mod/booking/shop_history/php_shop.php?action=<?=$action;?>&type=<?=$_GET[type]?>&id=<?=$arr[project][id]?>&lat="+lat+"&lng="+lng;
     console.log(url);
 //    return

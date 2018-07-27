@@ -472,7 +472,7 @@ $all_work = $db->num_rows('order_booking',"id","$filter");
                   <a class="btn btn-default paddling-max background-airy"  id="index_menu_shopping" style="width:100%;">
                      <center>
                         <div  class="circle-menu" style="background-color:#34A0E7"><i class="icon-new-uniF14D" style="font-size: 22px;"  ></i></div>
-                        <span style="padding-bottom:20px;" class="font-20 text-cap"><? echo t_send_to_customer?></span>
+                        <span style="padding-bottom:20px;" class="font-22 text-cap"><? echo t_send_to_customer?></span>
                      </center>
                   </a>
                </center>
@@ -481,10 +481,10 @@ $all_work = $db->num_rows('order_booking',"id","$filter");
                <input id="check_open_workshop" value="0" type="hidden"/>
                <center>
                   <a class="btn btn-default paddling-max background-airy"  id="index_menu_shopping_history" style="width:100%;">
-                     <span id="number_shop" class="badge font-20" style="position: absolute;font-size: 14px;background-color: #F44336;padding: 4px 7px;margin: -5px 3px;">0</span>
+                     <span id="number_shop" class="badge font-22" style="position: absolute;font-size: 14px;background-color: #F44336;padding: 4px 7px;margin: -5px 3px;">0</span>
                      <center>
                         <div  class="circle-menu" style="background-color:#34A0E7"><i class="fa fa-history"style="font-size: 22px;margin-top: -2px;"  ></i></div>
-                        <span style="padding-bottom:20px;" class="font-20 text-cap"><?=t_customer_history;?></span>
+                        <span style="padding-bottom:20px;" class="font-22 text-cap"><?=t_customer_history;?></span>
                      </center>
                   </a>
                </center>
@@ -510,25 +510,25 @@ $all_work = $db->num_rows('order_booking',"id","$filter");
       <td width="50%" align="center" class="">
          <center>
             <a class="btn btn-default paddling-max background-airy"  id="index_menu_transfer"   style="width:100%" onclick="workTbooking();">
-               <span id="number_tbooking" class="badge font-20" style="position: absolute;font-size: 14px;background-color: #F44336;padding: 4px 7px;margin: -5px 3px;">0</span>
+               <span id="number_tbooking" class="badge font-22" style="position: absolute;font-size: 14px;background-color: #F44336;padding: 4px 7px;margin: -5px 3px;">0</span>
                <center>
                   <div  class="circle-menu"  style="background-color: #F7941D ">
                      <i class="icon-new-uniF10A-9" style="font-size:30px; margin-left:-7px;  "  ></i>
                   </div>
-                  <span style="padding-bottom:20px;" class="font-20 text-cap"><? echo t_job_received?> </span>
+                  <span style="padding-bottom:20px;" class="font-22 text-cap"><? echo t_job_received?> </span>
                </center>
             </a>
          </center>
       </td>
       <td width="50%" align="center" class="">
-         <span data-toggle="tooltip" class="badge"   style="position:absolute; margin-left:10px; border-radius: 20px; height:25px; width:25px; background-color:#ff0000; padding-top:3px;border: solid 2px #FFFFFF; display:NONE " id="number_bottom_chat"  ><span  class="font-20" >0</span> </span>
+         <span data-toggle="tooltip" class="badge"   style="position:absolute; margin-left:10px; border-radius: 20px; height:25px; width:25px; background-color:#ff0000; padding-top:3px;border: solid 2px #FFFFFF; display:NONE " id="number_bottom_chat"  ><span  class="font-22" >0</span> </span>
          <center>
             <a class="btn btn-default paddling-max background-airy"  id="index_menu_transfer_his"   style="width:100%" onclick="historyTransfer();">
                <center>
                   <div  class="circle-menu"  style="background-color: #F7941D ">
                      <center><i class="fa fa-history" style="font-size: 22px;margin-top: -2px; "  ></i>
                      </div>
-                     <span style="padding-bottom:20px;" class="font-20 text-cap"><?=t_transfer_his;?> </span>
+                     <span style="padding-bottom:20px;" class="font-22 text-cap"><?=t_transfer_his;?> </span>
                   </center>
                </a>
             </center>
@@ -540,7 +540,7 @@ $all_work = $db->num_rows('order_booking',"id","$filter");
                <a class="btn btn-default paddling-max background-airy"   onclick="revenue()"  id="index_menu_income"   style="width:100%">
                   <center>
                      <div  class="circle-menu"   > <i class="icon-new-uniF121-10" style="font-size: 22px;margin-top: -2px;margin-left:-2px; "></i></div>
-                     <span style="padding-bottom:20px;" class="font-20 text-cap"><? echo t_receipts?></span>
+                     <span style="padding-bottom:20px;" class="font-22 text-cap"><? echo t_receipts?></span>
                   </center>
                </a>
             </center>
@@ -549,7 +549,7 @@ $all_work = $db->num_rows('order_booking',"id","$filter");
             <a class="btn btn-default paddling-max background-airy"  id="index_menu_money" onclick="money_transfer()" style="width:100%">
                <center>
                   <div  class="circle-menu" style="background: #e91e63"><i class="fa fa fa-usd" style="font-size: 22px;margin-top: -2px; " ></i></div>
-                  <span style="padding-bottom:20px;" class="font-20 text-cap">กระเป๋าเงิน-ประวัติ</span>
+                  <span style="padding-bottom:20px;" class="font-22 text-cap">กระเป๋าเงิน-ประวัติ</span>
                </center>
             </a>
          </td>
@@ -557,11 +557,11 @@ $all_work = $db->num_rows('order_booking',"id","$filter");
       
       <tr>
          <td  width="50%" align="center" class="">
-            <span data-toggle="tooltip" class="badge"   style="position:absolute; margin-left:10px; border-radius: 20px; height:25px; width:25px; background-color:#ff0000; padding-top:3px;border: solid 2px #FFFFFF;  display:NONE " id="number_bottom_chat2"  ><span  class="font-20" > 0 </span></span>
+            <span data-toggle="tooltip" class="badge"   style="position:absolute; margin-left:10px; border-radius: 20px; height:25px; width:25px; background-color:#ff0000; padding-top:3px;border: solid 2px #FFFFFF;  display:NONE " id="number_bottom_chat2"  ><span  class="font-22" > 0 </span></span>
             <a class="btn btn-default paddling-max background-airy"   id="index_menu_tour"   style="width:100%">
                <center>
                   <div  class="circle-menu"  style="background-color:#8DC63F"><i class="fa fa-suitcase" style="font-size: 22px;margin-top: -2px; " ></i></div>
-                  <span style="padding-bottom:20px;" class="font-20 text-cap"><? echo t_tour_booking?> </span>
+                  <span style="padding-bottom:20px;" class="font-22 text-cap"><? echo t_tour_booking?> </span>
                </center>
             </a>
          </td>
@@ -569,7 +569,7 @@ $all_work = $db->num_rows('order_booking',"id","$filter");
             <a class="btn btn-default paddling-max background-airy" style="width:100%" id="booking_open">
                <center>
                   <div  class="circle-menu" style="background: #1CC1A4;"><i class="fa fa-taxi" style="font-size: 22px;margin-top: -2px; " ></i></div>
-                  <span style="padding-bottom:20px;" class="font-20 text-cap"><? echo t_booking; ?></span>
+                  <span style="padding-bottom:20px;" class="font-22 text-cap"><? echo t_booking; ?></span>
                </center>
             </a>
          </td>
@@ -585,7 +585,7 @@ $all_work = $db->num_rows('order_booking',"id","$filter");
                      <center>
                         <div  class="circle-menu" style="background: #CDDC39;">
                         <i class="fa fa-map" style="font-size: 22px;margin-top: -2px; " ></i></div>
-                        <span style="padding-bottom:20px;" class="font-20 text-cap">test Shop</span>
+                        <span style="padding-bottom:20px;" class="font-22 text-cap">test Shop</span>
                      </center>
                   </a>
 
@@ -694,6 +694,7 @@ function historyTransfer(){
       <input type="hidden" value="" id="province_id"/>
       <input type="hidden" value="0" id="lat"/>
       <input type="hidden" value="0" id="lng"/>
+      <input  name="now_province"  type="hidden" class="form-control"  id="now_province" value=""   />
    <script>
    		
       $('#close_small_select').click(function(){
@@ -781,43 +782,67 @@ function historyTransfer(){
 
 </div>
 <script>
-   var locat = getCookie("geolocation");
-   geolocatCall();
+
    var userLang = navigator.language || navigator.userLanguage;
    userLang = userLang.split('-');
    var js_lng = userLang[0];
    console.log('Js Browser lng : '+js_lng);
-   function geolocatCall(){
-      if (navigator.geolocation) {
-         navigator.geolocation.getCurrentPosition(showPosition);
-      } else {
-         console.log('ปิดตำแหน่ง');
-      }
-   }
-   function geolocatCallFrist(){
-      swal({
-         title: "แสดงตำแหน่งปัจจุบัน",
-         text: "เพื่อการเข้าถึงข้อมูลของสถานที่ส่งแขกใกล้เคียงได้สะดวกยิ่งขึ้นและสะดวกในการเดินทางไปรับแขกของคุณ",
-         type: "warning",
-         showCancelButton: true,
-         confirmButtonClass: "btn-danger",
-         confirmButtonText: "ตกลง",
-         cancelButtonText: "ยกเลิก",
-         closeOnConfirm: true,
-         closeOnCancel: true
-      },
-      function(isConfirm) {
-         if (isConfirm) {
-            if (navigator.geolocation) {
-               navigator.geolocation.getCurrentPosition(showPosition);
-               setCookie("geolocation", '1', 1);
-            } else {
-               console.log('ปิดตำแหน่ง');
-            }
-         }
-      });
-   }
-   function showPosition(position) {
+   
+   var id, target, options;
+   var first_get_pos = true;
+   var current, crd;
+   target = {
+	  latitude : 0,
+	  longitude: 0
+	};
+
+	options = {
+	  enableHighAccuracy: false,
+	  timeout: 5000,
+	  maximumAge: 0
+	};
+function success(pos) {
+
+  if(first_get_pos==true){
+  	 current = {
+            lat: parseFloat(pos.coords.latitude),
+            lng: parseFloat(pos.coords.longitude)
+        };
+//        console.log(current);
+        showPosition(pos);
+        first_get_pos = false;
+  }
+	 crd = {
+            lat: parseFloat(pos.coords.latitude),
+            lng: parseFloat(pos.coords.longitude)
+        };
+    	var radlat1 = Math.PI * current.lat / 180
+        var radlat2 = Math.PI * crd.lat / 180
+        var theta = current.lng - crd.lng;
+        var radtheta = Math.PI * theta / 180
+        var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
+        dist = Math.acos(dist)
+        dist = dist * 180 / Math.PI
+        dist = dist * 60 * 1.609344;
+        var m = dist * 1000;
+//        console.log(m);
+        //		if( JSON.stringify(current) != JSON.stringify(start) ){
+        if (m > 50) {
+        	showPosition(pos)
+        	console.log(m);
+            current = crd;
+        }else{
+//			return false;
+		}  
+}
+
+function error(err) {
+  console.warn('ERROR(' + err.code + '): ' + err.message);
+}
+id = navigator.geolocation.watchPosition(success, error, options);
+
+
+function showPosition(position) {
       var cook_lng = getCookie("lng");
       if (cook_lng == 'th') {
          lng = "th";
@@ -832,18 +857,18 @@ function historyTransfer(){
       }
       console.log('Php Browser lng : '+lng);
       var url = 'https://maps.google.com/maps/api/geocode/json?latlng='+position.coords.latitude+','+position.coords.longitude+'&sensor=false&language='+lng+'&key=AIzaSyCx4SLk_yKsh0FUjd6BgmEo-9B0m6z_xxM';
-//  var url = 'https://maps.google.com/maps/api/geocode/json?latlng=9.13824,99.32175&sensor=false';
+
 $('#lat').val(position.coords.latitude);
 $('#lng').val(position.coords.longitude);
-console.log(position.coords.latitude+" : "+position.coords.longitude);
+//console.log(position.coords.latitude+" : "+position.coords.longitude);
 $.post( url, function( data ) {
-   console.log(data);
+//   console.log(data);
    if(data.status=="OVER_QUERY_LIMIT"){
       console.log('OVER_QUERY_LIMIT');
    }else{
-      console.log(data.results);
+      /*console.log(data.results);
       console.log(data.results.length-2);
-      console.log(data.results[data.results.length-2].address_components[0].long_name);
+      console.log(data.results[data.results.length-2].address_components[0].long_name);*/
       var province = data.results[data.results.length-2].address_components[0].long_name;
       $('#province_text').text(province);
       $('#now_province').val(province);
@@ -855,7 +880,7 @@ function updatePlaceNum(province){
    var url = "mod/shop/select_province_new.php?op=get_id_province_only";
    $.post( url,{txt_pv  :province} ,function( data ) {
       var obj = JSON.parse(data);
-      console.log(obj);
+//      console.log(obj);
       var province = obj.id;
       var area = obj.area;
       var url2 = "mod/shop/update_num_place.php?op=update_all&province="+province+'&area='+area;
@@ -886,7 +911,7 @@ function getCookie(cname) {
    return "";
 }
 </script>
-<input  name="now_province"  type="hidden" class="form-control"  id="now_province" value=""   />
+
 <script src="https://www.welovetaxi.com:3443/socket.io/socket.io.js?v=<?=time();?>"></script>
 <!-- <script src="socket.io/socket.io.js"></script> -->
 <!-- <script src="https://code.jquery.com/jquery-latest.min.js?v=<?=time();?>"></script> -->

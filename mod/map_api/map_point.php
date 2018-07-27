@@ -216,7 +216,7 @@ $res[projectdriver] = $db->select_query("SELECT name,nickname,phone,name_en,user
 <div class="row" style="position: fixed; bottom: 0px;right: 0px;margin-bottom: 0px;" id="box_show_detail">
     <div class="col s12 m6">
       <div class="card blue-grey darken-2">
-        <div class="card-content white-text" style="padding: 10px;">
+        <div class="card-content white-text" style="padding: 10px;    color: #fff !important;">
           <span class="card-title font-22" style="margin-bottom: 0px;">รายละเอียด</span>
           <p class="font-20"><?php echo $arr[projectdriver][name]." (".$arr[projectdriver][username].")"; ?><br>
           <?php echo "เวลา ".date("Y:m:d H:i:s",$arr[book][$date])." น"; ?>
