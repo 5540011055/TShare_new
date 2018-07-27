@@ -73,7 +73,7 @@ define("DB_NAME_DESIGN","admin_design");
 define("DB_HOST_DATA","localhost");
 define("DB_NAME_DATA","admin_data");
 define("DB_HOST_APP","localhost");
-define("DB_NAME_APP","admin_app");
+define("DB_NAME_APP","admin_apptshare");
 define("DB_NAME_BOOK","admin_booking");
 define("DB_HOST_DATA","localhost");
 define("DB_NAME_CHAT","admin_chat");

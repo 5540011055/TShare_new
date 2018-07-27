@@ -34,7 +34,7 @@ class DB
         $this->connect_db = mysql_connect($this->host_th, $this->username, $this->password) or $this->_error();
         //$this->connect_db = mysql_pconnect ( $this->host, $this->username, $this->password ) or $this->_error();
         $this->db = mysql_select_db($this->database, $this->connect_db) or $this->_error();
-        mysql_query("SET NAMES UFT8");
+        mysql_query("SET NAMES UTF8");
         mysql_query("SET character_set_results=utf-8");
         return true;
         /////////////
@@ -64,7 +64,7 @@ class DB
         $this->connect_db = mysql_connect($this->host_th, $this->username, $this->password) or $this->_error();
         //$this->connect_db = mysql_pconnect ( $this->host, $this->username, $this->password ) or $this->_error();
         $this->db = mysql_select_db($this->database, $this->connect_db) or $this->_error();
-        mysql_query("SET NAMES UFT8");
+        mysql_query("SET NAMES UTF8");
         mysql_query("SET character_set_results=utf-8");
         return true;
         /////////////
@@ -78,7 +78,7 @@ class DB
         $this->connect_db = mysql_connect($this->host_cn, $this->username, $this->password) or $this->_error();
         //$this->connect_db = mysql_pconnect ( $this->host, $this->username, $this->password ) or $this->_error();
         $this->db = mysql_select_db($this->database, $this->connect_db) or $this->_error();
-        mysql_query("SET NAMES UFT8");
+        mysql_query("SET NAMES UTF8");
         mysql_query("SET character_set_results=utf-8");
         return true;
         /////////////

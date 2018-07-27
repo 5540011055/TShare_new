@@ -1,7 +1,7 @@
 <? include('../../includes/class.mysql.php');?>
 <?php
 $db = new DB;
-mysql_query("SET NAMES UFT8"); 
+mysql_query("SET NAMES UTF8"); 
 mysql_query("SET character_set_results=utf-8"); 
 $db->connectdb('admin_tbkmanagement','root','123');
 	mysql_query("SET NAMES utf8"); 

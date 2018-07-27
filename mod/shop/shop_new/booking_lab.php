@@ -749,7 +749,7 @@
 		            }, function(data) {
 		                console.log(data);
 		            });
-		            var url_mail = "mail.php?key=new_shop";
+		            var url_mail = "mail.php?key=new_shop&driver=<?=$user_id?>";
 		            $.post(url_mail, $('#form_booking').serialize(), function(data) {
 		                console.log(data);
 		            });

@@ -17,7 +17,7 @@
 
   
   $db = New DB();
-  $db->connectdb('admin_app','admin_MANbooking','252631MANbooking');
+  $db->connectdb('admin_apptshare','admin_MANbooking','252631MANbooking');
   
   mysql_query("SET NAMES utf8"); 
   mysql_query("SET character_set_results=utf-8");

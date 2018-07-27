@@ -2,7 +2,7 @@
 <?php
 require_once("includes/class.mysql.php");
 $db = New DB();
-	define("DB_NAME_APP","admin_app");
+	define("DB_NAME_APP","admin_apptshare");
 	define("DB_USERNAME","admin_MANbooking");
 	define("DB_PASSWORD","252631MANbooking");
 	$db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
@@ -11,6 +11,10 @@ if($_GET[key]=="new_shop"){
 	$db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
  	$res[place_shop] = $db->select_query("SELECT topic_th,id FROM shopping_product  WHERE id='".$_POST[program]."' ");
  	$arr[place_shop] = $db->fetch($res[place_shop]);
+ 
+ 	$db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
+ 	$res[dv] = $db->select_query("SELECT id,name,phone FROM web_driver  WHERE id = '".$_GET[driver]."' ");
+ 	$arr[dv] = $db->fetch($res[dv]);
  
 		$txt_short = 'ทะเบียน '.$_POST[car_plate]; 
         $txt_short .=' ทำรายการส่งแขกเข้ามาใหม่ กรุณาตรวจสอบ';
@@ -72,6 +76,11 @@ ob_start();
     		  font-weight: 300;color : #fff !important;" ><?=$title;?></span>
 	          <p style="color : #fff !important;"><?=$txt_short;?></p>
 	          <p style="color : #fff !important;"><?=$txt_short2;?></p>
+	          <p style="color : #fff !important;">
+	          	<span>รายละเอียดคนขับ</span><br/>
+	          	<span>ชื่อ-สกุล : <?=$arr[dv][name];?></span><br/>
+	          	<span>เบอร์โทร <a href="tel:<?=$arr[dv][phone];?>" ><?=$arr[dv][phone];?></a> </span>
+	          </p>
 	        </div>
 	        <!--<div class="card-action">
 	          <a href="#">This is a link</a>

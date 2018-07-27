@@ -1,7 +1,7 @@
 <?php require_once("includes/class.mysql.php"); 
 $username = 'admin_MANbooking';
 $pass = '252631MANbooking';
-$db_name = 'admin_app';
+$db_name = 'admin_apptshare';
 ?>
 <meta charset="UTF-8" />
 

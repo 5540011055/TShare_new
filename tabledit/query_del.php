@@ -15,7 +15,7 @@ require_once("includes/class.mysql.php");
 $table = 'app_language';
 $username = 'admin_MANbooking';
 $pass = '252631MANbooking';
-$db_name = 'admin_app';
+$db_name = 'admin_apptshare';
 $db = New DB();
 $db->connectdb($db_name,$username,$pass);
 $current_date = time();

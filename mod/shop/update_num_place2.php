@@ -10,8 +10,8 @@
 <?php 
 include('../../includes/class.mysql.php');
 $db = New DB();
-$db->connectdb('admin_app','admin_MANbooking','252631MANbooking');
-/*mysql_query("SET NAMES UFT8"); 
+$db->connectdb('admin_apptshare','admin_MANbooking','252631MANbooking');
+/*mysql_query("SET NAMES UTF8"); 
 mysql_query("SET character_set_results=uft-8"); */
 $res[sub] = $db->select_query("select * from plan_product_price_name ");
 	while($arr[sub] = $db->fetch($res[sub])){ 

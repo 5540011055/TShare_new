@@ -16,7 +16,7 @@ $id = $_GET[id];
 //$db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);            
 //$query = $db->select_query("SELECT text_pic_book,text_pic_book_2,text_pic_book_3 FROM  shopping_product where id = '".$id."'  ");
 //$$query_show = $db->fetch($query);
-$conn = new mysqli('localhost', 'admin_MANbooking', '252631MANbooking', 'admin_app');
+$conn = new mysqli('localhost', 'admin_MANbooking', '252631MANbooking', 'admin_apptshare');
 $sql = "SELECT text_pic_book,text_pic_book_2,text_pic_book_3 FROM  shopping_product where id = '".$id."'  ";
 $result = $conn->query($sql);
 $row = $result->fetch_assoc();

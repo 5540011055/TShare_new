@@ -4,7 +4,7 @@ require_once("../includes/class.mysql.php");
 function sendMessage() {
 	
 	$db = New DB();
-	define("DB_NAME_APP","admin_app");
+	define("DB_NAME_APP","admin_apptshare");
 	define("DB_USERNAME","admin_MANbooking");
 	define("DB_PASSWORD","252631MANbooking");
 	$db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
@@ -93,7 +93,7 @@ function canelShopMessage() {
 	$order_id = $_GET[order_id];
 	
 	$db = New DB();
-	define("DB_NAME_APP","admin_app");
+	define("DB_NAME_APP","admin_apptshare");
 	define("DB_USERNAME","admin_MANbooking");
 	define("DB_PASSWORD","252631MANbooking");
 	$db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
@@ -147,7 +147,7 @@ function labAcknowledge(){
 	
 	$order_id = $_GET[order_id];
 	$db = New DB();
-	define("DB_NAME_APP","admin_app");
+	define("DB_NAME_APP","admin_apptshare");
 	define("DB_USERNAME","admin_MANbooking");
 	define("DB_PASSWORD","252631MANbooking");
 	$db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);

@@ -5,7 +5,7 @@ define("DB_HOST_HIS","localhost");
 define("DB_NAME_HIS","admin_his");
 define("DB_USERNAME","admin_MANbooking");
 define("DB_PASSWORD","252631MANbooking");
-define("DB_NAME_APP","admin_app");
+define("DB_NAME_APP","admin_apptshare");
 $db = new DB();
 if($_GET[type]=="cancel"){
 	$db->connectdb(DB_NAME_APP, DB_USERNAME, DB_PASSWORD);

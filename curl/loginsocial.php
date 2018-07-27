@@ -14,7 +14,7 @@ include('../includes/class.mysql.php');
 $db = New DB();
   $db->connectdb(DB_NAME_APP, DB_USERNAME, DB_PASSWORD);
   // $db = New DB();
- $db->connectdb('admin_app','da_admin','BrgNNrUNR3');
+ $db->connectdb('admin_apptshare','da_admin','BrgNNrUNR3');
       $fname =  array();
 		 
       //echo $username;

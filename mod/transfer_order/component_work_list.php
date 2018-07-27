@@ -25,7 +25,7 @@ switch ($_COOKIE['lng']){
  // mysql_query("SET NAMES utf8"); 
  //  mysql_query("SET character_set_results=utf-8");
   $db = New DB();
-  $db->connectdb('admin_app','admin_MANbooking','252631MANbooking');
+  $db->connectdb('admin_apptshare','admin_MANbooking','252631MANbooking');
  //$db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
  $res[deposit] = $db->select_query("SELECT * FROM  deposit where username  = '".$_COOKIE["app_remember_user"]."' ");
                       

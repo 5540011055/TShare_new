@@ -3,7 +3,7 @@ require_once("../../includes/class.mysql.php");
 require_once("../../includes/function.in.php");
 header('Content-Type: application/json; charset=utf-8');
 $db = New DB();
-$db->connectdb('admin_app','admin_MANbooking','252631MANbooking');
+$db->connectdb('admin_apptshare','admin_MANbooking','252631MANbooking');
 define("TIMESTAMP",time()) ;
 mysql_query("SET NAMES uft8"); 
 mysql_query("SET character_set_results=uft-8"); 
