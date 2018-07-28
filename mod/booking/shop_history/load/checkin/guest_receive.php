@@ -14,7 +14,7 @@
          </tr>
          <tr>
             <td style="height:30px;">
-               <div  id="status_guest_receive"  ><div class="font-20"><i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#FF0000"></i> <strong><font color="#FF0000"><?=t_pending;?></font></strong></div></div>
+               <div  id="status_guest_receive"  ><div class="font-22"><i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#FF0000"></i> <strong><font color="#FF0000"><?=t_pending;?></font></strong></div></div>
             </td>
             <td  width="30">
            <!-- <i id="photo_guest_receive_no" class="fa fa-camera" style="color:#3b59987a; font-size:16px; border-radius: 50%; padding:5px; border: 1px solid #3b59987a;display: none;" ></i>

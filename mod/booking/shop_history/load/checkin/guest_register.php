@@ -10,7 +10,7 @@
       </tr>
       <tr>
          <td style="height:30px;">
-            <div  id="status_guest_register" ><div class="font-20"><i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#FF0000"></i> <strong><font color="#FF0000"><?=t_pending;?></font></strong></div></div>
+            <div  id="status_guest_register" ><div class="font-22"><i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#FF0000"></i> <strong><font color="#FF0000"><?=t_pending;?></font></strong></div></div>
             <input type="hidden" value="<?=$arr[book][check_guest_register];?>" id="guest_register_check_click"/>
          </td>
          <td  width="30">

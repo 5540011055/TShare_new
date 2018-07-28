@@ -826,7 +826,103 @@ margin-top:0px;
    border-radius: 25px;
    box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12), 0 3px 1px -2px rgba(0,0,0,.2);
 }
-
+.step-booking-small {
+   border-radius: 50%;
+   background-color: #FF9933;
+   padding: 5px;
+   width: 40px;
+   height: 40px;
+   text-align: justify;
+   color:#FFFFFF;
+   font-size:20px;
+   font-weight:bold;
+   margin-top:-10px;
+   text-align:center;
+   border: solid 4px #FFFFFF;
+   background: #f39c12 !important;
+   color: #fff;
+}
+.step-booking-small-no {
+   border-radius: 50%;
+   background-color: #FF9933;
+   padding: 5px;
+   width: 40px;
+   height: 40px;
+   text-align: justify;
+   color:#FFFFFF;
+   font-size:20px;
+   font-weight:bold;
+   margin-top:-10px;
+   text-align:center;
+   border: solid 4px #FFFFFF;
+   background: #999999 !important;
+   color: #fff;
+}
+.step-booking {
+   border-radius: 50%;
+   background-color: #FF9933;
+   padding: 10px;
+   width: 60px;
+   height: 60px;
+   text-align: justify;
+   color:#FFFFFF;
+   font-size:30px;
+   font-weight:bold;
+   text-align:center;
+   margin-left:-5px;
+   border: solid 3px #F6F6F6;
+   box-shadow: 0 0 10px 3px #E8E6E6;
+   background: #FF0000 !important;
+   color: #fff;
+}
+.step-booking-active {
+   border-radius: 50%;
+   padding: 10px;
+   width: 60px;
+   height: 60px;
+   text-align: justify;
+   color:#FFFFFF;
+   font-size:30px;
+   font-weight:bold;
+   text-align:center;
+   margin-left:-5px;
+   border: solid 3px #F6F6F6;
+   box-shadow: 0 0 10px 3px #E8E6E6;
+   background: #59AA47 !important;
+   color: #fff;
+}
+.mof{
+   width: 100%;
+   position: relative;
+   border: none;
+   outline:none;
+   cursor: pointer;
+   background: #FFFFFF;
+   color: #333;
+   padding: 13px;
+   border-radius: 2px;
+   font-size: 22px;
+}.ripple{
+   overflow:hidden;
+}
+.ripple-effect{
+   position: absolute;
+   border-radius: 50%;
+   width: 50px;
+   height: 50px;
+   background: white;
+   animation: ripple-animation 2s;
+}
+@keyframes ripple-animation {
+   from {
+      transform: scale(1);
+      opacity: 0.4;
+   }
+   to {
+      transform: scale(100);
+      opacity: 0;
+   }
+}
 </style>
 <div class="container" style="display: none;">
    <div class="row">

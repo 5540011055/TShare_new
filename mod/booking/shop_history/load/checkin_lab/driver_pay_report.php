@@ -12,7 +12,7 @@
          <tr>
             <input type="hidden" value="<?=$arr[book][check_driver_pay_report];?>" id="driver_pay_report_check_click"/>
             <td style="height:30px;">
-               <div  id="status_driver_pay_report"><div class="font-20"><i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#FF0000"></i> <strong><font color="#FF0000"><?=t_pending;?></font></strong></div></div>
+               <div  id="status_driver_pay_report"><div class="font-22"><i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#FF0000"></i> <strong><font color="#FF0000"><?=t_pending;?></font></strong></div></div>
             </td>
             <td  width="30">
               <!-- <i  id="photo_driver_pay_report" class="fa  fa-camera" style="color:<?=$main_color?>; font-size:16px; border-radius: 50%; padding:5px; border: solid 2px <?=$main_color?>  " onclick="ViewPhoto('<?=$arr[book][id];?>','driver_pay_report','<?=$arr[book][driver_pay_report_date]?>');" ></i>-->

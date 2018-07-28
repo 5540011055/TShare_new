@@ -13,7 +13,7 @@
          </tr>
          <tr>
             <td style="height:30px;">
-               <div  id="status_guest_receive" ><div class="font-20"><i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#FF0000"></i> <strong><font color="#FF0000"><?=t_pending;?></font></strong></div></div>
+               <div  id="status_guest_receive" ><div class="font-22"><i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#FF0000"></i> <strong><font color="#FF0000"><?=t_pending;?></font></strong></div></div>
             </td>
             <td  width="30">
                
