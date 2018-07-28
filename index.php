@@ -113,7 +113,7 @@
        <script src="pickerdate/picker.date.js?v=<?=time();?>" type="text/javascript"></script> 
        
    <body style="    background-position: 0% 100%;
-    background-image: linear-gradient(to right,rgb(59, 89, 152) 0%,#ff98003d 100%),url(pic/b1.jpg);
+    background-image: linear-gradient(to right,rgba(59, 89, 152, 0) 0%,#ff98003d 100%),url(pic/b1.jpg);
     background-blend-mode: screen;
     background-repeat-x: no-repeat;
     background-repeat-y: no-repeat;
