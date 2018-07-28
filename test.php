@@ -1,70 +1,79 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
-<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-<script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-</head>
-<body>
-<style>
-	#myPopup-popup{
-		height: 100% !important;
-		width: 100% !important;
-		position: fixed;
-		left: 0px !important;
-		max-width: unset !important;
-	}
-	#myPopup{
-		height: 100% !important;
-/*		width: 100% !important;*/
-	}
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
+<link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
+<script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
+	<body>
+		<ons-navigator swipeable id="myNavigator" page="page1.html"></ons-navigator>
+
+<template id="page1.html">
+  <ons-page id="page1">
+    <ons-toolbar>
+      <div class="center">Page 1</div>
+    </ons-toolbar>
 	
-	#myPopup2-popup2{
-		height: 100% !important;
-		width: 100% !important;
-		position: fixed;
-		left: 0px !important;
-		max-width: unset !important;
-	}
-	#myPopup2{
-		height: 100% !important;
-/*		width: 100% !important;*/
-	}
-</style>
-<div data-role="page">
-  <div data-role="header">
-    <h1>Welcome To My Homepage</h1>
-  </div>
+    <p>This is the first page.</p>
 
-  <div data-role="main" class="ui-content">
-    <p>This is a demonstration of all available transition effects for popups.</p>
-    <p><b>Note:</b> For performance reasons, jQuery Mobile recommend using "pop", "fade" or "none" for smooth and fast animations.</p>
-    <a href="#myPopup" data-rel="popup" class="ui-btn" data-transition="fade">Fade</a>
-    <a href="#myPopup" data-rel="popup" class="ui-btn" data-transition="flip">Flip</a>
-    <a href="#myPopup" data-rel="popup" class="ui-btn" data-transition="flow">Flow</a>
-    <a href="#myPopup" data-rel="popup" class="ui-btn" data-transition="pop">Pop</a>
-    <a href="#myPopup" data-rel="popup" class="ui-btn" data-transition="slide">Slide</a>
-    <a href="#myPopup" data-rel="popup" class="ui-btn" data-transition="slidefade">Slidefade</a>
-    <a href="#myPopup" data-rel="popup" class="ui-btn" data-transition="slideup">Slide up</a>
-    <a href="#myPopup" data-rel="popup" class="ui-btn" data-transition="slidedown">Slide down</a>
-    <a href="#myPopup" data-rel="popup" class="ui-btn" data-transition="turn">Turn</a>
-    <a href="#myPopup" data-rel="popup" class="ui-btn" data-transition="none" >No transition</a>
+    <ons-button id="push-button">Push page</ons-button>
+    
+    
+  </ons-page>
+</template>
 
-    <div data-role="popup" id="myPopup" class="ui-content">
-      <a data-rel="back"><i class="fa fa-times" aria-hidden="true" style="font-size: 26px;position: absolute;right: 15px;top: 10px;"></i></a>
-      <div style="margin-top: 10px"><p>This is a simple popup.</p>
-      <a href="#myPopup2" data-rel="popup2" class="ui-btn" data-transition="slide">Slide</a>
-      </div>
-    </div>
-  
-  </div>
+<template id="page2.html">
+  <ons-page id="page2">
+    <ons-toolbar>
+      <div class="left"><ons-back-button>Page 1</ons-back-button></div>
+      <div class="center"></div>
+    </ons-toolbar>
 
-  <div data-role="footer">
-    <h1>Footer Text</h1>
-  </div>
-</div> 
+    <p>This is the second page.</p>
+    <ons-page>
+  <ons-button onclick="showAlert()">Alert</ons-button>
+  <ons-button onclick="showConfirm()">Confirm</ons-button>
+  <ons-button onclick="showPrompt()">Prompt</ons-button>
+  <ons-button onclick="showToast()">Toast</ons-button>
+</ons-page>
+  </ons-page>
+</template>
+	</body>
+	<script>
+		document.addEventListener('init', function(event) {
+  var page = event.target;
 
-</body>
+  if (page.id === 'page1') {
+    page.querySelector('#push-button').onclick = function() {
+      document.querySelector('#myNavigator').pushPage('page2.html', {data: {title: 'Page 2'}});
+    };
+  } else if (page.id === 'page2') {
+    page.querySelector('ons-toolbar .center').innerHTML = page.data.title;
+  }
+});
+	var showAlert = function() {
+  ons.notification.alert('Alert!');
+};
+
+var showConfirm = function() {
+  ons.notification.confirm('Confirm!')
+};
+
+var showPrompt = function() {
+  ons.notification.prompt('Prompt!')
+    .then(function(input) {
+      var message = input ? 'Entered: ' + input : 'Entered nothing!';
+      ons.notification.alert(message);
+    });
+};
+
+var showToast = function() {
+  ons.notification.toast('Toast!', {
+    timeout: 2000
+  });
+};
+
+	</script>
 </html>
