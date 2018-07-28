@@ -13,78 +13,6 @@
    }
 </style>
 <?php 
-   $cars = array("TOYOTA", "ISUZU"
-                              ,"MITSUBISHI"
-                              ,"MAZDA"
-                              ,"NISSAN"
-                              ,"SUZUKI"
-                              ,"HINO"
-                              ,"LEXUS"
-                              ,"DAIHATSU"
-                              ,"SUBARU"
-                              ,"MITSUOKA"
-                              ,"MERCEDES-BENZ"
-                              ,"BMW"
-                              ,"AUDI"
-                              ,"VOLKSWAGEN"
-                              ,"PEUGEOT"
-                              ,"PORSCHE"
-                              ,"OPEL"
-                              ,"SMART"
-                              ,"MCLAREN"
-                              ,"WIESMANN"
-                              ,"CHEVROLET"
-                              ,"JEEP"
-                              ,"FORD"
-                              ,"CHRYSLER"
-                              ,"DODGE"
-                              ,"HUMMER"
-                              ,"PONTIAC"
-                              ,"BUICK"
-                              ,"OLDSMOBILE"
-                              ,"INFINITI"
-                              ,"AMC"
-                              ,"LINCOLN"
-                              ,"TESLA"
-                              ,"CADILLAC"
-                              ,"MINI"
-                              ,"ROVER"
-                              ,"LAND ROVER"
-                              ,"ASTON MARTIN"
-                              ,"JAGUAR"
-                              ,"ROLLS-ROYCE"
-                              ,"BENTLEY"
-                              ,"AUSTIN"
-                              ,"MG"
-                              ,"LONDON TAXI"
-                              ,"TRIUMPH"
-                              ,"ALFA ROMEO"
-                              ,"FIAT"
-                              ,"MASERATI"
-                              ,"LOTUS"
-                              ,"FERRARI"
-                              ,"LAMBORGHINI"
-                              ,"KIA"
-                              ,"MUSSO"
-                              ,"DAEWOO"
-                              ,"HYUNDAI"
-                              ,"SSANGYONG"
-                              ,"CITROEN"
-                              ,"RENAULT"
-                              ,"VOLVO"
-                              ,"SAAB"
-                              ,"THAI RUNG"
-                              ,"PROTON"
-                              ,"NAZA"
-                              ,"SEAT"
-                              ,"TATA"
-                              ,"HOLDEN"
-                              ,"CHERY"
-                              ,"DFSK"
-                              ,"FOTON"
-                              ,"SKODA"
-                              );
-    
     $db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
     $res[project] = $db->select_query("SELECT * FROM  web_carall  where id= '".$_GET[id]."' ");
 	$arr[web_car] = $db->fetch($res[project]);   
@@ -96,6 +24,7 @@
    ?>
 <div style="margin-top: 40px;padding:10px;">
    <form name="myform_data" id="myform_data"   enctype="multipart/form-data" >
+   	  <div style="padding: 10px;">
       <table class="tb-pd-5" width="100%">
          <tr>
             <td colspan="2">
@@ -184,8 +113,8 @@
                   <select class="icons"  id="region" name="region">
                      <option value="" disabled selected><?=t_select_region;?></option>
                      <?php 
-                        $db->connectdb(DB_NAME,DB_USERNAME,DB_PASSWORD);
-                                   $res[region] = $db->select_query("SELECT * FROM web_area  ORDER BY ".$place_shopping." asc ");
+                        $db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
+                                  $res[region] = $db->select_query("SELECT * FROM web_region order by ".$place_shopping."  ");
                                     while($arr[region] = $db->fetch($res[region])) { 
                                 	if($arr[pro][area]==$arr[region][id]){
                                 		$selected_area = "selected";
@@ -204,7 +133,7 @@
                   <select class="icons" id="province" name="province">
                      <option value="" disabled selected><?=t_select_province;?></option>
                      <?php 
-                        $db->connectdb(DB_NAME,DB_USERNAME,DB_PASSWORD);
+                        $db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
                                    $res[pv] = $db->select_query("SELECT * FROM web_province  ORDER BY ".$province." asc ");
                                     while($arr[pv] = $db->fetch($res[pv])) { 
                                     $txt = explode("/",$arr[pv][$province]);
@@ -222,6 +151,7 @@
             </td>
          </tr>
       </table>
+	  </div>
       <table width="100%" class="tb-pd-5" style="margin-top: 10px;">
          <tr>
             <td>
