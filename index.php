@@ -114,7 +114,7 @@
        
        
    <body style="        background-position: 0% 100%;
-    background-image: linear-gradient(to right,rgb(63, 81, 181) 0%,#1b6188 100%),url(pic/b1.jpg);
+    background-image: linear-gradient(to right,rgba(63, 81, 181, 0) 0%,#1b618800 100%),url(pic/b1.jpg);
     background-blend-mode: screen;
     background-repeat-x: no-repeat;
     background-repeat-y: no-repeat;
