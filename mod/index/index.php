@@ -67,9 +67,11 @@ $all_work = $db->num_rows('order_booking',"id","$filter");
                <input id="check_open_workshop" value="0" type="hidden"/>
                <center>
                   <a class="btn btn-default paddling-max background-airy"  id="index_menu_shopping_history" style="width:100%;">
-                     <span id="number_shop" class="badge font-22" style="position: absolute;font-size: 14px;background-color: #F44336;padding: 4px 7px;margin: -5px 3px;">0</span>
+                     <span id="number_shop" class="badge badge-custom font-22 pulse" style="display: none;">0</span>
                      <center>
-                        <div  class="circle-menu" style="background-color:#34A0E7"><i class="fa fa-history"style="font-size: 22px;margin-top: -2px;"  ></i></div>
+                        <div  class="circle-menu" style="background-color:#34A0E7" id="circle_icon_shop">
+                        	<center><i class="fa fa-history"style="font-size: 22px;margin-top: -2px;"  ></i></center>
+                        </div>
                         <span style="padding-bottom:20px;" class="font-22 text-cap"><?=t_customer_history;?></span>
                      </center>
                   </a>
@@ -96,7 +98,7 @@ $all_work = $db->num_rows('order_booking',"id","$filter");
       <td width="50%" align="center" class="">
          <center>
             <a class="btn btn-default paddling-max background-airy"  id="index_menu_transfer"   style="width:100%" onclick="workTbooking();">
-               <span id="number_tbooking" class="badge font-22" style="position: absolute;font-size: 14px;background-color: #F44336;padding: 4px 7px;margin: -5px 3px;">0</span>
+               <span id="number_tbooking" class="badge badge-custom font-22 pulse" style="display: none;" >0</span>
                <center>
                   <div  class="circle-menu"  style="background-color: #F7941D ">
                      <i class="icon-new-uniF10A-9" style="font-size:30px; margin-left:-7px;  "  ></i>
@@ -107,12 +109,12 @@ $all_work = $db->num_rows('order_booking',"id","$filter");
          </center>
       </td>
       <td width="50%" align="center" class="">
-         <span data-toggle="tooltip" class="badge"   style="position:absolute; margin-left:10px; border-radius: 20px; height:25px; width:25px; background-color:#ff0000; padding-top:3px;border: solid 2px #FFFFFF; display:NONE " id="number_bottom_chat"  ><span  class="font-22" >0</span> </span>
          <center>
             <a class="btn btn-default paddling-max background-airy"  id="index_menu_transfer_his"   style="width:100%" onclick="historyTransfer();">
+            <span id="number_tbooking_history" class="badge badge-custom font-22 pulse" style="display: none;">0</span>
                <center>
                   <div  class="circle-menu"  style="background-color: #F7941D ">
-                     <center><i class="fa fa-history" style="font-size: 22px;margin-top: -2px; "  ></i>
+                     <center><i class="fa fa-history" style="font-size: 22px;margin-top: -2px; "  ></i></center>
                      </div>
                      <span style="padding-bottom:20px;" class="font-22 text-cap"><?=t_transfer_his;?> </span>
                   </center>
@@ -139,11 +141,9 @@ $all_work = $db->num_rows('order_booking',"id","$filter");
                </center>
             </a>
          </td>
-      </tr>
-      
+      </tr>    
       <tr>
          <td  width="50%" align="center" class="">
-            <span data-toggle="tooltip" class="badge"   style="position:absolute; margin-left:10px; border-radius: 20px; height:25px; width:25px; background-color:#ff0000; padding-top:3px;border: solid 2px #FFFFFF;  display:NONE " id="number_bottom_chat2"  ><span  class="font-22" > 0 </span></span>
             <a class="btn btn-default paddling-max background-airy"   id="index_menu_tour"   style="width:100%">
                <center>
                   <div  class="circle-menu"  style="background-color:#8DC63F"><i class="fa fa-suitcase" style="font-size: 22px;margin-top: -2px; " ></i></div>
@@ -160,7 +160,6 @@ $all_work = $db->num_rows('order_booking',"id","$filter");
             </a>
          </td>
       </tr>
-
 	<?php 
 		if($user_id=='153'){
 	?>
@@ -514,15 +513,23 @@ function getCookie(cname) {
 <!-- <script src="socket.io/socket.io.js"></script> -->
 <!-- <script src="https://code.jquery.com/jquery-latest.min.js?v=<?=time();?>"></script> -->
 <script>
+   
+   
    var array_rooms;
    var res_socket ;
    var socket = io.connect('https://www.welovetaxi.com:3443');
 
           //on message received we print all the data inside the #container div
-          socket.on('notification', function (data) {
+    socket.on('notification', function (data) {
 //          console.log("Start Socket");
 			
 					 res_socket = data.transfer[0];
+				  if(data.transfer[0].length>0){
+				  	$('#number_tbooking').show();
+				  }	 else{
+				  	$('#number_tbooking').hide();
+				  }
+				  
 		          $('#number_tbooking').text(data.transfer[0].length);
 		           if($('#check_open_worktbooking').val()==1){
 		           console.log(data.transfer);
@@ -554,24 +561,20 @@ function getCookie(cname) {
    				}
    			}
    		}
-   		/*else{
-   			if(user_class=="lab"){
-   				if(db == current){
-   					none.push(value);
-   				}
-   			}
-   			else {
-   				if(db == current && value.drivername == "<?=$user_id;?>"){
-   					none.push(value);
-   				}
-   			}
-   		}*/
+   		
           });
           array_data = {
    		manage : done,
    		history : none
    	};
    //        console.log(array_data);
+   		if(done.length>0){
+			$('#number_shop').show();
+//			$('#circle_icon_shop').addClass("pulse");
+		}else{
+			$('#number_shop').hide();
+//			$('#circle_icon_shop').removeClass("btn-floating pulse pd-5");
+		}
       	$('#number_shop').text(done.length);
       	if($('#check_open_workshop').val()==1){
       		if(shop_frist_run==0){
@@ -805,6 +808,7 @@ $('#check_open_shop_id').val(value.id);
    }
 }
 }
+
 function openOrderFromAndroidHistory(id,status,open_ic){
 //    alert(id);
 $.post("mod/booking/shop_history/php_shop.php?query=history_by_order&order_id="+id,function(data){
@@ -824,6 +828,23 @@ if(open_ic=='1'){
 }
 });
 });
+}
+
+getTansferJobNumber("<?=$user_id;?>","<?=date('Y-m-d');?>")
+function getTansferJobNumber(driver,date){
+	$.post("mod/tbooking/curl_connect_api.php?type=get_my_transfer_job",{ driver:driver, date:date },function(res){
+		var num = res.data.result;
+		console.log(num+" +++")
+		
+		if(num>0){
+			$('#number_tbooking_history').show();
+//			alert(32);
+		}else{
+			$('#number_tbooking_history').hide();
+		}
+//		$('#number_tbooking_history').show();
+		$('#number_tbooking_history').text(num);
+	});
 }
 </script>
 <script>

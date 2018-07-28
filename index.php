@@ -553,6 +553,18 @@
    /*****END*****/
 </style>
 <style>
+.pd-5{
+	padding: 5 !important;
+}
+.badge-custom{
+	position: absolute;
+	font-size: 14px;
+	background-color: #F44336;
+	padding: 4px 7px;
+	margin: -5px 3px;
+/*	display: none;*/
+	z-index: 2;
+}
 .background-airy{
 /*	background-color: #ffffff40 !important; */
 	background-color: unset !important;
