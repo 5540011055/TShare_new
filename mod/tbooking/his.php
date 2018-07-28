@@ -164,7 +164,7 @@
 		  	}
 		      var component2 = 
 		      '<div class="box_his">'
-		      +'<button class="mof ripple" id="btn_'+index+'" onclick="openSheetHandle('+index+',1);rippleClick(\'' + id + '\');" style="padding: 0px;">'
+		      +'<a class="mof ripple" id="btn_'+index+'" onclick="openSheetHandle('+index+',1);rippleClick(\'' + id + '\');" style="padding: 0px;">'
    			  +'<div class="w3-bar-item">'
 		      +'<table width="100%">'
 		         +'<tbody>'
@@ -185,7 +185,7 @@
 					               +'<td width="100%"><span class="font-24" colspan="2">'+to_place+'</span></td>'
 					            +'</tr>'
 					             +'<tr>'
-					               +'<td><strong><span class="font-22 ">'+type_pay+'</span>&nbsp;&nbsp;<span class="font-22" style="position: absolute;right: 15px;">'+addCommas(cost)+'<?=t_THB;?>'+'</span></strong></td>'
+					               +'<td><strong><span class="font-22 ">'+type_pay+'</span>&nbsp;&nbsp;<span class="font-22" style="position: fixed;right: 25px;">'+addCommas(cost)+'<?=t_THB;?>'+'</span></strong></td>'
 					               
 					            +'</tr>'
 					            +'<tr>'
@@ -198,7 +198,8 @@
 		         +'</tbody>'
 		      +'</table>'
 		      +'</div>'
-		      +'</button>'
+		      +'</a>'
+		      +'</a>'
 		      +'</div>';
 		      $('#load_manage_data').append(component2);
 					});
@@ -278,7 +279,7 @@
 	$('#btn_'+type).addClass('btn_filter_active');
 	
 	if(type=="history"){
-		$('.form-group').fadeIn(200);
+		$('.form-group').show();
 		var driver = $('#driver').val();
 			callApiLog();
 //			eachObjHistory();
@@ -288,7 +289,7 @@
 		console.log(driver+" : ");
 	}
 	else if(type=="manage"){
-		$('.form-group').fadeOut(200);
+		$('.form-group').hide();
 		var driver = $('#driver').val();
 			callApiManage();
 //			eachObjManage();	   
