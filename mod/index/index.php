@@ -182,8 +182,7 @@ $all_work = $db->num_rows('order_booking',"id","$filter");
  
                   <a class="btn btn-default paddling-max background-airy" style="width:100%" href="test.php" >
                      <center>
-                        <div  class="circle-menu" style="background: #CDDC39;">
-                        <i class="fa fa-map" style="font-size: 22px;margin-top: -2px; " ></i></div>
+                        <div  class="circle-menu" style="background: #F44336;"><span style="margin-top: -1px; margin-left: -7px;position: absolute;">T</span></div>
                         <span style="padding-bottom:20px;" class="font-22 text-cap">test Shop</span>
                      </center>
                   </a>
