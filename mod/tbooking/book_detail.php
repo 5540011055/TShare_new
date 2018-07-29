@@ -186,7 +186,7 @@ td{
       	<div style="padding: 10px;border:1px solid #ddd;background-color: #f6f6f6;border-radius: 10px;margin-top: 10px;">
       			<b><i class="fa  fa-map-marker" style="color:#c1c1c1;padding: 0px 7px;font-size: 20px;"></i><span class="font_16 text-cap"><?=t_pick_up_place;?></span></b>
       			<div style="position:  absolute; right: 20px; margin-top: -30px;" >
-                                    <a class="test" data-toggle="tooltip" title="<?=t_navigation_map;?>" onclick="mapsSelector('<?=$_POST[pickup_place][lat];?>','<?=$_POST[pickup_place][lng];?>');" 
+                                    <a class="test" data-toggle="tooltip" title="<?=t_navigation_map;?>" onclick="mapsSelector('<?=$_POST[lat_f];?>','<?=$_POST[lng_f];?>');" 
                                    target="_blank"> 
                                     <i class="icon-new-uniF13A-7" style=" font-size:28px; color:#3C8DBC"></i>
                                     </a>
@@ -203,7 +203,7 @@ td{
 		<div style="padding: 10px;border:1px solid #ddd;background-color: #f6f6f6;border-radius: 10px;margin-bottom: 10px;">
       			<b><i class="fa  fa-map-marker" style="color:#c1c1c1;padding: 0px 7px;font-size: 20px;"></i><span class="font_16 text-cap"><?=t_drop_place;?></span></b>
       			<div style="position:  absolute; right: 20px; margin-top: -30px;" >
-                                    <a class="test" data-toggle="tooltip" title="<?=t_navigation_map;?>" onclick="mapsSelector('<?=$_POST[to_place][lat];?>','<?=$_POST[to_place][lng];?>');" target="_blank"> 
+                                    <a class="test" data-toggle="tooltip" title="<?=t_navigation_map;?>" onclick="mapsSelector('<?=$_POST[lat_t];?>','<?=$_POST[lng_t];?>');" target="_blank"> 
                                     <i class="icon-new-uniF13A-7" style=" font-size:28px; color:#3C8DBC"></i>
                                     </a>
                                      <a href="tel:076351166" target="_blank" class="test" data-toggle="tooltip" title="โทรออก"> <i class="icon-new-uniF152-4" style=" font-size:24px; color:#3C8DBC"></i></a>
