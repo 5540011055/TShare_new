@@ -592,8 +592,13 @@ var time_post = CheckTime(d_cr,d_db);
              });
 }
 
-function selectjob(orderid,idorder,invoice,code,program,p_place,to_place,agent,airout_time,airin_time,cost,s_cost,outdate,ondate,s_status_pay){
+function selectjob(orderid,idorder,invoice,code,program,p_place,to_place,agent,airout_time,airin_time,cost,s_cost,outdate,ondate,s_status_pay,id,idbookcar,a,b,c,d){
  var carid = $('#carid').val();
+ console.log(idbookcar +'**************************************'+ carid)
+ if (parseInt(idbookcar) != parseInt(carid)) {
+      swal('ไม่สามารถรับงานได้','งานนี้ใช้'+a+b+' '+'คุณใช้'+c+d,'error');
+      return;
+   }
  if(carid==''){
   swal('กรุณาเลือกรถที่จะใช้งาน','','error');
   return;

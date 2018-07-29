@@ -210,7 +210,7 @@ td{
                                     </div>
       			 <div align="left" style="font-size:16px;padding: 5px 15px; "> 
                      <span id="address_form" class="font-24">
-                     	<?=$_POST[pickup_place][topic];?>
+                     	<?=$_POST[to_place][topic];?>
                      </span>					   
                        
                      </div>
@@ -373,7 +373,7 @@ $plate_color="FFCC00"; }
  $plate_color="FF0000"; 
  } 
 ?>
-	<a id="car_<?=$arr[car][id];?>" style="text-decoration:none; margin-top:30px;" onclick="selectCar('<?=$arr[car][id];?>');">
+	<a id="car_<?=$arr[car][id];?>" style="text-decoration:none; margin-top:30px;" onclick="selectCar('<?=$arr[car][car_type];?>');">
     	<table width="100%" border="0" cellspacing="2" cellpadding="2" id="div_car_<?=$arr[car][id];?>" style="border: 0px solid #ddd;background-color: #f6f6f6;">
                <tbody>
                   <tr>
@@ -391,7 +391,7 @@ $plate_color="FFCC00"; }
                      </td>
                      <td width="50" align="center">
                       <label class="container">
-					  <input type="checkbox" name="car" id="car_use_<?=$arr[car][id];?>" value="1">
+					  <input type="checkbox" name="car" id="car_use_<?=$arr[car][car_type];?>" value="1">
 					  <span class="checkmark"></span>
 					</label>
                      </td>
@@ -413,9 +413,8 @@ $plate_color="FFCC00"; }
 </div>
 
 
-
 <div style="padding-bottom: 20px;padding-left: 20px;padding-right: 20px;padding-top:0px;">
-<button onclick="selectjob('<?=$_POST[orderid];?>','<?=$_POST[id];?>','<?=$_POST[invoice];?>','<?=$_POST[code];?>','<?=$_POST[program][id];?>','<?=$_POST[pickup_place][id];?>','<?=$_POST[to_place][id];?>','<?=$_POST[agent];?>','<?=$_POST[airout_time];?>','<?=$_POST[airin_time];?>','<?=$_POST[cost];?>','<?=$_POST[s_cost];?>','<?=$_POST[outdate];?>','<?=$_POST[ondate];?>','<?=$_POST[s_status_pay];?>')" style="margin-top:10px;background-color: #fff;border: 1px solid #3b5998;width: 100%;border-radius: 25px;padding: 8px;color: #3b5998; "><span class="font-24"><strong><?=t_accept_order?></strong></span> </button>
+<button onclick="selectjob('<?=$_POST[orderid];?>','<?=$_POST[id];?>','<?=$_POST[invoice];?>','<?=$_POST[code];?>','<?=$_POST[program][id];?>','<?=$_POST[pickup_place][id];?>','<?=$_POST[to_place][id];?>','<?=$_POST[agent];?>','<?=$_POST[airout_time];?>','<?=$_POST[airin_time];?>','<?=$_POST[cost];?>','<?=$_POST[s_cost];?>','<?=$_POST[outdate];?>','<?=$_POST[ondate];?>','<?=$_POST[s_status_pay];?>','<?=$arr[car][car_type];?>','<?=$_POST[car_type][id];?>','<?=$car_type;?>','<?=$_POST[car_type][pax_th];?>','<?=$arr[ct][topic_th];?>','<?=$arr[ct][pax_th];?>')" style="margin-top:10px;background-color: #fff;border: 1px solid #3b5998;width: 100%;border-radius: 25px;padding: 8px;color: #3b5998; "><span class="font-24"><strong><?=t_accept_order?></strong></span> </button>
 </div>
 
 
@@ -429,8 +428,16 @@ $('#show_main_tool_bottom').fadeOut(500);
 function selectCar(id){
 //	$('#car_use_'+id).click();
 //	
-	$('input[type="checkbox"]').prop('checked', false); // Unchecks it
-	$('#car_use_'+id).prop('checked', true); // Checks it
-	$('#carid').val(id);
+// console.log(id)
+// console.log('<?=$_POST[car_type][id];?>')
+   // if ('<?=$_POST[car_type][id];?>' != id) {
+   //    swal('ไม่สามารถรับงานได้','งานนี้ใช้รถ<?=$car_type;?><?=$_POST[car_type][pax_th];?>'+' '+'คุณใช้รถ <?=$arr[ct][topic_th];?><?=$arr[ct][pax_th];?>','error');
+   // }
+   // else{
+    $('input[type="checkbox"]').prop('checked', false); // Unchecks it
+    $('#car_use_'+id).prop('checked', true); // Checks it
+    $('#carid').val(id);
+   
+	
 }
 </script>
