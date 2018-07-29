@@ -252,10 +252,10 @@ td{
                               <td width="120" valign="top" class="td-text"><b><?=t_flight;?></b></td>
                               <td valign="top" class="td-text"><span class="font-22"><?=$_POST[air];?> </span></td>
                            </tr>
-                           <tr style="display: none;">
+                           <tr style="display: nones;">
                               <td valign="top"><i class="icon-new-uniF137" style="color:#666666; font-size:18px;"></i></td>
                               <td width="120" valign="top" class="td-text text-cap"><b><?=t_agents;?></b></td>
-                              <td valign="top" class="td-text"><span class="font-22"><?=$_POST[agent_q][username];?></span></td>
+                              <td valign="top" class="td-text"><span class="font-22"><?=$_POST[bookagent][guest];?></span></td>
                            </tr>
                            <tr >
                               <td valign="top"><i class="icon-new-uniF12B-3" style="color:#666666; font-size:18px"></i></td>
@@ -263,15 +263,15 @@ td{
                               <td valign="top" class="td-text"><span class="font-22"> <?=$adult_txt." ".$child_txt;?></span>
                               </td>
                            </tr>
-                           <tr style="display: none;">
+                           <tr style="display: nones;">
                               <td valign="top"><i class="icon-new-uniF109-14" style="color:#666666; font-size:18px"></i></td>
                               <td valign="top" class="td-text text-cap"><b><?=t_name_guest;?></b></td>
                               <td valign="top" class="td-text"><span class="font-22"><?=$_POST[bookagent][guest];?></span></td>
                            </tr>
-                           <tr style="display: none;">
+                           <tr style="display: nones;">
                               <td valign="top"><i class="icon-new-uniF152-4" style="color:#666666; font-size:18px"></i></td>
                               <td valign="top" class="td-text text-cap"><b><?=t_phone;?></b></td>
-                              <td valign="top" class="td-text"><a href="tel:<?=$_POST[agent_q][phone];?>"><span class="font-22"><?=$_POST[agent_q][phone];?></span></a></td>
+                              <td valign="top" class="td-text"><a href="tel:<?=$_POST[bookagent][phone];?>"><span class="font-22"><?=$_POST[bookagent][phone];?></span></a></td>
                            </tr>
                            <tr style="display: none;">
                               <td valign="top"><i class="icon-app-uniF111" style="color:#666666; font-size:18px"></i></td>
@@ -329,7 +329,7 @@ td{
                            <tr>
                               <td width="20" valign="top" align="center"><i class="fa fa-users" style="color:#666666; font-size:18px;"></i></td>
                               <td width="120" valign="top" class="td-text text-cap"><b><?=t_capacity;?></b></td>
-                              <td valign="top" class="td-text"><span class="font-22"><?=$_POST[car_type][$car_pax];?></span></td>
+                              <td valign="top" class="td-text"><span class="font-22"><?=$_POST[car_type][pax_th];?></span></td>
                            </tr>
                         </tbody>
                      </table>
