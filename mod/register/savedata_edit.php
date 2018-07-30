@@ -205,12 +205,34 @@ if ($_GET[action] == "add2") {
     }
     $data_update[username] = $provincecode.$member_in;;
     $data_update[result] = $db->update_db('web_driver',$data_update,'id = "'.$last_id.'" ');
-    
     $data[update] = $data_update;
-    
+    $curl_post_data = '{"id":"'.$last_id.'"}';
+                    
+              $headers = array();
+
+$url = "http://www.welovetaxi.com:3000/adddriver";
+//$api_key = '1f7bb35be49521bf6aca983a44df9a6250095bbb';
+$curl = curl_init();
+curl_setopt($curl, CURLOPT_HTTPHEADER,
+    array(
+        'Content-Type: application/json'
+        // 'API-KEY: '.$api_key.''
+    )
+);
+curl_setopt($curl, CURLOPT_ENCODING, 'gzip');
+curl_setopt($curl, CURLOPT_USERAGENT, "Mozilla/5.0 (Windows NT 5.1) AppleWebKit/535.6 (KHTML, like Gecko) Chrome/16.0.897.0 Safari/535.6");
+curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+
+curl_setopt($curl, CURLOPT_REFERER, $url);
+curl_setopt($curl, CURLOPT_URL, $url);  
+
+curl_setopt($curl, CURLOPT_POST, true);
+curl_setopt($curl, CURLOPT_POSTFIELDS, $curl_post_data);
+$curl_response = curl_exec($curl);
+//echo $curl_response;
+curl_close($curl);
     header('Content-Type: application/json');
 	echo json_encode($data);
-	
 
 }
 ?>
