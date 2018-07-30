@@ -98,9 +98,9 @@ td{
 }
 
 </style>
-<script>
+<!--<script>
 	$('#load_mod_popup_clean').css('animation','showSweetAlert 0.4s');
-</script>
+</script>-->
 <?php 
 	/*$db->connectdb(DB_NAME,DB_USERNAME,DB_PASSWORD);
 	$res[cartype] = $db->select_query("SELECT id, topic_en, topic_cn, topic_th, pax, pax_cn, pax_th FROM web_carall_type where id = ".$_POST[cartype]." ");

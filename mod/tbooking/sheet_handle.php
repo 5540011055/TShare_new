@@ -95,9 +95,9 @@ td{
 }
 
 </style>
-<script>
+<!--<script>
 	$('#load_mod_popup_clean').css('animation','showSweetAlert 0.4s');
-</script>
+</script>-->
 <?php 
 	$color_main_use = '#3b5998';
 	$db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
