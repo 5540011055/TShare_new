@@ -32,7 +32,7 @@
 				
 				<td width="50%">
 				<div id="btn_history" class="btn_filter tocheck" align="center" onclick="FilterType('history');" ><span class="font-22"><?=t_history;?></span></div>
-				<span id="number_history" class="badge font-20" style="position: absolute;top: -5px;right: 5px;font-size: 14px;background-color: #F44336;">0</span>
+				<!--<span id="number_history" class="badge font-20" style="position: absolute;top: -5px;right: 5px;font-size: 14px;background-color: #F44336;">0</span>-->
 				</td>
 				
 			</tr>
@@ -40,12 +40,7 @@
 		</table>
 	</div>   
    <div class="form-group" style="margin-bottom:75px;display: none;">
-      <!--<div class="input-group date" style="padding:0px;">
-         <input type="text" class="form-control pull-right" value="<?=date('Y-m-d');?>"  name="date_report" id="date_report"  readonly="true" style="background-color:#FFFFFF; height:40px; font-size:24px;z-index: 0;width: 90%"  >               
-         <div class="input-group-addon"  id="btn_calendar" style="cursor:pointer ">
-            <i class="fa fa-calendar" style="font-size:26px; " id="icon_calendar"></i> 
-         </div>
-      </div>-->
+
       <input type="text" class="form-control pull-right" value="<?=date('Y-m-d');?>"  name="date_report" id="date_report"  readonly="true" 
       style=" z-index: 0;font-size: 20px;    text-align: center;"  >
       <!-- /.input group -->
@@ -107,7 +102,7 @@
 	   				historyObj = res_api_hit.data.result;
 	   				console.log("his : "+historyObj.length)
 //		   			if(historyObj.length>0){
-						$('#number_history').text(historyObj.length);
+//						$('#number_history').text(historyObj.length);
 //					}
 					eachObjHistory();
 	   			}
@@ -352,32 +347,6 @@
 		$('#main_load_mod_popup_clean').hide(); 
 		$('#show_main_tool_bottom').fadeIn(500); 
 //		$('#main_component').addClass('w3-animate-left');
-	}
-
-	function rippleClick(id){
-		console.log('ripple : '+id)
-      var $div = $('<div/>'),
-          btnOffset = $('#'+id).offset(),
-      		xPos = event.pageX - btnOffset.left,
-      		yPos = event.pageY - btnOffset.top;
-
-      $div.addClass('ripple-effect');
-      var $ripple = $(".ripple-effect");
-      
-      $ripple.css("height", $('#'+id).height());
-      $ripple.css("width", $('#'+id).height());
-      $div
-        .css({
-          top: yPos - ($ripple.height()/2),
-          left: xPos - ($ripple.width()/2),
-          background: $('#'+id).data("ripple-color")
-        }) 
-        .appendTo($('#'+id));
-
-      window.setTimeout(function(){
-        $div.remove();
-      }, 2000);
-//       event.preventDefault();
 	}
 
  	function ViewPhoto(id,type,date){
