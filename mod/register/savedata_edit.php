@@ -174,14 +174,14 @@ if ($_GET[action] == "add2") {
         $data["phone"] = $_POST[phone];
         $data["contact"] = $_POST[contact];
 //        $data["car_num"] = $last_id;
-        $data["start_work"] = $_POST[start_work];
+//        $data["start_work"] = $_POST[start_work];
         $data["address"] = $_POST[address];
         $data["detail"] = $_POST[detail];
         $data["posted"] = $_SESSION[admin_user];
         $data["driver_zone"] = $_POST[driver_zone];
         $data["status"] = "1";
         $data["email"] = $_POST[email];
-        $data["skype_id"] = $_POST[skype_id];
+//        $data["skype_id"] = $_POST[skype_id];
         $data["zello_id"] = $_POST[zello_id];
         $data["wechat_id"] = $_POST[wechat_id];
         $data["whatsapp_id"] = $_POST[whatsapp_id];
@@ -203,6 +203,7 @@ if ($_GET[action] == "add2") {
     } else {
         $member_in = "0000$member_db";
     }
+    $data["last_id"] = $last_id;
     $data_update[username] = $provincecode.$member_in;;
     $data_update[result] = $db->update_db('web_driver',$data_update,'id = "'.$last_id.'" ');
     $data[update] = $data_update;
