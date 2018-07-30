@@ -1,6 +1,7 @@
 <script>
  $(".text-topic-action-mod").html('<?=t_job_received;?>');
 
+ $('#load_booking_data').html(load_sub_mod);
 
 </script>
 <?php
@@ -382,7 +383,7 @@ padding: 10px 20px;
     }, 500);
   </script>
   <div id="load_booking_data"  style="padding:0px; margin-top:0px;display: nones;" align="center">
-    <div style=" margin: 50px;"><img src="images/loader.gif" /></div>
+    
   </div>
 
   <table>

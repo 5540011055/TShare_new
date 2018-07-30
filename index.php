@@ -561,7 +561,7 @@
 	background-color: #F44336;
 	padding: 4px 7px;
 	margin: -5px 3px;
-	z-index: 2;
+	z-index: 0;
 	border-radius: 50%;
 }
 .background-airy{
