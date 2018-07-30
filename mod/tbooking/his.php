@@ -1,6 +1,4 @@
-<!--<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css" />
-<script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>-->
+
 
 <script>
    $(".text-topic-action-mod").html('<?=t_job_received;?>');
@@ -41,7 +39,7 @@
 		</tbody>
 		</table>
 	</div>   
-   <div class="form-group" style="margin-bottom:5px;display: none;">
+   <div class="form-group" style="margin-bottom:75px;display: none;">
       <!--<div class="input-group date" style="padding:0px;">
          <input type="text" class="form-control pull-right" value="<?=date('Y-m-d');?>"  name="date_report" id="date_report"  readonly="true" style="background-color:#FFFFFF; height:40px; font-size:24px;z-index: 0;width: 90%"  >               
          <div class="input-group-addon"  id="btn_calendar" style="cursor:pointer ">
@@ -155,7 +153,7 @@
           	var time = value.airout_time;
    			var id = "btn_"+index;
    			var s_pay = value.s_status_pay;
-		  	var cost = value.cost;
+		  	var cost = value.cost - value.s_cost;
 		  	var s_cost = value.s_cost;
 		  	if(s_pay==0){
 		  		var type_pay = '<?=t_get_cash;?>';
@@ -164,18 +162,13 @@
 		  	}
 		      var component2 = 
 		      '<div class="box_his">'
-		      +'<a class="mof ripple" id="btn_'+index+'" onclick="openSheetHandle('+index+',1);rippleClick(\'' + id + '\');" style="padding: 0px;">'
-   			  +'<div class="w3-bar-item">'
+		      +'<span class="font-20 time-post">'+"รับเมื่อ "+formatDate(value.post_date)+' '+formatTime(value.post_date)+" น."+'</span>'
+		      +'<a class="mof ripple" id="btn_'+index+'" onclick="openSheetHandle('+index+',1);rippleClick(\'' + id + '\');" style="padding: 0px; background: #fbfbfb;">'
+   			  +'<div class="bar-item">'
 		      +'<table width="100%">'
 		         +'<tbody>'
 		         	+'<tr>'
-		         		+'<td width="30">'
-		         			+'<div style="margin-top: -38px;margin-left: 5px;">'
-							  +' <div style="background-color:  #795548;width: 10px;height: 10px; margin-left: 7px;"></div>'
-							   +'<div style="width: 2px;background: #999;margin-left: 11px;height: 20px;" class="line-center"></div>'
-							  +'<div style="background-color:  #3b5998;width: 10px;height: 10px; margin-left: 7px;"></div>'
-							+'</div>'
-		         		+'</td>'
+		         		
 		         		+'<td>'
 		         			+'<table width="100%"  >'
 		         				+'<tr style="line-height: 1.5;" >'
@@ -185,7 +178,7 @@
 					               +'<td width="100%"><span class="font-24" colspan="2">'+to_place+'</span></td>'
 					            +'</tr>'
 					             +'<tr>'
-					               +'<td><strong><span class="font-22 ">'+type_pay+'</span>&nbsp;&nbsp;<span class="font-22" style="position: fixed;right: 25px;">'+addCommas(cost)+'<?=t_THB;?>'+'</span></strong></td>'
+					               +'<td><strong><span class="font-22 ">'+type_pay+'</span>&nbsp;&nbsp;<span class="font-22" style="position: fixed;right: 25px;">'+addCommas(cost)+' <?=t_THB;?>'+'</span></strong></td>'
 					               
 					            +'</tr>'
 					            +'<tr>'
@@ -223,7 +216,8 @@
           	var time = value.airout_time;
    			var id = "btn_"+index;
    			var s_pay = value.s_status_pay;
-		  	var cost = value.s_cost;
+//		  	var cost = value.s_cost;
+		  	var cost = value.cost - value.s_cost;
 		  	if(s_pay==0){
 		  		var type_pay = '<?=t_get_cash;?>';
 		  	}else{
@@ -399,4 +393,19 @@
 // 	 $('#text_mod_topic_action_photo-txt').text('crfdfdsdsf'); 
 
 	}		
+	
+	function openPointMapsTransfer(type,lat,lng){
+		var data = {
+			type : type,
+			lat : lat,
+			lng : lng
+		}
+		console.log(data);
+		 $("#main_load_mod_popup_map" ).show();
+	     $('#load_mod_popup_map').html(load_main_mod);
+	     var url_load = "load_page_map.php?name=map_api&file=map_point_transfer&type="+type+"&lat="+lat+"&lng="+lng;
+	     console.log(url_load);
+	     $('#load_mod_popup_map').load(url_load); 
+	}
+	
  </script>

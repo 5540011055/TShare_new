@@ -553,6 +553,9 @@
    /*****END*****/
 </style>
 <style>
+.onlyThisTable td, th {
+    padding: 5px 5px !important;
+}
 .pd-5{
 	padding: 5 !important;
 }
@@ -934,6 +937,55 @@ margin-top:0px;
       opacity: 0;
    }
 }
+</style>
+<style>
+.bar-item{
+	padding: 10px;
+	margin-left: 5px;
+}
+.time-post{
+ margin-right: 12px;
+ border: 1px solid #333;
+ padding: 5px;
+ position: absolute;
+ z-index: 1;
+ right:  0px;
+ background-color: #fff;
+ margin-top: -25px;
+ border-radius: 25px; 
+}
+
+.btn-approve-job{
+  border-radius: 15px;
+  padding: 7px 20px;
+  position:  absolute;
+  right: 15px;
+  bottom: 4px;
+  border: 0px solid;
+  box-shadow: 2px 2px 10px #c5bfbf;
+  background-color: #3b5998;
+  color: #fff;
+  font-size: 12px;
+}
+#main_component{
+  margin-top: 50px;
+  border-top: 0px;
+  position: relative;
+  border-radius: 0px;
+  background: #ffffff;
+  width: 100%;
+}
+.box_his,.box_book{
+ padding: 5px 8px;
+ border: 1px solid #3b5998;
+ /*    margin-bottom: 10px;*/
+ /*   margin: 30px 0px;*/
+ margin: 30px 0px;
+ border-radius: 25px;
+ box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12), 0 3px 1px -2px rgba(0,0,0,.2);
+}
+
+
 </style>
 <div class="container" style="display: none;">
    <div class="row">
