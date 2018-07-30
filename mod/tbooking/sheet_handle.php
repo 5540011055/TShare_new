@@ -10,10 +10,6 @@
     color: #444444;
     text-align: left;
 }
-.font_16 {
-    font-size: 16px;
-    font-family: Arial, Helvetica, sans-serif;
-}
 .font_close_icon {
     font-size: 36px;
 }
@@ -21,11 +17,6 @@
 	.font_close_icon {
     	font-size: 32px;
 	}
-}
-
-td{
-  padding: 5px 0px;
-	font-size: 14px;
 }
 /* The container */
 .container {
@@ -95,9 +86,7 @@ td{
 }
 
 </style>
-<script>
-	$('#load_mod_popup_clean').css('animation','showSweetAlert 0.4s');
-</script>
+
 <?php 
 	$color_main_use = '#3b5998';
 	$db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
@@ -118,14 +107,11 @@ td{
 	$res[com] = $db->select_query("SELECT id, company FROM web_admin where id = ".$_POST[program][company]." ");
 	$arr[com] = $db->fetch($res[com]);
 ?>
-<!--<div class="font-22" style="padding: 5px 0px;margin-top: 0px;padding-left: 10px;" onclick="hideDetail();" ><a ><i class="fa fa-chevron-left" aria-hidden="true"></i>&nbsp;<?=t_back_previous;?></a></div>-->
-<!--<div style="padding: 5px 0px;margin-top: 0px;padding-left: 10px;">
-<a  onclick="hideDetail();"  style="position:  absolute; right: 15px;" ><i class="fa fa-times font_close_icon" aria-hidden="true"></i></a>
-</div>-->
+
 <div style="margin-top: 50px;padding: 5px;">
 <span style="font-size: 16px;"></span>
    <div style="margin-left:0px;  margin-right: 0px; margin-top:0px;/*box-shadow: 0px -5px 5px #f6f6f6;*/ padding:5px;">
-   <table width="100%" border="0" cellspacing="2" cellpadding="2">
+   <table class="onlyThisTable" width="100%" border="0" cellspacing="2" cellpadding="2">
       <tbody>
          <tr>
             <td width="60" style="background-color:#F6F6F6 ">
@@ -271,7 +257,7 @@ td{
 			   <tr>
                   <td id="show_guest_detail" class="show_guest_detail_all" style="display: table-cell;">
                      
-                     <table width="100%" border="0" cellspacing="2" cellpadding="4">
+                     <table width="100%" border="0" cellspacing="2" cellpadding="4" class="onlyThisTable">
                         <tbody>
                            <tr>
                               <td width="20" valign="top"><i class="icon-new-uniF10E-5" style="color:#666666; font-size:18px;"></i></td>
@@ -320,7 +306,7 @@ td{
                <tr>
 			   	<td>
 			   		<div style="background-color:#F6F6F6; margin-top:5px; margin-bottom:5px; padding: 2px 0px 2px 0px;border-radius: 10px;">
-                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0" >
                            <tbody>
                               <tr>
                                  <td valign="top">
@@ -337,7 +323,7 @@ td{
 				</tr>
 			   <tr>
 					<td>
-						<table width="100%" border="0" cellspacing="2" cellpadding="4">
+						<table width="100%" border="0" cellspacing="2" cellpadding="4" class="onlyThisTable">
                         <tbody>
                            <tr>
                               <td width="35" valign="top" align="center"><i class="fa fa-car" style="color:#666666; font-size:15px;"></i></td>
@@ -353,7 +339,7 @@ td{
                            <tr>
                               <td width="35" valign="top" align="center"><i class="fa fa-users" style="color:#666666; font-size:16px;"></i></td>
                               <td width="120" valign="top" class="td-text text-cap"><b><?=t_capacity;?></b></td>
-                              <td valign="top" class="td-text"><span class="font-22"><?=$_POST[car][cartype][$car_pax];?></span></td>
+                              <td valign="top" class="td-text"><span class="font-22"><?=$_POST[car][cartype][pax_th];?></span></td>
                            </tr>
                         </tbody>
                      </table>
@@ -363,11 +349,9 @@ td{
          </table>
      
    </div>
-	<div id="status_job" style="background: #ddd; 
-   background: #ddd;
-   border-radius: 10px;
-   padding: 8px;margin-top: 10px;">
-   <table width="100%" border="0" cellpadding="1" cellspacing="1" id="table_show_hide_checkin_<?=$arr[order][invoice];?>">
+	<div id="status_job" style="padding: 5px 0px;">
+   <input type="hidden" id="check_code" value="<?=$_POST[id];?>" />
+   <table class="onlyThisTable" width="100%" border="0" cellpadding="1" cellspacing="1" id="table_show_hide_checkin_<?=$arr[order][invoice];?>">
       <tr id="step_driver_topoint">
          <td class="font-22">
             <?  include ("mod/tbooking/load/checkin/topoint.php");?>

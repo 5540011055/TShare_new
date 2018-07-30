@@ -79,8 +79,8 @@
                <select name="driver_province" id="driver_province" style="width:100%; padding:5px; height:40px" class="font-24" >
                   <option value="" >- <?=t_select_province;?> -</option>
                   <?
-                     $db->connectdb(DB_NAME,DB_USERNAME,DB_PASSWORD);
-                       $res[category] = $db->select_query("SELECT ".$province.",id FROM web_province   ORDER BY id ");
+                     $db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
+                       $res[category] = $db->select_query("SELECT ".$province.",id,name FROM web_province   ORDER BY id ");
                      while($arr[category] = $db->fetch($res[category])) {
                        ?>
                        <option value="<?=$arr[category][id];?>"><?=$arr[category][$province];?></option>

@@ -815,11 +815,14 @@
 .teal-text.text-accent-4{
     color:#00bfa5 !important
 }
-.green{
+.main{
     background-color:#3b5998 !important
 }
+.green{
+    background-color:#2bbbad !important
+}
 .green-text{
-    color:#3b5998 !important
+    color:#2bbbad !important
 }
 .green.lighten-5{
     background-color:#E8F5E9 !important

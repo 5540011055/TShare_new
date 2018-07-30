@@ -1,6 +1,4 @@
-<!--<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css" />
-<script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>-->
+
 
 <script>
    $(".text-topic-action-mod").html('<?=t_job_received;?>');
@@ -34,20 +32,15 @@
 				
 				<td width="50%">
 				<div id="btn_history" class="btn_filter tocheck" align="center" onclick="FilterType('history');" ><span class="font-22"><?=t_history;?></span></div>
-				<span id="number_history" class="badge font-20" style="position: absolute;top: -5px;right: 5px;font-size: 14px;background-color: #F44336;">0</span>
+				<!--<span id="number_history" class="badge font-20" style="position: absolute;top: -5px;right: 5px;font-size: 14px;background-color: #F44336;">0</span>-->
 				</td>
 				
 			</tr>
 		</tbody>
 		</table>
 	</div>   
-   <div class="form-group" style="margin-bottom:5px;display: none;">
-      <!--<div class="input-group date" style="padding:0px;">
-         <input type="text" class="form-control pull-right" value="<?=date('Y-m-d');?>"  name="date_report" id="date_report"  readonly="true" style="background-color:#FFFFFF; height:40px; font-size:24px;z-index: 0;width: 90%"  >               
-         <div class="input-group-addon"  id="btn_calendar" style="cursor:pointer ">
-            <i class="fa fa-calendar" style="font-size:26px; " id="icon_calendar"></i> 
-         </div>
-      </div>-->
+   <div class="form-group" style="margin-bottom:75px;display: none;">
+
       <input type="text" class="form-control pull-right" value="<?=date('Y-m-d');?>"  name="date_report" id="date_report"  readonly="true" 
       style=" z-index: 0;font-size: 20px;    text-align: center;"  >
       <!-- /.input group -->
@@ -109,7 +102,7 @@
 	   				historyObj = res_api_hit.data.result;
 	   				console.log("his : "+historyObj.length)
 //		   			if(historyObj.length>0){
-						$('#number_history').text(historyObj.length);
+//						$('#number_history').text(historyObj.length);
 //					}
 					eachObjHistory();
 	   			}
@@ -155,7 +148,7 @@
           	var time = value.airout_time;
    			var id = "btn_"+index;
    			var s_pay = value.s_status_pay;
-		  	var cost = value.cost;
+		  	var cost = value.cost - value.s_cost;
 		  	var s_cost = value.s_cost;
 		  	if(s_pay==0){
 		  		var type_pay = '<?=t_get_cash;?>';
@@ -164,18 +157,13 @@
 		  	}
 		      var component2 = 
 		      '<div class="box_his">'
-		      +'<a class="mof ripple" id="btn_'+index+'" onclick="openSheetHandle('+index+',1);rippleClick(\'' + id + '\');" style="padding: 0px;">'
-   			  +'<div class="w3-bar-item">'
+		      +'<span class="font-20 time-post">'+"รับเมื่อ "+formatDate(value.post_date)+' '+formatTime(value.post_date)+" น."+'</span>'
+		      +'<a class="mof ripple" id="btn_'+index+'" onclick="openSheetHandle('+index+',1);rippleClick(\'' + id + '\');" style="padding: 0px; background: #fbfbfb;">'
+   			  +'<div class="bar-item">'
 		      +'<table width="100%">'
 		         +'<tbody>'
 		         	+'<tr>'
-		         		+'<td width="30">'
-		         			+'<div style="margin-top: -38px;margin-left: 5px;">'
-							  +' <div style="background-color:  #795548;width: 10px;height: 10px; margin-left: 7px;"></div>'
-							   +'<div style="width: 2px;background: #999;margin-left: 11px;height: 20px;" class="line-center"></div>'
-							  +'<div style="background-color:  #3b5998;width: 10px;height: 10px; margin-left: 7px;"></div>'
-							+'</div>'
-		         		+'</td>'
+		         		
 		         		+'<td>'
 		         			+'<table width="100%"  >'
 		         				+'<tr style="line-height: 1.5;" >'
@@ -185,7 +173,7 @@
 					               +'<td width="100%"><span class="font-24" colspan="2">'+to_place+'</span></td>'
 					            +'</tr>'
 					             +'<tr>'
-					               +'<td><strong><span class="font-22 ">'+type_pay+'</span>&nbsp;&nbsp;<span class="font-22" style="position: fixed;right: 25px;">'+addCommas(cost)+'<?=t_THB;?>'+'</span></strong></td>'
+					               +'<td><strong><span class="font-22 ">'+type_pay+'</span>&nbsp;&nbsp;<span class="font-22" style="position: fixed;right: 25px;">'+addCommas(cost)+' <?=t_THB;?>'+'</span></strong></td>'
 					               
 					            +'</tr>'
 					            +'<tr>'
@@ -223,7 +211,8 @@
           	var time = value.airout_time;
    			var id = "btn_"+index;
    			var s_pay = value.s_status_pay;
-		  	var cost = value.s_cost;
+//		  	var cost = value.s_cost;
+		  	var cost = value.cost - value.s_cost;
 		  	if(s_pay==0){
 		  		var type_pay = '<?=t_get_cash;?>';
 		  	}else{
@@ -360,32 +349,6 @@
 //		$('#main_component').addClass('w3-animate-left');
 	}
 
-	function rippleClick(id){
-		console.log('ripple : '+id)
-      var $div = $('<div/>'),
-          btnOffset = $('#'+id).offset(),
-      		xPos = event.pageX - btnOffset.left,
-      		yPos = event.pageY - btnOffset.top;
-
-      $div.addClass('ripple-effect');
-      var $ripple = $(".ripple-effect");
-      
-      $ripple.css("height", $('#'+id).height());
-      $ripple.css("width", $('#'+id).height());
-      $div
-        .css({
-          top: yPos - ($ripple.height()/2),
-          left: xPos - ($ripple.width()/2),
-          background: $('#'+id).data("ripple-color")
-        }) 
-        .appendTo($('#'+id));
-
-      window.setTimeout(function(){
-        $div.remove();
-      }, 2000);
-//       event.preventDefault();
-	}
-
  	function ViewPhoto(id,type,date){
 		var url = 'load_page_photo.php?name=tbooking/load&file=iframe_photo&id='+id+'&type='+type+'&date='+date;
 		console.log(url);
@@ -399,4 +362,19 @@
 // 	 $('#text_mod_topic_action_photo-txt').text('crfdfdsdsf'); 
 
 	}		
+	
+	function openPointMapsTransfer(type,lat,lng){
+		var data = {
+			type : type,
+			lat : lat,
+			lng : lng
+		}
+		console.log(data);
+		 $("#main_load_mod_popup_map" ).show();
+	     $('#load_mod_popup_map').html(load_main_mod);
+	     var url_load = "load_page_map.php?name=map_api&file=map_point_transfer&type="+type+"&lat="+lat+"&lng="+lng;
+	     console.log(url_load);
+	     $('#load_mod_popup_map').load(url_load); 
+	}
+	
  </script>

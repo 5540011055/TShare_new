@@ -1,4 +1,4 @@
-<?  include ("mod/tbooking/load/checkin/photo/upload_checkin_pic.php");
+<?  //include ("mod/booking/shop_history/load/checkin/photo/upload_checkin_pic.php");
 
    $arr[project][id]=$_GET[id];
     if($_GET[type]=='driver_topoint'){		
@@ -27,32 +27,34 @@
     }
     
    	?>
-
-<table width="300" border="0" align="center" cellpadding="3" cellspacing="5" style="margin-top: -15px;" >
+<form action="" method="post" id="photo_form" enctype="multipart/form-data">   	
+<input type='file' id="imgInp" style="opacity: 0;" />
+</form>
+<table class="onlyThisTable" width="300" border="0" align="center" cellpadding="3" cellspacing="5" style="margin-top: 0px;" >
    <tbody>
       <tr>
-         <td align="center" class="font-30"><i class="<?=$icon;?>" style=" font-size:80px; color: #3b5998;"  ></i></td>
+         <td align="center" class="font-30" style="text-align: center;"><i class="<?=$icon;?>" style=" font-size:80px; color: #3b5998;"  ></i></td>
       </tr>
       <tr>
-         <td align="center" class="font-30"><b><?=t_are_you_sure;?></b></td>
+         <td align="center" class="font-30"  style="text-align: center;"><b><?=t_are_you_sure;?></b></td>
       </tr>
       <tr>
-         <td align="center" class="font-26"><?=$type?></td>
+         <td align="center" class="font-26"  style="text-align: center;"><?=$type?></td>
       </tr>
       <tr>
-         <td align="center" class="font-26">
+         <td align="center" class="font-26"  style="text-align: center;">
             <div class="<?= $coldata?>">
                <div style="background-color: #f3f3f3;padding: 10px 5px;border: 1px solid #ddd;" ><!--take_photo-->
                   <center>
                  
                   <div style="padding: 5px 10px;"><?=$txt_photo;?></div>
-                  <table width="100%" border="0" cellspacing="2" cellpadding="2" >
+                  <table class="onlyThisTable" width="100%" border="0" cellspacing="2" cellpadding="2" >
                      <tbody>
                         <tr>
                            
                            <td width="100">
                               <label class="input-group-btn" >
-                                 <button class="btn btn-primary" style="width:100px; z-index:0;padding: 6px;" id="icon_camera_checkin">
+                                 <button class="btn btn-primary" style="width:100px; z-index:0;padding: 6px;color: #fff;" id="icon_camera_checkin">
                                  	<span class="font-22">
                                     <i class="fa  fa-camera"></i>&nbsp;<?echo t_take_photos?>
                                     </span>
@@ -70,14 +72,15 @@
                         </tr>
                      </tbody>
                   </table>
-                  <div style="padding:5px;">
-                     <div class="progress" style="width:100%;;border-radius:8px; margin-top: 10px; border:none " id="area_image_album_load_main">
-                        <div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar" aria-valuenow="40"
-                           aria-valuemin="0" aria-valuemax="100" id="area_image_album_load_<?=$_GET[type]?>" style="width:0%;border-radius:5px;border:none">
-                        </div>
-                     </div>
+                  
+                  <div style="padding:5px;display: none;" id="pg_upload_bar">
+                     <div class="progress">
+					      <div class="indeterminate"></div>
+					  </div>
                   </div>
-                  <img id="image_<?=$_GET[type]?>" name="image_<?=$_GET[type]?>"  style="width:100%; padding:5px; margin-top:-20px;border-radius:15px; " />
+                  
+                  <img id="image_<?=$_GET[type]?>" name="image_<?=$_GET[type]?>"  style="width:100%; padding:5px; margin-top:0px;border-radius:15px;display: none;" />
+                  
                   </center>
                </div>
             </div>
@@ -85,11 +88,12 @@
       </tr>
       <tr>
          <td align="center">
-            <table width="100%" border="0" cellspacing="2" cellpadding="2">
+            <table class="onlyThisTable" width="100%" border="0" cellspacing="2" cellpadding="2">
                <tbody>
                   <tr>
                      <td width="50%">
-                        <button  id="btn_close_checkin_popup"  type="button" class="btn  btn-info "  style="width:100%;text-align:left;padding:5px; background-color:#9E9E9E;  border-radius: 20px; border:none;">
+                        <button  id="btn_close_checkin_popup"  type="button" class="btn waves-effect waves-light lighten-2 " 
+                         style="width:100%;background-color:#9E9E9E;  border-radius: 0px;color: #fff;">
                            <span class="font-26">
                            <center>
                            <? echo t_no; ?>
@@ -98,7 +102,7 @@
                         </button>
                      </td>
                      <td width="50%">
-                        <button  id="btn_checkin_popup"  type="button" class="btn  btn-info "  style="width:100%;text-align:left;padding:5px; background-color:#3b5998;  border-radius: 20px; border:none ">
+                        <button  id="btn_checkin_popup_<?=$_GET[id]?>"  type="button" class="btn waves-effect waves-light lighten-2 "  style="width:100%;background-color:#3b5998;  border-radius: 0px;color: #fff;">
                            <span class="font-26">
                            <center>
                            <? echo t_yes; ?>
@@ -116,89 +120,150 @@
       </tr>
    </tbody>
 </table>
-<input class="form-control" type="hidden" name="upload_pic_type" id="upload_pic_type"  required="true" onkeypress="PasswordEnter(this,event)"   value="" />
+
+<input class="form-control" type="hidden" name="upload_pic_type" id="upload_pic_type"  required="true" value="<?=$_GET[type]?>" />
 <script>
-  
+	var lat = $('#lat').val();
+    var lng = $('#lng').val();
+    if(lat<=0 || lng<=0){
+		geolocatCall();
+	}
+   $(".text-topic-action-mod-3").html('<?=$type?>');
+
    $('#btn_close_checkin_popup').click(function(){   
    		$( "#dialog_custom" ).toggle();
    		$( "#body_dialog_custom_load" ).html('');
    	});
 
    ///
-   $('#btn_checkin_popup').click(function(){   
-    
-    var lat = $('#lat').val();
-    var lng = $('#lng').val();
-    var idorder = '<?=$_GET[id];?>';
-    var url = "mod/tbooking/curl_connect_api.php?type=checkin_approve&step=<?=$_GET[type];?>&oi="+idorder;
-    console.log(url);
-		$.post(url,{ idorder:idorder,lat:lat, lng:lng  },function(res){
-			
-			if(res.status=="ok"){
-				if(res.data.status=="200"){
-					$( "#close_dialog_custom" ).click();
-					afterAction();
-				}else{
-					swal("Error");
+   $('#btn_checkin_popup_<?=$_GET[id]?>').click(function(){   
+//   	afterAction();
+//   	return;
+		 var lat = $('#lat').val();
+	    var lng = $('#lng').val();
+	    var idorder = '<?=$_GET[id];?>';
+	    var url = "mod/tbooking/curl_connect_api.php?type=checkin_approve&step=<?=$_GET[type];?>&oi="+idorder;
+	    console.log(url);
+			$.post(url,{ idorder:idorder,lat:lat, lng:lng  },function(res){
+				console.log(res)
+				if(res.status=="ok"){
+					if(res.data.status=="200"){
+						$( "#close_dialog_custom" ).click();
+						afterAction();
+					}else{
+						swal("Error");
+					}
 				}
-			}
-			$('#btn_manage').click();
-			callApiLog();
-		});
+				$('#btn_manage').click();
+				callApiLog();
+			});
     });
     	
     function afterAction(){
     	if('<?=$_GET[type];?>'=='driver_pickup'){
 			$("#btn_pickup_not_tr").hide();
 		}
-		var url_status = "popup.php?name=booking/load/form&file=checkin_status&id=<? echo $arr[project][id];?>&type=check_<?=$_GET[type]?>&time=<?=TIMESTAMP?>&status=1";
+	var url_status = "mod/tbooking/load/component.php?request=check_status_checkin&status=1&time=<?=time();?>";
 	$('#status_<?=$_GET[type]?>').html('<b><i class="fa  fa-refresh fa-spin 2x" style="color:#000000"></i> โหลดข้อมูล');
 	$('#status_<?=$_GET[type]?>').load(url_status); 
 	$('#iconchk_<?=$_GET[type]?>').attr("src", "images/yes.png");  
 	$("#number_<?=$_GET[type]?>").removeClass('step-booking');
 	$("#number_<?=$_GET[type]?>").addClass('step-booking-active');
-	$("#box_<?=$_GET[type]?>").addClass('disabledbutton-checkin');
-	$("#btn_<?=$_GET[type]?>").css('background-color','#666666');
-	$("#btn_<?=$next_step;?>").css('background-color','#3b5998');
-		$.ajax({
-		url: '../data/fileupload/store/<?=$_GET[type]?>_<?=$arr[project][id]?>.jpg',
-		type:'HEAD',
-		error: function()
-		{
-		console.log('Error file');
-		},
-		success: function()
-		{
-			//file exists
-			console.log('success file');
-			$('#photo_<?=$_GET[type]?>').css('color','#3b5998');
-			$('#photo_<?=$_GET[type]?>').css('border','2px solid #3b5998');
-			$('#photo_<?=$_GET[type]?>').attr('onclick','ViewPhoto("<?=$arr[project][id]?>","<?=$_GET[type]?>","<?=TIMESTAMP;?>");');
-		}
-		});
+	$("#btn_<?=$_GET[type]?>").css("background-color","rgb(102, 102, 102)");
 	$('#<?=$_GET[type]?>_check_click').val(1);
 	$("#box_<?=$_GET[type]?>").removeClass('border-alert');
+	var lat = $('#lat').val();
+    var lng = $('#lng').val();
+	$('#<?=$_GET[type]?>_locat_on').attr("onclick","openPointMapsTransfer('<?=$_GET[type]?>','"+lat+"','"+lng+"')");
+	$('#<?=$_GET[type]?>_locat_on').show();
+	$('#<?=$_GET[type]?>_locat_off').hide();
 	console.log('++++++++++++');
+	
 	if("<?=$last_step;?>"=="driver_checkcar"){
 		var driver = $('#driver').val();
 		callApiManage();
 		callApiLog();
-		
 		return;
 	}
 	$("#step_<?=$next_step;?>").show();
 	
-	}	
+	}		
 </script>
+
 <script>
-   /////////  id driving
+ 
    $("#icon_camera_checkin").click(function(){  
-   document.getElementById('upload_pic_type').value='<?=$_GET[type]?>';
-   $("#load_chat_camera").click(); 
+//   document.getElementById('upload_pic_type').value='<?=$_GET[type]?>';
+   $("#imgInp").click(); 
    });
-   
+   function readURL(input) {
+	  $('#pg_upload_bar').show();
+	  if (input.files && input.files[0]) {
+	    var reader = new FileReader();
+
+	    reader.onload = function(e) {
+	      $('#image_<?=$_GET[type]?>').attr('src', e.target.result);
+	    }
+		
+	    reader.readAsDataURL(input.files[0]);
+	    
+	    var url = "mod/tbooking/load/upload_img/upload.php" + "?type=" + document.getElementById('upload_pic_type').value+"&code=" + $('#check_code').val();
+	    console.log(url);
+//	    return;
+   				data_form = $('#photo_form').serialize();    
+   				data = new FormData($('#photo_form')[0]);
+      			data.append('fileUpload', $('#imgInp')[0].files[0]);
+   				   $.ajax({
+   				                url: url, // point to server-side PHP script 
+   				                dataType: 'text',  // what to expect back from the PHP script, if anything
+   				                cache: false,
+   				                contentType: false,
+   				                processData: false,
+   				                data: data,                         
+   				                type: 'post',
+   				                success: function(php_script_response){
+   				                   console.log(php_script_response);
+   				                   setTimeout(function() {
+				                                $.ajax({
+							                            url: '../data/fileupload/store/tbooking/' + document.getElementById('upload_pic_type').value + '_<?=$_GET[id];?>.jpg',
+							                            type: 'HEAD',
+							                            error: function() {
+							                                console.log('Error file');
+							                            },
+							                            success: function() {
+							                                //file exists
+							                                console.log('success file');
+							                                $('#url_photo').val('มีภาพถ่ายแล้ว');
+							                                $('#icon_camera_checkin').removeClass('btn-primary');
+							                                $('#icon_camera_checkin').addClass('green white-text');
+							                                $('#del_photo').removeClass('btn-default');
+							                                $('#del_photo').addClass('btn-danger');
+															
+															$('#photo_<?=$_GET[type];?>_yes').show();
+			     											$('#photo_<?=$_GET[type];?>_no').hide();
+															
+//									                        $("#image_" + pictype).fadeIn(3000);
+									                        $('#pg_upload_bar').hide();
+									                        $('#image_<?=$_GET[type]?>').show();
+							                            }
+							                        });
+                            }, 1500); 
+   				                   
+   				                }
+   				     });
+	    
+	  }
+	  
+	}
+
+	$("#imgInp").change(function() {
+	  readURL(this);
+	});
+	
    $('#del_photo').click(function(){
-   	$.post( "go.php?name=booking/load/form/checkin/photo&file=upload_pic&action=del&code=<?=$_GET[id]?>&type=<?=$_GET[type]?>", function( data ) {
+//   	var url_del = "mod/booking/shop_history/load/upload_img/del_img.php";
+   	var url_del = "mod/tbooking/load/upload_img/del_img.php";
+   	$.post( url_del+"?code=<?=$_GET[id]?>&type=<?=$_GET[type]?>", function( data ) {
     		$('#image_<?=$_GET[type]?>').attr('src','');
     		$('#image_<?=$_GET[type]?>').hide();
     		$('#area_image_album_load_driver_topoint').css('width','0%');
