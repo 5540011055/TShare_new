@@ -4,29 +4,26 @@ define("DB_USERNAME","admin_MANbooking");
 define("DB_PASSWORD","252631MANbooking");
 define("DB_NAME_APP","admin_apptshare");
 if($_GET[type]=="getjob_booking"){
+	$url = "http://www.welovetaxi.com:3000/updateDriverlogs";                              
+	//create a new cURL resource
+	$ch = curl_init($url);
+	$curl_post_data3 = json_encode($_POST);
+	curl_setopt($ch, CURLOPT_POSTFIELDS, $curl_post_data3);
+	curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	$result = curl_exec($ch);
+	curl_close($ch);
+	$decode = 	json_decode($result);
+	header('Content-Type: application/json');
+	echo json_encode($decode);	
+}
+/*if($_GET[type]=="getjob_booking"){
 				//API URL
 $url = "http://www.welovetaxi.com:3000/updateDriverlogs";                              
-
 //create a new cURL resource
 $ch = curl_init($url);
 
 //setup request to send json via POST
-$data = array(
-    'idorder' => 553154,
-    'orderid' => 426954,
-    'invoice' => 7082307,
-    'code' => 7460258913,
-    'program' => 38,
-    'driver' => 6,
-    'carid' => 11,
-    'pickup_place' => 0,
-    'to_place' => 0,
-    'agent' => 113,
-    'airout_time' => 8.00,
-    'airin_time' => 8.00
-);
-
-
 $curl_post_data2 = '{"idorder": '.$_POST[idorder].',"orderid":'.$_POST[orderid].',"invoice":'.$_POST[invoice].',"code":'.$_POST[code].',"program":'.$_POST[program].',"driver":'.$_POST[driver].',"carid":'.$_POST[carid].',"pickup_place":'.$_POST[pickup_place].',"to_place":'.$_POST[to_place].',"agent":'.$_POST[agent].',"airout_time":"'.$_POST[airin_time].'","airin_time":"'.$_POST[airin_time].'","s_cost":"'.$_POST[s_cost].'","outdate":"'.$_POST[outdate].'","ondate":"'.$_POST[ondate].'"}';
 
 //attach encoded JSON string to the POST fields
@@ -42,7 +39,7 @@ curl_close($ch);
 $decode = 	json_decode($result);
 header('Content-Type: application/json');
 echo json_encode($decode);	
-}		
+}	*/	
 	
 else if($_GET[type]=="history_booking"){
 	
