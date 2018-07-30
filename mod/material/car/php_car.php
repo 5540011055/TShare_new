@@ -87,7 +87,7 @@ if($_GET[action]=="add"){
    $last_id = mysql_insert_id();
    $data[last_id] = $last_id;
    $db->closedb();
-		
+adddriver($last_id);
    header('Content-Type: application/json');
 	echo json_encode($data);
 
@@ -117,7 +117,7 @@ if($_GET[action]=="edit"){
    $data[plate_color] = $_POST[plate_color];
    $data[update_date] = time();
    $data[result] = $db->update_db('web_carall',$data,'id = "'.$_GET[id].'" ');
-
+adddriver($_GET[id]);
    $db->closedb();
 		
    header('Content-Type: application/json');
@@ -133,6 +133,7 @@ if($_GET[action]=="change_status_car"){
     $data[result] = $db->update_db('web_carall', $data," id='".$_GET[id]."' ");
 	$db->closedb ();
 	$data[id] = $_GET[id];
+  adddriver($_GET[id]);
 	header('Content-Type: application/json');
 	echo json_encode($data);
 }
@@ -145,10 +146,36 @@ if($_GET[action]=="use_often"){
 	
 	 $db->connectdb(DB_NAME_APP, DB_USERNAME, DB_PASSWORD);
 	$data[result] = $db->update_db('web_carall', $data," drivername='".$_GET[driver]."' ");
-
+adddriver($_GET[driver]);
 	header('Content-Type: application/json');
 	echo json_encode($data);
 }
 
+function adddriver($id){
+  $curl_post_data = '{"id":"'.$id.'","action":"add"}';
+                    
+              $headers = array();
 
+$url = "http://www.welovetaxi.com:3000/addtypedriver";
+//$api_key = '1f7bb35be49521bf6aca983a44df9a6250095bbb';
+$curl = curl_init();
+curl_setopt($curl, CURLOPT_HTTPHEADER,
+    array(
+        'Content-Type: application/json'
+        // 'API-KEY: '.$api_key.''
+    )
+);
+curl_setopt($curl, CURLOPT_ENCODING, 'gzip');
+curl_setopt($curl, CURLOPT_USERAGENT, "Mozilla/5.0 (Windows NT 5.1) AppleWebKit/535.6 (KHTML, like Gecko) Chrome/16.0.897.0 Safari/535.6");
+curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+
+curl_setopt($curl, CURLOPT_REFERER, $url);
+curl_setopt($curl, CURLOPT_URL, $url);  
+
+curl_setopt($curl, CURLOPT_POST, true);
+curl_setopt($curl, CURLOPT_POSTFIELDS, $curl_post_data);
+$curl_response = curl_exec($curl);
+//echo $curl_response;
+curl_close($curl);
+}
 ?>

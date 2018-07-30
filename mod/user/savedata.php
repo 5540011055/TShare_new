@@ -175,6 +175,7 @@ $db->connectdb(DB_NAME_APP, DB_USERNAME, DB_PASSWORD);
             "update_date" => "" . TIMESTAMP . ""
         ), " id=$_GET[id] ");
         $db->closedb();
+        adddriver($_GET[id]);
 		?>
 		  
               <div class="alert alert-success alert-dismissible"  id="save">
@@ -202,6 +203,7 @@ $db->connectdb(DB_NAME_APP, DB_USERNAME, DB_PASSWORD);
 			  "pay_bank_number" => "$_POST[pay_bank_number]",
                "update_date" => "" . TIMESTAMP . ""
         ), " id=$_GET[id] ");
+         adddriver($_GET[id]);
         $db->closedb();
 		?>
 		  
@@ -231,7 +233,7 @@ $db->add_db('contact_phone_driver',array(
 			"update_date"=>"".TIMESTAMP.""
  
 		));
-
+adddriver($_GET[id]);
         $db->closedb();
 		?>
 		  
@@ -265,6 +267,7 @@ $db->connectdb(DB_NAME_APP, DB_USERNAME, DB_PASSWORD);
 			"update_date"=>"".TIMESTAMP.""
 			
         ), " id=$_POST[id] ");
+         adddriver($_GET[id]);
         $db->closedb();
 		?>
 		  
@@ -289,7 +292,7 @@ if($_GET[type]=="phone_delete"){
  
 $db->connectdb(DB_NAME_APP, DB_USERNAME, DB_PASSWORD);
 $db->del('contact_phone_driver'," id='".$_GET[id]."' "); 
- 
+ adddriver($_GET[id]);
         $db->closedb();
 		?>
 		  
@@ -323,6 +326,7 @@ $db->connectdb(DB_NAME_APP, DB_USERNAME, DB_PASSWORD);
  
                "update_date" => "" . TIMESTAMP . ""
         ), " id=$_GET[id] ");
+         adddriver($_GET[id]);
         $db->closedb();
 		?>
 		  
@@ -340,5 +344,32 @@ $db->connectdb(DB_NAME_APP, DB_USERNAME, DB_PASSWORD);
 }
 ?> 
 <?
+function adddriver($id){
+  $curl_post_data = '{"id":"'.$id.'","action":"add"}';
+                    
+              $headers = array();
+
+$url = "http://www.welovetaxi.com:3000/adddriver";
+//$api_key = '1f7bb35be49521bf6aca983a44df9a6250095bbb';
+$curl = curl_init();
+curl_setopt($curl, CURLOPT_HTTPHEADER,
+    array(
+        'Content-Type: application/json'
+        // 'API-KEY: '.$api_key.''
+    )
+);
+curl_setopt($curl, CURLOPT_ENCODING, 'gzip');
+curl_setopt($curl, CURLOPT_USERAGENT, "Mozilla/5.0 (Windows NT 5.1) AppleWebKit/535.6 (KHTML, like Gecko) Chrome/16.0.897.0 Safari/535.6");
+curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+
+curl_setopt($curl, CURLOPT_REFERER, $url);
+curl_setopt($curl, CURLOPT_URL, $url);  
+
+curl_setopt($curl, CURLOPT_POST, true);
+curl_setopt($curl, CURLOPT_POSTFIELDS, $curl_post_data);
+$curl_response = curl_exec($curl);
+//echo $curl_response;
+curl_close($curl);
+}
 include("xml/update/id.php");
 ?>

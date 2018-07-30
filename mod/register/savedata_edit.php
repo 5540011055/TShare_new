@@ -207,7 +207,7 @@ if ($_GET[action] == "add2") {
     $data_update[username] = $provincecode.$member_in;;
     $data_update[result] = $db->update_db('web_driver',$data_update,'id = "'.$last_id.'" ');
     $data[update] = $data_update;
-    $curl_post_data = '{"id":"'.$last_id.'"}';
+    $curl_post_data = '{"id":"'.$last_id.'","action":"add"}';
                     
               $headers = array();
 
