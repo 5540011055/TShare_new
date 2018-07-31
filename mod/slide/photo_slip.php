@@ -162,7 +162,12 @@ switch ($_COOKIE['lng']) {
   <div class="container">
     <div id="slides1">
 		<?php 
-			$path = '../../../data/fileupload/doc_pay_driver/slip/slip_'.$_GET[id].'.jpg?v='.time();
+			if($_GET[type]=="slip"){
+				$path = '../../../data/fileupload/doc_pay_driver/slip/slip_'.$_GET[id].'.jpg?v='.time();
+			}else if($_GET[type]=="slip_trans"){
+				$path = '../../../data/fileupload/pay/slip_trans_'.$_GET[id].'.jpg?v='.time();
+			}
+			
 		?>
       <img src="<?=$path;?>" style="width:100%"  >
    <!--  <a href="#" class="slidesjs-previous slidesjs-navigation"><i class="icon-chevron-left" style="font-size:20px; padding-right:20px; margin-top:10px;" ></i></a>&nbsp;&nbsp;&nbsp;

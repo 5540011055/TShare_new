@@ -34,6 +34,14 @@
       <input class="form-control"  type="hidden" name="amount" id="pay_bank" value="<?= $arr[driver][pay_bank];?>">
       
       <style>
+      	.view-slip{
+			    font-size: 16px;
+    			margin: 10px;
+    			margin-top: -3px;
+    			position: absolute;
+    			cursor: pointer;
+    			color: #607D8B;
+		}
         .recheck li{
               padding: 8px 5px;
         }
@@ -192,7 +200,7 @@ var index_item = index+1;
           +'<td width="120" class="font_18" style="height:30px;  padding-left:5px;">สถานะ</td>'
           +'<td width=""   class="font_16" style="font-size: 16px;"> '
             +'<span class="'+btnclass+'"style="font-size: 16px;">'+ status+'</span>'
-          +'</td>'
+            +'<span class="view-slip" onclick="viewPhotoSlip('+value.id+');"><i class="material-icons">insert_photo</i></span>'+'</td>'
         +'</tr>'
       +'</table>'
   +'</div>'
@@ -219,4 +227,12 @@ var index_item = index+1;
   //       //   }
   // });
   }
+
+	function viewPhotoSlip(id){
+		var url = 'load_page_photo.php?name=booking/load/form&file=iframe_photo&id='+id+'&type=slip_trans&date='+date;
+		console.log(url);
+		$( "#load_mod_popup_photo" ).toggle();
+		$('#load_mod_popup_photo').html(load_main_mod);
+ 	 	$('#load_mod_popup_photo').load(url); 
+	}
   </script>

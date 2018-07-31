@@ -2,7 +2,11 @@
 <?php
 if($_GET[type]=='slip'){
 	$src = "mod/slide/photo_slip.php?id=".$_GET[id]."&type=slip&date=".$_GET[date];
-}else{
+}
+else if($_GET[type]=='slip_trans'){
+	$src = "mod/slide/photo_slip.php?id=".$_GET[id]."&type=slip_trans&date=".$_GET[date];
+}
+else{
 	$src = "mod/slide/photo.php?id=".$_GET[id]."&type=".$_GET[type]."&date=".$_GET[date]."&plan=".$_GET[plan];
 }
 ?>
