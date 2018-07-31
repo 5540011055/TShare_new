@@ -119,6 +119,7 @@
      $('#withdraw_money').removeClass('btn_active')
      $('#history_money').removeClass('btn_active')
      
+    
 
 $('#main_load_mod_popup').show();
     $('#load_body_mode').html('');
@@ -212,6 +213,11 @@ $('#main_load_mod_popup').show();
                }
              });
     }  
+    
+    function selectbank(){
+		 swal("ยังไม่สามารถเติมเงินเข้าระบบได้ ขอภัยค่ะ");
+     return;
+	}
  	 </script>
 <style >
   .btn_active{

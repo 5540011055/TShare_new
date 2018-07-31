@@ -1353,7 +1353,7 @@ DatePicker.defaults = (function( prefix ) {
 // console.log(datalng+"-------------------------------------------------------------")
 // console.log(armonth)
 // }); 
-// alert($('#set_lng_cookies').val())
+	
     if ($('#set_lng_cookies').val() == 'en' || $('#set_lng_cookies').val() == '' || $('#set_lng_cookies').val() == undefined) {
         var day_old = [ 'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat' ];
         var month_old = [ 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December' ];
@@ -1368,7 +1368,8 @@ DatePicker.defaults = (function( prefix ) {
         var close_old = '关闭';
 
     }
-    else if ($('#set_lng_cookies').val() == 'th') {
+    else if ($('#set_lng_cookies').val() == 'th' || typeof $('#set_lng_cookies').val() === "undefined" ) {
+    
         var day_old = [ 'อา', 'จ', 'อ', 'พ', 'พฤ', 'ศ', 'ส' ];
         var month_old = [ 'มกราคม', 'กุมภาพันธ์', 'มีนาคม', 'เมษายน', 'พฤษภาคม', 'มิถุนายน', 'กรกฏาคม', 'สิงหาคม', 'กันยายน', 'ตุลาคม', 'พฤศจิกายน', 'ธันวาคม' ];
         var today_old = 'วันนี้';

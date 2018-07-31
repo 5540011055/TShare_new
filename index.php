@@ -120,6 +120,7 @@
     background-repeat-y: no-repeat;
     background-size: cover;
     opacity: 1.0;" >
+    <input type="hidden" id="set_lng_cookies" value="th" />
       <div style="
          display: block; 
          position: fixed;
@@ -993,6 +994,7 @@ margin-top:0px;
       </div>
    </div>
 </div>
+
 <!-- Pricing Tables -->
 <div class="hiddendiv common"></div>
 <div class="drag-target" data-sidenav="slide-out" style="touch-action: pan-y; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); width: 10px; left: 0px;"></div>
@@ -1021,5 +1023,6 @@ margin-top:0px;
             window.location = url_xcode;
 		}
    	}
+   	
 </script>
 

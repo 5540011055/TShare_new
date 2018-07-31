@@ -30,12 +30,11 @@ if($_POST[action]=="money_request"){
 	$data[post_date_f] = $date->format('Y-m-d');
 	//add_db("deposit_history",array("field"=>"value")); 
 
-	$res = $db->add_db("deposit_history",$data); 
-	if ($res === TRUE) {
-							echo "1";
-						} else {
-						    echo "0";
-						}
+	$data[result] = $db->add_db("deposit_history",$data); 
+	$last_id = mysql_insert_id();
+	$data[last_id] = $last_id;
+	header('Content-Type: application/json');
+	echo json_encode($data);
 // $sql = "INSERT INTO deposit_history (driver, username, deposit, deposit_bank, deposit_date, deposit_time, post_date)
 // VALUES ('".$arr[project][id]."', '".$_POST[driver]."','".$_POST[amount]."','".$_POST[bank]."','".$_POST[date]."','".$_POST[time]."','".time()."')";
 // // echo $sql;
@@ -48,6 +47,5 @@ if($_POST[action]=="money_request"){
 
 
 				 	
-}			
-		
+}	
 ?>

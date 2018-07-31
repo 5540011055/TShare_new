@@ -144,7 +144,7 @@ $all_work = $db->num_rows('order_booking',"id","$filter");
       </tr>    
       <tr>
          <td  width="50%" align="center" class="">
-            <a class="btn btn-default paddling-max background-airy"   id="index_menu_tour"   style="width:100%">
+            <a class="btn btn-default paddling-max background-airy"   id="index_menu_tour"   style="width:100%" onclick="tourBooking();">
                <center>
                   <div  class="circle-menu"  style="background-color:#8DC63F"><i class="fa fa-suitcase" style="font-size: 22px;margin-top: -2px; " ></i></div>
                   <span style="padding-bottom:20px;" class="font-22 text-cap"><? echo t_tour_booking?> </span>
@@ -276,6 +276,9 @@ function historyTransfer(){
    $('#load_mod_popup').html(load_main_mod);
    $('#load_mod_popup').load(url_load);
    //        $('#check_open_worktbooking').val(1);
+}
+function tourBooking(){
+	swal("กำลังจะเปิดให้บริการ");
 }
 </script>
     
