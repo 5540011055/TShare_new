@@ -58,7 +58,7 @@
    ?>
 <div style="margin-top:45px;">
    <div id="div_price_plan_popup">
-      <div class="topicname"><?=t_remuneration_type;?></div>
+      <div class="topicname font-22" style="padding: 10px;"><strong><?=t_remuneration_type;?></strong></div>
       <select  class="form-control" name="price_plan_popup" id="price_plan_popup" style="width:100%; font-size:20px; padding:5px; height:40px;display: none;" >
       <? if($arr[shop][price_plan]>0){
          $db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
@@ -109,7 +109,7 @@
          ?>
       </select>
       <div style="margin-top:-5px;border: 1px solid #ddd;border-radius: 10px;box-shadow: 1px 1px 1px #ddd;padding: 5px;">
-         <table width="100%" border="0" cellspacing="1" cellpadding="5" >
+         <table width="100%" border="0" cellspacing="1" cellpadding="5" class="onlyThisTable" >
             <? if($arr[shop][price_plan]>0)	{
                $db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
                             $res[category] = $db->select_query("SELECT * FROM plan_product_price_name  where id=".$arr[shop][price_plan]."");

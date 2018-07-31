@@ -11,7 +11,7 @@ $day_now =  date('D');
 
 ?>
 
-	<table width="100%" border="0" cellspacing="2" cellpadding="2" id="row_place_<?=$arr[project][id];?>" >
+	<table class="onlyThisTable" width="100%" border="0" cellspacing="2" cellpadding="2" id="row_place_<?=$arr[project][id];?>" >
     <tbody>
     <tr>
       <td colspan="2"  >
@@ -42,7 +42,7 @@ $count_days = $db->rows($res[opentime]);
 
      ?>
     <tr >
-      <td width="100" class="font-22"><?echo t_out_of_service?></td>
+      <td width="100" class="font-22"><?echo "เปิดบริการ";?></td>
       <td>
       <span class="font-22">
       <?php
@@ -450,7 +450,7 @@ $count_days = $db->rows($res[opentime]);
 
       <div id="btn_open_<? echo $arr[project][id];?>" onclick="SelectPlace('<?=$arr[project][id];?>');">
       
-      <button id="menu_add_new_booking_text_<? echo $arr[project][id];?>" type="button tab_alert" class="btn  btn-info "  style="width:100%;text-align:center;padding:5px; background-color:<?=$main_color?>;  border-radius: 20px; "   ><span class="font-20"><i class="fa  fa-shopping-cart" style="width:20px;"   ></i><b>&nbsp; <?=t_send_to_shopping;?></b></span></button>
+      <button id="menu_add_new_booking_text_<? echo $arr[project][id];?>" type="button tab_alert" class="btn  btn-info "  style="width:100%;text-align:center;padding:5px; background-color:<?=$main_color?>;  border-radius: 20px;color:#fff; "   ><span class="font-20"><i class="fa  fa-shopping-cart" style="width:20px;"   ></i><b>&nbsp; <?=t_send_to_shopping;?></b></span></button>
       
       </div>
 
@@ -483,12 +483,12 @@ $time_of_open = "".$arr[shop][start_h].".".$arr[shop][start_m]." - ".$arr[shop][
 <script>
   $('#shop_alert_menu_price_<?=$arr[project][id]?>').click(function(){  
 	
- $( "#main_load_mod_popup_4" ).toggle();
+ $( "#main_load_mod_popup_1" ).toggle();
  
-  var url_load_<?=$arr[project][id]?>= "load_page_mod_4.php?name=booking/popup&file=price&shop_id=<?=$arr[project][id]?>&lat=<?=$arr[shop][lat]?>&lng=<?=$arr[shop][lng]?>&type=stop";
-  
-  $('#load_mod_popup_4').html(load_main_mod);
-  $('#load_mod_popup_4').load(url_load_<?=$arr[project][id]?>); 
+  var url_load= "load_page_mod_1.php?name=booking/popup&file=price&shop_id=<?=$arr[project][id]?>&lat=<?=$arr[shop][lat]?>&lng=<?=$arr[shop][lng]?>&type=stop";
+  console.log(url_load);
+  $('#load_mod_popup_1').html(load_main_mod);
+  $('#load_mod_popup_1').load(url_load); 
   
  
 

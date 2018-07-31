@@ -340,7 +340,7 @@
             url: 'mod/map_api/query_data_map.php?request=place',
             data: { 'province': pv },
             success: function(res) {
-            	console.log(res);
+//            	console.log(res);
             	var obj = JSON.parse(res);
             	  var infowindow = new google.maps.InfoWindow({maxWidth: 200});
 				$.each(obj.data, function (key, val) {
@@ -460,7 +460,7 @@
 
     	function CheckDetail(id){
 						  $("#infowindow_event").css( 'display','block' );
-						   $( "#body_show_infowindow" ).html( load_main_icon_big );
+						   $( "#body_show_infowindow" ).html( load_sub_mod );
 				          $.post( "go.php?name=map_api&file=shop_map&id="+id, function( data ) {
 //							  $( "#set_content_"+val.main.id ).html( data );
 							  $( "#body_show_infowindow" ).html( data );

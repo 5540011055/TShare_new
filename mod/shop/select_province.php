@@ -1,7 +1,5 @@
-
 <div class="my-padding" style="margin-top:  0px;overflow-x: hidden;">
    <div id="tag_your_area" style="margin-top: 15px;">
-     
       <table width="100%">
          <tr>
             <td style="padding: 20px 15px;">
@@ -23,12 +21,10 @@
    </div>
 	<div class="row">
       <div class="col s12 m5">
-        <div class="card-panel teal">
-          <span class="white-text">
-          	<span class="card-title">Card Title</span>
+        <div class="card-panel teal" style="color: #fff;">
+          <span class="card-title">ข้อกำหนด</span><br/>
           <span>I am a very simple card. I am good at containing small bits of information.
           I am convenient because I require little markup to use effectively.</span>
-          </span>
         </div>
       </div>
     </div>

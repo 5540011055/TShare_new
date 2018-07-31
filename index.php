@@ -340,37 +340,28 @@
     position: fixed;
     top: 0px;
     bottom: 0px;
-    left: 450px;
     display: none;
+    overflow: scroll;
+    -webkit-overflow-scrolling: touch;
     z-index: 1;
 }
 		</style>
 		<div id="xxx"> 
-			<div style="    color: #333;
+			<div style="color: #333;
 				    position: absolute;
 				    z-index: 999999;
 				    top: 7px;
-				    right: 20px;"><i class="fa fa-close" style="font-size:36px;" onclick="hideDialogSlide();"></i>
+				    right: 20px;"><i class="fa fa-close" style="font-size:36px;" onclick="$('#xxx').fadeOut();"></i>
 		</div>
-		<div id="test_slide">5555</div>
+			<div id="test_slide"></div>
 		</div>
 
    </body>
 </html>
 
 <script >
-	function showDialogSlide(){
-		console.log(1);
-		 $("#xxx").css('display','block');
-	    $("#xxx").animate({left: '0px'},200);
-	}
-	function hideDialogSlide(){
-		console.log(1);
-		
-	    $("#xxx").animate({left: '500px'},200);
-	    setTimeout(function(){ $("#xxx").css('display','none'); }, 250);
-	     
-	}
+
+
    function language(lng) {
        console.log(lng);
        setCookie("lng", lng, 1);
