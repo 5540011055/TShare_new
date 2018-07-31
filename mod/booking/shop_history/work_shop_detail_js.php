@@ -580,7 +580,7 @@ else if($arr[book][status]=='CONFIRM'){
 			$('#btn_isedit').hide()
 			$('#isedit').hide()
 			$('#num_edit_persion').css('display','inline-block')
-
+			$('#num_edit_persion').focus();
 
 		}
 		function saveeditBook(x){
