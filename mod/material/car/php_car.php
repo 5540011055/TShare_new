@@ -87,7 +87,7 @@ if($_GET[action]=="add"){
    $last_id = mysql_insert_id();
    $data[last_id] = $last_id;
    $db->closedb();
-adddriver($last_id);
+addtypedriver($last_id);
    header('Content-Type: application/json');
 	echo json_encode($data);
 
@@ -117,7 +117,7 @@ if($_GET[action]=="edit"){
    $data[plate_color] = $_POST[plate_color];
    $data[update_date] = time();
    $data[result] = $db->update_db('web_carall',$data,'id = "'.$_GET[id].'" ');
-adddriver($_GET[id]);
+addtypedriver($_GET[id]);
    $db->closedb();
 		
    header('Content-Type: application/json');
@@ -133,7 +133,7 @@ if($_GET[action]=="change_status_car"){
     $data[result] = $db->update_db('web_carall', $data," id='".$_GET[id]."' ");
 	$db->closedb ();
 	$data[id] = $_GET[id];
-  adddriver($_GET[id]);
+  addtypedriver($_GET[id]);
 	header('Content-Type: application/json');
 	echo json_encode($data);
 }
@@ -151,7 +151,7 @@ adddriver($_GET[driver]);
 	echo json_encode($data);
 }
 
-function adddriver($id){
+function addtypedriver($id){
   $curl_post_data = '{"id":"'.$id.'","action":"add"}';
                     
               $headers = array();
