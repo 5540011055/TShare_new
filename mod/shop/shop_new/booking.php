@@ -1,4 +1,5 @@
-<div style="padding-bottom:30px;    margin-top: 55px;" >
+<div style="padding-bottom:30px;    margin-top: 0px;" >
+	
    <form method="post"  id="form_booking" name="form_booking">
       <?
          $db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
@@ -776,7 +777,7 @@ function hideRes(id){
          swal("กรุณาป้อน !", "เวลาถึงโดยประมาณ", "warning");
          return false;
       }
-      
+      alert("go.php?name=shop/shop_new&file=save_data&action=add&type=driver&driver=<?=$user_id?>");
       console.log(place_num)
        swal({
 	    title: "ยืนยันข้อมูลส่งแขก ?",
@@ -831,6 +832,7 @@ function hideRes(id){
 			}
 	        },
 	        error: function (data) {
+	        	alert(data);
 	        	swal("กรุณาตรวจสอบข้อมูลของท่าน");
 	        }
 	      });

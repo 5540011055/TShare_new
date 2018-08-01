@@ -94,6 +94,8 @@ require_once("../includes/config.in.php");
 require_once("../includes/class.mysql.php");
 require_once("../includes/function.in.php");
 */
+$_SESSION['data_user_name']     = $_COOKIE['detect_username'];
+$_SESSION['data_user_class']    = $_COOKIE['detect_userclass'];
 $db = New DB();
 ?>
 <?
@@ -110,7 +112,7 @@ $user_name_th = $arr[web_user][name];
 $user_name_en = $arr[web_user][name_en];
 //$user_car_use = $arr[web_user][car_number_use];
 $user_car_use_status = $arr[web_user][status_usecar];
-$user_id     = $_SESSION['data_user_id'];
+//$user_id     = $_SESSION['data_user_id'];
 $carnumber   = $arr[web_user][car_num];
 $chk_data_id = $arr[web_user][id];
 ///////// driver detail
@@ -123,7 +125,7 @@ $user_class = $arr[web_user][user_class];
 ///// หา sup
 $res[web_sup] = $db->select_query("SELECT id,province FROM web_admin WHERE id='" . $arr[web_user][company] . "'    ");
 $arr[web_sup] = $db->fetch($res[web_sup]);
-$user_id = $_SESSION['data_user_id'];
+//$user_id = $_SESSION['data_user_id'];
 $res[driver_network] = $db->select_query("SELECT * FROM  contact_network WHERE province_name='" . $arr[web_sup][province] . "' and type='driver' ");
 $arr[driver_network] = $db->fetch($res[driver_network]);
 $network_company     = $arr[driver_network][id];

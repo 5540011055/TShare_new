@@ -8,28 +8,8 @@
    //   require_once("css/maincss.php");
    $db->connectdb(DB_NAME_DATA, DB_USERNAME, DB_PASSWORD);
    ?>
-<script>
-   var detect_mb = "<?=$detectname;?>";
-   var class_user = "<?=$data_user_class;?>";
-   var username = "<?=$_SESSION['data_user_name'];?>";
-   console.log(detect_mb+" : "+class_user+" : "+username);
-   if(detect_mb == "Android"){
-   	 sendTagOs(class_user,username);
-   }
-   
-   function sendTagOs(txt,username) {
-   				if (typeof Android !== 'undefined') {
-   				Android.sendTag(txt,username);
-   			}
-   } 
-   function deleteTagOs(txt) {
-   				if (typeof Android !== 'undefined') {
-   				Android.deleteTag(txt);
-   			}
-   } 
 
-</script>
-<?if ($_SESSION['data_user_id'] == '') {   ?> 
+<?if ($_COOKIE['detect_username'] == '') {   ?> 
 <script>
  window.location = "signin.php";
 </script> 
@@ -226,12 +206,38 @@
             </div>
          </nav>
          <?php 
+         	if($_COOKIE['detect_userclass']!=""){
+				$data_user_class = $_COOKIE['detect_userclass'];
+			}
             if($data_user_class=="lab"){
             	include("material/menu/lab.php");
             }else if($data_user_class=="taxi"){
             	include("material/menu/taxi.php");
             }
-            ?>
+         ?>
+<script>
+//	alert("<?=$user_id;?>")
+//	console.log('<?=json_encode($arr[web_user]);?>')
+   var detect_mb = "<?=$detectname;?>";
+   var class_user = $.cookie("detect_userclass");
+   var username = $.cookie("detect_username");
+   console.log(detect_mb+" : "+class_user+" : "+username);
+   if(detect_mb == "Android"){
+   	 sendTagOs(class_user,username);
+   }
+   
+   function sendTagOs(txt,username) {
+   				if (typeof Android !== 'undefined') {
+   				Android.sendTag(txt,username);
+   			}
+   } 
+   function deleteTagOs(txt) {
+   				if (typeof Android !== 'undefined') {
+   				Android.deleteTag(txt);
+   			}
+   } 
+
+</script>   
          <script>
          	function logOut(){
 				swal({
@@ -247,6 +253,8 @@
 				},
 				function(){
 				   $.post('signout.php?type=logout',function(){
+				   	 $.cookie("detect_user", "", { path: '/' });
+				   	 $.cookie("detect_userclass", "", { path: '/' });
 		      		 swal("<?=t_sign_out_successfully;?>","", "success");
 		      		 	setTimeout(function(){ 		
 			      		 	deleteTagOs("Test Text");
@@ -547,6 +555,7 @@
 <style>
 .onlyThisTable td, th {
     padding: 5px 5px !important;
+    text-align: left !important;
 }
 .pd-5{
 	padding: 5 !important;

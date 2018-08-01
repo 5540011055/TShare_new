@@ -6,7 +6,6 @@
 </script>
 
 
-
 <div id="main_component" >
 
  <?

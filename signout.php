@@ -10,6 +10,7 @@ if($_GET[type]=='logout'){
 	$data[id] = $_SESSION['data_user_id'];	
 	$data[user_class] = $_SESSION['data_user_class'];
 	
+//	@unset($_COOKIE['detect_user']);
 	session_unset(); 
 	session_destroy(); 
 	

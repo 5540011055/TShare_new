@@ -27,7 +27,7 @@ if($_GET[ios]==1){
 <div style="width: 100%;background-color: #f7f7f8;
     height: 44px;
     z-index: 102;
-    position: absolute;
+    position: fixed;
     top: 0;
     transform: translate3d(0,0,0);
     border-bottom: 1px solid #e8e6e6;
