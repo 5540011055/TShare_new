@@ -54,7 +54,7 @@
                            
                            <td width="100">
                               <label class="input-group-btn" >
-                                 <button class="btn btn-primary" style="width:100px; z-index:0;padding: 6px;" id="icon_camera_checkin">
+                                 <button class="btn btn-primary" style="width:100px; z-index:0;padding: 6px;" id="icon_camera_checkin" onclick="$('#imgInp').click(); ">
                                  	<span class="font-22">
                                     <i class="fa  fa-camera"></i>&nbsp;<?echo t_take_photos?>
                                     </span>
@@ -92,7 +92,7 @@
                <tbody>
                   <tr>
                      <td width="50%">
-                        <button  id="btn_close_checkin_popup"  type="button" class="btn waves-effect waves-light lighten-2 " 
+                        <button  id="btn_close_checkin_popup" onclick="$( '#dialog_custom' ).toggle();$( '#body_dialog_custom_load' ).html('');"  type="button" class="btn waves-effect waves-light lighten-2 " 
                          style="width:100%;background-color:#9E9E9E;  border-radius: 0px;color: #fff;">
                            <span class="font-26">
                            <center>
@@ -102,7 +102,7 @@
                         </button>
                      </td>
                      <td width="50%">
-                        <button  id="btn_checkin_popup_<?=$_GET[id]?>"  type="button" class="btn waves-effect waves-light lighten-2 "  style="width:100%;background-color:#3b5998;  border-radius: 0px;color: #fff;">
+                        <button  id="btn_checkin_popup_<?=$_GET[id]?>" onclick="sendCheckIn();"  type="button" class="btn waves-effect waves-light lighten-2 "  style="width:100%;background-color:#3b5998;  border-radius: 0px;color: #fff;">
                            <span class="font-26">
                            <center>
                            <? echo t_yes; ?>
@@ -132,17 +132,19 @@
 
    $(".text-topic-action-mod-3").html('<?=$type?>');
 
-   $('#btn_close_checkin_popup').click(function(){   
+   /*$('#btn_close_checkin_popup').click(function(){ 
+   		alert('<?=$_GET[id]?>');  
    		$( "#dialog_custom" ).toggle();
    		$( "#body_dialog_custom_load" ).html('');
-   	});
+   	});*/
 
    ///
-   $('#btn_checkin_popup_<?=$_GET[id]?>').click(function(){   
+   $('#btn_checkin_popup_<?=$_GET[id]?>ss').click(function(){   
 
     var url = "mod/booking/shop_history/php_shop.php?action=<?=$action;?>&type=<?=$_GET[type]?>&id=<?=$arr[project][id]?>&lat="+lat+"&lng="+lng;
     console.log(url);
-//    return
+    alert(url);
+    return
 		$.post(url,function(res){
 			console.log(res);
 			
@@ -167,50 +169,45 @@
 		});
     });
     	
-    function afterAction(res){
-		var url_status = "popup.php?name=booking/load/form&file=checkin_status&id=<? echo $arr[project][id];?>&type=check_<?=$_GET[type]?>&time=<?=TIMESTAMP?>&status=1";
-	$('#status_<?=$_GET[type]?>').html('<b><i class="fa  fa-refresh fa-spin 2x" style="color:#000000"></i> โหลดข้อมูล');
-	$('#status_<?=$_GET[type]?>').load(url_status); 
-	$('#iconchk_<?=$_GET[type]?>').attr("src", "images/yes.png");  
-	$("#number_<?=$_GET[type]?>").removeClass('step-booking');
-	$("#number_<?=$_GET[type]?>").addClass('step-booking-active');
-	$("#box_<?=$_GET[type]?>").addClass('disabledbutton-checkin');
-	$("#btn_<?=$_GET[type]?>").css('background-color','#666666');
-	$("#btn_"+res.next_step).css('background-color','#3b5998');
-		$.ajax({
-		url: '../data/fileupload/store/<?=$_GET[type]?>_<?=$arr[project][id]?>.jpg',
-		type:'HEAD',
-		error: function()
-		{
-		console.log('Error file');
-		},
-		success: function()
-		{
-			//file exists
-			console.log('success file');
-			$('#photo_<?=$_GET[type]?>').css('color','#3b5998');
-			$('#photo_<?=$_GET[type]?>').css('border','2px solid #3b5998');
-			$('#photo_<?=$_GET[type]?>').attr('onclick','ViewPhoto("<?=$arr[project][id]?>","<?=$_GET[type]?>","<?=TIMESTAMP;?>");');
-		}
+    function sendCheckIn(){
+		var url = "mod/booking/shop_history/php_shop.php?action=<?=$action;?>&type=<?=$_GET[type]?>&id=<?=$arr[project][id]?>&lat="+lat+"&lng="+lng;
+    console.log(url);
+alert(url);
+return;
+		$.post(url,function(res){
+			console.log(res);
+			
+			if(res.result==true){
+				 changeHtml("<?=$_GET[type]?>","<?=$arr[project][id]?>","<?=time();?>")
+				 console.log(array_data);
+   				 $('#json_shop').val(JSON.stringify(array_data));
+				/*var message = "";
+				socket.emit('sendchat', message);*/
+				sendSocket('<?=$arr[project][id]?>');
+				$( "#close_dialog_custom" ).click();
+				
+		      	 $.post('send_messages/send_checkin.php?type=<?=$_GET[type]?>&id=<?=$arr[project][id]?>',function(data){
+   					console.log(data);
+   				});
+		      	
+		      	
+		      	
+			}else{
+				swal("Error");
+			}
 		});
-	$('#<?=$_GET[type]?>_check_click').val(1);
-	$("#box_<?=$_GET[type]?>").removeClass('border-alert');
-	if(res.next_step=="finish"){
-		$('.btn_filter_active').click();
-		return;
 	}
-	$("#step_"+res.next_step+"").show();
-//	$("#step_"+res.next_step+"").load('empty_style.php?name=booking/shop_history/load/checkin&file='+res.next_step);
-	
-	}	
+    	
+
 </script>
 
 <script>
  
-   $("#icon_camera_checkin").click(function(){  
+   /*$("#icon_camera_checkin").click(function(){  
+   alert(3);
 //   document.getElementById('upload_pic_type').value='<?=$_GET[type]?>';
    $("#imgInp").click(); 
-   });
+   });*/
    function readURL(input) {
 	  $('#pg_upload_bar').show();
 	  if (input.files && input.files[0]) {

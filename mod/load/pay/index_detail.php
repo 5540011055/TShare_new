@@ -131,18 +131,11 @@ $bank = 'thbanks-bbl';
 
 
 
-<div style="    margin-top: 10px;
+<div style="margin-top: 10px;
     background-color: #fff;
     text-align: center;
-    /*border: 1px solid #3b5998;*/
-    width: 87%;
     border-radius: 25px;
-    padding: 8px;
-    color: #3b5998;
-    transform: translate(-50%,-50%);
-    position: fixed;
-    left: 50vw;
-    bottom: 1vh;">
+    color: #3b5998;">
 <div onclick="selectbank()" style="margin-top:10px;background-color: #fff;text-align: center;border: 1px solid #3b5998;width: 100%;border-radius: 25px;padding: 8px;color: #3b5998; "><span class="font-24"><strong>ยืนยันเติมเงิน</strong></span> </div>
 </div>
 
