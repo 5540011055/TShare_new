@@ -5,7 +5,11 @@
 
 </script>
 
-
+<style>
+	.tb-txt-left td{
+		text-align: left;
+	}
+</style>
 <div id="main_component" >
 
  <?
@@ -181,9 +185,8 @@ function readDataBooking(){
       +'<table width="100%">'
       +'<tbody>'
                +'<tr>'
-               
                +'<td>'
-               +'<table width="100%"  >'
+               +'<table width="100%" class="tb-txt-left" >'
                +'<tr style="line-height: 1.5;" >'
                +'<td width="100%"><span class="font-24" colspan="2">'+pickup_place+'</span></td>'
                +'</tr>'
@@ -191,7 +194,7 @@ function readDataBooking(){
                +'<td width="100%"><span class="font-24" colspan="2">'+to_place+'</span></td>'
                +'</tr>'
                +'<tr>'
-               +'<td><strong><span class="font-22 ">'+type_pay+'</span>&nbsp;&nbsp;<span class="font-22" style="position: absolute;right: 15px;">'+addCommas(cost)+'(-'+s_cost+')'+ '<?=t_THB;?></span></strong></td>'
+               +'<td><strong><span class="font-22 ">'+type_pay+'</span>&nbsp;&nbsp;<span class="font-22" style="position: absolute;right: 15px;margin-top: 7px;">'+addCommas(cost)+'(-'+s_cost+')'+ '<?=t_THB;?></span></strong></td>'
                +'</tr>'
                +'<tr>'
                +'<td><span class="font-20 ">'+outdate+'&nbsp;&nbsp;'+time+'</span></td>'					              

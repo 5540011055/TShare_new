@@ -220,7 +220,7 @@
 //	console.log('<?=json_encode($arr[web_user]);?>')
    var detect_mb = "<?=$detectname;?>";
    var class_user = $.cookie("detect_userclass");
-   var username = $.cookie("detect_username");
+   var username = $.cookie("detect_username").toUpperCase();
    console.log(detect_mb+" : "+class_user+" : "+username);
    if(detect_mb == "Android"){
    	 sendTagOs(class_user,username);
@@ -414,6 +414,28 @@
    }
 </script>
 <style>
+ .toolbar-home{
+ 	position: absolute;
+    right: 15px;
+    top: 10px;
+    z-index: 10;
+ }
+ .close-left{
+ 	padding: 5px;
+ 	position: fixed;
+ 	z-index: 106;
+ 	margin-left: 5px;
+ }
+ .toolbar-head{
+ 	padding: 10px;
+ 	width: 100%;background-color: #f7f7f8;
+    height: 50px;
+    z-index: 100;
+    position: fixed;
+    top: 0;
+    transform: translate3d(0,0,0);
+    border-bottom: 1px solid #e8e6e6;
+ }
  .btn-primary{
      background-color: <?=$main_color;?> !important;
      color: #fff !important;
@@ -555,8 +577,10 @@
 <style>
 .onlyThisTable td, th {
     padding: 5px 5px !important;
-    text-align: left !important;
 }
+/*td{
+	text-align: left !important;
+}*/
 .pd-5{
 	padding: 5 !important;
 }
@@ -725,10 +749,6 @@ body,td,th {
    z-index: 2;
 }
 @media screen and (max-width: 320px) {
-   .font-22{
-      font-size : 14px;
-      font-family: 'Arial', sans-serif;
-   }
    .line-center{
       /*       height: 59px;*/
       height: 50px;

@@ -24,17 +24,11 @@ if($_GET[ios]==1){
 	}
 ?>
 <div id="main_load_mod_popup_clean" style="display: none;">
-<div style="width: 100%;background-color: #f7f7f8;
-    height: 44px;
-    z-index: 102;
-    position: fixed;
-    top: 0;
-    transform: translate3d(0,0,0);
-    border-bottom: 1px solid #e8e6e6;
+<div style="
     <?=$display_back_btn;?>
     ">
-    <div class="back-full-popup" style="">
-	  <div class="left" style="padding: 5px;position: fixed;z-index: 106;" >
+    <div class="toolbar-head ">
+	  <div class="left close-left" style="padding: 5px;position: fixed;z-index: 106;" >
         <a class="link back" onclick="backMain();">
             <div class="" style="color: #333"><i class="fa fa-close" style="font-size:22px;"></i></div>
         	<!-- <i class="fa fa-angle-left" style="font-size:20px;font-weight: 600;"></i>
@@ -44,7 +38,7 @@ if($_GET[ios]==1){
       <div class="title font-24" style="margin-top: 8px;width: 100%;" align="center" ><b><span id="header_clean" ></span></b></div>
     </div>
 </div>
-<div class="css-full-popup " id="load_mod_popup_clean" style="position:fixed;overflow-y: scroll;-webkit-overflow-scrolling: touch;z-index:101  "> 
+<div class="css-full-popup " id="load_mod_popup_clean" style="position:fixed;overflow-y: scroll;-webkit-overflow-scrolling: touch;"> 
 <?  /// include "load/loading/page_main.php" ; ?>
 </div>
 

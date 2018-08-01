@@ -141,6 +141,7 @@ function DatePicker( picker, settings ) {
         on( 'open', function() {
         	// console.log('+++++');
         	$('.back-full-popup').hide();
+        	$('.toolbar-head').hide();
         	$('.bottom_popup').hide();
             var includeToday = ''
             if ( calendar.disabled( calendar.get('now') ) ) {
@@ -150,6 +151,7 @@ function DatePicker( picker, settings ) {
         }, 1 ).
         on( 'close', function() {
         	$('.back-full-popup').show();
+        	$('.toolbar-head').show();
         	$('.bottom_popup').show();
             picker.$root.find( 'button, select' ).attr( 'disabled', true )
         }, 1 )
