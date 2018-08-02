@@ -309,7 +309,7 @@ $count_days = $db->rows($res[opentime]);
       </td>
       </tr>
     <?php } ?>
-    <tr >
+    <tr style="display: none;" >
 <td class="font-22"><?=t_work_remuneration;?></td>
       <td id="shop_alert_menu_price_<?=$arr[project][id]?>" onclick="checkPriceDetail('<?=$arr[project][id]?>');" >
       <table>
@@ -397,7 +397,7 @@ $count_days = $db->rows($res[opentime]);
       
       </td>
     </tr>
-    <tr <?=$display_none;?>>
+    <tr style="display: none;" <?=$display_none;?> >
       <td class="font-22"><?=t_download;?></td>
       <td id="shop_alert_menu_index_load_<?=$arr[project][id]?>" onclick="openPopUpBrochure('<?=$arr[project][id]?>','<?=$arr[project][pic_book]?>','<?=$arr[project][pic_book_2]?>','<?=$arr[project][pic_book_3]?>')">
 	  <table>
@@ -495,40 +495,6 @@ $time_of_open = "".$arr[shop][start_h].".".$arr[shop][start_m]." - ".$arr[shop][
   <div class="modal-content" id="img02"> </div>
 
 </div>
- <script>
-// Get the modal
-var modal = document.getElementById('broModal/');
-
-// Get the image and insert it inside the modal - use its "alt" text as a caption
-var img = document.getElementById('shop_alert_menu_index_load_<?=$arr[project][id]?>');
-//var modalImg = document.getElementById("img01");
-var captionText = document.getElementById("caption");
-function openPopUpBrochure(id,pic1,pic2,pic3){
-    modal.style.display = "block";
-//    modalImg.src = this.src;
-////	$('#img01').html('<div align="center" style="padding:40px;margin-left:10px;"><img src="images/loader.gif" /></div>');
-	$('#img02').load('load/popup/pic_place.php?id='+id+'&pic1='+pic1+'&pic2='+pic2+'&pic3='+pic3); 
-	$('.back-full-popup').hide();
-	$('.bottom_popup').hide();
-//    captionText.innerHTML = this.alt;
-}
-
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
-
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() { 
-    modal.style.display = "none";
-}
-function closeModal(){
-//	alert(123);
-	 $('#broModal').hide();
-	 $('#closeModal').click();
-	 $('.back-full-popup').show();
-	 $('.bottom_popup').show();
-}
-
-</script>
 
 <script>
 	function checkPriceDetail(id){

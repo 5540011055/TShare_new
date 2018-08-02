@@ -340,8 +340,7 @@
       </div>
       
 		<style>
-			#xxx {
-
+.popup-dialog-slide{
     width: 100%;
     padding: 15px;
     background-color: #ddd;
@@ -354,15 +353,16 @@
     z-index: 1;
 }
 		</style>
-		<div id="xxx"> 
+		<div id="popup_dialog_slide" class="popup-dialog-slide"> 
 			<div style="color: #333;
 				    position: absolute;
-				    z-index: 999999;
+				    z-index: 1;
 				    top: 7px;
-				    right: 20px;"><i class="fa fa-close" style="font-size:36px;" onclick="$('#xxx').fadeOut();"></i>
+				    right: 20px;"><i class="fa fa-close" style="font-size:36px;" onclick="$('#popup_dialog_slide').fadeOut();"></i>
 		</div>
-			<div id="test_slide"></div>
+			<div id="popup_dialog_slide_body"></div>
 		</div>
+		
 		<input type="hidden" name="" id="set_lng_cookies" value="<?=$_COOKIE[lng];?>">
 		
 		<div id="map_side_popup" style="width: 100%;

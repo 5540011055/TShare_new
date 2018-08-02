@@ -1,5 +1,9 @@
 
-
+<style>
+	.tb-txt-left td{
+		text-align: left;
+	}
+</style>
 <script>
    $(".text-topic-action-mod").html('<?=t_job_received;?>');
   
@@ -160,12 +164,12 @@
 		      +'<span class="font-20 time-post">'+"รับเมื่อ "+formatDate(value.post_date)+' '+formatTime(value.post_date)+" น."+'</span>'
 		      +'<a class="mof ripple" id="btn_'+index+'" onclick="openSheetHandle('+index+',1);rippleClick(\'' + id + '\');" style="padding: 0px; background: #fbfbfb;">'
    			  +'<div class="bar-item">'
-		      +'<table width="100%">'
+		      +'<table width="100%" >'
 		         +'<tbody>'
 		         	+'<tr>'
 		         		
 		         		+'<td>'
-		         			+'<table width="100%"  >'
+		         			+'<table width="100%" class="tb-txt-left" >'
 		         				+'<tr style="line-height: 1.5;" >'
 					              +'<td width="100%"><span class="font-24" colspan="2">'+pickup_place+'</span></td>'
 					            +'</tr>'
@@ -233,7 +237,7 @@
 							+'</div>'
 		         		+'</td>'
 		         		+'<td>'
-		         			+'<table width="100%"  >'
+		         			+'<table width="100%" class="tb-txt-left" >'
 		         				+'<tr style="line-height: 1.5;" >'
 					              +'<td width="100%"><span class="font-24" colspan="2">'+pickup_place+'</span></td>'
 					            +'</tr>'

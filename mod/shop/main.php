@@ -61,7 +61,7 @@
 				$display = '';
 			}
         ?>
-        <li onclick="selectSubTypeShop('<?=$arr[news][id];?>');" class="collection-item item-pd" style="<?=$display;?>">
+        <li onclick="selectSubTypeShop('<?=$arr[news][id];?>','<?= $arr[row][num_place]; ?>');" class="collection-item item-pd" style="<?=$display;?>">
         <div>
         <span class="font-22"><?=$arr[news][topic_th]; ?></span> 
         <span class="new badge" style="position: absolute;right: 55px;margin: 3px;background-color: #009688;"><?= $arr[row][num_place]; ?></span>
@@ -75,9 +75,14 @@
    $("#close_alert_show_shopping_place").click(function(){   
    $( "#alert_show_shopping_place" ).hide();
    });
-   function selectSubTypeShop(sub_id){
+   function selectSubTypeShop(sub_id,num_place){
    	$( "#main_load_mod_popup_2" ).show();
-	 var url_load = "load_page_mod_2.php?name=shop&file=shop&driver=<?=$user_id?>&type="+sub_id+"&province=<?=$_GET[province];?>";
+   	 if(num_place>0){
+	 	var detail = 1;
+	 }else{
+	 	var detail = "";
+	 }
+	 var url_load = "load_page_mod_2.php?name=shop&file=shop&driver=<?=$user_id?>&type="+sub_id+"&province=<?=$_GET[province];?>&detail="+detail;
 	 console.log(url_load);
 	 $('#load_mod_popup_2').html(load_main_mod);
 	 $('#load_mod_popup_2').load(url_load);

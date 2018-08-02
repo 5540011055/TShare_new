@@ -294,6 +294,13 @@ td{
                               <span class="span-detail1"> <font class="font-22" ><?=$type_pay;?></font></span>
                               </td>
                            </tr>
+                            <tr style="display: nones;">
+                              <td valign="top"><i class="fa fa-exchange" style="color:#666666; font-size:18px"></i></td>
+                              <td valign="top" class="td-text text-cap"><b><?="เลข Voucher";?></b></td>
+                              <td valign="top" class="td-text">
+                              <span class="span-detail1"> <font class="font-22" ><?=$_POST[invoice];?></font></span>
+                              </td>
+                           </tr>
                         </tbody>
                      </table>
                      

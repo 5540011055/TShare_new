@@ -664,22 +664,6 @@
 		
 </script>
     
-<div id="broModal" class="modal" style="font-size: 0px!important; color: #000000 !important;height: 100%">
-  <span class="close" style="position: fixed;
-    color: #f4f4f4;
-    right: 15px;
-    font-size: 40px; display: none;
-   " id="closeModal" >&times;</span>
-   <i class="fa fa-times" aria-hidden="true" style="position: fixed;
-    color: #f4f4f4;
-    right: 15px;
-    font-size: 40px;
-    z-index: 9000;
-   " id="close_modal" onclick="closeModal();"></i>
-  <div class="modal-content" id="img01"> </div>
- 
-</div>
-
 <style>
 	.map-search-modal{
 	  font-size: 0px; 

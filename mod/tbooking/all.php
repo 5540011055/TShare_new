@@ -49,7 +49,7 @@ padding: 10px 20px;    border-radius: 25px;margin: 15px 0px;box-shadow: 0 2px 2p
       setTimeout(function(){ picker.open(true); }, 500);
     });
   </script>
-  <script>
+<script>
     setTimeout(function(){ 
       var date=$('#date_report').val();
       $('#date_report').pickadate({

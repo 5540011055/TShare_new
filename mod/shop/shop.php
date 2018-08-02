@@ -15,16 +15,7 @@
 	}
 </style>
 <?
-   //echo $_GET[type];
     $db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
-   /* $query_topic = "topic_th"; 
-   	if($_COOKIE['lng']=="th"){
-   		$query_topic = "topic_th"; 
-   	}else if($_COOKIE['lng']=="en"){
-   		$query_topic = "topic_en"; 
-   	}else if($_COOKIE['lng']=="cn"){
-   		$query_topic = "topic_cn"; 
-   	}*/
    $res[projecttype] = $db->select_query("SELECT ".$place_shopping." as name,id FROM shopping_product_sub where   id=".$_GET[type]."  ");
    $arr[projecttype] = $db->fetch($res[projecttype]);
    $ArrDayName[Sun] = t_sunday;
@@ -499,6 +490,7 @@
 		 $( "#main_load_mod_popup_6" ).toggle();
 		 var url_pic = 'load/popup/pic_place_swiper.php?id='+id+'&pic1='+pic1+'&pic2='+pic2+'&pic3='+pic3;
       	  $('#load_mod_popup_6').html(load_main_mod);
+      	  console.log(url_pic)
       	 $('#load_mod_popup_6').load(url_pic); 
       	 $('#text_mod_topic_action_6').text('โบว์ชัว'); 
       	 

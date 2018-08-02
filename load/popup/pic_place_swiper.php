@@ -1,4 +1,5 @@
   <link rel="stylesheet" href="js/swiper_slide/dist/css/swiper.min.css" />
+ 
   <style>
    /* html, body {
       position: relative;
@@ -46,15 +47,18 @@
     	font-size: 22px;
 	}
   </style>
-  <? 
-$id = $_GET[id];
-//$db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);            
-//$query = $db->select_query("SELECT text_pic_book,text_pic_book_2,text_pic_book_3 FROM  shopping_product where id = '".$id."'  ");
-//$$query_show = $db->fetch($query);
-$conn = new mysqli('localhost', 'admin_MANbooking', '252631MANbooking', 'admin_apptshare');
-$sql = "SELECT text_pic_book,text_pic_book_2,text_pic_book_3 FROM  shopping_product where id = '".$id."'  ";
-$result = $conn->query($sql);
-$row = $result->fetch_assoc();
+  <?
+ include("../../includes/class.mysql.php");  
+ define("DB_USERNAME","admin_MANbooking");
+define("DB_PASSWORD","252631MANbooking");
+define("DB_NAME_APP","admin_apptshare");
+ $db = new DB();
+$id = 1;
+$db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);    
+//$db->connectdb('admin_apptshare','admin_MANbooking','252631MANbooking');           
+$query = $db->select_query("SELECT text_pic_book,text_pic_book_2,text_pic_book_3 FROM  shopping_product where id = '".$id."'  ");
+$row = $db->fetch($query);
+
  ?>
   <!-- Swiper -->
   <div class="swiper-container">
@@ -85,8 +89,10 @@ $row = $result->fetch_assoc();
       <div class="swiper-slide">Slide 8</div>
       <div class="swiper-slide">Slide 9</div>
       <div class="swiper-slide">Slide 10</div>-->
+      <span style="color: #fff;position:fixed;bottom: 10px;display: none;"><?=json_encode($row);?></span>
     </div>
   </div>
+  
   <!-- Swiper JS -->
   <script src="js/swiper_slide//dist/js/swiper.min.js"></script>
   <!-- Initialize Swiper -->

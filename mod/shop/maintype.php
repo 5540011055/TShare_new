@@ -54,7 +54,9 @@ $province_name = $db->fetch($province_name);
       	if($allproduct==1){
       		$res[sub] = $db->select_query("SELECT sub FROM shopping_product where main=".$arr[project][id]." and status = 1 and province = '".$_GET[province]."' ");
       		$arr[sub] = $db->fetch($res[sub]);
-      	}
+      	}else{
+			$arr[sub] = "";
+		}
       	if($type ==''){ 
       	 $type ='ยังไม่มี';
       	}
@@ -70,11 +72,13 @@ $province_name = $db->fetch($province_name);
 		 }
 		 if($allplace>0){
 		 	$show_type = '';
+		 	
 		 }else{
 		 	$show_type = 'display:none;';
 		 }
+//		 echo json_encode($arr[sub]);
 	?> 
-    <li class="collection-item avatar" onclick="selectMainType('<? echo $arr[project][id];?>','<?=$arr[project][topic_th];?>')" style="<?=$show_type;?>">
+    <li class="collection-item avatar" onclick="selectMainType('<? echo $arr[project][id];?>','<?=$arr[project][topic_th];?>','<?=$allplace;?>','<?=$arr[sub][sub];?>')" style="<?=$show_type;?>">
 	  <i class="fa <?=$arr[project][logo_code]?> circle" style="margin-top: 7px;<?=$a;?>"></i>  
       <span style="margin-top: 8px;" class="title font-24"><?=$arr[project][$place_shopping];?></span>
       <p class="font-20"><?=$allplace;?> สถานที่</p>
@@ -86,18 +90,21 @@ $province_name = $db->fetch($province_name);
   </ul>
 </div>
 <script>
-	function selectMainType(id,topic_main){
+	function selectMainType(id,topic_main,num_type,sub_id){
 		var url = "mod/shop/update_num_place.php?id="+id+"&province=<?=$_GET[province];?>&op=update";
          		 $.post( url, function( data ) {
          		  	console.log(data);
          		});  
-          var num = $('#num_place_'+id).val();
-          if(num<=0){
-          	alert('ไม่มีสินค้า');
+
+          console.log(num_type);
+          if(num_type<=0){
+          	swal('ไม่มีสินค้า');
+          	return;
           }
-          else{
-          	if(num==1){
-          		 var id_place_one = $('#id_sub_'+id).val();
+        
+          	if(num_type==1){
+//          		 var id_place_one = $('#id_sub_'+id).val();
+          		 var id_place_one = sub_id;
           		 $("#main_load_mod_popup_2" ).toggle();
          		var url_load = "load_page_mod_2.php?name=shop&file=shop&driver=<?=$user_id?>&type="+id_place_one+"&province=<?=$_GET[province];?>&detail=1&topic="+topic_main;
          		console.log(url_load);
@@ -111,7 +118,7 @@ $province_name = $db->fetch($province_name);
          		  $('#load_mod_popup_1').html(load_main_mod);
          		  $('#load_mod_popup_1').load(url_load); 
          	}
-          }
+          
 	}
    $("#close_alert_show_shopping_place").click(function(){   
    $( "#alert_show_shopping_place" ).hide();

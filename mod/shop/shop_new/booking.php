@@ -1,4 +1,4 @@
-<div style="padding-bottom:30px;    margin-top: 0px;" >
+<div style="padding-bottom:30px;    margin-top: 40px;" >
 	
    <form method="post"  id="form_booking" name="form_booking">
       <?
@@ -676,7 +676,7 @@
          
          <tbody>
             <tr>
-               <td><button onclick="save_bookin_shop();" type="button" class="btn-repair waves-effect btn-other" style="background-color: #3b5998; border-radius: 25px; color:#fff;text-transform: capitalize;width: 100%;"  id="" > <span id="txt_btn_save" class="font-28"><?=t_save_data;?></span> </button></td>
+               <td><button onclick="save_bookin_shop();" type="button" class="btn-repair waves-effect btn-other" style="background-color: #3b5998; border-radius: 25px; color:#fff;text-transform: capitalize;width: 100%;padding: 5px;"  id="" > <span id="txt_btn_save" class="font-28"><?=t_save_data;?></span> </button></td>
             </tr>
          </tbody>
       </table>
