@@ -40,14 +40,15 @@
 
    $('#open_map').click(function(){	
    var province = $('#province_id').val();
-   $( "#main_load_mod_popup_map" ).toggle();
+//   $( "#main_load_mod_popup_map" ).toggle();
    
-   $( "#load_mod_popup_map" ).show();
-   $('#load_mod_popup_map').html(load_main_mod);
-
+//   $( "#load_mod_popup_map" ).show();
+//   $('#load_mod_popup_map').html(load_main_mod);
+		$('#map_side_popup').fadeIn();
+		$('#map_side_popup_body').html(load_main_mod);
    var url_load = "load_page_map.php?name=map_api&file=map_main&province="+province+"&user_id=<?=$user_id?>";
-   $('#load_mod_popup_map').load(url_load); 
-
+//   $('#load_mod_popup_map').load(url_load); 
+		$('#map_side_popup_body').load(url_load);
    });
 
    $('#submit_select_pv').click(function(){

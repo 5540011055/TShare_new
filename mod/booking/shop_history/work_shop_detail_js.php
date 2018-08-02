@@ -212,7 +212,7 @@ else if($arr[book][status]=='CONFIRM'){
       
       <tr>
          <td width="33%" align="left" style="padding: 0px;" >
-            <div class="btn  btn-default" style=" width:100%; text-align:left; padding:2px; padding-left:5px; height:40px;border-radius: 0px;" data-toggle="dropdown" id="btn_div_dropdown_phone">
+            <div class="btn  btn-default" style=" width:100%; text-align:left; padding:2px; padding-left:5px; height:40px;border-radius: 0px;" data-toggle="dropdown" id="btn_div_dropdown_phone" onclick="openContact('<?=$arr[place_shop][id];?>');">
                <table width="100%" border="0" cellspacing="1" cellpadding="1">
                   <tbody>
                      <tr>
@@ -224,7 +224,7 @@ else if($arr[book][status]=='CONFIRM'){
             </div>
          </td>
          <td width="33%" align="left" style="padding: 0px;" >
-            <div class="btn  btn-default" style=" width:100%; text-align:left;  padding:2px;height:40px;border-radius: 0px;" data-toggle="dropdown" id="btn_div_dropdown_zello">
+            <div class="btn  btn-default" style=" width:100%; text-align:left;  padding:2px;height:40px;border-radius: 0px;" data-toggle="dropdown" id="btn_div_dropdown_zello" onclick="openZello('<?=$arr[place_shop][id];?>');">
                <table width="100%" border="0" cellspacing="1" cellpadding="1">
                   <tbody>
                      <tr>
@@ -610,7 +610,7 @@ else if($arr[book][status]=='CONFIRM'){
     var remark2 = '<?=t_customer_not_go;?>';
     var remark3 = '<?=t_wrong_selected_place;?>';
     
-	$('#btn_div_dropdown_phone').click(function(e) {
+	/*$('#btn_div_dropdown_phone').click(function(e) {
 
 	    $('#material_dialog_lg').modal('open');
 	    $( "#dialoglLabel_lg" ).text('เบอร์โทรศัพท์');
@@ -618,9 +618,9 @@ else if($arr[book][status]=='CONFIRM'){
 	   	console.log(url_load);
 	   	$('#load_modal_body_lg').html(load_main_mod);
 	  	$('#load_modal_body_lg').load(url_load); 
-	});
+	});*/
 	
-	$('#btn_div_dropdown_zello').click(function(e) {
+	/*$('#btn_div_dropdown_zello').click(function(e) {
 
 	    $('#material_dialog_lg').modal('open');
 	    $( "#dialoglLabel_lg" ).text('Zello');
@@ -628,7 +628,24 @@ else if($arr[book][status]=='CONFIRM'){
 	   	console.log(url_load);
 	   	$('#load_modal_body_lg').html(load_main_mod);
 	  	$('#load_modal_body_lg').load(url_load); 
-	});
+	});*/
+	function openContact(shop_id){
+		$('#material_dialog_lg').modal('open');
+	    $( "#dialoglLabel_lg" ).text('เบอร์โทรศัพท์');
+	   	var url_load= "empty_style.php?name=booking/shop_history/load&file=social&type=phone&shop_id="+shop_id;
+	   	console.log(url_load);
+	   	$('#load_modal_body_lg').html(load_main_mod);
+	  	$('#load_modal_body_lg').load(url_load); 
+	}
+	
+	function openZello(shop_id){
+		 $('#material_dialog_lg').modal('open');
+	    $( "#dialoglLabel_lg" ).text('Zello');
+	   	var url_load= "empty_style.php?name=booking/shop_history/load&file=social&type=zello&shop_id="+shop_id;
+	   	console.log(url_load);
+	   	$('#load_modal_body_lg').html(load_main_mod);
+	  	$('#load_modal_body_lg').load(url_load); 
+	}
 	
 	function openMapsDistance(shop_id){
 //		 $( "#main_load_mod_popup_map" ).toggle();
