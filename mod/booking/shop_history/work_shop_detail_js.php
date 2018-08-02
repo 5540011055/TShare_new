@@ -238,7 +238,7 @@ else if($arr[book][status]=='CONFIRM'){
             </div>
          </td>
          <td width="33%" align="left"  style="padding: 0px;"  >
-            <div class="btn  btn-default" style=" width:100%; text-align:left;  padding:2px;height:40px;border-radius: 0px;" data-toggle="dropdown" id="shop_sub_menu_map">
+            <div class="btn  btn-default" style=" width:100%; text-align:left;  padding:2px;height:40px;border-radius: 0px;" data-toggle="dropdown" id="shop_sub_menu_map" onclick="openMapsDistance('<?=$arr[book][id];?>');">
                <table width="100%" border="0" cellspacing="1" cellpadding="1">
                   <tbody>
                      <tr>
@@ -630,7 +630,16 @@ else if($arr[book][status]=='CONFIRM'){
 	  	$('#load_modal_body_lg').load(url_load); 
 	});
 	
-	$('#shop_sub_menu_map').click(function(){  
+	function openMapsDistance(shop_id){
+//		 $( "#main_load_mod_popup_map" ).toggle();
+		 $('#map_side_popup').fadeIn();
+		 $('#map_side_popup_body').html(load_main_mod);
+//	  	var url_load= "load_page_map.php?name=map_api&file=map_place&shop_id="+shop_id+"&lat="+$('#lat').val()+"&lng="+$('#lng').val();
+	  	var url_load= "mod/map_api/map_place.php?shop_id="+shop_id+"&lat="+$('#lat').val()+"&lng="+$('#lng').val();
+//  	  	$('#load_mod_popup_map').html(load_main_mod);
+  	  	$('#map_side_popup_body').load(url_load); 
+	}
+	/*$('#shop_sub_menu_map').click(function(){  
 
 	  console.log('lat '+$('#lat').val());
 	  console.log('lng '+$('#lng').val());
@@ -642,8 +651,7 @@ else if($arr[book][status]=='CONFIRM'){
   	  $('#load_mod_popup_map').html(load_main_mod);
   	  $('#load_mod_popup_map').load(url_load); 
 
- 	});
-
+ 	});*/
 
 	function ViewPhoto(id,type,date,plan){
 		console.log(id+" | "+type+" | "+date+" | "+plan)
@@ -661,6 +669,7 @@ else if($arr[book][status]=='CONFIRM'){
 		$('#load_mod_popup_photo').html(load_main_mod);
  	 	$('#load_mod_popup_photo').load(url); 
 	}	
+
 	function ViewSlip(id,date){
 		var url = 'load_page_photo.php?name=booking/load/form&file=iframe_photo&id='+id+'&type=slip&date='+date;
 		console.log(url);

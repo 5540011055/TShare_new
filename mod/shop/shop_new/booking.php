@@ -777,7 +777,7 @@ function hideRes(id){
          swal("กรุณาป้อน !", "เวลาถึงโดยประมาณ", "warning");
          return false;
       }
-      alert("go.php?name=shop/shop_new&file=save_data&action=add&type=driver&driver=<?=$user_id?>");
+//      alert("go.php?name=shop/shop_new&file=save_data&action=add&type=driver&driver=<?=$user_id?>");
       console.log(place_num)
        swal({
 	    title: "ยืนยันข้อมูลส่งแขก ?",
@@ -792,15 +792,15 @@ function hideRes(id){
 	  },
 		function(isConfirm) {
 		if(isConfirm){
-			
+			var url = "mod/shop/shop_new/save_data.php?action=add&type=driver&driver=<?=$user_id?>";
 			$.ajax({
 	        type: 'POST',
 	        data : $('#form_booking').serialize(),
-	        url: 'go.php?name=shop/shop_new&file=save_data&action=add&type=driver&driver=<?=$user_id?>',
+	        url: url,
 	        beforeSend: function () {
 	        },
 	        success: function (response) {
-	         	
+	         	console.log(response);
 	         	if(response.result==true){
 				 swal({
 	               title: "ทำรายการสำเร็จ!",
@@ -827,12 +827,13 @@ function hideRes(id){
                
                setTimeout(function(){  openOrderFromAndroid(response.last_id);}, 1500);
 			}
-			else{
-				swal("ทำรายการไม่สำเร็จ","กรุณาตรวจสอบอีกครั้งหรือติดต่อเจ้าหน้าที่","error");
-			}
+				else{
+					swal("ทำรายการไม่สำเร็จ","กรุณาตรวจสอบอีกครั้งหรือติดต่อเจ้าหน้าที่","error");
+				}
 	        },
 	        error: function (data) {
-	        	alert(data);
+//	        	alert(data);
+				console.log(data);
 	        	swal("กรุณาตรวจสอบข้อมูลของท่าน");
 	        }
 	      });

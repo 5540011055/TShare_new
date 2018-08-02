@@ -23,6 +23,6 @@ GETMODULE($_GET[name],$_GET[file]);
   });
   </script>
 
-  <div style="top:0px; padding:0px; overflow: auto; width:100% ; " id="load_page_map_touse">   
+  <div style="top:0px; padding:0px; overflow: auto; width:100% ;height: 100%;" id="load_page_map_touse">   
   <? include ("".$MODPATHFILE.""); ?>
   </div>

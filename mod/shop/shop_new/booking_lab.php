@@ -719,15 +719,15 @@
 	  },
 		function(isConfirm) {
 		  if (isConfirm) {
-		    
-		$.ajax({
+		    var url = "mod/shop/shop_new/save_data.php?action=add&type=driver&driver=<?=$user_id?>";
+			$.ajax({
 	        type: 'POST',
 	        data : $('#form_booking').serialize(),
-	        url: 'go.php?name=shop/shop_new&file=save_data&action=add&type=driver&driver=<?=$user_id?>',
+	        url: url,
 	        beforeSend: function () {
 	        },
 	        success: function (response) {
-	         	
+	         	console.log(response);
 	         	if(response.result==true){
 					swal({
 		                title: "ทำรายการสำเร็จ!",
@@ -765,8 +765,7 @@
 	        	swal("กรุณาตรวจสอบข้อมูลของท่าน");
 	        }
 	      });
-		    
-		    
+		       
 		  } 
 		});
 

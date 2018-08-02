@@ -4,11 +4,7 @@
 
 
 <div  style="margin-top:50px;" id="main_component">
-    <!--<link rel="stylesheet" type="text/css" href="pickerdate/classic.css?v=<?=time();?>" />
-   <link rel="stylesheet" type="text/css" href="pickerdate/classic.date.css?v=<?=time();?>" />
-   <script src="pickerdate/picker.js?v=<?=time();?>" type="text/javascript"></script>
-   <script src="pickerdate/picker.date.js?v=<?=time();?>" type="text/javascript"></script> -->
-   
+  
    <div style="padding: 0px 0px;">
      <!--<button onclick="test()">123</button>-->
       <table width="100%">
@@ -23,64 +19,37 @@
       </table>
    </div>
    <div id="date_filter" style="display: none;margin-bottom: 75px;" align="center">
-      <!--<div class="input-group date" style="padding:0px;">
-         <input type="text" class="form-control pull-right" value="<?=date('Y-m-d');?>"  name="date_report" id="date_report"  readonly="true" style="    padding: 20px 20px;
-    border-radius: 25px 0 0 25px;
-    border: 1px solid <?=$main_color;?>;
-    border-right: none;
-    background-color: #FFFFFF;
-    font-size: 20px;
-    z-index: 0;"  >               
-         <div class="input-group-addon"  id="btn_calendar" style="    padding: 0 14px;
-    border-radius: 0 25px 25px 0;
-    border: 1px solid <?=$main_color;?>;
-    cursor: pointer;
-    border-left: none;">
-            <i class="fa fa-calendar" style="font-size:25px; " id="icon_calendar"></i> 
-         </div>
-      </div>-->
       <input type="text" class="form-control pull-right" value="<?=date('Y-m-d');?>"  name="date_report" id="date_report"  readonly="true" 
       style=" z-index: 0;font-size: 20px;    text-align: center;"  >
 
    </div>
    <script type="text/javascript">
       function test(){
-//	  	$('#main_load_mod_popup_clean').hide();
+
 	  	$('#main_load_mod_popup_2').show();
 	  }
-      /*$('#date_report_bottom').datepicker('show'); 
-      $("#btn_calendar").click(function(){
-       $('#date_report').datepicker('show'); 
-      });*/   
+  
    </script> 
    <script>
       function shop_status(){  
-      //$( "#main_load_mod_popup" ).toggle();
+      
       var url_load = "load_page_mod.php?name=booking&file=all";
       $('#load_mod_popup').html(load_main_mod);
       $.post( url_load, function( data ) {
-      //      console.log(data);
-      $('#load_mod_popup').html(data);
+     	 $('#load_mod_popup').html(data);
       });
-      /* $('#load_mod_popup').html(load_main_mod);
-      $('#load_mod_popup').load(url_load); */
+      
       }
       function transfer_status(){  
-      // $( "#main_load_mod_popup" ).toggle();
+      
       var url_load= "load_page_mod.php?name=booking&file=all_job";	  
        console.log(url_load);
        $('#load_mod_popup').html(load_main_mod);
-      // $('#load_mod_popup').load(url_load);
+      
        $.post( url_load, function( data ) {
-      $('#load_mod_popup').html(data);
-      }); 
-      //   var url_load = "load_page_mod.php?name=booking&file=all_job";
-      //  $('#load_mod_popup').html(load_main_mod);
-      //  $.post( url_load, function( data ) {
-      //   $('#load_mod_popup').html(data);
-      // });
-      /* $('#load_mod_popup').html(load_main_mod);
-      $('#load_mod_popup').load(url_load); */
+      	$('#load_mod_popup').html(data);
+      	}); 
+     
       }
       $('#btn_calendar').click(function(){
       // 		alert();
@@ -174,17 +143,19 @@
 			}
 		}
 		console.log(url_his);
+		console.log(data);
    		$.post(url_his,data,function(res){
    			 console.log(res);
 //   			 array_filter = res.data;
-			 if(res.data){
+			if(res!=null){
+				
 			 	array_his = res.data;
    			 	var url = "go.php?name=booking/shop_history&file=shop_all_js&find=day&day="+date+"&status=completed&type=his";
 				  $.post(url,{ data : array_his },function(html){
 				  		$('#load_booking_data').html(html);
 				  });
 			 }else{
-			 		$('#load_booking_data').html('<strong><font color="#ff0000">ยกเลิก</font></strong>');
+			 		$('#load_booking_data').html('<div class="font-26" style="color: #ff0000;text-align: center;" id="no_work_div"><strong>ไม่มีงาน</strong></div>');
 			 }
    			 
    		});
@@ -336,10 +307,13 @@ function approveBook(id,vc,driver){
 
 function openPointMaps(type,order_id){
 //	console.log('view dv point lat='+lat+',lng='+lng);
-   $("#main_load_mod_popup_map" ).show();
-   $('#load_mod_popup_map').html(load_main_mod);
+//   $("#main_load_mod_popup_map" ).show();
+	$('#map_side_popup').fadeIn();
+//   $('#load_mod_popup_map').html(load_main_mod);
+   $('#map_side_popup_body').html(load_main_mod);
    var url_load = "load_page_map.php?name=map_api&file=map_point&user_id=<?=$user_id?>&type="+type+"&order_id="+order_id;
    console.log(url_load);
-   $('#load_mod_popup_map').load(url_load); 
+//   $('#load_mod_popup_map').load(url_load); 
+   $('#map_side_popup_body').load(url_load); 
 }
 </script>

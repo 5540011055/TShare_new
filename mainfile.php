@@ -107,6 +107,7 @@ $data_user_class = $_SESSION['data_user_class'];
     $arr[web_user] = $db->fetch($res[web_user]);
 
 $user_id = $arr[web_user][id];
+$_SESSION['data_user_id'] = $user_id;
 //$carnumber    = $arr[web_user][car_num];
 $user_name_th = $arr[web_user][name];
 $user_name_en = $arr[web_user][name_en];
@@ -123,7 +124,7 @@ $data_user_class = $arr[web_user][user_class];
 $user_class = $arr[web_user][user_class];
 /////
 ///// หา sup
-$res[web_sup] = $db->select_query("SELECT id,province FROM web_admin WHERE id='" . $arr[web_user][company] . "'    ");
+/*$res[web_sup] = $db->select_query("SELECT id,province FROM web_admin WHERE id='" . $arr[web_user][company] . "'    ");
 $arr[web_sup] = $db->fetch($res[web_sup]);
 //$user_id = $_SESSION['data_user_id'];
 $res[driver_network] = $db->select_query("SELECT * FROM  contact_network WHERE province_name='" . $arr[web_sup][province] . "' and type='driver' ");
@@ -134,15 +135,15 @@ $res[callcenter_network] = $db->select_query("SELECT * FROM  contact_network WHE
 $arr[callcenter_network] = $db->fetch($res[callcenter_network]);
 //////// หาจำนวนเมนู
 $user_zello       = $arr[driver_network][id_zello];
-$callcenter_zello = $arr[callcenter_network][id_zello];
-$my_phone = $db->num_rows('contact_phone_driver', "id", "driver_id='" . $user_id . "'  ");
-if ($_SESSION['data_user_password'] <> $arr[web_user][password]) {
+$callcenter_zello = $arr[callcenter_network][id_zello];*/
+//$my_phone = $db->num_rows('contact_phone_driver', "id", "driver_id='" . $user_id . "'  ");
+/*if ($_SESSION['data_user_password'] <> $arr[web_user][password]) {
 ?> 
  <script>
 ///  window.location.href = "logout.php"; //will redirect to your blog page (an ex: blog.html)
   </script>
 <?
-}
+}*/
 include "css/color/" . $data_user_class . ".php";
 
 $thai_day_arr=array("อาทิตย์","จันทร์","อังคาร","พุธ","พฤหัสบดี","ศุกร์","เสาร์");

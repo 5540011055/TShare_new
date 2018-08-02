@@ -54,7 +54,7 @@
                            
                            <td width="100">
                               <label class="input-group-btn" >
-                                 <button class="btn btn-primary" style="width:100px; z-index:0;padding: 6px;" id="icon_camera_checkin" onclick="$('#imgInp').click(); ">
+                                 <button class="btn btn-primary" style="width:100px; z-index:0;padding: 6px;color: #fff;" id="icon_camera_checkin" onclick="$('#imgInp').click(); ">
                                  	<span class="font-22">
                                     <i class="fa  fa-camera"></i>&nbsp;<?echo t_take_photos?>
                                     </span>
@@ -67,7 +67,7 @@
                               </span>
                            </td>
                            <td width="30">        
-                              <button type="button" class="btn btn-default " data-toggle="modal" style="padding-left:5px; padding-right:5px; width:30px" id="del_photo"><i class="fa  fa-trash" style="font-size:20px; "></i></button>
+                              <button onclick="deletedPhoto('<?=$_GET[id]?>','<?=$_GET[type]?>');" type="button" class="btn btn-default " data-toggle="modal" style="padding-left:5px; padding-right:5px; width:30px" id="del_photo"><i class="fa  fa-trash" style="font-size:20px; "></i></button>
                            </td>
                         </tr>
                      </tbody>
@@ -129,51 +129,13 @@
 		geolocatCall();
 	}
 	
-
    $(".text-topic-action-mod-3").html('<?=$type?>');
-
-   /*$('#btn_close_checkin_popup').click(function(){ 
-   		alert('<?=$_GET[id]?>');  
-   		$( "#dialog_custom" ).toggle();
-   		$( "#body_dialog_custom_load" ).html('');
-   	});*/
-
-   ///
-   $('#btn_checkin_popup_<?=$_GET[id]?>ss').click(function(){   
-
-    var url = "mod/booking/shop_history/php_shop.php?action=<?=$action;?>&type=<?=$_GET[type]?>&id=<?=$arr[project][id]?>&lat="+lat+"&lng="+lng;
-    console.log(url);
-    alert(url);
-    return
-		$.post(url,function(res){
-			console.log(res);
-			
-			if(res.result==true){
-				 changeHtml("<?=$_GET[type]?>","<?=$arr[project][id]?>","<?=time();?>")
-				 console.log(array_data);
-   				 $('#json_shop').val(JSON.stringify(array_data));
-				/*var message = "";
-				socket.emit('sendchat', message);*/
-				sendSocket('<?=$arr[project][id]?>');
-				$( "#close_dialog_custom" ).click();
-				
-		      	 $.post('send_messages/send_checkin.php?type=<?=$_GET[type]?>&id=<?=$arr[project][id]?>',function(data){
-   					console.log(data);
-   				});
-		      	
-		      	
-		      	
-			}else{
-				swal("Error");
-			}
-		});
-    });
     	
     function sendCheckIn(){
 		var url = "mod/booking/shop_history/php_shop.php?action=<?=$action;?>&type=<?=$_GET[type]?>&id=<?=$arr[project][id]?>&lat="+lat+"&lng="+lng;
     console.log(url);
-alert(url);
-return;
+/*alert(url);
+return;*/
 		$.post(url,function(res){
 			console.log(res);
 			
@@ -198,7 +160,6 @@ return;
 		});
 	}
     	
-
 </script>
 
 <script>
@@ -209,17 +170,18 @@ return;
    $("#imgInp").click(); 
    });*/
    function readURL(input) {
+//   	  alert(123);
 	  $('#pg_upload_bar').show();
 	  if (input.files && input.files[0]) {
 	    var reader = new FileReader();
 
 	    reader.onload = function(e) {
-	      $('#image_<?=$_GET[type]?>').attr('src', e.target.result);
+	      $('#image_'+$('#upload_pic_type').val()).attr('src', e.target.result);
 	    }
 		
 	    reader.readAsDataURL(input.files[0]);
 	    
-	    var url = "mod/booking/shop_history/load/upload_img/upload.php" + "?type=" + document.getElementById('upload_pic_type').value+"&code=" + document.getElementById('check_code').value;
+	    var url = "mod/booking/shop_history/load/upload_img/upload.php" + "?type=" + $('#upload_pic_type').val()+"&code=" + $('#check_code').val();
    				data_form = $('#photo_form').serialize();    
    				data = new FormData($('#photo_form')[0]);
       			data.append('fileUpload', $('#imgInp')[0].files[0]);
@@ -267,19 +229,20 @@ return;
 	  readURL(this);
 	});
 	
-   $('#del_photo').click(function(){
+   
+   function deletedPhoto(id,type){
    	var url_del = "mod/booking/shop_history/load/upload_img/del_img.php";
-   	$.post( url_del+"?code=<?=$_GET[id]?>&type=<?=$_GET[type]?>", function( data ) {
-    		$('#image_<?=$_GET[type]?>').attr('src','');
-    		$('#image_<?=$_GET[type]?>').hide();
-    		$('#area_image_album_load_driver_topoint').css('width','0%');
-    		$('#icon_camera_checkin').removeClass('btn-success');
-    		$('#icon_camera_checkin').addClass('btn-primary');
-    		$('#del_photo').removeClass('btn-danger');
-    		$('#del_photo').addClass('btn-default');
-    		$('#url_photo').val('<?echo t_no_photo_available?>');
-    		$('#photo_<?=$_GET[type]?>').css('color','#3b59987a');
-   	$('#photo_<?=$_GET[type]?>').css('border','1px solid #3b59987a');
-   });
-   });
+	   	$.post( url_del+"?code="+id+"&type="+type, function( data ) {
+	    		$('#image_'+type).attr('src','');
+	    		$('#image_'+type).hide();
+	    		$('#area_image_album_load_driver_topoint').css('width','0%');
+	    		$('#icon_camera_checkin').removeClass('btn-success');
+	    		$('#icon_camera_checkin').addClass('btn-primary');
+	    		$('#del_photo').removeClass('btn-danger');
+	    		$('#del_photo').addClass('btn-default');
+	    		$('#url_photo').val('<?echo t_no_photo_available?>');
+	    		$('#photo_'+type).css('color','#3b59987a');
+	   	$('#photo_'+type).css('border','1px solid #3b59987a');
+	   });
+   }
 </script>

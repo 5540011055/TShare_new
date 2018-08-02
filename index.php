@@ -171,7 +171,7 @@
       <script>
       if('<?=$_GET[status];?>'!="his"){ //เช็คว่าสเตตัสที่ส่งมาเป็น ประวัติ หรือ กำลังจัดการ
          $(window).load(function() {
-         	$("#load_material").fadeOut();
+         	$("#load_material").fadeOut(500);
          });
 		}  
       </script>
@@ -338,7 +338,6 @@
             <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">ปิด</a>
          </div>
       </div>
-      <input type="hidden" name="" id="set_lng_cookies" value="<?=$_COOKIE[lng];?>">
       
 		<style>
 			#xxx {
@@ -364,7 +363,34 @@
 		</div>
 			<div id="test_slide"></div>
 		</div>
-
+		<input type="hidden" name="" id="set_lng_cookies" value="<?=$_COOKIE[lng];?>">
+		
+		<div id="map_side_popup" style="width: 100%;
+    background-color: #ddd;
+    position: fixed;
+    top: 0px;
+    bottom: 0px;
+    display: none;
+    overflow: scroll;
+    -webkit-overflow-scrolling: touch;
+    z-index: 999;" > 
+			<div style="    color: #fff;
+    position: absolute;
+    z-index: 9999;
+    top: 7px;
+    left: 10px;
+    padding: 10px;
+    background-color: #607D8B;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    border: 1px solid #fff;
+    box-shadow: 1px 1px 5px #9E9E9E;" onclick="$('#map_side_popup').fadeOut();" ><i class="fa fa-chevron-left" aria-hidden="true" style="font-size: 26px;margin: 3px;"></i>
+		</div>
+			<div id="map_side_popup_body" style="width: 100%;height:100%;"></div>
+		</div>
+		
+		
    </body>
 </html>
 
@@ -377,10 +403,9 @@
        window.location.reload();
    }
    function GohomePage() {
-   //       hidepopup();
+   		$("#load_material").fadeIn();
        console.log('GohomePage Run');
        $('#load_mod_data').html(load_main_mod);
-   //       return;
        window.location = "index.php";
    }
    function addCommas(nStr){

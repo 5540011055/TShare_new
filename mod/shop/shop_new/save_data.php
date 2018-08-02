@@ -1,39 +1,13 @@
 <?php 
+include('../../../includes/class.mysql.php');
+//include('../../../includes/config.in.php');
+define("DB_USERNAME","admin_MANbooking");
+define("DB_PASSWORD","252631MANbooking");
+define("DB_NAME_APP","admin_apptshare");
+$db = new DB();
 if ($_GET[action] == 'add')
 	{
 	$number = $_POST[adult];
-	$db->connectdb(DB_NAME_APP, DB_USERNAME, DB_PASSWORD);
-	$res[car] = $db->select_query("SELECT * FROM   web_driver  where id = '" . $user_id . "'   ");
-	$arr[car] = $db->fetch($res[car]);
-	$_POST[namedriver] = $arr[car][name];
-	$next_increment = 0;
-	$qShowStatus = "SHOW TABLE STATUS LIKE 'order_booking'";
-	$qShowStatusResult = mysql_query($qShowStatus) or die("Query failed: " . mysql_error() . "<br/>" . $qShowStatus);
-	$row = mysql_fetch_assoc($qShowStatusResult);
-	$last_id = $row['Auto_increment'];
-	$member_db = $row['Auto_increment'];
-	if ($member_db >= 10000)
-		{
-		$member_in = "$member_db";
-		}
-	elseif ($member_db >= 1000)
-		{
-		$member_in = "0$member_db";
-		}
-	elseif ($member_db >= 100)
-		{
-		$member_in = "00$member_db";
-		}
-	elseif ($member_db >= 10)
-		{
-		$member_in = "000$member_db";
-		}
-	  else
-		{
-		$member_in = "0000$member_db";
-		}
-//	$rand = substr(str_shuffle('123456789012345678901234567890') , 0, 30);
-
 	$db->connectdb(DB_NAME_APP, DB_USERNAME, DB_PASSWORD);
 	$mm = $_POST[time_num];
 	if($_POST[time_num]<10){
@@ -94,4 +68,3 @@ if ($_GET[action] == 'add')
 	echo json_encode($array_data);
 	} 
 ?>
-

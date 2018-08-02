@@ -5,6 +5,7 @@
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
     <!--<script src="https://cdn.rawgit.com/googlemaps/js-rich-marker/gh-pages/src/richmarker.js"></script>-->
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>-->
     <style>
 	  .gmnoprint{
 	  	display: none !important;
@@ -163,7 +164,7 @@
     </style>
  	<script>
 	$('.text-topic-action-photo').html('<?echo t_maps?>');
-</script>
+	</script>
   </head>
   <body >
   	<?php 
@@ -317,7 +318,9 @@ $res[projectdriver] = $db->select_query("SELECT name,nickname,phone,name_en,user
 			
 			
             map.setCenter(pos);
-			smoothZoom(map, 18, map.getZoom());
+			
+			
+			setTimeout(function(){ smoothZoom(map, 18, map.getZoom()); }, 500);
 	}
       
       function setMarker(){
