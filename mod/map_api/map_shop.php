@@ -184,7 +184,7 @@
 	  <div class="pin-effect"></div>
 	</div>
 	<div id="btn_CurrentLocation" style="z-index: 0; position: absolute; right: 20px; bottom: 190px; color: rgb(35, 35, 35);">
-		<button title="Your Location" class="but_map-menu">
+		<button class="but_map-menu">
 		<i class="material-icons" style="margin: 5px;font-weight: 800;"><i class="fa fa-map-marker" style="font-size: 25px;"></i></i>
 		</button>
 	</div>
@@ -193,11 +193,11 @@
 		<i class="material-icons" style="margin: 5px;font-weight: 800;"><i class="fa fa-search" style="font-size:20px;"></i></i>
 		</button>
 	</div>
-	<div id="btn_popup_setting" style="z-index: 0; position: absolute; right: 20px; bottom: 70px; color: rgb(35, 35, 35);">
+	<!--<div id="btn_popup_setting" style="z-index: 0; position: absolute; right: 20px; bottom: 70px; color: rgb(35, 35, 35);">
 		<button class="but_map-menu">
 		<i class="material-icons" style="margin: 5px;font-weight: 800;"><i class="fa fa-picture-o" style="font-size:20px;"></i></i>
 		</button>
-	</div>
+	</div>-->
 	<div id="btn_popup_name_marker" style="z-index: 0; position: absolute; right: 20px; bottom: 70px; color: rgb(35, 35, 35);display: none;">
 		<button class="but_map-menu">
 		<i class="material-icons" style="margin: 5px;font-weight: 800;"><i class="fa fa-cog" style="font-size:20px;"></i></i>
@@ -373,7 +373,7 @@
 					
 					 
 					 
-		 			 $('#load_mod_popup_map').append('<div class="marker-place" id="icon_marker_'+val.main.id+'" style="display:none;" ><i class="fa '+val.icon.logo_code+'" style="z-index: 1000;font-size:30px;left: 7px;top: 6px;position:  absolute;" ></i></div>');
+		 			/* $('#load_mod_popup_map').append('<div class="marker-place" id="icon_marker_'+val.main.id+'" style="display:none;" ><i class="fa '+val.icon.logo_code+'" style="z-index: 1000;font-size:30px;left: 7px;top: 6px;position:  absolute;" ></i></div>');
 		 			 var div = document.getElementById("icon_marker_"+val.main.id);
 			 		 markerPlace = new RichMarker({
 					    map: map,
@@ -383,6 +383,7 @@
 					    anchor: RichMarkerPosition.MIDDLE,
 					    content: div
 					  });
+					  
 				
 			      google.maps.event.addListener(markerPlace, 'click', (function(markerPlace, key) {
 				        return function() {
@@ -403,7 +404,7 @@
 					  	$('#icon_marker_'+val.main.id).removeClass('active-marker-place');
 					  	
 //						alert(val.main.id);
-					});
+					});*/
 					
 			    });
             }
@@ -459,9 +460,10 @@
 		}
 
     	function CheckDetail(id){
-						  $("#infowindow_event").css( 'display','block' );
+						  $("#infowindow_event").show();
 						   $( "#body_show_infowindow" ).html( load_sub_mod );
-				          $.post( "go.php?name=map_api&file=shop_map&id="+id, function( data ) {
+						   var url = "empty_style.php?name=map_api&file=map_shop_detail&id="+id;
+				          $.post( url, function( data ) {
 //							  $( "#set_content_"+val.main.id ).html( data );
 							  $( "#body_show_infowindow" ).html( data );
 						});
@@ -491,23 +493,18 @@
 			 $('#closeModal').click();
 		}
 		
-		$('#closeInfowindow').click(function(){
-
-			$("#infowindow_event").css( 'display','none' );
-			
-		});
-		
 		$('#btn_popup_filter').click(function(){
 			if($('#check_broM').val()==0){
 
 //				$('#broModal').css('height','200px');
 //				 $("#mapModal").animate({height: '250px'});
 //				 $("#mapModal").height( 260 );
-
+				
 				 $("#mapModal").height( 50 );
 				 $('#btn_popup_filter .but_map-menu').css('background-color','rgb(0,132,212)');
 				 $('#btn_popup_filter .but_map-menu').css('color','#fff');
 				$('#check_broM').val(1);
+//				$('#search_shop').focus();
 			}else{
 //				$('#broModal').css('height','0px');
 //				$("#mapModal").animate({height: '0px'});
@@ -559,7 +556,7 @@
 							var obj = JSON.parse(data);
 							 $.each(obj, function (key, val) {
 						        console.log(val);
-						        $('#box_result_search').append('<table class="box-show-place" onclick="ClickResultSearch('+val.id+','+val.lat+','+val.lng+');"><tr><td width="70"><i class="fa '+val.logo_code+'" style="font-size:35px;color: #3b5998;"></i></td><td width="240"><span><strong>'+val.topic_en+'<br/>'+val.topic_th+'</strong></span></td></tr></table>');
+						        $('#box_result_search').append('<div class="box-show-place" ><table onclick="ClickResultSearch('+val.id+','+val.lat+','+val.lng+');"><tr><td width="70"><i class="fa '+val.logo_code+'" style="font-size:35px;color: #3b5998;"></i></td><td width="240"><span class="font-20">'+val.topic_en+'<br/>'+val.topic_th+'</span></td></tr></table></div>');
 						    });
 				});
 				
@@ -704,7 +701,7 @@
 	}
 	.box-show-place{
 		border: 1px solid #ddd;  
-		padding: 2px;  
+		padding: 5px;  
 		box-shadow: 1px 1px 3px #ddd;
 		border-radius: 15px;
 		margin-bottom:5px;
@@ -715,16 +712,10 @@
 <input type="hidden" value="0" id="check_broM"/>
 <input type="hidden" value="0" id="check_switch_mod_show"/>
 
-<div id="mapModal" class="map-search-modal">
-		<div style="width: 100%;padding-left: 10px;padding-right: 10px;padding-top: 5px;padding-bottom:  5px;">
-			<table width="100%">
-  				<tr>
-  					<td>
-  				<input class="search-box-shop" id="search_shop" onkeyup="SearchPlace();" value="" placeholder="<?=t_search_by_place;?>" style=" border-radius: 15px; width:100%;padding:10px;height:35px;">
-  				<i class="fa fa-search" aria-hidden="true" style="position:  absolute;right: 30px;top: 15px;font-size: 20px;" ></i>
-  					</td>
-  				</tr>
-  				</table>
+<div id="mapModal" class="map-search-modal" style="margin: 25px;">
+		<div style="width: 100%;padding-left: 20px;padding-right: 20px;padding-top: 5px;padding-bottom:  5px;">
+			<input class="search-box-shop" id="search_shop" onkeyup="SearchPlace();" value="" placeholder="<?=t_search_by_place;?>" style="margin-bottom: 10px;">
+			<i class="fa fa-search" aria-hidden="true" style="position:  absolute;right: 30px;top: 15px;font-size: 20px;" ></i>
 		</div>
 	<div style="padding: 5px 15px;height: 210px;overflow:  scroll;display: nones;" id="box_result_search">
 
@@ -732,13 +723,13 @@
 </div>
 
 <div id="infowindow_event" class="map-search-modal" style="background-color:#3333338f;display:none;
-padding-bottom:65px;overflow: scroll;top:0px;padding-top:65px;height: 100%;padding-left:15;padding-right: 15px;" >
+padding-bottom:65px;overflow: scroll;top:0px;padding-top:65px;height: 100%;padding-left:15px;padding-right: 15px;" >
 
 	<div style="padding: 10px;margin-top: 0px;padding: 15px;background-color:#fff;box-shadow:1px 2px 3px #999;
 	border-bottom-left-radius : 28px;
 	border-bottom-right-radius : 28px;
 	border-top-left-radius : 28px;">
-		<span class="close" style="position: absolute;color: #110000;right: 30px;top:65px;font-size: 45px; display: nones;" id="closeInfowindow" >&times;</span>
+		<span onclick="$('#infowindow_event').hide();" class="close" style="position: absolute;color: #110000;right: 30px;top:65px;font-size: 45px; display: nones;" id="closeInfowindow" >&times;</span>
 		<div id="body_show_infowindow">
 			
 		</div>

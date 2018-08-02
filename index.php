@@ -373,10 +373,10 @@
     display: none;
     overflow: scroll;
     -webkit-overflow-scrolling: touch;
-    z-index: 999;" > 
+    z-index: 100;" > 
 			<div style="    color: #fff;
     position: absolute;
-    z-index: 9999;
+    z-index: 100;
     top: 7px;
     left: 10px;
     padding: 10px;

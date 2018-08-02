@@ -311,7 +311,7 @@ $count_days = $db->rows($res[opentime]);
     <?php } ?>
     <tr >
 <td class="font-22"><?=t_work_remuneration;?></td>
-      <td id="shop_alert_menu_price_<?=$arr[project][id]?>" >
+      <td id="shop_alert_menu_price_<?=$arr[project][id]?>" onclick="checkPriceDetail('<?=$arr[project][id]?>');" >
       <table>
       	<tr>
       		<td width="125"><span class="font-22"><?=t_look_work_remuneration;?></span></td>
@@ -480,21 +480,6 @@ $time_of_open = "".$arr[shop][start_h].".".$arr[shop][start_m]." - ".$arr[shop][
   </tbody>
 </table>
 
-<script>
-  $('#shop_alert_menu_price_<?=$arr[project][id]?>').click(function(){  
-	
- $( "#main_load_mod_popup_1" ).toggle();
- 
-  var url_load= "load_page_mod_1.php?name=booking/popup&file=price&shop_id=<?=$arr[project][id]?>&lat=<?=$arr[shop][lat]?>&lng=<?=$arr[shop][lng]?>&type=stop";
-  console.log(url_load);
-  $('#load_mod_popup_1').html(load_main_mod);
-  $('#load_mod_popup_1').load(url_load); 
-  
- 
-
- 	});
- 	
-</script>
  <div id="broModal/" class="modal" style="font-size: 0px!important; color: #000000 !important;">
   <span class="close" style="position: fixed;
     color: #f4f4f4;
@@ -543,4 +528,14 @@ function closeModal(){
 	 $('.bottom_popup').show();
 }
 
+</script>
+
+<script>
+	function checkPriceDetail(id){
+		$( "#main_load_mod_popup_1" ).toggle();
+  		var url_load= "load_page_mod_1.php?name=booking/popup&file=price&shop_id=<?=$arr[project][id]?>&lat=<?=$arr[shop][lat]?>&lng=<?=$arr[shop][lng]?>&type=stop";
+  		console.log(url_load);
+  		$('#load_mod_popup_1').html(load_main_mod);
+  		$('#load_mod_popup_1').load(url_load); 
+	}
 </script>

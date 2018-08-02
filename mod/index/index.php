@@ -537,19 +537,20 @@ function getCookie(cname) {
           //on message received we print all the data inside the #container div
     socket.on('notification', function (data) {
 //          console.log("Start Socket");
-			
-					 res_socket = data.transfer[0];
-				  if(data.transfer[0].length>0){
-				  	$('#number_tbooking').show();
-				  }	 else{
-				  	$('#number_tbooking').hide();
-				  }
-				  
-		          $('#number_tbooking').text(data.transfer[0].length);
-		           if($('#check_open_worktbooking').val()==1){
-		           console.log(data.transfer);
-		   //        console.log('now open popup');
-		   		readDataBooking();
+				  if(data!=""){
+				  	res_socket = data.transfer[0];
+					  if(data.transfer[0].length>0){
+					  	$('#number_tbooking').show();
+					  }	 else{
+					  	$('#number_tbooking').hide();
+					  }
+					  
+			          $('#number_tbooking').text(data.transfer[0].length);
+			           if($('#check_open_worktbooking').val()==1){
+			           console.log(data.transfer);
+			   //        console.log('now open popup');
+			   		readDataBooking();
+				  }		 
 			
    		}
    });
