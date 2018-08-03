@@ -118,7 +118,7 @@
 		});
 	}
   function openNotifyline(){
-    location.href="https://www.welovetaxi.com/app/demo_new2/index.php?regis=linenoti&scope=notify&state=one"
+    location.href="https://www.welovetaxi.com/app/TShare_new/index.php?regis=linenoti&scope=notify&state=one"
   }
 	/*function logOut(){
 		swal({

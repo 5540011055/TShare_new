@@ -99,7 +99,8 @@
     background-repeat-x: no-repeat;
     background-repeat-y: no-repeat;
     background-size: cover;
-    opacity: 1.0;" >
+    opacity: 1.0;
+    height: -webkit-fill-available;" >
     <input type="hidden" id="set_lng_cookies" value="th" />
       <div style="
          display: block; 
