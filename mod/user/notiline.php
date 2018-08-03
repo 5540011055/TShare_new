@@ -72,7 +72,7 @@
       $('#state_two').show()
    }
    function regisAuthss(){
-      var load = 'https://notify-bot.line.me/oauth/authorize?response_type=code&client_id=5TRXWH7TY64enTsqhng7OZ&redirect_uri=https://www.welovetaxi.com/app/demo_new2/index.php?regis=linenoti&scope=notify&state=two';
+      var load = 'https://notify-bot.line.me/oauth/authorize?response_type=code&client_id=5TRXWH7TY64enTsqhng7OZ&redirect_uri=https://www.welovetaxi.com/app/TShare_new/index.php?regis=linenoti&scope=notify&state=two';
       //"load_page_mod_3.php?name=user&file=regisline&driver=<?=$_GET[driver]?>&place=<?=$_GET[place];?>";
        // $.post( url_load, function( data ) {
        //         $('#loginline').html(data);
@@ -86,7 +86,7 @@
       console.log(getParameterByName('code'))
       $.ajax({
             type: 'POST',
-            url: 'https://www.welovetaxi.com/app/demo_new2/curl/savetokenLine.php',
+            url: 'https://www.welovetaxi.com/app/TShare_new/curl/savetokenLine.php',
             data: { code: getParameterByName('code'),user: '<?=$_COOKIE["app_remember_user"];?>'},
             //contentType: "application/json",
             dataType: 'json',
@@ -101,7 +101,7 @@
                function () {
                   $('.close-small-popup').click();
                   $('.button-close-popup-mod').click();
-                  location.href='https://www.welovetaxi.com/app/demo_new2';
+                  location.href='https://www.welovetaxi.com/app/TShare_new';
                });
                 //console.log(getParameterByName('code'))
             }
