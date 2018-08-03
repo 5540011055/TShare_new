@@ -185,6 +185,8 @@ $('#main_load_mod_popup').show();
     // $('#load_body_mode').html(load_money);
   }
    function sendwithdraw() {
+    console.log(balance)
+   
       console.log('in case')
 
      
@@ -192,6 +194,10 @@ $('#main_load_mod_popup').show();
       var bank = $('#pay_bank').val(); 
       var bank_name = $('#bank_name').val(); 
       var bank_number = $('#bank_number').val(); 
+       if (parseInt(balance)< parseInt(amount)) {
+        swal("ไม่สามารถทำการถอนได้","คุณใส่จำนวนเงินมากกว่ายอดเงินในบัญชีของคุณ","error");
+        return false;
+       }
       $.ajax({
             type: 'POST',
             url: 'mod/load/pay/savedata_withdraw.php',
