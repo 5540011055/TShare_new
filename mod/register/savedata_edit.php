@@ -192,17 +192,26 @@ if ($_GET[action] == "add2") {
     
     $last_id = mysql_insert_id();
     $member_db = $last_id;
-    if ($member_db >= 1000) {
-        $member_in = "$member_db";
-    } elseif ($member_db >= 100) {
-        $member_in = "0$member_db";
-    } elseif ($member_db >= 10) {
-        $member_in = "00$member_db";
-    } elseif ($member_db >= 1) {
-        $member_in = "000$member_db";
-    } else {
-        $member_in = "0000$member_db";
-    }
+    if ($member_db >= 10000)
+		{
+		$member_in = "$member_db";
+		}
+	elseif ($member_db >= 1000)
+		{
+		$member_in = "0$member_db";
+		}
+	elseif ($member_db >= 100)
+		{
+		$member_in = "00$member_db";
+		}
+	elseif ($member_db >= 10)
+		{
+		$member_in = "000$member_db";
+		}
+	  else
+		{
+		$member_in = "0000$member_db";
+		}
     $data["last_id"] = $last_id;
     $data_update[username] = $provincecode.$member_in;;
     $data_update[result] = $db->update_db('web_driver',$data_update,'id = "'.$last_id.'" ');

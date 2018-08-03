@@ -54,8 +54,8 @@ if ($_GET[action] == 'add')
 		"namedriver" => "$_POST[namedriver]",
 		"ondate_time" => "$_POST[ondate_time]",
 //		"posted" => "$_SESSION[data_user_driver]",
-		"post_date" => "" . TIMESTAMP . "",
-		"update_date" => "" . TIMESTAMP . "",
+		"post_date" => "" . time() . "",
+		"update_date" => "" . time() . "",
 		"num_ch" => $_POST[persion_china],
 		"num_other" => $_POST[persion_other]
 	);
@@ -63,6 +63,23 @@ if ($_GET[action] == 'add')
 	$last_id = mysql_insert_id();
 	$array_data[last_id] = $last_id;
 	$array_data[result] = $result;
+
+    $member_db = $last_id;
+    if ($member_db >= 1000) {
+        $member_in = "$member_db";
+    } elseif ($member_db >= 100) {
+        $member_in = "0$member_db";
+    } elseif ($member_db >= 10) {
+        $member_in = "00$member_db";
+    } elseif ($member_db >= 1) {
+        $member_in = "000$member_db";
+    } else {
+        $member_in = "0000$member_db";
+    }
+    $data_update[invoice] = "S$member_in";
+    $data_update[result] = $db->update_db('order_booking',$data_update,'id = "'.$last_id.'" ');
+    $array_data[update] = $data_update;
+	
 	$db->closedb();
 	header('Content-Type: application/json');
 	echo json_encode($array_data);
