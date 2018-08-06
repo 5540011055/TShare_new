@@ -225,6 +225,7 @@ $row_data[] = $arr[bank]; ?>
         closeOnClear: false,
         "showButtonPanel": false,
         onStart: function() {
+        	var date = "<?=date('Y-m-d');?>";
             console.log(date)
             this.set('select', date); // Set to current date on load
             var url_place_th = "go.php?name=load/pay&file=index_job&server=th&driver=<?=$_COOKIE["
