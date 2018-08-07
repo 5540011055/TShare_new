@@ -281,6 +281,7 @@ $row_data[] = $arr[bank]; ?>
   console.log(amount)
   console.log(bank)
   console.log(date)
+  var date = $('#date_request').val();
   var data = {'bank_name':b_acount,'bank_number':b_number,'time':time,'amount':amount,'bank':b_bank,'driver':'<?=$_COOKIE["app_remember_user"];?>','action':'money_request','date':date };
   console.log(data)
 //  return;
