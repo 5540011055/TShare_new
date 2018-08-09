@@ -88,10 +88,13 @@ else if($_GET[type]=="detect_driver_approve"){
 }
 
 else if($_GET[type]=="checkin_approve"){
-	
+$typ_pay = $_GET[typ_pay];	
 $step = $_GET[step];
 if($step=="driver_checkcar"){
 	$curl_post_data2 = '{"driver_checkcar": 1,"idorder": '.$_POST[idorder].'}';	
+	if($typ_pay==1){
+		
+	}
 }else{
 	$f_date = $step."_date";	
 	$f_lat = $step."_lat";	
@@ -130,6 +133,7 @@ else if ($_GET[type]=="php_approve_job"){
 	header('Content-type: application/json');
 	echo json_encode($_POST);
 }
+
 else if($_GET[type]=="get_my_transfer_job"){
 	
 	$url = "http://www.welovetaxi.com:3000/countOrderbydriver";  

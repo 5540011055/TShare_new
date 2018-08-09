@@ -141,10 +141,11 @@
 //   	return;
 		 var lat = $('#lat').val();
 	    var lng = $('#lng').val();
+	    var typ_pay = $('#type_customer_pay').val();
 	    var idorder = '<?=$_GET[id];?>';
 	    var url = "mod/tbooking/curl_connect_api.php?type=checkin_approve&step=<?=$_GET[type];?>&oi="+idorder;
 	    console.log(url);
-			$.post(url,{ idorder:idorder,lat:lat, lng:lng  },function(res){
+			$.post(url,{ idorder:idorder,lat:lat, lng:lng, typ_pay:typ_pay  },function(res){
 				console.log(res)
 				if(res.status=="ok"){
 					if(res.data.status=="200"){

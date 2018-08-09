@@ -351,6 +351,7 @@
    </div>
 	<div id="status_job" style="padding: 5px 0px;">
    <input type="hidden" id="check_code" value="<?=$_POST[id];?>" />
+   <input type="hidden" id="type_customer_pay" value="<?=$_POST[s_status_pay];?>" />
    <table class="onlyThisTable" width="100%" border="0" cellpadding="1" cellspacing="1" id="table_show_hide_checkin_<?=$arr[order][invoice];?>">
       <tr id="step_driver_topoint">
          <td class="font-22">
