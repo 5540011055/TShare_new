@@ -130,6 +130,7 @@ function history_money(){
   $.post( url_load, function( data ) {
     $('#load_body_mode').html(data);
   });
+}
   function sendwithdraw() {
     console.log(balance)
     console.log('in case')
@@ -146,7 +147,10 @@ function history_money(){
       swal("ไม่สามารถทำการถอนได้","คุณใส่จำนวนเงินมากกว่ายอดเงินในการะเป๋าเงินของคุณ","error");
       return false;
     }
-
+if ($('#bank_number').val() == '') {
+      swal("ไม่สามารถทำการถอนได้","กรุณาอัพเดทบัญชีธนาคารของคุณ","error");
+      return false;
+    }
     $.ajax({
       type: 'POST',
       url: 'mod/load/pay/savedata_withdraw.php',
