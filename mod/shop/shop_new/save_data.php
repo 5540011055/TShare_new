@@ -91,6 +91,92 @@ if ($_GET[action] == 'add')
 	
 	$db->closedb();
 	header('Content-Type: application/json');
+	linenoti();
 	echo json_encode($array_data);
-	} 
+	}
+	function linenoti(){
+	// $db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
+ // 	$res[place_shop] = $db->select_query("SELECT topic_th,id FROM shopping_product  WHERE id='".$_POST[program]."' ");
+ // 	$arr[place_shop] = $db->fetch($res[place_shop]);
+		$txt_short = 'ทะเบียน '.$_POST[car_plate];
+        $txt_short .=' ทำรายการส่งแขกเข้ามาใหม่ กรุณาตรวจสอบ';
+   		$title = "ทำรายการใหม่";
+   		$time_post = date('Y-m-d h:i:s');
+   		
+   		$mm = $_POST[time_num];
+		if($_POST[time_num]<10){
+			$mm = "0".$_POST[time_num];
+		}
+		if($_POST[adult]<1){
+			$_POST[adult] = 0;
+		}
+   		
+   		$txt_short2 = 'สถานที่ '. $arr[place_shop][topic_th].' ';
+   		$txt_short2 .= 'ทำรายการเวลา '.$time_post.'  น. ';
+   		$txt_short2 .= 'จะถึงสถานที่ในอีก '.$mm.' นาที ';
+   		$txt_short2 .= 'จำนวนแขก '.$_POST[adult].' คน';
+
+
+
+$str = 'hello';
+
+$str  = $title.$txt_short.$txt_short2.'รายละเอียดคนขับ'.'ชื่อ-สกุล : '.$_POST[namedriver].'เบอร์โทร'.$_POST[dri_phone];
+
+
+
+		define('LINE_API',"https://notify-api.line.me/api/notify");
+ 
+$token = "NKtM17mRVqSAoIraJJyKbNkloWrF7QCM2kZCTsXvLXb"; //ใส่Token ที่copy เอาไว้
+
+ 
+$res = notify_message($str,$token);
+//print_r($res);
+
+ //$res = json_decode($result);
+ //return $res;
+ //
+ 
+
+
+//  $message = $_REQUEST['message'];
+
+// $chOne = curl_init();
+// curl_setopt( $chOne, CURLOPT_URL, "https://notify-api.line.me/api/notify");
+// // SSL USE
+// curl_setopt( $chOne, CURLOPT_SSL_VERIFYHOST, 0);
+// curl_setopt( $chOne, CURLOPT_SSL_VERIFYPEER, 0);
+// //POST
+// curl_setopt( $chOne, CURLOPT_POST, 1);
+// // Message
+// curl_setopt( $chOne, CURLOPT_POSTFIELDS, $message);
+// //ถ้าต้องการใส่รุป ให้ใส่ 2 parameter imageThumbnail และimageFullsize
+// curl_setopt( $chOne, CURLOPT_POSTFIELDS, '');
+// // follow redirects
+// curl_setopt( $chOne, CURLOPT_FOLLOWLOCATION, 1);
+// //ADD header array
+// $headers = array( 'Content-type: application/x-www-form-urlencoded', 'Authorization: Bearer NKtM17mRVqSAoIraJJyKbNkloWrF7QCM2kZCTsXvLXb', );  // หลังคำว่า Bearer ใส่ line authen code ไป
+// curl_setopt($chOne, CURLOPT_HTTPHEADER, $headers);
+// //RETURN
+// curl_setopt( $chOne, CURLOPT_RETURNTRANSFER, 1);
+// $result = curl_exec( $chOne );
+// //Check error
+// if(curl_error($chOne)) { echo 'error:' . curl_error($chOne); }
+// else { $result_ = json_decode($result, true);
+// //echo "status : ".$result_['status']; echo "message : ". $result_['message']; }
+// //Close connect
+// curl_close( $chOne );
+} 
+function notify_message($message,$token){
+ $queryData = array('message' => $message);
+ $queryData = http_build_query($queryData,'','&');
+ $headerOptions = array( 
+         'http'=>array(
+            'method'=>'POST',
+            'header'=> "Content-Type: application/x-www-form-urlencoded\r\n"."Authorization: Bearer ".$token."\r\n"."Content-Length: ".strlen($queryData)."\r\n",
+            'content' => $queryData
+         ),
+ );
+ $context = stream_context_create($headerOptions);
+ $result = file_get_contents(LINE_API,FALSE,$context);
+}
 ?>
