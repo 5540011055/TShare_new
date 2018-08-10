@@ -293,8 +293,8 @@
                            <tr>
                               <td valign="top"><i class="icon-app-uniF111" style="color:#666666; font-size:18px"></i></td>
                               <td valign="top" class="td-text text-cap"><b><?=t_voucher_number;?></b></td>
-                              <td valign="top" class="td-text"><a href="<?=$_POST[invoice];?>" target="_blank">
-                              <span class="span-detail1"> <font color="#00808B" class="font-22" ><?=$_POST[invoice];?></font></span></a>
+                              <td valign="top" class="td-text">
+                              <span class="span-detail1"> <font color="#00808B" class="font-22" ><?=$_POST[invoice];?></font></span>
                               </td>
                            </tr>
                            
@@ -352,6 +352,9 @@
 	<div id="status_job" style="padding: 5px 0px;">
    <input type="hidden" id="check_code" value="<?=$_POST[id];?>" />
    <input type="hidden" id="type_customer_pay" value="<?=$_POST[s_status_pay];?>" />
+   <input type="hidden" id="cost" value="<?=$_POST[cost];?>" />
+   <input type="hidden" id="s_cost" value="<?=$_POST[s_cost];?>" />
+   <input type="hidden" id="driver_id" value="<?=$_POST[driver];?>" />
    <table class="onlyThisTable" width="100%" border="0" cellpadding="1" cellspacing="1" id="table_show_hide_checkin_<?=$arr[order][invoice];?>">
       <tr id="step_driver_topoint">
          <td class="font-22">

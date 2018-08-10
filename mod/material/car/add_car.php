@@ -4,6 +4,7 @@
    }
    .select-dropdown{
    padding-left: 10px;
+   border: 1px solid #ddd;
    }
    .initialized{
    display: none;
@@ -25,13 +26,16 @@
                      <option value="" disabled selected ><?=t_select_a_vehicle_type;?></option>
                      <?
                         $db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
-                        $res[programtour] = $db->select_query("SELECT * from  ".TB_carall_type."  ");
+                        $res[programtour] = $db->select_query("SELECT * from  ".TB_carall_type."  where status = 1 ");
                         while ($arr[programtour] = $db->fetch($res[programtour])){
-                        	   echo "<option value=\"".$arr[programtour][id]."\"";
-                        	   if($arr[programtour][id] == $arr[web_car][car_type]){echo " Selected";}
-                        	  // echo ">".$arr[programtour][company]."</option>";
-                        echo ">".$arr[programtour][$place_shopping]." </option>";
-                        }
+                        	   if($arr[programtour][id] == $arr[web_car][car_type]){
+                        	   		$selected_type = "selected";
+                        	   }else{
+							   		$selected_type = "";
+							   }
+                        ?>
+                         <option value="<?=$arr[programtour][id];?>" <?=$selected_type;?> ><?=$arr[programtour][$place_shopping]." ".$arr[programtour][pax_th];?></option>
+                        <? }
                         $db->closedb ();
                         ?>
                   </select>

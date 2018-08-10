@@ -141,16 +141,24 @@
 //   	return;
 		 var lat = $('#lat').val();
 	    var lng = $('#lng').val();
-	    var typ_pay = $('#type_customer_pay').val();
+	    var type_pay = $('#type_customer_pay').val();
 	    var idorder = '<?=$_GET[id];?>';
-	    var url = "mod/tbooking/curl_connect_api.php?type=checkin_approve&step=<?=$_GET[type];?>&oi="+idorder;
+	    var url = "mod/tbooking/curl_connect_api.php?type=checkin_approve&step=<?=$_GET[type];?>&oi="+idorder+"&type_pay="+type_pay;
 	    console.log(url);
-			$.post(url,{ idorder:idorder,lat:lat, lng:lng, typ_pay:typ_pay  },function(res){
+	    var data = { idorder:idorder,
+	    lat:lat, 
+	    lng:lng, 
+	    cost : $('#cost').val(),
+	    s_cost : $('#s_cost').val(),
+	    driver_id : $('#driver_id').val()  }
+	    console.log(data);
+//	    return;
+			$.post(url,data,function(res){
 				console.log(res)
-				if(res.status=="ok"){
-					if(res.data.status=="200"){
+				if(res.api.status=="ok"){
+					if(res.api.data.status=="200"){
 						$( "#close_dialog_custom" ).click();
-						afterAction();
+						afterAction(type_pay);
 					}else{
 						swal("Error");
 					}
@@ -160,7 +168,8 @@
 			});
     });
     	
-    function afterAction(){
+    function afterAction(type_pay){
+    	getTansferJobNumber("<?=$user_id;?>","<?=date('Y-m-d');?>");
     	if('<?=$_GET[type];?>'=='driver_pickup'){
 			$("#btn_pickup_not_tr").hide();
 		}
@@ -181,14 +190,32 @@
 	console.log('++++++++++++');
 	
 	if("<?=$last_step;?>"=="driver_checkcar"){
+		$('#material_alert').modal('open');
+		$('#alertLabel').text('');
 		var driver = $('#driver').val();
+		if(type_pay==1){
+			var txt2 = '<span class="font-22" >งานนี้เป็นงานโอนเงินเข้ากระเป๋าเงินในระบบ</span>';
+		}else{
+			var txt2 = '<span class="font-22" >งานนี้เป็นงานลูกค้าจ่ายเงินสด ระบบทำการหักส่วนต่างออกจากกระเป๋าเงินแล้ว</span>';
+		}
+		var txt1 = '<p>งานเสร็จสิ้นแล้ว</p>';
+		var txt3 = '<span class="font-22" >ยอดเงินในกระเป๋าของท่านมีการเคลื่อนไหว กรุณาตรวจสอบ</span>';
+		var txt4 = '<button class="btn btn-danger waves-effect waves-light" onclick="finish(); ">ตรวจสอบ</button>';
+		$('#load_modal_body_alert').html(txt1+" "+txt2+"<br/>"+txt3+"<br/>"+txt4);
+		
 		callApiManage();
 		callApiLog();
 		return;
 	}
 	$("#step_<?=$next_step;?>").show();
 	
-	}		
+	}	
+	
+	function finish(){
+		$("#main_load_mod_popup_clean").hide();
+		money_transfer();
+		$('#material_alert').modal('close');
+	}	
 </script>
 
 <script>

@@ -173,6 +173,9 @@
       if('<?=$_GET[status];?>'!="his"){ //เช็คว่าสเตตัสที่ส่งมาเป็น ประวัติ หรือ กำลังจัดการ
          $(window).load(function() {
          	$("#load_material").fadeOut(500);
+         	 setTimeout(function(){ 
+		      	  sendTagIOS(class_user,username);
+		    }, 1500);
          });
 		}  
       </script>
@@ -319,7 +322,7 @@
       </div>
       <!-- Modal Structure 2 -->
       <div id="material_alert" class="modal">
-         <div class="modal-content">
+         <div class="modal-content" style="padding: 0px 24px;">
             <h4 id="alertLabel">Modal Header</h4>
             <div id="load_modal_body_alert" style="-webkit-overflow-scrolling: touch;"></div>
          </div>
@@ -1057,9 +1060,7 @@ margin-top:0px;
 <script async defer
    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJa08ZMaSnJP5A6EsL9wxqdDderh7zU90&libraries=places&language=<?= $lng_map; ?>&v=<?= time(); ?>"></script>
 <script>
-   setTimeout(function(){ 
-      	  sendTagIOS(class_user,username);
-    }, 1500);	
+  	
     
     function sendTagIOS(classname,username){
     	var iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;

@@ -162,7 +162,7 @@
 		      var component2 = 
 		      '<div class="box_his">'
 		      +'<span class="font-20 time-post">'+"รับเมื่อ "+formatDate(value.post_date)+' '+formatTime(value.post_date)+" น."+'</span>'
-		      +'<a class="mof ripple" id="btn_'+index+'" onclick="openSheetHandle('+index+',1);rippleClick(\'' + id + '\');" style="padding: 0px; background: #fbfbfb;">'
+		      +'<a class="mof ripple" id="btn_'+index+'" onclick="openSheetHandle('+index+',1);" style="padding: 0px; background: #fbfbfb;">'
    			  +'<div class="bar-item">'
 		      +'<table width="100%" >'
 		         +'<tbody>'
@@ -224,7 +224,7 @@
 		  	}
 		      var component2 = 
 		      '<div class="box_his">'
-		      +'<button class="mof ripple" id="btn_'+index+'" onclick="openSheetHandle('+index+',2);rippleClick(\'' + id + '\');" style="padding: 0px;">'
+		      +'<button class="mof ripple" id="btn_'+index+'" onclick="openSheetHandle('+index+',2);" style="padding: 0px;">'
    			  +'<div class="w3-bar-item">'
 		      +'<table width="100%">'
 		         +'<tbody>'

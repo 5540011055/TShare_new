@@ -3,6 +3,8 @@ define("DB_HOST","localhost");
 define("DB_USERNAME","admin_MANbooking");
 define("DB_PASSWORD","252631MANbooking");
 define("DB_NAME_APP","admin_apptshare");
+include("../../includes/class.mysql.php");
+$db = new DB();
 if($_GET[type]=="getjob_booking"){
 	$url = "http://www.welovetaxi.com:3000/updateDriverlogs";                              
 	//create a new cURL resource
@@ -88,19 +90,78 @@ else if($_GET[type]=="detect_driver_approve"){
 }
 
 else if($_GET[type]=="checkin_approve"){
-$typ_pay = $_GET[typ_pay];	
+$typ_pay = $_GET[type_pay];	
 $step = $_GET[step];
 if($step=="driver_checkcar"){
-	$curl_post_data2 = '{"driver_checkcar": 1,"idorder": '.$_POST[idorder].'}';	
-	if($typ_pay==1){
+//	$curl_post_data2 = '{"driver_checkcar": 1,"idorder": '.$_POST[idorder].'}';		
+	if($typ_pay==1)
+	{
+		$db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
+        $res[dv_dp] = $db->select_query("SELECT balance,id from deposit where driver = '".$_POST[driver_id]."' ");
+        $arr[dv_dp] = $db->fetch($res[dv_dp]);
+        
+        $pay_driver = intval($_POST[cost]) - intval($_POST[s_cost]);
+        $deposit_update = intval($arr[dv_dp][balance]) + intval($pay_driver);
+        
+		$data[order_id] = $_POST[idorder];
+		$data[deposit_pay] = $pay_driver;
+		$data[balance_before] = $arr[dv_dp][balance];
+		$data[status] = 1;
+		$data[post_date] = time();
+		$data[last_update] = time();
+		$data[type_pay] = 1;
+		$data[type_job] = "transfer";
+		$data[driver_id] = $_POST[driver_id];
+		$data[result] = $db->add_db("history_pay_driver_deposit",$data);
+		$return[deposit] = $data;
+				
+        $update[balance] = $deposit_update;
+        $update[last_update] = time();
+		$update[result] = $db->update_db("deposit",$update,"id = '".$arr[dv_dp][id]."' ");
+		$update[id] = $arr[dv_dp][id];
+		$return[update_balance] = $update;
+	}
+	else{
+		
+		$db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
+        $res[dv_dp] = $db->select_query("SELECT balance,id from deposit where driver = '".$_POST[driver_id]."' ");
+        $arr[dv_dp] = $db->fetch($res[dv_dp]);
+        
+        $pay_driver = intval($_POST[cost]) - intval($_POST[s_cost]);
+        $deposit_update = intval($arr[dv_dp][balance]) - intval($_POST[s_cost]);
+        
+		$data[order_id] = $_POST[idorder];
+		$data[s_cost] = $_POST[s_cost];
+		$data[deposit_pay] = $pay_driver;
+		$data[balance_before] = $arr[dv_dp][balance];
+		$data[status] = 1;
+		$data[post_date] = time();
+		$data[last_update] = time();
+		$data[type_pay] = 0;
+		$data[type_job] = "transfer";
+		$data[driver_id] = $_POST[driver_id];
+		$data[result] = $db->add_db("history_pay_driver_deposit",$data);
+		$return[deposit] = $data;
+				
+        $update[balance] = $deposit_update;
+        $update[last_update] = time();
+		$update[result] = $db->update_db("deposit",$update,"id = '".$arr[dv_dp][id]."' ");
+		$update[id] = $arr[dv_dp][id];
+		$return[update_balance] = $update;
 		
 	}
-}else{
+}
+/*else{
 	$f_date = $step."_date";	
 	$f_lat = $step."_lat";	
 	$f_lng = $step."_lng";	
 	$curl_post_data2 = '{"'.$step.'": 1,"idorder": '.$_POST[idorder].',"'.$f_date.'":'.time().',"'.$f_lat.'":"'.$_POST[lat].'","'.$f_lng.'":"'.$_POST[lng].'"}';
-}
+}*/
+
+$f_date = $step."_date";	
+$f_lat = $step."_lat";	
+$f_lng = $step."_lng";	
+$curl_post_data2 = '{"'.$step.'": 1,"idorder": '.$_POST[idorder].',"'.$f_date.'":'.time().',"'.$f_lat.'":"'.$_POST[lat].'","'.$f_lng.'":"'.$_POST[lng].'"}';
 $url = "http://www.welovetaxi.com:3000/updateJobstatus";                              
 
 $ch = curl_init($url);
@@ -110,8 +171,10 @@ curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 $result = curl_exec($ch);
 curl_close($ch);
 $decode = json_decode($result);
+
+$return[api] = $decode;
 header('Content-Type: application/json');
-echo json_encode($decode);
+echo json_encode($return);
 //echo $curl_post_data2;
 }
 

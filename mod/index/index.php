@@ -256,6 +256,14 @@ function workTbooking(){
    ckeckhis = false;
    $.post("mod/user/check_user.php?check=car_driver&user_id=<?=$user_id;?>",function(res){
    		console.log(res);
+   		if(class_user=="lab"){
+			$('#main_load_mod_popup').show();
+		     var url_load = "load_page_mod.php?name=tbooking&file=all";
+		     $('#load_mod_popup').html(load_main_mod);
+		     $('#load_mod_popup').load(url_load);
+		     $('#check_open_worktbooking').val(1);
+		     return;
+		}
    		if(res.num<=0){
    			console.log('O')
 			$('#material_alert').modal('open');
