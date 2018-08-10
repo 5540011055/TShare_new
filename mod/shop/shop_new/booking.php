@@ -23,6 +23,8 @@
          $res[projectcarall] = $db->select_query("SELECT * FROM   web_carall  where drivername = '".$user_id."' and status=1 order by status_usecar desc  ")
          ?>
       <input name="program" type="hidden"  required="true" class="form-control" id="program" value="<?=$arr[shop][id]?>" >
+      <input name="dri_name" type="hidden"  required="true" class="form-control" id="dri_name" value="<?=$arr[driver][name]?>" >
+      <input name="pro_name" type="hidden"  required="true" class="form-control" id="pro_name" value="<?=$arr[shop][topic_th]?>" >
       <script>
 //      	alert('<?=$arr[shop][topic_th];?>');
       	$(".text-topic-action-mod-3" ).html('<?=$arr[shop][topic_th];?>');
