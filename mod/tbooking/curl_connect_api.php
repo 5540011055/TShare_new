@@ -151,7 +151,7 @@ if($step=="driver_checkcar"){
 		$return[update_balance] = $update;
 		
 	}
-	$db->close();
+	$db->closedb();
 	/**
 	* 
 	* @var update ap_order status
@@ -160,7 +160,7 @@ if($step=="driver_checkcar"){
 	$up_order[status] = 1;
 	$db->connectdb(DB_NAME_BOOK,DB_USERNAME,DB_PASSWORD);
 	$up_order[result] = $db->update_db("ap_order",$up_order," 	invoice = '".$_POST[invoice]."' ");
-	$db->close();
+	$db->closedb();
 	$return[update_ap_order] = $up_order;
 }
 /*else{

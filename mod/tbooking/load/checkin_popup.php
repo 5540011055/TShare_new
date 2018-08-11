@@ -153,8 +153,8 @@
 	    invoice : $('#invoice').val(),
 	    driver_id : $('#driver_id').val()  }
 	    console.log(data);
-	    return;
-			$.post(url,data,function(res){
+//	    return;
+			/*$.post(url,data,function(res){
 				console.log(res)
 				if(res.api.status=="ok"){
 					if(res.api.data.status=="200"){
@@ -166,11 +166,28 @@
 				}
 				$('#btn_manage').click();
 				callApiLog();
-			});
+			});*/
+			$.post(url,data, function( res, textStatus, jQxhr ){
+		            console.log(res)
+					if(res.api.status=="ok"){
+						if(res.api.data.status=="200"){
+							$( "#close_dialog_custom" ).click();
+							afterAction(type_pay);
+						}else{
+							swal("Error");
+						}
+					}
+					$('#btn_manage').click();
+					callApiLog();
+		        },'json')
+		        .fail(function( jqXhr, textStatus, errorThrown ){
+		                console.log( errorThrown );
+		        });
     });
     	
     function afterAction(type_pay){
-    	getTansferJobNumber("<?=$user_id;?>","<?=date('Y-m-d');?>");
+    	var driver_id = $('#driver_id').val();
+    	getTansferJobNumber(driver_id,"<?=date('Y-m-d');?>");
     	if('<?=$_GET[type];?>'=='driver_pickup'){
 			$("#btn_pickup_not_tr").hide();
 		}
@@ -193,7 +210,7 @@
 	if("<?=$last_step;?>"=="driver_checkcar"){
 		$('#material_alert').modal('open');
 		$('#alertLabel').text('');
-		var driver = $('#driver').val();
+
 		if(type_pay==1){
 			var txt2 = '<span class="font-22" >งานนี้เป็นงานโอนเงินเข้ากระเป๋าเงินในระบบ</span>';
 		}else{

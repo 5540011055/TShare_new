@@ -1,4 +1,7 @@
 <style>
+.id-order{
+	padding: 0px 10px;
+}
 .font_close_icon {
     font-size: 36px;
 }
@@ -25,8 +28,7 @@
 td{
 	font-size: 14px;
 }
-</style>
-<style>
+
 /* The container */
 .pd-this-page td{
 	padding : 5px;
@@ -143,7 +145,7 @@ td{
                         <tr>
                            <td height="35" class="boxnumber" style="font-size:18px; color:#FFFFFF; background-color: #006699 ; font-weight:bold ;border-radius: 0px;" id="">
                               <center>
-                                 <span id="place_number_190914">1</span> | 1 
+                                 <span class="id-order"><?=$_POST[id];?></span>
                                  
                               </center>
                            </td>
@@ -194,7 +196,7 @@ td{
                                     </div>
       			 <div align="left" style="font-size:16px;padding: 5px 15px; "> 
                      <span id="address_form" class="font-24">
-                     	<?=$_POST[pickup_place][topic];?>
+                     	<?=$_POST[address_from];?>
                      </span>					   
                        
                      </div>
@@ -210,7 +212,7 @@ td{
                                     </div>
       			 <div align="left" style="font-size:16px;padding: 5px 15px; "> 
                      <span id="address_form" class="font-24">
-                     	<?=$_POST[to_place][topic];?>
+                     	<?=$_POST[address_to];?>
                      </span>					   
                        
                      </div>

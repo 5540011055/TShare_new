@@ -88,7 +88,17 @@ function openDetailBooking(index, s_pay, s_cost, cost) {
      var dv_cost = $('#balance').val();
      console.log(dv_cost + " : " + s_cost + " type = " + s_pay);
      if (s_pay == 0) {
-         
+         if(class_user=="lab"){
+		 	 $('#header_clean').text('งานรถรับ-ส่ง')
+             var url = "empty_style.php?name=tbooking&file=book_detail";
+             var post = res_socket[index];
+             $.post(url, post, function(data) {
+                 $('#load_mod_popup_clean').html(data);
+                 $('#main_load_mod_popup_clean').show();
+                 
+             });
+             return;
+		 }
          if (dv_cost < s_cost) {
              //   		$('#material_dialog').show();
              $('#material_dialog').modal('open');
