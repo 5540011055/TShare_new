@@ -99,7 +99,9 @@
     function callApiLog(){
     	var date = $('#date_report').val();
     	var driver = $('#driver').val();
-		$.post("mod/tbooking/curl_connect_api.php?type=history_booking",{driver:driver,date:date},function(res_api_hit){
+    	var url_action = "mod/tbooking/curl_connect_api.php?type=history_booking";
+    	var data_param = {driver:driver,date:date};
+		/*$.post("mod/tbooking/curl_connect_api.php?type=history_booking",{driver:driver,date:date},function(res_api_hit){
 	   		console.log(res_api_hit);
 	   		var h = [];
 	   		if(res_api_hit.status=="200"){
@@ -110,15 +112,35 @@
 //					}
 					eachObjHistory();
 	   			}
-	});
+		});*/
+		$.post(url_action,data_param, function( data, textStatus, jQxhr ){
+            console.log(data)
+            var m = [];
+	   		if(data.status=="200"){
+	   				historyObj = data.data.result;
+	   				console.log("his : "+historyObj.length)
+//		   			if(historyObj.length>0){
+//						$('#number_history').text(historyObj.length);
+//					}
+					eachObjHistory();
+	   			}
+        },'json')
+        .fail(function( jqXhr, textStatus, errorThrown ){
+                console.log( errorThrown );
+        });
 	}
 	
 	function callApiManage(){
+		
     	var date = $('#date_report').val();
     	var driver = $('#driver').val();
     	console.log(date+" "+driver);
-		$.post("mod/tbooking/curl_connect_api.php?type=manage_booking",{driver:driver, date:date},function(res_api_hit){
-	   		console.log(res_api_hit);
+//    	alert(date+" "+driver);
+    	var url_action = "mod/tbooking/curl_connect_api.php?type=manage_booking";
+    	var data_param = {driver:driver, date:date};
+		/*$.post("mod/tbooking/curl_connect_api.php?type=manage_booking",{driver:driver, date:date},function(res_api_hit){
+	   		console.log(error);
+	   		alert(res_api_hit);
 	   		var m = [];
 	   		if(res_api_hit.status=="200"){
 	   				manageObj = res_api_hit.data.result;
@@ -129,7 +151,24 @@
 //					}
 					eachObjManage();
 	   			}
-	});
+		});*/
+
+		$.post(url_action,data_param, function( data, textStatus, jQxhr ){
+            console.log(data)
+            var m = [];
+	   		if(data.status=="200"){
+	   				manageObj = data.data.result;
+	   				console.log("manage : "+manageObj.length)
+//		   			if(manageObj.length>0){
+						$('#number_manage').text(manageObj.length);
+						
+//					}
+					eachObjManage();
+	   			}
+        },'json')
+        .fail(function( jqXhr, textStatus, errorThrown ){
+                console.log( errorThrown );
+        });
 	}
 	
    function eachObjManage(){
@@ -279,7 +318,7 @@
 		$('#load_booking_data').hide();
 		$('#load_manage_data').hide();
 		$('#load_history_data').show();
-		console.log(driver+" : ");
+//		console.log(driver+" : ");
 	}
 	else if(type=="manage"){
 		$('.form-group').hide();
@@ -289,7 +328,7 @@
 		$('#load_booking_data').hide();
 		$('#load_history_data').hide();
 		$('#load_manage_data').show();
-		console.log(driver+" : ");
+//		console.log(driver+" : ");
 	}
 }
 

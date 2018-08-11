@@ -137,9 +137,9 @@
 
    ///
    $('#btn_checkin_popup_<?=$_GET[id]?>').click(function(){   
-//   	afterAction();
-//   	return;
-		 var lat = $('#lat').val();
+//   		console.log("<?=$_GET[id]?>");
+		
+		var lat = $('#lat').val();
 	    var lng = $('#lng').val();
 	    var type_pay = $('#type_customer_pay').val();
 	    var idorder = '<?=$_GET[id];?>';
@@ -150,9 +150,10 @@
 	    lng:lng, 
 	    cost : $('#cost').val(),
 	    s_cost : $('#s_cost').val(),
+	    invoice : $('#invoice').val(),
 	    driver_id : $('#driver_id').val()  }
 	    console.log(data);
-//	    return;
+	    return;
 			$.post(url,data,function(res){
 				console.log(res)
 				if(res.api.status=="ok"){

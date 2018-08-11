@@ -355,6 +355,7 @@
    <input type="hidden" id="cost" value="<?=$_POST[cost];?>" />
    <input type="hidden" id="s_cost" value="<?=$_POST[s_cost];?>" />
    <input type="hidden" id="driver_id" value="<?=$_POST[driver];?>" />
+   <input type="hidden" id="invoice" value="<?=$_POST[invoice];?>" />
    <table class="onlyThisTable" width="100%" border="0" cellpadding="1" cellspacing="1" id="table_show_hide_checkin_<?=$arr[order][invoice];?>">
       <tr id="step_driver_topoint">
          <td class="font-22">

@@ -3,6 +3,7 @@ define("DB_HOST","localhost");
 define("DB_USERNAME","admin_MANbooking");
 define("DB_PASSWORD","252631MANbooking");
 define("DB_NAME_APP","admin_apptshare");
+define("DB_NAME_BOOK","admin_booking");
 include("../../includes/class.mysql.php");
 $db = new DB();
 if($_GET[type]=="getjob_booking"){
@@ -150,6 +151,17 @@ if($step=="driver_checkcar"){
 		$return[update_balance] = $update;
 		
 	}
+	$db->close();
+	/**
+	* 
+	* @var update ap_order status
+	* 
+	*/
+	$up_order[status] = 1;
+	$db->connectdb(DB_NAME_BOOK,DB_USERNAME,DB_PASSWORD);
+	$up_order[result] = $db->update_db("ap_order",$up_order," 	invoice = '".$_POST[invoice]."' ");
+	$db->close();
+	$return[update_ap_order] = $up_order;
 }
 /*else{
 	$f_date = $step."_date";	
