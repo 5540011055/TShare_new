@@ -192,7 +192,7 @@
                   <td>
                      <div align="left" style="font-size:16px;padding:5px 15px; "> 
                      <span id="address_form" class="font-24">
-                     	<?=$_POST[pickup_place][topic];?>
+                     	<?=$_POST[address_from];?>
                      </span>					   
                        
                      </div>
@@ -230,7 +230,7 @@
                <tr>
                   <td>
                      <div align="left" style="padding:5px 15px; "> 
-                     	<span id="address_to"class="font-24"><?=$_POST[to_place][topic];?></span>		   
+                     	<span id="address_to"class="font-24"><?=$_POST[address_to];?></span>		   
                        
                      </div>
                     

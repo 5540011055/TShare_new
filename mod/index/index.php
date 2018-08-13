@@ -477,7 +477,7 @@ function showPosition(position) {
       }
       console.log('Php Browser lng : '+lng);
       var url = 'https://maps.google.com/maps/api/geocode/json?latlng='+position.coords.latitude+','+position.coords.longitude+'&sensor=false&language='+lng+'&key=AIzaSyCx4SLk_yKsh0FUjd6BgmEo-9B0m6z_xxM';
-
+console.log(url);
 $('#lat').val(position.coords.latitude);
 $('#lng').val(position.coords.longitude);
 //console.log(position.coords.latitude+" : "+position.coords.longitude);
