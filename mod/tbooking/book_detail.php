@@ -127,6 +127,20 @@ td{
 	}else{
 		$type_pay = 'โอนเงินเข้าบัญชี';
 	}
+	
+	if($_POST[address_from]!=""){
+		$place_from = $_POST[address_from];
+	}else{
+		$place_from = $_POST[pickup_place][topic];
+	}
+	
+	if($_POST[address_to]!=""){
+		$place_to = $_POST[address_to];
+	}else{
+		$place_to = $_POST[to_place][topic];
+	}
+	
+	
 ?>
 <!--<div class="font-22" style="padding: 5px 0px;margin-top: 0px;padding-left: 10px;" onclick="hideDetail();" ><a ><i class="fa fa-chevron-left" aria-hidden="true"></i>&nbsp;<?=t_back_previous;?></a></div>-->
 <div style="padding: 5px 0px;margin-top: 0px;padding-left: 10px;">
@@ -196,7 +210,7 @@ td{
                                     </div>
       			 <div align="left" style="font-size:16px;padding: 5px 15px; "> 
                      <span id="address_form" class="font-24">
-                     	<?=$_POST[address_from];?>
+                     	<?=$place_from;?>
                      </span>					   
                        
                      </div>
@@ -212,7 +226,7 @@ td{
                                     </div>
       			 <div align="left" style="font-size:16px;padding: 5px 15px; "> 
                      <span id="address_form" class="font-24">
-                     	<?=$_POST[address_to];?>
+                     	<?=$place_to;?>
                      </span>					   
                        
                      </div>
