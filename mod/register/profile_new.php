@@ -1,5 +1,6 @@
 <link rel="stylesheet" href="bootstrap/css/font-awesome.min.css" />
 <link rel="stylesheet" href="bootstrap/css/ionicons.min.css" />
+
 <? 
    $main_color="#000000";
    ?>
@@ -20,7 +21,6 @@
    #box_detail_pv{
    	padding: 10px;
     margin: 10px;
-    /* border: 1px solid; */
     box-shadow: 1px 1px 3px #9E9E9E;
     font-size: 16px;
    }
@@ -45,6 +45,19 @@
             <div class="input-group">
                <span class="input-group-addon"><i class="fa fa-user"></i></span>
                <input class="form-control" type="text" name="nickname" id="nickname"  required="true"   value="<?=$arr[web_driver_edit][nickname];?>"   >
+            </div>
+         </div>
+         <!-- end box -->
+      </div>
+      <!-- end col -->
+      
+      <div class="<?= $coldata?>" style="padding:0px;">
+         <div>
+            <!-- start box --> 
+            <div class="topicname" ><span class="font-24">เลขบัตรประชาชน</span></div>
+            <div class="input-group">
+               <span class="input-group-addon"><i class="fa fa-id-card" aria-hidden="true"></i></span>
+               <input class="form-control" type="number" name="idcard" id="idcard"  required="true"   value="" pattern="\d*" / >
             </div>
          </div>
          <!-- end box -->
@@ -86,7 +99,7 @@
             </div>
             <div class="input-group">
                <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
-               <select name="driver_province" id="driver_province" style="width:100%; padding:5px; height:40px" class="font-24" >
+               <select name="driver_province" id="driver_province" style="width:100%; padding:5px; height:40px;background-color: #fff;" class="font-24" >
                   <option value="" >- <?=t_select_province;?> -</option>
                   <?
                      $db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
@@ -157,9 +170,6 @@
       <table width="100%"  border="0" cellspacing="0" cellpadding="0" style="padding-top:20px;">
          <tr>
             <td id="tr_btn_change" align="center" ><button id="submit_step_1" type="button" class="btn btn-repair waves-effect" style="width:100%; background-color:#3b5998; border-radius:25px;text-transform: capitalize; " ><span class="font-24"><?=t_save_data;?></span></button> </td>
-         </tr>
-         <tr>
-            <td id="tr_btn_change" align="center" ><a href="https://www.google.co.th/">++++++++++++++++++</a> </td>
          </tr>
           
       </table>
@@ -329,5 +339,49 @@ $.post( url, function( data ) {
 	   });
    }
 });
+}
+
+function check_id_card(){
+    chID = false;
+    if(!checkID(document.form1.username_signup_idcard.value)){
+      swal("รหัสประชาชน !", "ไม่ถูกต้อง", "warning");
+    }
+
+else{ 
+  chID = true;
+console.log(document.form1.username_signup_idcard.value)
+$.ajax({
+            type: 'POST',
+            url: 'https://www.welovetaxi.com/app/demo_new2/curl/checkcard.php',
+            data: {'icard': document.form1.username_signup_idcard.value},
+            //contentType: "application/json",
+            dataType: 'json',
+            success: function(res){ 
+                console.log(res)
+                if(res[0].status == 1)
+              {
+                  swal("รหัสประชาชนนี้ !", "ลงทะเบียนแล้วกรุณาเข้าสูระบบ", "warning");
+                   
+              }
+              else 
+              {    
+                  swal("รหัสประชาชนนี้ !", "หมายเลขบัตรนี้ลงทะเบียนได้", "warning");
+              }
+                // if(res.status == 0){
+                //     $.cookie("login",res.username);
+                //     $('.lng_email_available').show()
+                //     $('.lng_email_have').hide()
+                //     window.location.href = "<?php //echo base_url(); ?>home";
+                // }
+                // else{
+                //     $('.lng_email_available').hide()                    
+                //     $('.lng_email_have').show()
+                // }                
+            }
+        });
+  
+  
+}
+
 }
 </script>
