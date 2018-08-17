@@ -17,6 +17,13 @@
    .confirm {
    	font-size: 18px !important;
    }
+   #box_detail_pv{
+   	padding: 10px;
+    margin: 10px;
+    /* border: 1px solid; */
+    box-shadow: 1px 1px 3px #9E9E9E;
+    font-size: 16px;
+   }
 </style>
 <div style="left:0; margin-left:-0px;margin-top:30px; " >
    <div class="box-body "  >
@@ -63,7 +70,7 @@
             <div class="topicname" ><span class="font-24"><?=t_phone_number;?></span></div>
             <div class="input-group">
                <span class="input-group-addon"><i class="fa fa-phone"></i></span>
-               <input class="form-control" type="number" name="phone" id="phone"  required="true"   value="<?=$arr[web_driver_edit][phone];?>" >
+               <input class="form-control" type="number" name="phone" id="phone"  required="true"  pattern="\d*"  value="<?=$arr[web_driver_edit][phone];?>" >
             </div>
          </div>
          <!-- end box -->
@@ -73,7 +80,10 @@
       <div class="<?= $coldata?>" style="padding:0px;">
          <div>
             <!-- start box -->
-            <div class="topicname" ><span class="font-24"><?=t_province;?></span></div>
+            <div class="topicname" ><span class="font-24"><?=t_province."ที่คุณอยู่ประจำ";?></span></div>
+            <div id="box_detail_pv">
+            	จังหวัดที่คุณอยู่ตอนนี้ <span id="txt_now_pv" style="color: #f10;font-weight: 800;">ไม่สามารถจับจังหวัดของคุณได้</span>
+            </div>
             <div class="input-group">
                <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
                <select name="driver_province" id="driver_province" style="width:100%; padding:5px; height:40px" class="font-24" >
@@ -92,20 +102,7 @@
             
             </div>
 
-            <!--<script>
-               $("#driver_province").change(function(){ 
-               var url_load_price= "go.php?name=register/load&file=area";
-               url_load_price=url_load_price+"&province="+document.getElementById('driver_province').value;
-               if(document.getElementById('driver_province').value>0){
-               $('#load_area').show();
-               }
-               if(document.getElementById('driver_province').value<1){
-               $('#load_area').hide();
-               }
-               $('#load_area').load(url_load_price); 
-               });
-            </script>
-            <div class="input-group" style="margin-top:10px; display:none" id="load_area"></div>-->
+
          </div>
          <!-- end box -->
       </div>
@@ -161,6 +158,9 @@
          <tr>
             <td id="tr_btn_change" align="center" ><button id="submit_step_1" type="button" class="btn btn-repair waves-effect" style="width:100%; background-color:#3b5998; border-radius:25px;text-transform: capitalize; " ><span class="font-24"><?=t_save_data;?></span></button> </td>
          </tr>
+         <tr>
+            <td id="tr_btn_change" align="center" ><a href="https://www.google.co.th/">++++++++++++++++++</a> </td>
+         </tr>
           
       </table>
       <br>
@@ -181,9 +181,7 @@
 	    reader.onload = function(e) {
 	    	
 	      $('#image_id_driver').attr('src', e.target.result);
-	      /*$('#img_tag_new').show();
-	      $('#box_manage_pf').show();
-	      $('#img_tag').hide();*/
+
 	    }
 	    reader.readAsDataURL(input.files[0]);
 	  }
@@ -231,33 +229,7 @@
       return false ;
       }
 
-    /*swal({
-      	title: "คุณแน่ใจหรือไม่?",
-      	text: "ว่าข้อมูลถูกต้อง",
-      	type: "warning",
-      	showCancelButton: true,
-      	confirmButtonText: 'ยืนยัน',
-      	cancelButtonText: "ยกเลิก",
-      	closeOnConfirm: true,
-      	closeOnCancel: true
-      },
-      function(isConfirm){
-         if (isConfirm){
-         	$('#tr_btn_change').html('<img src="images/loader.gif" />');	
-	       var url="go.php?name=register&file=savedata&type=user&action=add&id=<?=$_GET[id]?>";
-			console.log(url);
-	      $.post(url,$('#myform_regiter').serialize(),function(response){
-	        $('#send_profile_data').html(response);
-	        	swal('สำเร็จ','สมัครสมาชิกเสร็จสมบูรณ์ เลือกเมนูข้อมูลส่วนตัวเพื่อตรวจสอบข้อมูลของคุณ','success');
-	        	
-	       });
-	       
-	        $.post('send_messages/send_onesignal.php?key=new_driver',function(data){
-   					console.log(data);
-   				});
 
-         }
-      });*/
       
       swal({
 		  title: "คุณแน่ใจหรือไม่",
@@ -270,17 +242,13 @@
 		  showLoaderOnConfirm: true
 		}, function () {
 			
-			//upload
 
-//			var url="go.php?name=register&file=savedata&type=user&action=add&id=<?=$_GET[id]?>";
-			
 			var url_new ="mod/register/savedata_edit.php?type=user&action=add2";
-//			console.log(url);
+
 	      $.post(url_new,$('#myform_regiter').serialize(),function(response){
 	      	console.log(response);
-//			return
+
 	        $('#send_profile_data').html(response);
-//	        	swal('สำเร็จ','สมัครสมาชิกเสร็จสมบูรณ์ เลือกเมนูข้อมูลส่วนตัวเพื่อตรวจสอบข้อมูลของคุณ','success');
 	        	if(response.result==true){
 					var upload = "mod/user/upload_img/upload.php?user="+response.update.username;
 			    console.log(upload);
@@ -297,9 +265,9 @@
    				                type: 'post',
    				                success: function(php_script_response){
    				                   console.log(php_script_response);
-   				                   return
    				                }
    				     });
+//   				     return;
 					$.post('mail.php?key=new_driver',response,function(data){
    						console.log(data);
    					});
@@ -325,3 +293,41 @@
 <div style="display:none">
    <?  include ("mod/register/photo/upload_main.php");?><br>
 </div>
+
+<script>
+getLocation();
+function getLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+    } else {
+       console.log("Geolocation is not supported by this browser.");
+    }
+}
+function showPosition(position) {
+    var lat = position.coords.latitude;
+    var lng = position.coords.longitude; 
+    console.log(lat+" "+lng);
+     var url = 'https://maps.google.com/maps/api/geocode/json?latlng='+position.coords.latitude+','+position.coords.longitude+'&sensor=false&language='+lng+'&key=AIzaSyCx4SLk_yKsh0FUjd6BgmEo-9B0m6z_xxM';
+console.log(url);
+
+$.post( url, function( data ) {
+
+   if(data.status=="OVER_QUERY_LIMIT"){
+      console.log('OVER_QUERY_LIMIT');
+   }else{
+      var province = data.results[data.results.length-2].address_components[0].long_name;
+      console.log(province);
+       var url = "mod/shop/select_province_new.php?op=get_id_province_only";
+	   $.post( url,{txt_pv  :province} ,function( data ) {
+	      var obj = JSON.parse(data);
+	      console.log(obj);
+	      var province = obj.id;
+	      var area = obj.area;
+	      
+	      $('#txt_now_pv').text(obj.name_th);
+	      $('#driver_province').val(province);
+	   });
+   }
+});
+}
+</script>
