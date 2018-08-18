@@ -103,7 +103,7 @@
                   <option value="" >- <?=t_select_province;?> -</option>
                   <?
                      $db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
-                       $res[category] = $db->select_query("SELECT ".$province.",id,name FROM web_province   ORDER BY id ");
+                     $res[category] = $db->select_query("SELECT ".$province.",id,name FROM web_province   ORDER BY id ");
                      while($arr[category] = $db->fetch($res[category])) {
                        ?>
                        <option value="<?=$arr[category][id];?>"><?=$arr[category][$province];?></option>
