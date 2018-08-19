@@ -72,7 +72,8 @@
       $('#state_two').show()
    }
    function regisAuthss(){
-      var load = 'https://notify-bot.line.me/oauth/authorize?response_type=code&client_id=5TRXWH7TY64enTsqhng7OZ&redirect_uri=https://www.welovetaxi.com/app/TShare_new/index.php?regis=linenoti&scope=notify&state=two';
+    var load = 'https://line.me/R/ti/p/%40lwt1228q';
+      // var load = 'https://notify-bot.line.me/oauth/authorize?response_type=code&client_id=5TRXWH7TY64enTsqhng7OZ&redirect_uri=https://www.welovetaxi.com/app/TShare_new/index.php?regis=linenoti&scope=notify&state=two';
       //"load_page_mod_3.php?name=user&file=regisline&driver=<?=$_GET[driver]?>&place=<?=$_GET[place];?>";
        // $.post( url_load, function( data ) {
        //         $('#loginline').html(data);
