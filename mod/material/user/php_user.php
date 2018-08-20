@@ -7,7 +7,7 @@ define("DB_USERNAME","admin_MANbooking");
 define("DB_PASSWORD","252631MANbooking");
 define("DB_NAME_APP","admin_apptshare");
 $db = new DB();
-
+$tb_admin_chk = "web_driver";
 if($_GET[action]=="register"){
 	
 	include("../../../includes/class.resizepic.php");
@@ -34,28 +34,57 @@ if($_GET[action]=="register"){
         $data["status"] = "1";
         $data["post_date"] = time();
         $data["update_date"] = time();
-    	$data[result] = $db->add_db('web_driver_new',$data);
+    	$data[result] = $db->add_db($tb_admin_chk,$data);
     
     $last_id = mysql_insert_id();
     $member_db = $last_id;
     $member_in = genUsername($member_db);
     $data["last_id"] = $last_id;
     $data_update[username] = $provincecode.$member_in;
-    $data_update[result] = $db->update_db('web_driver_new',$data_update,'id = "'.$last_id.'" ');
+    $data_update[result] = $db->update_db($tb_admin_chk,$data_update,'id = "'.$last_id.'" ');
     $data[update] = $data_update;
     
-    $original_image = $_FILES['fileUpload']['tmp_name'] ;
-	$desired_width = 600;
-	$desired_height = _INEWS_H ;
-	$image = new hft_image($original_image);
-	$image->resize($desired_width, $desired_height, '0');
-	header('Content-Type: application/json');
-	$path = "../../../../data/pic/driver/small_new/".$data_update[username].".jpg";
-	$result = $image->output_resized($path,"JPG");
-	
-	$data[upload_img] = $result;
-	$data[path] = $path;
+    if($_FILES['fileUpload']['tmp_name']){
+		/*$original_image = $_FILES['fileUpload']['tmp_name'] ;
+		$desired_width = 600;
+		$desired_height = _INEWS_H ;
+		$image = new hft_image($original_image);
+		$image->resize($desired_width, $desired_height, '0');
+//		header('Content-Type: application/json');
+		
+//		$path = "../../../../data/pic/driver/small_new/Test_upload.jpg";
+		$img[result] = $image->output_resized($path,"JPG");
+		$img[tmp] = $original_image;
+		$img[name] = $_FILES['fileUpload']['name'];*/
+		
+		$path = "../../../../data/pic/driver/small_new/".$data_update[username].".jpg";
+		$data = $_POST['image-data'];
+		$image = $data;
+		$image = imagecreatefrompng($image);
+		$size = getimagesize($image);
+		imagejpeg($image, $path, $size[0], $size[1]);
+		$save_img = imagedestroy($image);
+		$img[result] = $save_img;
+		$img[path] = $path;
+	}
     
+	
+	if($_POST[plate_num]!=''){
+		$car[plate_num] = $_POST[plate_num];
+		$car[drivername] = $member_db;
+		$car[status] = 1;
+		$car[status_usecar] = 0;
+		$car[post_date] = time();
+		$car[update_date] = time();
+		$car[car_type] = 0;
+		$car[result] = $db->add_db('web_carall_new',$car);
+		$data[car] = $car;
+	}
+	
+	$data[upload_img] = $img;
+	$data[path] = $path;
+	header('Content-Type: application/json');
+    echo json_encode($data);
     
     $curl_post_data = '{"id":"'.$last_id.'","action":"add"}';
                     
@@ -82,12 +111,23 @@ curl_setopt($curl, CURLOPT_POSTFIELDS, $curl_post_data);
 $curl_response = curl_exec($curl);
 //echo $curl_response;
 curl_close($curl);
-    header('Content-Type: application/json');
-	echo json_encode($data);
+    
+	
 
 }
 
-
+if($_GET[action]=="upload"){
+	/*$data[tmp] = $_FILES['fileUpload']['tmp_name'] ;
+	$data[name] = $_FILES['fileUpload']['name'] ;
+	header('Content-Type: application/json');
+	echo json_encode($data);*/
+	$data = $_POST['image-data'];
+	$image = $data;
+	$image = imagecreatefrompng($image);
+	imagejpeg($image, 'test.jpg', 1000, 800);
+	imagedestroy($image);
+     echo $image;  
+}
 
 function genUsername($member_db){
 	if ($member_db >= 1000) {

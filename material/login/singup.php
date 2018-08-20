@@ -1,5 +1,5 @@
 <?php 
-			$name_th = "ชื่อ - นามสกุล (ภาษาไทย)";
+			$name_th = "ชื่อ - นามสกุล";
 			$name_en = "ชื่อ - นามสกุล (อังกฤษ)";
 			$nickname = "ชื่อเล่น";
 			$idcard = "เลขบัตรประชาชน";
@@ -7,6 +7,7 @@
 			$phone = "เบอร์โทรศัพท์";
 			$province = "จังหวัดที่คุณอยู่ประจำ";
 			$email = "อีเมล์";
+			$plate = "เลขทะเบียนรถ";
 		?>
 
 <div style="height: 200px; padding: 1px 0 0 0;">
@@ -26,7 +27,7 @@
             </label>
         </ons-list-item>
         
-        <ons-list-item class="input-items list-item p-l-0">
+        <!--<ons-list-item class="input-items list-item p-l-0">
             <div class="left list-item__left">
                 <ons-icon icon="fa-user" class="list-item__icon ons-icon"></ons-icon>
             </div>
@@ -37,7 +38,7 @@
                         <?=$name;?></span>
                 </ons-input>
             </label>
-        </ons-list-item>
+        </ons-list-item>-->
 
         <ons-list-item class="input-items list-item p-l-0">
             <div class="left list-item__left">
@@ -108,6 +109,19 @@
         
         <ons-list-item class="input-items list-item p-l-0">
             <div class="left list-item__left">
+                <ons-icon icon="fa-car" class="list-item__icon ons-icon"></ons-icon>
+            </div>
+            <label class="center list-item__center">
+                <ons-input id="name-input" float="" maxlength="30" placeholder="<?=$plate;?>" name="plate_num" style="width:100%;">
+                    <input type="text" class="text-input" maxlength="30" placeholder="<?=$plate;?>" name="plate_num">
+                    <span class="text-input__label">
+                        <?=$plate;?></span>
+                </ons-input>
+            </label>
+        </ons-list-item>
+        
+        <ons-list-item class="input-items list-item p-l-0">
+            <div class="left list-item__left">
                 <ons-icon icon="fa-at" class="list-item__icon ons-icon"></ons-icon>
             </div>
             <label class="center list-item__center">
@@ -124,19 +138,49 @@
     
     <ons-card  class="card">
       <ons-list-header class="list-header"><b>ภาพประจำตัว</b></ons-list-header>
-        <div class="camera" onclick="$('#imgInp').click();">
+        <!--<div class="camera" onclick="$('#imgInp').click();">
         	<div class="focus"></div>
         	<img src="" name="image_id_driver" id="image_id_driver" style="width:100%; padding:5px; margin-top:-20px;border-radius:15px; " />
  		</div>
+ 		-->
+ 		<div class="image-editor" align="center">
+ 		<ons-button modifier="outline" class="button-margin button button--outline" onclick="$('#imgInp').click();" style="margin-top: 10px;">เลือกรูป</ons-button>
+	      <input type="file" class="cropit-image-input" id="imgInp"  style="opacity: 0;position: absolute;">
+	      <div class="cropit-preview" >
+	      </div>
+	      <div align="center">
+	      	<button class="rotate-ccw" type="button" style="margin-right: 20px;"><ons-icon icon="fa-chevron-left" class="list-item__icon ons-icon"></ons-icon></button>
+	      	<button class="rotate-cw" type="button" style="margin-left: 20px;"><ons-icon icon="fa-chevron-right" class="list-item__icon ons-icon"></ons-icon></button> 
+	      </div>
+	      <input type="hidden" name="image-data" class="hidden-image-data" />
+	      <!--<button type="button" onclick="testUpload();">Click</button>  -->  
+	    </div>
+
  </ons-card>
-	
-	<input type='file' id="imgInp" style="opacity: 0;position: absolute;" onchange="readURL(this);" />
 </form>
      <ons-card class="card">
     <ons-button modifier="outline" class="button-margin button button--outline button--large" onclick="createAlertDialog();" >ยืนยันข้อมูล</ons-button>
     </ons-card>
-</div>
 
+	
+</div>   
 
+<script>
+	$(function() {
+		
+		 var url = "../../mod/material/user/php_user.php?action=upload";
+        $('.image-editor').cropit({
+          imageState: {
+            src: url,
+          },
+        });
 
-    
+        $('.rotate-cw').click(function() {
+          $('.image-editor').cropit('rotateCW');
+        });
+        $('.rotate-ccw').click(function() {
+          $('.image-editor').cropit('rotateCCW');
+        });
+
+      });
+</script>

@@ -746,13 +746,7 @@ function hideRes(id){
    function save_bookin_shop(){
 
    	var place_num = document.getElementById('car_plate').value;
-    console.log($('#time_num').val());
-	
-/*	 var url_mail = "mail.php?key=new_shop";
-             $.post(url_mail,$('#form_booking').serialize(),function(data){
-                  console.log(data);
-               });
-      return;         */
+    console.log($('#time_num').val());              
 	
      console.log($('#car_type').val())
       if ($('#car_type').val() == 0) {

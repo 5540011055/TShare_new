@@ -30,6 +30,35 @@
 <link rel="stylesheet" href="../onsenui/css/onsen-css-components.min.css">
 <script src="../onsenui/js/onsenui.min.js"></script>
 <style>
+      .cropit-preview {
+        background-color: #f8f8f8;
+        background-size: cover;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        margin-top: 7px;
+/*        width: 250px;*/
+        width: 250px;
+        height: 350px;
+/*        max-height: 450px;*/
+      }
+
+      .cropit-preview-image-container {
+        cursor: move;
+      }
+
+      .image-size-label {
+        margin-top: 10px;
+      }
+
+      input, .export {
+        display: block;
+      }
+
+      button {
+        margin-top: 10px;
+      }
+    </style>
+<style>
 .camera {
     width: 100%;
 /*    height: 100%;*/
@@ -56,7 +85,7 @@
 	    left: 0;
 	}
 	.link-txt{
-		color: #0076ff;
+		color: #0076ff !important;
 		font-weight: 800;
 	}
 	 @media screen and (max-width: 320px) {
@@ -119,6 +148,7 @@
 	<div class="limiter">
 		<div class="container-login100" style="padding: 0; margin: 0px; min-height: 100%;">
 			<div class="wrap-login100" style="border-radius: 0px;">
+			
 				<form id="form_login" method="post" enctype="multipart/form-data">
 			
 					<span class="login100-form-title p-b-30 p-t-20">
@@ -153,7 +183,7 @@
 							ลืมรหัสผ่านหรือไม่?
 						</span>
 
-						<a class="txt2 link-txt" href="#">
+						<a class="txt2 link-txt" onclick="fn.pushPage({'id': 'recovery.html', 'title': 'กู้หรัสผ่าน'}, 'lift-ios')">
 							กู้รหัส
 						</a>
 					</div>
@@ -171,7 +201,7 @@
       <div class="center" id="page_singup">สมัครสมาชิก</div>
     </ons-toolbar>
 	  <div id="body_page_singup">
-	  	<? include("singup.php"); ?>
+	  	<?php include("singup.php"); ?>
 	  </div>
   	</ons-page>
 	</template>
@@ -179,29 +209,17 @@
 	
 	<template id="submit-alert-dialog.html">
 	  <ons-alert-dialog id="submit-my-alert-dialog" modifier="rowfooter">
-	    <div class="alert-dialog-title" id="submit-dialog-title">Alert</div>
+	    <div class="alert-dialog-title" id="submit-dialog-title">คุณแน่ใจหรือไม่</div>
 	    <div class="alert-dialog-content">
-	      This dialog was created from a template
+	       ว่าต้องการบันทึกข้อมูลนี้
 	    </div>
 	    <div class="alert-dialog-footer">
-	      <ons-alert-dialog-button onclick="hideAlertDialog()">Cancel</ons-alert-dialog-button>
-	      <ons-alert-dialog-button onclick="submitSingUp()">OK</ons-alert-dialog-button>
+	      <ons-alert-dialog-button onclick="hideAlertDialog()">ยกเลิก</ons-alert-dialog-button>
+	      <ons-alert-dialog-button onclick="submitSingUp()">บันทึก</ons-alert-dialog-button>
 	    </div>
 	  </ons-alert-dialog>
 	</template>
-	
-	<template id="success-alert.html">
-	  <ons-alert-dialog id="success-alert-my-alert-dialog" modifier="rowfooter">
-	    <div class="alert-dialog-title" id="success-alert-dialog-title">สำเร็จ</div>
-	    <div class="alert-dialog-content">
-	      This dialog was created from a template
-	    </div>
-	    <div class="alert-dialog-footer">
-	      <ons-alert-dialog-button onclick="hideAlertDialog()" style="display: none;">Cancel</ons-alert-dialog-button>
-	    </div>
-	  </ons-alert-dialog>
-	</template>
-	
+		
 	<ons-modal direction="up">
 	  <div style="text-align: center">
 	    <p style="color: #fff;">
@@ -210,10 +228,31 @@
 	  </div>
 	</ons-modal>
 
+	<template id="recovery.html">
+	  <ons-page>
+	    <ons-toolbar>
+	      <div class="left">
+	        <ons-back-button>กลับ</ons-back-button>
+	      </div>
+	      <div class="center"></div>
+	    </ons-toolbar>
+	    <p style="text-align: center">
+	      	<? include("recovery.php"); ?>
+	    </p>
+	    <script>
+	      ons.getScriptPage().onInit = function () {
+	        this.querySelector('ons-toolbar div.center').textContent = this.data.title;
+	      }
+	    </script>
+	  </ons-page>
+</template>
+	
 	<div id="dropDownSelect1"></div>
 	
 <!--===============================================================================================-->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>-->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+	<script src="../plugin/cropit/dist/jquery.cropit.js"></script>
 <!--===============================================================================================-->
 	<script src="vendor/animsition/js/animsition.min.js"></script>
 <!--===============================================================================================-->
@@ -242,6 +281,7 @@
 		}
 
 		  var createAlertDialog = function() {
+
 		  	if($('input[name="name_th"]').val()==""){
 				ons.notification.alert({message: 'กรุณาใส่ชื่อจริง (ภาษาไทย)',title:"ผิดพลาด"});
 				return false;
@@ -250,7 +290,7 @@
 				ons.notification.alert({message: 'กรุณาใส่ชื่อเล่น',title:"ผิดพลาด"});
 				return false;
 			}
-			if($('input[name="idcard"]').val()==""){
+			/*if($('input[name="idcard"]').val()==""){
 				ons.notification.alert({message: 'กรุณากรอกเลขบัตรประจำตัวประชาชน',title:"ผิดพลาด"});
 				return false;
 			}else{
@@ -263,7 +303,7 @@
 					ons.notification.alert({message: 'เลขบัตรประชาชนของคุณถูกใช้แล้ว กรุณาติดต่อเจ้าหน้าที่ค่ะ',title:"ผิดพลาด"});
 					return false;
 				}
-			}	
+			}	*/
 		  var dialog = document.getElementById('submit-my-alert-dialog');
 
 		  if (dialog) {
@@ -282,6 +322,7 @@
 		    .hide();
 		};
 	</script>
+	
 	<script>
 	var modal = document.querySelector('ons-modal');	
 	window.fn = {};
@@ -314,13 +355,17 @@
 	            processData: false,
 	            data: data,
 	            type: 'post',
-	            success: function(php_script_response) {
-	               console.log(php_script_response);
-	             	if(php_script_response.check==1){
+	            success: function(res) {
+	               console.log(res);
+	             	if(res.check==1){
 						modal.show();
-						 var url = "index.php?check_new_user=<?= $_POST[check_new_user]; ?>";
+						 var url = "../../index.php?check_new_user=<?= $_POST[check_new_user]; ?>";
 						 console.log(url);
-// 						 window.location.href = url; 
+						 setCookie("detect_username" ,res.data.user, 10);
+						 setCookie("detect_userclass", res.data.class_user, 10);
+						 setCookie("app_remember_user", res.data.user, 10);
+						 setCookie("app_remember_pass", res.data.pass, 10);
+ 						 window.location.href = url; 
 					}
 	            }
 	        });
@@ -461,14 +506,47 @@
 	    reader.readAsDataURL(input.files[0]);
 	  }
 	}
+	
+	function testUpload(){
+		var imageData = $('.image-editor').cropit('export');
+		console.log(imageData);
+		$('.hidden-image-data').val(imageData);
+		/*var data = new FormData($('#form_singin')[0]);
+		data.append('fileUpload', $('#imgInp')[0].files[0]);
+		 var url = "../../mod/material/user/php_user.php?action=upload";
+		$.ajax({
+            url: url, // point to server-side PHP script 
+            dataType: 'json', // what to expect back from the PHP script, if anything
+            cache: false,
+            contentType: false,
+            processData: false,
+            data: data,
+            type: 'post',
+            success: function(php_script_response) {
+               console.log(php_script_response);
 
+            },
+	        error: function(err){
+	        	console.log(err);
+	                //your code here
+	        }
+        });*/
+        $.post("../../mod/material/user/php_user.php?action=upload",$('#form_singin').serialize(),function(res){
+        	console.log(res);
+        });
+        
+	}
+	
 	function submitSingUp(){	
 		hideAlertDialog();	
-
 		modal.show();
+		var imageData = $('.image-editor').cropit('export');
+		console.log(imageData);
+		$('.hidden-image-data').val(imageData);
 		var data = new FormData($('#form_singin')[0]);
-		 data.append('fileUpload', $('#imgInp')[0].files[0]);
-		 var url = "../../mod/material/user/php_user.php?action=register";
+//		 data.append('fileUpload', $('#imgInp')[0].files[0]);
+		var url = "../../mod/material/user/php_user.php?action=register";
+		
 		$.ajax({
             url: url, // point to server-side PHP script 
             dataType: 'json', // what to expect back from the PHP script, if anything
@@ -485,15 +563,82 @@
 					  .notification.alert({message: 'สมัครสมาชิกสำเร็จแล้ว',title:"สำเร็จ",buttonLabel:"กดเพื่อเข้าสู่ระบบ"})
 					  .then(function() {
 					    	modal.show();
+					    	var data_login = {
+								real_username : php_script_response.update.username,
+								real_password : php_script_response.password
+							};
+					    	var url_login = "../../mod/material/php_center.php?checking=login";
+					    	setTimeout(function(){ 
+							  $.ajax({
+					            url: url_login, // point to server-side PHP script 
+					            dataType: 'json', // what to expect back from the PHP script, if anything
+					            data: data_login,
+					            type: 'post',
+					            success: function(res) {
+					               console.log(res);
+					             	if(res.check==1){
+										modal.show();
+										 var url = "../../index.php?check_new_user="+php_script_response.last_id;
+										 console.log(url);
+										 setCookie("detect_username" ,res.data.user, 10);
+										 setCookie("detect_userclass", res.data.class_user, 10);
+										 setCookie("app_remember_user", res.data.user, 10);
+										 setCookie("app_remember_pass", res.data.pass, 10);
+				 						 window.location.href = url; 
+										}
+					            	}
+					        	});
+					        }, 500);
 					  });
 		    		modal.hide();
 			   }else{
 			   		notification.alert({message: 'ไม่สามารถบันทึกข้อมูลได้ กรุณาติดต่อเจ้าหน้าที่ค่ะ',title:"ผิดพลาด",buttonLabel:"ปิด"})
 			   }
-            }
+            },
+	        error: function(err){
+	        	console.log(err);
+	                //your code here
+	        }
         });
 	}
 	
-	</script>
+</script>
+	<script>
+	function setCookie(cname,cvalue,exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    var expires = "expires=" + d.toGMTString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+function getCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for(var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
+
+function checkCookie() {
+    var user=getCookie("username");
+    if (user != "") {
+        alert("Welcome again " + user);
+    } else {
+       user = prompt("Please enter your name:","");
+       if (user != "" && user != null) {
+           setCookie("username", user, 30);
+       }
+    }
+}
+
+</script>
 </body>
 </html>

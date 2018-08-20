@@ -130,5 +130,5 @@ $message .= $output;
         $address3 = "system.goldenbeachgroup@gmail.com"; ///// E-mail send to
         $mail->AddAddress($address3, "E-mail");
         echo $mail->Send();
-        
+//        echo $message;
 ?>

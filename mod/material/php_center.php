@@ -7,6 +7,7 @@ define("DB_USERNAME","admin_MANbooking");
 define("DB_PASSWORD","252631MANbooking");
 define("DB_NAME_APP","admin_apptshare");
 define("DB_NAME","admin_web");
+$tb_admin_chk = "web_driver";
 $db = new DB();
 
 if($_GET[query]=="get_id_province_only"){
@@ -39,7 +40,7 @@ if($_GET[query]=="data_province"){
 if($_GET[checking]=="idcard_overlap"){
 	$db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
 	$idcard = $_POST[txt];
-	$check = $db->num_rows("web_driver","id","idcard = '".$idcard."' and idcard != '' ");
+	$check = $db->num_rows($tb_admin_chk,"id","idcard = '".$idcard."' and idcard != '' ");
 	
 	$return[input] = $idcard;
 	$return[check] = $check;
@@ -52,7 +53,6 @@ if($_GET[checking]=="login"){
 	$user = $_POST[real_username];
 	$pass = $_POST[real_password];
 
-	$tb_admin_chk = "web_driver";
 	
 	$check_us = $db->num_rows($tb_admin_chk,"id","password='" . $pass . "'  AND username='" . $user . "'");
 	if($check_us>0){
@@ -63,11 +63,16 @@ if($_GET[checking]=="login"){
     	$_SESSION['data_user_password'] = $arr[us][password];
     	$_SESSION['data_user_id']       = $arr[us][id];
     	$_SESSION['data_user_class']    = $arr[us][user_class];
-    	@setcookie("detect_username", $_POST[loginusername], time() + (3000 * 30), "/");
+    	/*@setcookie("detect_username", $_POST[loginusername], time() + (3000 * 30), "/");
     	@setcookie("detect_userclass", $arr[us][user_class], time() + (3000 * 30), "/");
     	@setcookie("app_remember_user", $_POST[loginusername], time() + (86400 * 30), "/"); // 86400 = 1 day
 		@setcookie("app_remember_pass", $_POST[loginpassword], time() + (86400 * 30), "/"); // 86400 = 1 day
-		@setcookie('app_remember_time', false);
+		@setcookie('app_remember_time', false);*/
+		$data[user] = $arr[us][username];
+		$data[class_user] = $arr[us][user_class];
+		$data[pass] = $pass;
+		
+		$return[data] = $data;
 		$return[check] = 1;
 	}else{
 		$return[check] = 0;
