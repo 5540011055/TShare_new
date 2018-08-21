@@ -11,7 +11,8 @@
 
 <?if ($_COOKIE['detect_username'] == '') {   ?> 
 <script>
- window.location = "signin.php";
+  window.location = "material/login/index.php";
+// window.location = "signin.php";
 </script> 
 <? }   ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -44,7 +45,6 @@
       <link rel="stylesheet" href="bootstrap/css/ionicons.min.css">
    </head>
    <script>
-      //      var load_main_mod='<div class="outer-loading-mod"   id="main_index_load_page_mod"><div class="inner-loading"><center><span  class="navload"><i class="fa fa-circle-o-notch fa-spin 4x" style="font-size:40px;   margin-top:10px " ></i></center></span><div style="font-size:14px; color:#333333; font-weight:normal;  margin-top:10px " ><center><span id="navload_topic"> โหลดข้อมูล</span></center></div></div></div>';
       	  var load_main_mod = '<div class="outer-loading-mod">'
       	  +'<div class="inner-loading">'
       	  +'<div class="preloader-wrapper medium active">'
@@ -93,14 +93,16 @@
        <script src="pickerdate/picker.date.js?v=<?=time();?>" type="text/javascript"></script> 
        
        
-   <body style="        background-position: 0% 100%;
+   <body style="/*        background-position: 0% 100%;
     background-image: linear-gradient(to right,rgba(63, 81, 181, 0) 0%,#1b618800 100%),url(pic/b1.jpg);
     background-blend-mode: screen;
     background-repeat-x: no-repeat;
     background-repeat-y: no-repeat;
     background-size: cover;
     opacity: 1.0;
-    height: -webkit-fill-available;" >
+    height: -webkit-fill-available;*/
+    background-color: #f9f9f9;
+    " >
     <input type="hidden" id="set_lng_cookies" value="th" />
       <div style="
          display: block; 
@@ -241,34 +243,7 @@
    			}
    } 
 
-</script>   
-         <script>
-         	function logOut(){
-				swal({
-				  title: "<?=t_sign_out;?>",
-				  text: "<?=t_confirm_signout;?>",
-				  type: "warning",
-				  showCancelButton: true,
-				  confirmButtonClass: "btn-danger waves-effect waves-light",
-				  cancelButtonClass: "btn-cus waves-effect waves-light",
-				  confirmButtonText: "<?=t_yes;?>",
-				  cancelButtonText: "<?=t_no;?>",
-				  closeOnConfirm: false
-				},
-				function(){
-				   $.post('signout.php?type=logout',function(){
-				   	 $.cookie("detect_user", "", { path: '/' });
-				   	 $.cookie("detect_userclass", "", { path: '/' });
-		      		 swal("<?=t_sign_out_successfully;?>","", "success");
-		      		 	setTimeout(function(){ 		
-			      		 	deleteTagOs("Test Text");
-						    deleteTagIOS(class_user,username);
-						    window.location.href = "signin.php";
-		      		 	}, 1000);
-		      		});
-				  }); 
-			}
-         </script>   
+</script>     
          <div style="width:100%;" id="myelement">
             <?  include ("".$MODPATHFILE."");?>  
          </div>
@@ -1080,5 +1055,33 @@ margin-top:0px;
 		}
    	}
    	
+   	function logOut(){
+				swal({
+				  title: "<?=t_sign_out;?>",
+				  text: "<?=t_confirm_signout;?>",
+				  type: "warning",
+				  showCancelButton: true,
+				  confirmButtonClass: "btn-danger waves-effect waves-light",
+				  cancelButtonClass: "btn-cus waves-effect waves-light",
+				  confirmButtonText: "<?=t_yes;?>",
+				  cancelButtonText: "<?=t_no;?>",
+				  closeOnConfirm: false
+				},
+				function(){
+				   $.post('signout.php?type=logout',function(){
+				   	 $.cookie("detect_user", "", { path: '/' });
+				   	 $.cookie("detect_userclass", "", { path: '/' });
+				   	 $.cookie("detect_username", "", { path: '/' });
+		      		 swal("<?=t_sign_out_successfully;?>","", "success");
+		      		 	setTimeout(function(){ 		
+		      		 		
+			      		 	deleteTagOs("Test Text");
+						    deleteTagIOS(class_user,username);
+						    window.location.href = "material/login/index.php";
+//						    window.location.href = "signin.php";
+		      		 	}, 1000);
+		      		});
+				  }); 
+  }
 </script>
 

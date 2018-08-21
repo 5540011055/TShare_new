@@ -30,6 +30,35 @@
 <link rel="stylesheet" href="../onsenui/css/onsen-css-components.min.css">
 <script src="../onsenui/js/onsenui.min.js"></script>
 <style>
+.intro{
+	text-align: center;
+	margin: 10px;
+	padding: 0px 15px;
+}
+.upload-btn-wrapper {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.btn-ip {
+  border: 1px solid #0076ff;
+  color: #3a94fe;
+  background-color: white;
+  padding: 8px 20px;
+  border-radius: 8px;
+  font-size: 16px;
+/*  font-weight: bold;*/
+}
+
+.upload-btn-wrapper input[type=file] {
+  font-size: 100px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+}
+
       .cropit-preview {
         background-color: #f8f8f8;
         background-size: cover;
@@ -91,6 +120,7 @@
 	 @media screen and (max-width: 320px) {
 	 	.img-logo{
 			width: 100px !important;
+			margin-top: -25px;
 		}
 		.pd-min{
 			padding: 3px;
@@ -153,7 +183,7 @@
 			
 					<span class="login100-form-title p-b-30 p-t-20">
 
-						<img src="../../images/logo.png" class="img-logo" />
+						<img src="../../images/logo.png" class="img-logo" onclick="window.location = 'https://www.welovetaxi.com/app/TShare_new/material/login/';" />
 					</span>
 
 					<div class="wrap-input100 validate-input" data-validate = "Valid email is: a@b.c">
@@ -172,7 +202,8 @@
 					<div class="container-login100-form-btn" style="padding: 0px;">
 						<div style="margin-bottom: 10px;width: 100%;">
 						<button type="submit" style="display: none;">submit</button>
-						<ons-button modifier="large" class="button-margin button button--large pd-min" onclick="$('#form_login').submit();">เข้าสู่ระบบ</ons-button>
+						<!--<ons-button modifier="large" class="button-margin button button--large pd-min" onclick="$('#form_login').submit();">เข้าสู่ระบบss</ons-button>-->
+						<ons-button modifier="large" class="button-margin button button--large pd-min" onclick="submitLogin();">เข้าสู่ระบบ</ons-button>
 						</div>
 						<div style="width: 100%;">
 						<ons-button modifier="large" onclick="fn.pushPage({'id': 'singup.html', 'title': 'singup'})" class="button-margin button button--large pd-min" style="background-color: #F7941D;">สมัครสมาชิก</ons-button>
@@ -183,7 +214,10 @@
 							ลืมรหัสผ่านหรือไม่?
 						</span>
 
-						<a class="txt2 link-txt" onclick="fn.pushPage({'id': 'recovery.html', 'title': 'กู้หรัสผ่าน'}, 'lift-ios')">
+						<!--<a class="txt2 link-txt" onclick="fn.pushPage({'id': 'recovery.html', 'title': 'กู้หรัสผ่าน'}, 'lift-ios')">
+							กู้รหัส
+						</a>-->
+						<a class="txt2 link-txt" onclick="ons.notification.alert({message: 'ยังไม่เปิดให้บริการ',title:'ขออภัย',buttonLabel:'ปิด'});">
 							กู้รหัส
 						</a>
 					</div>
@@ -280,30 +314,81 @@
 		  }, 2000);
 		}
 
-		  var createAlertDialog = function() {
-
+		var createAlertDialog = function() {
+			var imageData = $('.image-editor').cropit('export');
+			$('.hidden-image-data').val(imageData);
 		  	if($('input[name="name_th"]').val()==""){
-				ons.notification.alert({message: 'กรุณาใส่ชื่อจริง (ภาษาไทย)',title:"ผิดพลาด"});
+
+				 ons.notification.alert({message: 'กรุณากรอกชื่อจริง',title:"ข้อมูลไม่ครบ"})
+				  .then(function() {
+				    $('input[name="name_th"]').focus();
+				  });
+				
 				return false;
 			}
 			if($('input[name="nickname"]').val()==""){
-				ons.notification.alert({message: 'กรุณาใส่ชื่อเล่น',title:"ผิดพลาด"});
+
+				ons.notification.alert({message: 'กรุณากรอกชื่อเล่น',title:"ข้อมูลไม่ครบ"})
+				  .then(function() {
+				    $('input[name="nickname"]').focus();
+				  });
+				return false;
+			}
+			if($('input[name="address"]').val()==""){
+
+				ons.notification.alert({message: 'กรุณากรอกที่อยู่ของคุณ',title:"ข้อมูลไม่ครบ"})
+				  .then(function() {
+				    $('input[name="address"]').focus();
+				  });
+				return false;
+			}
+			if($('input[name="phone"]').val()==""){
+
+				ons.notification.alert({message: 'กรุณากรอกเบอร์โทรศัพท์',title:"ข้อมูลไม่ครบ"})
+				  .then(function() {
+				    $('input[name="phone"]').focus();
+				  });
+				return false;
+			}
+			if($('#valid_type_plate').val()==1){
+
+				ons.notification.alert({message: 'ทะเบียนรถนี้ถูกใช้แล้ว ไม่สามารถใช้ซ้ำได้',title:"ข้อมูลไม่ครบ"})
+				  .then(function() {
+				    $('input[name="plate_num"]').focus();
+				  });
+				return false;
+			}
+			if($('#valid_type_phone').val()==1){
+
+				ons.notification.alert({message: 'เบอร์โทรนี้ถูกใช้แล้ว ไม่สามารถใช้ซ้ำได้',title:"ข้อมูลไม่ครบ"})
+				  .then(function() {
+				    $('input[name="plate_num"]').focus();
+				  });
+				return false;
+			}
+			if($('input[name="image-data"]').val()==""){
+
+				ons.notification.alert({message: 'กรุณาเลือกรูปประจำตัวของคุณ',title:"ข้อมูลไม่ครบ"})
+				  .then(function() {
+				    $('input[name="image-data"]').focus();
+				  });
 				return false;
 			}
 			/*if($('input[name="idcard"]').val()==""){
 				ons.notification.alert({message: 'กรุณากรอกเลขบัตรประจำตัวประชาชน',title:"ผิดพลาด"});
 				return false;
 			}else{
-				if($('#valid_type_idc').val()==1){
+				
+			}	*/
+			if($('#valid_type_idc').val()==1){
 					ons.notification.alert({message: 'เลขบัตรประชาชนของคุณไม่ถูกต้อง',title:"ผิดพลาด"});
 					return false;
 				}
 				else if($('#valid_type_idc').val()==2){
 
-					ons.notification.alert({message: 'เลขบัตรประชาชนของคุณถูกใช้แล้ว กรุณาติดต่อเจ้าหน้าที่ค่ะ',title:"ผิดพลาด"});
+					ons.notification.alert({message: 'เลขบัตรประชาชนของคุณถูกใช้แล้ว ไม่สามารถใช้ซ้ำได้',title:"ผิดพลาด"});
 					return false;
 				}
-			}	*/
 		  var dialog = document.getElementById('submit-my-alert-dialog');
 
 		  if (dialog) {
@@ -340,10 +425,10 @@
 	    document.getElementById('myNavigator').pushPage(page.id, { data: { title: page.title } });
 	  }
 	};
-	$(document).ready(function(){
-	
-	$( "#form_login" ).submit(function( event ) {
-		 console.log("login action");
+
+	function submitLogin(){
+		modal.show();
+		console.log("login action");
 		var data = new FormData($('#form_login')[0]);
 		 console.log(data);
 		  var url_login = "../../mod/material/php_center.php?checking=login";
@@ -358,7 +443,6 @@
 	            success: function(res) {
 	               console.log(res);
 	             	if(res.check==1){
-						modal.show();
 						 var url = "../../index.php?check_new_user=<?= $_POST[check_new_user]; ?>";
 						 console.log(url);
 						 setCookie("detect_username" ,res.data.user, 10);
@@ -366,9 +450,21 @@
 						 setCookie("app_remember_user", res.data.user, 10);
 						 setCookie("app_remember_pass", res.data.pass, 10);
  						 window.location.href = url; 
+					}else{
+						modal.hide();
+						ons
+					   		.notification.alert({message: 'ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง',title:"ไม่สามารถเข้าสู่ระบบได้",buttonLabel:"ปิด"});
+					    modal.hide();
 					}
 	            }
 	        });
+	}
+	
+	$(document).ready(function(){
+	
+	$( "#form_login" ).submit(function( event ) {
+//		alert(123);
+		  submitLogin();
 		  event.preventDefault();
 		});
 		
@@ -391,6 +487,9 @@
 	}
 	
 	function checkIdCard(val){
+		if(val.length==0){
+			$('#valid_type_idc').val(0);
+		}
 		if(val.length>13){
 			$('#idcard').val(val.slice(0,-1));
 			return;
@@ -540,9 +639,7 @@
 	function submitSingUp(){	
 		hideAlertDialog();	
 		modal.show();
-		var imageData = $('.image-editor').cropit('export');
-		console.log(imageData);
-		$('.hidden-image-data').val(imageData);
+		
 		var data = new FormData($('#form_singin')[0]);
 //		 data.append('fileUpload', $('#imgInp')[0].files[0]);
 		var url = "../../mod/material/user/php_user.php?action=register";
@@ -592,7 +689,9 @@
 					  });
 		    		modal.hide();
 			   }else{
-			   		notification.alert({message: 'ไม่สามารถบันทึกข้อมูลได้ กรุณาติดต่อเจ้าหน้าที่ค่ะ',title:"ผิดพลาด",buttonLabel:"ปิด"})
+			   		ons
+					  .notification.alert({message: 'ไม่สามารถบันทึกข้อมูลได้ กรุณาลองใหม่อีกครั้ง',title:"ผิดพลาด",buttonLabel:"ปิด"});
+					  modal.hide();
 			   }
             },
 	        error: function(err){
@@ -637,6 +736,40 @@ function checkCookie() {
            setCookie("username", user, 30);
        }
     }
+}
+
+function validPlate(value){
+		console.log(value)
+		$.post("../../mod/material/php_center.php?checking=car_plate_overlap",{ txt:value  },function(res){
+					console.log(res);
+				 if(res.check == 1){
+						$('#incorrent-plate').show();
+						$('#corrent-plate').hide();
+					}else{
+						
+						$('#corrent-plate').show();
+						$('#incorrent-plate').hide();
+					}
+					$('#valid_type_plate').val(res.check); // 0=ไม่ซ้ำ , 1=ซ้ำ
+				});
+			
+}
+
+function validPhoneNum(value){
+		console.log(value)
+		$.post("../../mod/material/php_center.php?checking=phone_overlap",{ txt:value  },function(res){
+					console.log(res);
+				 if(res.check == 1){
+						$('#incorrent-phone').show();
+						$('#corrent-phone').hide();
+					}else{
+						
+						$('#corrent-phone').show();
+						$('#incorrent-phone').hide();
+					}
+					$('#valid_type_phone').val(res.check); // 0=ไม่ซ้ำ , 1=ซ้ำ
+				});
+			
 }
 
 </script>

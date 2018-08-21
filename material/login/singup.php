@@ -10,7 +10,10 @@
 			$plate = "เลขทะเบียนรถ";
 		?>
 
-<div style="height: 200px; padding: 1px 0 0 0;">
+<div style="padding: 1px 0 0 0;">
+	<p class="intro" >
+      กรุณากรอกข้อมูลที่เป็นความจริง เพื่อง่ายต่อการทำงานและการติดต่อของท่าน
+    </p>
 	<form name="form_singin" id="form_singin"  enctype="multipart/form-data">
     <ons-card class="card">
 
@@ -27,18 +30,6 @@
             </label>
         </ons-list-item>
         
-        <!--<ons-list-item class="input-items list-item p-l-0">
-            <div class="left list-item__left">
-                <ons-icon icon="fa-user" class="list-item__icon ons-icon"></ons-icon>
-            </div>
-            <label class="center list-item__center">
-                <ons-input id="name-input" float="" maxlength="30" placeholder="<?=$name_en;?>" name="name_en" style="width:100%;">
-                    <input type="text" class="text-input" maxlength="30" placeholder="<?=$name_en;?>" name="name_en">
-                    <span class="text-input__label">
-                        <?=$name;?></span>
-                </ons-input>
-            </label>
-        </ons-list-item>-->
 
         <ons-list-item class="input-items list-item p-l-0">
             <div class="left list-item__left">
@@ -54,8 +45,8 @@
         </ons-list-item>
 
         <ons-list-item class="input-items list-item p-l-0">
-            <div class="left list-item__left" style="    margin-left: -7px;">
-                <ons-icon icon="fa-id-card-o" class="list-item__icon ons-icon"></ons-icon>
+            <div class="left list-item__left" style="   /* margin-left: -7px;*/">
+                <ons-icon icon="fa-id-badge" class="list-item__icon ons-icon"></ons-icon>
             </div>
             <label class="center list-item__center">
                 <ons-input id="idcard-input" float="" placeholder="<?=$idcard;?>" name="idcard" style="width:100%;">
@@ -89,10 +80,13 @@
             </div>
             <label class="center list-item__center">
                 <ons-input id="phone-input" float="" placeholder="<?=$phone;?>" name="phone" style="width:100%;">
-                    <input type="number" pattern="\d*" class="text-input"  placeholder="<?=$phone;?>" name="phone" id="phone">
+                    <input type="number" pattern="\d*" class="text-input"  placeholder="<?=$phone;?>" name="phone" id="phone" onkeyup="validPhoneNum($(this).val());">
                     <span class="text-input__label">
                         <?=$phone;?></span>
                 </ons-input>
+                <input type="hidden" value="0" id="valid_type_phone" />
+                 <i id="corrent-phone" class="fa fa-check-circle pass checking-phone" aria-hidden="true" style="display: none;"></i>
+                <i id="incorrent-phone" class="fa fa-times-circle no-pass checking-phone" aria-hidden="true" style="display: none;"></i>
             </label>
         </ons-list-item>
 
@@ -113,10 +107,13 @@
             </div>
             <label class="center list-item__center">
                 <ons-input id="name-input" float="" maxlength="30" placeholder="<?=$plate;?>" name="plate_num" style="width:100%;">
-                    <input type="text" class="text-input" maxlength="30" placeholder="<?=$plate;?>" name="plate_num">
+                    <input type="text" class="text-input" maxlength="30" placeholder="<?=$plate;?>" name="plate_num" onkeyup="validPlate($(this).val());">
                     <span class="text-input__label">
                         <?=$plate;?></span>
                 </ons-input>
+                <input type="hidden" value="0" id="valid_type_plate" />
+                <i id="corrent-plate" class="fa fa-check-circle pass checking-plate" aria-hidden="true" style="display: none;"></i>
+                <i id="incorrent-plate" class="fa fa-times-circle no-pass checking-plate" aria-hidden="true" style="display: none;"></i>
             </label>
         </ons-list-item>
         
@@ -138,19 +135,19 @@
     
     <ons-card  class="card">
       <ons-list-header class="list-header"><b>ภาพประจำตัว</b></ons-list-header>
-        <!--<div class="camera" onclick="$('#imgInp').click();">
-        	<div class="focus"></div>
-        	<img src="" name="image_id_driver" id="image_id_driver" style="width:100%; padding:5px; margin-top:-20px;border-radius:15px; " />
- 		</div>
- 		-->
+
  		<div class="image-editor" align="center">
- 		<ons-button modifier="outline" class="button-margin button button--outline" onclick="$('#imgInp').click();" style="margin-top: 10px;">เลือกรูป</ons-button>
-	      <input type="file" class="cropit-image-input" id="imgInp"  style="opacity: 0;position: absolute;">
+			<div class="upload-btn-wrapper">
+			  <button class="btn-ip" type="button">เลือกภาพประจำตัว</button>
+			  <!--<input type="file" class=""  id="imgInp" >-->
+			  <input type="file" class="cropit-image-input" id="imgInp"  style="opacity: 0;/*position: absolute;*/">
+			</div>
+	      
 	      <div class="cropit-preview" >
 	      </div>
 	      <div align="center">
-	      	<button class="rotate-ccw" type="button" style="margin-right: 20px;"><ons-icon icon="fa-chevron-left" class="list-item__icon ons-icon"></ons-icon></button>
-	      	<button class="rotate-cw" type="button" style="margin-left: 20px;"><ons-icon icon="fa-chevron-right" class="list-item__icon ons-icon"></ons-icon></button> 
+	      	<button class="rotate-ccw" type="button"><ons-icon icon="fa-repeat" class="list-item__icon ons-icon"></ons-icon></button>
+	      	<!--<button class="rotate-cw" type="button" style="margin-left: 20px;"><ons-icon icon="fa-chevron-right" class="list-item__icon ons-icon"></ons-icon></button> -->
 	      </div>
 	      <input type="hidden" name="image-data" class="hidden-image-data" />
 	      <!--<button type="button" onclick="testUpload();">Click</button>  -->  
@@ -173,6 +170,9 @@
           imageState: {
             src: url,
           },
+          freeMove: false,
+          width : 250,
+          height : 350
         });
 
         $('.rotate-cw').click(function() {

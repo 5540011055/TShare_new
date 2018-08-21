@@ -262,14 +262,14 @@
    	  		<img src="images/icon_county/thai.ico" class="btn-lng" onclick="setCookie('lng', 'th', 1, 1);">
    	  		<img src="images/icon_county/china.ico" class="btn-lng" onclick="setCookie('lng', 'cn', 1, 1);">
    	  </div>	 -->
-   	
+   		
       <table width="100%"  border="0" align="center" cellpadding="2" cellspacing="2" style="max-width:350px; " class="Absolute-Center">
          <tr>
             <td align="center" >
                <div class="login-box" style="margin-top: 15px;">
                   <div class="login-logo"  style="padding:0px; color:#FFFFCC;" >
                     
-                     <img src="images/logo.png?v=6" class="img_logo"    style="padding-bottom:0px;margin-top:0px;"      />   
+                     <a href="material/login/index.php"><img src="images/logo.png?v=6" class="img_logo"    style="padding-bottom:0px;margin-top:0px;"      />  </a> 
                      <div style="margin-top: 10px; z-index:1;">
                         <button   class="btn btn-repair waves-effect btn-other" style="background-color:#F7941D; color:#FFFFFF;text-transform: capitalize;"   id="btn_login_register"><i class="fa  fa-user-plus" style="padding-right: 5px;"  ></i><span >&nbsp;<?=t_register_member;?></span></button>
                         <button   class="btn btn-repair waves-effect btn-other" style="background-color:#5a78b5; color:#FFFFFF;margin-top:10px;text-transform: capitalize;"   id="btn_login_login">

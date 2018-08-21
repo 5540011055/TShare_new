@@ -8,6 +8,7 @@ define("DB_PASSWORD","252631MANbooking");
 define("DB_NAME_APP","admin_apptshare");
 define("DB_NAME","admin_web");
 $tb_admin_chk = "web_driver";
+$tb_car = "web_carall";
 $db = new DB();
 
 if($_GET[query]=="get_id_province_only"){
@@ -48,6 +49,28 @@ if($_GET[checking]=="idcard_overlap"){
 	echo json_encode($return);
 }
 
+if($_GET[checking]=="car_plate_overlap"){
+	$db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
+	$txt = $_POST[txt];
+	$check = $db->num_rows($tb_car,"id","plate_num = '".$txt."' and plate_num != '' ");
+	
+	$return[input] = $txt;
+	$return[check] = $check;
+	header('Content-Type: application/json');
+	echo json_encode($return);
+}
+
+if($_GET[checking]=="phone_overlap"){
+	$db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
+	$txt = $_POST[txt];
+	$check = $db->num_rows($tb_admin_chk,"id","phone = '".$txt."' and phone != '' ");
+	
+	$return[input] = $txt;
+	$return[check] = $check;
+	header('Content-Type: application/json');
+	echo json_encode($return);
+}
+
 if($_GET[checking]=="login"){
 	$db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
 	$user = $_POST[real_username];
@@ -74,7 +97,8 @@ if($_GET[checking]=="login"){
 		
 		$return[data] = $data;
 		$return[check] = 1;
-	}else{
+	}
+	else{
 		$return[check] = 0;
 	}
 	$return[num_rows] = $check_us;

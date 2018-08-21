@@ -8,22 +8,49 @@ define("DB_PASSWORD","252631MANbooking");
 define("DB_NAME_APP","admin_apptshare");
 $db = new DB();
 $tb_admin_chk = "web_driver";
+$tb_car = "web_carall";
 if($_GET[action]=="register"){
+	
+		if($_POST[nickname]=="" or $_POST[nickname]==NULL){
+    		$exit[col] = "nickname";
+    		$exit[val] = $_POST[nickname];
+    		$exit[type] = 0;
+    		header('Content-Type: application/json');
+			echo json_encode($exit);
+			exit;
+		}
+		if($_POST[name_th]=="" or $_POST[name_th]==NULL){
+			$exit[col] = "name_th";
+			$exit[val] = $_POST[name_th];
+    		$exit[type] = 0;
+    		header('Content-Type: application/json');
+			echo json_encode($exit);
+			exit;
+		}
+		if($_POST[phone]=="" or $_POST[phone]==NULL){
+			$exit[col] = "phone";
+			$exit[val] = $_POST[phone];
+    		$exit[type] = 0;
+    		header('Content-Type: application/json');
+			echo json_encode($exit);
+			exit;
+		}
 	
 	include("../../../includes/class.resizepic.php");
 	
 	$db->connectdb(DB_NAME_APP, DB_USERNAME, DB_PASSWORD);
 
-    $rand       = substr(str_shuffle('12345678901234567890123456789012345678901234567890'), 0, 50);
-    $rand_login = substr(str_shuffle('12345678901234567890123456789012345678901234567890'), 0, 50);
+//    $rand       = substr(str_shuffle('12345678901234567890123456789012345678901234567890'), 0, 50);
+//    $rand_login = substr(str_shuffle('12345678901234567890123456789012345678901234567890'), 0, 50);
     $password = substr(str_shuffle('1234567890'), 0, 4);
     $provincecode = 'HKT';
     $db->connectdb(DB_NAME_APP, DB_USERNAME, DB_PASSWORD);
     
+    	
     	$data["password"] = $password;
-        $data["code_login"] = $rand_login;
+//        $data["code_login"] = $rand_login;
         $data["email"] = $_POST[email];
-        $data["name_en"] = $_POST[name_en];
+//        $data["name_en"] = $_POST[name_en];
         $data["name"] = $_POST[name_th];
         $data["nickname"] = $_POST[nickname];
         $data["idcard"] = $_POST[idcard];
@@ -41,30 +68,23 @@ if($_GET[action]=="register"){
     $member_in = genUsername($member_db);
     $data["last_id"] = $last_id;
     $data_update[username] = $provincecode.$member_in;
+    $data_update[password] = $password;
     $data_update[result] = $db->update_db($tb_admin_chk,$data_update,'id = "'.$last_id.'" ');
     $data[update] = $data_update;
     
-    if($_FILES['fileUpload']['tmp_name']){
-		/*$original_image = $_FILES['fileUpload']['tmp_name'] ;
-		$desired_width = 600;
-		$desired_height = _INEWS_H ;
-		$image = new hft_image($original_image);
-		$image->resize($desired_width, $desired_height, '0');
-//		header('Content-Type: application/json');
-		
-//		$path = "../../../../data/pic/driver/small_new/Test_upload.jpg";
-		$img[result] = $image->output_resized($path,"JPG");
-		$img[tmp] = $original_image;
-		$img[name] = $_FILES['fileUpload']['name'];*/
-		
-		$path = "../../../../data/pic/driver/small_new/".$data_update[username].".jpg";
-		$data = $_POST['image-data'];
-		$image = $data;
+    if($_POST['image-data']){
+	
+		$path = "../../../../data/pic/driver/small/".$data_update[username].".jpg";
+		$img_data = $_POST['image-data'];
+		$size = getimagesize($img_data);
+		$image = $img_data;
 		$image = imagecreatefrompng($image);
-		$size = getimagesize($image);
+		
 		imagejpeg($image, $path, $size[0], $size[1]);
 		$save_img = imagedestroy($image);
 		$img[result] = $save_img;
+		$img[w] = json_encode($size);
+//		$img[h] = $size[1];
 		$img[path] = $path;
 	}
     
@@ -77,7 +97,7 @@ if($_GET[action]=="register"){
 		$car[post_date] = time();
 		$car[update_date] = time();
 		$car[car_type] = 0;
-		$car[result] = $db->add_db('web_carall_new',$car);
+		$car[result] = $db->add_db($tb_car,$car);
 		$data[car] = $car;
 	}
 	
@@ -112,8 +132,6 @@ $curl_response = curl_exec($curl);
 //echo $curl_response;
 curl_close($curl);
     
-	
-
 }
 
 if($_GET[action]=="upload"){

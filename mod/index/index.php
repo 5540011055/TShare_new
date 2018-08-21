@@ -463,7 +463,8 @@ id = navigator.geolocation.watchPosition(success, error, options);
 
 
 function showPosition(position) {
-      var cook_lng = getCookie("lng");
+//      var cook_lng = getCookie("lng");
+      var cook_lng = $.cookie("lng");
       if (cook_lng == 'th') {
          lng = "th";
       }
@@ -509,27 +510,7 @@ function updatePlaceNum(province){
 });
    });
 }
-function setCookie(cname,cvalue,exdays) {
-   var d = new Date();
-   d.setTime(d.getTime() + (exdays*24*60*60*1000));
-   var expires = "expires=" + d.toGMTString();
-   document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
-}
-function getCookie(cname) {
-   var name = cname + "=";
-   var decodedCookie = decodeURIComponent(document.cookie);
-   var ca = decodedCookie.split(';');
-   for(var i = 0; i < ca.length; i++) {
-      var c = ca[i];
-      while (c.charAt(0) == ' ') {
-         c = c.substring(1);
-      }
-      if (c.indexOf(name) == 0) {
-         return c.substring(name.length, c.length);
-      }
-   }
-   return "";
-}
+
 </script>
 
 <script src="https://www.welovetaxi.com:3443/socket.io/socket.io.js?v=<?=time();?>"></script>
@@ -545,7 +526,8 @@ function getCookie(cname) {
           //on message received we print all the data inside the #container div
     socket.on('notification', function (data) {
 //          console.log("Start Socket");
-				  if(data!=""){
+//			console.log(data);
+				  if (typeof data.transfer !== 'undefined' && data.transfer.length > 0) {
 				  	res_socket = data.transfer[0];
 					  if(data.transfer[0].length>0){
 					  	$('#number_tbooking').show();
