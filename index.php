@@ -92,7 +92,9 @@
        <script src="pickerdate/picker.js?v=<?=time();?>" type="text/javascript"></script>
        <script src="pickerdate/picker.date.js?v=<?=time();?>" type="text/javascript"></script> 
        
-       
+       <link rel="stylesheet" href="material/onsenui/css/onsenui.css">
+	   <link rel="stylesheet" href="material/onsenui/css/onsen-css-components.min.css">
+	   <script src="material/onsenui/js/onsenui.min.js"></script>
    <body style="/*        background-position: 0% 100%;
     background-image: linear-gradient(to right,rgba(63, 81, 181, 0) 0%,#1b618800 100%),url(pic/b1.jpg);
     background-blend-mode: screen;

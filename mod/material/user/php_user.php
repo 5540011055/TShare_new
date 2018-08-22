@@ -8,6 +8,7 @@ define("DB_PASSWORD","252631MANbooking");
 define("DB_NAME_APP","admin_apptshare");
 $db = new DB();
 $tb_admin_chk = "web_driver";
+$tb_admin_logs = "web_driver_logs";
 $tb_car = "web_carall";
 if($_GET[action]=="register"){
 	
@@ -36,7 +37,7 @@ if($_GET[action]=="register"){
 			exit;
 		}
 	
-	include("../../../includes/class.resizepic.php");
+//	include("../../../includes/class.resizepic.php");
 	
 	$db->connectdb(DB_NAME_APP, DB_USERNAME, DB_PASSWORD);
 
@@ -61,17 +62,23 @@ if($_GET[action]=="register"){
         $data["status"] = "1";
         $data["post_date"] = time();
         $data["update_date"] = time();
-    	$data[result] = $db->add_db($tb_admin_chk,$data);
+    	$add_result = $db->add_db($tb_admin_chk,$data);
+    	
+    $return[add][data] = $data;
+    $return[add][result] = $add_result;
     
     $last_id = mysql_insert_id();
     $member_db = $last_id;
     $member_in = genUsername($member_db);
-    $data["last_id"] = $last_id;
+    $return[last_id] = $last_id;
+    $data[i_driver] = $last_id;
     $data_update[username] = $provincecode.$member_in;
     $data_update[password] = $password;
     $data_update[result] = $db->update_db($tb_admin_chk,$data_update,'id = "'.$last_id.'" ');
-    $data[update] = $data_update;
+    $return[update] = $data_update;
     
+    $add_driver_log = $db->add_db($tb_admin_logs,$data);
+     
     if($_POST['image-data']){
 	
 		$path = "../../../../data/pic/driver/small/".$data_update[username].".jpg";
@@ -98,13 +105,14 @@ if($_GET[action]=="register"){
 		$car[update_date] = time();
 		$car[car_type] = 0;
 		$car[result] = $db->add_db($tb_car,$car);
-		$data[car] = $car;
+		$return[car] = $car;
 	}
 	
-	$data[upload_img] = $img;
-	$data[path] = $path;
+	$return[upload_img] = $img;
+	$return[path] = $path;
+	$return[driver_logs] = $add_driver_log;
 	header('Content-Type: application/json');
-    echo json_encode($data);
+    echo json_encode($return);
     
     $curl_post_data = '{"id":"'.$last_id.'","action":"add"}';
                     
@@ -131,6 +139,21 @@ curl_setopt($curl, CURLOPT_POSTFIELDS, $curl_post_data);
 $curl_response = curl_exec($curl);
 //echo $curl_response;
 curl_close($curl);
+    
+    include('../line_notify_demo.php');
+    
+    $msg = array();
+    $txt_short = "\n".'มีคนขับรถสมัครสมาชิกเข้ามาใหม่';
+   	$txt_short2 = "\n".'ชื่อ '.$data["name"];
+   	$txt_short2 .= "\n".'User : '.$data_update[username].' ';
+   	$txt_short2 .= "\n".'Password : '.$data[password].' ';
+   	$txt_short2 .= "\n".'เบอร์โทร : '.$data[phone];
+//   	$txt_short2 .= "\n".'สมัครเวลา : '.date('Y-m-d h:i:s',$data[post_date]).' ';
+   	
+	$msg[message] = $txt_short.' '.$txt_short2;	
+	$token = "cuJeygjbI4UFGHXJha1zVxiNCJWXPaenK4xo7kzuCQX"; //ใส่Token ที่copy เอาไว้ ส่วนตัว
+	$response = notify_message($msg,$token);
+//	echo $response;
     
 }
 

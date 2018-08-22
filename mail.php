@@ -7,15 +7,15 @@ $db = New DB();
 	define("DB_PASSWORD","252631MANbooking");
 	$db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
 header('Content-Type: text/html; charset=utf-8');
+ 	$db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
+ 	$res[dv] = $db->select_query("SELECT id,name,phone,username,password,post_date FROM web_driver  WHERE id = '".$_GET[driver]."' ");
+ 	$arr[dv] = $db->fetch($res[dv]);
+ 	
 if($_GET[key]=="new_shop"){
 	$db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
  	$res[place_shop] = $db->select_query("SELECT topic_th,id FROM shopping_product  WHERE id='".$_POST[program]."' ");
  	$arr[place_shop] = $db->fetch($res[place_shop]);
- 
- 	$db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
- 	$res[dv] = $db->select_query("SELECT id,name,phone FROM web_driver  WHERE id = '".$_GET[driver]."' ");
- 	$arr[dv] = $db->fetch($res[dv]);
- 
+  
 		$txt_short = 'ทะเบียน '.$_POST[car_plate]; 
         $txt_short .=' ทำรายการส่งแขกเข้ามาใหม่ กรุณาตรวจสอบ';
    		$title = "ทำรายการใหม่";
@@ -38,10 +38,10 @@ if($_GET[key]=="new_shop"){
 else if($_GET[key]=="new_driver"){
         $txt_short = 'มีคนขับรถสมัครสมาชิกเข้ามาใหม่';
    		$title = "สมาชิกใหม่";
-   		$txt_short2 = 'ชื่อ '.$_POST[name]."<br>";
-   		$txt_short2 .= 'User : '.$_POST[username].' ';
-   		$txt_short2 .= 'Password : '.$_POST[password].' ';
-   		$txt_short2 .= 'สมัครเวลา : '.date('Y-m-d h:i:s',$_POST[post_date]).' ';
+   		$txt_short2 = 'ชื่อ '.$arr[dv][name]."<br>";
+   		$txt_short2 .= 'User : '.$arr[dv][username].' ';
+   		$txt_short2 .= 'Password : '.$arr[dv][password].' ';
+   		$txt_short2 .= 'สมัครเวลา : '.date('Y-m-d h:i:s',$arr[dv][post_date]).' ';
 }
 	
 ob_start();
@@ -130,5 +130,5 @@ $message .= $output;
         $address3 = "system.goldenbeachgroup@gmail.com"; ///// E-mail send to
         $mail->AddAddress($address3, "E-mail");
         echo $mail->Send();
-//        echo $message;
+        echo $message;
 ?>

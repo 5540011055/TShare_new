@@ -94,6 +94,7 @@ if($_GET[checking]=="login"){
 		$data[user] = $arr[us][username];
 		$data[class_user] = $arr[us][user_class];
 		$data[pass] = $pass;
+		$data[id] = $arr[us][id];
 		
 		$return[data] = $data;
 		$return[check] = 1;

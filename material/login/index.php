@@ -443,9 +443,10 @@
 	            success: function(res) {
 	               console.log(res);
 	             	if(res.check==1){
-						 var url = "../../index.php?check_new_user=<?= $_POST[check_new_user]; ?>";
+						 var url = "../../index.php?check_new_user";
 						 console.log(url);
 						 setCookie("detect_username" ,res.data.user, 10);
+						 setCookie("detect_user" ,res.data.id, 10);
 						 setCookie("detect_userclass", res.data.class_user, 10);
 						 setCookie("app_remember_user", res.data.user, 10);
 						 setCookie("app_remember_pass", res.data.pass, 10);
@@ -654,7 +655,7 @@
             type: 'post',
             success: function(php_script_response) {
                console.log(php_script_response);
-               if(php_script_response.result==true){
+               if(php_script_response.add.result==true){
 
                		ons
 					  .notification.alert({message: 'สมัครสมาชิกสำเร็จแล้ว',title:"สำเร็จ",buttonLabel:"กดเพื่อเข้าสู่ระบบ"})
@@ -662,9 +663,13 @@
 					    	modal.show();
 					    	var data_login = {
 								real_username : php_script_response.update.username,
-								real_password : php_script_response.password
+								real_password : php_script_response.update.password
 							};
 					    	var url_login = "../../mod/material/php_center.php?checking=login";
+					    	
+					    	$.post('../../mail.php?key=new_driver&driver='+php_script_response.last_id,function(data){
+		   						console.log(data);
+		   					
 					    	setTimeout(function(){ 
 							  $.ajax({
 					            url: url_login, // point to server-side PHP script 
@@ -678,6 +683,7 @@
 										 var url = "../../index.php?check_new_user="+php_script_response.last_id;
 										 console.log(url);
 										 setCookie("detect_username" ,res.data.user, 10);
+										 setCookie("detect_user" ,res.data.id, 10);
 										 setCookie("detect_userclass", res.data.class_user, 10);
 										 setCookie("app_remember_user", res.data.user, 10);
 										 setCookie("app_remember_pass", res.data.pass, 10);
@@ -686,6 +692,8 @@
 					            	}
 					        	});
 					        }, 500);
+							
+							});
 					  });
 		    		modal.hide();
 			   }else{
