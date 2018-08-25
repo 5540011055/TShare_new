@@ -68,8 +68,8 @@ if($_GET[type]=="save_maindoc"){
 } 
 
 if($_GET[type]=="save_user"){
-//$db->connectdb(DB_NAME_APP, DB_USERNAME, DB_PASSWORD);
-$target_dir = "../../../data/pic/driver/small/";
+//
+/*$target_dir = "../../../data/pic/driver/small/";
 $target_file = $target_dir . $_POST[username].".jpg";
 
 if (copy($_FILES["file"]["tmp_name"], $target_file)) {
@@ -78,7 +78,8 @@ if (copy($_FILES["file"]["tmp_name"], $target_file)) {
 	    	$check = 1;
 	    } else {
 			$check_pic_card = 0;
-	    }	
+	    }	*/
+	    $db->connectdb(DB_NAME_APP, DB_USERNAME, DB_PASSWORD);
 		$array = array(
 			"pic_home" => $check,
             "password" => "$_POST[password]",

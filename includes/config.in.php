@@ -388,7 +388,7 @@ $bg1="#F8F8F8";
 $bg2="#FFFEF2";
 ?>
  <?
-include "mobile.php" ;	
+include "mobile.php";	
 $detect = new Mobile_Detect();
 if($detect->version('iPad')){
     // Code to run for the Apple iOS platform.

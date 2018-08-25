@@ -896,6 +896,27 @@ socket.emit('sendchat', dataorder);
 }
 </script>
 <script>
+		var url_check_empty = "mod/material/php_center.php?checking=empty_user";
+		var data = {
+			username : username
+		}
+		$.ajax({
+	            url: url_check_empty, // point to server-side PHP script 
+	            dataType: 'json', // what to expect back from the PHP script, if anything
+	            data: data,
+	            type: 'post',
+	            success: function(res) {
+	               console.log(res);
+	               if(res.check==1){
+				   		 $( "#main_load_mod_popup" ).toggle();
+					     var url_load = "load_page_mod.php?name=user&file=empty_user";
+					     $('#load_mod_popup').html(load_main_mod);
+					     $('#load_mod_popup').load(url_load); 
+				   }
+	            }
+	        });
+</script>
+<script>
    var load_main_icon_big="<div class='overlay' style='background-color:#FFFFFF; padding:15px;border: solid 1px #DADADA '><center> <i class='fa fa-circle-o-notch fa-spin 4x' style='font-size:100px; color:<?= $main_color_sorf ?>; ' ></i> </center><br><font style='font-size:14px; color:#333333 ' ><center><?
    echo t_load_data;
    ?></center></font></div>";

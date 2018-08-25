@@ -490,12 +490,12 @@ else if($arr[book][status]=='CONFIRM'){
     width: 100%;
     border: 1px solid #3b5998;">
 	 		<i class="icon-new-uniF121-10" aria-hidden="true"></i>&nbsp;<span class="font-22"><?=$txt_btn_pay;?></span> 
-	 		<span id="alert_pay_driver" class="badge font-20" style="    position: absolute;
+	 		<!--<span id="alert_pay_driver" class="badge font-20" style="    position: absolute;
     font-size: 14px;
     background-color: #F44336;
     padding: 4px 7px;
     z-index: 1;
-    right: 45px;<?=$show_alert;?>"><strong>!</strong></span>
+    right: 45px;<?=$show_alert;?>"><strong>!</strong></span>-->
     </button>
 	 		</td>
 	 		

@@ -109,4 +109,14 @@ if($_GET[checking]=="login"){
 	header('Content-Type: application/json');
 	echo json_encode($return);
 }
+
+if($_GET[checking]=="empty_user"){
+	$db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
+	$check = $db->num_rows($tb_admin_chk,"id","password = '' and username = '".$_POST[username]."' ");
+	
+	$return[input] = $_POST[username];
+	$return[check] = $check;
+	header('Content-Type: application/json');
+	echo json_encode($return);
+}
 ?>
