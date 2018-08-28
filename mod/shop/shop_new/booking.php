@@ -16,8 +16,8 @@
          $arr[project][program] = $_GET[place];
          $res[car] = $db->select_query("SELECT * FROM  web_carall  where drivername ='".$user_id."' and status=1 order by status_usecar desc");
          $arr[car] = $db->fetch($res[car]);
-         $res[car_type] = $db->select_query("SELECT * FROM ".TB_carall_type." WHERE id='".$arr[car][car_type]."' ");
-         $arr[car_type] = $db->fetch($res[car_type]);
+/*         $res[car_type] = $db->select_query("SELECT * FROM ".TB_carall_type." WHERE id='".$arr[car][car_type]."' ");
+         $arr[car_type] = $db->fetch($res[car_type]);*/
          $res[cartype] = $db->select_query("SELECT * FROM ".TB_carall_type."");
                // $arr[cartype] = $db->fetch($res[cartype]);
          $res[projectcarall] = $db->select_query("SELECT * FROM   web_carall  where drivername = '".$user_id."' and status=1 order by status_usecar desc  ")
@@ -37,40 +37,30 @@
          padding: 15px;
          margin-top: 8px;" id="selected_taxi">
          <div class="form-group">
+         	<?php 
+	         	$row_user_car = $db->num_rows("web_carall","id","drivername ='".$user_id."' and status=1");
+	         	if($row_user_car>0){
+					include('mod/shop/shop_new/car_select.php');
+				}
+         	 ?>
+         </div>
+         <div class="form-group">
             <label class="font-24">ประเภทรถ</label>
-            <?
-               if (!$arr[car_type]) {
-                  ?>
-            <select class="form-control"  name="car_type" id="car_type"  style="border-radius: 25px " >
+            <select class="form-control"  name="car_type" id="car_type" onchange="selectdriss(this.value)" style="display:noneg;border-radius: 25px " >
                <option value="0"> กรุณาเลือกประเภทรถ</option>
-               <?
-                  while($arr[cartype] = $db->fetch($res[cartype])) {
-                  echo "<option value=\"".$arr[cartype][topic_th]."\"";
-                  echo ">".$arr[cartype][topic_th]." </option>";
-                  }
-                  $db->closedb ();
+               <?php
+                  while($arr[cartype] = $db->fetch($res[cartype])) { ?>
+                 <option value="<?=$arr[cartype][id];?>"><?=$arr[cartype][topic_th];?></option>
+                 <? }
                   ?>
             </select>
-            <?  
-               }
-               else{
-               ?>
-            <select class="form-control"  name="car_type" id="car_type" onchange="selectdriss()" style="display:noneg;border-radius: 25px " >
-               <option value="0"> กรุณาเลือกประเภทรถ</option>
-               <?
-                  while($arr[cartype] = $db->fetch($res[cartype])) {
-                  echo "<option value=\"".$arr[cartype][topic_th]."\"";
-                  if($arr[car_type][topic_th] == $arr[cartype][topic_th]) {
-                    echo " Selected";
-                  }
-                  echo ">".$arr[cartype][topic_th]." </option>";
-                  }
-                  $db->closedb ();
-                  ?>
-            </select>
-            <?  
-               }
-               ?>
+            <script>
+            	function selectdriss(val){
+					console.log($("#car_type option:selected").text());
+					$('#txt_car_type').val($("#car_type option:selected").text());
+				}
+            </script>
+			<input type="hidden" value="" id="txt_car_type" name="txt_car_type" />
             <!-- <input type="hidden" class="form_input" required="true" id="car_type" name="car_type" value=""> -->
          </div>
          <div class="form-group">
@@ -953,10 +943,10 @@ function hideRes(id){
    display: block;
 }
 .container .checkmark:after {
-   left: 11px;
-   top: 6px;
-   width: 9px;
-   height: 15px;
+    left: 11px;
+    top: 4px;
+    width: 9px;
+    height: 16px;
    border: solid white;
    border-width: 0 3px 3px 0;
    -webkit-transform: rotate(45deg);
@@ -991,5 +981,8 @@ function hideRes(id){
 }
 </style>
 <script>
-   
+   if('<?=$row_user_car;?>'==1){
+//   	alert(123);
+			$('.a-select-car').click();		
+		}
    </script>

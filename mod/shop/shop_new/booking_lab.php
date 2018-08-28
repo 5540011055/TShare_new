@@ -23,8 +23,8 @@
 //   $res[contact_phone] = $db->select_query("SELECT * FROM  contact_phone WHERE company = '".$arr[product][admin_company]."' ");
       $arr[car] = $db->fetch($res[car]);
      
-      $res[car_type] = $db->select_query("SELECT * FROM ".TB_carall_type." WHERE id='".$arr[car][car_type]."' ");
-            $arr[car_type] = $db->fetch($res[car_type]);
+/*      $res[car_type] = $db->select_query("SELECT * FROM ".TB_carall_type." WHERE id='".$arr[car][car_type]."' ");
+            $arr[car_type] = $db->fetch($res[car_type]);*/
              $res[cartype] = $db->select_query("SELECT * FROM ".TB_carall_type."");
       ?>
   
@@ -37,65 +37,31 @@
     padding: 15px;
     margin-top: 8px;" id="selected_taxi">
     <div class="form-group">
+         	<?php 
+         	$row_user_car = $db->num_rows("web_carall","id","drivername ='".$user_id."' and status=1");
+         	if($row_user_car>0){
+				include('mod/shop/shop_new/car_select.php');
+			}
+         	 ?>
+         </div>
+    <div class="form-group">
           <label class="font-24">ประเภทรถ</label>
-            <?
-            if (!$arr[car_type]) {
-               ?>
-               <select class="form-control"  name="car_type" id="car_type"  style="border-radius: 25px " >  
-        <option value="0"> กรุณาเลือกประเภทรถ</option>
-        <?
-
-                         
-                                    //$res[category] = $db->select_query("SELECT * FROM ".TB_transferplace." where pro < 4 and status = 1 ORDER BY topic ");
-                                  ///  $res[category] = $db->select_query("SELECT * FROM  guest_nation  ORDER BY id  ");
-                          
-                
-                       
-                                  while($arr[cartype] = $db->fetch($res[cartype])) {
- 
-                                    echo "<option value=\"".$arr[cartype][topic_th]."\"";
-                                    // if($arr[category][id] == $arr[product][pickup_place]) {
-                                    //   echo " Selected";
-                                    // }
-                                    echo ">".$arr[cartype][topic_th]." </option>";
-                                  }
-                                  $db->closedb ();
-                                  ?>
-        
-      </select>
-            <?  
-            }
-            else{
-            ?>
-                   <select class="form-control"  name="car_type" id="car_type"  style="border-radius: 25px " >  
-        <option value="0"> กรุณาเลือกประเภทรถ</option>
-        <?
-
-                         
-                                    //$res[category] = $db->select_query("SELECT * FROM ".TB_transferplace." where pro < 4 and status = 1 ORDER BY topic ");
-                                  ///  $res[category] = $db->select_query("SELECT * FROM  guest_nation  ORDER BY id  ");
-                          
-                
-                       
-                                  while($arr[cartype] = $db->fetch($res[cartype])) {
- 
-                                    echo "<option value=\"".$arr[cartype][topic_th]."\"";
-                                    if($arr[car_type][topic_th] == $arr[cartype][topic_th]) {
-                                      echo " Selected";
-                                    }
-                                    echo ">".$arr[cartype][topic_th]." </option>";
-                                  }
-                                  $db->closedb ();
-                                  ?>
-        
-      </select>
-            <?  
-            }
-            ?>
-            <!-- <input type="text" class="form_input" required="true" id="car_type" name="car_type" value="<?= $arr[car_type][topic_th];?>"> -->
-            
-
-          <!-- <input type="text" class="form_input" required="true" id="car_type" name="car_type" value="<?= $arr[car_type][topic_th];?>"> -->
+            <select class="form-control"  name="car_type" id="car_type" onchange="selectdriss(this.value)" style="display:noneg;border-radius: 25px " >
+               <option value="0"> กรุณาเลือกประเภทรถ</option>
+               <?php
+                  while($arr[cartype] = $db->fetch($res[cartype])) { ?>
+                 <option value="<?=$arr[cartype][id];?>"><?=$arr[cartype][topic_th];?></option>
+                 <? }
+                  ?>
+            </select>
+            <script>
+            	
+            	function selectdriss(val){
+					console.log($("#car_type option:selected").text());
+					$('#txt_car_type').val($("#car_type option:selected").text());
+				}
+            </script>
+			<input type="hidden" value="" id="txt_car_type" name="txt_car_type" />
         </div>
          <div class="form-group">
             <label class="font-24">ป้ายทะเบียนรถ</label>
@@ -866,6 +832,9 @@
 </script>
 
 <script>
+	  if('<?=$row_user_car;?>'==1){
+			$('.a-select-car').click();		
+		}
       $(".text-topic-action-mod-3" ).html("<?=$arr[shop][$place_shopping]?>");
    </script>
 <style>

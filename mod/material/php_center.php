@@ -119,4 +119,14 @@ if($_GET[checking]=="empty_user"){
 	header('Content-Type: application/json');
 	echo json_encode($return);
 }
+
+if($_GET[test]=="keyup"){
+	$db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
+	$res[us]  = $db->select_query("SELECT * FROM " . $tb_admin_chk . " WHERE username like '%".$_GET[txt]."%' limit 5 ");
+	while($arr[us] = $db->fetch($res[us])){
+		$data[] = $arr[us];
+	}
+	header('Content-Type: application/json');
+	echo json_encode($data);
+}
 ?>

@@ -92,9 +92,9 @@
        <script src="pickerdate/picker.js?v=<?=time();?>" type="text/javascript"></script>
        <script src="pickerdate/picker.date.js?v=<?=time();?>" type="text/javascript"></script> 
        
-       <link rel="stylesheet" href="material/onsenui/css/onsenui.css">
+       <!--<link rel="stylesheet" href="material/onsenui/css/onsenui.css">
 	   <link rel="stylesheet" href="material/onsenui/css/onsen-css-components.min.css">
-	   <script src="material/onsenui/js/onsenui.min.js"></script>
+	   <script src="material/onsenui/js/onsenui.min.js"></script>-->
    <body style="/*        background-position: 0% 100%;
     background-image: linear-gradient(to right,rgba(63, 81, 181, 0) 0%,#1b618800 100%),url(pic/b1.jpg);
     background-blend-mode: screen;
@@ -285,7 +285,7 @@
 
       </script>
       <!-- Modal Structure 1 -->
-      <div id="material_dialog" class="modal ">
+      <div id="material_dialog" class="modal " style="display: none;">
          <div class="modal-content">
             <h4 id="dialoglLabel">Modal Header</h4>
             <div id="load_modal_body" style="-webkit-overflow-scrolling: touch;">
@@ -298,7 +298,7 @@
          </div>
       </div>
       <!-- Modal Structure 2 -->
-      <div id="material_alert" class="modal">
+      <div id="material_alert" class="modal" style="display: none;">
          <div class="modal-content" style="padding: 0px 24px;">
             <h4 id="alertLabel">Modal Header</h4>
             <div id="load_modal_body_alert" style="-webkit-overflow-scrolling: touch;"></div>
@@ -308,7 +308,7 @@
          </div>
       </div>
       <!-- Modal Structure 3 lg -->
-      <div id="material_dialog_lg" class="modal modal-fixed-footer" style="height: 90% !important; 
+      <div id="material_dialog_lg" class="modal modal-fixed-footer" style="height: 90% !important; display: none;
          max-height: 90% !important;margin-top: -30px;">
          <div class="modal-content">
             <h4 id="dialoglLabel_lg">Modal Header</h4>
@@ -408,7 +408,8 @@
    //                                                alert(check_new_user);
    if(check_new_user!=""){
    $( "#main_load_mod_popup" ).toggle();
-   var url_load = "load_page_mod.php?name=user&file=index&check_new_user="+check_new_user;
+//   var url_load = "load_page_mod.php?name=user&file=empty_user&check_new_user="+check_new_user;
+	var url_load = "load_page_mod.php?name=user&file=empty_user";
    $('#load_mod_popup').html(load_main_mod);
    $('#load_mod_popup').load(url_load); 
    }

@@ -212,7 +212,7 @@
 			{
 				console.log('success file');
 				$('#iddriving_img').show();
-				$('#iddriving_img').attr('src','../data/pic/driver/id_card/<?=$arr[web_user][id];?>_iddriving.jpg');
+				$('#iddriving_img').attr('src','../data/pic/driver/id_driving/<?=$arr[web_user][id];?>_iddriving.jpg');
 			}
 		});
 	

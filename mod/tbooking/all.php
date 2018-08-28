@@ -140,6 +140,8 @@ function openMoneytransfer(){
 
 
 function readDataBooking(){
+	console.log("Read Booking+++++++++++++++");
+	console.log(res_socket);
       var num = 0;
    //	 	$('#load_booking_data .box_book').remove();
    $('#load_booking_data div').remove();
@@ -172,11 +174,11 @@ function readDataBooking(){
        var pax = res.pax;
        var remark = res.remark;
        var car_type;
-       if(getCookie("lng")=='en'){
+       if($.cookie("lng")=='en'){
          var car_type = res.car_type.topic_en;
-       }else if(getCookie("lng")=='cn'){
+       }else if($.cookie("lng")=='cn'){
          var car_type = res.car_type.topic_cn;
-       }else if(getCookie("lng")=='th'){
+       }else if($.cookie("lng")=='th'){
          var car_type = res.car_type.topic_th;
        }else{
 
@@ -226,6 +228,7 @@ function readDataBooking(){
                +'</div>'
                +'</button>'
                +'</div>';
+              
                $('#load_booking_data').append(component2);
                num++;
              });
