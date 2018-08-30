@@ -9,16 +9,16 @@
 
 <div class="page-header" style="    margin-top: 50px;
     padding: 16px 35px;">
-        <h1><a >LINE</a><small> notify</small></h1>
+        <!-- <h1><a >LINE</a><small> notify</small></h1> -->
       <!-- </div> -->
       
-        <legend>ขอรับการแจ้งเตือน ชื่อผู้ใช้งาน "<?=$_COOKIE["app_remember_user"];?>"</legend>
+        <legend>กรุณาจำ ชื่อผู้ใช้งานของตัวเอง"<?=$_COOKIE["app_remember_user"];?>"</legend>
       
         <div class="form-group" >
           
           <!-- <input type="text" class="form-control" id="usernameline" placeholder="Email"  name="usernameline" value="<?=$_COOKIE["app_remember_user"];?>" > -->
         </div>
-        <button id="state_one" type="image"  class="btn btn_se_line" onclick="regisAuthss()">เข้าสูระบบไลน์</button>
+        <button id="state_one" type="image"  class="btn btn_se_line" onclick="regisAuthss()">รับการแจ้งเตือน</button>
         <button id="state_two" type="image"  class="btn btn_se_line" onclick="saveregisAuthss()">ยืนยันการสมัครแจ้งเตือนไลน์</button>
       
         
