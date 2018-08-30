@@ -1,5 +1,5 @@
 <?php 
-if($_GET[type]=="idcard"){
+if($_GET[type]=="id_card"){
 	
 	include("../../../includes/class.resizepic.php");
 	$original_image = $_FILES['fileUpload']['tmp_name'] ;
@@ -12,7 +12,7 @@ if($_GET[type]=="idcard"){
 	echo json_encode($result);
 	exit();
 }
-if($_GET[type]=="iddriving"){
+if($_GET[type]=="id_drving"){
 	
 	include("../../../includes/class.resizepic.php");
 	$original_image = $_FILES['fileUpload']['tmp_name'] ;

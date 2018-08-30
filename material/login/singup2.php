@@ -9,6 +9,7 @@
 			$province = "จังหวัดที่คุณอยู่ประจำ";
 			$email = "อีเมล์";
 			$plate = "เลขทะเบียนรถ";
+			$card_dv = "ใบขับขี่";
 		?>
 
 <div style="padding: 1px 0 0 0;">
@@ -17,7 +18,7 @@
     </p>
 	<form name="form_singin" id="form_singin"  enctype="multipart/form-data">
     <ons-card class="card">
-
+		<ons-list-header class="list-header"><b>ข้อมูลส่วนตัว</b></ons-list-header>
         <ons-list-item class="input-items list-item p-l-0">
             <div class="left list-item__left">
                 <ons-icon icon="fa-user" class="list-item__icon ons-icon"></ons-icon>
@@ -31,7 +32,6 @@
             </label>
         </ons-list-item>
         
-
         <ons-list-item class="input-items list-item p-l-0">
             <div class="left list-item__left">
                 <ons-icon icon="md-face" class="list-item__icon ons-icon"></ons-icon>
@@ -42,23 +42,6 @@
                     <span class="text-input__label">
                         <?=$nickname;?></span>
                 </ons-input>
-            </label>
-        </ons-list-item>
-
-        <ons-list-item class="input-items list-item p-l-0">
-            <div class="left list-item__left" style="   /* margin-left: -7px;*/">
-                <ons-icon icon="fa-id-badge" class="list-item__icon ons-icon"></ons-icon>
-            </div>
-            <label class="center list-item__center">
-                <ons-input id="idcard-input" float="" placeholder="<?=$idcard;?>" name="idcard" style="width:100%;">
-                    <input type="number" pattern="\d*" class="text-input" placeholder="<?=$idcard;?>" onkeyup="checkIdCard(this.value);" name="idcard" id="idcard">
-                    <span class="text-input__label">
-                        <?=$idcard;?></span>
-                </ons-input>
-                <input type="hidden" value="0" id="valid_type_idc" />
-                <!---- 0=pass, 1=incorrect, 2=overlap ----->
-                <i id="corrent-idc" class="fa fa-check-circle pass checking" aria-hidden="true" style="display: none;"></i>
-                <i id="incorrent-idc" class="fa fa-times-circle no-pass checking" aria-hidden="true" style="display: none;"></i>
             </label>
         </ons-list-item>
 
@@ -117,23 +100,7 @@
                 คุณอยู่จังหวัด&nbsp;<span id="txt-province" style="color: #ff6464;font-weight: 800;">..</span>
             </div>
         </ons-list-item>
-        
-        <ons-list-item class="input-items list-item p-l-0">
-            <div class="left list-item__left">
-                <ons-icon icon="fa-car" class="list-item__icon ons-icon"></ons-icon>
-            </div>
-            <label class="center list-item__center">
-                <ons-input id="name-input" float="" maxlength="30" placeholder="<?=$plate;?>" name="plate_num" style="width:100%;">
-                    <input type="text" class="text-input" maxlength="30" placeholder="<?=$plate;?>" name="plate_num" onkeyup="validPlate($(this).val());">
-                    <span class="text-input__label">
-                        <?=$plate;?></span>
-                </ons-input>
-                <input type="hidden" value="0" id="valid_type_plate" />
-                <i id="corrent-plate" class="fa fa-check-circle pass checking-plate" aria-hidden="true" style="display: none;"></i>
-                <i id="incorrent-plate" class="fa fa-times-circle no-pass checking-plate" aria-hidden="true" style="display: none;"></i>
-            </label>
-        </ons-list-item>
-        
+                
         <ons-list-item class="input-items list-item p-l-0">
             <div class="left list-item__left">
                 <ons-icon icon="fa-at" class="list-item__icon ons-icon"></ons-icon>
@@ -148,11 +115,7 @@
                 <i id="incorrent-email" class="fa fa-times-circle no-pass checking-mail" aria-hidden="true" style="display: none;"></i>
             </label>
         </ons-list-item>
-    </ons-card>
-    
-    <ons-card  class="card">
-      <ons-list-header class="list-header"><b>ภาพประจำตัว</b></ons-list-header>
-
+		
  		<div class="image-editor" align="center">
 			<div class="upload-btn-wrapper">
 			  <button class="btn-ip" type="button">เลือกภาพประจำตัว</button>
@@ -170,7 +133,84 @@
 	      <!--<button type="button" onclick="testUpload();">Click</button>  -->  
 	    </div>
 
- </ons-card>
+    </ons-card>
+    
+    <ons-card  class="card">
+      <ons-list-header class="list-header"><b>บัตรประชาชน</b></ons-list-header>
+      <ons-list-item class="input-items list-item p-l-0">
+            <div class="left list-item__left" style="   /* margin-left: -7px;*/">
+                <ons-icon icon="fa-id-badge" class="list-item__icon ons-icon"></ons-icon>
+            </div>
+            <label class="center list-item__center">
+                <ons-input id="idcard-input" float="" placeholder="<?=$idcard;?>" name="idcard" style="width:100%;">
+                    <input type="number" pattern="\d*" class="text-input" placeholder="<?=$idcard;?>" onkeyup="checkIdCard(this.value);" name="idcard" id="idcard">
+                    <span class="text-input__label">
+                        <?=$idcard;?></span>
+                </ons-input>
+                <input type="hidden" value="0" id="valid_type_idc" />
+                <!---- 0=pass, 1=incorrect, 2=overlap ----->
+                <i id="corrent-idc" class="fa fa-check-circle pass checking" aria-hidden="true" style="display: none;"></i>
+                <i id="incorrent-idc" class="fa fa-times-circle no-pass checking" aria-hidden="true" style="display: none;"></i>
+            </label>
+        </ons-list-item>
+        
+        <div align="center">
+			<div >
+			  <!--<button class="btn-ip" type="button">เลือกภาพบัตรประจำตัวประชาชน</button>-->
+			  <input type="file" class="cropit-image-input" id="img_id_card"  style="opacity: 0;position: absolute;">
+			</div>
+			<span id="txt-img-has-id_card" style="display: none;"><i class="fa fa-check-circle" aria-hidden="true" style="color: #25da25;"></i>&nbsp; มีภาพถ่ายแล้ว</span>
+			<span id="txt-img-nohas-id_card" style="display: nones;"><i class="fa fa-times-circle" aria-hidden="true" style="color: #ff0000;"></i>&nbsp; ไม่มีภาพ</span>
+	      <div class="box-preview-img" id="box_img_id_card" onclick="$('#img_id_card').click();">
+	      	<img src="../../images/ex_card/id_card.jpg" class="img-preview-show" id="pv_id_card"  />
+	      	
+	      </div> 
+	    </div>
+        
+      <ons-list-item class="input-items list-item p-l-0">
+            <div class="left list-item__left" style="   /* margin-left: -7px;*/">
+                <ons-icon icon="fa-id-card-o" class="list-item__icon ons-icon"></ons-icon>
+            </div>
+            <label class="center list-item__center">
+                <ons-input id="iddriving-input" float="" placeholder="<?=$card_dv;?>" name="iddriving" style="width:100%;">
+                    <input type="number" pattern="\d*" class="text-input" placeholder="<?=$card_dv;?>"  name="iddriving" id="iddriving">
+                    <span class="text-input__label">
+                        <?=$card_dv;?></span>
+                </ons-input>               
+            </label>
+        </ons-list-item>
+        
+        <div align="center">
+			<div >
+			  <button class="btn-ip" type="button" onclick="$('#img_id_drving').click();" >เลือกภาพใบขับขี่</button>
+			  <input type="file" class="cropit-image-input" id="img_id_drving"  style="opacity: 0;position: absolute;">
+			</div>
+			<span id="txt-img-id_drving" style="display: none;"><i class="fa fa-check-circle" aria-hidden="true" style="color: #25da25;"></i>&nbsp; มีภาพถ่ายแล้ว</span>
+	      <div class="box-preview-img" id="box_img_id_drving">
+	      	<img src="" style="max-width: 280px;height: auto;" id="pv_id_drving" />
+	      </div> 
+	    </div>
+        
+ 	</ons-card>
+    
+    <ons-card  class="card">
+      <ons-list-header class="list-header"><b>ข้อมูลรถ</b></ons-list-header>
+      <ons-list-item class="input-items list-item p-l-0">
+            <div class="left list-item__left">
+                <ons-icon icon="fa-car" class="list-item__icon ons-icon"></ons-icon>
+            </div>
+            <label class="center list-item__center">
+                <ons-input id="name-input" float="" maxlength="30" placeholder="<?=$plate;?>" name="plate_num" style="width:100%;">
+                    <input type="text" class="text-input" maxlength="30" placeholder="<?=$plate;?>" name="plate_num" onkeyup="validPlate($(this).val());">
+                    <span class="text-input__label">
+                        <?=$plate;?></span>
+                </ons-input>
+                <input type="hidden" value="0" id="valid_type_plate" />
+                <i id="corrent-plate" class="fa fa-check-circle pass checking-plate" aria-hidden="true" style="display: none;"></i>
+                <i id="incorrent-plate" class="fa fa-times-circle no-pass checking-plate" aria-hidden="true" style="display: none;"></i>
+            </label>
+        </ons-list-item>
+ 	</ons-card>
 </form>
      <ons-card class="card">
     <ons-button modifier="outline" class="button-margin button button--outline button--large" onclick="createAlertDialog();" >ยืนยันข้อมูล</ons-button>
@@ -200,4 +240,48 @@
         });
 
       });
+    
+    function readURL(input,type) {
+
+	  if (input.files && input.files[0]) {
+	    var reader = new FileReader();
+	    	reader.onload = function(e) {
+	    	
+				$('#pv_'+type).attr('src', e.target.result);
+	      		var data = new FormData($('#form_singin')[0]);
+      			data.append('fileUpload', $('#img_'+type)[0].files[0]);
+      			var url_upload = "../../mod/user/upload_img/upload.php?id="+$('#rand').val()+"&type="+type;
+      			console.log(url_upload);
+   				   $.ajax({
+   				                url: url_upload, // point to server-side PHP script 
+   				                dataType: 'text',  // what to expect back from the PHP script, if anything
+   				                cache: false,
+   				                contentType: false,
+   				                processData: false,
+   				                data: data,                         
+   				                type: 'post',
+   				                success: function(php_script_response){
+   				                   console.log(php_script_response);
+   				                   $('#box_img_'+type).fadeIn(200);
+   				                   $('#txt-img-has-'+type).show();
+   				                   $('#txt-img-nohas-'+type).hide();
+   				                },
+						        error: function(e){
+						                console.log(e)
+						        }
+   				 	});
+	    }
+	    	reader.readAsDataURL(input.files[0]);
+	   		
+	  }
+	  
+	}
+    
+	$("#img_id_card").change(function() {
+	  	 readURL(this,'id_card');
+	});
+	
+	$("#img_id_drving").change(function() {
+	  	 readURL(this,'id_drving');
+	});
 </script>
