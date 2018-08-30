@@ -84,7 +84,6 @@
                     <span class="text-input__label">
                         <?=$phone_em;?></span>
                 </ons-input>
-                <input type="hidden" value="0" id="valid_type_phone" />
                  <i id="corrent-phone" class="fa fa-check-circle pass checking-phone" aria-hidden="true" style="display: none;"></i>
                 <i id="incorrent-phone" class="fa fa-times-circle no-pass checking-phone" aria-hidden="true" style="display: none;"></i>
             </label>
@@ -116,22 +115,21 @@
             </label>
         </ons-list-item>
 		
- 		<div class="image-editor" align="center">
-			<div class="upload-btn-wrapper">
-			  <button class="btn-ip" type="button">เลือกภาพประจำตัว</button>
-			  <!--<input type="file" class=""  id="imgInp" >-->
-			  <input type="file" class="cropit-image-input" id="imgInp"  style="opacity: 0;/*position: absolute;*/">
+ 		
+		<ons-list-header class="list-header"><b>ภาพประจำตัว</b></ons-list-header>        
+        <div align="center">
+			<div >
+			  
+			  <input type="file" class="cropit-image-input" id="img_profile" accept="image/*"  style="opacity: 0;position: absolute;">
 			</div>
-	      
-	      <div class="cropit-preview" >
-	      </div>
-	      <div align="center">
-	      	<button class="rotate-ccw" type="button"><ons-icon icon="fa-repeat" class="list-item__icon ons-icon"></ons-icon></button>
-	      	<!--<button class="rotate-cw" type="button" style="margin-left: 20px;"><ons-icon icon="fa-chevron-right" class="list-item__icon ons-icon"></ons-icon></button> -->
-	      </div>
-	      <input type="hidden" name="image-data" class="hidden-image-data" />
-	      <!--<button type="button" onclick="testUpload();">Click</button>  -->  
+			<span id="txt-img-has-profile" style="display: none;"><i class="fa fa-check-circle" aria-hidden="true" style="color: #25da25;"></i>&nbsp; มีภาพถ่ายแล้ว</span>
+			<span id="txt-img-nohas-profile" style="display: nones;"><i class="fa fa-times-circle" aria-hidden="true" style="color: #ff0000;"></i>&nbsp; ไม่มีภาพ</span>
+	      <div class="box-preview-img" id="box_img_profile" onclick="$('#img_profile').click();" style="width: 170px;height: 170px;">
+	      	<img src="../../../data/pic/driver/small/default-avatar.jpg" style="max-width: 100%; height: 170px;" id="pv_profile"  /><br/>
+	      	<span class="txt-upload-profile"><i class="fa fa-camera" aria-hidden="true"></i>&nbsp; อัพโหลด</span>
+	      </div> 
 	    </div>
+	   
 
     </ons-card>
     
@@ -157,13 +155,13 @@
         <div align="center">
 			<div >
 			  <!--<button class="btn-ip" type="button">เลือกภาพบัตรประจำตัวประชาชน</button>-->
-			  <input type="file" class="cropit-image-input" id="img_id_card"  style="opacity: 0;position: absolute;">
+			  <input type="file" class="cropit-image-input" accept="image/*" id="img_id_card"  style="opacity: 0;position: absolute;">
 			</div>
 			<span id="txt-img-has-id_card" style="display: none;"><i class="fa fa-check-circle" aria-hidden="true" style="color: #25da25;"></i>&nbsp; มีภาพถ่ายแล้ว</span>
 			<span id="txt-img-nohas-id_card" style="display: nones;"><i class="fa fa-times-circle" aria-hidden="true" style="color: #ff0000;"></i>&nbsp; ไม่มีภาพ</span>
 	      <div class="box-preview-img" id="box_img_id_card" onclick="$('#img_id_card').click();">
 	      	<img src="../../images/ex_card/id_card.jpg" class="img-preview-show" id="pv_id_card"  />
-	      	
+	      	<span class="txt-upload"><i class="fa fa-camera" aria-hidden="true"></i>&nbsp; อัพโหลดรูปถ่าย</span>
 	      </div> 
 	    </div>
         
@@ -182,12 +180,13 @@
         
         <div align="center">
 			<div >
-			  <button class="btn-ip" type="button" onclick="$('#img_id_drving').click();" >เลือกภาพใบขับขี่</button>
-			  <input type="file" class="cropit-image-input" id="img_id_drving"  style="opacity: 0;position: absolute;">
+			  <!--<button class="btn-ip" type="button" onclick="$('#img_id_drving').click();" >เลือกภาพใบขับขี่</button>-->
+			  <input type="file" class="cropit-image-input" accept="image/*" id="img_id_drving"  style="opacity: 0;position: absolute;">
 			</div>
 			<span id="txt-img-id_drving" style="display: none;"><i class="fa fa-check-circle" aria-hidden="true" style="color: #25da25;"></i>&nbsp; มีภาพถ่ายแล้ว</span>
 	      <div class="box-preview-img" id="box_img_id_drving">
-	      	<img src="" style="max-width: 280px;height: auto;" id="pv_id_drving" />
+	      	<img src="../../images/ex_card/id_driving.jpg" style="max-width: 280px;height: auto;" id="pv_id_drving" />
+	      	<span class="txt-upload" style="bottom: 24px;"><i class="fa fa-camera" aria-hidden="true"></i>&nbsp; อัพโหลดรูปถ่าย</span>
 	      </div> 
 	    </div>
         
@@ -210,6 +209,25 @@
                 <i id="incorrent-plate" class="fa fa-times-circle no-pass checking-plate" aria-hidden="true" style="display: none;"></i>
             </label>
         </ons-list-item>
+        <ons-list-item class="input-items list-item p-l-0">
+        	<div class="left list-item__left"  style="width: 100px;">
+                <span>ประเภทรถ</span>
+            </div>
+            <div class="center list-item__center" onclick="fn.pushPage({'id': 'option.html', 'title': 'ประเภทรถ', 'open':'car_type'}, 'lift-ios')">
+                <span id="txt_car_type" >เลือก</span>
+                <input type="hidden" name="car_type" id="car_type" />
+            </div>
+        </ons-list-item>
+        <ons-list-item class="input-items list-item p-l-0">
+        	<div class="left list-item__left" style="width: 100px;">
+                <span>ยี่ห้อ</span>
+            </div>
+            <div class="center list-item__center" onclick="fn.pushPage({'id': 'option.html', 'title': 'ยี่ห้อรถ', 'open':'car_brand'}, 'lift-ios')">
+                <span id="txt_car_brand" >เลือก</span>
+                <input type="hidden" name="car_brand" id="car_brand" />
+            </div>
+        </ons-list-item>
+        
  	</ons-card>
 </form>
      <ons-card class="card">
@@ -284,4 +302,17 @@
 	$("#img_id_drving").change(function() {
 	  	 readURL(this,'id_drving');
 	});
+	
+	$("#img_profile").change(function() {
+//	  	 readURLprofile(this);
+		var input = this;
+		if (input.files && input.files[0]) {
+	    var reader = new FileReader();
+	    	reader.onload = function(e) {
+	    		$('#pv_profile').attr('src', e.target.result);
+	    }
+	    	reader.readAsDataURL(input.files[0]);
+	  }
+	});
+
 </script>
