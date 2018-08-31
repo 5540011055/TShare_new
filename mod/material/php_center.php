@@ -129,4 +129,25 @@ if($_GET[test]=="keyup"){
 	header('Content-Type: application/json');
 	echo json_encode($data);
 }
+
+if($_GET[query]=="car_brand"){
+	$db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
+	$res[cb]  = $db->select_query("SELECT id,name_en,name_th,name_cn,img,popular FROM web_car_brand WHERE status = 1 ");
+	while($arr[cb] = $db->fetch($res[cb])){
+		$data[] = $arr[cb];
+		
+	}
+	header('Content-Type: application/json');
+	echo json_encode($data);
+}
+
+if($_GET[query]=="car_type"){
+	$db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
+	$res[cb]  = $db->select_query("SELECT id,name_th FROM web_car_use_type WHERE status = 1 ");
+	while($arr[cb] = $db->fetch($res[cb])){
+		$data[] = $arr[cb];
+	}
+	header('Content-Type: application/json');
+	echo json_encode($data);
+}
 ?>

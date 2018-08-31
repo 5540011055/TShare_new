@@ -30,19 +30,47 @@
 <link rel="stylesheet" href="../onsenui/css/onsen-css-components.min.css">
 <script src="../onsenui/js/onsenui.min.js"></script>
 <style>
+.brand-small {
+    background-image: url(../../images/sprite--brandsP.png);
+    background-size: 28px auto;
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    height: 28px;
+    width: 28px;
+}
+.txt-upload-profile{
+	background-color: #f4f4f4;
+    padding: 0px 10px;
+	position: absolute;
+    /* bottom: 22px; */
+/*    width: 160px;*/
+    margin-left: -20px;
+    margin-top: -23px;
+    border-top-left-radius: 5px;
+}
+.txt-upload{
+/*	border: 1px solid #eee;*/
+    background-color: #f4f4f4;
+    padding: 0px 10px;
+    position: absolute;
+    right: 24px;
+    margin-top: -24px;
+    border-top-left-radius: 5px;
+}
 .img-preview-show{
 	width: 100%;
-	height : 200px;
+	height : 198px;
 /*	min-height: 250px;*/
 }
 .box-preview-img{
-	 border: 1px solid #ccc;
+	 border: 1px solid #fff;
 	 border-radius: 3px;
 	 margin: 7px;
 	 display: nones;
-	 width: 80%;
-	 height: 220px;
-	 background-color: #f8f8f8;
+	 width: auto;
+	 height: 200px;
+	 background-color: #dedede;
+	 box-shadow: 1px 1px 1px #d4d4d4;
 }
 .intro{
 	text-align: center;
@@ -79,8 +107,8 @@
         border: 1px solid #ccc;
         border-radius: 3px;
         margin-top: 7px;
-        width: 250px !important;
-        height: 300px !important;
+        width: 150px !important;
+        height: 170 !important;
 /*        max-height: 450px;*/
       }
 
@@ -231,7 +259,7 @@
 						<ons-button modifier="large" class="button-margin button button--large pd-min" onclick="submitLogin();">เข้าสู่ระบบ</ons-button>
 						</div>
 						<div style="width: 100%;">
-						<ons-button modifier="large" onclick="fn.pushPage({'id': 'singup.html', 'title': 'singup'})" class="button-margin button button--large pd-min" style="background-color: #F7941D;">สมัครสมาชิก</ons-button>
+						<ons-button modifier="large" onclick="fn.pushPage({'id': 'singup.html', 'title': 'สมัครสมาชิก'});" class="button-margin button button--large pd-min" style="background-color: #F7941D;">สมัครสมาชิก</ons-button>
 						</div>
 					</div>
 					<div class="text-center bottom-txt">
@@ -298,6 +326,25 @@
 	    <p style="text-align: center">
 	      	<? include("recovery.php"); ?>
 	    </p>
+	    <script>
+	      ons.getScriptPage().onInit = function () {
+	        this.querySelector('ons-toolbar div.center').textContent = this.data.title;
+	      }
+	    </script>
+	  </ons-page>
+</template>
+
+<template id="option.html">
+	  <ons-page>
+	    <ons-toolbar>
+	      <div class="left">
+	        <ons-back-button class="option-back">กลับ</ons-back-button>
+	      </div>
+	      <div class="center"></div>
+	    </ons-toolbar>
+	    <div id="body_option">
+	    	
+	    </div>
 	    <script>
 	      ons.getScriptPage().onInit = function () {
 	        this.querySelector('ons-toolbar div.center').textContent = this.data.title;
@@ -442,6 +489,47 @@
 		console.log(page)
 		if(page.id=="singup.html"){
 			randerSingUp();
+		}else if(page.id=="option.html"){
+			console.log("option");
+			if(page.open=="car_brand"){
+				
+				$.ajax({
+	            url: "../../mod/material/php_center.php?query=car_brand", // point to server-side PHP script 
+	            dataType: 'json', // what to expect back from the PHP script, if anything
+	            type: 'post',
+	            success: function(res) {
+	            	var d1 = [],d2 = [];
+	            	$.each(res, function( index, value ) {
+					  	if(value.popular>0){
+							d1.push(value);
+						}else{
+							d2.push(value);
+						}
+					});
+					var param = { data2 : d2, data1 : d1};
+					console.log(param);
+	                $.post("car_brand.php",param,function(el){
+						$('#body_option').html(el);
+					});
+	             }
+	        	});
+				
+			}else if(page.open=="car_type"){
+				
+				$.ajax({
+	            url: "../../mod/material/php_center.php?query=car_type", // point to server-side PHP script 
+	            dataType: 'json', // what to expect back from the PHP script, if anything
+	            type: 'post',
+	            success: function(res) {	
+					var param = { data : res };
+					console.log(param);
+	                $.post("car_type.php",param,function(el){
+						$('#body_option').html(el);
+					});
+	             }
+	        	});
+				
+			}
 		}
 	  if (anim) {
 	    document.getElementById('myNavigator').pushPage(page.id, { data: { title: page.title }, animation: anim });
@@ -789,6 +877,21 @@ function validPhoneNum(value){
 			
 }
 
+function selectCarBrand(id){
+	var name = $('#item_car_brand_'+id).data('name');
+	console.log(name+" "+id);
+	$('.option-back').click();
+	$('#car_brand').val(id);
+	$('#txt_car_brand').text(name);
+}
+
+function selectCarType(id){
+	var name = $('#item_car_type_'+id).data('name');
+	console.log(name+" "+id);
+	$('.option-back').click();
+	$('#car_type').val(id);
+	$('#txt_car_type').text(name);
+}
 </script>
 </body>
 </html>
