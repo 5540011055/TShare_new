@@ -1,24 +1,6 @@
 
 <ul id="slide-out" class="side-nav" style="transform: translateX(-310px);">
-<<<<<<< HEAD
 		 <li class="padding-5 default-shadow default-shadow">
-=======
-   <li class="padding-5 default-shadow default-shadow">
-            <ul class="collapsible collapsible-accordion">
-               <li class="bold ">
-                  <a class="collapsible-header waves-effect waves-light font-26"><i class="icon-new-uniF133-2 icon_menu"></i><?=t_user_information;?></a>
-                  <div class="collapsible-body" style="display: none;">
-                     <ul>
-                        <li><a class="g" onclick="openProfile();"><?=t_personal_information;?></a></li>
-                        <li><a onclick="openFileData();"><?=t_important_data_file?></a></li>
-                        <!--<li><a onclick="openProfilePic();"><?=t_change_profile_picture?></a></li>-->
-                     </ul>
-                  </div>
-               </li>
-            </ul>
-         </li>
-         <li class="padding-5 default-shadow default-shadow" style="margin-top: 0px;">
->>>>>>> 6061106bf7ff4a509f8129c55d7a9a39d7f35d8e
             <ul class="collapsible collapsible-accordion">
                <li class="bold ">
                   <a class="collapsible-header waves-effect waves-light font-26"><i class="icon-new-uniF133-2 icon_menu"></i><?=t_user_information;?></a>
@@ -51,7 +33,6 @@
                </li>
             </ul>
          </li>
-<<<<<<< HEAD
          <li class="padding-5 default-shadow default-shadow">
             <ul class="collapsible collapsible-accordion">
                <li class="bold active">
@@ -67,9 +48,6 @@
             </ul>
          </li>
          
-=======
-        
->>>>>>> 6061106bf7ff4a509f8129c55d7a9a39d7f35d8e
          <li class="default-shadow padding-5 default-shadow">
          <a class="collapsible-header waves-effect waves-light font-26" onclick="openQrCode();"><i class="fa fa-qrcode icon_menu" style="margin-top: 1px !important;"></i><?=t_friends;?></a>
          </li>
