@@ -72,10 +72,14 @@
         $('#load_mod_popup').load(url_load); 
 	}
 	function openProfile(){
-		$( "#main_load_mod_popup" ).show();
+		/*$( "#main_load_mod_popup" ).show();
         var url_load = "load_page_mod.php?name=user&file=index";
         $('#load_mod_popup').html(load_main_mod);
-        $('#load_mod_popup').load(url_load);
+        $('#load_mod_popup').load(url_load);*/
+         $( "#main_load_mod_popup" ).toggle();
+					     var url_load = "load_page_mod.php?name=user&file=empty_user&check=0";
+					     $('#load_mod_popup').html(load_main_mod);
+					     $('#load_mod_popup').load(url_load); 
 	}
 	function openFileData(){
 		$( "#main_load_mod_popup" ).show();

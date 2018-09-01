@@ -101,9 +101,8 @@
                     <span class="text-input__label">
                         <?=$phone_em;?></span>
                 </ons-input>
-                <input type="hidden" value="0" id="valid_type_phone" />
-                 <i id="corrent-phone" class="fa fa-check-circle pass checking-phone" aria-hidden="true" style="display: none;"></i>
-                <i id="incorrent-phone" class="fa fa-times-circle no-pass checking-phone" aria-hidden="true" style="display: none;"></i>
+                 <!--<i id="corrent-phone" class="fa fa-check-circle pass checking-phone" aria-hidden="true" style="display: none;"></i>
+                <i id="incorrent-phone" class="fa fa-times-circle no-pass checking-phone" aria-hidden="true" style="display: none;"></i>-->
             </label>
         </ons-list-item>
 

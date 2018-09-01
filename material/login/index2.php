@@ -27,9 +27,15 @@
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 <!--===============================================================================================-->
 <link rel="stylesheet" href="../onsenui/css/onsenui.css">
-<link rel="stylesheet" href="../onsenui/css/onsen-css-components.min.css">
+<link rel="stylesheet" href="../onsenui/css/onsen-css-components.min.css?v=1.0">
 <script src="../onsenui/js/onsenui.min.js"></script>
 <style>
+.txt-important{
+	color: #FF1313;
+	font-weight: bold;
+	position: absolute;
+    margin-left: 25px;
+}
 .brand-small {
     background-image: url(../../images/sprite--brandsP.png);
     background-size: 28px auto;
@@ -53,22 +59,23 @@
     background-color: #f4f4f4;
     padding: 0px 10px;
     position: absolute;
-    right: 24px;
+/*    right: 57px;*/
+	margin-left: 85px;
     margin-top: -24px;
     border-top-left-radius: 5px;
 }
 .img-preview-show{
-	width: 100%;
-	height : 198px;
-/*	min-height: 250px;*/
+	margin-top: 3px;
+	max-height: 150px;
+	width: 240px;
 }
 .box-preview-img{
 	 border: 1px solid #fff;
 	 border-radius: 3px;
 	 margin: 7px;
 	 display: nones;
-	 width: auto;
-	 height: 200px;
+	 width: 240px;
+	 height: 150px;
 	 background-color: #dedede;
 	 box-shadow: 1px 1px 1px #d4d4d4;
 }
@@ -225,7 +232,7 @@
 //    	exit();
 	?>
 <ons-navigator swipeable id="myNavigator" page="page1.html"></ons-navigator>
-	<input type="hidden" value="<?=$rand;?>" id="rand" />
+	
 	<template id="page1.html">
 	<ons-page id="page1">
 	<div class="limiter">
@@ -236,7 +243,7 @@
 			
 					<span class="login100-form-title p-b-30 p-t-20">
 
-						<img src="../../images/logo.png" class="img-logo" onclick="window.location = 'https://www.welovetaxi.com/app/TShare_new/material/login/';" />
+						<img src="../../images/logo.png" class="img-logo" onclick="location.reload();" />
 					</span>
 
 					<div class="wrap-input100 validate-input" data-validate = "Valid email is: a@b.c">
@@ -282,7 +289,7 @@
 	</template>
 	
 	<template id="singup.html">
-  	<ons-page id="singup">
+  	<ons-page id="singup" style="overflow-x: hidden;">
     <ons-toolbar>
       <div class="left"><ons-back-button>กลับ</ons-back-button></div>
       <div class="center" id="page_singup">สมัครสมาชิก</div>
@@ -529,6 +536,58 @@
 	             }
 	        	});
 				
+			}else if(page.open=="car_color"){
+				$.ajax({
+	            url: "../../mod/material/php_center.php?query=car_color", // point to server-side PHP script 
+	            dataType: 'json', // what to expect back from the PHP script, if anything
+	            type: 'post',
+	            success: function(res) {	
+					var param = { data : res };
+					console.log(param);
+	                $.post("car_color.php?plate=0",param,function(el){
+						$('#body_option').html(el);
+					});
+	             }
+	        	});
+			}else if(page.open=="plate_color"){
+				$.ajax({
+	            url: "../../mod/material/php_center.php?query=car_color", // point to server-side PHP script 
+	            dataType: 'json', // what to expect back from the PHP script, if anything
+	            type: 'post',
+	            success: function(res) {	
+					var param = { data : res };
+					console.log(param);
+	                $.post("car_color.php?plate=1",param,function(el){
+						$('#body_option').html(el);
+					});
+	             }
+	        	});
+			}else if(page.open=="car_province"){
+				$.ajax({
+	            url: "../../mod/material/php_center.php?query=data_province", // point to server-side PHP script 
+	            dataType: 'json', // what to expect back from the PHP script, if anything
+	            type: 'post',
+	            success: function(res) {	
+					var param = { data : res };
+					console.log(param);
+	                $.post("province.php?type=car",param,function(el){
+						$('#body_option').html(el);
+					});
+	             }
+	        	});
+			}else if(page.open=="user_province"){
+				$.ajax({
+	            url: "../../mod/material/php_center.php?query=data_province", // point to server-side PHP script 
+	            dataType: 'json', // what to expect back from the PHP script, if anything
+	            type: 'post',
+	            success: function(res) {	
+					var param = { data : res };
+					console.log(param);
+	                $.post("province.php?type=user",param,function(el){
+						$('#body_option').html(el);
+					});
+	             }
+	        	});
 			}
 		}
 	  if (anim) {
@@ -672,7 +731,8 @@
 		      var area = data.area;
 		      
 		      $('#txt-province').text(data.name_th);
-		      $('#choose-province select').val(province);
+		      $('#txt_user_province').text(data.name_th);
+		      $('#province').val(province);
 		   });
 	   }
 	});
@@ -681,7 +741,7 @@
 	function randerSingUp(){
 		
 		getLocation();
-		$.post("../../mod/material/php_center.php?query=data_province",function(data){
+		/*$.post("../../mod/material/php_center.php?query=data_province",function(data){
 
 			$.each(data, function( index, value ) {
 //				console.log(value);
@@ -689,7 +749,18 @@
 				$('#choose-province select').append(option);
 			});
 			
+		});*/
+		
+		$.post("../../mod/material/php_center.php?query=em_person",function(data){
+
+			$.each(data, function( index, value ) {
+				
+				var option = '<option value="'+value.id+'">'+value.name_th+'</option>';
+				$('select[name="em_person"]').append(option);
+			});
+			
 		});
+		
 	}
 
 	function validEmail(email){
@@ -739,7 +810,7 @@
 		modal.show();
 		
 		var data = new FormData($('#form_singin')[0]);
-//		 data.append('fileUpload', $('#imgInp')[0].files[0]);
+		 data.append('fileUpload', $('#img_profile')[0].files[0]);
 		var url = "../../mod/material/user/php_user.php?action=register";
 		
 		$.ajax({
@@ -877,21 +948,84 @@ function validPhoneNum(value){
 			
 }
 
-function selectCarBrand(id){
+function selectCarBrand(id,ps){
 	var name = $('#item_car_brand_'+id).data('name');
 	console.log(name+" "+id);
-	$('.option-back').click();
+
 	$('#car_brand').val(id);
+	$('#car_brand_txt').val(name);
 	$('#txt_car_brand').text(name);
+	$('ons-back-button').click();
+	$('#img_car_brand_show').show();
+	$('#img_car_brand_show').css('background-position',ps);
+
 }
 
 function selectCarType(id){
 	var name = $('#item_car_type_'+id).data('name');
 	console.log(name+" "+id);
-	$('.option-back').click();
+
 	$('#car_type').val(id);
 	$('#txt_car_type').text(name);
+	$('ons-back-button').click();
 }
+
+function selectCarProvince(id){
+	var name = $('#item_car_province_'+id).data('name');
+	console.log(name+" "+id);
+	
+	$('#car_province').val(id);
+	$('#txt_car_province').text(name);
+	$('ons-back-button').click();
+}
+
+function selectUserProvince(id){
+	var name = $('#item_user_province_'+id).data('name');
+	console.log(name+" "+id);
+	
+	$('#province').val(id);
+	$('#txt_user_province').text(name);
+	$('ons-back-button').click();
+}
+
+function selectCarColor(id,val){
+	console.log(id+" "+val);
+	var img = $('#item_car_color_'+id).data('img');
+	$('#img_car_color_show').attr('src',"../img/"+img);
+	
+	$('#car_color').val(id);
+	$('#car_color_txt').val(val);
+	$('#txt_car_color').text(val);
+	$('#img_car_color_show').show();
+	$('ons-back-button').click();
+}
+
+function selectPlateColor(id,val){
+	console.log(id+" "+val);
+	var img = $('#item_plate_color_'+id).data('img');
+	$('#img_plate_color_show').attr('src',"../img/"+img);
+	
+	$('#plate_color').val(id);
+	$('#i_plate_color').val(val);
+	$('#txt_plate_color').text(val);
+	$('#img_plate_color_show').show();
+	$('ons-back-button').click();
+}
+
+function performClick(elemId) {
+	console.log(elemId);
+   var elem = document.getElementById(elemId);
+   if(elem && document.createEvent) {
+      var evt = document.createEvent("MouseEvents");
+      evt.initEvent("click", true, false);
+      elem.dispatchEvent(evt);
+   }
+}
+
+/*document.querySelector('ons-back-button').onClick = function(event) {
+  // Reset the whole stack instead of popping 1 page
+  document.querySelector('ons-navigator').resetToPage('home.html');
+};*/
 </script>
 </body>
 </html>

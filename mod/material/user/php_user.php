@@ -1,5 +1,6 @@
 <?php 
 include('../../../includes/class.mysql.php');
+include("../../../includes/class.resizepic.php");
 //include('../../../includes/config.in.php');
 define("DB_HOST_HIS","localhost");
 define("DB_NAME_HIS","admin_his");
@@ -49,19 +50,18 @@ if($_GET[action]=="register"){
     
     	
     	$data["password"] = $password;
-//        $data["code_login"] = $rand_login;
         $data["email"] = $_POST[email];
-//        $data["name_en"] = $_POST[name_en];
         $data["name"] = $_POST[name_th];
         $data["nickname"] = $_POST[nickname];
         $data["idcard"] = $_POST[idcard];
         $data["iddriving"] = $_POST[iddriving];
         $data["phone"] = $_POST[phone];
-        $data["phone2"] = $_POST[phone_em];
+        $data["phone_emergency"] = $_POST[phone_em];
         $data["address"] = $_POST[address];
         $data["driver_zone"] = $_POST[driver_zone];
         $data["province"] = $_POST[province];
-        $data["status"] = "1";
+        $data["status"] = 1;
+        $data["emergency_person"] = $_POST[em_person];
         $data["post_date"] = time();
         $data["update_date"] = time();
     	$add_result = $db->add_db($tb_admin_chk,$data);
@@ -81,7 +81,7 @@ if($_GET[action]=="register"){
     
     $add_driver_log = $db->add_db($tb_admin_logs,$data);
      
-    if($_POST['image-data']){
+   /* if($_POST['image-data']){
 	
 		$path = "../../../../data/pic/driver/small/".$data_update[username].".jpg";
 		$img_data = $_POST['image-data'];
@@ -95,24 +95,49 @@ if($_GET[action]=="register"){
 		$img[w] = json_encode($size);
 //		$img[h] = $size[1];
 		$img[path] = $path;
-	}
+	}*/
+	$path = "../../../../data/pic/driver/small/".$data_update[username].".jpg";
+	
+	$original_image = $_FILES['fileUpload']['tmp_name'] ;
+	$desired_width = 600;
+	$desired_height = _INEWS_H ;
+	$image = new hft_image($original_image);
+	$image->resize($desired_width, $desired_height, '0');
+	header('Content-Type: application/json');
+	$result = $image->output_resized($path,"JPG");
+	$img[result] = $result;
+	$img[path] = $path;
     
 	
 	if($_POST[plate_num]!=''){
 		$car[plate_num] = $_POST[plate_num];
 		$car[drivername] = $member_db;
+		$car[car_type] = $_POST[car_type];
+		$car[car_brand] = $_POST[car_brand_txt];
+		$car[i_car_brand] = $_POST[car_brand];
+		$car[i_car_color] = $_POST[car_color];
+		$car[car_color] = $_POST[car_color_txt];
+		$car[plate_color] = $_POST[plate_color_txt];
+		$car[i_plate_color] = $_POST[plate_color];
 		$car[status] = 1;
 		$car[status_usecar] = 0;
 		$car[post_date] = time();
 		$car[update_date] = time();
-		$car[car_type] = 0;
 		$car[result] = $db->add_db($tb_car,$car);
+		$last_id_car = mysql_insert_id();
 		$return[car] = $car;
+		
+		rename("../../../../data/pic/car/".$_POST[rand].".jpg", "../../../../data/pic/car/".$last_id_car."_1.jpg");
 	}
+	rename("../../../../data/pic/driver/id_card/".$_POST[rand]."_idcard.jpg", "../../../../data/pic/driver/id_card/".$last_id."_idcard.jpg");
+	rename("../../../../data/pic/driver/id_driving/".$_POST[rand]."_iddriving.jpg", "../../../../data/pic/driver/id_driving/".$last_id."_iddriving.jpg");
+	
+	
 	
 	$return[upload_img] = $img;
 	$return[path] = $path;
 	$return[driver_logs] = $add_driver_log;
+	$return[code_rand] = $_POST[rand];
 	header('Content-Type: application/json');
     echo json_encode($return);
     

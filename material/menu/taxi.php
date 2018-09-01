@@ -1,33 +1,9 @@
 
 <ul id="slide-out" class="side-nav" style="transform: translateX(-310px);">
-         <li class="padding-5 default-shadow default-shadow" style="margin-top: 0px;">
-            <ul class="collapsible collapsible-accordion">
-               <li class="bold active">
-                 
-                  <a class="collapsible-header waves-effect waves-light font-26"> <i class="icon-new-uniF10A-9 icon_menu"></i><?=t_car_information;?></a>
-                  <div class="collapsible-body" style="display: none;">
-                     <ul>
-                        <li><a class="g" onclick="openNewCar();" ><?=t_add_new_car;?></a></li>
-                        <li><a onclick="openAllCar();"><?=t_all_car?></a></li>
-                     </ul>
-                  </div>
-               </li>
-            </ul>
-         </li>
-         <li class="padding-5 default-shadow default-shadow">
-            <ul class="collapsible collapsible-accordion">
-               <li class="bold active">
-                  <a class="collapsible-header waves-effect waves-light font-26"><i class="icon-new-uniF121-10 icon_menu"></i><?=t_income_details;?></a>
-                  <div class="collapsible-body" style="display: none;">
-                     <ul>
-                        <li><a class="g" onclick="revenue();"><?=t_receipt_of_parking_fee;?></a></li>
-                        <li><a onclick="openBankAcc();"><?=t_bank_account?></a></li>
-                     </ul>
-                  </div>
-               </li>
-            </ul>
-         </li>
-         <li class="padding-5 default-shadow default-shadow">
+<<<<<<< HEAD
+		 <li class="padding-5 default-shadow default-shadow">
+=======
+   <li class="padding-5 default-shadow default-shadow">
             <ul class="collapsible collapsible-accordion">
                <li class="bold ">
                   <a class="collapsible-header waves-effect waves-light font-26"><i class="icon-new-uniF133-2 icon_menu"></i><?=t_user_information;?></a>
@@ -41,6 +17,59 @@
                </li>
             </ul>
          </li>
+         <li class="padding-5 default-shadow default-shadow" style="margin-top: 0px;">
+>>>>>>> 6061106bf7ff4a509f8129c55d7a9a39d7f35d8e
+            <ul class="collapsible collapsible-accordion">
+               <li class="bold ">
+                  <a class="collapsible-header waves-effect waves-light font-26"><i class="icon-new-uniF133-2 icon_menu"></i><?=t_user_information;?></a>
+                  <div class="collapsible-body" style="display: none;">
+                     <ul>
+                        <li><a class="g" onclick="openProfile();"><?=t_personal_information;?></a></li>
+                        <li><a onclick="openBankAcc();"><?=t_bank_account?></a></li>
+                        <!--<li><a onclick="openFileData();"><?=t_important_data_file?></a></li>-->
+                        <!--<li><a onclick="openProfilePic();"><?=t_change_profile_picture?></a></li>-->
+                     </ul>
+                  </div>
+               </li>
+            </ul>
+         </li>
+         <li class="padding-5 default-shadow default-shadow" style="margin-top: 0px;">
+            <ul class="collapsible collapsible-accordion">
+               <li class="bold active">
+                 
+                  <a class="collapsible-header waves-effect waves-light font-26"> <i class="icon-new-uniF10A-9 icon_menu"></i><?=t_car_information;?></a>
+                  <div class="collapsible-body" style="display: none;">
+                     <ul>
+                     	<?php 
+                     		$db->connectdb(DB_NAME_APP, DB_USERNAME, DB_PASSWORD);
+                     		$numcar = $db->num_rows("web_carall","id","drivername = '".$_COOKIE[detect_user]."' ");
+                     	?>
+                        <li><a onclick="openAllCar();"><?=t_all_car?>&nbsp;(<?=$numcar;?> คัน)</a></li>
+                        <li><a class="g" onclick="openNewCar();" ><?=t_add_new_car;?></a></li>
+                     </ul>
+                  </div>
+               </li>
+            </ul>
+         </li>
+<<<<<<< HEAD
+         <li class="padding-5 default-shadow default-shadow">
+            <ul class="collapsible collapsible-accordion">
+               <li class="bold active">
+                  <a class="collapsible-header waves-effect waves-light font-26"><i class="icon-new-uniF121-10 icon_menu"></i><?=t_wallet;?></a>
+                  <div class="collapsible-body" style="display: none;">
+                     <ul>
+                        <li><a class="g" onclick="revenue();"><?=t_receipts;?></a></li>
+                        <li><a class="g" onclick="revenue();"><?=t_expenses;?></a></li>
+                        
+                     </ul>
+                  </div>
+               </li>
+            </ul>
+         </li>
+         
+=======
+        
+>>>>>>> 6061106bf7ff4a509f8129c55d7a9a39d7f35d8e
          <li class="default-shadow padding-5 default-shadow">
          <a class="collapsible-header waves-effect waves-light font-26" onclick="openQrCode();"><i class="fa fa-qrcode icon_menu" style="margin-top: 1px !important;"></i><?=t_friends;?></a>
          </li>
@@ -84,10 +113,15 @@
         $('#load_mod_popup').load(url_load); 
 	}
 	function openProfile(){
-		$( "#main_load_mod_popup" ).show();
+		/*$( "#main_load_mod_popup" ).show();
         var url_load = "load_page_mod.php?name=user&file=index";
         $('#load_mod_popup').html(load_main_mod);
-        $('#load_mod_popup').load(url_load);
+        $('#load_mod_popup').load(url_load);*/
+        
+		 $( "#main_load_mod_popup" ).toggle();
+					     var url_load = "load_page_mod.php?name=user&file=empty_user&check=0";
+					     $('#load_mod_popup').html(load_main_mod);
+					     $('#load_mod_popup').load(url_load); 
 	}
 	function openFileData(){
 		$( "#main_load_mod_popup" ).show();

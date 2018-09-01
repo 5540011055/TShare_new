@@ -1,6 +1,6 @@
 <style>
 .img-car{
-	height: 70px;
+	height: 60px;
     width: auto;
 }
 </style>
@@ -21,6 +21,56 @@
        $('#load_mod_popup_1').html(load_main_mod);
         $('#load_mod_popup_1').load(url_load); 
       });
+      function checkPicCar(id){
+      	console.log(id)
+      	var p1 = '../data/pic/car/'+id+'_1.jpg';
+      	var p2 = '../data/pic/car/'+id+'_2.jpg';
+      	var p3 = '../data/pic/car/'+id+'_3.jpg';
+	  	var src = p1;
+			$.ajax({
+				url: src,
+				type:'HEAD',
+				error: function()
+				{
+				console.log('Error file');
+//					$('#'+id+'_pic_car_1').hide();
+				},
+				success: function()
+				{
+					$('#'+id+'_pic_car_1').attr('src',p1);
+				}
+			});
+			var src = p2;
+			$.ajax({
+				url: src,
+				type:'HEAD',
+				error: function()
+				{
+				console.log('Error file');
+//					$('#'+id+'_pic_car_2').hide();
+				},
+				success: function()
+				{
+//					$('#'+id+'_pic_car_2').show();
+					$('#'+id+'_pic_car_2').attr('src',p2);
+				}
+			});
+			var src = '../data/pic/car/'+id+'_3.jpg';
+			$.ajax({
+				url: src,
+				type:'HEAD',
+				error: function()
+				{
+				console.log('Error file');
+//					$('#'+id+'_pic_car_3').hide();
+				},
+				success: function()
+				{
+//					$('#'+id+'_pic_car_3').show();
+					$('#'+id+'_pic_car_3').attr('src',p3);
+				}
+			});
+	  }
    </script>
    <div style="margin-top: 10px;">
    
@@ -34,8 +84,11 @@
          	$db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
          	$res[car_type] = $db->select_query("SELECT * FROM ".TB_carall_type." WHERE id='".$arr[project][car_type]."' ");
          	$arr[car_type] = $db->fetch($res[car_type]);
+         	
+         	$res[plate] = $db->select_query("SELECT id,code_color,txt_color FROM web_car_color WHERE id='".$arr[project][i_plate_color]."' ");
+         	$arr[plate] = $db->fetch($res[plate]);
          	 ?>
-      <div class="col-md-6" style="padding-left: 10px;padding-right: 10px;padding-bottom: 30px;"  >
+      <div class="col-md-6" style="padding-left: 0px;padding-right: 0px;padding-bottom: 30px;"  >
          
          <div style="padding:5px;   border-radius: 6px; border: 1px solid #ddd;box-shadow:1px 1px 3px #ddd  ; background:<? echo $bgcolor; ?>   " >
             <table width="100%"  border="0" cellspacing="0" cellpadding="0">
@@ -129,16 +182,8 @@
                            }
                            	//Comment Icon
                            ?>
-                        <? if($arr[project][plate_color]=="Green"){
-                           $plate_color="009999"; } ?>
-                        <? if($arr[project][plate_color]=="Yellow"){
-                           $plate_color="FFCC00"; } ?>
-                        <? if($arr[project][plate_color]=="Black"){
-                           $plate_color="FFFFFF"; } ?>
-                        <? if($arr[project][plate_color]=="Red"){
-                           $plate_color="FF0000"; } ?>
-                        <td width="80" height="70" align="center" bgcolor="#<?=$plate_color?>" style="border: solid 2px; height:70px; color:#DADADA; padding:10px; padding-right:10px;border-radius:10px;"><font color="#<? if($arr[project][plate_color]=="Green"){
-                           echo "FFFFFF"; } ?>"  class="font-32"><b><? echo $arr[project][plate_num];?> <br> 
+                      
+                        <td width="80" height="70" align="center" bgcolor="<?=$arr[plate][code_color]?>" style="border: solid 2px; height:70px; color:#DADADA; padding:10px; padding-right:10px;border-radius:10px;"><font color="<?=$arr[plate][txt_color];?>"  class="font-32"><b><? echo $arr[project][plate_num];?> <br> 
                            <font   class="font-22"><? echo $arr[project][province];?></font></b></font>
                         </td>
                         </tr>
@@ -183,17 +228,21 @@
             <table width="100%" border="0" cellspacing="1" cellpadding="5" style="margin-top:-15px;">
                <tbody>
                   <tr style="display:nones">
-                     <td width="33%" align="center"><img src="../data/pic/car/<?=$arr[project][id];?>_1.jpg?v=<?=$arr[project][update_date];?>"  class="img-car"   border="0"      style="margin-top:15px;border-radius:5px;" /></td>
-                     <td width="33%" align="center"><img src="../data/pic/car/<?=$arr[project][id];?>_2.jpg?v=<?=$arr[project][update_date];?>"  class="img-car"   border="0"      style="margin-top:15px;border-radius:5px;" /></td>
-                     <td width="33%" align="center"><img src="../data/pic/car/<?=$arr[project][id];?>_3.jpg?v=<?=$arr[project][update_date];?>"  class="img-car"   border="0"      style="margin-top:15px;border-radius:5px;" /></td>
+                     <td width="33%" align="center" ><img id="<?=$arr[project][id];?>_pic_car_1" src="images/nopic.png"  class="img-car"   border="0"      style="margin-top:15px;border-radius:5px;" /></td>
+                     <td width="33%" align="center" ><img id="<?=$arr[project][id];?>_pic_car_2" src="images/nopic.png"  class="img-car"   border="0"      style="margin-top:15px;border-radius:5px;" /></td>
+                     <td width="33%" align="center" ><img id="<?=$arr[project][id];?>_pic_car_3" src="images/nopic.png"  class="img-car"   border="0"      style="margin-top:15px;border-radius:5px;" /></td>
                   </tr>
                </tbody>
             </table>
          </div>      
       </div>
+      <script>
+      	checkPicCar('<?=$arr[project][id];?>');
+      </script>
       <? } ?>  
    </div>
    <script>
+	
     function activeCar(id){
 		 swal({
             title: "<?=t_are_you_sure;?>",

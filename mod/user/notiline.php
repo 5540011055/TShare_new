@@ -12,10 +12,11 @@
         <!-- <h1><a >LINE</a><small> notify</small></h1> -->
       <!-- </div> -->
       
-        <legend>กรุณาจำ ชื่อผู้ใช้งานของตัวเอง"<?=$_COOKIE["app_remember_user"];?>"</legend>
+
       
-        <div class="form-group" >
-          
+        <div class="form-group" style="text-align: center; margin-top: 20px;">
+          <legend style="font-size: 16px; color: #3b5998;">กรุณาจำชื่อผู้ใช้งานของตัวเอง</legend>
+        <h2><?=$_COOKIE["app_remember_user"];?></h2>
           <!-- <input type="text" class="form-control" id="usernameline" placeholder="Email"  name="usernameline" value="<?=$_COOKIE["app_remember_user"];?>" > -->
         </div>
         <button id="state_one" type="image"  class="btn btn_se_line" onclick="regisAuthss()">รับการแจ้งเตือน</button>

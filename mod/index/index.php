@@ -94,7 +94,7 @@ $all_work = $db->num_rows('order_booking',"id","$filter");
          </script>
       </td>
    </tr>
-   <tr>
+   		 <tr>
       <td width="50%" align="center" class="">
          <center>
             <a class="btn btn-default paddling-max background-airy"  id="index_menu_transfer"   style="width:100%" onclick="workTbooking();">
@@ -121,8 +121,26 @@ $all_work = $db->num_rows('order_booking',"id","$filter");
                </a>
             </center>
          </td>
+      </tr>   
+      	 <tr>
+         <td  width="50%" align="center" class="">
+            <a class="btn btn-default paddling-max background-airy"   id="index_menu_tour"   style="width:100%" onclick="tourBooking();">
+               <center>
+                  <div  class="circle-menu"  style="background-color:#8DC63F"><i class="fa fa-suitcase" style="font-size: 22px;margin-top: -2px; " ></i></div>
+                  <span style="padding-bottom:20px;" class="font-22 text-cap"><? echo t_tour_booking?> </span>
+               </center>
+            </a>
+         </td>
+         <td width="50%" align="center" class="">
+            <a class="btn btn-default paddling-max background-airy" style="width:100%" id="booking_open">
+               <center>
+                  <div  class="circle-menu" style="background: #1CC1A4;"><i class="fa fa-taxi" style="font-size: 22px;margin-top: -2px; " ></i></div>
+                  <span style="padding-bottom:20px;" class="font-22 text-cap"><? echo t_booking; ?></span>
+               </center>
+            </a>
+         </td>
       </tr>
-      <tr>
+	  <tr>
          <td align="center" class="">
             <center>
                <a class="btn btn-default paddling-max background-airy"   onclick="revenue()"  id="index_menu_income"   style="width:100%">
@@ -138,24 +156,6 @@ $all_work = $db->num_rows('order_booking',"id","$filter");
                <center>
                   <div  class="circle-menu" style="background: #e91e63"><i class="fa fa fa-usd" style="font-size: 22px;margin-top: -2px; " ></i></div>
                   <span style="padding-bottom:20px;" class="font-22 text-cap">กระเป๋าเงิน-ประวัติ</span>
-               </center>
-            </a>
-         </td>
-      </tr>    
-      <tr>
-         <td  width="50%" align="center" class="">
-            <a class="btn btn-default paddling-max background-airy"   id="index_menu_tour"   style="width:100%" onclick="tourBooking();">
-               <center>
-                  <div  class="circle-menu"  style="background-color:#8DC63F"><i class="fa fa-suitcase" style="font-size: 22px;margin-top: -2px; " ></i></div>
-                  <span style="padding-bottom:20px;" class="font-22 text-cap"><? echo t_tour_booking?> </span>
-               </center>
-            </a>
-         </td>
-         <td width="50%" align="center" class="">
-            <a class="btn btn-default paddling-max background-airy" style="width:100%" id="booking_open">
-               <center>
-                  <div  class="circle-menu" style="background: #1CC1A4;"><i class="fa fa-taxi" style="font-size: 22px;margin-top: -2px; " ></i></div>
-                  <span style="padding-bottom:20px;" class="font-22 text-cap"><? echo t_booking; ?></span>
                </center>
             </a>
          </td>
@@ -909,7 +909,7 @@ socket.emit('sendchat', dataorder);
 	               console.log(res);
 	               if(res.check==1){
 				   		 $( "#main_load_mod_popup" ).toggle();
-					     var url_load = "load_page_mod.php?name=user&file=empty_user";
+					     var url_load = "load_page_mod.php?name=user&file=empty_user&check=1";
 					     $('#load_mod_popup').html(load_main_mod);
 					     $('#load_mod_popup').load(url_load); 
 				   }

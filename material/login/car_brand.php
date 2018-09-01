@@ -4,7 +4,7 @@
 	foreach($_POST[data1] as $val){ 
 		$img_pos = "background-position: ".$val[img];
 	?>
-	    <ons-list-item id="item_car_brand_<?=$val[id];?>" class="list-item" onclick="selectCarBrand('<?=$val[id];?>');" data-name="<?=$val[name_en];?>">
+	    <ons-list-item id="item_car_brand_<?=$val[id];?>" class="list-item" onclick="selectCarBrand('<?=$val[id];?>','<?=$val[img];?>');" data-name="<?=$val[name_en];?>">
 	            <div class="left list-item__left">
 	                <!--<img class="list-item__thumbnail" src="https://placekitten.com/g/54/41">-->
 	                <span class="brand-small list-item__thumbnail" style="<?=$img_pos;?>" ></span>
@@ -23,7 +23,7 @@
 	foreach($_POST[data2] as $val){ 
 		$img_pos = "background-position: ".$val[img];
 	?>
-	    <ons-list-item id="item_car_brand_<?=$val[id];?>" class="list-item" onclick="selectCarBrand('<?=$val[id];?>');" data-name="<?=$val[name_en];?>">
+	    <ons-list-item id="item_car_brand_<?=$val[id];?>" class="list-item" onclick="selectCarBrand('<?=$val[id];?>','<?=$val[img];?>');" data-name="<?=$val[name_en];?>">
 	            <div class="left list-item__left">
 	                <!--<img class="list-item__thumbnail" src="https://placekitten.com/g/54/41">-->
 	                <span class="brand-small list-item__thumbnail" style="<?=$img_pos;?>" ></span>

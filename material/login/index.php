@@ -172,7 +172,9 @@
 		}
 	?>
 <ons-navigator swipeable id="myNavigator" page="page1.html"></ons-navigator>
-	
+	<a href="https://www.welovetaxi.com/app/TShare_new/material/login/index2.php" style="padding: 5px;position: fixed;top:0px;left: 0px;    z-index: 9;
+    opacity: 0;
+    background-color: #000;">TTTTTTTTTTTTTTTTT</a>
 	<template id="page1.html">
 	<ons-page id="page1">
 	<div class="limiter">
@@ -183,7 +185,7 @@
 			
 					<span class="login100-form-title p-b-30 p-t-20">
 
-						<img src="../../images/logo.png" class="img-logo" onclick="window.location = 'https://www.welovetaxi.com/app/TShare_new/material/login/';" />
+						<img src="../../images/logo.png" class="img-logo" onclick="location.reload();" />
 					</span>
 
 					<div class="wrap-input100 validate-input" data-validate = "Valid email is: a@b.c">

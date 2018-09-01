@@ -7,6 +7,10 @@
 	text-align:left; 
 	margin:0px;  
 }
+.txt-back{
+	color: #000 !important;
+	    font-weight: bold !important;
+}
 </style>
 <?php 
  function findDiffDate($date1,$date2){
@@ -44,41 +48,41 @@ $d2 = date('Y-m-d',$arr[dv_data][post_date]);
    </div>
    <div class="<?= $coldata?>">
                <div class="topicname-user font-22"><?=t_password;?></div>
-               <input disabled  class="form-control font-22" type="text" name="password" id="password"  style="background-color:#eee;"   value="<?=$arr[dv_data][password];?>" >
+               <input disabled  class="form-control font-22 txt-back" type="text" name="password" id="password"  style="background-color:#eee;"   value="<?=$arr[dv_data][password];?>" >
             </div>
             <div class="<?= $coldata?>">
                <div class="topicname-user font-22 text-cap"><?=t_name_last_name_thai;?></div>
-               <input disabled class="form-control font-22" type="text" name="name" id="name"  style="background-color:#eee;"   value="<?=$arr[dv_data][name];?>" >
+               <input disabled class="form-control font-22 txt-back" type="text" name="name" id="name"  style="background-color:#eee;"   value="<?=$arr[dv_data][name];?>" >
             </div>
             <div class="<?= $coldata?>">
                <div class="topicname-user font-22 text-cap"><?=t_name_last_name_english;?></div>
-               <input disabled class="form-control font-22" type="text" name="name_en" id="name_en"  style="background-color:#eee;"   value="<?=$arr[dv_data][name_en];?>" >
+               <input disabled class="form-control font-22 txt-back" type="text" name="name_en" id="name_en"  style="background-color:#eee;"   value="<?=$arr[dv_data][name_en];?>" >
             </div>
             <div class="<?= $coldata?>">
                <div class="topicname-user font-22"><?=t_nick_name;?></div>
-               <input disabled class="form-control font-22" type="text" name="nickname" id="nickname"  style="background-color:#eee;"   value="<?=$arr[dv_data][nickname];?>" >
+               <input disabled class="form-control font-22 txt-back" type="text" name="nickname" id="nickname"  style="background-color:#eee;"   value="<?=$arr[dv_data][nickname];?>" >
             </div>
             <div class="<?= $coldata?>">
                <div class="topicname-user font-22"><?=t_identity_card_number;?></div>
-               <input disabled class="form-control font-22" type="text" name="idcard" id="idcard"  style="background-color:#eee;"   value="<?=$arr[dv_data][idcard];?>" >
+               <input disabled class="form-control font-22 txt-back" type="text" name="idcard" id="idcard"  style="background-color:#eee;"   value="<?=$arr[dv_data][idcard];?>" >
                <div align="center"><img src="images/no-image-slide.png" width="150px" id="img_id_card" /></div>
             </div>
             <div class="<?= $coldata?>">
                <div class="topicname-user font-22"><?=t_driver_license_number;?></div>
-               <input disabled class="form-control font-22" type="text" name="iddriving" id="iddriving"  style="background-color:#eee;"   value="<?=$arr[dv_data][iddriving];?>" >
+               <input disabled class="form-control font-22 txt-back" type="text" name="iddriving" id="iddriving"  style="background-color:#eee;"   value="<?=$arr[dv_data][iddriving];?>" >
                <div align="center"><img src="images/no-image-slide.png" width="150px" id="img_id_driving" /></div>
             </div>
             <div class="<?=$coldata?>">
                <div class="topicname-user font-22"><?=t_address;?></div>
-               <input disabled class="form-control font-22" type="text" name="address" id="address"  style="background-color:#eee;"   value="<?=$arr[dv_data][address];?>" >
+               <input disabled class="form-control font-22 txt-back" type="text" name="address" id="address"  style="background-color:#eee;"   value="<?=$arr[dv_data][address];?>" >
             </div>
             <div class="<?= $coldata?>">
                <div class="topicname-user font-22"><?=t_phone_number;?></div>
-               <input disabled class="form-control font-22" type="number" name="phone" id="phone"  style="background-color:#eee;"   value="<?=$arr[dv_data][phone];?>" >
+               <input disabled class="form-control font-22 txt-back" type="number" name="phone" id="phone"  style="background-color:#eee;"   value="<?=$arr[dv_data][phone];?>" >
             </div>
             <div class="<?= $coldata?>">
                <div class="topicname-user font-22"><?=t_emergency_telephone_numbers;?></div>
-               <input disabled class="form-control font-22" type="number" name="contact" id="contact"  style="background-color:#eee;"  value="<?=$arr[dv_data][contact];?>"  >
+               <input disabled class="form-control font-22 txt-back" type="number" name="contact" id="contact"  style="background-color:#eee;"  value="<?=$arr[dv_data][contact];?>"  >
             </div>
 
 </div>

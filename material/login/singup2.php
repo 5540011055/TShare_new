@@ -17,11 +17,12 @@
       กรุณากรอกข้อมูลที่เป็นความจริง เพื่อง่ายต่อการทำงานและการติดต่อของท่าน
     </p>
 	<form name="form_singin" id="form_singin"  enctype="multipart/form-data">
+	<input type="hidden" value="<?=$rand;?>" id="rand" name="rand" />
     <ons-card class="card">
 		<ons-list-header class="list-header"><b>ข้อมูลส่วนตัว</b></ons-list-header>
         <ons-list-item class="input-items list-item p-l-0">
             <div class="left list-item__left">
-                <ons-icon icon="fa-user" class="list-item__icon ons-icon"></ons-icon>
+                <ons-icon icon="fa-user" class="list-item__icon ons-icon"></ons-icon><span class="txt-important">*</span>
             </div>
             <label class="center list-item__center">
                 <ons-input id="name-input" float="" maxlength="30" placeholder="<?=$name_th;?>" name="name_th" style="width:100%;">
@@ -34,7 +35,7 @@
         
         <ons-list-item class="input-items list-item p-l-0">
             <div class="left list-item__left">
-                <ons-icon icon="md-face" class="list-item__icon ons-icon"></ons-icon>
+                <ons-icon icon="md-face" class="list-item__icon ons-icon"></ons-icon><span class="txt-important">*</span>
             </div>
             <label class="center list-item__center">
                 <ons-input id="nickname-input" float="" maxlength="30" placeholder="<?=$nickname;?>"  name="nickname" style="width:100%;">
@@ -47,7 +48,7 @@
 
         <ons-list-item class="input-items list-item p-l-0">
             <div class="left list-item__left">
-                <ons-icon icon="fa-home" class="list-item__icon ons-icon"></ons-icon>
+                <ons-icon icon="fa-home" class="list-item__icon ons-icon"></ons-icon><span class="txt-important">*</span>
             </div>
             <label class="center list-item__center">
                 <ons-input id="address-input" float=""  placeholder="<?=$address;?>" name="address" style="width:100%;">
@@ -60,7 +61,7 @@
 
         <ons-list-item class="input-items list-item p-l-0">
             <div class="left list-item__left">
-                <ons-icon icon="fa-phone" class="list-item__icon ons-icon"></ons-icon>
+                <ons-icon icon="fa-phone" class="list-item__icon ons-icon"></ons-icon><span class="txt-important">*</span>
             </div>
             <label class="center list-item__center">
                 <ons-input id="phone-input" float="" placeholder="<?=$phone;?>" name="phone" style="width:100%;">
@@ -76,30 +77,43 @@
         
         <ons-list-item class="input-items list-item p-l-0">
             <div class="left list-item__left">
-                <ons-icon icon="fa-volume-control-phone" class="list-item__icon ons-icon"></ons-icon>
+                <ons-icon icon="fa-volume-control-phone" class="list-item__icon ons-icon"></ons-icon><span class="txt-important">*</span>
             </div>
             <label class="center list-item__center">
-                <ons-input id="phone-input" float="" placeholder="<?=$phone_em;?>" name="phone" style="width:100%;">
+                <ons-input id="phone_em-input" float="" placeholder="<?=$phone_em;?>" name="phone_em" style="width:100%;">
                     <input type="number" pattern="\d*" class="text-input"  placeholder="<?=$phone_em;?>" name="phone_em" id="phone_em" >
                     <span class="text-input__label">
                         <?=$phone_em;?></span>
                 </ons-input>
-                 <i id="corrent-phone" class="fa fa-check-circle pass checking-phone" aria-hidden="true" style="display: none;"></i>
-                <i id="incorrent-phone" class="fa fa-times-circle no-pass checking-phone" aria-hidden="true" style="display: none;"></i>
+                
             </label>
         </ons-list-item>
-
-        <ons-list-item class="list-item">
-            <div class="center list-item__center">
-                <ons-select  name="province" id="choose-province"  style="width: 100px;" ><!--onchange="$('#txt-province').text($(this).find('option:selected').text());"-->
-                    <option value="0">เลือก</option>
-                </ons-select>
+        <ons-list-item class="input-items list-item p-l-0">
+        <div class="left list-item__left">
+                <ons-icon icon="fa-users" class="list-item__icon ons-icon"></ons-icon><span class="txt-important" style="margin-left: 32px;">*</span>
             </div>
-            <div class="right right-label list-item__right" style="width: 200px;">
+            <label class="center list-item__center">
+		         <ons-select name="em_person" id="em_person" style=" right: 0px;  margin-top: 0px;  width: 100%;">
+						    <option>เลือกผู้ติดต่อฉุกเฉิน</option>
+				</ons-select>
+			</label>
+		</ons-list-item>
+        <div>
+            <div class="" style="width: 100%;">
                 คุณอยู่จังหวัด&nbsp;<span id="txt-province" style="color: #ff6464;font-weight: 800;">..</span>
             </div>
+        </div>
+
+        <ons-list-item class="input-items list-item p-l-0">
+            <div class="left list-item__left">
+                <ons-icon icon="fa-location-arrow" class="list-item__icon ons-icon"></ons-icon><span class="txt-important">*</span>
+            </div>
+            <label class="center list-item__center" onclick="fn.pushPage({'id': 'option.html', 'title': 'จังหวัด', 'open':'user_province'}, 'lift-ios')">
+                <span id="txt_user_province" >เลือก</span>
+                 <input type="hidden" name="province" id="province" />
+            </label>
         </ons-list-item>
-                
+             
         <ons-list-item class="input-items list-item p-l-0">
             <div class="left list-item__left">
                 <ons-icon icon="fa-at" class="list-item__icon ons-icon"></ons-icon>
@@ -124,7 +138,7 @@
 			</div>
 			<span id="txt-img-has-profile" style="display: none;"><i class="fa fa-check-circle" aria-hidden="true" style="color: #25da25;"></i>&nbsp; มีภาพถ่ายแล้ว</span>
 			<span id="txt-img-nohas-profile" style="display: nones;"><i class="fa fa-times-circle" aria-hidden="true" style="color: #ff0000;"></i>&nbsp; ไม่มีภาพ</span>
-	      <div class="box-preview-img" id="box_img_profile" onclick="$('#img_profile').click();" style="width: 170px;height: 170px;">
+	      <div class="box-preview-img" id="box_img_profile" onclick="performClick('img_profile');" style="width: 170px;height: 170px;">
 	      	<img src="../../../data/pic/driver/small/default-avatar.jpg" style="max-width: 100%; height: 170px;" id="pv_profile"  /><br/>
 	      	<span class="txt-upload-profile"><i class="fa fa-camera" aria-hidden="true"></i>&nbsp; อัพโหลด</span>
 	      </div> 
@@ -137,7 +151,7 @@
       <ons-list-header class="list-header"><b>บัตรประชาชน</b></ons-list-header>
       <ons-list-item class="input-items list-item p-l-0">
             <div class="left list-item__left" style="   /* margin-left: -7px;*/">
-                <ons-icon icon="fa-id-badge" class="list-item__icon ons-icon"></ons-icon>
+                <ons-icon icon="fa-id-badge" class="list-item__icon ons-icon"></ons-icon><span class="txt-important">*</span>
             </div>
             <label class="center list-item__center">
                 <ons-input id="idcard-input" float="" placeholder="<?=$idcard;?>" name="idcard" style="width:100%;">
@@ -159,19 +173,24 @@
 			</div>
 			<span id="txt-img-has-id_card" style="display: none;"><i class="fa fa-check-circle" aria-hidden="true" style="color: #25da25;"></i>&nbsp; มีภาพถ่ายแล้ว</span>
 			<span id="txt-img-nohas-id_card" style="display: nones;"><i class="fa fa-times-circle" aria-hidden="true" style="color: #ff0000;"></i>&nbsp; ไม่มีภาพ</span>
-	      <div class="box-preview-img" id="box_img_id_card" onclick="$('#img_id_card').click();">
+	      <div class="box-preview-img" id="box_img_id_card" onclick="performClick('img_id_card');">
 	      	<img src="../../images/ex_card/id_card.jpg" class="img-preview-show" id="pv_id_card"  />
-	      	<span class="txt-upload"><i class="fa fa-camera" aria-hidden="true"></i>&nbsp; อัพโหลดรูปถ่าย</span>
 	      </div> 
+	      <span style="background-color: #f4f4f4;
+    padding: 0px 10px;
+    position: absolute;
+    margin-left: -28px;
+    bottom: 278px;
+    border-top-left-radius: 5px; pointer-events: none;" ><i class="fa fa-camera" aria-hidden="true"></i>&nbsp; อัพโหลดรูปถ่าย</span>
 	    </div>
         
       <ons-list-item class="input-items list-item p-l-0">
             <div class="left list-item__left" style="   /* margin-left: -7px;*/">
-                <ons-icon icon="fa-id-card-o" class="list-item__icon ons-icon"></ons-icon>
+                <ons-icon icon="fa-id-card-o" class="list-item__icon ons-icon"></ons-icon><span class="txt-important" style="margin-left: 35px;">*</span>
             </div>
             <label class="center list-item__center">
                 <ons-input id="iddriving-input" float="" placeholder="<?=$card_dv;?>" name="iddriving" style="width:100%;">
-                    <input type="number" pattern="\d*" class="text-input" placeholder="<?=$card_dv;?>"  name="iddriving" id="iddriving">
+                    <input type="text" class="text-input" placeholder="<?=$card_dv;?>"  name="iddriving" id="iddriving">
                     <span class="text-input__label">
                         <?=$card_dv;?></span>
                 </ons-input>               
@@ -183,11 +202,17 @@
 			  <!--<button class="btn-ip" type="button" onclick="$('#img_id_drving').click();" >เลือกภาพใบขับขี่</button>-->
 			  <input type="file" class="cropit-image-input" accept="image/*" id="img_id_drving"  style="opacity: 0;position: absolute;">
 			</div>
-			<span id="txt-img-id_drving" style="display: none;"><i class="fa fa-check-circle" aria-hidden="true" style="color: #25da25;"></i>&nbsp; มีภาพถ่ายแล้ว</span>
-	      <div class="box-preview-img" id="box_img_id_drving">
-	      	<img src="../../images/ex_card/id_driving.jpg" style="max-width: 280px;height: auto;" id="pv_id_drving" />
-	      	<span class="txt-upload" style="bottom: 24px;"><i class="fa fa-camera" aria-hidden="true"></i>&nbsp; อัพโหลดรูปถ่าย</span>
+			<span id="txt-img-has-id_drving" style="display: none;"><i class="fa fa-check-circle" aria-hidden="true" style="color: #25da25;"></i>&nbsp; มีภาพถ่ายแล้ว</span>
+			<span id="txt-img-nohas-id_drving" style="display: nones;"><i class="fa fa-times-circle" aria-hidden="true" style="color: #ff0000;"></i>&nbsp; ไม่มีภาพ</span>
+	      <div class="box-preview-img" id="box_img_id_drving" onclick="performClick('img_id_drving');">
+	      	<img src="../../images/ex_card/id_driving.jpg" class="img-preview-show" id="pv_id_drving" />
 	      </div> 
+	      <span style="background-color: #f4f4f4;
+    padding: 0px 10px;
+    position: absolute;
+    margin-left: -28px;
+    bottom: 22px;
+    border-top-left-radius: 5px; pointer-events: none;"><i class="fa fa-camera" aria-hidden="true"></i>&nbsp; อัพโหลดรูปถ่าย</span>
 	    </div>
         
  	</ons-card>
@@ -210,7 +235,7 @@
             </label>
         </ons-list-item>
         <ons-list-item class="input-items list-item p-l-0">
-        	<div class="left list-item__left"  style="width: 100px;">
+        	<div class="left list-item__left"  style="width: 105px;">
                 <span>ประเภทรถ</span>
             </div>
             <div class="center list-item__center" onclick="fn.pushPage({'id': 'option.html', 'title': 'ประเภทรถ', 'open':'car_type'}, 'lift-ios')">
@@ -219,15 +244,64 @@
             </div>
         </ons-list-item>
         <ons-list-item class="input-items list-item p-l-0">
-        	<div class="left list-item__left" style="width: 100px;">
+        	<div class="left list-item__left" style="width: 105px;">
                 <span>ยี่ห้อ</span>
             </div>
             <div class="center list-item__center" onclick="fn.pushPage({'id': 'option.html', 'title': 'ยี่ห้อรถ', 'open':'car_brand'}, 'lift-ios')">
+                
+                <span class="brand-small list-item__thumbnail" id="img_car_brand_show" style="margin-right: 10px;display: none;"  ></span>
                 <span id="txt_car_brand" >เลือก</span>
-                <input type="hidden" name="car_brand" id="car_brand" />
+                <input type="hidden" name="car_brand" id="car_brand" value="" />
+                <input type="hidden" name="car_brand_txt" id="car_brand_txt" value="" />
             </div>
         </ons-list-item>
-        
+        <ons-list-item class="input-items list-item p-l-0">
+        	<div class="left list-item__left" style="width: 105px;">
+                <span>สีรถ</span>
+            </div>
+            <div class="center list-item__center" onclick="fn.pushPage({'id': 'option.html', 'title': 'สีรถ', 'open':'car_color'}, 'lift-ios')">
+             	<img src="" style="width: 30px; margin-right: 15px;display: none;border: 1px solid #eee;" id="img_car_color_show"  />
+                <span id="txt_car_color" >เลือก</span>
+                <input type="hidden" name="car_color" id="car_color" value="" />
+                <input type="hidden" name="car_color_txt" id="car_color_txt" value="" />
+            </div>
+        </ons-list-item>
+        <ons-list-item class="input-items list-item p-l-0">
+        	<div class="left list-item__left" style="width: 105px;">
+                <span>สีป้ายทะเบียน</span>
+            </div>
+            <div class="center list-item__center" onclick="fn.pushPage({'id': 'option.html', 'title': 'สีป้ายทะเบียน', 'open':'plate_color'}, 'lift-ios')">
+            	<img src="" style="width: 30px; margin-right: 15px;display: none;" id="img_plate_color_show"  />
+                <span id="txt_plate_color" >เลือก</span>
+                <input type="hidden" name="plate_color" id="plate_color" />
+                <input type="hidden" name="plate_color_txt" id="plate_color_txt" />
+            </div>
+        </ons-list-item>
+        <ons-list-item class="input-items list-item p-l-0">
+        	<div class="left list-item__left" style="width: 105px;">
+                <span>จังหวัด</span>
+            </div>
+            <div class="center list-item__center" onclick="fn.pushPage({'id': 'option.html', 'title': 'จังหวัด', 'open':'car_province'}, 'lift-ios')">
+            	<span id="txt_car_province" >เลือก</span>
+                <input type="hidden" name="car_province" id="car_province" />
+            </div>
+        </ons-list-item>
+        <div align="center" style="margin-top: 10px;">
+			<div >
+			  <input type="file" class="cropit-image-input" accept="image/*" id="img_car_img"  style="opacity: 0;position: absolute;">
+			</div>
+			<span id="txt-img-has-car_img" style="display: none;"><i class="fa fa-check-circle" aria-hidden="true" style="color: #25da25;"></i>&nbsp; มีภาพถ่ายแล้ว</span>
+			<span id="txt-img-nohas-car_img" style="display: nones;"><i class="fa fa-times-circle" aria-hidden="true" style="color: #ff0000;"></i>&nbsp; ไม่มีภาพ</span>
+	      <div class="box-preview-img" id="box_img_car_img" onclick="performClick('img_car_img');">
+	      	<img src="" style="" class="img-preview-show" id="pv_car_img" /> 
+	      </div> 
+	      <span style="background-color: #f4f4f4;
+    padding: 0px 10px;
+    position: absolute;
+    margin-left: -28px;
+    bottom: 22px;
+    border-top-left-radius: 5px; pointer-events: none;"><i class="fa fa-camera" aria-hidden="true"></i>&nbsp; อัพโหลดรูปถ่าย</span>
+	    </div>
  	</ons-card>
 </form>
      <ons-card class="card">
@@ -301,6 +375,10 @@
 	
 	$("#img_id_drving").change(function() {
 	  	 readURL(this,'id_drving');
+	});
+	
+	$("#img_car_img").change(function() {
+	  	 readURL(this,'car_img');
 	});
 	
 	$("#img_profile").change(function() {

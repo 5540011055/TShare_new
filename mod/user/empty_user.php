@@ -91,9 +91,14 @@
                   }
                </style>
 				<input type='file' id="imgInp" style="opacity: 0;" />
+				<?php 
+				if($_GET[check]>0){ ?>
 				<div style="padding: 5px 20px;">
 					<span class="font-22" style="color: #ff0000;">มีข้อมูลบางอย่างของคุณขาดหาย กรุณากรอกข้อมูลให้ครบทั่ว</span>
 				</div>
+				<?php }
+				?>
+				
                <a onclick="ChangeProfile('<?=$arr[web_user][username];?>');">
                   <div align="center" style="margin-top:10px;" >
                      <img src="<?=$path_file;?>" id="img_tag"  alt="Preview Image" style="border: 2px solid #ddd;    border-radius: 4px;    padding: 0px;    margin: 10px;   display: nones;max-width: 250px;"/>
@@ -316,7 +321,7 @@
 	      	
    				var data = new FormData($('#edit_form')[0]);
       			data.append('fileUpload', $('#idcard_upload')[0].files[0]);
-      			var url_upload = "mod/user/upload_img/upload.php?id=<?=$arr[web_user][id];?>&type=idcard";
+      			var url_upload = "mod/user/upload_img/upload.php?id=<?=$arr[web_user][id];?>&type=id_card";
       			console.log(url_upload);
    				   $.ajax({
    				                url: url_upload, // point to server-side PHP script 
@@ -339,7 +344,7 @@
 	      	$('#iddriving_img').show();
 	      	var data = new FormData($('#edit_form')[0]);
       			data.append('fileUpload', $('#idcard_upload')[0].files[0]);
-      			var url_upload = "mod/user/upload_img/upload.php?id=<?=$arr[web_user][id];?>&type=iddriving";
+      			var url_upload = "mod/user/upload_img/upload.php?id=<?=$arr[web_user][id];?>&type=id_drving";
       			console.log(url_upload);
    				   $.ajax({
    				                url: url_upload, // point to server-side PHP script 

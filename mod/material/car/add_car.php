@@ -17,7 +17,7 @@
 <div style="margin-top: 40px;padding:10px;">
    <form name="myform_data" id="myform_data"   enctype="multipart/form-data" >
    	<input type="hidden" value="<?=$user_id;?>" name="drivername" id="drivername" />
-   	  <div style="padding: 10px;">
+   	  <div>
       <table class="tb-pd-5" width="100%">
          <tr>
             <td colspan="2">
@@ -26,19 +26,15 @@
                      <option value="" disabled selected ><?=t_select_a_vehicle_type;?></option>
                      <?
                         $db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
-                        $res[programtour] = $db->select_query("SELECT * from  ".TB_carall_type."  where status = 1 ");
+                     	$res[programtour] = $db->select_query("SELECT * FROM  web_car_use_type");
                         while ($arr[programtour] = $db->fetch($res[programtour])){
-                        	   if($arr[programtour][id] == $arr[web_car][car_type]){
-                        	   		$selected_type = "selected";
-                        	   }else{
-							   		$selected_type = "";
-							   }
                         ?>
-                         <option value="<?=$arr[programtour][id];?>" <?=$selected_type;?> ><?=$arr[programtour][$place_shopping]." ".$arr[programtour][pax_th];?></option>
+                         <option value="<?=$arr[programtour][id];?>" <?=$selected_type;?> ><?=$arr[programtour][name_th];?></option>
                         <? }
                         $db->closedb ();
                         ?>
                   </select>
+                  
                   <label class="font-22"><?=t_type_of_vehicle;?></label>
                </div>
             </td>
@@ -46,57 +42,65 @@
          <tr>
             <td colspan="2">
                <div class="input-field col s12">
-                  <select id="car_brand" name="car_brand">
+                  <select id="car_brand" name="car_brand" onchange="changeSelect('car_brand');">
                      <option value="" disabled selected><?=t_select_car_brand;?></option>
-                     <? if($arr[web_car][car_brand]<>''){ ?> 
-                     <option value="<?=$arr[web_car][car_brand]?>"><?=$arr[web_car][car_brand]?></option>
-                     <? } 
-                        foreach($cars as $value){ 
-                        ?>
-                     <option value="<?=$value;?>" <?=$selected_car;?> ><?=$value;?></option>
-                     <? }
-                        ?>
+                     <?php 
+                      $db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
+                     $res[brand] = $db->select_query("SELECT * FROM  web_car_brand");
+         			 while($arr[brand] = $db->fetch($res[brand])){ ?>
+					 	<option value="<?=$arr[brand][id];?>" ><?=$arr[brand][name_en];?></option>
+					 <?php }
+                     ?>
                   </select>
-                  <label class="font-22"><?=t_car_brand;?></label>
+                  <input type="hidden" value="" id="txt_car_brand" name="txt_car_brand" />
+                  
+                  <label class="font-22" style="margin-top: -25px;"><?=t_car_brand;?></label>
                </div>
             </td>
          </tr>
          <tr>
             <td colspan="2">
                <div class="input-field col s12">
-                  <select class="icons" id="car_color2" name="car_color">
+                  <select class="icons" id="car_color" name="car_color" onchange="changeSelect('car_color');">
                      <option value="" disabled selected><?=t_choose_color;?></option>
-                     <option data-icon="material/img/white.png" value="White"  <? if($arr[web_car][car_color]=='White'){ echo 'selected=selected';} ?>  ><?=t_white;?></option>
-                     <option data-icon="material/img/black.png" value="Black" <? if($arr[web_car][car_color]=='Black'){ echo 'selected=selected';} ?>><?=t_black;?></option>
-                     <option data-icon="material/img/yellow.png" value="Yellow" <? if($arr[web_car][car_color]=='Yellow'){ echo 'selected=selected';} ?>><?=t_yellow;?></option>
-                     <option data-icon="material/img/green.png" value="Green" <? if($arr[web_car][car_color]=='Green'){ echo 'selected=selected';} ?>><?=t_green;?></option>
-                     <option data-icon="material/img/red.png" value="Red" <? if($arr[web_car][car_color]=='Red'){ echo 'selected=selected';} ?>><?=t_red;?></option>
-                     <option data-icon="material/img/gray.png" value="Gray" <? if($arr[web_car][car_color]=='Gray'){ echo 'selected=selected';} ?>><?=t_gray;?></option>
-                     <option data-icon="material/img/golden_bronze.png" value="Golden Bronze" <? if($arr[web_car][car_color]=='Golden Bronze'){ echo 'selected=selected';} ?>><?=t_bronce_gold;?></option>
-                     <option data-icon="material/img/silver.png" value="Silver Bronze" <? if($arr[web_car][car_color]=='Silver Bronze'){ echo 'selected=selected';} ?>><?=t_silver;?></option>
+                      <?php 
+                      $db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
+                     $res[color] = $db->select_query("SELECT * FROM  web_car_color where status = 1");
+         			 while($arr[color] = $db->fetch($res[color])){ ?>
+					 	<option  data-icon="material/img/<?=$arr[color][img];?>" value="<?=$arr[color][id];?>" ><?=$arr[color][name_th];?></option>
+					 <?php }
+                     ?>
+                     <!--<option data-icon="material/img/silver.png" value="Silver Bronze" <? if($arr[web_car][car_color]=='Silver Bronze'){ echo 'selected=selected';} ?>><?=t_silver;?></option>-->
                   </select>
                   <label class="font-22"><?=t_car_coloring;?></label>
+                  <input type="hidden" value="" id="txt_car_color" name="txt_car_color" />
                </div>
             </td>
          </tr>
          <tr>
-            <td width="50%">
+            <td width="100%">
                <div class="input-field col s12">
                   <!--<i class="material-icons prefix">assignment</i>-->
                   <input type="text"  name="plate_num" id="plate_num" class="autocomplete font-22" style="margin: 0 0 0px 0;margin-left: 0px;" >
                   <label class="font-22" for="autocomplete-input"><?=t_car_registration_number;?></label>
                </div>
             </td>
-            <td width="50%">
+        </tr>
+        <tr>
+            <td width="100%">
                <div class="input-field col s12">
-                  <select class="icons" id="plate_color" name="plate_color" >
+                  <select class="icons" id="plate_color" name="plate_color" onchange="changeSelect('plate_color');">
                      <option value="" disabled selected><?=t_choose_license_plate_color;?></option>
-                     <option data-icon="material/img/green.png" value="Green"  <? if($arr[web_car][plate_color]=='Green'){ echo 'selected=selected';} ?> ><?=t_green;?> </option>
-                     <option data-icon="material/img/yellow.png" value="Yellow"  <? if($arr[web_car][plate_color]=='Yellow'){ echo 'selected=selected';} ?>><?=t_yellow;?></option>
-                     <option data-icon="material/img/red.png" value="Red"  <? if($arr[web_car][plate_color]=='Red'){ echo 'selected=selected';} ?>><?=t_red;?></option>
-                     <option data-icon="material/img/black.png" value="Black" <? if($arr[web_car][plate_color]=='Black'){ echo 'selected=selected';} ?> ><?=t_black;?></option>
+                     <?php 
+                      $db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
+                     $res[color] = $db->select_query("SELECT * FROM  web_car_color where status = 1 and plate = 1");
+         			 while($arr[color] = $db->fetch($res[color])){ ?>
+					 	<option  data-icon="material/img/<?=$arr[color][img];?>" value="<?=$arr[color][id];?>" ><?=$arr[color][name_th];?></option>
+					 <?php }
+                     ?>
                   </select>
-                  <label class="font-22"><?=t_license_plate_color;?></label>
+                   <input type="hidden" value="" id="txt_plate_color" name="txt_plate_color" />
+                  <label class="font-22" style="margin-top: -25px;"><?=t_license_plate_color;?></label>
                </div>
             </td>
          </tr>
@@ -115,6 +119,8 @@
                   <label class="font-22"><?=t_region;?></label>
                </div>
             </td>
+         </tr>
+         <tr>  
             <td>
                <div class="input-field col s12" id="element_pv">
                   <select class="icons" id="province" name="province">
@@ -299,6 +305,7 @@
                                             var url = "mod/material/car/upload_pic.php?type=add&id=" + response.last_id;
                                             if (response.result == true) {
                                                 swal("เพิ่มรถสำเร็จ");
+                                                $('#load_mod_popup_1').hide();
                                                 data_form = $('#photo_form').serialize();
 		                                            data = new FormData($('#photo_form')[0]);
 		                                            data.append('fileUpload1', $('#imgInp_1')[0].files[0]);
@@ -364,4 +371,29 @@
     $("#imgInp_3").change(function() {
         readURL(this, 3);
     });
+</script>
+<script>
+            /*$('#car_brand').change(function(){
+                  	var val = $("#car_brand option:selected").text();
+                  	console.log(val);
+                  	$('#txt_car_brand').val(val);
+            });
+            
+            $('#car_color').change(function(){
+                  	var val = $("#car_color option:selected").text();
+                  	console.log(val);
+                  	$('#txt_car_color').val(val);
+            });
+            
+            $('#plate_color').change(function(){
+                  	var val = $("#plate_color option:selected").text();
+                  	console.log(val);
+                  	$('#txt_plate_color').val(val);
+            });*/
+            
+            function changeSelect(id){
+				var val = $("#"+id+" option:selected").text();
+                  	console.log(val);
+                  	$('#txt_'+id).val(val);
+			}
 </script>

@@ -75,12 +75,17 @@ if($_GET[action]=="add"){
    $data[drivername] = $_POST[drivername];
    $data[province] = $_POST[province];
    $data[car_type] = $_POST[car_type];
-   $data[car_brand] = $_POST[car_brand];
+   $data[car_brand] = $_POST[txt_car_brand];
+   $data[i_car_brand] = $_POST[car_brand];
+   
    $data[car_sub_brand] = $_POST[car_sub_brand];
-   $data[car_color] = $_POST[car_color];
+   $data[car_color] = $_POST[txt_car_color];
+   $data[i_car_color] = $_POST[car_color];
+   
    $data[car_num] = $_POST[car_num];
    $data[plate_num] = $_POST[plate_num];
-   $data[plate_color] = $_POST[plate_color];
+   $data[plate_color] = $_POST[txt_plate_color];
+   $data[i_plate_color] = $_POST[plate_color];
    $data[post_date] = time();
    $data[update_date] = time();
    $data[result] = $db->add_db('web_carall',$data);
