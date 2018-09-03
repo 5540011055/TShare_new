@@ -63,6 +63,12 @@
  if($arr[web_user][phone]==''){
  	$phone_blink = "blink-input";
  }
+ if($arr[web_user][idcard_finish]==''){
+ 	$ex_idcard_blink = "blink-input";
+ }
+ if($arr[web_user][iddriving_finish]==''){
+ 	$ex_iddriving_blink = "blink-input";
+ }
  ?>
 <form method="post"  id="edit_form" name="edit_form">
    <div class="box box-default" style="padding-top:30px;">
@@ -135,18 +141,33 @@
                <div class="topicname-user"><?=t_nick_name;?></div>
                <input class="form-control <?=$nickname_blink;?>" type="text" name="nickname" id="nickname"  required="true"  value="<?=$arr[web_user][nickname];?>" >
             </div>
+            
             <div class="<?= $coldata?>">
-               <div class="topicname-user"><?=t_identity_card_number;?></div>
-               <input class="form-control <?=$idcard_blink;?>" type="text" name="idcard" id="idcard"  required="true"  value="<?=$arr[web_user][idcard];?>" >
+               
+                <div class="row">
+			      <div class="col s12"><div class="topicname-user"><?=t_identity_card_number;?></div>
+               <input class="form-control <?=$idcard_blink;?>" type="text" name="idcard" id="idcard"  required="true"  value="<?=$arr[web_user][idcard];?>" ></div>
+			      <div class="col s4"><span>วันหมดอายุบัตรประชาชน</span></div>
+			      <div class="col s8"><input class="form-control <?=$ex_idcard_blink;?>" type="date" name="ex_idcard" id="ex_idcard"  required="true"  value="<?=$arr[web_user][idcard_finish];?>" ></div>
+			    </div>
+               
                <div align="center">
                		<button type="button" onclick="$('#idcard_upload').click();" class="btn btn-danger waves-effect waves-light">อัพโหลดภาพบัตรประจำตัวประชาชน</button>
                		<input type="file" id="idcard_upload" style="opacity: 0; position: absolute;left: 0px;" />
                		<img src="" id="idcard_img" style="width: 180px;display:none;margin-top: 20px;" />
                </div>
             </div>
+            
             <div class="<?= $coldata?>">
-               <div class="topicname-user"><?=t_driver_license_number;?></div>
-               <input class="form-control <?=$iddriving_blink;?>" type="text" name="iddriving" id="iddriving"  required="true"  value="<?=$arr[web_user][iddriving];?>" >
+               
+               <div class="row">
+			      <div class="col s12">
+			      	<div class="topicname-user"><?=t_driver_license_number;?></div>
+               		<input class="form-control <?=$iddriving_blink;?>" type="text" name="iddriving" id="iddriving"  required="true"  value="<?=$arr[web_user][iddriving];?>" >
+			      </div>
+			      <div class="col s4"><span>วันหมดอายุใบขับขี่</span></div>
+			      <div class="col s8"><input class="form-control <?=$ex_iddriving_blink;?>" type="date" name="ex_iddriving" id="ex_iddriving"  required="true"  value="<?=$arr[web_user][idcard_finish];?>" ></div>
+			    </div>
                <div align="center">
                		<button type="button" onclick="$('#iddriving_upload').click();" class="btn btn-danger waves-effect waves-light">อัพโหลดภาพใบขับขี่</button>
                		<input type="file" id="iddriving_upload" style="opacity: 0; position: absolute;left: 0px;" />
@@ -278,8 +299,10 @@
    					data = new FormData($('#edit_form')[0]);
       				data.append('file', $('#imageUpload_profile')[0].files[0]);
       				var id = '<?=$arr[web_user][id]?>';
+//      				var url = 'mod/user/savedata_sub.php?type=save_user&id='+id;
+      				var url = 'mod/material/user/php_user.php?action=edit&id='+id;
    				    $.ajax({
-   				                url: 'mod/user/savedata_sub.php?type=save_user&id='+id, // point to server-side PHP script 
+   				                url: url, // point to server-side PHP script 
    				                dataType: 'text',  // what to expect back from the PHP script, if anything
    				                cache: false,
    				                contentType: false,
@@ -287,13 +310,14 @@
    				                data: data,                         
    				                type: 'post',
    				                success: function(php_script_response){
-
+								
    								var obj = JSON.parse(php_script_response);
    								   console.log(obj);
-   									   if(obj==true){
+   									   if(obj.result==true){
    									   	swal("<?=t_save_succeed;?>", "<?=t_press_button_close;?>", "success");
-   									   	$('#main_load_mod_popup').hide();
-   									   	$('#load_mod_popup').html('');
+//   									   	$('#main_load_mod_popup').hide();
+//   									   	$('#load_mod_popup').html('');
+											openProfile();
    									   }
    									  else{
    									  	swal("<?=t_error;?>", "<?=t_press_button_close;?>", "error");

@@ -36,6 +36,13 @@ if($_GET[action]=="register"){
     		header('Content-Type: application/json');
 			echo json_encode($exit);
 			exit;
+		}if($_POST[code_privince]=="" or $_POST[code_privince]==NULL){
+			$exit[col] = "code";
+			$exit[val] = $_POST[code_privince];
+    		$exit[type] = 0;
+    		header('Content-Type: application/json');
+			echo json_encode($exit);
+			exit;
 		}
 	
 //	include("../../../includes/class.resizepic.php");
@@ -45,7 +52,7 @@ if($_GET[action]=="register"){
 //    $rand       = substr(str_shuffle('12345678901234567890123456789012345678901234567890'), 0, 50);
 //    $rand_login = substr(str_shuffle('12345678901234567890123456789012345678901234567890'), 0, 50);
     $password = substr(str_shuffle('1234567890'), 0, 4);
-    $provincecode = 'HKT';
+    $provincecode = $_POST[code_privince];
     $db->connectdb(DB_NAME_APP, DB_USERNAME, DB_PASSWORD);
     
     	
@@ -56,14 +63,18 @@ if($_GET[action]=="register"){
         $data["idcard"] = $_POST[idcard];
         $data["iddriving"] = $_POST[iddriving];
         $data["phone"] = $_POST[phone];
+        $data["phone2"] = $_POST[phone2];
         $data["phone_emergency"] = $_POST[phone_em];
         $data["address"] = $_POST[address];
         $data["driver_zone"] = $_POST[driver_zone];
         $data["province"] = $_POST[province];
         $data["status"] = 1;
         $data["emergency_person"] = $_POST[em_person];
+        $data["idcard_finish"] = $_POST[ex_idcard];
+        $data["iddriving_finish"] = $_POST[ex_iddriving];
         $data["post_date"] = time();
         $data["update_date"] = time();
+        $data["register_reference"] = $_POST[register_reference];
     	$add_result = $db->add_db($tb_admin_chk,$data);
     	
     $return[add][data] = $data;
@@ -132,7 +143,9 @@ if($_GET[action]=="register"){
 	rename("../../../../data/pic/driver/id_card/".$_POST[rand]."_idcard.jpg", "../../../../data/pic/driver/id_card/".$last_id."_idcard.jpg");
 	rename("../../../../data/pic/driver/id_driving/".$_POST[rand]."_iddriving.jpg", "../../../../data/pic/driver/id_driving/".$last_id."_iddriving.jpg");
 	
-	
+	$qr_code = "https://api.qrserver.com/v1/create-qr-code/?size=430x430&data=https://www.welovetaxi.com/app/TShare_new/material/login/index.php?ref=".$return[last_id];
+	$part_qr_code = "../../../../data/qrcode/register/".$return[last_id]."_driver.png";
+	copy($qr_code,$part_qr_code);
 	
 	$return[upload_img] = $img;
 	$return[path] = $path;
@@ -197,6 +210,28 @@ if($_GET[action]=="upload"){
      echo $image;  
 }
 
+if($_GET[action]=="edit"){
+	$db->connectdb(DB_NAME_APP, DB_USERNAME, DB_PASSWORD);
+//	$data[pic_home] = $check;
+    $data[password] = $_POST[password];
+    $data[name_en] = $_POST[name_en];
+    $data[name] = $_POST[name];
+    $data[nickname] = $_POST[nickname];
+    $data[idcard] = $_POST[idcard];
+    $data[iddriving] = $_POST[iddriving];
+    $data[idcard_finish] = $_POST[ex_idcard];
+    $data[iddriving_finish] = $_POST[ex_iddriving];
+    $data[phone] = $_POST[phone];
+    $data[contact] = $_POST[contact];
+    $data[address] = $_POST[address];
+    $data[update_date] = time();
+    $result = $db->update_db($tb_admin_chk,$data , " id= '".$_GET[id]."' ");
+    adddriver($_GET[id]);
+    header('Content-Type: application/json');
+    $data[result] = $result;
+    echo json_encode($data);
+}
+
 function genUsername($member_db){
 	if ($member_db >= 1000) {
         $member_in = "$member_db";
@@ -210,5 +245,33 @@ function genUsername($member_db){
         $member_in = "0000$member_db";
     }
     return $member_in;
+}
+
+function adddriver($id){
+  $curl_post_data = '{"id":"'.$id.'","action":"add"}';
+                    
+              $headers = array();
+
+$url = "http://www.welovetaxi.com:3000/adddriver";
+//$api_key = '1f7bb35be49521bf6aca983a44df9a6250095bbb';
+$curl = curl_init();
+curl_setopt($curl, CURLOPT_HTTPHEADER,
+    array(
+        'Content-Type: application/json'
+        // 'API-KEY: '.$api_key.''
+    )
+);
+curl_setopt($curl, CURLOPT_ENCODING, 'gzip');
+curl_setopt($curl, CURLOPT_USERAGENT, "Mozilla/5.0 (Windows NT 5.1) AppleWebKit/535.6 (KHTML, like Gecko) Chrome/16.0.897.0 Safari/535.6");
+curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+
+curl_setopt($curl, CURLOPT_REFERER, $url);
+curl_setopt($curl, CURLOPT_URL, $url);  
+
+curl_setopt($curl, CURLOPT_POST, true);
+curl_setopt($curl, CURLOPT_POSTFIELDS, $curl_post_data);
+$curl_response = curl_exec($curl);
+//echo $curl_response;
+curl_close($curl);
 }
 ?>

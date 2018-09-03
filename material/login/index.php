@@ -27,9 +27,58 @@
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 <!--===============================================================================================-->
 <link rel="stylesheet" href="../onsenui/css/onsenui.css">
-<link rel="stylesheet" href="../onsenui/css/onsen-css-components.min.css">
+<link rel="stylesheet" href="../onsenui/css/onsen-css-components.min.css?v=1.0">
 <script src="../onsenui/js/onsenui.min.js"></script>
 <style>
+.txt-important{
+	color: #FF1313;
+	font-weight: bold;
+	position: absolute;
+    margin-left: 25px;
+}
+.brand-small {
+    background-image: url(../../images/sprite--brandsP.png);
+    background-size: 28px auto;
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    height: 28px;
+    width: 28px;
+}
+.txt-upload-profile{
+	background-color: #f4f4f4;
+    padding: 0px 10px;
+	position: absolute;
+    /* bottom: 22px; */
+/*    width: 160px;*/
+    margin-left: -20px;
+    margin-top: -23px;
+    border-top-left-radius: 5px;
+}
+.txt-upload{
+/*	border: 1px solid #eee;*/
+    background-color: #f4f4f4;
+    padding: 0px 10px;
+    position: absolute;
+/*    right: 57px;*/
+	margin-left: 85px;
+    margin-top: -24px;
+    border-top-left-radius: 5px;
+}
+.img-preview-show{
+	margin-top: 3px;
+	max-height: 150px;
+	width: 240px;
+}
+.box-preview-img{
+	 border: 1px solid #fff;
+	 border-radius: 3px;
+	 margin: 7px;
+	 display: nones;
+	 width: 240px;
+	 height: 150px;
+	 background-color: #dedede;
+	 box-shadow: 1px 1px 1px #d4d4d4;
+}
 .intro{
 	text-align: center;
 	margin: 10px;
@@ -65,9 +114,8 @@
         border: 1px solid #ccc;
         border-radius: 3px;
         margin-top: 7px;
-/*        width: 250px;*/
-        width: 250px;
-        height: 350px;
+        width: 150px !important;
+        height: 170 !important;
 /*        max-height: 450px;*/
       }
 
@@ -108,8 +156,8 @@
     border-radius: 100%;
 }
 	.bottom-txt{
-		position: absolute;
-	    bottom: 20px;
+		position: fixed;
+	    bottom: 5px;
 	    width: 100%;
 	    left: 0;
 	}
@@ -170,11 +218,21 @@
 		}else{
 			$hasval_ps = "";
 		}
+
+    	$rand = time().generateRandomString();    	
+    	function generateRandomString($length = 10) {
+		    $characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+		    $charactersLength = strlen($characters);
+		    $randomString = '';
+		    for ($i = 0; $i < $length; $i++) {
+		        $randomString .= $characters[rand(0, $charactersLength - 1)];
+		    }
+		    return $randomString;
+		}
+//    	exit();
 	?>
 <ons-navigator swipeable id="myNavigator" page="page1.html"></ons-navigator>
-	<a href="https://www.welovetaxi.com/app/TShare_new/material/login/index2.php" style="padding: 5px;position: fixed;top:0px;left: 0px;    z-index: 9;
-    opacity: 0;
-    background-color: #000;">TTTTTTTTTTTTTTTTT</a>
+	
 	<template id="page1.html">
 	<ons-page id="page1">
 	<div class="limiter">
@@ -208,7 +266,7 @@
 						<ons-button modifier="large" class="button-margin button button--large pd-min" onclick="submitLogin();">เข้าสู่ระบบ</ons-button>
 						</div>
 						<div style="width: 100%;">
-						<ons-button modifier="large" onclick="fn.pushPage({'id': 'singup.html', 'title': 'singup'})" class="button-margin button button--large pd-min" style="background-color: #F7941D;">สมัครสมาชิก</ons-button>
+						<ons-button modifier="large" onclick="fn.pushPage({'id': 'singup.html', 'title': 'สมัครสมาชิก'});" class="button-margin button button--large pd-min" style="background-color: #F7941D;">สมัครสมาชิก</ons-button>
 						</div>
 					</div>
 					<div class="text-center bottom-txt">
@@ -231,7 +289,7 @@
 	</template>
 	
 	<template id="singup.html">
-  	<ons-page id="singup">
+  	<ons-page id="singup" style="overflow-x: hidden;">
     <ons-toolbar>
       <div class="left"><ons-back-button>กลับ</ons-back-button></div>
       <div class="center" id="page_singup">สมัครสมาชิก</div>
@@ -275,6 +333,25 @@
 	    <p style="text-align: center">
 	      	<? include("recovery.php"); ?>
 	    </p>
+	    <script>
+	      ons.getScriptPage().onInit = function () {
+	        this.querySelector('ons-toolbar div.center').textContent = this.data.title;
+	      }
+	    </script>
+	  </ons-page>
+</template>
+
+<template id="option.html">
+	  <ons-page>
+	    <ons-toolbar>
+	      <div class="left">
+	        <ons-back-button class="option-back">กลับ</ons-back-button>
+	      </div>
+	      <div class="center"></div>
+	    </ons-toolbar>
+	    <div id="body_option">
+	    	
+	    </div>
 	    <script>
 	      ons.getScriptPage().onInit = function () {
 	        this.querySelector('ons-toolbar div.center').textContent = this.data.title;
@@ -419,6 +496,99 @@
 		console.log(page)
 		if(page.id=="singup.html"){
 			randerSingUp();
+		}else if(page.id=="option.html"){
+			console.log("option");
+			if(page.open=="car_brand"){
+				
+				$.ajax({
+	            url: "../../mod/material/php_center.php?query=car_brand", // point to server-side PHP script 
+	            dataType: 'json', // what to expect back from the PHP script, if anything
+	            type: 'post',
+	            success: function(res) {
+	            	var d1 = [],d2 = [];
+	            	$.each(res, function( index, value ) {
+					  	if(value.popular>0){
+							d1.push(value);
+						}else{
+							d2.push(value);
+						}
+					});
+					var param = { data2 : d2, data1 : d1};
+					console.log(param);
+	                $.post("car_brand.php",param,function(el){
+						$('#body_option').html(el);
+					});
+	             }
+	        	});
+				
+			}else if(page.open=="car_type"){
+				
+				$.ajax({
+	            url: "../../mod/material/php_center.php?query=car_type", // point to server-side PHP script 
+	            dataType: 'json', // what to expect back from the PHP script, if anything
+	            type: 'post',
+	            success: function(res) {	
+					var param = { data : res };
+					console.log(param);
+	                $.post("car_type.php",param,function(el){
+						$('#body_option').html(el);
+					});
+	             }
+	        	});
+				
+			}else if(page.open=="car_color"){
+				$.ajax({
+	            url: "../../mod/material/php_center.php?query=car_color", // point to server-side PHP script 
+	            dataType: 'json', // what to expect back from the PHP script, if anything
+	            type: 'post',
+	            success: function(res) {	
+					var param = { data : res };
+					console.log(param);
+	                $.post("car_color.php?plate=0",param,function(el){
+						$('#body_option').html(el);
+					});
+	             }
+	        	});
+			}else if(page.open=="plate_color"){
+				$.ajax({
+	            url: "../../mod/material/php_center.php?query=car_color", // point to server-side PHP script 
+	            dataType: 'json', // what to expect back from the PHP script, if anything
+	            type: 'post',
+	            success: function(res) {	
+					var param = { data : res };
+					console.log(param);
+	                $.post("car_color.php?plate=1",param,function(el){
+						$('#body_option').html(el);
+					});
+	             }
+	        	});
+			}else if(page.open=="car_province"){
+				$.ajax({
+	            url: "../../mod/material/php_center.php?query=data_province", // point to server-side PHP script 
+	            dataType: 'json', // what to expect back from the PHP script, if anything
+	            type: 'post',
+	            success: function(res) {	
+					var param = { data : res };
+					console.log(param);
+	                $.post("province.php?type=car",param,function(el){
+						$('#body_option').html(el);
+					});
+	             }
+	        	});
+			}else if(page.open=="user_province"){
+				$.ajax({
+	            url: "../../mod/material/php_center.php?query=data_province", // point to server-side PHP script 
+	            dataType: 'json', // what to expect back from the PHP script, if anything
+	            type: 'post',
+	            success: function(res) {	
+					var param = { data : res };
+					console.log(param);
+	                $.post("province.php?type=user",param,function(el){
+						$('#body_option').html(el);
+					});
+	             }
+	        	});
+			}
 		}
 	  if (anim) {
 	    document.getElementById('myNavigator').pushPage(page.id, { data: { title: page.title }, animation: anim });
@@ -559,9 +729,12 @@
 				console.log(data);
 		      var province = data.id;
 		      var area = data.area;
+		      var code = data.code;
 		      
 		      $('#txt-province').text(data.name_th);
-		      $('#choose-province select').val(province);
+		      $('#txt_user_province').text(data.name_th);
+		      $('#province').val(province);
+		      $('#code_privince').val(code);
 		   });
 	   }
 	});
@@ -570,7 +743,7 @@
 	function randerSingUp(){
 		
 		getLocation();
-		$.post("../../mod/material/php_center.php?query=data_province",function(data){
+		/*$.post("../../mod/material/php_center.php?query=data_province",function(data){
 
 			$.each(data, function( index, value ) {
 //				console.log(value);
@@ -578,7 +751,18 @@
 				$('#choose-province select').append(option);
 			});
 			
+		});*/
+		
+		$.post("../../mod/material/php_center.php?query=em_person",function(data){
+
+			$.each(data, function( index, value ) {
+				
+				var option = '<option value="'+value.id+'">'+value.name_th+'</option>';
+				$('select[name="em_person"]').append(option);
+			});
+			
 		});
+		
 	}
 
 	function validEmail(email){
@@ -590,22 +774,6 @@
 	  }else{
 	  	$('#incorrent-email').show();
 	  	$('#corrent-email').hide();
-	  }
-	}
-
-	function readURL(input) {
-	  $('#pg_upload_bar').show();
-	  if (input.files && input.files[0]) {
-	    var reader = new FileReader();
-
-	    reader.onload = function(e) {
-	    	
-	      $('#image_id_driver').attr('src', e.target.result);
-	      $('.focus').hide();
-	      $('#image_id_driver').fadeIn(500);
-
-	    }
-	    reader.readAsDataURL(input.files[0]);
 	  }
 	}
 	
@@ -644,7 +812,7 @@
 		modal.show();
 		
 		var data = new FormData($('#form_singin')[0]);
-//		 data.append('fileUpload', $('#imgInp')[0].files[0]);
+		 data.append('fileUpload', $('#img_profile')[0].files[0]);
 		var url = "../../mod/material/user/php_user.php?action=register";
 		
 		$.ajax({
@@ -782,6 +950,85 @@ function validPhoneNum(value){
 			
 }
 
+function selectCarBrand(id,ps){
+	var name = $('#item_car_brand_'+id).data('name');
+	console.log(name+" "+id);
+
+	$('#car_brand').val(id);
+	$('#car_brand_txt').val(name);
+	$('#txt_car_brand').text(name);
+	$('ons-back-button').click();
+	$('#img_car_brand_show').show();
+	$('#img_car_brand_show').css('background-position',ps);
+
+}
+
+function selectCarType(id){
+	var name = $('#item_car_type_'+id).data('name');
+	console.log(name+" "+id);
+
+	$('#car_type').val(id);
+	$('#txt_car_type').text(name);
+	$('ons-back-button').click();
+}
+
+function selectCarProvince(id){
+	var name = $('#item_car_province_'+id).data('name');
+	console.log(name+" "+id);
+	
+	$('#car_province').val(id);
+	$('#txt_car_province').text(name);
+	$('ons-back-button').click();
+}
+
+function selectUserProvince(id,code){
+	var name = $('#item_user_province_'+id).data('name');
+	console.log(name+" "+id+" || "+code);
+	
+	$('#province').val(id);
+	$('#txt_user_province').text(name);
+	$('#code_privince').val(code);
+	$('ons-back-button').click();
+}
+
+function selectCarColor(id,val){
+	console.log(id+" "+val);
+	var img = $('#item_car_color_'+id).data('img');
+	$('#img_car_color_show').attr('src',"../img/"+img);
+	
+	$('#car_color').val(id);
+	$('#car_color_txt').val(val);
+	$('#txt_car_color').text(val);
+	$('#img_car_color_show').show();
+	$('ons-back-button').click();
+}
+
+function selectPlateColor(id,val){
+	console.log(id+" "+val);
+	var img = $('#item_plate_color_'+id).data('img');
+	$('#img_plate_color_show').attr('src',"../img/"+img);
+	
+	$('#plate_color').val(id);
+	$('#i_plate_color').val(val);
+	$('#txt_plate_color').text(val);
+	$('#img_plate_color_show').show();
+	$('ons-back-button').click();
+}
+
+function performClick(elemId) {
+	console.log(elemId);
+   var elem = document.getElementById(elemId);
+   if(elem && document.createEvent) {
+      var evt = document.createEvent("MouseEvents");
+      evt.initEvent("click", true, false);
+      elem.dispatchEvent(evt);
+   }
+}
+
+/*document.querySelector('ons-back-button').onClick = function(event) {
+  // Reset the whole stack instead of popping 1 page
+  document.querySelector('ons-navigator').resetToPage('home.html');
+};*/
 </script>
 </body>
 </html>

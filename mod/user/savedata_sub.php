@@ -80,7 +80,7 @@ if (copy($_FILES["file"]["tmp_name"], $target_file)) {
 			$check_pic_card = 0;
 	    }	*/
 	    $db->connectdb(DB_NAME_APP, DB_USERNAME, DB_PASSWORD);
-		$array = array(
+		/*$array = array(
 			"pic_home" => $check,
             "password" => "$_POST[password]",
             "name_en" => "$_POST[name_en]",
@@ -88,11 +88,26 @@ if (copy($_FILES["file"]["tmp_name"], $target_file)) {
             "nickname" => "$_POST[nickname]",
             "idcard" => "$_POST[idcard]",
             "iddriving" => "$_POST[iddriving]",
+            "idcard_finish" => "$_POST[idcard_finish]",
+            "iddriving_finish" => "$_POST[iddriving]",
             "phone" => "$_POST[phone]",
             "contact" => "$_POST[contact]",
             "address" => "$_POST[address]",
             "update_date" => "" . TIMESTAMP . ""
-        );
+        );*/
+        $data[pic_home] = $check;
+        $data[password] = $_POST[password];
+        $data[name_en] = $_POST[name_en];
+        $data[name] = $_POST[name];
+        $data[nickname] = $_POST[nickname];
+        $data[idcard] = $_POST[idcard];
+        $data[iddriving] = $_POST[iddriving];
+        $data[idcard_finish] = $_POST[idcard_finish];
+        $data[iddriving_finish] = $_POST[iddriving_finish];
+        $data[phone] = $_POST[phone];
+        $data[contact] = $_POST[contact];
+        $data[address] = $_POST[address];
+        $data[update_date] = $_POST[update_date];
        $result = $db->update_db(TB_driver,$array , " id=$_GET[id] ");
         adddriver($_GET[id]);
         echo json_encode($result);

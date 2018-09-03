@@ -96,7 +96,7 @@
         $('#load_mod_popup').html(load_main_mod);
         $('#load_mod_popup').load(url_load);*/
         
-		 $( "#main_load_mod_popup" ).toggle();
+		 $( "#main_load_mod_popup" ).show();
 					     var url_load = "load_page_mod.php?name=user&file=empty_user&check=0";
 					     $('#load_mod_popup').html(load_main_mod);
 					     $('#load_mod_popup').load(url_load); 
