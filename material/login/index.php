@@ -283,12 +283,12 @@
 							ลืมรหัสผ่านหรือไม่?
 						</span>
 
-						<!--<a class="txt2 link-txt" onclick="fn.pushPage({'id': 'recovery.html', 'title': 'กู้หรัสผ่าน'}, 'lift-ios')">
-							กู้รหัส
-						</a>-->
-						<a class="txt2 link-txt" onclick="ons.notification.alert({message: 'ยังไม่เปิดให้บริการ',title:'ขออภัย',buttonLabel:'ปิด'});">
+						<a class="txt2 link-txt" onclick="fn.pushPage({'id': 'recovery.html', 'title': 'กู้หรัสผ่าน'}, 'lift-ios')">
 							กู้รหัส
 						</a>
+						<!--<a class="txt2 link-txt" onclick="ons.notification.alert({message: 'ยังไม่เปิดให้บริการ',title:'ขออภัย',buttonLabel:'ปิด'});">
+							กู้รหัส
+						</a>-->
 					</div>
 				</form>
 			</div>
@@ -339,9 +339,9 @@
 	      </div>
 	      <div class="center"></div>
 	    </ons-toolbar>
-	    <p style="text-align: center">
+	    <div>
 	      	<? include("recovery.php"); ?>
-	    </p>
+	    </div>
 	    <script>
 	      ons.getScriptPage().onInit = function () {
 	        this.querySelector('ons-toolbar div.center').textContent = this.data.title;
@@ -472,7 +472,7 @@
 					ons.notification.alert({message: 'เลขบัตรประชาชนของคุณไม่ถูกต้อง',title:"ผิดพลาด"});
 					return false;
 				}
-				else if($('#valid_type_idc').val()==2){
+			else if($('#valid_type_idc').val()==2){
 
 					ons.notification.alert({message: 'เลขบัตรประชาชนของคุณถูกใช้แล้ว ไม่สามารถใช้ซ้ำได้',title:"ผิดพลาด"});
 					return false;
@@ -494,6 +494,18 @@
 		    .getElementById('submit-my-alert-dialog')
 		    .hide();
 		};
+		
+		function submitRecoveryPassword(){
+			  var dialog = document.getElementById('submit-my-alert-dialog');
+			  if (dialog) {
+			    dialog.show();
+			  } else {
+			    ons.createElement('submit-alert-dialog.html', { append: true })
+			      .then(function(dialog) {
+			        dialog.show();
+			      });
+			  }
+		}
 	</script>
 	
 	<script>
