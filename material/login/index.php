@@ -26,6 +26,15 @@
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 <!--===============================================================================================-->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <link rel="stylesheet" href="../../bootstrap/font_all/ultimate/flaticon.css?v=<?=time()?>">
+      <link rel="stylesheet" href="../../bootstrap/font_all/airport/flaticon.css?v=<?=time()?>">
+      <link rel="stylesheet" href="../../bootstrap/font_all/payment/css/fontello.css?v=<?=time()?>">
+      <link rel="stylesheet" href="../../bootstrap/font_all/icomoon/demo-files/demo.css?v=<?=time()?>">
+      <link rel="stylesheet" href="../../bootstrap/font_all/app-new/css/app-icon.css?v=<?=time()?>">
+      <link rel="stylesheet" href="../../bootstrap/css/font-awesome.min.css">
+      <link rel="stylesheet" href="../../bootstrap/css/ionicons.min.css">
+<!--===============================================================================================-->
 <link rel="stylesheet" href="../onsenui/css/onsenui.css">
 <link rel="stylesheet" href="../onsenui/css/onsen-css-components.min.css?v=1.0">
 <script src="../onsenui/js/onsenui.min.js"></script>
@@ -551,13 +560,13 @@
 	        	});
 			}else if(page.open=="plate_color"){
 				$.ajax({
-	            url: "../../mod/material/php_center.php?query=car_color", // point to server-side PHP script 
+	            url: "../../mod/material/php_center.php?query=car_plate", // point to server-side PHP script 
 	            dataType: 'json', // what to expect back from the PHP script, if anything
 	            type: 'post',
 	            success: function(res) {	
 					var param = { data : res };
 					console.log(param);
-	                $.post("car_color.php?plate=1",param,function(el){
+	                $.post("car_plate.php",param,function(el){
 						$('#body_option').html(el);
 					});
 	             }
@@ -1005,8 +1014,8 @@ function selectCarColor(id,val){
 
 function selectPlateColor(id,val){
 	console.log(id+" "+val);
-	var img = $('#item_plate_color_'+id).data('img');
-	$('#img_plate_color_show').attr('src',"../img/"+img);
+	var img = $('#item_car_plate_'+id).data('img');
+	$('#img_plate_color_show').attr('src',"../img/plate/"+img);
 	
 	$('#plate_color').val(id);
 	$('#i_plate_color').val(val);

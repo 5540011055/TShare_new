@@ -145,7 +145,7 @@
             <div class="<?= $coldata?>">
                
                 <div class="row">
-			      <div class="col s12"><div class="topicname-user"><?=t_identity_card_number;?></div>
+			      <div><div class="topicname-user"><?=t_identity_card_number;?></div>
                <input class="form-control <?=$idcard_blink;?>" type="text" name="idcard" id="idcard"  required="true"  value="<?=$arr[web_user][idcard];?>" ></div>
 			      <div class="col s4"><span>วันหมดอายุบัตรประชาชน</span></div>
 			      <div class="col s8"><input class="form-control <?=$ex_idcard_blink;?>" type="date" name="ex_idcard" id="ex_idcard"  required="true"  value="<?=$arr[web_user][idcard_finish];?>" ></div>

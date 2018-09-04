@@ -12,6 +12,10 @@
    .select-wrapper input.select-dropdown{
    margin : 0px;
    }
+   .plate-color .select-dropdown li img{
+   		width: 70px;
+   		height: 100%;
+   }
 </style>
 
 <div style="margin-top: 40px;padding:10px;">
@@ -88,14 +92,14 @@
         </tr>
         <tr>
             <td width="100%">
-               <div class="input-field col s12">
+               <div class="input-field col s12 plate-color">
                   <select class="icons" id="plate_color" name="plate_color" onchange="changeSelect('plate_color');">
                      <option value="" disabled selected><?=t_choose_license_plate_color;?></option>
                      <?php 
                       $db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
-                     $res[color] = $db->select_query("SELECT * FROM  web_car_color where status = 1 and plate = 1");
-         			 while($arr[color] = $db->fetch($res[color])){ ?>
-					 	<option  data-icon="material/img/<?=$arr[color][img];?>" value="<?=$arr[color][id];?>" ><?=$arr[color][name_th];?></option>
+                     $res[plate] = $db->select_query("SELECT * FROM  web_car_plate where status = 1 order by i_index asc");
+         			 while($arr[plate] = $db->fetch($res[plate])){ ?>
+					 	<option  data-icon="material/img/plate/<?=$arr[plate][img];?>" value="<?=$arr[plate][id];?>" ><?=$arr[plate][name_th];?></option>
 					 <?php }
                      ?>
                   </select>

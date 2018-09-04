@@ -12,6 +12,10 @@
    .select-wrapper input.select-dropdown{
    margin : 0px;
    }
+   .plate-color .select-dropdown li img{
+   		width: 70px;
+   		height: 100%;
+   }
 </style>
 <?php 
     $db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
@@ -23,6 +27,9 @@
     $arr[pro] = $db->fetch($res[pro]);                
     $path_car = '../data/pic/car/';
    ?>
+   <script>
+   	checkPicCar('<?=$_GET[id];?>');
+   </script>
 <div style="margin-top: 40px;padding:10px;">
    <form name="myform_data" id="myform_data"   enctype="multipart/form-data" >
    	  <div style="padding: 10px;">
@@ -111,14 +118,14 @@
          </tr>
          <tr>   
             <td width="100%">
-               <div class="input-field col s12">
+               <div class="input-field col s12 plate-color">
                    <select class="icons" id="plate_color" name="plate_color" onchange="changeSelect('plate_color');">
                      <option value="" disabled selected><?=t_choose_license_plate_color;?></option>
                      <?php 
                       $db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
-                     $res[color] = $db->select_query("SELECT * FROM  web_car_color where status = 1 and plate = 1");
-         			 while($arr[color] = $db->fetch($res[color])){ ?>
-					 	<option  data-icon="material/img/<?=$arr[color][img];?>" value="<?=$arr[color][id];?>" ><?=$arr[color][name_th];?></option>
+                     $res[plate] = $db->select_query("SELECT * FROM  web_car_plate where status = 1 order by i_index asc");
+         			 while($arr[plate] = $db->fetch($res[plate])){ ?>
+					 	<option  data-icon="material/img/plate/<?=$arr[plate][img];?>" value="<?=$arr[plate][id];?>" ><?=$arr[plate][name_th];?></option>
 					 <?php }
                      ?>
                   </select>
@@ -148,7 +155,9 @@
                   <label class="font-22"><?=t_region;?></label>
                </div>
             </td>
-            <td>
+         </tr>
+         <tr>
+         <td>
                <div class="input-field col s12" id="element_pv">
                   <select class="icons" id="province" name="province">
                      <option value="" disabled selected><?=t_select_province;?></option>
@@ -185,7 +194,7 @@
                            <div class="indeterminate"></div>
                         </div>
                      </div>
-                     <img id="image_1" name="image_1" src="<?=$path_car.$arr[web_car][id];?>_1.jpg?v=<?=time();?>"  style="width:100%; padding:5px; margin-top:0px;border-radius:15px;display: nones;" />
+                     <img id="image_1" name="image_1" src="<?=$path_car.$arr[web_car][id];?>_1.jpg?v=<?=time();?>"  style="width:100%; padding:5px; margin-top:0px;border-radius:15px;display: none; " class="<?=$arr[web_car][id];?>_pic_car_1" />
                   </div>
                </div>
             </td>
@@ -202,7 +211,7 @@
                            <div class="indeterminate"></div>
                         </div>
                      </div>
-                     <img id="image_2" name="image_2" src="<?=$path_car.$arr[web_car][id];?>_2.jpg?v=<?=time();?>"  style="width:100%; padding:5px; margin-top:0px;border-radius:15px;display: nones;" />
+                     <img id="image_2" name="image_2" src="<?=$path_car.$arr[web_car][id];?>_2.jpg?v=<?=time();?>"  style="width:100%; padding:5px; margin-top:0px;border-radius:15px;display: none;" class="<?=$arr[web_car][id];?>_pic_car_2" />
                   </div>
                </div>
             </td>
@@ -219,7 +228,7 @@
                            <div class="indeterminate"></div>
                         </div>
                      </div>
-                     <img id="image_3" name="image_3" src="<?=$path_car.$arr[web_car][id];?>_3.jpg?v=<?=time();?>" style="width:100%; padding:5px; margin-top:0px;border-radius:15px;display: nones;" />
+                     <img id="image_3" name="image_3" src="<?=$path_car.$arr[web_car][id];?>_3.jpg?v=<?=time();?>" style="width:100%; padding:5px; margin-top:0px;border-radius:15px;display: none;" class="<?=$arr[web_car][id];?>_pic_car_3" />
                   </div>
                </div>
             </td>

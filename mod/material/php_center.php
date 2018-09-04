@@ -161,9 +161,19 @@ if($_GET[query]=="car_color"){
 	echo json_encode($data);
 }
 
+if($_GET[query]=="car_plate"){
+	$db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
+	$res[cb]  = $db->select_query("SELECT id,name_th,name_en,img FROM web_car_plate WHERE status = 1 order by i_index asc");
+	while($arr[cb] = $db->fetch($res[cb])){
+		$data[] = $arr[cb];
+	}
+	header('Content-Type: application/json');
+	echo json_encode($data);
+}
+
 if($_GET[query]=="em_person"){
 	$db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
-	$res[cb]  = $db->select_query("SELECT id,name_th,name_en FROM web_emergency_person WHERE status = 1 ");
+	$res[cb]  = $db->select_query("SELECT id,name_th,name_en FROM web_emergency_person WHERE status = 1 order by i_index asc ");
 	while($arr[cb] = $db->fetch($res[cb])){
 		$data[] = $arr[cb];
 	}

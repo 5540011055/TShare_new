@@ -59,6 +59,7 @@ if($_GET[action]=="register"){
     	$data["password"] = $password;
         $data["email"] = $_POST[email];
         $data["name"] = $_POST[name_th];
+        $data["name_en"] = $_POST[name_en];
         $data["nickname"] = $_POST[nickname];
         $data["idcard"] = $_POST[idcard];
         $data["iddriving"] = $_POST[iddriving];

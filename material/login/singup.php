@@ -43,6 +43,19 @@
                 <ons-icon icon="md-face" class="list-item__icon ons-icon"></ons-icon><span class="txt-important">*</span>
             </div>
             <label class="center list-item__center">
+                <ons-input id="name_en-input" float="" maxlength="30" placeholder="<?=$name_en;?>"  name="name_en" style="width:100%;">
+                    <input type="text" class="text-input" maxlength="30" placeholder="<?=$name_en;?>"  name="name_en">
+                    <span class="text-input__label">
+                        <?=$name_en;?></span>
+                </ons-input>
+            </label>
+        </ons-list-item>
+        
+        <ons-list-item class="input-items list-item p-l-0">
+            <div class="left list-item__left">
+                <ons-icon icon="md-face" class="list-item__icon ons-icon"></ons-icon><span class="txt-important">*</span>
+            </div>
+            <label class="center list-item__center">
                 <ons-input id="nickname-input" float="" maxlength="30" placeholder="<?=$nickname;?>"  name="nickname" style="width:100%;">
                     <input type="text" class="text-input" maxlength="30" placeholder="<?=$nickname;?>"  name="nickname">
                     <span class="text-input__label">
@@ -93,8 +106,21 @@
              
             </label>
         </ons-list-item>
-        
         <ons-list-item class="input-items list-item p-l-0">
+            <div class="center list-item__center" style="   /* margin-left: -7px;*/">
+                <ons-input id="phone_em-input" float="" placeholder="<?=$phone_em;?>" name="phone_em" style="width:100%;"  maxlength="10" >
+                    <input type="number" pattern="\d*" class="text-input" placeholder="<?=$phone_em;?>" name="phone_em" id="phone_em"  maxlength="10">
+                    <span class="text-input__label">
+                        <?=$phone_em;?></span>
+                </ons-input>
+            </div>
+            <div class="right list-item__right">
+                <ons-select name="em_person" id="em_person" style=" right: 0px;  margin-top: 0px;  width: 100%;">
+						    <option>เลือกสถานะ</option>
+				</ons-select>
+            </div>
+        </ons-list-item>
+       <!-- <ons-list-item class="input-items list-item p-l-0">
             <div class="left list-item__left">
                 <ons-icon icon="fa-volume-control-phone" class="list-item__icon ons-icon"></ons-icon><span class="txt-important">*</span>
             </div>
@@ -116,16 +142,18 @@
 						    <option>เลือกผู้ติดต่อฉุกเฉิน</option>
 				</ons-select>
 			</label>
-		</ons-list-item>
+		</ons-list-item>-->
         <div>
-            <div class="" style="width: 100%;">
+            <div class="" style="width: 100%;margin-top: 15px;">
                 คุณอยู่จังหวัด&nbsp;<span id="txt-province" style="color: #ff6464;font-weight: 800;">..</span>
             </div>
         </div>
 
         <ons-list-item class="input-items list-item p-l-0">
             <div class="left list-item__left">
-                <ons-icon icon="fa-location-arrow" class="list-item__icon ons-icon"></ons-icon><span class="txt-important">*</span>
+                <!--<ons-icon icon="fa-location-arrow" class="list-item__icon ons-icon"></ons-icon>-->
+                <i class="material-icons">location_on</i>
+                <span class="txt-important">*</span>
             </div>
             <label class="center list-item__center" onclick="fn.pushPage({'id': 'option.html', 'title': 'จังหวัด', 'open':'user_province'}, 'lift-ios')">
                 <span id="txt_user_province" >เลือก</span>
@@ -186,10 +214,10 @@
         </ons-list-item>
         <ons-list-item class="input-items list-item p-l-0">
             <div class="left list-item__left" style="   /* margin-left: -7px;*/">
-                <span style="width: 100px;">หมดอายุบัตรประชาชน</span>
+                <b style="width: 100px;font-size: 14px;">หมดอายุบัตรประชาชน</b>
             </div>
             <label class="center list-item__center">
-                <ons-input id="idcard-input" float=""  name="ex_idcard" style="width:100%;" value="<?=date('Y-m-d');?>"  >
+                <ons-input id="idcard-input" float=""  name="ex_idcard" style="width:100%;" value=""  >
                     <input type="date"  class="text-input"  name="ex_idcard" id="ex_idcard">
                     <span class="text-input__label">
                         <?=$txt_ex_idcard;?></span>
@@ -210,8 +238,9 @@
 	      <span style="background-color: #f4f4f4;
     padding: 0px 10px;
     position: absolute;
-    margin-left: -28px;
-    bottom: 278px;
+    margin-left: -27px;
+/*    bottom: 278px;*/
+	margin-top: -27px;
     border-top-left-radius: 5px; pointer-events: none;" ><i class="fa fa-camera" aria-hidden="true"></i>&nbsp; อัพโหลดรูปถ่าย</span>
 	    </div>
         
@@ -229,10 +258,10 @@
         </ons-list-item>
         <ons-list-item class="input-items list-item p-l-0">
             <div class="left list-item__left" style="   /* margin-left: -7px;*/">
-                <span style="width: 100px;">หมดอายุใบขับขี่</span>
+                <b style="width: 100px; font-size: 14px;">หมดอายุใบขับขี่</b>
             </div>
             <label class="center list-item__center">
-                <ons-input id="idcard-input" float=""  name="ex_iddriving" style="width:100%;" value="<?=date('Y-m-d');?>"  >
+                <ons-input id="idcard-input" float=""  name="ex_iddriving" style="width:100%;" value=""  >
                     <input type="date"  class="text-input"  name="ex_iddriving" id="ex_iddriving">
                     <span class="text-input__label">
                         <?=$txt_ex_iddriving;?></span>
@@ -313,7 +342,7 @@
                 <span>สีป้ายทะเบียน</span>
             </div>
             <div class="center list-item__center" onclick="fn.pushPage({'id': 'option.html', 'title': 'สีป้ายทะเบียน', 'open':'plate_color'}, 'lift-ios')">
-            	<img src="" style="width: 30px; margin-right: 15px;display: none;" id="img_plate_color_show"  />
+            	<img src="" style="width: 50px; margin-right: 15px;display: none;" id="img_plate_color_show"  />
                 <span id="txt_plate_color" >เลือก</span>
                 <input type="hidden" name="plate_color" id="plate_color" />
                 <input type="hidden" name="plate_color_txt" id="plate_color_txt" />
