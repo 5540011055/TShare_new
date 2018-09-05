@@ -107,6 +107,9 @@
             </label>
         </ons-list-item>
         <ons-list-item class="input-items list-item p-l-0">
+        	<div class="left list-item__left">
+                <ons-icon icon="fa-phone" class="list-item__icon ons-icon"></ons-icon><span class="txt-important">*</span>
+            </div>
             <div class="center list-item__center" style="   /* margin-left: -7px;*/">
                 <ons-input id="phone_em-input" float="" placeholder="<?=$phone_em;?>" name="phone_em" style="width:100%;"  maxlength="10" >
                     <input type="number" pattern="\d*" class="text-input" placeholder="<?=$phone_em;?>" name="phone_em" id="phone_em"  maxlength="10">
@@ -116,49 +119,26 @@
             </div>
             <div class="right list-item__right">
                 <ons-select name="em_person" id="em_person" style=" right: 0px;  margin-top: 0px;  width: 100%;">
-						    <option>เลือกสถานะ</option>
+						    <option>สถานะ</option>
 				</ons-select>
             </div>
         </ons-list-item>
-       <!-- <ons-list-item class="input-items list-item p-l-0">
-            <div class="left list-item__left">
-                <ons-icon icon="fa-volume-control-phone" class="list-item__icon ons-icon"></ons-icon><span class="txt-important">*</span>
-            </div>
-            <label class="center list-item__center">
-                <ons-input id="phone_em-input" float="" placeholder="<?=$phone_em;?>" name="phone_em" style="width:100%;">
-                    <input type="number" pattern="\d*" class="text-input"  placeholder="<?=$phone_em;?>" name="phone_em" id="phone_em" >
-                    <span class="text-input__label">
-                        <?=$phone_em;?></span>
-                </ons-input>
-                
-            </label>
-        </ons-list-item>
-        <ons-list-item class="input-items list-item p-l-0">
-        <div class="left list-item__left">
-                <ons-icon icon="fa-users" class="list-item__icon ons-icon"></ons-icon><span class="txt-important" style="margin-left: 32px;">*</span>
-            </div>
-            <label class="center list-item__center">
-		         <ons-select name="em_person" id="em_person" style=" right: 0px;  margin-top: 0px;  width: 100%;">
-						    <option>เลือกผู้ติดต่อฉุกเฉิน</option>
-				</ons-select>
-			</label>
-		</ons-list-item>-->
-        <div>
-            <div class="" style="width: 100%;margin-top: 15px;">
-                คุณอยู่จังหวัด&nbsp;<span id="txt-province" style="color: #ff6464;font-weight: 800;">..</span>
-            </div>
-        </div>
 
         <ons-list-item class="input-items list-item p-l-0">
-            <div class="left list-item__left">
+            <div class="left list-item__left" style="padding-right: 20px;">
                 <!--<ons-icon icon="fa-location-arrow" class="list-item__icon ons-icon"></ons-icon>-->
                 <i class="material-icons">location_on</i>
                 <span class="txt-important">*</span>
             </div>
             <label class="center list-item__center" onclick="fn.pushPage({'id': 'option.html', 'title': 'จังหวัด', 'open':'user_province'}, 'lift-ios')">
-                <span id="txt_user_province" >เลือก</span>
+                <span id="txt_user_province" style="color: #999;margin-left: 0px;" >เลือกจังหวัด</span>
                  <input type="hidden" name="province" id="province" />
             </label>
+            <div>
+	            <div class="" style="margin-top: -15px; position: absolute; right: 0px;">
+	                คุณอยู่&nbsp;<span id="txt-province" style="color: #ff6464;font-weight: 800;">ไม่พบตำแหน่ง</span>
+	            </div>
+	        </div>
         </ons-list-item>
              
         <ons-list-item class="input-items list-item p-l-0">
@@ -213,12 +193,13 @@
             </label>
         </ons-list-item>
         <ons-list-item class="input-items list-item p-l-0">
-            <div class="left list-item__left" style="   /* margin-left: -7px;*/">
-                <b style="width: 100px;font-size: 14px;">หมดอายุบัตรประชาชน</b>
+            <div class="left list-item__left" style="margin-left: 4px; padding-right: 12px;">
+            	<img src="../../images/ex_card/crd.png" width="25px;" />
+                <!--<b style="width: 100px;font-size: 14px;">หมดอายุ</b>-->
             </div>
             <label class="center list-item__center">
-                <ons-input id="idcard-input" float=""  name="ex_idcard" style="width:100%;" value=""  >
-                    <input type="date"  class="text-input"  name="ex_idcard" id="ex_idcard">
+                <ons-input id="idcard-input" float=""  name="ex_idcard" style="width:100%;" value="" placeholder="<?=$txt_ex_idcard;?>" >
+                    <input type="text"  class="text-input"  name="ex_idcard" id="ex_idcard">
                     <span class="text-input__label">
                         <?=$txt_ex_idcard;?></span>
                 </ons-input>
@@ -245,7 +226,7 @@
 	    </div>
         
       <ons-list-item class="input-items list-item p-l-0">
-            <div class="left list-item__left" style="   /* margin-left: -7px;*/">
+            <div class="left list-item__left" >
                 <ons-icon icon="fa-id-card-o" class="list-item__icon ons-icon"></ons-icon><span class="txt-important" style="margin-left: 35px;">*</span>
             </div>
             <label class="center list-item__center">
@@ -257,16 +238,17 @@
             </label>
         </ons-list-item>
         <ons-list-item class="input-items list-item p-l-0">
-            <div class="left list-item__left" style="   /* margin-left: -7px;*/">
-                <b style="width: 100px; font-size: 14px;">หมดอายุใบขับขี่</b>
+            <div class="left list-item__left" style="margin-left: 6px; padding-right: 18px;">
+            	<img src="../../images/ex_card/crd.png" width="25px;" />
+                <!--<b style="width: 100px; font-size: 14px;">หมดอายุ</b>-->
             </div>
             <label class="center list-item__center">
                 <ons-input id="idcard-input" float=""  name="ex_iddriving" style="width:100%;" value=""  >
-                    <input type="date"  class="text-input"  name="ex_iddriving" id="ex_iddriving">
-                    <span class="text-input__label">
-                        <?=$txt_ex_iddriving;?></span>
+                    <input type="text"  class="text-input"  name="ex_iddriving" id="ex_iddriving">
+                    <span class="text-input__label"><?=$txt_ex_iddriving;?></span>
                 </ons-input>
             </label>
+           
         </ons-list-item>
         <div align="center">
 			<div >
@@ -375,9 +357,9 @@
 	    </div>
  	</ons-card>
 </form>
-     <ons-card class="card">
-    <ons-button modifier="outline" class="button-margin button button--outline button--large" onclick="createAlertDialog();" >ยืนยันข้อมูล</ons-button>
-    </ons-card>
+     <div style="margin: 0px 10px;">
+    <ons-button modifier="outline" class="button-margin button button--outline button--large" onclick="createAlertDialog();" style="background-color: #fff;" >ยืนยันข้อมูล</ons-button>
+    </div>
 
 	
 </div>   
@@ -462,6 +444,60 @@
 	    }
 	    	reader.readAsDataURL(input.files[0]);
 	  }
+ 
 	});
-
+	
+          $('#ex_iddriving').pickadate({
+              format: 'yyyy-mm-dd',
+              formatSubmit: 'yyyy/mm/dd',
+              closeOnSelect: true,
+              closeOnClear: false,
+              "showButtonPanel": false,
+              onStart: function() {
+              	  var date=$('#ex_iddriving').val();
+                  this.set('select', date); // Set to current date on load
+//         			console.log('open');
+//         			$('.toolbar').hide();
+              },
+      		  onSet: function(context) {
+      		  	var date = $('#ex_iddriving').val();
+					console.log(date);
+					$('.toolbar').show();
+      		  },
+      		  onClose: function() {
+      		  	
+					$('.toolbar').show();
+      		  },
+      		  onOpen: function() {
+					$('.toolbar').hide();
+      		  }
+              });
+              
+              $('#ex_idcard').pickadate({
+              format: 'yyyy-mm-dd',
+              formatSubmit: 'yyyy/mm/dd',
+              closeOnSelect: true,
+              closeOnClear: false,
+              "showButtonPanel": false,
+              onStart: function() {
+              	  var date=$('#ex_idcard').val();
+                  this.set('select', date); // Set to current date on load
+//         			console.log('open');
+//         			$('.toolbar').hide();
+              },
+      		  onSet: function(context) {
+      		  	var date = $('#ex_idcard').val();
+					console.log(date);
+					$('.toolbar').show();
+      		  },
+      		  onClose: function() {
+      		  	
+					$('.toolbar').show();
+      		  },
+      		  onOpen: function() {
+					$('.toolbar').hide();
+      		  }
+              });
+       
+	
 </script>

@@ -28,6 +28,22 @@ if($_GET[query]=="get_id_province_only"){
    echo json_encode($pv[province]);
 }
 
+if($_GET[query]=="user_data"){
+	$db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
+	$res[us]  = $db->select_query("SELECT * FROM web_driver WHERE username = '".$_POST[username]."' ");
+	$arr[us] = $db->fetch($res[us]);
+	header('Content-Type: application/json');
+	echo json_encode($arr[us]);
+}
+
+if($_GET[query]=="user_data_recovery"){
+	$db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
+	$res[us]  = $db->select_query("SELECT phone,email FROM web_driver WHERE username = '".$_POST[username]."' ");
+	$arr[us] = $db->fetch($res[us]);
+	header('Content-Type: application/json');
+	echo json_encode($arr[us]);
+}
+
 if($_GET[query]=="data_province"){
 	 $db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
      $res[category] = $db->select_query("SELECT name_th,id,name,code FROM web_province   ORDER BY id ");

@@ -38,6 +38,10 @@
 <link rel="stylesheet" href="../onsenui/css/onsenui.css">
 <link rel="stylesheet" href="../onsenui/css/onsen-css-components.min.css?v=1.0">
 <script src="../onsenui/js/onsenui.min.js"></script>
+
+<!--===============================================================================================-->
+
+
 <style>
 .txt-important{
 	color: #FF1313;
@@ -278,6 +282,7 @@
 						<ons-button modifier="large" onclick="fn.pushPage({'id': 'singup.html', 'title': 'สมัครสมาชิก'});" class="button-margin button button--large pd-min" style="background-color: #F7941D;">สมัครสมาชิก</ons-button>
 						</div>
 					</div>
+					
 					<div class="text-center bottom-txt">
 						<span class="txt1">
 							ลืมรหัสผ่านหรือไม่?
@@ -314,11 +319,24 @@
 	  <ons-alert-dialog id="submit-my-alert-dialog" modifier="rowfooter">
 	    <div class="alert-dialog-title" id="submit-dialog-title">คุณแน่ใจหรือไม่</div>
 	    <div class="alert-dialog-content">
-	       ว่าต้องการบันทึกข้อมูลนี้
+	       ว่าต้องการยืนยันการสมัคร
 	    </div>
 	    <div class="alert-dialog-footer">
 	      <ons-alert-dialog-button onclick="hideAlertDialog()">ยกเลิก</ons-alert-dialog-button>
 	      <ons-alert-dialog-button onclick="submitSingUp()">บันทึก</ons-alert-dialog-button>
+	    </div>
+	  </ons-alert-dialog>
+	</template>
+	
+	<template id="recovery-dialog.html">
+	  <ons-alert-dialog id="submit-recovery-dialog" modifier="rowfooter">
+	    <div class="alert-dialog-title" id="submit-dialog-title-rcv">คุณแน่ใจหรือไม่</div>
+	    <div class="alert-dialog-content">
+	       ว่าต้องการส่งข้อมูลนี้
+	    </div>
+	    <div class="alert-dialog-footer">
+	      <ons-alert-dialog-button onclick="$('#submit-recovery-dialog').hide();">ยกเลิก</ons-alert-dialog-button>
+	      <ons-alert-dialog-button onclick="submitRecovery()">บันทึก</ons-alert-dialog-button>
 	    </div>
 	  </ons-alert-dialog>
 	</template>
@@ -389,10 +407,13 @@
 	<script src="vendor/countdowntime/countdowntime.js"></script>
 <!--===============================================================================================-->
 	<script src="js/main.js"></script>
-	
+	<link rel="stylesheet" type="text/css" href="../../pickerdate/classic.css?v=<?=time();?>" />
+<link rel="stylesheet" type="text/css" href="../../pickerdate/classic.date.css?v=<?=time();?>" />
+<script src="../../pickerdate/picker.js?v=<?=time();?>" type="text/javascript"></script>
+<script src="../../pickerdate/picker.date.js?v=<?=time();?>" type="text/javascript"></script> 
 	<script>
 		function showModal() {
-		  hideAlertDialog();
+//		  hideAlertDialog();
 		  var modal = document.querySelector('ons-modal');
 		  modal.show();
 		  setTimeout(function() {
@@ -407,7 +428,7 @@
 			$('.hidden-image-data').val(imageData);
 		  	if($('input[name="name_th"]').val()==""){
 
-				 ons.notification.alert({message: 'กรุณากรอกชื่อจริง',title:"ข้อมูลไม่ครบ"})
+				 ons.notification.alert({message: 'กรุณากรอกชื่อจริง',title:"ข้อมูลไม่ครบ",buttonLabel:"ปิด"})
 				  .then(function() {
 				    $('input[name="name_th"]').focus();
 				  });
@@ -416,7 +437,7 @@
 			}
 			if($('input[name="nickname"]').val()==""){
 
-				ons.notification.alert({message: 'กรุณากรอกชื่อเล่น',title:"ข้อมูลไม่ครบ"})
+				ons.notification.alert({message: 'กรุณากรอกชื่อเล่น',title:"ข้อมูลไม่ครบ",buttonLabel:"ปิด"})
 				  .then(function() {
 				    $('input[name="nickname"]').focus();
 				  });
@@ -424,7 +445,7 @@
 			}
 			if($('input[name="address"]').val()==""){
 
-				ons.notification.alert({message: 'กรุณากรอกที่อยู่ของคุณ',title:"ข้อมูลไม่ครบ"})
+				ons.notification.alert({message: 'กรุณากรอกที่อยู่ของคุณ',title:"ข้อมูลไม่ครบ",buttonLabel:"ปิด"})
 				  .then(function() {
 				    $('input[name="address"]').focus();
 				  });
@@ -432,7 +453,7 @@
 			}
 			if($('input[name="phone"]').val()==""){
 
-				ons.notification.alert({message: 'กรุณากรอกเบอร์โทรศัพท์',title:"ข้อมูลไม่ครบ"})
+				ons.notification.alert({message: 'กรุณากรอกเบอร์โทรศัพท์',title:"ข้อมูลไม่ครบ",buttonLabel:"ปิด"})
 				  .then(function() {
 				    $('input[name="phone"]').focus();
 				  });
@@ -440,7 +461,7 @@
 			}
 			if($('#valid_type_plate').val()==1){
 
-				ons.notification.alert({message: 'ทะเบียนรถนี้ถูกใช้แล้ว ไม่สามารถใช้ซ้ำได้',title:"ข้อมูลไม่ครบ"})
+				ons.notification.alert({message: 'ทะเบียนรถนี้ถูกใช้แล้ว ไม่สามารถใช้ซ้ำได้',title:"ข้อมูลไม่ครบ",buttonLabel:"ปิด"})
 				  .then(function() {
 				    $('input[name="plate_num"]').focus();
 				  });
@@ -448,7 +469,15 @@
 			}
 			if($('#valid_type_phone').val()==1){
 
-				ons.notification.alert({message: 'เบอร์โทรนี้ถูกใช้แล้ว ไม่สามารถใช้ซ้ำได้',title:"ข้อมูลไม่ครบ"})
+				ons.notification.alert({message: 'เบอร์โทรนี้ถูกใช้แล้ว ไม่สามารถใช้ซ้ำได้',title:"ข้อมูลไม่ครบ",buttonLabel:"ปิด"})
+				  .then(function() {
+				    $('input[name="plate_num"]').focus();
+				  });
+				return false;
+			}
+			if($('#phone_em').val()==""){
+
+				ons.notification.alert({message: 'กรุณากรอกเบอร์โทรศัพท์ฉุกเฉิน',title:"ข้อมูลไม่ครบ",buttonLabel:"ปิด"})
 				  .then(function() {
 				    $('input[name="plate_num"]').focus();
 				  });
@@ -456,7 +485,7 @@
 			}
 			if($('input[name="image-data"]').val()==""){
 
-				ons.notification.alert({message: 'กรุณาเลือกรูปประจำตัวของคุณ',title:"ข้อมูลไม่ครบ"})
+				ons.notification.alert({message: 'กรุณาเลือกรูปประจำตัวของคุณ',title:"ข้อมูลไม่ครบ",buttonLabel:"ปิด"})
 				  .then(function() {
 				    $('input[name="image-data"]').focus();
 				  });
@@ -469,12 +498,12 @@
 				
 			}	*/
 			if($('#valid_type_idc').val()==1){
-					ons.notification.alert({message: 'เลขบัตรประชาชนของคุณไม่ถูกต้อง',title:"ผิดพลาด"});
+					ons.notification.alert({message: 'เลขบัตรประชาชนของคุณไม่ถูกต้อง',title:"ผิดพลาด",buttonLabel:"ปิด"});
 					return false;
 				}
 			else if($('#valid_type_idc').val()==2){
 
-					ons.notification.alert({message: 'เลขบัตรประชาชนของคุณถูกใช้แล้ว ไม่สามารถใช้ซ้ำได้',title:"ผิดพลาด"});
+					ons.notification.alert({message: 'เลขบัตรประชาชนของคุณถูกใช้แล้ว ไม่สามารถใช้ซ้ำได้',title:"ผิดพลาด",buttonLabel:"ปิด"});
 					return false;
 				}
 		  var dialog = document.getElementById('submit-my-alert-dialog');
@@ -495,16 +524,134 @@
 		    .hide();
 		};
 		
-		function submitRecoveryPassword(){
-			  var dialog = document.getElementById('submit-my-alert-dialog');
-			  if (dialog) {
-			    dialog.show();
+		/*var hideRecoveryDialog = function() {
+			console.log("close recovery dialog")
+		  document
+		    .getElementById('submit-recovery-dialog')
+		    .hide();
+		};*/
+		
+		var submitRecoveryPassword = function(){
+			  var dialog_rcv = document.getElementById('submit-recovery-dialog');
+			  if($('#check_type_rcp').val()<0){
+			  	 ons.notification.alert({message: 'กรุณาเลือกช่องทางการรับรหัสผ่าน',title:"ข้อมูลไม่ครบ",buttonLabel:"ปิด"})
+				  .then(function() {
+				   
+				  });
+				  return;
+			  }
+			  if (dialog_rcv) {
+			    dialog_rcv.show();
 			  } else {
-			    ons.createElement('submit-alert-dialog.html', { append: true })
-			      .then(function(dialog) {
-			        dialog.show();
+			    ons.createElement('recovery-dialog.html', { append: true })
+			      .then(function(dialog_rcv) {
+			        dialog_rcv.show();
 			      });
 			  }
+		};
+
+		function submitRecovery(){
+			modal.show();
+			$('#submit-recovery-dialog').hide();
+			var check_type_rcv = $('#check_type_rcp').val();
+			var username = $('#username_for_rcv').val();
+			var us_phone = $('#us_phone').val();
+			console.log(check_type_rcv);
+			var pos = { username:username };
+			$.ajax({
+	            url: "../../mod/material/php_center.php?query=user_data", // point to server-side PHP script 
+	            dataType: 'json', // what to expect back from the PHP script, if anything
+	            data: pos,
+	            type: 'post',
+	            success: function(php_script_response) {
+//	               console.log(php_script_response);
+					var message = "รหัสผ่านของคุณคือ "+php_script_response.password;
+				    if(check_type_rcv==0){
+						var param = {
+							username : "0954293062",
+							password : "758837",
+							msisdn : us_phone,
+							message : message,
+							sender : "TShare(ทีแชร์)",
+							ScheduledDelivery : "",
+							force : "standard"
+						};
+						console.log(param);
+						$.ajax({
+					            url: "../../../sms/send_sms.php", // point to server-side PHP script 
+					            dataType: 'json', // what to expect back from the PHP script, if anything
+					            data: param,
+					            type: 'post',
+					            success: function(response) {
+					            	console.log(response);
+					            	modal.hide();
+					            	ons.notification.alert({message: 'ส่ง SMS รหัสผ่านไปยังเบอร์โทรของคุณแล้ว',title:"สำเร็จ",buttonLabel:"ปิด"})
+									  .then(function() {
+									   
+									  });
+					            }
+					        });
+					}else if(check_type_rcv==1){
+						var us_email = $('#us_email').val();
+						var param = {
+							email : us_email,
+							message : message
+						};
+						console.log(param);
+						/*$.ajax({
+					            url: "../../mail_recovery_pass.php", // point to server-side PHP script 
+					            dataType: 'json', // what to expect back from the PHP script, if anything
+					            data: param,
+					            type: 'post',
+					            success: function(response) {
+					            	console.log(response);
+					            	modal.hide();
+					            	ons.notification.alert({message: 'ส่งรหัสผ่านไปยังที่อยุ่ Email ของคุณแล้ว',title:"สำเร็จ",buttonLabel:"ปิด"})
+									  .then(function() {
+									   		
+									  });
+					            }
+					        });*/
+					        
+					     $.post("../../mail_recovery_pass.php",param,function(res){
+					     		console.log(res);
+					     		modal.hide();
+					            	ons.notification.alert({message: 'ส่งรหัสผ่านไปยังที่อยุ่ Email ของคุณแล้ว',title:"สำเร็จ",buttonLabel:"ปิด"})
+									  .then(function() {
+									   		
+									  });
+					     });   
+					}
+	            },
+		        error: function(err){
+		        	console.log(err);
+		                //your code here
+		        }
+	        });
+			console.log(username);
+		}
+		
+		function getPhoneByUser(val){
+			var pos = { username:val };
+			$.ajax({
+					url: "../../mod/material/php_center.php?query=user_data_recovery", // point to server-side PHP script 
+					dataType: 'json', // what to expect back from the PHP script, if anything
+					data: pos,
+					type: 'post',
+					success: function(response) {
+					         console.log(response);
+					         if(response!=false){
+							 	$('#corrent-user').show();
+							 }else{
+							 	$('#corrent-user').hide();
+							 }
+					         $('#us_phone').val(response.phone);
+					         $('#txt_phone_show').text(response.phone);
+					         
+					         $('#us_email').val(response.email);
+					         $('#txt_email_show').text(response.email);
+						}
+					});
 		}
 	</script>
 	
@@ -610,6 +757,9 @@
 	             }
 	        	});
 			}
+		}
+		else if(page.id=="recovery.html"){
+			getPhoneByUser($('#username_for_rcv').val());
 		}
 	  if (anim) {
 	    document.getElementById('myNavigator').pushPage(page.id, { data: { title: page.title }, animation: anim });
@@ -754,6 +904,7 @@
 		      
 		      $('#txt-province').text(data.name_th);
 		      $('#txt_user_province').text(data.name_th);
+		      $('#txt_user_province').css("color","#000");
 		      $('#province').val(province);
 		      $('#code_privince').val(code);
 		   });
@@ -1050,6 +1201,7 @@ function performClick(elemId) {
   // Reset the whole stack instead of popping 1 page
   document.querySelector('ons-navigator').resetToPage('home.html');
 };*/
+
 </script>
 </body>
 </html>
