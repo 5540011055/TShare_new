@@ -3,30 +3,36 @@
 		 <li class="padding-5 default-shadow default-shadow">
             <ul class="collapsible collapsible-accordion">
                <li class="bold ">
-                  <a class="collapsible-header waves-effect waves-light font-26"><i class="icon-new-uniF133-2 icon_menu"></i><?=t_user_information;?></a>
+                  <a class="collapsible-header waves-effect waves-light font-26" onclick="changeIconMenu('ar_us');"><i class="icon-new-uniF133-2 icon_menu"></i><?=t_user_information;?>
+                  	<i class="material-icons icon-arrow" data-ck="0" style="position: absolute;right: 0px;font-size: 30px;" id="ar_us">keyboard_arrow_down</i>
+                  </a>
                   <div class="collapsible-body" style="display: none;">
                      <ul>
-                        <li><a class="g" onclick="openProfile();"><?=t_personal_information;?></a></li>
+                        <li><a class="g" onclick="openProfile();"><?=t_personal_information;?></a>
+                        </li>
                         <li><a onclick="openBankAcc();"><?=t_bank_account?></a></li>
                         <!--<li><a onclick="openFileData();"><?=t_important_data_file?></a></li>-->
                         <!--<li><a onclick="openProfilePic();"><?=t_change_profile_picture?></a></li>-->
                      </ul>
                   </div>
+                 
                </li>
             </ul>
+             
          </li>
          <li class="padding-5 default-shadow default-shadow" style="margin-top: 0px;">
             <ul class="collapsible collapsible-accordion">
                <li class="bold active">
-                 
-                  <a class="collapsible-header waves-effect waves-light font-26"> <i class="icon-new-uniF10A-9 icon_menu"></i><?=t_car_information;?></a>
+                  <a class="collapsible-header waves-effect waves-light font-26" onclick="changeIconMenu('ar_car_info');"> <i class="icon-new-uniF10A-9 icon_menu"></i><?=t_car_information;?>
+                  	<i class="material-icons icon-arrow" data-ck="0" style="position: absolute;right: 0px;font-size: 30px;" id="ar_car_info">keyboard_arrow_down</i>
+                  </a>
                   <div class="collapsible-body" style="display: none;">
                      <ul>
                      	<?php 
                      		$db->connectdb(DB_NAME_APP, DB_USERNAME, DB_PASSWORD);
                      		$numcar = $db->num_rows("web_carall","id","drivername = '".$_COOKIE[detect_user]."' ");
                      	?>
-                        <li><a onclick="openAllCar();"><?=t_all_car?>&nbsp;(<?=$numcar;?> คัน)</a></li>
+                        <li><a onclick="openAllCar();"><?=t_active_car?>&nbsp;(<?=$numcar;?> คัน)</a></li>
                         <li><a class="g" onclick="openNewCar();" ><?=t_add_new_car;?></a></li>
                      </ul>
                   </div>
@@ -36,7 +42,9 @@
          <li class="padding-5 default-shadow default-shadow">
             <ul class="collapsible collapsible-accordion">
                <li class="bold active">
-                  <a class="collapsible-header waves-effect waves-light font-26"><i class="icon-new-uniF121-10 icon_menu"></i><?=t_wallet;?></a>
+                  <a class="collapsible-header waves-effect waves-light font-26" onclick="changeIconMenu('ar_wallet');"><i class="icon-new-uniF121-10 icon_menu"></i><?=t_wallet;?>
+                  	<i class="material-icons icon-arrow" data-ck="0" style="position: absolute;right: 0px;font-size: 30px;" id="ar_wallet">keyboard_arrow_down</i>
+                  </a>
                   <div class="collapsible-body" style="display: none;">
                      <ul>
                         <li><a class="g" onclick="revenue();"><?=t_receipts;?></a></li>
@@ -152,4 +160,15 @@
       		});
 		  }); 
 	}*/
+	function changeIconMenu(id){
+//		var ck = $('#'+id).data('ck');
+		console.log( $('#'+id).data('ck'));
+		if( $('#'+id).data('ck')==0){
+			$('#'+id).text('keyboard_arrow_up');
+			$('#'+id).data('ck',1);
+		}else{
+			$('#'+id).text('keyboard_arrow_down');
+			$('#'+id).data('ck',0);
+		}
+	}
 </script>      

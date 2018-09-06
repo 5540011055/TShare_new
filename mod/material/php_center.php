@@ -30,7 +30,7 @@ if($_GET[query]=="get_id_province_only"){
 
 if($_GET[query]=="user_data"){
 	$db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
-	$res[us]  = $db->select_query("SELECT * FROM web_driver WHERE username = '".$_POST[username]."' ");
+	$res[us]  = $db->select_query("SELECT * FROM web_driver WHERE (username = '".$_POST[key]."') or (phone = '".$_POST[key]."')or (email = '".$_POST[key]."') ");
 	$arr[us] = $db->fetch($res[us]);
 	header('Content-Type: application/json');
 	echo json_encode($arr[us]);
@@ -38,10 +38,30 @@ if($_GET[query]=="user_data"){
 
 if($_GET[query]=="user_data_recovery"){
 	$db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
-	$res[us]  = $db->select_query("SELECT phone,email FROM web_driver WHERE username = '".$_POST[username]."' ");
+	$res[us]  = $db->select_query("SELECT phone,email,username,name FROM web_driver WHERE username = '".$_POST[key]."'  ");
 	$arr[us] = $db->fetch($res[us]);
+	$return = FALSE;
+	if($arr[us]){
+		$return[data] = $arr[us];
+		$return[type] = 1;
+	}else{
+		$res[us]  = $db->select_query("SELECT phone,email,username,name FROM web_driver WHERE phone = '".$_POST[key]."'  ");
+		$arr[us] = $db->fetch($res[us]);
+		if($arr[us]){
+			$return[data] = $arr[us];
+			$return[type] = 2;
+		}else{
+			$res[us]  = $db->select_query("SELECT phone,email,username,name FROM web_driver WHERE email = '".$_POST[key]."'  ");
+			$arr[us] = $db->fetch($res[us]);
+				if($arr[us]){
+					$return[data] = $arr[us];
+					$return[type] = 3;
+				}
+		}
+	}
+	
 	header('Content-Type: application/json');
-	echo json_encode($arr[us]);
+	echo json_encode($return);
 }
 
 if($_GET[query]=="data_province"){

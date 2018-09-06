@@ -40,6 +40,74 @@
 	    animation-direction: alternate ;
 	}
 </style>
+<style>
+/* The container */
+.container {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 14px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+	border-radius: 25px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+}
+
+/* On mouse-over, add a grey background color */
+.container:hover input ~ .checkmark {
+    background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.container input:checked ~ .checkmark {
+    background-color: #2196F3;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the checkmark when checked */
+.container input:checked ~ .checkmark:after {
+    display: block;
+}
+
+/* Style the checkmark/indicator */
+.container .checkmark:after {
+    left: 8px;
+    top: 2px;
+    width: 9px;
+    height: 16px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+</style>
 <?php
  $coldata="col-md-6";
  if($arr[web_user][password]==''){
@@ -143,12 +211,39 @@
             </div>
             
             <div class="<?= $coldata?>">
-               
+             <div class="topicname-user">เพศ</div>
+             <?php 
+             	if($arr[web_user][gender]==0){
+					$ck_men = "checked";
+				}else{
+					$ck_girl = "checked";
+				}
+             ?>
+            	<table>
+            		<tr>
+            			<td>
+            				<label class="container" onclick="selectGender(0);">ชาย
+							  <input type="checkbox" <?=$ck_men;?> class="rcp" id="checkbox-0">
+							  <span class="checkmark"></span>
+							</label>
+            			</td>
+            			<td>
+            				<label class="container" onclick="selectGender(1);">หญิง
+							  <input type="checkbox" <?=$ck_girl;?> class="rcp" id="checkbox-1">
+							  <span class="checkmark"></span>
+							</label>
+            			</td>
+            		</tr>
+            	</table>
+            	<input type="hidden" value="" id="gender" name="gender"  />
+            </div>
+            
+            <div class="<?= $coldata?>">
                 <div class="row">
 			      <div><div class="topicname-user"><?=t_identity_card_number;?></div>
                <input class="form-control <?=$idcard_blink;?>" type="text" name="idcard" id="idcard"  required="true"  value="<?=$arr[web_user][idcard];?>" ></div>
 			      <div class="col s4"><span>วันหมดอายุบัตรประชาชน</span></div>
-			      <div class="col s8"><input class="form-control <?=$ex_idcard_blink;?>" type="date" name="ex_idcard" id="ex_idcard"  required="true"  value="<?=$arr[web_user][idcard_finish];?>" ></div>
+			      <div class="col s8"><input class="form-control <?=$ex_idcard_blink;?>" type="text" name="ex_idcard" id="ex_idcard"  required="true" value="<?=$arr[web_user][idcard_finish];?>" ></div>
 			    </div>
                
                <div align="center">
@@ -166,7 +261,7 @@
                		<input class="form-control <?=$iddriving_blink;?>" type="text" name="iddriving" id="iddriving"  required="true"  value="<?=$arr[web_user][iddriving];?>" >
 			      </div>
 			      <div class="col s4"><span>วันหมดอายุใบขับขี่</span></div>
-			      <div class="col s8"><input class="form-control <?=$ex_iddriving_blink;?>" type="date" name="ex_iddriving" id="ex_iddriving"  required="true"  value="<?=$arr[web_user][idcard_finish];?>" ></div>
+			      <div class="col s8"><input class="form-control <?=$ex_iddriving_blink;?>" type="text" name="ex_iddriving" id="ex_iddriving"  required="true"  value="<?=$arr[web_user][idcard_finish];?>" ></div>
 			    </div>
                <div align="center">
                		<button type="button" onclick="$('#iddriving_upload').click();" class="btn btn-danger waves-effect waves-light">อัพโหลดภาพใบขับขี่</button>
@@ -440,6 +535,62 @@
 	 	$('#img_tag_new').hide();
 	 	$('#img_tag').show();
 	});
-	
-	
+	$('#ex_iddriving').pickadate({
+              format: 'yyyy-mm-dd',
+              formatSubmit: 'yyyy/mm/dd',
+              closeOnSelect: true,
+              closeOnClear: false,
+              "showButtonPanel": false,
+              onStart: function() {
+              	  var date=$('#ex_iddriving').val();
+                  this.set('select', date); // Set to current date on load
+         			console.log('open');
+//         			$('.toolbar').hide();
+              },
+      		  onSet: function(context) {
+      		  	var date = $('#ex_iddriving').val();
+					console.log(date);
+					$('.toolbar').show();
+					console.log('onSet');
+      		  },
+      		  onClose: function() {
+      		  		console.log('onClose');
+					$('.toolbar').show();
+      		  },
+      		  onOpen: function() {
+      		  		console.log('onOpen');
+					$('.toolbar').hide();
+      		  }
+              });
+	$('#ex_idcard').pickadate({
+              format: 'yyyy-mm-dd',
+              formatSubmit: 'yyyy/mm/dd',
+              closeOnSelect: true,
+              closeOnClear: false,
+              "showButtonPanel": false,
+              onStart: function() {
+              	  var date=$('#ex_idcard').val();
+                  this.set('select', date); // Set to current date on load
+//         			console.log('open');
+//         			$('.toolbar').hide();
+              },
+      		  onSet: function(context) {
+      		  	var date = $('#ex_idcard').val();
+					console.log(date);
+					$('.toolbar').show();
+      		  },
+      		  onClose: function() {
+      		  	
+					$('.toolbar').show();
+      		  },
+      		  onOpen: function() {
+					$('.toolbar').hide();
+      		  }
+    });
+    
+    function selectGender(val){
+		$('.rcp').prop('checked', false);
+		$('#checkbox-'+val).prop('checked', true);
+		$('#gender').val(val);
+	}
 </script>

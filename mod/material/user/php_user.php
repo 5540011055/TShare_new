@@ -76,6 +76,7 @@ if($_GET[action]=="register"){
         $data["post_date"] = time();
         $data["update_date"] = time();
         $data["register_reference"] = $_POST[register_reference];
+        $data["i_gender"] = $_POST[gender];
     	$add_result = $db->add_db($tb_admin_chk,$data);
     	
     $return[add][data] = $data;
@@ -226,6 +227,7 @@ if($_GET[action]=="edit"){
     $data[contact] = $_POST[contact];
     $data[address] = $_POST[address];
     $data[update_date] = time();
+    $data[i_gender] = $_POST[gender];
     $result = $db->update_db($tb_admin_chk,$data , " id= '".$_GET[id]."' ");
     adddriver($_GET[id]);
     header('Content-Type: application/json');

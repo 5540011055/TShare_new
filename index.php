@@ -1086,5 +1086,20 @@ margin-top:0px;
 		      		});
 				  }); 
   }
+  
+ function hideMenu(){
+// 	alert();
+		console.log("hideMenu");
+		
+		$('.icon-arrow').each (function() {
+			var data = $(this).data('ck');
+			if(data==1){
+				$(this).text('keyboard_arrow_down');
+				$(this).data('ck',0);
+				$(this).click();
+			}
+		  // do your cool stuff
+		}); 
+ }
 </script>
 

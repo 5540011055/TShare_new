@@ -284,11 +284,11 @@
 					</div>
 					
 					<div class="text-center bottom-txt">
-						<span class="txt1">
+						<span class="txt1" style="font-size: 16px;">
 							ลืมรหัสผ่านหรือไม่?
 						</span>
 
-						<a class="txt2 link-txt" onclick="fn.pushPage({'id': 'recovery.html', 'title': 'กู้หรัสผ่าน'}, 'lift-ios')">
+						<a class="txt2 link-txt" style="font-size: 16px;" onclick="fn.pushPage({'id': 'recovery.html', 'title': 'กู้หรัสผ่าน'}, 'lift-ios')">
 							กู้รหัส
 						</a>
 						<!--<a class="txt2 link-txt" onclick="ons.notification.alert({message: 'ยังไม่เปิดให้บริการ',title:'ขออภัย',buttonLabel:'ปิด'});">
@@ -331,12 +331,13 @@
 	<template id="recovery-dialog.html">
 	  <ons-alert-dialog id="submit-recovery-dialog" modifier="rowfooter">
 	    <div class="alert-dialog-title" id="submit-dialog-title-rcv">คุณแน่ใจหรือไม่</div>
-	    <div class="alert-dialog-content">
-	       ว่าต้องการส่งข้อมูลนี้
+	    <div class="alert-dialog-content" >
+	       <span id="txt_dialog_rcv_sms">ต้องการรับรหัสผ่านทาง SMS</span>
+	       <span id="txt_dialog_rcv_email">ต้องการรับรหัสผ่าน Email</span>
 	    </div>
 	    <div class="alert-dialog-footer">
 	      <ons-alert-dialog-button onclick="$('#submit-recovery-dialog').hide();">ยกเลิก</ons-alert-dialog-button>
-	      <ons-alert-dialog-button onclick="submitRecovery()">บันทึก</ons-alert-dialog-button>
+	      <ons-alert-dialog-button onclick="submitRecovery()">ยืนยัน</ons-alert-dialog-button>
 	    </div>
 	  </ons-alert-dialog>
 	</template>
@@ -408,9 +409,10 @@
 <!--===============================================================================================-->
 	<script src="js/main.js"></script>
 	<link rel="stylesheet" type="text/css" href="../../pickerdate/classic.css?v=<?=time();?>" />
-<link rel="stylesheet" type="text/css" href="../../pickerdate/classic.date.css?v=<?=time();?>" />
-<script src="../../pickerdate/picker.js?v=<?=time();?>" type="text/javascript"></script>
-<script src="../../pickerdate/picker.date.js?v=<?=time();?>" type="text/javascript"></script> 
+	<link rel="stylesheet" type="text/css" href="../../pickerdate/classic.date.css?v=<?=time();?>" />
+	<script src="../../pickerdate/picker.js?v=<?=time();?>" type="text/javascript"></script>
+	<script src="../../pickerdate/picker.date.js?v=<?=time();?>" type="text/javascript"></script> 
+	
 	<script>
 		function showModal() {
 //		  hideAlertDialog();
@@ -433,6 +435,14 @@
 				    $('input[name="name_th"]').focus();
 				  });
 				
+				return false;
+			}
+			if($('#gender').val()==""){
+
+				ons.notification.alert({message: 'กรุณาเลือกเพศ',title:"ข้อมูลไม่ครบ",buttonLabel:"ปิด"})
+				  .then(function() {
+				    $('#checkbox-0').focus();
+				  });
 				return false;
 			}
 			if($('input[name="nickname"]').val()==""){
@@ -461,7 +471,7 @@
 			}
 			if($('#valid_type_plate').val()==1){
 
-				ons.notification.alert({message: 'ทะเบียนรถนี้ถูกใช้แล้ว ไม่สามารถใช้ซ้ำได้',title:"ข้อมูลไม่ครบ",buttonLabel:"ปิด"})
+				ons.notification.alert({message: 'ทะเบียนรถนี้ถูกใช้แล้ว ไม่สามารถใช้ซ้ำได้',title:"ข้อมูลซ้ำ",buttonLabel:"ปิด"})
 				  .then(function() {
 				    $('input[name="plate_num"]').focus();
 				  });
@@ -469,7 +479,7 @@
 			}
 			if($('#valid_type_phone').val()==1){
 
-				ons.notification.alert({message: 'เบอร์โทรนี้ถูกใช้แล้ว ไม่สามารถใช้ซ้ำได้',title:"ข้อมูลไม่ครบ",buttonLabel:"ปิด"})
+				ons.notification.alert({message: 'เบอร์โทรนี้ถูกใช้แล้ว ไม่สามารถใช้ซ้ำได้',title:"ข้อมูลซ้ำ",buttonLabel:"ปิด"})
 				  .then(function() {
 				    $('input[name="plate_num"]').focus();
 				  });
@@ -483,6 +493,14 @@
 				  });
 				return false;
 			}
+			if($('#em_person').val()==""){
+
+				ons.notification.alert({message: 'กรุณาเลือกบุคคลที่เกี่ยวข้องกับเบอร์โทรฉุกเฉิน',title:"ข้อมูลไม่ครบ",buttonLabel:"ปิด"})
+				  .then(function() {
+				    $('input[name="plate_num"]').focus();
+				  });
+				return false;
+			}
 			if($('input[name="image-data"]').val()==""){
 
 				ons.notification.alert({message: 'กรุณาเลือกรูปประจำตัวของคุณ',title:"ข้อมูลไม่ครบ",buttonLabel:"ปิด"})
@@ -491,6 +509,7 @@
 				  });
 				return false;
 			}
+
 			/*if($('input[name="idcard"]').val()==""){
 				ons.notification.alert({message: 'กรุณากรอกเลขบัตรประจำตัวประชาชน',title:"ผิดพลาด"});
 				return false;
@@ -532,41 +551,67 @@
 		};*/
 		
 		var submitRecoveryPassword = function(){
-			  var dialog_rcv = document.getElementById('submit-recovery-dialog');
-			  if($('#check_type_rcp').val()<0){
+//			$('#txt_dialog_rcv').html('+++++');
+			 console.log($('#check_type_rcp').val());
+			 if($('#check_type_rcp').val()<0){
 			  	 ons.notification.alert({message: 'กรุณาเลือกช่องทางการรับรหัสผ่าน',title:"ข้อมูลไม่ครบ",buttonLabel:"ปิด"})
 				  .then(function() {
 				   
 				  });
 				  return;
 			  }
+
+			  var dialog_rcv = document.getElementById('submit-recovery-dialog');
+			  
+			  
 			  if (dialog_rcv) {
 			    dialog_rcv.show();
+			    if($('#check_type_rcp').val()==0){
+					  	$('#txt_dialog_rcv_sms').show();
+					  	$('#txt_dialog_rcv_email').hide();
+					  }
+					  else if($('#check_type_rcp').val()==1){
+					  	$('#txt_dialog_rcv_sms').hide();
+					  	$('#txt_dialog_rcv_email').show();
+					  }
 			  } else {
 			    ons.createElement('recovery-dialog.html', { append: true })
 			      .then(function(dialog_rcv) {
 			        dialog_rcv.show();
+			        if($('#check_type_rcp').val()==0){
+					  	$('#txt_dialog_rcv_sms').show();
+					  	$('#txt_dialog_rcv_email').hide();
+					  }
+					  else if($('#check_type_rcp').val()==1){
+					  	$('#txt_dialog_rcv_sms').hide();
+					  	$('#txt_dialog_rcv_email').show();
+					  }
 			      });
 			  }
+			  
 		};
 
 		function submitRecovery(){
+//			console.log($('#username_for_rcv').val());
+//			return;
 			modal.show();
 			$('#submit-recovery-dialog').hide();
 			var check_type_rcv = $('#check_type_rcp').val();
-			var username = $('#username_for_rcv').val();
-			var us_phone = $('#us_phone').val();
+			var key = $('#username_for_rcv').val();
+			
 			console.log(check_type_rcv);
-			var pos = { username:username };
+			var pos = { key : key };
 			$.ajax({
 	            url: "../../mod/material/php_center.php?query=user_data", // point to server-side PHP script 
 	            dataType: 'json', // what to expect back from the PHP script, if anything
 	            data: pos,
 	            type: 'post',
 	            success: function(php_script_response) {
-//	               console.log(php_script_response);
-					var message = "รหัสผ่านของคุณคือ "+php_script_response.password;
+	               console.log(php_script_response);
+//	               return;
+					var message = "ชื่อผู้ใช้ : "+php_script_response.username+"<br/>รหัสผ่าน : "+php_script_response.password;
 				    if(check_type_rcv==0){
+				    	var us_phone = $('#us_phone').val();
 						var param = {
 							username : "0954293062",
 							password : "758837",
@@ -576,7 +621,9 @@
 							ScheduledDelivery : "",
 							force : "standard"
 						};
+						
 						console.log(param);
+//						return;
 						$.ajax({
 					            url: "../../../sms/send_sms.php", // point to server-side PHP script 
 					            dataType: 'json', // what to expect back from the PHP script, if anything
@@ -585,38 +632,25 @@
 					            success: function(response) {
 					            	console.log(response);
 					            	modal.hide();
-					            	ons.notification.alert({message: 'ส่ง SMS รหัสผ่านไปยังเบอร์โทรของคุณแล้ว',title:"สำเร็จ",buttonLabel:"ปิด"})
+					            	ons.notification.alert({message: 'ส่ง SMS รหัสผ่านไปยังเบอร์ '+us_phone+' แล้ว',title:"สำเร็จ",buttonLabel:"ปิด"})
 									  .then(function() {
 									   
 									  });
 					            }
 					        });
-					}else if(check_type_rcv==1){
+					}
+					else if(check_type_rcv==1){
 						var us_email = $('#us_email').val();
 						var param = {
 							email : us_email,
 							message : message
 						};
 						console.log(param);
-						/*$.ajax({
-					            url: "../../mail_recovery_pass.php", // point to server-side PHP script 
-					            dataType: 'json', // what to expect back from the PHP script, if anything
-					            data: param,
-					            type: 'post',
-					            success: function(response) {
-					            	console.log(response);
-					            	modal.hide();
-					            	ons.notification.alert({message: 'ส่งรหัสผ่านไปยังที่อยุ่ Email ของคุณแล้ว',title:"สำเร็จ",buttonLabel:"ปิด"})
-									  .then(function() {
-									   		
-									  });
-					            }
-					        });*/
-					        
+//						return;
 					     $.post("../../mail_recovery_pass.php",param,function(res){
 					     		console.log(res);
 					     		modal.hide();
-					            	ons.notification.alert({message: 'ส่งรหัสผ่านไปยังที่อยุ่ Email ของคุณแล้ว',title:"สำเร็จ",buttonLabel:"ปิด"})
+					            	ons.notification.alert({message: 'ส่งรหัสผ่านไปยังที่อยู่ '+us_email+' แล้ว',title:"สำเร็จ",buttonLabel:"ปิด"})
 									  .then(function() {
 									   		
 									  });
@@ -628,11 +662,15 @@
 		                //your code here
 		        }
 	        });
-			console.log(username);
+//			console.log(username);
 		}
 		
 		function getPhoneByUser(val){
-			var pos = { username:val };
+			if(val==""){
+				return;
+			}
+			var pos = { key : val };
+			console.log(pos);
 			$.ajax({
 					url: "../../mod/material/php_center.php?query=user_data_recovery", // point to server-side PHP script 
 					dataType: 'json', // what to expect back from the PHP script, if anything
@@ -642,14 +680,46 @@
 					         console.log(response);
 					         if(response!=false){
 							 	$('#corrent-user').show();
+							 	$('#box_show_pf_rcv').show();
+							 	var src = '../../../data/pic/driver/small/'+response.data.username+'.jpg';
+							 	$('#txt_name_rcv').text("คุณ "+response.data.name);
+							 	$.ajax({
+										url: src,
+										type:'HEAD',
+										error: function()
+										{
+											console.log('Error file');
+										},
+										success: function()
+										{
+											//file exists
+											console.log('success file');
+											$('#box_show_pf_rcv img').attr('src',src);
+										}
+									});
+									 $('#us_phone').val(response.data.phone);
+							         $('#txt_phone_show').text(response.data.phone);
+							         
+							         $('#us_email').val(response.data.email);
+							         $('#txt_email_show').text(response.data.email);
+							         if(response.type==1){
+									 	$('#box-channel').show();
+									 }else if(response.type==2){
+									 	$('#box-channel').hide();
+									 	$('#check_type_rcp').val(0);
+										$('#txt_btn_rcv').text("รับรหัสผ่านทาง SMS");
+									 }else if(response.type==3){
+									 	$('#box-channel').hide();
+									 	$('#check_type_rcp').val(1);
+									 	$('#txt_btn_rcv').text("รับรหัสผ่านทาง Email");
+									 }
+
 							 }else{
 							 	$('#corrent-user').hide();
+							 	$('#box_show_pf_rcv').hide();
+							 	$('#box-channel').hide();
 							 }
-					         $('#us_phone').val(response.phone);
-					         $('#txt_phone_show').text(response.phone);
 					         
-					         $('#us_email').val(response.email);
-					         $('#txt_email_show').text(response.email);
 						}
 					});
 		}
@@ -759,7 +829,7 @@
 			}
 		}
 		else if(page.id=="recovery.html"){
-			getPhoneByUser($('#username_for_rcv').val());
+			setTimeout(function(){ getPhoneByUser($('#username_for_rcv').val()); }, 1500);
 		}
 	  if (anim) {
 	    document.getElementById('myNavigator').pushPage(page.id, { data: { title: page.title }, animation: anim });

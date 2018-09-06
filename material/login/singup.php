@@ -63,6 +63,29 @@
                 </ons-input>
             </label>
         </ons-list-item>
+        
+        <ons-list-item class="input-items list-item p-l-0">
+        	<div class="left list-item__left">
+                 <i class="fa fa-venus-mars list-item__icon" aria-hidden="true" style="padding-left: 3px;"></i><span class="txt-important">*</span>
+            </div>
+            	<ons-list-item tappable>
+		        <label class="left">
+		          <ons-checkbox class="checkbox-color rcp" input-id="checkbox-0" onclick="selectGender(0);"></ons-checkbox>
+		        </label>
+		        <label class="center" for="checkbox-0" style="background-image: unset;">
+		          ชาย
+		        </label>
+		      </ons-list-item>
+		        <ons-list-item tappable>
+		        <label class="left">
+		          <ons-checkbox class="checkbox-color rcp" input-id="checkbox-1"  onclick="selectGender(1);" ></ons-checkbox>
+		        </label>
+		        <label class="center" for="checkbox-1" style="background-image: unset;">
+		          หญิง
+		        </label>
+		      </ons-list-item>
+            <input type="hidden" value="" id="gender" value="" name="gender"/>
+        </ons-list-item>
 
         <ons-list-item class="input-items list-item p-l-0">
             <div class="left list-item__left">
@@ -123,7 +146,7 @@
 				</ons-select>
             </div>
         </ons-list-item>
-
+		
         <ons-list-item class="input-items list-item p-l-0">
             <div class="left list-item__left" style="padding-right: 20px;">
                 <!--<ons-icon icon="fa-location-arrow" class="list-item__icon ons-icon"></ons-icon>-->
@@ -197,16 +220,18 @@
             	<img src="../../images/ex_card/crd.png" width="25px;" />
                 <!--<b style="width: 100px;font-size: 14px;">หมดอายุ</b>-->
             </div>
-            <label class="center list-item__center">
+            <div class="center list-item__center">
                 <ons-input id="idcard-input" float=""  name="ex_idcard" style="width:100%;" value="" placeholder="<?=$txt_ex_idcard;?>" >
                     <input type="text"  class="text-input"  name="ex_idcard" id="ex_idcard">
                     <span class="text-input__label">
                         <?=$txt_ex_idcard;?></span>
                 </ons-input>
-            </label>
+                
+            </div>
+            
         </ons-list-item>
         
-        <div align="center">
+        <div align="center" style="margin: 10px;">
 			<div >
 			  <!--<button class="btn-ip" type="button">เลือกภาพบัตรประจำตัวประชาชน</button>-->
 			  <input type="file" class="cropit-image-input" accept="image/*" id="img_id_card"  style="opacity: 0;position: absolute;">
@@ -237,20 +262,19 @@
                 </ons-input>               
             </label>
         </ons-list-item>
-        <ons-list-item class="input-items list-item p-l-0">
+      <ons-list-item class="input-items list-item p-l-0">
             <div class="left list-item__left" style="margin-left: 6px; padding-right: 18px;">
             	<img src="../../images/ex_card/crd.png" width="25px;" />
                 <!--<b style="width: 100px; font-size: 14px;">หมดอายุ</b>-->
             </div>
-            <label class="center list-item__center">
+            <div class="center list-item__center">
                 <ons-input id="idcard-input" float=""  name="ex_iddriving" style="width:100%;" value=""  >
                     <input type="text"  class="text-input"  name="ex_iddriving" id="ex_iddriving">
                     <span class="text-input__label"><?=$txt_ex_iddriving;?></span>
                 </ons-input>
-            </label>
-           
+            </div>
         </ons-list-item>
-        <div align="center">
+      <div align="center" style="margin: 10px;">
 			<div >
 			  <!--<button class="btn-ip" type="button" onclick="$('#img_id_drving').click();" >เลือกภาพใบขับขี่</button>-->
 			  <input type="file" class="cropit-image-input" accept="image/*" id="img_id_drving"  style="opacity: 0;position: absolute;">
@@ -273,12 +297,13 @@
     <ons-card  class="card">
       <ons-list-header class="list-header"><b>ข้อมูลรถ</b></ons-list-header>
       <ons-list-item class="input-items list-item p-l-0">
-            <div class="left list-item__left">
-                <ons-icon icon="fa-car" class="list-item__icon ons-icon"></ons-icon>
+            <div class="left list-item__left"  style="width: 110px;">
+                <!--<ons-icon icon="fa-car" class="list-item__icon ons-icon"></ons-icon>-->
+                <span><?=$plate;?></span>
             </div>
             <label class="center list-item__center">
-                <ons-input id="name-input" float="" maxlength="30" placeholder="<?=$plate;?>" name="plate_num" style="width:100%;">
-                    <input type="text" class="text-input" maxlength="30" placeholder="<?=$plate;?>" name="plate_num" onkeyup="validPlate($(this).val());">
+                <ons-input id="name-input" float="" maxlength="30" placeholder="" name="plate_num" style="width:100%;">
+                    <input type="text" class="text-input" maxlength="30" placeholder="" name="plate_num" onkeyup="validPlate($(this).val());">
                     <span class="text-input__label">
                         <?=$plate;?></span>
                 </ons-input>
@@ -288,7 +313,7 @@
             </label>
         </ons-list-item>
         <ons-list-item class="input-items list-item p-l-0">
-        	<div class="left list-item__left"  style="width: 105px;">
+        	<div class="left list-item__left"  style="width: 110px;">
                 <span>ประเภทรถ</span>
             </div>
             <div class="center list-item__center" onclick="fn.pushPage({'id': 'option.html', 'title': 'ประเภทรถ', 'open':'car_type'}, 'lift-ios')">
@@ -297,7 +322,7 @@
             </div>
         </ons-list-item>
         <ons-list-item class="input-items list-item p-l-0">
-        	<div class="left list-item__left" style="width: 105px;">
+        	<div class="left list-item__left" style="width: 110px;">
                 <span>ยี่ห้อ</span>
             </div>
             <div class="center list-item__center" onclick="fn.pushPage({'id': 'option.html', 'title': 'ยี่ห้อรถ', 'open':'car_brand'}, 'lift-ios')">
@@ -309,7 +334,7 @@
             </div>
         </ons-list-item>
         <ons-list-item class="input-items list-item p-l-0">
-        	<div class="left list-item__left" style="width: 105px;">
+        	<div class="left list-item__left" style="width: 110px;">
                 <span>สีรถ</span>
             </div>
             <div class="center list-item__center" onclick="fn.pushPage({'id': 'option.html', 'title': 'สีรถ', 'open':'car_color'}, 'lift-ios')">
@@ -320,7 +345,7 @@
             </div>
         </ons-list-item>
         <ons-list-item class="input-items list-item p-l-0">
-        	<div class="left list-item__left" style="width: 105px;">
+        	<div class="left list-item__left" style="width: 110px;">
                 <span>สีป้ายทะเบียน</span>
             </div>
             <div class="center list-item__center" onclick="fn.pushPage({'id': 'option.html', 'title': 'สีป้ายทะเบียน', 'open':'plate_color'}, 'lift-ios')">
@@ -330,8 +355,9 @@
                 <input type="hidden" name="plate_color_txt" id="plate_color_txt" />
             </div>
         </ons-list-item>
+
         <ons-list-item class="input-items list-item p-l-0">
-        	<div class="left list-item__left" style="width: 105px;">
+        	<div class="left list-item__left" style="width: 110px;">
                 <span>จังหวัด</span>
             </div>
             <div class="center list-item__center" onclick="fn.pushPage({'id': 'option.html', 'title': 'จังหวัด', 'open':'car_province'}, 'lift-ios')">
@@ -360,7 +386,6 @@
      <div style="margin: 0px 10px;">
     <ons-button modifier="outline" class="button-margin button button--outline button--large" onclick="createAlertDialog();" style="background-color: #fff;" >ยืนยันข้อมูล</ons-button>
     </div>
-
 	
 </div>   
 
@@ -456,24 +481,26 @@
               onStart: function() {
               	  var date=$('#ex_iddriving').val();
                   this.set('select', date); // Set to current date on load
-//         			console.log('open');
+         			console.log('open');
 //         			$('.toolbar').hide();
               },
       		  onSet: function(context) {
       		  	var date = $('#ex_iddriving').val();
 					console.log(date);
 					$('.toolbar').show();
+					console.log('onSet');
       		  },
       		  onClose: function() {
-      		  	
+      		  		console.log('onClose');
 					$('.toolbar').show();
       		  },
       		  onOpen: function() {
+      		  		console.log('onOpen');
 					$('.toolbar').hide();
       		  }
               });
               
-              $('#ex_idcard').pickadate({
+          $('#ex_idcard').pickadate({
               format: 'yyyy-mm-dd',
               formatSubmit: 'yyyy/mm/dd',
               closeOnSelect: true,
@@ -499,5 +526,9 @@
       		  }
               });
        
-	
+	function selectGender(val){
+		$('.rcp').prop('checked', false);
+		$('#checkbox-'+val).prop('checked', true);
+		$('#gender').val(val);
+	}
 </script>

@@ -5,16 +5,23 @@
     <div style="" align="center">
 		<ons-icon icon="fa-lock" style="font-size: 56px;" class="list-item__icon ons-icon"></ons-icon>
 	</div>
-		      <ons-list-item class="input-items">
-		        <div class="left">
-		          <span>ชื่อผู้ใช้งาน</span>
-		        </div>
+		<div style="padding: 0px 20px;">
+			<span>กรอกชื่อผู้ใช้ เบอร์โทรศัพท์ หรืออีเมลของบัญชีที่ต้องการกู้รหัสผ่าน</span>
+		</div>
+		      <ons-list-item class="input-items" style="padding-left: 0;">
+		       
 		        <label class="center">
 		        <ons-input  id="username_for_rcv" float maxlength="20" value="<?=$_COOKIE[app_remember_user];?>" onkeyup="getPhoneByUser($(this).val());" ></ons-input>
 		        <i id="corrent-user" class="fa fa-check-circle pass" aria-hidden="true" style="display: none;"></i>
 		      </label>
 		      </ons-list-item>  
-		      
+		<div id="box_show_pf_rcv" style="display: none;" align="center">
+			<span id="txt_name_rcv"></span>
+			<div style="margin: 10px 0px;">
+			<img src="../../images/no-image-slide.png" style="height: 150px;border: 1px solid #eee;box-shadow: 1px 1px 5px #9E9E9E;" />
+			</div>
+		</div>      
+	<div id="box-channel" style="display: none;">
 	<ons-list-header style="margin-top: 10px;">เลือกช่องทางการรับรหัสผ่าน</ons-list-header>
       <ons-list-item tappable>
         <label class="left">
@@ -25,7 +32,7 @@
         </label>
        
       </ons-list-item>
-       		<div style="padding: 10px;display: none;" id="box_us_phone">
+      <div style="padding: 10px;display: none;" id="box_us_phone">
 		        <span>เบอร์โทร</span>&nbsp;&nbsp;
 		        <span id="txt_phone_show"></span>
 		        <ons-input id="us_phone" float maxlength="20" value="" type="hidden"></ons-input>
@@ -44,12 +51,15 @@
 		        <ons-input id="us_email" float maxlength="20" value="" type="hidden"></ons-input>
 		    </div>
       <input type="hidden" value="-1" id="check_type_rcp" />
+      </div>
     </ons-card>
-    
+    	
 
 </form>
 	<div style="margin: 0px 10px;">
-   		<ons-button modifier="outline" class="button-margin button button--outline button--large" onclick="submitRecoveryPassword();" style="background-color: #fff;" >ยืนยันข้อมูล</ons-button>
+   		<ons-button modifier="outline" class="button-margin button button--outline button--large" onclick="submitRecoveryPassword();" style="background-color: #fff;" >
+   			<span id="txt_btn_rcv">รับรหัสผ่าน</span>
+   		</ons-button>
     </div>
 </div>
 
@@ -59,7 +69,9 @@
 		if(id==0){
 			$('#box_us_phone').show();
 			$('#box_us_mail').hide();
+			$('#txt_btn_rcv').text("รับรหัสผ่านทาง SMS");
 		}else{
+			$('#txt_btn_rcv').text("รับรหัสผ่านทาง Email");
 			if($('#us_email').val()==""){
 				$('.rcp').prop('checked', false);
 				ons.notification.alert({message: 'ชื่อผู้ใช้นี้ ไม่ได้ใส่ข้อมูลอีเมล ไม่สามารถเลือกได้',title:"สำเร็จ",buttonLabel:"ปิด"})
