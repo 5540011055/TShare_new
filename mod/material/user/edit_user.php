@@ -2,6 +2,9 @@
    $('.text-topic-action-mod').html('<?=t_user_info;?>');
 </script>
 <style type="text/css">
+	#load_mod_popup{
+		background-color: #efeff4;
+	}
    .mainpic_index {
    padding:10px;   
    -moz-border-radius:50%;
@@ -25,7 +28,7 @@
    background-repeat: no-repeat; background-position:center;
    }
 	.icons-fa{
-		margin: 0px 10px !important;
+		margin: 0px 0px !important;
 	}
       .topicname-user { 
 	      padding: 0px 7px;
@@ -43,7 +46,7 @@
       padding-left: 0px; 
       padding-bottom:0px; 
       font-size:14px;  
-      color: #333333 ; 
+      color: #443c3cb0 ; 
       text-align:left; 
       margin: 0px 45px;
       }
@@ -159,7 +162,7 @@
  }
  ?>
  <div style="background-color: #eee;">
-<form method="post"  id="edit_form" name="edit_form">
+<form id="edit_form" name="edit_form" enctype="multipart/form-data">
 
     <div class="card" style="margin-top: 50px;    box-shadow: 0 1px 2px rgba(0,0,0,.12);
     border-radius: 8px;
@@ -167,10 +170,10 @@
   	<div class="row" style="    margin-bottom: 0;">
   		<div class="topicname-user">ข้อมูลเข้าระบบ</div>
   		<div class="col s12"><div class="topicname-sub"><?=t_username;?></div></div>
-	      	<div class="col s2"><i class="icons-fa fa fa-user" aria-hidden="true" style="font-size: 25px; margin: 10px;"></i></div>
-	      	<div class="col s10"><input class="form-control" type="text" name="username" id="username" maxlength="50" required="true" style="width:100%"  value="<?=$arr[web_user][username];?>"  ></div>
+	      	<div class="col s2"><i class="icons-fa fa fa-user" aria-hidden="true" style="font-size: 25px; margin: 0px;"></i></div>
+	      	<div class="col s10"><input class="form-control" disabled type="text" name="username" id="username" maxlength="50" required="true" style="width:100%"  value="<?=$arr[web_user][username];?>"  ></div>
 	      	<div class="col s12"><div class="topicname-sub"><?=t_password;?></div></div>
-	      	<div class="col s2"><i class="icons-fa fa fa-key" aria-hidden="true" style="font-size: 25px; margin: 10px;"></i></div>
+	      	<div class="col s2"><i class="icons-fa fa fa-key" aria-hidden="true" style="font-size: 25px; margin: 0px;"></i></div>
 	      	<div class="col s10"><input class="form-control <?=$pass_blink;?>" type="text" name="password" id="password"  required="true"   value="<?=$arr[web_user][password];?>" ></div>
   	</div>
   </div>
@@ -181,23 +184,29 @@
         <div class="row" style="    margin-bottom: 0;">
 	      	<div class="topicname-user">ข้อมูลส่วนตัว</div>
 	      	<div class="col s12"><div class="topicname-sub"><?=t_name_last_name_thai;?></div></div>
-	      	<div class="col s2"><i class="material-icons" style="font-size: 25px; margin: 10px;">face</i></div>
+	      	<div class="col s2"><i class="material-icons" style="font-size: 25px; margin: 0px;">face</i></div>
 	      	<div class="col s10"><input class="form-control <?=$name_blink;?>" type="text" name="name" id="name"  required="true"  value="<?=$arr[web_user][name];?>" ></div>
 	      	
 	      	<div class="col s12"><div class="topicname-sub"><?=t_name_last_name_english;?></div></div>
-	      	<div class="col s2"><i class="material-icons" style="font-size: 25px; margin: 10px;">face</i></div>
+	      	<div class="col s2"><i class="material-icons" style="font-size: 25px; margin: 0px;">face</i></div>
 	      	<div class="col s10"> <input class="form-control" placeholder="ไม่บังคับ" type="text" name="name_en" id="name_en"  required="true"  value="<?=$arr[web_user][name_en];?>" ></div>
 	      	<div class="col s12"><div class="topicname-sub"><?=t_nick_name;?></div></div>
-	      	<div class="col s2"><i class="material-icons" style="font-size: 25px; margin: 10px;">face</i></div>
+	      	<div class="col s2"><i class="material-icons" style="font-size: 25px; margin: 0px;">face</i></div>
 	      	<div class="col s10"> <input class="form-control" <?=$nickname_blink;?> placeholder="ไม่บังคับ" type="text" name="nickname" id="nickname"  required="true"  value="<?=$arr[web_user][nickname];?>" ></div>
 	      	<div class="col s12"><div class="topicname-sub"><?="เพศ";?></div></div>
-	      	<div class="col s2"><i class="icons-fa fa fa-venus-mars" style="font-size: 25px; margin: 10px;"></i></div>
+	      	<div class="col s2"><i class="icons-fa fa fa-venus-mars" style="font-size: 25px; margin: 0px;"></i></div>
 	      	<div class="col s10">
 	      		<?php 
-             	if($arr[web_user][gender]==0){
+             	if($arr[web_user][i_gender]==0){
 					$ck_men = "checked";
 				}else{
+					$ck_men = "";
+				}
+				
+				if($arr[web_user][i_gender]==1){
 					$ck_girl = "checked";
+				}else{
+					$ck_girl = "";
 				}
              ?>
             	<table>
@@ -207,6 +216,7 @@
 							  <input type="checkbox" <?=$ck_men;?> class="rcp" id="checkbox-0">
 							  <span class="checkmark"></span>
 							</label>
+							
             			</td>
             			<td valign="bottom">
             				<label class="container" onclick="selectGender(1);" style="margin-top: 7px;">หญิง
@@ -219,24 +229,24 @@
             	<input type="hidden" value="" id="gender" name="gender"  />
 	      	</div>
 	      	<div class="col s12"><div class="topicname-sub"><?=t_address;?></div></div>
-	      	<div class="col s2"><i class="icons-fa fa fa-home" style="font-size: 25px; margin: 10px;"></i></div>
+	      	<div class="col s2"><i class="icons-fa fa fa-home" style="font-size: 25px; margin: 0px;"></i></div>
 	      	<div class="col s10"> <input class="form-control <?=$address_blink;?>" type="text" name="address" id="address"  required="true" value="<?=$arr[web_user][address];?>" ></div>
 	      	<div class="col s12"><div class="topicname-sub"><?=t_phone_number;?></div></div>
-	      	<div class="col s2"><i class="icons-fa fa fa-phone" style="font-size: 25px; margin: 10px;"></i></div>
+	      	<div class="col s2"><i class="icons-fa fa fa-phone" style="font-size: 25px; margin: 0px;"></i></div>
 	      	<div class="col s10"> <input class="form-control <?=$phone_blink;?>" type="number" name="phone" id="phone" pattern="\d*" required="true"  value="<?=$arr[web_user][phone];?>" ></div>
 	      	<div class="col s12"><div class="topicname-sub"><?=t_phone_number."ที่สอง";?></div></div>
-	      	<div class="col s2"><i class="icons-fa fa fa-phone" style="font-size: 25px; margin: 10px;"></i></div>
+	      	<div class="col s2"><i class="icons-fa fa fa-phone" style="font-size: 25px; margin: 0px;"></i></div>
 	      	<div class="col s10"> <input class="form-control <?=$phone_blink2;?>" type="number" name="phone2" id="phone2" pattern="\d*" required="true"  value="<?=$arr[web_user][phone2];?>" ></div>
 	      	<div class="col s12"><div class="topicname-sub"><?=t_emergency_telephone_numbers;?></div></div>
-	      	<div class="col s2"><i class="icons-fa fa fa-phone" style="font-size: 25px; margin: 10px;"></i></div>
+	      	<div class="col s2"><i class="icons-fa fa fa-phone" style="font-size: 25px; margin: 0px;"></i></div>
 	      	<div class="col s10"><input class="form-control" placeholder="ไม่บังคับ" type="number" pattern="\d*" name="contact" id="contact"  required="true" value="<?=$arr[web_user][contact];?>"  >
-	      		 <select name="em_person" id="em_person" style=" right: 45px;  margin-top: -65px;  width: 100px;position: absolute;">
+	      		 <select name="em_person" id="em_person" style=" right: 21px;  margin-top: -65px;  width: 100px;position: absolute;height: auto;">
 						    <option>สถานะ</option>
 				</select>
 	      	</div>
 	      	<div class="col s12"><div class="topicname-sub"><?="จังหวัด";?></div></div>
 	      	<div class="col s2">
-	      	<i class="material-icons"  style="font-size: 25px; margin: 10px;">location_on</i></div>
+	      	<i class="material-icons"  style="font-size: 25px; margin: 0px;">location_on</i></div>
 	      	<div class="col s10"> 
 	      		<select name="province" id="province" class="form-control">
 	      				<option value="">เลือกจังหวัด</option>
@@ -256,7 +266,7 @@
 				</select>
 	      	</div>
 	      	<div class="col s12"><div class="topicname-sub"><?="อีเมล";?></div></div>
-	      	<div class="col s2"><i class="icons-fa fa fa-at" style="font-size: 25px; margin: 10px;"></i></div>
+	      	<div class="col s2"><i class="icons-fa fa fa-at" style="font-size: 25px; margin: 0px;"></i></div>
 	      	<div class="col s10"><input class="form-control" placeholder="ไม่บังคับ" type="number" pattern="\d*" name="contact" id="contact"  required="true" value="<?=$arr[web_user][contact];?>"  >
 	    	</div>
 	    	<div class="col s12"><div class="topicname-sub"><?="ภาพประจำตัว";?></div></div>
@@ -280,11 +290,12 @@
                   filter: alpha(opacity=0);
                   }
                </style>
+<input type='file' id="imgInp" style="opacity: 0;" />
 				<div class="col s12">
-	      		<a onclick="ChangeProfile('<?=$arr[web_user][username];?>');">
-                  <div align="center" style="margin-top:0px;" >
-                     <img src="<?=$path_file;?>" id="img_tag"  alt="Preview Image" style="border: 2px solid #ddd;    border-radius: 4px;    padding: 0px;    margin: 10px;   display: nones;max-width: 150px;"/>
-                     <img src="" id="img_tag_new"  alt="Preview Image" style="border: 2px solid #ddd;    border-radius: 4px;    padding: 0px;    margin: 10px;   display: none;max-width: 150px;"/>
+	      		<a >
+                  <div align="center" style="margin-top:0px;" onclick="$('#imgInp').click();" >
+                     <img src="<?=$path_file;?>" id="img_tag"  alt="Preview Image" style="border: 2px solid #ddd;    border-radius: 4px;    padding: 0px;    margin: 0px;   display: nones;max-width: 150px;"/>
+                     <img src="" id="img_tag_new"  alt="Preview Image" style="border: 2px solid #ddd;    border-radius: 4px;    padding: 0px;    margin: 0px;   display: none;max-width: 150px;"/>
                      <input type="file" id="imageUpload_profile" class="fileInput" name="imageUpload_profile" />
                   </div>
                   <div align="center"><span class="font-20">เปลี่ยนรูปโดยการกดที่รูป</span></div>
@@ -307,17 +318,17 @@
   		<div class="col s12">
   		<div class="topicname-user">เลขบัตรประชาชน/วันหมดอาย</div>
   		<div class="col s12"><div class="topicname-sub"><?="เลขบัตรประชาชน";?></div></div>
-	      	<div class="col s2"><i class="icons-fa fa fa-id-badge" aria-hidden="true" style="font-size: 25px; margin: 10px;"></i></div>
+	      	<div class="col s2"><i class="material-icons" style="font-size: 25px; margin: 0px;">credit_card</i></div>
 	      	<div class="col s10"><input class="form-control" type="text" name="idcard" id="idcard" maxlength="50" required="true" style="width:100%"  value="<?=$arr[web_user][idcard];?>"  ></div>
 	      	<div class="col s12"><div class="topicname-sub"><?="วันหมดอายุ";?></div></div>
-	      	<div class="col s2"><img src="images/ex_card/crd.png" width="25px;" style="margin: 10px;"></div>
+	      	<div class="col s2"><img src="images/ex_card/crd.png" width="25px;" style="margin: 0px;"></div>
 	      	<div class="col s10">
 	      	<input class="form-control " type="date" name="ex_idcard" id="ex_idcard"   value="<?=$arr[web_user][idcard_finish];?>" ></div>
 	      	
 	      	<div class="col s12" align="center" style="margin-bottom: 20px;">
 	      		<!--<button type="button" onclick="$('#idcard_upload').click();" class="btn btn-danger waves-effect waves-light">อัพโหลดภาพบัตรประจำตัวประชาชน</button>-->
-               		<input type="file" id="idcard_upload" style="opacity: 0; position: absolute;left: 0px;" />
-               		<img src="" id="idcard_img" style="width: 240px;display:none;margin-top: 0px;max-height: 150px;" onclick="$('#idcard_upload').click();" />
+               		<input type="file" id="idcard_upload" style="opacity: 0; position: absolute;left: 0px;" name="idcard_upload" />
+               		<img src="" id="idcard_img" style="width: 240px;display:nones;margin-top: 0px;max-height: 150px;" onclick="$('#idcard_upload').click();" />
                		 <div style="
     background-color: #f4f4f4;
     padding: 0px 10px;
@@ -330,26 +341,26 @@
     position: relative;
     top: -21px;
     left: 44px;
-    width: 153px;
+    width: 160px;
     "><i class="icons-fa fa fa-camera" aria-hidden="true"></i>&nbsp; อัพโหลดรูปถ่าย</div>
 	      	</div>
 	      	
 	    </div>  	
 	      	
 	      	<div class="col s12" style="margin-top: 15px;">
-	      	<div class="topicname-user">เลขบัตรประชาชน/วันหมดอาย</div>
+	      	<div class="topicname-user">เลขใบขับขี่/วันหมดอายุ</div>
 	      <div class="col s12"><div class="topicname-sub"><?="เลขใบขับขี่";?></div></div>
-	      	<div class="col s2"><i class="icons-fa fa fa-id-card-o" aria-hidden="true" style="font-size: 25px; margin: 10px;"></i></div>
+	      	<div class="col s2"><i class="material-icons" style="font-size: 25px; margin: 0px;">credit_card</i></div>
 	      	<div class="col s10"><input class="form-control" type="text" name="iddriving" id="iddriving" maxlength="50" required="true" style="width:100%"  value="<?=$arr[web_user][iddriving];?>"  ></div>
 	      	<div class="col s12"><div class="topicname-sub"><?="วันหมดอายุ";?></div></div>
-	      	<div class="col s2"><img src="images/ex_card/crd.png" width="25px;" style="margin: 10px;"></div>
+	      	<div class="col s2"><img src="images/ex_card/crd.png" width="25px;" style="margin: 0px;"></div>
 	      	<div class="col s10">
 	      	<input class="form-control " type="date" name="ex_iddriving" id="ex_iddriving"   value="<?=$arr[web_user][iddriving_finish];?>" ></div>
 	      	
 	      	<div class="col s12" align="center">
 	      		<!--<button type="button" onclick="$('#iddriving_upload').click();" class="btn btn-danger waves-effect waves-light">อัพโหลดภาพใบขับขี่</button>-->
                	<input type="file" id="iddriving_upload" style="opacity: 0; position: absolute;left: 0px;" />
-               	<img src="" id="iddriving_img" style="width: 240px;display:none;margin-top: 0px;max-height: 150px;"  onclick="$('#iddriving_upload').click();" />
+               	<img src="" id="iddriving_img" style="width: 240px;display:nones;margin-top: 0px;max-height: 150px;"  onclick="$('#iddriving_upload').click();" />
               <div style="
     background-color: #f4f4f4;
     padding: 0px 10px;
@@ -362,7 +373,7 @@
     position: relative;
     top: -21px;
     left: 44px;
-    width: 153px;
+    width: 160px;
     "><i class="icons-fa fa fa-camera" aria-hidden="true"></i>&nbsp; อัพโหลดรูปถ่าย</div>
 	      	</div>	
 	      	
@@ -374,6 +385,7 @@
 	<div style="padding: 0px;margin-bottom: 10px;">
 		<button id="submit_user_data" type="button" class="btn waves-effect waves-light lighten-2 " style=" border: 1px solid #0076ff;border-radius: 5px !important ;color: #0076ff;width: 100%;background-color: #fff;"><span class="font-24">แก้ไขข้อมูลส่วนตัว</span></button>
 	</div>
+
 </form>
 </div>
 <script>
@@ -383,12 +395,13 @@
 			error: function()
 			{
 			   console.log('Error file');
-			   $('#idcard_img').hide();
+//			   $('#idcard_img').hide();
+			   $('#idcard_img').attr('src','images/ex_card/id_card.jpg');
 			},
 			success: function()
 			{
 				 console.log('success file');
-				 $('#idcard_img').show();
+//				 $('#idcard_img').show();
 				 $('#idcard_img').attr('src','../data/pic/driver/id_card/<?=$arr[web_user][id];?>_idcard.jpg');
 			}
 		});
@@ -399,12 +412,13 @@
 			error: function()
 			{
 			   console.log('Error file');
-			   $('#iddriving_img').hide();
+//			   $('#iddriving_img').hide();
+			   $('#iddriving_img').attr('src','images/ex_card/id_driving.jpg');
 			},
 			success: function()
 			{
 				console.log('success file');
-				$('#iddriving_img').show();
+//				$('#iddriving_img').show();
 				$('#iddriving_img').attr('src','../data/pic/driver/id_driving/<?=$arr[web_user][id];?>_iddriving.jpg');
 			}
 		});
@@ -507,36 +521,43 @@
 	      	$('#box_manage_pf').show();
 	      	$('#img_tag').hide();
 		  }else if(type=="idcard"){
-		  	$('#idcard_img').attr('src', e.target.result);
-	      	$('#idcard_img').show();
+		  	
 	      	
-   				var data = new FormData($('#edit_form')[0]);
-      			data.append('fileUpload', $('#idcard_upload')[0].files[0]);
-      			var url_upload = "mod/user/upload_img/upload.php?id=<?=$arr[web_user][id];?>&type=id_card";
+//   				var data = new FormData($('#edit_form')[0]);
+   				var data = $('#edit_form').serialize();
+//      			data.append('fileUpload', $('#idcard_upload')[0].files[0]);
+//      			var url_upload = "mod/user/upload_img/upload.php?id=<?=$arr[web_user][id];?>&type=id_card";
+      			var url_upload = "mod/user/upload_img/id_card.php?id=<?=$arr[web_user][id];?>&type=id_card";
       			console.log(url_upload);
    				   $.ajax({
    				                url: url_upload, // point to server-side PHP script 
    				                dataType: 'text',  // what to expect back from the PHP script, if anything
-   				                cache: false,
+//   				                cache: false,
    				                contentType: false,
    				                processData: false,
    				                data: data,                         
    				                type: 'post',
    				                success: function(php_script_response){
+   				                	alert(php_script_response);
    				                   console.log(php_script_response);
    				                   if(php_script_response=="true"){
+   				                   	 $('#idcard_img').attr('src', e.target.result);
+	      							 $('#idcard_img').show();
    				                   	 swal("อัพโหลดสำเร็จ","","success");
 								   }
+   				                },error: function(err){
+   				                   alert(err);
+   				                   
    				                }
    				 	});
 		  }
 		  else if(type=="iddriving"){
-		  	$('#iddriving_img').attr('src', e.target.result);
-	      	$('#iddriving_img').show();
+		  	
 	      	var data = new FormData($('#edit_form')[0]);
       			data.append('fileUpload', $('#idcard_upload')[0].files[0]);
       			var url_upload = "mod/user/upload_img/upload.php?id=<?=$arr[web_user][id];?>&type=id_drving";
       			console.log(url_upload);
+//      			alert(url_upload);
    				   $.ajax({
    				                url: url_upload, // point to server-side PHP script 
    				                dataType: 'text',  // what to expect back from the PHP script, if anything
@@ -548,6 +569,8 @@
    				                success: function(php_script_response){
    				                   console.log(php_script_response);
    				                   if(php_script_response=="true"){
+   				                   	 $('#iddriving_img').attr('src', e.target.result);
+	      							 $('#iddriving_img').show();	
    				                   	 swal("อัพโหลดสำเร็จ","","success");
 								   }
    				                }
@@ -607,7 +630,7 @@
 	 	$('#img_tag_new').hide();
 	 	$('#img_tag').show();
 	});
-	$('#ex_iddriving').pickadate({
+	/*$('#ex_iddriving').pickadate({
               format: 'yyyy-mm-dd',
               formatSubmit: 'yyyy/mm/dd',
               closeOnSelect: true,
@@ -633,8 +656,8 @@
       		  		console.log('onOpen');
 					$('.toolbar').hide();
       		  }
-              });
-	$('#ex_idcard').pickadate({
+              });*/
+	/*$('#ex_idcard').pickadate({
               format: 'yyyy-mm-dd',
               formatSubmit: 'yyyy/mm/dd',
               closeOnSelect: true,
@@ -658,7 +681,7 @@
       		  onOpen: function() {
 					$('.toolbar').hide();
       		  }
-    });
+    });*/
     
     function selectGender(val){
 		$('.rcp').prop('checked', false);

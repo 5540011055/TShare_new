@@ -394,6 +394,11 @@
     border-top-left-radius: 5px; pointer-events: none;"><i class="fa fa-camera" aria-hidden="true"></i>&nbsp; อัพโหลดรูปถ่าย</span>
 	    </div>
  	</ons-card>
+
+	<!--<ons-card  class="card">
+      <ons-list-header class="list-header"><b>ข้อมูล</b></ons-list-header>
+      
+    </ons-card>-->
 </form>
      <div style="margin: 0px 10px;">
     <ons-button modifier="outline" class="button-margin button button--outline button--large" onclick="createAlertDialog();" style="background-color: #fff;" >ยืนยันข้อมูล</ons-button>

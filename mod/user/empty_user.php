@@ -138,7 +138,7 @@
  	$ex_iddriving_blink = "blink-input";
  }
  ?>
-<form method="post"  id="edit_form" name="edit_form">
+<form method="post"  id="edit_form" name="edit_form"  enctype="multipart/form-data">
    <div class="box box-default" style="padding-top:30px;">
       <!-- /.box-header -->
       <div class="box-body" style="padding: 0px 10px;" >
@@ -442,6 +442,7 @@
       			data.append('fileUpload', $('#idcard_upload')[0].files[0]);
       			var url_upload = "mod/user/upload_img/upload.php?id=<?=$arr[web_user][id];?>&type=id_card";
       			console.log(url_upload);
+      			
    				   $.ajax({
    				                url: url_upload, // point to server-side PHP script 
    				                dataType: 'text',  // what to expect back from the PHP script, if anything
@@ -455,6 +456,9 @@
    				                   if(php_script_response=="true"){
    				                   	 swal("อัพโหลดสำเร็จ","","success");
 								   }
+   				                },
+   				                error: function(err){
+   				                   alert(err);
    				                }
    				 	});
 		  }
@@ -507,7 +511,7 @@
 		 var url = "mod/user/upload_img/upload.php?user=<?=$arr[web_user][username];?>";
 	    console.log(url);
 		$('.progress').show();
-   				data_form = $('#edit_form').serialize();    
+//   				data_form = $('#edit_form').serialize();    
    				data = new FormData($('#edit_form')[0]);
       			data.append('fileUpload', $('#imgInp')[0].files[0]);
    				   $.ajax({

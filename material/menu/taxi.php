@@ -103,10 +103,10 @@
         var url_load = "load_page_mod.php?name=user&file=index";
         $('#load_mod_popup').html(load_main_mod);
         $('#load_mod_popup').load(url_load);*/
-        if($.cookie("detect_user")!="472" && $.cookie("detect_user")!="153"){
+        /*if($.cookie("detect_user")!="472" && $.cookie("detect_user")!="153"){
 			 swal("ขอภัย กำลังปรับปรุงส่วนนี้อยู่");
         	 return;
-		}
+		}*/
        
 		 $( "#main_load_mod_popup" ).show();
 					     var url_load = "load_page_mod.php?name=material/user&file=edit_user";
