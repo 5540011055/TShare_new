@@ -165,7 +165,7 @@ font-size:22px;   padding:10px;  color:#FFFFF;  width:100%; background-color:<?=
        <td align="center"><font style='font-size:22px'>คุณ<?=$arr[checkcode][name]?> (<?=$arr[checkcode][nickname]?>)<b></td>
      </tr>
      <tr>
-       <td align="center"><font style='font-size:20px; color:#FF0000'>กาารลงทะเบียนของคุณสำเร็จแล้ว</font ><center>        <img src='../../data/pic/driver/main/<?=$arr[checkcode][post_date];?>.jpg'  width='150'     class='IMGSHOP'  style='border-radius: 15px;border: 2px solid #dadada;margin-top:10px'  /></td>
+       <td align="center"><font style='font-size:20px; color:#FF0000'>การลงทะเบียนของคุณสำเร็จแล้ว</font ><center>        <img src='../../data/pic/driver/main/<?=$arr[checkcode][post_date];?>.jpg'  width='150'     class='IMGSHOP'  style='border-radius: 15px;border: 2px solid #dadada;margin-top:10px'  /></td>
      </tr>
      <tr>
        <td align="center"> กรุณาปิดหน้าต่างเพื่อเข้าสู่ระบบไลน์</td>
