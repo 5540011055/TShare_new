@@ -161,36 +161,38 @@
  <div style="background-color: #eee;">
 <form method="post"  id="edit_form" name="edit_form">
 
-  <div class="card" style="margin-top: 50px;    box-shadow: 0 1px 2px rgba(0,0,0,.12);
+    <div class="card" style="margin-top: 50px;    box-shadow: 0 1px 2px rgba(0,0,0,.12);
     border-radius: 8px;
     padding: 10px;">
   	<div class="row" style="    margin-bottom: 0;">
   		<div class="topicname-user">ข้อมูลเข้าระบบ</div>
   		<div class="col s12"><div class="topicname-sub"><?=t_username;?></div></div>
 	      	<div class="col s2"><i class="icons-fa fa fa-user" aria-hidden="true" style="font-size: 25px; margin: 10px;"></i></div>
-	      	<div class="col s9"><input class="form-control" type="text" name="username" id="username" maxlength="50" required="true" style="width:100%"  value="<?=$arr[web_user][username];?>"  ></div>
+	      	<div class="col s10"><input class="form-control" type="text" name="username" id="username" maxlength="50" required="true" style="width:100%"  value="<?=$arr[web_user][username];?>"  ></div>
 	      	<div class="col s12"><div class="topicname-sub"><?=t_password;?></div></div>
 	      	<div class="col s2"><i class="icons-fa fa fa-key" aria-hidden="true" style="font-size: 25px; margin: 10px;"></i></div>
-	      	<div class="col s9"><input class="form-control <?=$pass_blink;?>" type="text" name="password" id="password"  required="true"   value="<?=$arr[web_user][password];?>" ></div>
+	      	<div class="col s10"><input class="form-control <?=$pass_blink;?>" type="text" name="password" id="password"  required="true"   value="<?=$arr[web_user][password];?>" ></div>
   	</div>
   </div>
 
-   <div class="card" style="box-shadow: 0 1px 2px rgba(0,0,0,.12);
+    <div class="card" style="box-shadow: 0 1px 2px rgba(0,0,0,.12);
     border-radius: 8px;
     padding: 10px;" >
         <div class="row" style="    margin-bottom: 0;">
 	      	<div class="topicname-user">ข้อมูลส่วนตัว</div>
 	      	<div class="col s12"><div class="topicname-sub"><?=t_name_last_name_thai;?></div></div>
 	      	<div class="col s2"><i class="material-icons" style="font-size: 25px; margin: 10px;">face</i></div>
-	      	<div class="col s9"><input class="form-control <?=$name_blink;?>" type="text" name="name" id="name"  required="true"  value="<?=$arr[web_user][name];?>" ></div>
+	      	<div class="col s10"><input class="form-control <?=$name_blink;?>" type="text" name="name" id="name"  required="true"  value="<?=$arr[web_user][name];?>" ></div>
 	      	
 	      	<div class="col s12"><div class="topicname-sub"><?=t_name_last_name_english;?></div></div>
 	      	<div class="col s2"><i class="material-icons" style="font-size: 25px; margin: 10px;">face</i></div>
-	      	<div class="col s9"> <input class="form-control" placeholder="ไม่บังคับ" type="text" name="name_en" id="name_en"  required="true"  value="<?=$arr[web_user][name_en];?>" ></div>
-	      	
+	      	<div class="col s10"> <input class="form-control" placeholder="ไม่บังคับ" type="text" name="name_en" id="name_en"  required="true"  value="<?=$arr[web_user][name_en];?>" ></div>
+	      	<div class="col s12"><div class="topicname-sub"><?=t_nick_name;?></div></div>
+	      	<div class="col s2"><i class="material-icons" style="font-size: 25px; margin: 10px;">face</i></div>
+	      	<div class="col s10"> <input class="form-control" <?=$nickname_blink;?> placeholder="ไม่บังคับ" type="text" name="nickname" id="nickname"  required="true"  value="<?=$arr[web_user][nickname];?>" ></div>
 	      	<div class="col s12"><div class="topicname-sub"><?="เพศ";?></div></div>
 	      	<div class="col s2"><i class="icons-fa fa fa-venus-mars" style="font-size: 25px; margin: 10px;"></i></div>
-	      	<div class="col s9">
+	      	<div class="col s10">
 	      		<?php 
              	if($arr[web_user][gender]==0){
 					$ck_men = "checked";
@@ -218,16 +220,16 @@
 	      	</div>
 	      	<div class="col s12"><div class="topicname-sub"><?=t_address;?></div></div>
 	      	<div class="col s2"><i class="icons-fa fa fa-home" style="font-size: 25px; margin: 10px;"></i></div>
-	      	<div class="col s9"> <input class="form-control <?=$address_blink;?>" type="text" name="address" id="address"  required="true" value="<?=$arr[web_user][address];?>" ></div>
+	      	<div class="col s10"> <input class="form-control <?=$address_blink;?>" type="text" name="address" id="address"  required="true" value="<?=$arr[web_user][address];?>" ></div>
 	      	<div class="col s12"><div class="topicname-sub"><?=t_phone_number;?></div></div>
 	      	<div class="col s2"><i class="icons-fa fa fa-phone" style="font-size: 25px; margin: 10px;"></i></div>
-	      	<div class="col s9"> <input class="form-control <?=$phone_blink;?>" type="number" name="phone" id="phone" pattern="\d*" required="true"  value="<?=$arr[web_user][phone];?>" ></div>
+	      	<div class="col s10"> <input class="form-control <?=$phone_blink;?>" type="number" name="phone" id="phone" pattern="\d*" required="true"  value="<?=$arr[web_user][phone];?>" ></div>
 	      	<div class="col s12"><div class="topicname-sub"><?=t_phone_number."ที่สอง";?></div></div>
 	      	<div class="col s2"><i class="icons-fa fa fa-phone" style="font-size: 25px; margin: 10px;"></i></div>
-	      	<div class="col s9"> <input class="form-control <?=$phone_blink2;?>" type="number" name="phone2" id="phone2" pattern="\d*" required="true"  value="<?=$arr[web_user][phone2];?>" ></div>
+	      	<div class="col s10"> <input class="form-control <?=$phone_blink2;?>" type="number" name="phone2" id="phone2" pattern="\d*" required="true"  value="<?=$arr[web_user][phone2];?>" ></div>
 	      	<div class="col s12"><div class="topicname-sub"><?=t_emergency_telephone_numbers;?></div></div>
 	      	<div class="col s2"><i class="icons-fa fa fa-phone" style="font-size: 25px; margin: 10px;"></i></div>
-	      	<div class="col s9"><input class="form-control" placeholder="ไม่บังคับ" type="number" pattern="\d*" name="contact" id="contact"  required="true" value="<?=$arr[web_user][contact];?>"  >
+	      	<div class="col s10"><input class="form-control" placeholder="ไม่บังคับ" type="number" pattern="\d*" name="contact" id="contact"  required="true" value="<?=$arr[web_user][contact];?>"  >
 	      		 <select name="em_person" id="em_person" style=" right: 45px;  margin-top: -65px;  width: 100px;position: absolute;">
 						    <option>สถานะ</option>
 				</select>
@@ -235,7 +237,7 @@
 	      	<div class="col s12"><div class="topicname-sub"><?="จังหวัด";?></div></div>
 	      	<div class="col s2">
 	      	<i class="material-icons"  style="font-size: 25px; margin: 10px;">location_on</i></div>
-	      	<div class="col s9"> 
+	      	<div class="col s10"> 
 	      		<select name="province" id="province" class="form-control">
 	      				<option value="">เลือกจังหวัด</option>
 					<?php 
@@ -255,7 +257,7 @@
 	      	</div>
 	      	<div class="col s12"><div class="topicname-sub"><?="อีเมล";?></div></div>
 	      	<div class="col s2"><i class="icons-fa fa fa-at" style="font-size: 25px; margin: 10px;"></i></div>
-	      	<div class="col s9"><input class="form-control" placeholder="ไม่บังคับ" type="number" pattern="\d*" name="contact" id="contact"  required="true" value="<?=$arr[web_user][contact];?>"  >
+	      	<div class="col s10"><input class="form-control" placeholder="ไม่บังคับ" type="number" pattern="\d*" name="contact" id="contact"  required="true" value="<?=$arr[web_user][contact];?>"  >
 	    	</div>
 	    	<div class="col s12"><div class="topicname-sub"><?="ภาพประจำตัว";?></div></div>
 	      	<?php  $pic_qr = file_exists("../data/pic/driver/small/".$arr[web_user][username].".jpg");  
@@ -306,23 +308,30 @@
   		<div class="topicname-user">เลขบัตรประชาชน/วันหมดอาย</div>
   		<div class="col s12"><div class="topicname-sub"><?="เลขบัตรประชาชน";?></div></div>
 	      	<div class="col s2"><i class="icons-fa fa fa-id-badge" aria-hidden="true" style="font-size: 25px; margin: 10px;"></i></div>
-	      	<div class="col s9"><input class="form-control" type="text" name="idcard" id="idcard" maxlength="50" required="true" style="width:100%"  value="<?=$arr[web_user][idcard];?>"  ></div>
+	      	<div class="col s10"><input class="form-control" type="text" name="idcard" id="idcard" maxlength="50" required="true" style="width:100%"  value="<?=$arr[web_user][idcard];?>"  ></div>
 	      	<div class="col s12"><div class="topicname-sub"><?="วันหมดอายุ";?></div></div>
 	      	<div class="col s2"><img src="images/ex_card/crd.png" width="25px;" style="margin: 10px;"></div>
-	      	<div class="col s9">
+	      	<div class="col s10">
 	      	<input class="form-control " type="date" name="ex_idcard" id="ex_idcard"   value="<?=$arr[web_user][idcard_finish];?>" ></div>
 	      	
 	      	<div class="col s12" align="center" style="margin-bottom: 20px;">
 	      		<!--<button type="button" onclick="$('#idcard_upload').click();" class="btn btn-danger waves-effect waves-light">อัพโหลดภาพบัตรประจำตัวประชาชน</button>-->
                		<input type="file" id="idcard_upload" style="opacity: 0; position: absolute;left: 0px;" />
                		<img src="" id="idcard_img" style="width: 240px;display:none;margin-top: 0px;max-height: 150px;" onclick="$('#idcard_upload').click();" />
-               		<span style="background-color: #f4f4f4;
+               		 <div style="
+    background-color: #f4f4f4;
     padding: 0px 10px;
-    position: absolute;
-        bottom: 379px;
-    margin-left: 33%;
     border-top-left-radius: 5px;
-    pointer-events: none;"><i class="icons-fa fa fa-camera" aria-hidden="true"></i>&nbsp; อัพโหลดรูปถ่าย</span>
+    pointer-events: none;
+    background-color: #f4f4f4;
+    padding: 0px 10px;
+    border-top-left-radius: 5px;
+    pointer-events: none;
+    position: relative;
+    top: -21px;
+    left: 44px;
+    width: 153px;
+    "><i class="icons-fa fa fa-camera" aria-hidden="true"></i>&nbsp; อัพโหลดรูปถ่าย</div>
 	      	</div>
 	      	
 	    </div>  	
@@ -331,29 +340,40 @@
 	      	<div class="topicname-user">เลขบัตรประชาชน/วันหมดอาย</div>
 	      <div class="col s12"><div class="topicname-sub"><?="เลขใบขับขี่";?></div></div>
 	      	<div class="col s2"><i class="icons-fa fa fa-id-card-o" aria-hidden="true" style="font-size: 25px; margin: 10px;"></i></div>
-	      	<div class="col s9"><input class="form-control" type="text" name="iddriving" id="iddriving" maxlength="50" required="true" style="width:100%"  value="<?=$arr[web_user][iddriving];?>"  ></div>
+	      	<div class="col s10"><input class="form-control" type="text" name="iddriving" id="iddriving" maxlength="50" required="true" style="width:100%"  value="<?=$arr[web_user][iddriving];?>"  ></div>
 	      	<div class="col s12"><div class="topicname-sub"><?="วันหมดอายุ";?></div></div>
 	      	<div class="col s2"><img src="images/ex_card/crd.png" width="25px;" style="margin: 10px;"></div>
-	      	<div class="col s9">
+	      	<div class="col s10">
 	      	<input class="form-control " type="date" name="ex_iddriving" id="ex_iddriving"   value="<?=$arr[web_user][iddriving_finish];?>" ></div>
 	      	
 	      	<div class="col s12" align="center">
 	      		<!--<button type="button" onclick="$('#iddriving_upload').click();" class="btn btn-danger waves-effect waves-light">อัพโหลดภาพใบขับขี่</button>-->
                	<input type="file" id="iddriving_upload" style="opacity: 0; position: absolute;left: 0px;" />
                	<img src="" id="iddriving_img" style="width: 240px;display:none;margin-top: 0px;max-height: 150px;"  onclick="$('#iddriving_upload').click();" />
-               	<span style="background-color: #f4f4f4;
+              <div style="
+    background-color: #f4f4f4;
     padding: 0px 10px;
-    position: absolute;
-    margin-left: -150px;
-    bottom: 10px;
-    /* margin-top: -27px; */
     border-top-left-radius: 5px;
-    pointer-events: none;"><i class="icons-fa fa fa-camera" aria-hidden="true"></i>&nbsp; อัพโหลดรูปถ่าย</span>
-	      	</div>	
+    pointer-events: none;
+    background-color: #f4f4f4;
+    padding: 0px 10px;
+    border-top-left-radius: 5px;
+    pointer-events: none;
+    position: relative;
+    top: -21px;
+    left: 44px;
+    width: 153px;
+    "><i class="icons-fa fa fa-camera" aria-hidden="true"></i>&nbsp; อัพโหลดรูปถ่าย</div>
 	      	</div>	
 	      	
   	</div>
+  	
   </div>
+	</div>
+	
+	<div style="padding: 0px;margin-bottom: 10px;">
+		<button id="submit_user_data" type="button" class="btn waves-effect waves-light lighten-2 " style=" border: 1px solid #0076ff;border-radius: 5px !important ;color: #0076ff;width: 100%;background-color: #fff;"><span class="font-24">แก้ไขข้อมูลส่วนตัว</span></button>
+	</div>
 </form>
 </div>
 <script>
