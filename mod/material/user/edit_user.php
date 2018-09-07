@@ -290,7 +290,7 @@
                   filter: alpha(opacity=0);
                   }
                </style>
-<input type='file' id="imgInp" style="opacity: 0;" />
+
 				<div class="col s12">
 	      		<a >
                   <div align="center" style="margin-top:0px;" onclick="$('#imgInp').click();" >
@@ -327,7 +327,7 @@
 	      	
 	      	<div class="col s12" align="center" style="margin-bottom: 20px;">
 	      		<!--<button type="button" onclick="$('#idcard_upload').click();" class="btn btn-danger waves-effect waves-light">อัพโหลดภาพบัตรประจำตัวประชาชน</button>-->
-               		<input type="file" id="idcard_upload" style="opacity: 0; position: absolute;left: 0px;" name="idcard_upload" />
+               		
                		<img src="" id="idcard_img" style="width: 240px;display:nones;margin-top: 0px;max-height: 150px;" onclick="$('#idcard_upload').click();" />
                		 <div style="
     background-color: #f4f4f4;
@@ -359,7 +359,7 @@
 	      	
 	      	<div class="col s12" align="center">
 	      		<!--<button type="button" onclick="$('#iddriving_upload').click();" class="btn btn-danger waves-effect waves-light">อัพโหลดภาพใบขับขี่</button>-->
-               	<input type="file" id="iddriving_upload" style="opacity: 0; position: absolute;left: 0px;" />
+               
                	<img src="" id="iddriving_img" style="width: 240px;display:nones;margin-top: 0px;max-height: 150px;"  onclick="$('#iddriving_upload').click();" />
               <div style="
     background-color: #f4f4f4;
@@ -388,6 +388,16 @@
 
 </form>
 </div>
+<form id="edit_form_img_idc" name="edit_form_img_idc" enctype="multipart/form-data">
+	<input type="file" id="idcard_upload" style="opacity: 0; position: absolute;left: 0px;" name="idcard_upload" />
+</form>
+<form id="edit_form_img_idd" name="edit_form_img_idd" enctype="multipart/form-data">
+	<input type="file" id="iddriving_upload" style="opacity: 0; position: absolute;left: 0px;" name="iddriving_upload" />
+</form>
+
+<form id="img_pf_fromm" name="img_pf_fromm" enctype="multipart/form-data">
+	<input type='file' id="imgInp" style="opacity: 0;" name="imgInp" />
+</form>
 <script>
 	  $.ajax({
 			url: '../data/pic/driver/id_card/<?=$arr[web_user][id];?>_idcard.jpg',
@@ -523,11 +533,11 @@
 		  }else if(type=="idcard"){
 		  	
 	      	
-//   				var data = new FormData($('#edit_form')[0]);
-   				var data = $('#edit_form').serialize();
+   				var data = new FormData($('#edit_form_img_idc')[0]);
+//   				var data = $('#edit_form').serialize();
 //      			data.append('fileUpload', $('#idcard_upload')[0].files[0]);
-//      			var url_upload = "mod/user/upload_img/upload.php?id=<?=$arr[web_user][id];?>&type=id_card";
-      			var url_upload = "mod/user/upload_img/id_card.php?id=<?=$arr[web_user][id];?>&type=id_card";
+      			var url_upload = "mod/user/upload_img/upload.php?id=<?=$arr[web_user][id];?>&type=id_card";
+//      			var url_upload = "mod/user/upload_img/id_card.php?id=<?=$arr[web_user][id];?>&type=id_card";
       			console.log(url_upload);
    				   $.ajax({
    				                url: url_upload, // point to server-side PHP script 
@@ -538,7 +548,7 @@
    				                data: data,                         
    				                type: 'post',
    				                success: function(php_script_response){
-   				                	alert(php_script_response);
+//   				                	alert(php_script_response);
    				                   console.log(php_script_response);
    				                   if(php_script_response=="true"){
    				                   	 $('#idcard_img').attr('src', e.target.result);
@@ -553,8 +563,8 @@
 		  }
 		  else if(type=="iddriving"){
 		  	
-	      	var data = new FormData($('#edit_form')[0]);
-      			data.append('fileUpload', $('#idcard_upload')[0].files[0]);
+	      	var data = new FormData($('#edit_form_img_idd')[0]);
+//      			data.append('fileUpload', $('#idcard_upload')[0].files[0]);
       			var url_upload = "mod/user/upload_img/upload.php?id=<?=$arr[web_user][id];?>&type=id_drving";
       			console.log(url_upload);
 //      			alert(url_upload);
@@ -602,9 +612,9 @@
 		 var url = "mod/user/upload_img/upload.php?user=<?=$arr[web_user][username];?>";
 	    console.log(url);
 		$('.progress').show();
-   				data_form = $('#edit_form').serialize();    
-   				data = new FormData($('#edit_form')[0]);
-      			data.append('fileUpload', $('#imgInp')[0].files[0]);
+//   				data_form = $('#edit_form').serialize();    
+   				data = new FormData($('#img_pf_fromm')[0]);
+//      			data.append('fileUpload', $('#imgInp')[0].files[0]);
    				   $.ajax({
    				                url: url, // point to server-side PHP script 
    				                dataType: 'text',  // what to expect back from the PHP script, if anything

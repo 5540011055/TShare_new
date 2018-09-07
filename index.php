@@ -699,14 +699,16 @@ body,td,th {
    padding:5px;border-radius: 15px; padding-bottom:10px;
 }
 .circle-menu{
-   border-radius: 50%; background-color:<?=$main_color?>; display: block;
-   padding: 10px;
-   width: 50px;
-   height: 50px;
-   color:#FFFFFF;  font-size:24px;
-   border: solid 1px #FFFFFF;
-   text-align: center;
-   vertical-align: middle;
+    border-radius: 20%;
+    display: block;
+    padding: 10px;
+    width: 50px;
+    height: 50px;
+    color: #FFFFFF;
+    font-size: 24px;
+    text-align: center;
+    vertical-align: middle;
+    border: lavenderblush
 }
 .btn-default{
    border-radius: 20px;
