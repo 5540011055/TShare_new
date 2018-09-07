@@ -68,16 +68,27 @@ $row_data[] = $arr[bank]; ?>
                                 <? echo t_today?>
                             </td>
                             <td>
-                                <div class="input-group date" style="padding:0px;width: 100%">
+                                <!-- <div class="input-group date" style="padding:0px;width: 100%">
                                     <input type="text" class="form-control pull-right" value="<?=date('Y-m-d');?>" name="date_request" id="date_request" readonly="true">
-                                    <!-- <div class="input-group-addon"  id="btn_calendar2" style="cursor:pointer "> -->
+                                    
                                     <i class="fa fa-calendar icon_calendar" style="pointer-events: none;
     position: absolute;
     font-size: 22px;
     padding: 8px;
     right: 9px;
     border-left: 1px solid #ddd;margin-top: 8px;"></i>
-                                    <!--  </div> -->
+                                   
+                                </div> -->
+                                <div class="input-group " style="padding:0px;width: 100%">
+                                    <input type="date" class="form-control pull-right"  name="date_request" id="date_request" >
+                                    <!-- value="<?=date('Y-m-d');?>" -->
+                                    <!-- <i class="fa fa-calendar icon_calendar" style="pointer-events: none;
+    position: absolute;
+    font-size: 22px;
+    padding: 8px;
+    right: 9px;
+    border-left: 1px solid #ddd;margin-top: 8px;"></i> -->
+                                   
                                 </div>
                             </td>
                         </tr>
@@ -218,32 +229,32 @@ $row_data[] = $arr[bank]; ?>
     $('.text-topic-action-mod').html('แจ้งโอน');
 
 
-    $('#date_request').pickadate({
-        format: 'yyyy-mm-dd',
-        formatSubmit: 'yyyy/mm/dd',
-        closeOnSelect: true,
-        closeOnClear: false,
-        "showButtonPanel": false,
-        onStart: function() {
-        	var date = "<?=date('Y-m-d');?>";
-            console.log(date)
-            this.set('select', date); // Set to current date on load
-            var url_place_th = "go.php?name=load/pay&file=index_job&server=th&driver=<?=$_COOKIE["
-            app_remember_user "];?>&date=" + date;
-            $('#load_th').show();
-            //$('#load_th').load('load/page/loading.php');
-            $('#load_th').load(url_place_th);
-        },
-        onSet: function(context) {
-            var date = $('#date_request').val();
-            var url_place_th = "go.php?name=load/pay&file=index_job&server=th&driver=<?=$_COOKIE["
-            app_remember_user "];?>&date=" + date;
-            $('#load_th').show();
-            //$('#load_th').load('load/page/loading.php');
-            $('#load_th').load(url_place_th);
-            //QueryData();
-        }
-    });
+    // $('#date_request').pickadate({
+    //     format: 'yyyy-mm-dd',
+    //     formatSubmit: 'yyyy/mm/dd',
+    //     closeOnSelect: true,
+    //     closeOnClear: false,
+    //     "showButtonPanel": false,
+    //     onStart: function() {
+    //     	var date = "<?=date('Y-m-d');?>";
+    //         console.log(date)
+    //         this.set('select', date); // Set to current date on load
+    //         var url_place_th = "go.php?name=load/pay&file=index_job&server=th&driver=<?=$_COOKIE["
+    //         app_remember_user "];?>&date=" + date;
+    //         $('#load_th').show();
+    //         //$('#load_th').load('load/page/loading.php');
+    //         $('#load_th').load(url_place_th);
+    //     },
+    //     onSet: function(context) {
+    //         var date = $('#date_request').val();
+    //         var url_place_th = "go.php?name=load/pay&file=index_job&server=th&driver=<?=$_COOKIE["
+    //         app_remember_user "];?>&date=" + date;
+    //         $('#load_th').show();
+    //         //$('#load_th').load('load/page/loading.php');
+    //         $('#load_th').load(url_place_th);
+    //         //QueryData();
+    //     }
+    // });
     $('.text-topic-action-mod').html('<?echo t_transfer_notice?>');
     selectbank_tr(1)
     function selectbank_tr(x) {
