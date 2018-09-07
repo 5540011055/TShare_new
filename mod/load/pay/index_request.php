@@ -85,14 +85,14 @@ $row_data[] = $arr[bank]; ?>
                             <td width="80" class="font_18" style="height:30px; font-size: 14px; padding-left:5px;">
                                 <? echo t_minutes?>
                             </td>
-                            <td width="" class="font_16" style="color:#FF0000;font-size: 14px;"> <input type="text" placeholder="xx:xx" class="form-control" name="time" id="time">
+                            <td width="" class="font_16" style="color:#FF0000;font-size: 14px;"> <input type="time" placeholder="xx:xx" class="form-control" name="time" id="time">
                             </td>
                         </tr>
                         <tr>
                             <td width="80" class="font_18" style="height:30px; font-size: 14px; padding-left:5px;">
                                 <? echo t_amount?>
                             </td>
-                            <td width="" class="font_16" style=" color:#FF0000;font-size: 14px;"> <input class="form-control" placeholder="3xxx" type="text" name="amount" id="amount">
+                            <td width="" class="font_16" style=" color:#FF0000;font-size: 14px;"> <input class="form-control" placeholder="3xxx" type="number" pattern="\d*" name="amount" id="amount">
                             </td>
                         </tr>
                         <tr>
