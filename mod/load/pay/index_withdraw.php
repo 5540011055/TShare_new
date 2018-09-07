@@ -29,7 +29,7 @@
         <table>
           <tr>
             <td width="120" class="font_16" style="height:30px;font-size: 18px;  padding-left:5px;"><? echo t_amount?></td>
-            <td width=""   class="font_16" style=" font-size: 14px;"> <input class="form-control" placeholder="3xxx" type="text" name="amount" id="amount_w"  style="    width: 80%;
+            <td width=""   class="font_16" style=" font-size: 14px;"> <input class="form-control" placeholder="3000" type="number" pattern="\d*" name="amount" id="amount_w"  style="    width: 80%;
     border-radius: 25px;
     padding: 0 15px;
     margin-top: 8px;
