@@ -37,7 +37,7 @@
 		        <span id="txt_phone_show"></span>
 		        <ons-input id="us_phone" float maxlength="20" value="" type="hidden"></ons-input>
 		    </div>
-      <ons-list-item tappable>
+      <ons-list-item tappable id="box-email">
         <label class="left">
           <ons-checkbox class="checkbox-color rcp" input-id="checkbox-1" value="Green"  onclick="selectTypeRcp(1);" ></ons-checkbox>
         </label>
@@ -74,10 +74,11 @@
 			$('#txt_btn_rcv').text("รับรหัสผ่านทาง Email");
 			if($('#us_email').val()==""){
 				$('.rcp').prop('checked', false);
-				ons.notification.alert({message: 'ชื่อผู้ใช้นี้ ไม่ได้ใส่ข้อมูลอีเมล ไม่สามารถเลือกได้',title:"สำเร็จ",buttonLabel:"ปิด"})
+				/*ons.notification.alert({message: 'ชื่อผู้ใช้นี้ ไม่ได้ใส่ข้อมูลอีเมล ไม่สามารถเลือกได้',title:"สำเร็จ",buttonLabel:"ปิด"})
 									  .then(function() {
 									   		
-									  });
+									  });*/
+				$('#box-email').hide();					  
 				return;
 			}
 			$('#box_us_phone').hide();

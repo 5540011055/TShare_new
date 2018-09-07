@@ -492,7 +492,7 @@
    width: 100%;
    height: 100%;
    z-index: 99; 
-   overflow-y:hidden ; padding:0px; background-color:#FFFFFF;
+   overflow-y:hidden ; padding:0px; background-color: #efeff4;
    }
    .back-full-popup
    { 

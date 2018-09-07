@@ -22,7 +22,7 @@ if($_GET[query]=="get_id_province_only"){
    $th = "name_th LIKE '%".$txt."%'";
    $en = "or name LIKE '%".$txt."%'";
    $cn = "or name_cn LIKE '%".$txt."%'";
-   $pv[province] = $db->select_query("SELECT id,name_th,name_cn,name,area,code FROM web_province where ".$th." ".$en." ".$cn."   ");
+   $pv[province] = $db->select_query("SELECT id,name_th,name_cn,name,area,code FROM web_province where ".$th." ".$en." ".$cn."  ");
    $pv[province] = $db->fetch($pv[province]);
    header('Content-Type: application/json');
    echo json_encode($pv[province]);
@@ -66,7 +66,7 @@ if($_GET[query]=="user_data_recovery"){
 
 if($_GET[query]=="data_province"){
 	 $db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
-     $res[category] = $db->select_query("SELECT name_th,id,name,code FROM web_province   ORDER BY id ");
+     $res[category] = $db->select_query("SELECT name_th,id,name,code FROM web_province   order by name_th asc");
      while($arr[category] = $db->fetch($res[category])) {
      	$data[] = $arr[category];
      }

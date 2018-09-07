@@ -24,8 +24,28 @@
    background-size: 450px ;
    background-repeat: no-repeat; background-position:center;
    }
-
-      .topicname-user { padding-top:10px; padding-left: 0px; padding-bottom:5px; font-size:18px; font-weight:bold; color: #333333 ; text-align:left; margin:0px;  
+	.icons-fa{
+		margin: 0px 10px !important;
+	}
+      .topicname-user { 
+	      padding: 0px 7px;
+		  width: 100%;
+		  background-color: #eee;
+	      font-size:14px; 
+	      font-weight:bold; 
+	      color: #333333 ; 
+	      text-align:left; 
+	      margin:0px; 
+	      margin-bottom: 10px; 
+      }
+      .topicname-sub { 
+      padding-top:0px; 
+      padding-left: 0px; 
+      padding-bottom:0px; 
+      font-size:14px;  
+      color: #333333 ; 
+      text-align:left; 
+      margin: 0px 45px;
       }
       .form-control { margin-left:0px; padding-left:0px; }
 	
@@ -138,13 +158,107 @@
  	$ex_iddriving_blink = "blink-input";
  }
  ?>
+ <div style="background-color: #eee;">
 <form method="post"  id="edit_form" name="edit_form">
-   <div class="box box-default" style="padding-top:30px;">
-      <!-- /.box-header -->
-      <div class="box-body" style="padding: 0px 10px;" >
-         <div class="row">
-            <div class="<?= $coldata?>">
-               <?php  $pic_qr = file_exists("../data/pic/driver/small/".$arr[web_user][username].".jpg");  
+
+  <div class="card" style="margin-top: 50px;    box-shadow: 0 1px 2px rgba(0,0,0,.12);
+    border-radius: 8px;
+    padding: 10px;">
+  	<div class="row" style="    margin-bottom: 0;">
+  		<div class="topicname-user">ข้อมูลเข้าระบบ</div>
+  		<div class="col s12"><div class="topicname-sub"><?=t_username;?></div></div>
+	      	<div class="col s2"><i class="icons-fa fa fa-user" aria-hidden="true" style="font-size: 25px; margin: 10px;"></i></div>
+	      	<div class="col s9"><input class="form-control" type="text" name="username" id="username" maxlength="50" required="true" style="width:100%"  value="<?=$arr[web_user][username];?>"  ></div>
+	      	<div class="col s12"><div class="topicname-sub"><?=t_password;?></div></div>
+	      	<div class="col s2"><i class="icons-fa fa fa-key" aria-hidden="true" style="font-size: 25px; margin: 10px;"></i></div>
+	      	<div class="col s9"><input class="form-control <?=$pass_blink;?>" type="text" name="password" id="password"  required="true"   value="<?=$arr[web_user][password];?>" ></div>
+  	</div>
+  </div>
+
+   <div class="card" style="box-shadow: 0 1px 2px rgba(0,0,0,.12);
+    border-radius: 8px;
+    padding: 10px;" >
+        <div class="row" style="    margin-bottom: 0;">
+	      	<div class="topicname-user">ข้อมูลส่วนตัว</div>
+	      	<div class="col s12"><div class="topicname-sub"><?=t_name_last_name_thai;?></div></div>
+	      	<div class="col s2"><i class="material-icons" style="font-size: 25px; margin: 10px;">face</i></div>
+	      	<div class="col s9"><input class="form-control <?=$name_blink;?>" type="text" name="name" id="name"  required="true"  value="<?=$arr[web_user][name];?>" ></div>
+	      	
+	      	<div class="col s12"><div class="topicname-sub"><?=t_name_last_name_english;?></div></div>
+	      	<div class="col s2"><i class="material-icons" style="font-size: 25px; margin: 10px;">face</i></div>
+	      	<div class="col s9"> <input class="form-control" placeholder="ไม่บังคับ" type="text" name="name_en" id="name_en"  required="true"  value="<?=$arr[web_user][name_en];?>" ></div>
+	      	
+	      	<div class="col s12"><div class="topicname-sub"><?="เพศ";?></div></div>
+	      	<div class="col s2"><i class="icons-fa fa fa-venus-mars" style="font-size: 25px; margin: 10px;"></i></div>
+	      	<div class="col s9">
+	      		<?php 
+             	if($arr[web_user][gender]==0){
+					$ck_men = "checked";
+				}else{
+					$ck_girl = "checked";
+				}
+             ?>
+            	<table>
+            		<tr>
+            			<td valign="bottom">
+            				<label class="container" onclick="selectGender(0);" style="margin-top: 7px;">ชาย
+							  <input type="checkbox" <?=$ck_men;?> class="rcp" id="checkbox-0">
+							  <span class="checkmark"></span>
+							</label>
+            			</td>
+            			<td valign="bottom">
+            				<label class="container" onclick="selectGender(1);" style="margin-top: 7px;">หญิง
+							  <input type="checkbox" <?=$ck_girl;?> class="rcp" id="checkbox-1">
+							  <span class="checkmark"></span>
+							</label>
+            			</td>
+            		</tr>
+            	</table>
+            	<input type="hidden" value="" id="gender" name="gender"  />
+	      	</div>
+	      	<div class="col s12"><div class="topicname-sub"><?=t_address;?></div></div>
+	      	<div class="col s2"><i class="icons-fa fa fa-home" style="font-size: 25px; margin: 10px;"></i></div>
+	      	<div class="col s9"> <input class="form-control <?=$address_blink;?>" type="text" name="address" id="address"  required="true" value="<?=$arr[web_user][address];?>" ></div>
+	      	<div class="col s12"><div class="topicname-sub"><?=t_phone_number;?></div></div>
+	      	<div class="col s2"><i class="icons-fa fa fa-phone" style="font-size: 25px; margin: 10px;"></i></div>
+	      	<div class="col s9"> <input class="form-control <?=$phone_blink;?>" type="number" name="phone" id="phone" pattern="\d*" required="true"  value="<?=$arr[web_user][phone];?>" ></div>
+	      	<div class="col s12"><div class="topicname-sub"><?=t_phone_number."ที่สอง";?></div></div>
+	      	<div class="col s2"><i class="icons-fa fa fa-phone" style="font-size: 25px; margin: 10px;"></i></div>
+	      	<div class="col s9"> <input class="form-control <?=$phone_blink2;?>" type="number" name="phone2" id="phone2" pattern="\d*" required="true"  value="<?=$arr[web_user][phone2];?>" ></div>
+	      	<div class="col s12"><div class="topicname-sub"><?=t_emergency_telephone_numbers;?></div></div>
+	      	<div class="col s2"><i class="icons-fa fa fa-phone" style="font-size: 25px; margin: 10px;"></i></div>
+	      	<div class="col s9"><input class="form-control" placeholder="ไม่บังคับ" type="number" pattern="\d*" name="contact" id="contact"  required="true" value="<?=$arr[web_user][contact];?>"  >
+	      		 <select name="em_person" id="em_person" style=" right: 45px;  margin-top: -65px;  width: 100px;position: absolute;">
+						    <option>สถานะ</option>
+				</select>
+	      	</div>
+	      	<div class="col s12"><div class="topicname-sub"><?="จังหวัด";?></div></div>
+	      	<div class="col s2">
+	      	<i class="material-icons"  style="font-size: 25px; margin: 10px;">location_on</i></div>
+	      	<div class="col s9"> 
+	      		<select name="province" id="province" class="form-control">
+	      				<option value="">เลือกจังหวัด</option>
+					<?php 
+					 $db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
+					     $res[pv] = $db->select_query("SELECT name_th,id,name,code FROM web_province   order by name_th asc");
+					     while($arr[pv] = $db->fetch($res[pv])) { 
+					     	if($arr[web_user][province]==$arr[pv][id]){
+								$pv_selected = "selected";
+							}else{
+								$pv_selected = "";
+							}
+					     ?>
+					     	<option <?=$pv_selected;?> value="<?=$arr[pv][id];?>"><?=$arr[pv][name_th];?></option>
+					 <?    }
+					?>	
+				</select>
+	      	</div>
+	      	<div class="col s12"><div class="topicname-sub"><?="อีเมล";?></div></div>
+	      	<div class="col s2"><i class="icons-fa fa fa-at" style="font-size: 25px; margin: 10px;"></i></div>
+	      	<div class="col s9"><input class="form-control" placeholder="ไม่บังคับ" type="number" pattern="\d*" name="contact" id="contact"  required="true" value="<?=$arr[web_user][contact];?>"  >
+	    	</div>
+	    	<div class="col s12"><div class="topicname-sub"><?="ภาพประจำตัว";?></div></div>
+	      	<?php  $pic_qr = file_exists("../data/pic/driver/small/".$arr[web_user][username].".jpg");  
                   if($pic_qr==1){
                   	$path_file = "../data/pic/driver/small/".$arr[web_user][username].".jpg?v=".time();
                   }else{
@@ -164,24 +278,15 @@
                   filter: alpha(opacity=0);
                   }
                </style>
-				<input type='file' id="imgInp" style="opacity: 0;" />
-				<?php 
-				if($_GET[check]>0){ ?>
-				<div style="padding: 5px 20px;">
-					<span class="font-22" style="color: #ff0000;">มีข้อมูลบางอย่างของคุณขาดหาย กรุณากรอกข้อมูลให้ครบทั่ว</span>
-				</div>
-				<?php }
-				?>
-				
-               <a onclick="ChangeProfile('<?=$arr[web_user][username];?>');">
-                  <div align="center" style="margin-top:10px;" >
-                     <img src="<?=$path_file;?>" id="img_tag"  alt="Preview Image" style="border: 2px solid #ddd;    border-radius: 4px;    padding: 0px;    margin: 10px;   display: nones;max-width: 250px;"/>
-                     <img src="" id="img_tag_new"  alt="Preview Image" style="border: 2px solid #ddd;    border-radius: 4px;    padding: 0px;    margin: 10px;   display: none;max-width: 250px;"/>
+				<div class="col s12">
+	      		<a onclick="ChangeProfile('<?=$arr[web_user][username];?>');">
+                  <div align="center" style="margin-top:0px;" >
+                     <img src="<?=$path_file;?>" id="img_tag"  alt="Preview Image" style="border: 2px solid #ddd;    border-radius: 4px;    padding: 0px;    margin: 10px;   display: nones;max-width: 150px;"/>
+                     <img src="" id="img_tag_new"  alt="Preview Image" style="border: 2px solid #ddd;    border-radius: 4px;    padding: 0px;    margin: 10px;   display: none;max-width: 150px;"/>
                      <input type="file" id="imageUpload_profile" class="fileInput" name="imageUpload_profile" />
                   </div>
                   <div align="center"><span class="font-20">เปลี่ยนรูปโดยการกดที่รูป</span></div>
                </a>
-               
                <div id="box_manage_pf" style="width: 100%;display:none;" align="center">
                <div class="progress" style="width: 80%;display: none;">
 					      <div class="indeterminate"></div>
@@ -189,121 +294,68 @@
                <button type="button" id="upload_profile" class="btn waves-effect waves-light lighten-2 " style="width:80%;background-color:#3b5998;  border-radius: 0px;color: #fff;display: nones;"><span class="font-22">อัพโหลดภาพประจำตัว</span></button>
                <button  type="button"id="cancel_profile" class="btn waves-effect waves-light lighten-2 red" style="width:80%;  border-radius: 0px;color: #fff;display: nones;margin-top:10px;"><span class="font-22">ยกเลิก</span></button>
                </div>
-               
-               <div class="topicname-user"><?=t_username;?></div>
-               <input class="form-control" type="text" name="username" id="username" maxlength="50" required="true" style="width:100%"  value="<?=$arr[web_user][username];?>"  >
-            </div>
-            <div class="<?= $coldata;?>">
-               <div class="topicname-user"><?=t_password;?></div>
-               <input class="form-control <?=$pass_blink;?>" type="text" name="password" id="password"  required="true"   value="<?=$arr[web_user][password];?>" >
-            </div>
-            <div class="<?= $coldata?>">
-               <div class="topicname-user text-cap"><?=t_name_last_name_thai;?></div>
-               <input class="form-control <?=$name_blink;?>" type="text" name="name" id="name"  required="true"  value="<?=$arr[web_user][name];?>" >
-            </div>
-            <div class="<?= $coldata?>">
-               <div class="topicname-user text-cap"><?=t_name_last_name_english;?></div>
-               <input class="form-control" placeholder="ไม่บังคับ" type="text" name="name_en" id="name_en"  required="true"  value="<?=$arr[web_user][name_en];?>" >
-            </div>
-            <div class="<?= $coldata?>">
-               <div class="topicname-user"><?=t_nick_name;?></div>
-               <input class="form-control <?=$nickname_blink;?>" type="text" name="nickname" id="nickname"  required="true"  value="<?=$arr[web_user][nickname];?>" >
-            </div>
-            
-            <div class="<?= $coldata?>">
-             <div class="topicname-user">เพศ</div>
-             <?php 
-             	if($arr[web_user][gender]==0){
-					$ck_men = "checked";
-				}else{
-					$ck_girl = "checked";
-				}
-             ?>
-            	<table>
-            		<tr>
-            			<td>
-            				<label class="container" onclick="selectGender(0);">ชาย
-							  <input type="checkbox" <?=$ck_men;?> class="rcp" id="checkbox-0">
-							  <span class="checkmark"></span>
-							</label>
-            			</td>
-            			<td>
-            				<label class="container" onclick="selectGender(1);">หญิง
-							  <input type="checkbox" <?=$ck_girl;?> class="rcp" id="checkbox-1">
-							  <span class="checkmark"></span>
-							</label>
-            			</td>
-            		</tr>
-            	</table>
-            	<input type="hidden" value="" id="gender" name="gender"  />
-            </div>
-            
-            <div class="<?= $coldata?>">
-                <div class="row">
-			      <div><div class="topicname-user"><?=t_identity_card_number;?></div>
-               <input class="form-control <?=$idcard_blink;?>" type="text" name="idcard" id="idcard"  required="true"  value="<?=$arr[web_user][idcard];?>" ></div>
-			      <div class="col s4"><span>วันหมดอายุบัตรประชาชน</span></div>
-			      <div class="col s8"><input class="form-control <?=$ex_idcard_blink;?>" type="text" name="ex_idcard" id="ex_idcard"  required="true" value="<?=$arr[web_user][idcard_finish];?>" ></div>
-			    </div>
-               
-               <div align="center">
-               		<button type="button" onclick="$('#idcard_upload').click();" class="btn btn-danger waves-effect waves-light">อัพโหลดภาพบัตรประจำตัวประชาชน</button>
-               		<input type="file" id="idcard_upload" style="opacity: 0; position: absolute;left: 0px;" />
-               		<img src="" id="idcard_img" style="width: 180px;display:none;margin-top: 20px;" />
                </div>
-            </div>
-            
-            <div class="<?= $coldata?>">
-               
-               <div class="row">
-			      <div class="col s12">
-			      	<div class="topicname-user"><?=t_driver_license_number;?></div>
-               		<input class="form-control <?=$iddriving_blink;?>" type="text" name="iddriving" id="iddriving"  required="true"  value="<?=$arr[web_user][iddriving];?>" >
-			      </div>
-			      <div class="col s4"><span>วันหมดอายุใบขับขี่</span></div>
-			      <div class="col s8"><input class="form-control <?=$ex_iddriving_blink;?>" type="text" name="ex_iddriving" id="ex_iddriving"  required="true"  value="<?=$arr[web_user][idcard_finish];?>" ></div>
-			    </div>
-               <div align="center">
-               		<button type="button" onclick="$('#iddriving_upload').click();" class="btn btn-danger waves-effect waves-light">อัพโหลดภาพใบขับขี่</button>
-               		<input type="file" id="iddriving_upload" style="opacity: 0; position: absolute;left: 0px;" />
-               		<img src="" id="iddriving_img" style="width: 180px;display:none;margin-top: 20px;" />
-               </div>
-            </div>
-            <div class="<?= $coldata?>">
-               <div class="topicname-user"><?=t_address;?></div>
-               <input class="form-control <?=$address_blink;?>" type="text" name="address" id="address"  required="true" value="<?=$arr[web_user][address];?>" >
-            </div>
-            <div class="<?= $coldata?>">
-               <div class="topicname-user"><?=t_phone_number;?></div>
-               <input class="form-control <?=$phone_blink;?>" type="number" name="phone" id="phone" pattern="\d*" required="true"  value="<?=$arr[web_user][phone];?>" >
-            </div>
-            <div class="<?= $coldata?> ">
-               <div class="topicname-user"><?=t_emergency_telephone_numbers;?></div>
-               <input class="form-control" placeholder="ไม่บังคับ" type="number" pattern="\d*" name="contact" id="contact"  required="true" value="<?=$arr[web_user][contact];?>"  >
-            </div>
-            
-            <div class="<?= $coldata?>">
-               <div class="alert alert-success alert-dismissible"  id="save" style="display: none;">
-                  <i class="fa fa-check"></i>  <?=t_save_succeed;?> 
-               </div>
-               <div class="alert alert-error alert-dismissible" id="error" style="display: none;padding:14px;">
-                  <i class="fa fa-check"></i>  <?=t_error;?>
-               </div>
-            </div>
-            <div class="<?= $coldata?>">
-               <div class="topicname-user">
-                  <table width="100%"  border="0" cellspacing="2" cellpadding="2">
-                     <tr>
-                       <!-- <td width="50%"><button type="reset"  class="btn waves-effect waves-light lighten-2 " style="width:90%;background-color:#9E9E9E;  border-radius: 0px;color: #fff;"><span class="font-20"><?=t_reset;?></span></button></td>-->
-                        <td width="100%"><button id="submit_user_data" type="button" class="btn waves-effect waves-light lighten-2 " style="width:100%;background-color:#3b5998;  border-radius: 0px;color: #fff;"><span class="font-24"><?=t_save_data;?></span></button></td>
-                     </tr>
-                  </table>
-               </div>
-            </div>
-         </div>
-      </div>
    </div>
+	</div>
+	
+	<div class="card" style="box-shadow: 0 1px 2px rgba(0,0,0,.12);
+    border-radius: 8px;
+    padding: 10px;">
+  	<div class="row" style="    margin-bottom: 0;">
+  		<div class="col s12">
+  		<div class="topicname-user">เลขบัตรประชาชน/วันหมดอาย</div>
+  		<div class="col s12"><div class="topicname-sub"><?="เลขบัตรประชาชน";?></div></div>
+	      	<div class="col s2"><i class="icons-fa fa fa-id-badge" aria-hidden="true" style="font-size: 25px; margin: 10px;"></i></div>
+	      	<div class="col s9"><input class="form-control" type="text" name="idcard" id="idcard" maxlength="50" required="true" style="width:100%"  value="<?=$arr[web_user][idcard];?>"  ></div>
+	      	<div class="col s12"><div class="topicname-sub"><?="วันหมดอายุ";?></div></div>
+	      	<div class="col s2"><img src="images/ex_card/crd.png" width="25px;" style="margin: 10px;"></div>
+	      	<div class="col s9">
+	      	<input class="form-control " type="date" name="ex_idcard" id="ex_idcard"   value="<?=$arr[web_user][idcard_finish];?>" ></div>
+	      	
+	      	<div class="col s12" align="center" style="margin-bottom: 20px;">
+	      		<!--<button type="button" onclick="$('#idcard_upload').click();" class="btn btn-danger waves-effect waves-light">อัพโหลดภาพบัตรประจำตัวประชาชน</button>-->
+               		<input type="file" id="idcard_upload" style="opacity: 0; position: absolute;left: 0px;" />
+               		<img src="" id="idcard_img" style="width: 240px;display:none;margin-top: 0px;max-height: 150px;" onclick="$('#idcard_upload').click();" />
+               		<span style="background-color: #f4f4f4;
+    padding: 0px 10px;
+    position: absolute;
+        bottom: 379px;
+    margin-left: 33%;
+    border-top-left-radius: 5px;
+    pointer-events: none;"><i class="icons-fa fa fa-camera" aria-hidden="true"></i>&nbsp; อัพโหลดรูปถ่าย</span>
+	      	</div>
+	      	
+	    </div>  	
+	      	
+	      	<div class="col s12" style="margin-top: 15px;">
+	      	<div class="topicname-user">เลขบัตรประชาชน/วันหมดอาย</div>
+	      <div class="col s12"><div class="topicname-sub"><?="เลขใบขับขี่";?></div></div>
+	      	<div class="col s2"><i class="icons-fa fa fa-id-card-o" aria-hidden="true" style="font-size: 25px; margin: 10px;"></i></div>
+	      	<div class="col s9"><input class="form-control" type="text" name="iddriving" id="iddriving" maxlength="50" required="true" style="width:100%"  value="<?=$arr[web_user][iddriving];?>"  ></div>
+	      	<div class="col s12"><div class="topicname-sub"><?="วันหมดอายุ";?></div></div>
+	      	<div class="col s2"><img src="images/ex_card/crd.png" width="25px;" style="margin: 10px;"></div>
+	      	<div class="col s9">
+	      	<input class="form-control " type="date" name="ex_iddriving" id="ex_iddriving"   value="<?=$arr[web_user][iddriving_finish];?>" ></div>
+	      	
+	      	<div class="col s12" align="center">
+	      		<!--<button type="button" onclick="$('#iddriving_upload').click();" class="btn btn-danger waves-effect waves-light">อัพโหลดภาพใบขับขี่</button>-->
+               	<input type="file" id="iddriving_upload" style="opacity: 0; position: absolute;left: 0px;" />
+               	<img src="" id="iddriving_img" style="width: 240px;display:none;margin-top: 0px;max-height: 150px;"  onclick="$('#iddriving_upload').click();" />
+               	<span style="background-color: #f4f4f4;
+    padding: 0px 10px;
+    position: absolute;
+    margin-left: -150px;
+    bottom: 10px;
+    /* margin-top: -27px; */
+    border-top-left-radius: 5px;
+    pointer-events: none;"><i class="icons-fa fa fa-camera" aria-hidden="true"></i>&nbsp; อัพโหลดรูปถ่าย</span>
+	      	</div>	
+	      	</div>	
+	      	
+  	</div>
+  </div>
 </form>
+</div>
 <script>
 	  $.ajax({
 			url: '../data/pic/driver/id_card/<?=$arr[web_user][id];?>_idcard.jpg',
@@ -593,4 +645,16 @@
 		$('#checkbox-'+val).prop('checked', true);
 		$('#gender').val(val);
 	}
+	
+	$.post("mod/material/php_center.php?query=em_person",function(data){
+
+			$.each(data, function( index, value ) {
+				
+				var option = '<option value="'+value.id+'">'+value.name_th+'</option>';
+				$('select[name="em_person"]').append(option);
+			});
+			
+		});
+		
+		
 </script>

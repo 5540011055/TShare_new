@@ -11,8 +11,8 @@
 			$email = "อีเมล์";
 			$plate = "เลขทะเบียนรถ";
 			$card_dv = "เลขใบขับขี่";
-			$txt_ex_idcard = "วันหมดอายุบัตรประชาชน";
-			$txt_ex_iddriving = "วันหมดอายุใบขับขี่";
+			$txt_ex_idcard = "วันหมดอายุ";
+			$txt_ex_iddriving = "วันหมดอายุ";
 		?>
 
 <div style="padding: 1px 0 0 0;">
@@ -158,7 +158,7 @@
                  <input type="hidden" name="province" id="province" />
             </label>
             <div>
-	            <div class="" style="margin-top: -15px; position: absolute; right: 0px;">
+	            <div id="div_position" class="" style="margin-top: -15px; position: absolute; right: 0px;">
 	                คุณอยู่&nbsp;<span id="txt-province" style="color: #ff6464;font-weight: 800;">ไม่พบตำแหน่ง</span>
 	            </div>
 	        </div>
@@ -198,7 +198,7 @@
     </ons-card>
     
     <ons-card  class="card">
-      <ons-list-header class="list-header"><b>บัตรประชาชน</b></ons-list-header>
+      <ons-list-header class="list-header"><b>เลขประชาชน/วันหมดอยายุ</b></ons-list-header>
       <ons-list-item class="input-items list-item p-l-0">
             <div class="left list-item__left" style="   /* margin-left: -7px;*/">
                 <ons-icon icon="fa-id-badge" class="list-item__icon ons-icon"></ons-icon><span class="txt-important">*</span>
@@ -215,22 +215,27 @@
                 <i id="incorrent-idc" class="fa fa-times-circle no-pass checking" aria-hidden="true" style="display: none;"></i>
             </label>
         </ons-list-item>
+        
         <ons-list-item class="input-items list-item p-l-0">
             <div class="left list-item__left" style="margin-left: 4px; padding-right: 12px;">
             	<img src="../../images/ex_card/crd.png" width="25px;" />
                 <!--<b style="width: 100px;font-size: 14px;">หมดอายุ</b>-->
             </div>
             <div class="center list-item__center">
-                <ons-input id="idcard-input" float=""  name="ex_idcard" style="width:100%;" value="" placeholder="<?=$txt_ex_idcard;?>" >
+                <!--<ons-input id="idcard-input" float=""  name="ex_idcard" style="width:100%;" value="" placeholder="<?=$txt_ex_idcard;?>" >
                     <input type="text"  class="text-input"  name="ex_idcard" id="ex_idcard">
                     <span class="text-input__label">
                         <?=$txt_ex_idcard;?></span>
+                </ons-input>-->
+                 <ons-input id="idcard-input" float=""  name="ex_idcard" style="width:100%;" value="" placeholder="" >
+                    <input type="date"  class="text-input"  name="ex_idcard" id="ex_idcard">
+                    <span class="text-input__label">
+                        </span>
                 </ons-input>
-                
+                <span style="color: #afafaf;  font-size: 13px;   position: absolute;  right: 45px;"><?=$txt_ex_idcard;?></span>  
             </div>
             
         </ons-list-item>
-        
         <div align="center" style="margin: 10px;">
 			<div >
 			  <!--<button class="btn-ip" type="button">เลือกภาพบัตรประจำตัวประชาชน</button>-->
@@ -250,6 +255,7 @@
     border-top-left-radius: 5px; pointer-events: none;" ><i class="fa fa-camera" aria-hidden="true"></i>&nbsp; อัพโหลดรูปถ่าย</span>
 	    </div>
         
+        <ons-list-header class="list-header"><b>ใบขับขี่/วันหมดอยายุ</b></ons-list-header>
       <ons-list-item class="input-items list-item p-l-0">
             <div class="left list-item__left" >
                 <ons-icon icon="fa-id-card-o" class="list-item__icon ons-icon"></ons-icon><span class="txt-important" style="margin-left: 35px;">*</span>
@@ -258,8 +264,9 @@
                 <ons-input id="iddriving-input" float="" placeholder="<?=$card_dv;?>" name="iddriving" style="width:100%;">
                     <input type="text" class="text-input" placeholder="<?=$card_dv;?>"  name="iddriving" id="iddriving">
                     <span class="text-input__label">
-                        <?=$card_dv;?></span>
-                </ons-input>               
+                        </span>
+                </ons-input>    
+               
             </label>
         </ons-list-item>
       <ons-list-item class="input-items list-item p-l-0">
@@ -268,10 +275,15 @@
                 <!--<b style="width: 100px; font-size: 14px;">หมดอายุ</b>-->
             </div>
             <div class="center list-item__center">
-                <ons-input id="idcard-input" float=""  name="ex_iddriving" style="width:100%;" value=""  >
+                <!--<ons-input id="idcard-input" float=""  name="ex_iddriving" style="width:100%;" value=""  >
                     <input type="text"  class="text-input"  name="ex_iddriving" id="ex_iddriving">
                     <span class="text-input__label"><?=$txt_ex_iddriving;?></span>
+                </ons-input>-->
+                <ons-input id="idcard-input" float=""  name="ex_iddriving" style="width:100%;" value=""  >
+                    <input type="date"  class="text-input"  name="ex_iddriving" id="ex_iddriving">
+                    <span class="text-input__label"></span>
                 </ons-input>
+                <span style="color: #afafaf;  font-size: 13px;   position: absolute;  right: 45px;"><?=$txt_ex_iddriving;?></span>
             </div>
         </ons-list-item>
       <div align="center" style="margin: 10px;">
@@ -472,7 +484,7 @@
  
 	});
 	
-          $('#ex_iddriving').pickadate({
+         /* $('#ex_iddriving').pickadate({
               format: 'yyyy-mm-dd',
               formatSubmit: 'yyyy/mm/dd',
               closeOnSelect: true,
@@ -524,11 +536,13 @@
       		  onOpen: function() {
 					$('.toolbar').hide();
       		  }
-              });
+              });*/
        
 	function selectGender(val){
 		$('.rcp').prop('checked', false);
 		$('#checkbox-'+val).prop('checked', true);
 		$('#gender').val(val);
 	}
+	
+	
 </script>

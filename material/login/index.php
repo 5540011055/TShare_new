@@ -170,7 +170,8 @@
 }
 	.bottom-txt{
 		position: fixed;
-	    bottom: 5px;
+/*	    bottom: 5px;*/
+		margin-top: 30px;
 	    width: 100%;
 	    left: 0;
 	}
@@ -187,9 +188,9 @@
 			padding: 3px;
 			border-radius: 25px;
 		}
-		.bottom-txt {
+		/*.bottom-txt {
 		    bottom: 10px;
-		}
+		}*/
 	 }
 	.img-logo{
 		width: 150px;
@@ -259,17 +260,20 @@
 						<img src="../../images/logo.png" class="img-logo" onclick="location.reload();" />
 					</span>
 
-					<div class="wrap-input100 validate-input" data-validate = "Valid email is: a@b.c">
+					<div class="wrap-input100 validate-input" >
+						<span class="" style="font-size: 15px; position: absolute; margin-top: -15px;  margin-left: 2px;" >ชื่อผู้ใช้งาน</span>
 						<input class="input100 <?=$hasval_us;?>" type="text" name="real_username" id="real-username" autocomplete="new-password" required value="<?=$_COOKIE[app_remember_user];?>">
-						<span class="focus-input100" data-placeholder="ชื่อผู้ใช้งาน"></span>
+						<span class="focus-input100" data-placeholder=""></span>
+						
 					</div>
 
 					<div class="wrap-input100 validate-input" data-validate="Enter password">
 						<span class="btn-show-pass" onclick="seePassword();">
 							<i class="zmdi zmdi-eye"></i>
 						</span>
+						<span class="" style="font-size: 15px; position: absolute; margin-top: -15px;  margin-left: 2px;" >รหัสผ่าน</span>
 						<input class="input100 <?=$hasval_ps;?>" type="password" name="real_password" id="real-password" autocomplete="new-password" required value="<?=$_COOKIE[app_remember_pass];?>">
-						<span class="focus-input100" data-placeholder="รหัสผ่าน"></span>
+						<span class="focus-input100" data-placeholder=""></span>
 					</div>
 
 					<div class="container-login100-form-btn" style="padding: 0px;">
@@ -699,7 +703,9 @@
 									});
 									 $('#us_phone').val(response.data.phone);
 							         $('#txt_phone_show').text(response.data.phone);
-							         
+							         if(response.data.email==""){
+									 	$('#box-email').hide();	
+									 }
 							         $('#us_email').val(response.data.email);
 							         $('#txt_email_show').text(response.data.email);
 							         if(response.type==1){
@@ -959,14 +965,20 @@
 	console.log(url);
 
 	$.post( url, function( data ) {
-
+		console.log(data);
 	   if(data.status=="OVER_QUERY_LIMIT"){
 	      console.log('OVER_QUERY_LIMIT');
+	      $('#div_position').hide();
 	   }else{
 	      var province = data.results[data.results.length-2].address_components[0].long_name;
 	      console.log(province);
 	       var url = "../../mod/material/php_center.php?query=get_id_province_only";
 		   $.post( url,{txt_pv  :province} ,function( data ) {
+		   	
+		   	if(typeof data == 'undefined'){
+				$('#div_position').hide();
+				return;
+			}
 				console.log(data);
 		      var province = data.id;
 		      var area = data.area;
