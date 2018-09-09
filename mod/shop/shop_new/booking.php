@@ -639,7 +639,7 @@
                                                    <td>
                                                       <span style="display:none<?=$status_show_park?>"><?=t_parking_fee;?><b><?=$arr[cost][price_park_driver]?></b>&nbsp;</span>
                                                       <span style="display:none<?=$status_show_person?>"><?=t_person_fee;?><b><?=$arr[cost][price_person_driver]?></b>&nbsp;</span>
-                                                      <span style="display:none<?=$status_show_commision;?>"><?=t_com_fee;?><b><?=$arr[cost][price_commision_driver]?> %</b>&nbsp;</span>
+                                                      <!-- <span style="display:none<?=$status_show_commision;?>"><?=t_com_fee;?><b><?=$arr[cost][price_commision_driver]?> %</b>&nbsp;</span> -->
                                                       &nbsp;
                                                    </td>
                                                 </tr>
