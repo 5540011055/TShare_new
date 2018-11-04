@@ -36,7 +36,8 @@ if($_GET[action]=="register"){
     		header('Content-Type: application/json');
 			echo json_encode($exit);
 			exit;
-		}if($_POST[code_privince]=="" or $_POST[code_privince]==NULL){
+		}
+		if($_POST[code_privince]=="" or $_POST[code_privince]==NULL){
 			$exit[col] = "code";
 			$exit[val] = $_POST[code_privince];
     		$exit[type] = 0;
@@ -77,6 +78,7 @@ if($_GET[action]=="register"){
         $data["update_date"] = time();
         $data["register_reference"] = $_POST[register_reference];
         $data["i_gender"] = $_POST[gender];
+        $data["birthday"] = $_POST[birthday];
     	$add_result = $db->add_db($tb_admin_chk,$data);
     	
     $return[add][data] = $data;
@@ -132,6 +134,7 @@ if($_GET[action]=="register"){
 		$car[car_color] = $_POST[car_color_txt];
 		$car[plate_color] = $_POST[plate_color_txt];
 		$car[i_plate_color] = $_POST[plate_color];
+		$car[i_province] = $_POST[car_province];
 		$car[status] = 1;
 		$car[status_usecar] = 0;
 		$car[post_date] = time();
@@ -199,6 +202,124 @@ curl_close($curl);
     
 }
 
+if($_GET[action]=="register2"){
+	
+		if($_POST[name_th]=="" or $_POST[name_th]==NULL){
+			$exit[col] = "name_th";
+			$exit[val] = $_POST[name_th];
+    		$exit[type] = 0;
+    		header('Content-Type: application/json');
+			echo json_encode($exit);
+			exit;
+		}
+		if($_POST[phone]=="" or $_POST[phone]==NULL){
+			$exit[col] = "phone";
+			$exit[val] = $_POST[phone];
+    		$exit[type] = 0;
+    		header('Content-Type: application/json');
+			echo json_encode($exit);
+			exit;
+		}
+		if($_POST[code_privince]=="" or $_POST[code_privince]==NULL){
+			$exit[col] = "code";
+			$exit[val] = $_POST[code_privince];
+    		$exit[type] = 0;
+    		header('Content-Type: application/json');
+			echo json_encode($exit);
+			exit;
+		}
+	
+	
+	$db->connectdb(DB_NAME_APP, DB_USERNAME, DB_PASSWORD);
+    $password = substr(str_shuffle('1234567890'), 0, 4);
+    $provincecode = $_POST[code_privince];
+    $db->connectdb(DB_NAME_APP, DB_USERNAME, DB_PASSWORD);
+    
+    	
+    	$data["password"] = $password;
+        $data["email"] = $_POST[email];
+        $data["name"] = $_POST[name_th];
+        $data["name_en"] = $_POST[name_en];
+        $data["nickname"] = $_POST[nickname];
+        $data["idcard"] = $_POST[idcard];
+        $data["iddriving"] = $_POST[iddriving];
+        $data["phone"] = $_POST[phone];
+        $data["phone2"] = $_POST[phone2];
+        $data["phone_emergency"] = $_POST[phone_em];
+        $data["address"] = $_POST[address];
+        $data["driver_zone"] = $_POST[driver_zone];
+        $data["province"] = $_POST[province];
+        $data["status"] = 1;
+        $data["emergency_person"] = $_POST[em_person];
+        $data["idcard_finish"] = $_POST[ex_idcard];
+        $data["iddriving_finish"] = $_POST[ex_iddriving];
+        $data["post_date"] = time();
+        $data["update_date"] = time();
+        $data["register_reference"] = $_POST[register_reference];
+        $data["i_gender"] = $_POST[gender];
+        $data["birthday"] = $_POST[birthday];
+    	$add_result = $db->add_db($tb_admin_chk,$data);
+    	
+    $return[add][data] = $data;
+    $return[add][result] = $add_result;
+    
+    $last_id = mysql_insert_id();
+    $member_db = $last_id;
+    $member_in = genUsername($member_db);
+    $return[last_id] = $last_id;
+    $data[i_driver] = $last_id;
+    $data_update[username] = $provincecode.$member_in;
+    $data_update[password] = $password;
+    $data_update[result] = $db->update_db($tb_admin_chk,$data_update,'id = "'.$last_id.'" ');
+    $return[update] = $data_update;
+    
+    $add_driver_log = $db->add_db($tb_admin_logs,$data);
+  
+
+    echo json_encode($return);
+    
+   $curl_post_data = '{"id":"'.$last_id.'","action":"add"}';
+                    
+              $headers = array();
+
+$url = "http://www.welovetaxi.com:3000/adddriver";
+//$api_key = '1f7bb35be49521bf6aca983a44df9a6250095bbb';
+$curl = curl_init();
+curl_setopt($curl, CURLOPT_HTTPHEADER,
+    array(
+        'Content-Type: application/json'
+        // 'API-KEY: '.$api_key.''
+    )
+);
+curl_setopt($curl, CURLOPT_ENCODING, 'gzip');
+curl_setopt($curl, CURLOPT_USERAGENT, "Mozilla/5.0 (Windows NT 5.1) AppleWebKit/535.6 (KHTML, like Gecko) Chrome/16.0.897.0 Safari/535.6");
+curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+
+curl_setopt($curl, CURLOPT_REFERER, $url);
+curl_setopt($curl, CURLOPT_URL, $url);  
+
+curl_setopt($curl, CURLOPT_POST, true);
+curl_setopt($curl, CURLOPT_POSTFIELDS, $curl_post_data);
+$curl_response = curl_exec($curl);
+//echo $curl_response;
+curl_close($curl);
+    
+    include('../line_notify_demo.php');
+    
+    $msg = array();
+    $txt_short = "\n".'มีคนขับรถสมัครสมาชิกเข้ามาใหม่';
+   	$txt_short2 = "\n".'ชื่อ '.$data["name"];
+   	$txt_short2 .= "\n".'User : '.$data_update[username].' ';
+   	$txt_short2 .= "\n".'Password : '.$data[password].' ';
+   	$txt_short2 .= "\n".'เบอร์โทร : '.$data[phone];
+//   	$txt_short2 .= "\n".'สมัครเวลา : '.date('Y-m-d h:i:s',$data[post_date]).' ';
+   	
+	$msg[message] = $txt_short.' '.$txt_short2;	
+	$token = "cuJeygjbI4UFGHXJha1zVxiNCJWXPaenK4xo7kzuCQX"; //ใส่Token ที่copy เอาไว้ ส่วนตัว
+	$response = notify_message($msg,$token);
+//	echo $response;
+}
+
 if($_GET[action]=="upload"){
 	/*$data[tmp] = $_FILES['fileUpload']['tmp_name'] ;
 	$data[name] = $_FILES['fileUpload']['name'] ;
@@ -225,6 +346,7 @@ if($_GET[action]=="edit"){
     $data[iddriving_finish] = $_POST[ex_iddriving];
     $data[phone] = $_POST[phone];
     $data[contact] = $_POST[contact];
+    $data[email] = $_POST[email];
     $data[address] = $_POST[address];
     $data[update_date] = time();
     $data[i_gender] = $_POST[gender];

@@ -113,9 +113,9 @@ if($_GET[checking]=="login"){
 	$pass = $_POST[real_password];
 
 	
-	$check_us = $db->num_rows($tb_admin_chk,"id","password='" . $pass . "'  AND username='" . $user . "'");
+	$check_us = $db->num_rows($tb_admin_chk,"id","password='" . $pass . "'  AND (username='" . $user . "' or phone = '".$user."' or email = '".$user."') ");
 	if($check_us>0){
-		$res[us]  = $db->select_query("SELECT * FROM " . $tb_admin_chk . " WHERE password='" . $pass . "'  AND username='" . $user . "' ");
+		$res[us]  = $db->select_query("SELECT * FROM " . $tb_admin_chk . " WHERE password='" . $pass . "'  AND (username='" . $user . "' or phone = '".$user."' or email = '".$user."') ");
 		$arr[us] = $db->fetch($res[us]);
 		session_start();
     	$_SESSION['data_user_name']     = $arr[us][username];
@@ -215,5 +215,14 @@ if($_GET[query]=="em_person"){
 	}
 	header('Content-Type: application/json');
 	echo json_encode($data);
+}
+
+if($_GET[action]=="push_sms"){
+	
+	$db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
+	$data[i_use_sms] = intval($_GET[sms]) + 1;
+    $data[result] = $db->update_db($tb_admin_chk,$data,'id = "'.$_GET[dv].'" ');
+    header('Content-Type: application/json');
+    echo json_encode($data);
 }
 ?>

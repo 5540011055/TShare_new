@@ -1,4 +1,10 @@
 <?php
+	/*if($_GET[id]==1){
+		
+	}else{
+		header("Location: ../T-share/");
+	}*/
+//   header("Location: ../T-share/");
    @ob_start();
    @session_start();
    header('Content-type: text/html; charset=utf-8');
@@ -11,7 +17,8 @@
 
 <?if ($_COOKIE['detect_username'] == '') {   ?> 
 <script>
-  window.location = "material/login/index.php";
+//  window.location = "material/login/index.php";
+  window.location = "../T-share/";
 // window.location = "signin.php";
 </script> 
 <? }   ?>

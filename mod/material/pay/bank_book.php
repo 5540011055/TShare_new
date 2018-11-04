@@ -4,7 +4,7 @@
    $('.text-topic-action-mod').html('<?=t_bank_account_information;?>');
 </script>
 <? } 
-
+1537203600
    	 $bank_list = array("กรุงไทย"
     					,"กสิกรไทย", "ไทยพาณิชย์","กรุงเทพ","ทหารไทย"
    					 ,"กรุงศรีอยุธยา"

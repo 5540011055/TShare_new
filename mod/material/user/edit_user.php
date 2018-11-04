@@ -267,7 +267,7 @@
 	      	</div>
 	      	<div class="col s12"><div class="topicname-sub"><?="อีเมล";?></div></div>
 	      	<div class="col s2"><i class="icons-fa fa fa-at" style="font-size: 25px; margin: 0px;"></i></div>
-	      	<div class="col s10"><input class="form-control" placeholder="ไม่บังคับ" type="number" pattern="\d*" name="contact" id="contact"  required="true" value="<?=$arr[web_user][contact];?>"  >
+	      	<div class="col s10"><input class="form-control" placeholder="ไม่บังคับ" type="text" name="email" id="email"  required="true" value="<?=$arr[web_user][email];?>"  >
 	    	</div>
 	    	<div class="col s12"><div class="topicname-sub"><?="ภาพประจำตัว";?></div></div>
 	      	<?php  $pic_qr = file_exists("../data/pic/driver/small/".$arr[web_user][username].".jpg");  
@@ -412,7 +412,7 @@
 			{
 				 console.log('success file');
 //				 $('#idcard_img').show();
-				 $('#idcard_img').attr('src','../data/pic/driver/id_card/<?=$arr[web_user][id];?>_idcard.jpg');
+				 $('#idcard_img').attr('src','../data/pic/driver/id_card/<?=$arr[web_user][id];?>_idcard.jpg?v=<?=time();?>');
 			}
 		});
 		
@@ -429,7 +429,7 @@
 			{
 				console.log('success file');
 //				$('#iddriving_img').show();
-				$('#iddriving_img').attr('src','../data/pic/driver/id_driving/<?=$arr[web_user][id];?>_iddriving.jpg');
+				$('#iddriving_img').attr('src','../data/pic/driver/id_driving/<?=$arr[web_user][id];?>_iddriving.jpg?v=<?=time();?>');
 			}
 		});
 	

@@ -1,4 +1,3 @@
-
 <?php
 require_once("includes/class.mysql.php");
 $db = New DB();

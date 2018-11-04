@@ -216,7 +216,7 @@
     border-radius: 25px;
     background-color: #F44336 ;
     margin-top: 10px;">
-    <span class="font-22 text-cap"><?=t_cancel;?></span>
+    <span class="font-20 text-cap"><?=t_cancel;?></span>
   </a>
   	   <?php if($val[lab_approve_job]==0 and $data_user_class == "lab"){ ?>
 	   <a class="btn waves-effect waves-light green lighten-3" align="center" onclick="approveBook('<?=$val[id];?>','<?=$val[invoice];?>','<?=$val[drivername];?>');" id="apporve_book_<?=$val[id];?>" style="
@@ -225,7 +225,7 @@
 	    border-radius: 25px;
 	    background-color: #4CAF50 !important;
 	    margin-top: 10px;">
-	    <span class="font-22 text-cap"><?=ยืนยัน;?></span>
+	    <span class="font-20 text-cap"><?=ยืนยัน;?></span>
 	  </a>
 	  <? } ?>
   <? } ?>

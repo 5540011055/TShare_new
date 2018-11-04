@@ -6,7 +6,7 @@
 			$address = "ที่อยู่ปัจจุบัน";
 			$phone = "เบอร์โทรศัพท์";
 			$phone2 = "เบอร์โทรศัพท์ที่สอง (ไม่บังคับ)";
-			$phone_em = "เบอร์โทรศัพท์ฉุกเฉิน";
+			$phone_em = "เบอร์โทรฉุกเฉิน";
 			$province = "จังหวัดที่คุณอยู่ประจำ";
 			$email = "อีเมล์";
 			$plate = "เลขทะเบียนรถ";
@@ -64,7 +64,7 @@
             </label>
         </ons-list-item>
         
-        <ons-list-item class="input-items list-item p-l-0">
+        <ons-list-item class="input-items list-item p-l-0" style="display:none;">
         	<div class="left list-item__left">
                  <i class="fa fa-venus-mars list-item__icon" aria-hidden="true" style="padding-left: 3px;"></i><span class="txt-important">*</span>
             </div>
@@ -84,9 +84,9 @@
 		          หญิง
 		        </label>
 		      </ons-list-item>
-            <input type="hidden" value="" id="gender" value="" name="gender"/>
+            
         </ons-list-item>
-
+<input type="hidden" value="" id="gender" value="0" name="gender"/>
         <ons-list-item class="input-items list-item p-l-0">
             <div class="left list-item__left">
                 <ons-icon icon="fa-home" class="list-item__icon ons-icon"></ons-icon><span class="txt-important">*</span>
@@ -141,7 +141,7 @@
                 </ons-input>
             </div>
             <div class="right list-item__right">
-                <ons-select name="em_person" id="em_person" style=" right: 0px;  margin-top: 0px;  width: 100%;">
+                <ons-select name="em_person" id="em_person" style=" right: 0px;  margin-top: 0px;  width: 100%;    min-width: 80px;">
 						    <option>สถานะ</option>
 				</ons-select>
             </div>

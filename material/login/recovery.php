@@ -1,6 +1,6 @@
-<div style="height: 200px; padding: 1px 0 0 0;">
+<div style="height: 200px; padding: 1px 0 0 0;margin-bottom: 10px;">
 	<form name="form_recovery" id="form_recovery"  enctype="multipart/form-data">
-	
+	<!--<input type="text" id="text"  value="555"/>-->
     <ons-card class="card">
     <div style="" align="center">
 		<ons-icon icon="fa-lock" style="font-size: 56px;" class="list-item__icon ons-icon"></ons-icon>
@@ -11,10 +11,11 @@
 		      <ons-list-item class="input-items" style="padding-left: 0;">
 		       
 		        <label class="center">
-		        <ons-input  id="username_for_rcv" float maxlength="20" value="<?=$_COOKIE[app_remember_user];?>" onkeyup="getPhoneByUser($(this).val());" ></ons-input>
+		        <input  id="username_for_rcv" type="text" value="<?=$_COOKIE[app_remember_user];?>" onkeyup="getPhoneByUser($(this).val());" name="real_username" />
 		        <i id="corrent-user" class="fa fa-check-circle pass" aria-hidden="true" style="display: none;"></i>
 		      </label>
 		      </ons-list-item>  
+		      
 		<div id="box_show_pf_rcv" style="display: none;" align="center">
 			<span id="txt_name_rcv"></span>
 			<div style="margin: 10px 0px;">
@@ -28,7 +29,7 @@
           <ons-checkbox class="checkbox-color rcp" input-id="checkbox-0" value="Red" onclick="selectTypeRcp(0);"></ons-checkbox>
         </label>
         <label class="center" for="checkbox-0">
-          SMS OTP (ส่งข้อความ)
+          SMS (ส่งข้อความ)
         </label>
        
       </ons-list-item>
@@ -52,13 +53,25 @@
 		    </div>
       <input type="hidden" value="-1" id="check_type_rcp" />
       </div>
-    </ons-card>
-    	
 
+<div id="enter_pass_box" style="display: none;">
+	<ons-list-item class="input-items" style="padding-left: 0;border: 1px solid #ff0000;" >
+		        <label class="center">
+		        <input  id="pass_recovery_check" type="text" value="" placeholder="กรอกรหัสผ่าน" name="real_password" />
+		      </label>
+	</ons-list-item>  
+	<div align="center">
+		<button type="button" class="btn" style="border: 1px solid #0076ff;color: #0076ff;" onclick="submitLogin('form_recovery');">เข้าสู่ระบบ</button>
+	</div>
+</div>
+    </ons-card>
 </form>
-	<div style="margin: 0px 10px;">
-   		<ons-button modifier="outline" class="button-margin button button--outline button--large" onclick="submitRecoveryPassword();" style="background-color: #fff;" >
+	<div style="margin: 15px 10px;    margin-bottom: 40px;">
+   		<ons-button id="btn_get_pass" modifier="outline" class="button-margin button button--outline button--large" onclick="submitRecoveryPassword();" style="background-color: #fff;" >
    			<span id="txt_btn_rcv">รับรหัสผ่าน</span>
+   		</ons-button>
+   		<ons-button  id="btn_get_pass_again" modifier="outline" class="button-margin button button--outline button--large" onclick="getPasswordAgain();" style="background-color: #fff;display: none;" >
+   			<span id="txt_btn_rcv">รับรหัสผ่านใหม่</span>
    		</ons-button>
     </div>
 </div>
@@ -87,5 +100,13 @@
 		$('.rcp').prop('checked', false);
 		$('#checkbox-'+id).prop('checked', true);
 		$('#check_type_rcp').val(id);
+	}
+	
+	function getPasswordAgain(){
+		$('#btn_get_pass_again').hide();
+		$('#btn_get_pass').show();
+		
+		$('#enter_pass_box').hide();
+		$('#box-channel').show();
 	}
 </script>

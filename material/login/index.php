@@ -43,6 +43,9 @@
 
 
 <style>
+.ons-ios-scroll-fix .page:not(.page--wrapper)[shown] > .page__content {
+  overflow-y: auto !important;
+}
 .txt-important{
 	color: #FF1313;
 	font-weight: bold;
@@ -54,8 +57,8 @@
     background-size: 28px auto;
     background-position: 0 0;
     background-repeat: no-repeat;
-    height: 28px;
-    width: 28px;
+    height: 28px !important;
+    width: 28px !important;
 }
 .txt-upload-profile{
 	background-color: #f4f4f4;
@@ -169,7 +172,7 @@
     border-radius: 100%;
 }
 	.bottom-txt{
-		position: fixed;
+		position: absolute;
 /*	    bottom: 5px;*/
 		margin-top: 30px;
 	    width: 100%;
@@ -262,7 +265,7 @@
 
 					<div class="wrap-input100 validate-input" >
 						<span class="" style="font-size: 15px; position: absolute; margin-top: -15px;  margin-left: 2px;" >ชื่อผู้ใช้งาน</span>
-						<input class="input100 <?=$hasval_us;?>" type="text" name="real_username" id="real-username" autocomplete="new-password" required value="<?=$_COOKIE[app_remember_user];?>">
+						<input class="input100 <?=$hasval_us;?>" type="text" name="real_username" id="real-username" autocomplete="new-password" required value="<?=$_COOKIE[app_remember_user];?>" placeholder="ชื่อผู้ใช้ / เบอร์โทร / อีเมล">
 						<span class="focus-input100" data-placeholder=""></span>
 						
 					</div>
@@ -280,7 +283,7 @@
 						<div style="margin-bottom: 10px;width: 100%;">
 						<button type="submit" style="display: none;">submit</button>
 						<!--<ons-button modifier="large" class="button-margin button button--large pd-min" onclick="$('#form_login').submit();">เข้าสู่ระบบss</ons-button>-->
-						<ons-button modifier="large" class="button-margin button button--large pd-min" onclick="submitLogin();">เข้าสู่ระบบ</ons-button>
+						<ons-button modifier="large" class="button-margin button button--large pd-min" onclick="submitLogin('form_login');">เข้าสู่ระบบ</ons-button>
 						</div>
 						<div style="width: 100%;">
 						<ons-button modifier="large" onclick="fn.pushPage({'id': 'singup.html', 'title': 'สมัครสมาชิก'});" class="button-margin button button--large pd-min" style="background-color: #F7941D;">สมัครสมาชิก</ons-button>
@@ -313,12 +316,11 @@
       <div class="center" id="page_singup">สมัครสมาชิก</div>
     </ons-toolbar>
 	  <div id="body_page_singup">
-	  	<?php include("singup.php"); ?>
+	  	<?php include("singup2.php"); ?>
 	  </div>
   	</ons-page>
 	</template>
 
-	
 	<template id="submit-alert-dialog.html">
 	  <ons-alert-dialog id="submit-my-alert-dialog" modifier="rowfooter">
 	    <div class="alert-dialog-title" id="submit-dialog-title">คุณแน่ใจหรือไม่</div>
@@ -373,7 +375,7 @@
 	  </ons-page>
 </template>
 
-<template id="option.html">
+	<template id="option.html">
 	  <ons-page>
 	    <ons-toolbar>
 	      <div class="left">
@@ -416,7 +418,8 @@
 	<link rel="stylesheet" type="text/css" href="../../pickerdate/classic.date.css?v=<?=time();?>" />
 	<script src="../../pickerdate/picker.js?v=<?=time();?>" type="text/javascript"></script>
 	<script src="../../pickerdate/picker.date.js?v=<?=time();?>" type="text/javascript"></script> 
-	
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
 	<script>
 		function showModal() {
 //		  hideAlertDialog();
@@ -441,7 +444,7 @@
 				
 				return false;
 			}
-			if($('#gender').val()==""){
+			/*if($('#gender').val()==""){
 
 				ons.notification.alert({message: 'กรุณาเลือกเพศ',title:"ข้อมูลไม่ครบ",buttonLabel:"ปิด"})
 				  .then(function() {
@@ -464,7 +467,7 @@
 				    $('input[name="address"]').focus();
 				  });
 				return false;
-			}
+			}*/
 			if($('input[name="phone"]').val()==""){
 
 				ons.notification.alert({message: 'กรุณากรอกเบอร์โทรศัพท์',title:"ข้อมูลไม่ครบ",buttonLabel:"ปิด"})
@@ -473,7 +476,7 @@
 				  });
 				return false;
 			}
-			if($('#valid_type_plate').val()==1){
+			/*if($('#valid_type_plate').val()==1){
 
 				ons.notification.alert({message: 'ทะเบียนรถนี้ถูกใช้แล้ว ไม่สามารถใช้ซ้ำได้',title:"ข้อมูลซ้ำ",buttonLabel:"ปิด"})
 				  .then(function() {
@@ -512,7 +515,7 @@
 				    $('input[name="image-data"]').focus();
 				  });
 				return false;
-			}
+			}*/
 
 			/*if($('input[name="idcard"]').val()==""){
 				ons.notification.alert({message: 'กรุณากรอกเลขบัตรประจำตัวประชาชน',title:"ผิดพลาด"});
@@ -520,7 +523,7 @@
 			}else{
 				
 			}	*/
-			if($('#valid_type_idc').val()==1){
+			/*if($('#valid_type_idc').val()==1){
 					ons.notification.alert({message: 'เลขบัตรประชาชนของคุณไม่ถูกต้อง',title:"ผิดพลาด",buttonLabel:"ปิด"});
 					return false;
 				}
@@ -528,7 +531,7 @@
 
 					ons.notification.alert({message: 'เลขบัตรประชาชนของคุณถูกใช้แล้ว ไม่สามารถใช้ซ้ำได้',title:"ผิดพลาด",buttonLabel:"ปิด"});
 					return false;
-				}
+				}*/
 		  var dialog = document.getElementById('submit-my-alert-dialog');
 
 		  if (dialog) {
@@ -594,12 +597,19 @@
 			  }
 			  
 		};
-
 		function submitRecovery(){
+//			$('ons-back-button').click();
 //			console.log($('#username_for_rcv').val());
+			$('#submit-recovery-dialog').hide();
+			/*ons.notification.prompt({message: 'กรุณากรอกรหัสผ่าน',title:"รหัสผ่าน",buttonLabel:"ยืนยัน"})
+									  .then(function(txt) {
+									  	console.log(txt);
+									  });
+			*/
+			
 //			return;
 			modal.show();
-			$('#submit-recovery-dialog').hide();
+			
 			var check_type_rcv = $('#check_type_rcp').val();
 			var key = $('#username_for_rcv').val();
 			
@@ -612,20 +622,29 @@
 	            type: 'post',
 	            success: function(php_script_response) {
 	               console.log(php_script_response);
-//	               return;
-					var message = "ชื่อผู้ใช้ : "+php_script_response.username+"<br/>รหัสผ่าน : "+php_script_response.password;
+	                
+//					var message = "ชื่อผู้ใช้ : "+php_script_response.username+"\r\nหัสผ่าน : "+php_script_response.password;
 				    if(check_type_rcv==0){
+				    	if(php_script_response.i_use_sms == php_script_response.i_limit_sms){
+							ons.notification.alert({message: 'ไม่สามารถรับรหัสผ่านทาง SMS ได้ เนื่องจากคุณกู้รหัสผ่านทาง SMS เกิน 3 ครั้ง กรุณาติดต่อเจ้าหน้าที่ค่ะ',title:"ขอภัย",buttonLabel:"ปิด"})
+									  .then(function() {
+									  	modal.hide();
+									  });
+							 return;
+						}
+	
 				    	var us_phone = $('#us_phone').val();
 						var param = {
 							username : "0954293062",
 							password : "758837",
 							msisdn : us_phone,
 							message : message,
-							sender : "TShare(ทีแชร์)",
+							sender : "Member",
+//							sender : "THAIBULKSMS",
 							ScheduledDelivery : "",
 							force : "standard"
 						};
-						
+//						modal.hide();
 						console.log(param);
 //						return;
 						$.ajax({
@@ -638,7 +657,16 @@
 					            	modal.hide();
 					            	ons.notification.alert({message: 'ส่ง SMS รหัสผ่านไปยังเบอร์ '+us_phone+' แล้ว',title:"สำเร็จ",buttonLabel:"ปิด"})
 									  .then(function() {
-									   
+									  	var push_sms_url = "../../mod/material/php_center.php?action=push_sms&sms="+php_script_response.i_use_sms+"&dv="+php_script_response.id;
+									  	$.post(push_sms_url,function(res){
+									  		console.log(res);
+									  		$('#enter_pass_box').show();
+											$('#box-channel').hide();
+											$('#btn_get_pass_again').show();
+											$('#btn_get_pass').hide();
+//									  		$('ons-back-button').click();
+									  	});
+									   	
 									  });
 					            }
 					        });
@@ -647,7 +675,9 @@
 						var us_email = $('#us_email').val();
 						var param = {
 							email : us_email,
-							message : message
+							username : php_script_response.username,
+							pass : php_script_response.password,
+//							message : message
 						};
 						console.log(param);
 //						return;
@@ -656,7 +686,11 @@
 					     		modal.hide();
 					            	ons.notification.alert({message: 'ส่งรหัสผ่านไปยังที่อยู่ '+us_email+' แล้ว',title:"สำเร็จ",buttonLabel:"ปิด"})
 									  .then(function() {
-									   		
+//									   		$('ons-back-button').click();
+											$('#enter_pass_box').show();
+											$('#box-channel').hide();
+											$('#btn_get_pass_again').show();
+											$('#btn_get_pass').hide();
 									  });
 					     });   
 					}
@@ -693,6 +727,7 @@
 										error: function()
 										{
 											console.log('Error file');
+											$('#box_show_pf_rcv img').attr('src','../../images/no-image-slide.png');
 										},
 										success: function()
 										{
@@ -705,6 +740,8 @@
 							         $('#txt_phone_show').text(response.data.phone);
 							         if(response.data.email==""){
 									 	$('#box-email').hide();	
+									 }else{
+									 	$('#box-email').show();	
 									 }
 							         $('#us_email').val(response.data.email);
 							         $('#txt_email_show').text(response.data.email);
@@ -740,7 +777,8 @@
 		console.log(page)
 		if(page.id=="singup.html"){
 			randerSingUp();
-		}else if(page.id=="option.html"){
+		}
+		else if(page.id=="option.html"){
 			console.log("option");
 			if(page.open=="car_brand"){
 				
@@ -835,7 +873,14 @@
 			}
 		}
 		else if(page.id=="recovery.html"){
-			setTimeout(function(){ getPhoneByUser($('#username_for_rcv').val()); }, 1500);
+			
+			setTimeout(function(){ 
+//			document.getElementById("username_for_rcv").focus();
+			$('#username_for_rcv').focus();
+			console.log('focus');
+			getPhoneByUser($('#username_for_rcv').val()); 
+			
+			}, 700);
 		}
 	  if (anim) {
 	    document.getElementById('myNavigator').pushPage(page.id, { data: { title: page.title }, animation: anim });
@@ -845,10 +890,10 @@
 	  }
 	};
 
-	function submitLogin(){
+	function submitLogin(form){
 		modal.show();
 		console.log("login action");
-		var data = new FormData($('#form_login')[0]);
+		var data = new FormData($('#'+form)[0]);
 		 console.log(data);
 		  var url_login = "../../mod/material/php_center.php?checking=login";
 			  $.ajax({
@@ -862,7 +907,8 @@
 	            success: function(res) {
 	               console.log(res);
 	             	if(res.check==1){
-						 var url = "../../index.php?check_new_user";
+//						 var url = "../../index.php?check_new_user";
+						 var url = "../../../T-share";
 						 console.log(url);
 						 setCookie("detect_username" ,res.data.user, 10);
 						 setCookie("detect_user" ,res.data.id, 10);
@@ -884,7 +930,7 @@
 	
 	$( "#form_login" ).submit(function( event ) {
 //		alert(123);
-		  submitLogin();
+		  submitLogin('form_login');
 		  event.preventDefault();
 		});
 		
@@ -1066,8 +1112,8 @@
 		modal.show();
 		
 		var data = new FormData($('#form_singin')[0]);
-		 data.append('fileUpload', $('#img_profile')[0].files[0]);
-		var url = "../../mod/material/user/php_user.php?action=register";
+//		 data.append('fileUpload', $('#img_profile')[0].files[0]);
+		var url = "../../mod/material/user/php_user.php?action=register2";
 		
 		$.ajax({
             url: url, // point to server-side PHP script 
@@ -1104,7 +1150,8 @@
 					               console.log(res);
 					             	if(res.check==1){
 										modal.show();
-										 var url = "../../index.php?check_new_user="+php_script_response.last_id;
+										 var url = "../../../T-share/index.php?check_new_user="+php_script_response.last_id;
+//										 var url = "https://www.welovetaxi.com/app/T-share?check_new_user="+php_script_response.last_id;
 										 console.log(url);
 										 setCookie("detect_username" ,res.data.user, 10);
 										 setCookie("detect_user" ,res.data.id, 10);
@@ -1189,19 +1236,28 @@ function validPlate(value){
 
 function validPhoneNum(value){
 		console.log(value)
+		if(value.length>=10){
+			
 		$.post("../../mod/material/php_center.php?checking=phone_overlap",{ txt:value  },function(res){
 					console.log(res);
 				 if(res.check == 1){
 						$('#incorrent-phone').show();
 						$('#corrent-phone').hide();
+						$('#incorrent-phone span').text('เบอร์ซ้ำ');
 					}else{
 						
 						$('#corrent-phone').show();
 						$('#incorrent-phone').hide();
+						
 					}
 					$('#valid_type_phone').val(res.check); // 0=ไม่ซ้ำ , 1=ซ้ำ
 				});
-			
+		
+		}else{
+			$('#corrent-phone').hide();
+			$('#incorrent-phone').hide();
+//			$('#incorrent-phone span').text('ไม่ถูกต้อง');
+		}	
 }
 
 function selectCarBrand(id,ps){
@@ -1278,6 +1334,20 @@ function performClick(elemId) {
       elem.dispatchEvent(evt);
    }
 }
+function clearCookieAll() {
+    var cookies = $.cookie();
+    for (var cookie in cookies) {
+        console.log(cookie);
+        if(cookie != "app_remember_user" && cookie!= "app_remember_pass"){
+			$.removeCookie(cookie, {
+	            path: '/'
+	        });
+		}
+    }
+}
+$(window).on('load', function(){ 
+    clearCookieAll();
+});
 
 /*document.querySelector('ons-back-button').onClick = function(event) {
   // Reset the whole stack instead of popping 1 page
