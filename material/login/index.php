@@ -329,7 +329,7 @@
 	    </div>
 	    <div class="alert-dialog-footer">
 	      <ons-alert-dialog-button onclick="hideAlertDialog()">ยกเลิก</ons-alert-dialog-button>
-	      <ons-alert-dialog-button onclick="submitSingUp()">บันทึก</ons-alert-dialog-button>
+	      <ons-alert-dialog-button onclick="submitSingUp()">สมัคร</ons-alert-dialog-button>
 	    </div>
 	  </ons-alert-dialog>
 	</template>
@@ -476,6 +476,14 @@
 				  });
 				return false;
 			}
+            if($('#valid_type_phone').val()==1){
+
+				ons.notification.alert({message: 'เบอร์โทรนี้ถูกใช้แล้ว ไม่สามารถใช้ซ้ำได้',title:"ข้อมูลซ้ำ",buttonLabel:"ปิด"})
+				  .then(function() {
+				    $('input[name="plate_num"]').focus();
+				  });
+				return false;
+			}
 			/*if($('#valid_type_plate').val()==1){
 
 				ons.notification.alert({message: 'ทะเบียนรถนี้ถูกใช้แล้ว ไม่สามารถใช้ซ้ำได้',title:"ข้อมูลซ้ำ",buttonLabel:"ปิด"})
@@ -484,14 +492,7 @@
 				  });
 				return false;
 			}
-			if($('#valid_type_phone').val()==1){
-
-				ons.notification.alert({message: 'เบอร์โทรนี้ถูกใช้แล้ว ไม่สามารถใช้ซ้ำได้',title:"ข้อมูลซ้ำ",buttonLabel:"ปิด"})
-				  .then(function() {
-				    $('input[name="plate_num"]').focus();
-				  });
-				return false;
-			}
+			
 			if($('#phone_em').val()==""){
 
 				ons.notification.alert({message: 'กรุณากรอกเบอร์โทรศัพท์ฉุกเฉิน',title:"ข้อมูลไม่ครบ",buttonLabel:"ปิด"})
@@ -639,7 +640,7 @@
 							msisdn : us_phone,
 							message : message,
                             title : "TShare",
-							sender : "Member",
+							sender : "THAIBULKSMS",
 //							sender : "THAIBULKSMS",
 							ScheduledDelivery : "",
 							force : "standard"
@@ -892,6 +893,20 @@
 
 	function submitLogin(form){
 		modal.show();
+        if($('#real-username').val()==""){
+           modal.hide();
+           ons.notification.alert({message: 'กรุณากรอกชื่อผู้ใช้',title:"ไม่มีชื่อผู้ใช้",buttonLabel:"ปิด"});
+          return false;
+        }
+        
+        if($('#real-password').val()==""){
+          
+          modal.hide();
+          ons.notification.alert({message: 'กรุณากรอกรหัสผ่าน',title:"ไม่มีรหัสผ่าน",buttonLabel:"ปิด"});
+          return false;
+        }
+        
+        
 		console.log("login action");
 		var data = new FormData($('#'+form)[0]);
 		 console.log(data);
@@ -1108,6 +1123,7 @@
 	}
 	
 	function submitSingUp(){	
+        
 		hideAlertDialog();	
 		modal.show();
 		
