@@ -721,6 +721,7 @@
                 $('#box_not_found').hide();
                 $('#corrent-user').show();
                 $('#box_show_pf_rcv').show();
+                $('#btn_get_pass').show();
                 var src = '../../../data/pic/driver/small/' + response.data.username + '.jpg';
                 $('#txt_name_rcv').text("คุณ " + response.data.name);
                 $.ajax({
@@ -759,10 +760,12 @@
                   $('#txt_btn_rcv').text("รับรหัสผ่านทาง Email");
                 }
 
-              } else {
+              } 
+              else {
                 $('#corrent-user').hide();
                 $('#box_show_pf_rcv').hide();
                 $('#box-channel').hide();
+                $('#btn_get_pass').hide();
                 $('#box_not_found').show();
               }
 
