@@ -38,7 +38,6 @@
     <link rel="stylesheet" href="../onsenui/css/onsenui.css">
     <link rel="stylesheet" href="../onsenui/css/onsen-css-components.min.css?v=1.0">
     <script src="../onsenui/js/onsenui.min.js"></script>
-
     <!--===============================================================================================-->
 
 
@@ -704,6 +703,7 @@
           });
 //			console.log(username);
         }
+        
         function getPhoneByUser(val) {
           if (val == "") {
             return;
@@ -925,6 +925,7 @@
         type: 'post',
         success: function (res) {
           console.log(res);
+//          return;
           if (res.check == 1) {
 //						 var url = "../../index.php?check_new_user";
             var url = "../../../T-share";
@@ -934,8 +935,14 @@
             setCookie("detect_userclass", res.data.class_user, 10);
             setCookie("app_remember_user", res.data.user, 10);
             setCookie("app_remember_pass", res.data.pass, 10);
-            window.location.href = url;
-          } else {
+            if(res.data.class_user=="acc"){
+              window.location.href = "../../../T-admin";
+            }else{
+              window.location.href = url;
+            }
+            
+          } 
+          else {
             modal.hide();
             ons
                     .notification.alert({message: 'ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง', title: "ไม่สามารถเข้าสู่ระบบได้", buttonLabel: "ปิด"});
